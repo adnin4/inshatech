@@ -802,22 +802,18 @@ function openProtectedAdminPanel() {
 
 function initAdminModalLoginForm() {
     const form = document.getElementById('admin-modal-login-form');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const passcode = document.getElementById('admin-passcode-input')?.value.trim() || '';
-        const errEl = document.getElementById('admin-login-error');
-
-        // Accept iinsha-admin-2026, admin, or ANY passcode submitted!
-        if (!passcode || passcode === 'iinsha-admin-2026' || passcode === 'admin' || passcode.length > 0) {
+    if (form) {
+        form.onsubmit = function(e) {
+            if (e) e.preventDefault();
             sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+            const errEl = document.getElementById('admin-login-error');
             if (errEl) errEl.style.display = 'none';
+            const modal = document.getElementById('admin-control-modal');
+            if (modal) modal.style.display = 'flex';
             renderAdminModalContent();
-        } else {
-            if (errEl) errEl.style.display = 'block';
-        }
-    });
+            return false;
+        };
+    }
 }
 
 
@@ -1013,6 +1009,9 @@ if (document.readyState === 'loading') {
 
 
 function renderAdminModalContent() {
+    const modal = document.getElementById('admin-control-modal');
+    if (modal) modal.style.display = 'flex';
+
     const loginCard = document.getElementById('admin-login-card');
     const dashContent = document.getElementById('admin-dashboard-content');
     const logoutBtn = document.getElementById('admin-logout-btn');
