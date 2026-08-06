@@ -2493,7 +2493,8 @@
                     <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.6;">Get free n8n templates, OpenClaw scrapers, Docker compose files, and weekly engineering notes delivered directly to your inbox.</p>
                 </div>
                 <div>
-                    <form onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center;padding:20px;\'><span style=\'font-size:2rem;\'>\u2705</span><p style=\'color:#10B981;font-weight:700;margin-top:8px;\'>Subscribed! Check your inbox for free templates.</p></div>';" style="display:flex; flex-direction:column; gap:12px;">
+                    <form onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center;padding:20px;\'><span style=\'font-size:2rem;\'>\u2705</span><p style=\'color:#10B981;font-weight:700;margin-top:8px;\'>Subscribed! Check your inbox for free templates.</p></div>';" style="display:flex; flex-direction:column; gap:12px;">
+
                         <input type="text" placeholder="Your Name" required class="dash-select" style="width:100%;">
                         <input type="email" placeholder="Your Work Email" required class="dash-select" style="width:100%;">
                         <button type="submit" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); padding:12px; font-size:1rem;">📩 Get Free Templates & Weekly Digest →</button>
@@ -2657,26 +2658,9 @@
             </div>
         </div>
     </div>
-    </div>
-1'; setTimeout(()=>{this.innerHTML='🔄 Restart OpenClaw'; this.style.color='';}, 3000);" class="btn btn-glass-sm" style="color:var(--accent-emerald);">🔄 Restart OpenClaw</button>
-                            <button onclick="dispatchMobileAlert({name:'Test Admin', pkg:'Live System Test', price:'$0', contact:'+8801629286887', payMethod:'Admin Test'});" class="btn btn-glass-sm" style="color:var(--accent-gold);">🧪 Test WA Alert</button>
-                            <a href="affiliate.html" class="btn btn-glass-sm" style="color:var(--accent-purple); text-align:center;">🤝 Partner Ledger</a>
-                        </div>
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                            <a href="marketplace.html" class="btn btn-glass-sm" style="color:var(--accent-cyan); text-align:center;">🛍️ Template Store</a>
-                            <a href="https://wa.me/8801629286887" target="_blank" class="btn btn-primary-sm" style="background:var(--accent-emerald); color:#000; text-align:center; font-weight:700;">📱 Live WhatsApp</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align:center; border-top:1px solid var(--border-card); padding-top:16px;">
-                    <button onclick="this.innerHTML='⏳ Running Audit...'; setTimeout(()=>{this.innerHTML='✅ All 10 Services Operational — 100% Efficiency'; this.style.background='linear-gradient(135deg, #10B981, #047857)';}, 2500);" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); padding:10px 24px; font-size:0.9rem;">✨ Run Full System Diagnostic Audit →</button>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- LEAD MAGNET MODAL (DOWNLOAD 5-PAGE ROI & ARCHITECTURE REPORT PDF) -->
     <div id="lead-magnet-modal" class="lead-modal-overlay">
         <div class="lead-modal-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -2685,7 +2669,8 @@
             </div>
             <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">Receive a customized 5-page PDF blueprint tailored for your stack (n8n, Hostinger VPS Docker, Gemini 3.0 Vision, OpenClaw Playwright).</p>
             
-            <form id="lead-magnet-form" onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center;padding:20px;\'><span style=\'font-size:2.5rem;\'>📩</span><p style=\'color:#00F2FE;font-weight:700;margin-top:10px;\'>Report Sent! Check your email within 24 hours.</p></div>'; setTimeout(()=>{document.getElementById(\'lead-magnet-modal\').style.display=\'none\';}, 4000);">
+            <form id="lead-magnet-form" onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center;padding:20px;\'><span style=\'font-size:2.5rem;\'>📩</span><p style=\'color:#00F2FE;font-weight:700;margin-top:10px;\'>Report Sent! Check your email within 24 hours.</p></div>'; setTimeout(()=>{document.getElementById(\'lead-magnet-modal\').style.display=\'none\';}, 4000);">
+
                 <div style="margin-bottom:12px;">
                     <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:4px;">Work Email:</label>
                     <input type="email" required placeholder="name@company.com" class="dash-select" style="width:100%;">

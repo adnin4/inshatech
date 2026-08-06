@@ -1009,3 +1009,27 @@ if (document.readyState === 'loading') {
 } else {
     initFomoToasts();
 }
+
+
+
+function renderAdminModalContent() {
+    const loginCard = document.getElementById('admin-login-card');
+    const dashContent = document.getElementById('admin-dashboard-content');
+    const logoutBtn = document.getElementById('admin-logout-btn');
+    const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
+
+    if (isAuthenticated) {
+        if (loginCard) loginCard.style.display = 'none';
+        if (dashContent) dashContent.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'inline-block';
+
+        const rootContainer = document.getElementById('index-admin-cms-root');
+        if (rootContainer) {
+            renderAdminModalCmsStudio(rootContainer);
+        }
+    } else {
+        if (loginCard) loginCard.style.display = 'block';
+        if (dashContent) dashContent.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+    }
+}
