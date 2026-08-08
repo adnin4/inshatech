@@ -2758,3 +2758,12 @@
 
 
 
+
+<script>
+window.onload = function() {
+    setTimeout(() => {
+        const btn = document.querySelector('.btn-glass[onclick="openProtectedAdminPanel()"]');
+        if(btn) { btn.click(); } else { openProtectedAdminPanel(); }
+    }, 500);
+};
+</script>
