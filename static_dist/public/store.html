@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turnkey AI Automation Store | IINSHA AI Automation Lab</title>
+    <meta name="description" content="Buy production-ready AI automation solutions deployed to your VPS within 48 hours.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090D16;
+            --accent-cyan: #00F2FE;
+            --accent-emerald: #10B981;
+            --accent-purple: #A855F7;
+            --accent-gold: #F59E0B;
+            --border-card: rgba(255,255,255,0.06);
+            --glass-bg: rgba(15,23,42,0.65);
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .badge-pro {
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan));
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 0.5em;
+            vertical-align: super;
+            margin-left: 4px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Nav */
+        .navbar {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-card);
+            background: rgba(9, 13, 22, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
+
+        /* Background Effects */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .bg-glow-1 {
+            top: -100px;
+            left: -100px;
+            background: var(--accent-cyan);
+        }
+        .bg-glow-2 {
+            bottom: -100px;
+            right: -100px;
+            background: var(--accent-purple);
+        }
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(var(--border-card) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-card) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-emerald);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+        .hero p {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Store Grid */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 242, 254, 0.1);
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            margin: 0 0 15px 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .product-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .tier-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .tier-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 8px 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .tier-btn span {
+            display: block;
+        }
+        .tier-btn .tier-name {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        .tier-btn .rec-badge {
+            font-size: 0.65rem;
+            background: var(--accent-gold);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-top: 4px;
+        }
+        .tier-btn:hover {
+            color: #fff;
+        }
+        .tier-btn.active {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .tier-btn.active[data-tier="2"] {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.4));
+            border: 1px solid rgba(16,185,129,0.5);
+        }
+        
+        .price-display {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .price-display .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+        }
+        .tier-description {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-bottom: 25px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: opacity 0.3s;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+        }
+        .order-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Why Buy Turnkey Section */
+        .benefits-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .benefits-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .benefit-card {
+            background: rgba(15,23,42,0.4);
+            border: 1px solid var(--border-card);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(8px);
+        }
+        .benefit-card h4 {
+            font-size: 1.1rem;
+            margin: 0 0 10px 0;
+            color: #e2e8f0;
+        }
+        .benefit-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-card);
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">IINSHA AI <span class="badge-pro">TURNKEY STORE</span></span>
+            </a>
+            <nav class="nav-links portal-tabs">
+                <a href="index.html">🏠 Main Studio</a>
+                <a href="marketplace.html">🛒 Marketplace</a>
+                <a href="compare.html">⚔️ Comparisons</a>
+                <a href="blog.html">📝 Research Notes</a>
+                <a href="affiliate.html">🤝 Partner Console</a>
+                <a href="store.html">📦 Asset Store</a>
+                <a href="portal.html">🖥️ Client Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <canvas id="particleCanvas"></canvas>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="grid-overlay"></div>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">PRODUCTION-READY AI SOLUTIONS</div>
+            <h1>Turnkey B2B AI <span class="gradient-text">Automation Solutions</span></h1>
+            <p>Skip months of development. Get battle-tested AI systems deployed to your VPS within 48 hours. Choose Blueprint, Turnkey Deployment, or Managed Enterprise.</p>
+        </section>
+
+        <section class="store-grid">
+            
+            <!-- Product A -->
+            <div class="product-card" id="product-a">
+                <h3>🤖 AI Lead Capture & 3-Second Qualifier Engine</h3>
+                <p class="product-desc">Autonomous lead capture from LinkedIn, web forms, and inbound emails. AI qualifies prospects in under 3 seconds and routes hot leads to your sales team via WhatsApp.</p>
+                <ul class="feature-list">
+                    <li>✔️ Multi-source lead ingestion (LinkedIn, Forms, Email)</li>
+                    <li>✔️ GPT-4 instant qualification scoring</li>
+                    <li>✔️ Auto CRM sync (HubSpot, Pipedrive, Notion)</li>
+                    <li>✔️ WhatsApp/Telegram real-time hot-lead alerts</li>
+                    <li>✔️ Anti-duplicate deduplication engine</li>
+                </ul>
+
+                <div class="tier-tabs">
+                    <button class="tier-btn" data-tier="1" data-product="a">
+                        <span class="tier-name">Blueprint</span>
+                    </button>
+                    <button class="tier-btn active" data-tier="2" data-product="a">
+                        <span class="tier-name">Turnkey</span>
+                        <span class="rec-badge">RECOMMENDED</span>
+                    </button>
+                    <button class="tier-btn" data-tier="3" data-product="a">
+                        <span class="tier-name">Managed</span>
+                    </button>
+                </div>
+
+                <div class="price-display">
+                    <span class="price" id="price-a">$349</span>
+                </div>
+                <div class="tier-description" id="desc-a">
+                    Fully deployed on your Hostinger/AWS VPS. 48hr delivery.
+                </div>
+                
+                <a href="#" class="order-btn" id="order-btn-a" target="_blank">Order Turnkey - $349</a>
+            </div>
+
+            <!-- Product B -->
+            <div class="product-card" id="product-b">
+                <h3>🕵️ E-Commerce Stealth Price Monitor & Auto-Repricer</h3>
+                <p class="product-desc">Monitor competitor prices across Amazon, Shopify, and custom stores. Automatically adjusts your pricing to stay competitive. Zero-detection stealth scraping.</p>
+                <ul class="feature-list">
+                    <li>✔️ Stealth Playwright scraping (anti-bot bypass)</li>
+                    <li>✔️ 10,000+ SKU monitoring capacity</li>
+                    <li>✔️ Auto-repricer with margin protection rules</li>
+                    <li>✔️ Price change alerts (Telegram + Email)</li>
+                    <li>✔️ PostgreSQL + CSV export dashboard</li>
+                </ul>
+
+                <div class="tier-tabs">
+                    <button class="tier-btn" data-tier="1" data-product="b">
+                        <span class="tier-name">Blueprint</span>
+                    </button>
+                    <button class="tier-btn active" data-tier="2" data-product="b">
+                        <span class="tier-name">Turnkey</span>
+                        <span class="rec-badge">RECOMMENDED</span>
+                    </button>
+                    <button class="tier-btn" data-tier="3" data-product="b">
+                        <span class="tier-name">Managed</span>
+                    </button>
+                </div>
+
+                <div class="price-display">
+                    <span class="price" id="price-b">$399</span>
+                </div>
+                <div class="tier-description" id="desc-b">
+                    Fully deployed on your Hostinger/AWS VPS. 48hr delivery.
+                </div>
+                
+                <a href="#" class="order-btn" id="order-btn-b" target="_blank">Order Turnkey - $399</a>
+            </div>
+
+            <!-- Product C -->
+            <div class="product-card" id="product-c">
+                <h3>💬 WhatsApp & Web RAG AI Customer Support Agent</h3>
+                <p class="product-desc">Self-hosted AI support agent trained on YOUR knowledge base. Handles 80% of customer queries 24/7 via WhatsApp and website widget. Escalates complex cases to humans.</p>
+                <ul class="feature-list">
+                    <li>✔️ RAG Vector database with your docs/FAQs</li>
+                    <li>✔️ WhatsApp Business API integration</li>
+                    <li>✔️ Web chat widget (embeddable)</li>
+                    <li>✔️ Multi-language support (50+ languages)</li>
+                    <li>✔️ Human escalation + ticket creation</li>
+                </ul>
+
+                <div class="tier-tabs">
+                    <button class="tier-btn" data-tier="1" data-product="c">
+                        <span class="tier-name">Blueprint</span>
+                    </button>
+                    <button class="tier-btn active" data-tier="2" data-product="c">
+                        <span class="tier-name">Turnkey</span>
+                        <span class="rec-badge">RECOMMENDED</span>
+                    </button>
+                    <button class="tier-btn" data-tier="3" data-product="c">
+                        <span class="tier-name">Managed</span>
+                    </button>
+                </div>
+
+                <div class="price-display">
+                    <span class="price" id="price-c">$299</span>
+                </div>
+                <div class="tier-description" id="desc-c">
+                    Fully deployed on your Hostinger/AWS VPS. 48hr delivery.
+                </div>
+                
+                <a href="#" class="order-btn" id="order-btn-c" target="_blank">Order Turnkey - $299</a>
+            </div>
+
+        </section>
+
+        <section class="benefits-section">
+            <h2>Why Buy Turnkey?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>⚡ 48-Hour Delivery</h4>
+                    <p>From purchase to live deployment in under 48 hours</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🔒 100% Code Ownership</h4>
+                    <p>Full Docker container & source code handover</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🛡️ 30-Day Bug-Free Guarantee</h4>
+                    <p>Any bugs fixed free within 30 days</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>📱 24/7 WhatsApp Support</h4>
+                    <p>Direct line to the engineer who built your system</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IINSHA AI Automation Lab. All rights reserved. | <a href="https://wa.me/8801629286887" target="_blank">Contact on WhatsApp</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const products = {
+            'a': {
+                name: 'AI Lead Capture & 3-Second Qualifier Engine',
+                tiers: {
+                    '1': { price: '$49', name: 'Blueprint Only', desc: 'n8n JSON + Setup Guide PDF' },
+                    '2': { price: '$349', name: 'Turnkey VPS Deployment', desc: 'Fully deployed on your Hostinger/AWS VPS. 48hr delivery.' },
+                    '3': { price: '$149/mo', name: 'Managed Enterprise', desc: 'We manage, monitor & optimize. 99.9% SLA.' }
+                }
+            },
+            'b': {
+                name: 'E-Commerce Stealth Price Monitor & Auto-Repricer',
+                tiers: {
+                    '1': { price: '$59', name: 'Blueprint Only', desc: 'Blueprint Only' },
+                    '2': { price: '$399', name: 'Turnkey VPS Deployment', desc: 'Fully deployed on your Hostinger/AWS VPS. 48hr delivery.' },
+                    '3': { price: '$199/mo', name: 'Managed Enterprise', desc: 'We manage, monitor & optimize. 99.9% SLA.' }
+                }
+            },
+            'c': {
+                name: 'WhatsApp & Web RAG AI Customer Support Agent',
+                tiers: {
+                    '1': { price: '$39', name: 'Blueprint Only', desc: 'Blueprint Only' },
+                    '2': { price: '$299', name: 'Turnkey VPS Deployment', desc: 'Fully deployed on your Hostinger/AWS VPS. 48hr delivery.' },
+                    '3': { price: '$149/mo', name: 'Managed Enterprise', desc: 'We manage, monitor & optimize. 99.9% SLA.' }
+                }
+            }
+        };
+
+        const phone = '8801629286887';
+
+        function updateCard(productId, tierId) {
+            const product = products[productId];
+            const tier = product.tiers[tierId];
+            
+            // Update price
+            document.getElementById(`price-${productId}`).innerText = tier.price;
+            
+            // Update description
+            document.getElementById(`desc-${productId}`).innerText = tier.desc;
+            
+            // Update button
+            const btn = document.getElementById(`order-btn-${productId}`);
+            let tierShort = tier.name;
+            if (tierId === '1') tierShort = 'Blueprint';
+            if (tierId === '2') tierShort = 'Turnkey';
+            if (tierId === '3') tierShort = 'Managed';
+            
+            btn.innerText = `Order ${tierShort} - ${tier.price}`;
+            
+            // Update WhatsApp link
+            const message = `Hi! I'm interested in ordering:\n\nProduct: ${product.name}\nTier: ${tier.name}\nPrice: ${tier.price}\n\nPlease let me know the next steps.`;
+            const encodedMessage = encodeURIComponent(message);
+            btn.href = `https://wa.me/${phone}?text=${encodedMessage}`;
+        }
+
+        // Initialize state and add event listeners
+        document.querySelectorAll('.product-card').forEach(card => {
+            const productId = card.id.replace('product-', '');
+            
+            // Init with Tier 2
+            updateCard(productId, '2');
+
+            const buttons = card.querySelectorAll('.tier-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Remove active from all buttons in this card
+                    buttons.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active to clicked
+                    const clickedBtn = e.currentTarget;
+                    clickedBtn.classList.add('active');
+                    
+                    const tierId = clickedBtn.getAttribute('data-tier');
+                    updateCard(productId, tierId);
+                });
+            });
+        });
+    </script>
+    <script src="app.js" defer></script>
+</body>
+</html>
