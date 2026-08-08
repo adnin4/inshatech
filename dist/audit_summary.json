@@ -1,0 +1,297 @@
+{
+  "files": [
+    {
+      "path": "affiliate.html",
+      "size": 20798
+    },
+    {
+      "path": "app.js",
+      "size": 75585
+    },
+    {
+      "path": "blog.html",
+      "size": 16921
+    },
+    {
+      "path": "compare.html",
+      "size": 12790
+    },
+    {
+      "path": "index.html",
+      "size": 225565
+    },
+    {
+      "path": "live_index.html",
+      "size": 221455
+    },
+    {
+      "path": "marketplace.html",
+      "size": 26507
+    },
+    {
+      "path": "portal.html",
+      "size": 25534
+    },
+    {
+      "path": "store.html",
+      "size": 22508
+    },
+    {
+      "path": "style.css",
+      "size": 62314
+    },
+    {
+      "path": "supabase_schema.sql",
+      "size": 10292
+    },
+    {
+      "path": "worker.js",
+      "size": 5208
+    },
+    {
+      "path": "wrangler.toml",
+      "size": 375
+    },
+    {
+      "path": "build\\affiliate.html",
+      "size": 20798
+    },
+    {
+      "path": "build\\app.js",
+      "size": 55364
+    },
+    {
+      "path": "build\\blog.html",
+      "size": 16921
+    },
+    {
+      "path": "build\\compare.html",
+      "size": 12790
+    },
+    {
+      "path": "build\\index.html",
+      "size": 225360
+    },
+    {
+      "path": "build\\marketplace.html",
+      "size": 26507
+    },
+    {
+      "path": "build\\portal.html",
+      "size": 25534
+    },
+    {
+      "path": "build\\store.html",
+      "size": 22508
+    },
+    {
+      "path": "build\\style.css",
+      "size": 59154
+    },
+    {
+      "path": "cloudflare_pages_dist\\affiliate.html",
+      "size": 20798
+    },
+    {
+      "path": "cloudflare_pages_dist\\app.js",
+      "size": 55364
+    },
+    {
+      "path": "cloudflare_pages_dist\\blog.html",
+      "size": 16921
+    },
+    {
+      "path": "cloudflare_pages_dist\\compare.html",
+      "size": 12790
+    },
+    {
+      "path": "cloudflare_pages_dist\\index.html",
+      "size": 225360
+    },
+    {
+      "path": "cloudflare_pages_dist\\marketplace.html",
+      "size": 26507
+    },
+    {
+      "path": "cloudflare_pages_dist\\portal.html",
+      "size": 25534
+    },
+    {
+      "path": "cloudflare_pages_dist\\store.html",
+      "size": 22508
+    },
+    {
+      "path": "cloudflare_pages_dist\\style.css",
+      "size": 59154
+    },
+    {
+      "path": "cloudflare_pages_dist\\worker.js",
+      "size": 2904
+    },
+    {
+      "path": "cloudflare_pages_dist\\netlify\\functions\\api.js",
+      "size": 3740
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-agent-development.html",
+      "size": 13736
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-business-automation.html",
+      "size": 7303
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-document-processing.html",
+      "size": 7334
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-infrastructure.html",
+      "size": 7415
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-integration.html",
+      "size": 7174
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\ai-website-development.html",
+      "size": 7384
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\hermes-ai-support-agent.html",
+      "size": 7340
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\managed-ai-services.html",
+      "size": 7382
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\n8n-automation-expert.html",
+      "size": 7304
+    },
+    {
+      "path": "cloudflare_pages_dist\\services\\openclaw-web-scraping.html",
+      "size": 7489
+    },
+    {
+      "path": "dist\\affiliate.html",
+      "size": 20798
+    },
+    {
+      "path": "dist\\app.js",
+      "size": 55364
+    },
+    {
+      "path": "dist\\blog.html",
+      "size": 16921
+    },
+    {
+      "path": "dist\\compare.html",
+      "size": 12790
+    },
+    {
+      "path": "dist\\index.html",
+      "size": 225360
+    },
+    {
+      "path": "dist\\marketplace.html",
+      "size": 26507
+    },
+    {
+      "path": "dist\\portal.html",
+      "size": 25534
+    },
+    {
+      "path": "dist\\store.html",
+      "size": 22508
+    },
+    {
+      "path": "dist\\style.css",
+      "size": 59154
+    },
+    {
+      "path": "netlify\\functions\\api.js",
+      "size": 3740
+    },
+    {
+      "path": "public\\affiliate.html",
+      "size": 20798
+    },
+    {
+      "path": "public\\app.js",
+      "size": 55364
+    },
+    {
+      "path": "public\\blog.html",
+      "size": 16921
+    },
+    {
+      "path": "public\\compare.html",
+      "size": 12790
+    },
+    {
+      "path": "public\\index.html",
+      "size": 225360
+    },
+    {
+      "path": "public\\marketplace.html",
+      "size": 26507
+    },
+    {
+      "path": "public\\portal.html",
+      "size": 25534
+    },
+    {
+      "path": "public\\store.html",
+      "size": 22508
+    },
+    {
+      "path": "public\\style.css",
+      "size": 59154
+    },
+    {
+      "path": "services\\ai-agent-development.html",
+      "size": 13736
+    },
+    {
+      "path": "services\\ai-business-automation.html",
+      "size": 7303
+    },
+    {
+      "path": "services\\ai-document-processing.html",
+      "size": 7334
+    },
+    {
+      "path": "services\\ai-infrastructure.html",
+      "size": 7415
+    },
+    {
+      "path": "services\\ai-integration.html",
+      "size": 7174
+    },
+    {
+      "path": "services\\ai-website-development.html",
+      "size": 7384
+    },
+    {
+      "path": "services\\hermes-ai-support-agent.html",
+      "size": 7340
+    },
+    {
+      "path": "services\\managed-ai-services.html",
+      "size": 7382
+    },
+    {
+      "path": "services\\n8n-automation-expert.html",
+      "size": 7304
+    },
+    {
+      "path": "services\\openclaw-web-scraping.html",
+      "size": 7489
+    }
+  ],
+  "hardcoded_objects": [],
+  "storage_usage": [],
+  "api_calls": [],
+  "missing_functions": [],
+  "duplicate_data": []
+}

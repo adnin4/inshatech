@@ -1,10 +1,9 @@
 name = "inshatech"
-pages_build_output_dir = "./"
+pages_build_output_dir = "./dist"
 compatibility_date = "2026-08-01"
 
-[site]
-bucket = "./"
-exclude = ["*.zip", "*.py", "*.png", "*.log", ".git/*", "node_modules/*", ".github/*"]
+[assets]
+directory = "./dist"
 
 [vars]
 ENVIRONMENT = "production"
