@@ -1,0 +1,4 @@
+# Prevent GitHub Pages from ignoring files starting with underscores (_headers, _redirects)
+with open('.nojekyll', 'w', encoding='utf-8') as f:
+    f.write('')
+print('Created .nojekyll file.')
