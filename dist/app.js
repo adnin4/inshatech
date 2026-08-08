@@ -868,6 +868,7 @@ function openProtectedAdminPanel() {
     const modal = document.getElementById('admin-control-modal');
     if (!modal) return;
 
+    modal.classList.remove('hidden');
     modal.style.display = 'flex';
     modal.style.zIndex = '10005';
     modal.style.opacity = '1';
