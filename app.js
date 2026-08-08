@@ -792,11 +792,16 @@ function bindIBOSModuleListeners() {
 }
 
 
+
 function openProtectedAdminPanel() {
     const modal = document.getElementById('admin-control-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
+    if (!modal) return;
+
+    modal.style.display = 'flex';
+    modal.style.zIndex = '10005';
+    modal.style.opacity = '1';
+    modal.style.visibility = 'visible';
+
     const rootContainer = document.getElementById('index-admin-cms-root');
     if (rootContainer) {
         renderAdminModalCmsStudio(rootContainer);
