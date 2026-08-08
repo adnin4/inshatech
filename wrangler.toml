@@ -1,4 +1,4 @@
-name = "iinshaa-os-gateway"
+name = "inshatech"
 main = "worker.js"
 compatibility_date = "2026-08-01"
 
@@ -10,7 +10,3 @@ ENVIRONMENT = "production"
 SUPABASE_URL = "https://your-project.supabase.co"
 BDT_EXCHANGE_RATE = "120"
 SYSTEM_NAME = "IINSHAA OS v250 Enterprise AI Business Operating System"
-
-[[routes]]
-pattern = "iinshaa.pages.dev/api/*"
-zone_name = "pages.dev"
