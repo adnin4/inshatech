@@ -1,34 +1,30 @@
 import os
 import re
+import json
 
-def audit_project():
-    files = ['index.html', 'app.js', 'style.css', 'affiliate.html', 'blog.html', 'compare.html', 'marketplace.html', 'portal.html', 'store.html']
-    issues = []
+project_dir = r"C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase"
 
-    for fname in files:
-        if not os.path.exists(fname):
-            issues.append(f"Missing file: {fname}")
-            continue
-        
-        with open(fname, 'r', encoding='utf-8', errors='ignore') as f:
-            content = f.read()
+audit_results = {
+    "files": [],
+    "hardcoded_objects": [],
+    "storage_usage": [],
+    "api_calls": [],
+    "missing_functions": [],
+    "duplicate_data": []
+}
 
-        # Check for unclosed HTML tags or broken JS console errors
-        if fname.endswith('.html'):
-            if content.count('<script') != content.count('</script>'):
-                issues.append(f"Script tag count mismatch in {fname}")
-            if content.count('<div') != content.count('</div>'):
-                issues.append(f"Div tag count warning in {fname}: {content.count('<div')} divs vs {content.count('</div>')} closing divs")
+for root, dirs, files in os.walk(project_dir):
+    if '.git' in root or 'node_modules' in root or '.wrangler' in root:
+        continue
+    for f in files:
+        if f.endswith(('.html', '.js', '.css', '.sql', '.toml', '.json')):
+            fp = os.path.join(root, f)
+            rel_path = os.path.relpath(fp, project_dir)
+            size = os.path.getsize(fp)
+            audit_results["files"].append({"path": rel_path, "size": size})
 
-        if fname == 'app.js':
-            # Check for potential null reference crashes
-            null_derefs = re.findall(r'document\.getElementById\([\'"](.*?)[\'"]\)\.(onclick|value|style|innerHTML|textContent)', content)
-            print(f"Total direct element accesses in app.js: {len(null_derefs)}")
+print(f"Audited {len(audit_results['files'])} project files.")
+with open(os.path.join(project_dir, "audit_summary.json"), "w", encoding="utf-8") as out:
+    json.dump(audit_results, out, indent=2)
 
-    print("Audit Complete!")
-    print(f"Total Issues Found: {len(issues)}")
-    for iss in issues:
-        print(" -", iss)
-
-if __name__ == '__main__':
-    audit_project()
+print("Audit summary written to audit_summary.json")
