@@ -1,13 +1,13 @@
 name = "inshatech"
-main = "worker.js"
+pages_build_output_dir = "./"
 compatibility_date = "2026-08-01"
 
 [site]
 bucket = "./"
-exclude = ["*.zip", "*.py", "*.png", "*.log", ".git/*", "node_modules/*"]
+exclude = ["*.zip", "*.py", "*.png", "*.log", ".git/*", "node_modules/*", ".github/*"]
 
 [vars]
 ENVIRONMENT = "production"
 SUPABASE_URL = "https://your-project.supabase.co"
 BDT_EXCHANGE_RATE = "120"
-SYSTEM_NAME = "IINSHAA OS v250 Enterprise AI Business Operating System"
+SYSTEM_NAME = "IINSHA TECH OS v1000 Master Control Studio"
