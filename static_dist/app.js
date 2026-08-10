@@ -4148,6 +4148,7 @@ function editServiceInStudio(svcId) {
 
     alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
     renderCompleteEnterpriseStudioCMS();
+    try { render2026OutcomeServicesStudio(); } catch(e){}
 }
 window.editServiceInStudio = editServiceInStudio;
 
@@ -4158,6 +4159,7 @@ function toggleServiceStatusV7(svcId) {
     let nextIdx = (states.indexOf(svc.status) + 1) % states.length;
     svc.status = states[nextIdx];
     renderCompleteEnterpriseStudioCMS();
+    try { render2026OutcomeServicesStudio(); } catch(e){}
 }
 window.toggleServiceStatusV7 = toggleServiceStatusV7;
 
@@ -4208,3 +4210,56 @@ function renderCompleteEnterpriseStudioCMS() {
     `;
 }
 window.renderCompleteEnterpriseStudioCMS = renderCompleteEnterpriseStudioCMS;
+
+
+
+/* ============================================================
+   IINSHA AI OS v8.0 — 2026 AAAS OUTCOME-BASED MATRIX & ZERO-PERSON ENTERPRISE
+   ============================================================ */
+
+var iinsha2026OutcomeServices = [
+    { id: 'aaas-1', category: 'AaaS (Agent-as-a-Service)', title: 'AgentForge AI — No-Code Agent Builder', pricing: '$0.02 / agent-run | $199/mo base', status: 'Active', headline: 'Build, Deploy & Monitor Autonomous AI Agents with Zero Code', valueProp: 'Per-execution micro-billing with MCP & A2A protocol support' },
+    { id: 'aaas-2', category: 'Outcome SaaS', title: 'OutcomeStudio AI — Goal-to-Delivery Engine', pricing: '$49 / completed business outcome', status: 'Active', headline: 'Zero-Seat Outcome-Based Task Execution Engine', valueProp: 'Pay strictly for delivered results (e.g. 100% verified onboarding)' },
+    { id: 'aaas-3', category: 'Outcome SaaS', title: 'LeadEngine AI — Autonomous Prospecting', pricing: '$15 / qualified B2B lead', status: 'Active', headline: 'Self-Aware Lead Discovery, Scoring & Autonomous Nurturing', valueProp: 'Guaranteed ICP enrichment with zero manual sales effort' },
+    { id: 'aaas-4', category: 'AaaS (Agent-as-a-Service)', title: 'SupportAutopilot AI — 24/7 RAG Ticket Resolver', pricing: '$0.50 / resolved ticket', status: 'Active', headline: 'Autonomous RAG Customer Service Agent with Zero Human Drift', valueProp: 'Instant sub-sec responses with automatic human escalation safety' },
+    { id: 'ent-2026-1', category: 'Enterprise Systems', title: 'Autonomous Agent Swarm Team Deployment', pricing: '$25,000 - $150,000 + Managed Retainer', status: 'Active', headline: 'Deploy 3-10 Specialized AI Agents operating your core business', valueProp: 'Complete digital employee workforce with 24/7 uptime' },
+    { id: 'ent-2026-2', category: 'Zero-Person Enterprise', title: 'Autonomous "Zero-Person Company" System', pricing: '$250,000 - $2,000,000+', status: 'Active', headline: 'Complete Autonomous Business Empire Run 100% by AI Swarms', valueProp: 'Self-governing, self-marketing & self-sustaining corporate entity' }
+];
+
+function render2026OutcomeServicesStudio() {
+    const root = document.getElementById('admin-2026-outcome-services-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #10b981; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>🚀 2026 AaaS & Outcome-Based Pricing Matrix</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">PARADIGM SHIFT ACTIVE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">From seat-based pricing to Agent-as-a-Service (AaaS) & Outcome-based billing.</p>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+                ${iinsha2026OutcomeServices.map(s => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:6px;">${s.category}</span>
+                            <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">${s.status}</span>
+                        </div>
+                        <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
+                        <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
+                        <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
+                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
+                            📄 Generate 2026 Outcome SoW
+                        </button>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.render2026OutcomeServicesStudio = render2026OutcomeServicesStudio;
