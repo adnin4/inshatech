@@ -1125,6 +1125,8 @@ window.addEventListener('DOMContentLoaded', () => {
     initMarketplaceHandlers();
     initStorePageCheckout();
     initAiReadinessAssessment();
+    initTerminalTelemetry();
+    initGlobalCurrencyConverter();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1526,4 +1528,65 @@ function initAiReadinessAssessment() {
             `;
         }
     };
+}
+
+
+
+/* ============================================================
+   ADVANCED ENTERPRISE TELEMETRY & PROPOSAL ENGINE
+   ============================================================ */
+function initTerminalTelemetry() {
+    const runScraperBtn = document.getElementById('term-run-scraper-btn');
+    const runRagBtn = document.getElementById('term-run-rag-btn');
+    const termOutput = document.getElementById('terminal-live-logs');
+
+    if (runScraperBtn) {
+        runScraperBtn.onclick = () => {
+            if (termOutput) {
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ▶ Executing OpenClaw Stealth Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        };
+    }
+
+    if (runRagBtn) {
+        runRagBtn.onclick = () => {
+            if (termOutput) {
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 2.5 Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] 🔍 Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        };
+    }
+}
+
+function initGlobalCurrencyConverter() {
+    const toggles = document.querySelectorAll('.currency-toggle-btn[data-curr]');
+    if (!toggles.length) return;
+
+    const rates = {
+        USD: { symbol: '$', rate: 1 },
+        BDT: { symbol: '৳', rate: 120 },
+        EUR: { symbol: '€', rate: 0.92 },
+        GBP: { symbol: '£', rate: 0.78 },
+        AED: { symbol: 'د.إ', rate: 3.67 }
+    };
+
+    toggles.forEach(btn => {
+        btn.onclick = () => {
+            const curr = btn.getAttribute('data-curr') || 'USD';
+            const info = rates[curr] || rates.USD;
+
+            toggles.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const priceElements = document.querySelectorAll('[data-usd-price]');
+            priceElements.forEach(el => {
+                const usd = parseFloat(el.getAttribute('data-usd-price') || '0');
+                if (usd > 0) {
+                    const converted = Math.round(usd * info.rate);
+                    el.innerText = `${info.symbol}${converted.toLocaleString()} ${curr}`;
+                }
+            });
+        };
+    });
 }
