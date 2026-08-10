@@ -1131,6 +1131,8 @@ window.addEventListener('DOMContentLoaded', () => {
     initRoiComparisonMatrix();
     initInteractiveAiAgentBuilder();
     initAiAgentCommandSwarm();
+    initAiVoiceSimulator();
+    initCloudLatencyDiagnostics();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1839,4 +1841,87 @@ function initAiAgentCommandSwarm() {
             </div>
         </div>
     `;
+}
+
+
+
+/* ============================================================
+   NEXT-GEN ULTRA MODULES: VOICE TELEPHONY & CLOUD LATENCY
+   ============================================================ */
+function initAiVoiceSimulator() {
+    const startCallBtn = document.getElementById('start-ai-voice-call-btn');
+    const voiceOutputBox = document.getElementById('ai-voice-transcript-output');
+
+    if (!startCallBtn || !voiceOutputBox) return;
+
+    let isCalling = false;
+
+    startCallBtn.onclick = () => {
+        isCalling = !isCalling;
+
+        if (isCalling) {
+            startCallBtn.innerHTML = '🛑 End AI Voice Call Simulator';
+            startCallBtn.classList.remove('btn-primary-sm');
+            startCallBtn.classList.add('btn-danger-sm');
+            voiceOutputBox.style.display = 'block';
+
+            voiceOutputBox.innerHTML = `
+                <div style="background:rgba(3,7,18,0.9); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px; margin-top:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; margin-bottom:10px;">
+                        <span style="font-size:0.8rem; font-weight:bold; color:var(--accent-emerald);">📞 LIVE AI VOICE AGENT CALL IN PROGRESS</span>
+                        <span style="font-size:0.7rem; color:#10b981; animation:pulse 1s infinite;">● 00:14 | 24kHz HD Audio</span>
+                    </div>
+
+                    <!-- AUDIO WAVE ANIMATION -->
+                    <div style="display:flex; gap:4px; align-items:center; justify-content:center; height:30px; margin-bottom:12px;">
+                        <div style="width:4px; height:15px; background:var(--accent-cyan); border-radius:2px; animation:wave 0.8s infinite ease-in-out;"></div>
+                        <div style="width:4px; height:28px; background:var(--accent-emerald); border-radius:2px; animation:wave 0.6s infinite ease-in-out;"></div>
+                        <div style="width:4px; height:20px; background:var(--accent-cyan); border-radius:2px; animation:wave 1s infinite ease-in-out;"></div>
+                        <div style="width:4px; height:30px; background:var(--accent-emerald); border-radius:2px; animation:wave 0.5s infinite ease-in-out;"></div>
+                        <div style="width:4px; height:12px; background:var(--accent-cyan); border-radius:2px; animation:wave 0.9s infinite ease-in-out;"></div>
+                    </div>
+
+                    <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e2e8f0; background:#000; padding:10px; border-radius:8px;">
+                        <p style="margin:0 0 6px 0; color:#94a3b8;"><strong>[CLIENT]:</strong> "Hi, I need an automated AI customer support agent for my e-commerce store."</p>
+                        <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 2.5 support bot on your Hostinger VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            startCallBtn.innerHTML = '🎙️ Simulate AI Telephony Voice Call';
+            startCallBtn.classList.remove('btn-danger-sm');
+            startCallBtn.classList.add('btn-primary-sm');
+            voiceOutputBox.innerHTML = '<p style="font-size:0.75rem; color:var(--text-muted); text-anchor:center;">Call Ended. Session telemetry saved to CRM.</p>';
+        }
+    };
+}
+
+function initCloudLatencyDiagnostics() {
+    const latencyContainer = document.getElementById('cloud-latency-diagnostics-root');
+    if (!latencyContainer) return;
+
+    const nodes = [
+        { location: ' Dhaka (BDIX Edge)', ping: '4ms', status: 'Optimal' },
+        { location: ' Singapore (Asia South)', ping: '18ms', status: 'Optimal' },
+        { location: ' Frankfurt (Europe Central)', ping: '42ms', status: 'Optimal' },
+        { location: ' New York (US East)', ping: '78ms', status: 'Optimal' },
+        { location: ' London (UK Edge)', ping: '54ms', status: 'Optimal' }
+    ];
+
+    let html = `
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-top:14px;">
+    `;
+
+    nodes.forEach(node => {
+        html += `
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:8px; text-align:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">${node.location}</span>
+                <div style="font-size:1.1rem; color:var(--accent-emerald); font-weight:bold; margin:4px 0;">${node.ping}</div>
+                <span style="font-size:0.65rem; color:#10b981;">● ${node.status}</span>
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+    latencyContainer.innerHTML = html;
 }
