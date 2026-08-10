@@ -2360,6 +2360,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    initFloatingAiAssistantWidget();
     bindAllPackageOrderButtons();
 }
 
@@ -2577,4 +2578,32 @@ function bindAllPackageOrderButtons() {
             openAiOrderConsultationModal(cardTitle, 'Professional Tier', 499);
         }
     }, true);
+}
+
+
+
+/* ============================================================
+   PERSISTENT FLOATING AI ASSISTANT CHAT WIDGET (BOTTOM-RIGHT)
+   ============================================================ */
+function initFloatingAiAssistantWidget() {
+    let widget = document.getElementById('iinsha-floating-ai-widget');
+    if (!widget) {
+        widget = document.createElement('div');
+        widget.id = 'iinsha-floating-ai-widget';
+        document.body.appendChild(widget);
+    }
+
+    widget.style.cssText = 'position:fixed; bottom:24px; right:24px; z-index:99998; cursor:pointer;';
+    widget.innerHTML = `
+        <div onclick="openAiOrderConsultationModal('IINSHA AI Support & Sales Assistant', 'Custom Package', 499)" class="glass-card glowing-border" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); padding:12px 18px; border-radius:30px; display:flex; align-items:center; gap:10px; box-shadow:0 0 25px rgba(6,182,212,0.3); transition:all 0.3s ease;">
+            <div style="position:relative; width:36px; height:36px; background:rgba(6,182,212,0.2); border:1px solid var(--accent-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+                🤖
+                <span style="position:absolute; top:0; right:0; width:10px; height:10px; background:#10b981; border-radius:50%; border:2px solid #000; animation:pulse 1.2s infinite;"></span>
+            </div>
+            <div>
+                <span style="font-size:0.85rem; font-weight:bold; color:#fff; display:block;">Chat with IINSHA AI</span>
+                <span style="font-size:0.7rem; color:var(--accent-emerald);">● Online | Sales & Support</span>
+            </div>
+        </div>
+    `;
 }
