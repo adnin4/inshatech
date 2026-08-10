@@ -1127,6 +1127,8 @@ window.addEventListener('DOMContentLoaded', () => {
     initAiReadinessAssessment();
     initTerminalTelemetry();
     initGlobalCurrencyConverter();
+    initInteractiveDiagramVisualizer();
+    initRoiComparisonMatrix();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1589,4 +1591,99 @@ function initGlobalCurrencyConverter() {
             });
         };
     });
+}
+
+
+
+/* ============================================================
+   ULTRA-ADVANCED SVG ARCHITECTURE VISUALIZER & ROI MATRIX
+   ============================================================ */
+function initInteractiveDiagramVisualizer() {
+    const presets = document.querySelectorAll('.arch-preset-btn[data-arch]');
+    const diagramContainer = document.getElementById('interactive-svg-diagram-container');
+
+    if (!presets.length || !diagramContainer) return;
+
+    const diagrams = {
+        support: `
+            <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#10b981" />
+                        <stop offset="100%" stop-color="#06b6d4" />
+                    </linearGradient>
+                </defs>
+                <rect x="20" y="70" width="160" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
+                <text x="100" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">💬 WhatsApp / Web Chat</text>
+
+                <path d="M 180 100 L 280 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
+
+                <rect x="280" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#f59e0b" stroke-width="2"/>
+                <text x="370" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🧠 Gemini 2.5 RAG Engine</text>
+
+                <path d="M 460 100 L 560 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
+
+                <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#8b5cf6" stroke-width="2"/>
+                <text x="665" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">⚡ n8n Pipeline & Supabase</text>
+            </svg>
+        `,
+        scraper: `
+            <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
+                <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#06b6d4" stroke-width="2"/>
+                <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🌐 E-Commerce Target Site</text>
+
+                <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
+
+                <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
+                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ OpenClaw Stealth Scraper</text>
+
+                <line x1="500" y1="100" x2="600" y2="100" stroke="#10b981" stroke-width="3"/>
+
+                <rect x="600" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#f59e0b" stroke-width="2"/>
+                <text x="690" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">📊 Price Monitor Alert</text>
+            </svg>
+        `
+    };
+
+    presets.forEach(btn => {
+        btn.onclick = () => {
+            const archKey = btn.getAttribute('data-arch') || 'support';
+            presets.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (diagrams[archKey]) {
+                diagramContainer.innerHTML = diagrams[archKey];
+            }
+        };
+    });
+}
+
+function initRoiComparisonMatrix() {
+    const calcBtn = document.getElementById('calc-roi-matrix-btn');
+    const outputBox = document.getElementById('roi-matrix-output');
+
+    if (!calcBtn || !outputBox) return;
+
+    calcBtn.onclick = () => {
+        outputBox.style.display = 'block';
+        outputBox.innerHTML = `
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:16px;">
+                <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); padding:16px; border-radius:12px; text-align:center;">
+                    <span style="font-size:0.8rem; color:#fca5a5; font-family:var(--font-mono);">IN-HOUSE DEV TEAM</span>
+                    <h3 style="font-size:1.5rem; color:#ef4444; margin:8px 0;">$306,000</h3>
+                    <p style="font-size:0.75rem; color:var(--text-muted);">3-Year Salary & Operations</p>
+                </div>
+                <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:16px; border-radius:12px; text-align:center;">
+                    <span style="font-size:0.8rem; color:#fde68a; font-family:var(--font-mono);">LEGACY IT AGENCY</span>
+                    <h3 style="font-size:1.5rem; color:#f59e0b; margin:8px 0;">$87,000</h3>
+                    <p style="font-size:0.75rem; color:var(--text-muted);">3-Year Retainer & Project Fees</p>
+                </div>
+                <div style="background:rgba(16,185,129,0.15); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px; text-align:center; box-shadow: 0 0 20px rgba(16,185,129,0.2);">
+                    <span style="font-size:0.8rem; color:var(--accent-emerald); font-family:var(--font-mono); font-weight:bold;">⚡ IINSHA AI AUTOMATION</span>
+                    <h3 style="font-size:1.5rem; color:var(--accent-emerald); margin:8px 0;">$2,490</h3>
+                    <p style="font-size:0.75rem; color:#fff; font-weight:bold;">97% Cost Savings ($84,510 Saved)</p>
+                </div>
+            </div>
+        `;
+    };
 }
