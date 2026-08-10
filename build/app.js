@@ -4110,3 +4110,101 @@ function renderDynamicServiceCMSStudio() {
     `;
 }
 window.renderDynamicServiceCMSStudio = renderDynamicServiceCMSStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v7.0 — COMPLETE ENTERPRISE STUDIO CMS & MCP BRIDGE
+   ============================================================ */
+
+var iinshaFullServicePortfolio = [
+    // CORE BASELINE SERVICES (PRESERVED INTACT)
+    { id: 'base-1', category: 'Core Baseline', title: 'Custom Web Design & Development', pricing: '$299 - $799', status: 'Active', headline: 'Responsive, Modern Web Design for Small Businesses', valueProp: 'Clean code, mobile optimization & fast load speed' },
+    { id: 'base-2', category: 'Core Baseline', title: 'Bulk SMS & Messaging API Gateway', pricing: '$49 / 10k SMS', status: 'Active', headline: 'Instant SMS Notifications & Customer Engagement', valueProp: '99.9% Delivery Rate across global telecom networks' },
+    { id: 'base-3', category: 'Core Baseline', title: 'Domain Registration & Cloud Hosting', pricing: '$15 - $120 / yr', status: 'Active', headline: 'High-Speed Cloud Hosting & Managed DNS', valueProp: 'Free SSL certificate, daily backups & 99.9% uptime' },
+
+    // ENTERPRISE & AUTONOMOUS SYSTEMS LAYER
+    { id: 'ent-1', category: 'Enterprise SaaS', title: 'Custom B2B SaaS & Cloud Infrastructure', pricing: 'MVP: $1,500 | Scale: $3,500 | Enterprise: $8,000+', status: 'Active', headline: 'Scalable, Multi-Tenant B2B SaaS Ecosystems with Automated Billing', valueProp: '1-Click Subscription Management, Role Auth & Stripe/Wise Integration' },
+    { id: 'ent-2', category: 'Web Systems', title: 'Intelligent High-Conversion Web Systems', pricing: 'Business: $800 | Interactive Portal: $2,000 - $4,500', status: 'Active', headline: 'High-Speed Interactive Web Systems Built for Conversions & Tracking', valueProp: 'Sub-500ms Edge Latency & 3x Organic Conversion Lift Guarantee' },
+    { id: 'ent-3', category: 'Business ERP/CRM', title: 'Unified Process Automation & Operating ERP', pricing: 'Starter: $1,000 | Complete ERP: $3,500 - $7,500', status: 'Active', headline: 'End-to-End Enterprise Workflow Integration & Autonomous Business ERP', valueProp: 'Eliminate 90% Manual Tasks across Email, CRM & Payments' },
+    { id: 'ent-4', category: 'Private RAG Systems', title: 'Private Enterprise Knowledge Bases (RAG)', pricing: 'Setup: $2,500 + $500/mo Maintenance', status: 'Active', headline: 'Secure Enterprise RAG Architecture & Automated Decision Assistants', valueProp: 'Instant 24/7 Vector Retrieval over Company PDF/DB Documents' },
+    { id: 'ent-5', category: 'A2A API Mesh', title: 'Machine-to-Machine (A2A) API Gateways', pricing: 'Setup: $3,000 - $6,000', status: 'Active', headline: 'Autonomous API Gateways for M2M Commerce & Micro-Service Monetization', valueProp: 'Pay-Per-Execution Micro-Service API monetization' }
+];
+
+function editServiceInStudio(svcId) {
+    const svc = iinshaFullServicePortfolio.find(s => s.id === svcId);
+    if (!svc) return;
+
+    const newTitle = prompt("Edit Service Title:", svc.title);
+    if (!newTitle) return;
+    const newHeadline = prompt("Edit Brand Headline:", svc.headline);
+    const newPricing = prompt("Edit Pricing Tiers:", svc.pricing);
+    const newValueProp = prompt("Edit Core Value Proposition:", svc.valueProp);
+
+    svc.title = newTitle.trim();
+    if (newHeadline) svc.headline = newHeadline.trim();
+    if (newPricing) svc.pricing = newPricing.trim();
+    if (newValueProp) svc.valueProp = newValueProp.trim();
+
+    alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
+    renderCompleteEnterpriseStudioCMS();
+}
+window.editServiceInStudio = editServiceInStudio;
+
+function toggleServiceStatusV7(svcId) {
+    const svc = iinshaFullServicePortfolio.find(s => s.id === svcId);
+    if (!svc) return;
+    const states = ['Active', 'Draft', 'Coming Soon'];
+    let nextIdx = (states.indexOf(svc.status) + 1) % states.length;
+    svc.status = states[nextIdx];
+    renderCompleteEnterpriseStudioCMS();
+}
+window.toggleServiceStatusV7 = toggleServiceStatusV7;
+
+function renderCompleteEnterpriseStudioCMS() {
+    const root = document.getElementById('admin-enterprise-studio-cms-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:rgba(15,23,42,0.98); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>👑 Studio Management Engine & Dynamic Service CMS</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ANTIGRAVITY 2.0 MCP BRIDGE ONLINE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage Core Baseline Services & Enterprise Systems Layer with 100% Live CMS Controls.</p>
+                </div>
+            </div>
+
+            <!-- SERVICES LIST CONTAINER -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+                ${iinshaFullServicePortfolio.map(s => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid ${s.category === 'Core Baseline' ? 'rgba(245,158,11,0.4)' : 'rgba(6,182,212,0.4)'}; border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-space-between;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                <span style="font-size:0.7rem; color:${s.category === 'Core Baseline' ? '#f59e0b' : 'var(--accent-cyan)'}; font-weight:bold; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:6px;">${s.category}</span>
+                                <span onclick="toggleServiceStatusV7('${s.id}')" style="cursor:pointer; font-size:0.65rem; background:${s.status === 'Active' ? 'rgba(16,185,129,0.2)' : s.status === 'Draft' ? 'rgba(245,158,11,0.2)' : 'rgba(139,92,246,0.2)'}; color:${s.status === 'Active' ? 'var(--accent-emerald)' : s.status === 'Draft' ? '#f59e0b' : '#a78bfa'}; border:1px solid ${s.status === 'Active' ? 'var(--accent-emerald)' : s.status === 'Draft' ? '#f59e0b' : '#a78bfa'}; padding:2px 8px; border-radius:10px; font-weight:bold;">
+                                    ${s.status}
+                                </span>
+                            </div>
+                            <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
+                            <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
+                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="editServiceInStudio('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
+                                ✏️ Edit Service & Price
+                            </button>
+                            <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
+                                📄 SoW Contract
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderCompleteEnterpriseStudioCMS = renderCompleteEnterpriseStudioCMS;
