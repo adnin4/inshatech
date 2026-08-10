@@ -1130,6 +1130,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initInteractiveDiagramVisualizer();
     initRoiComparisonMatrix();
     initInteractiveAiAgentBuilder();
+    initAiAgentCommandSwarm();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1750,4 +1751,92 @@ function initInteractiveAiAgentBuilder() {
             `;
         }
     };
+}
+
+
+
+/* ============================================================
+   IINSHA AI AGENT SWARM COMMAND CENTER (v300 Architecture)
+   ============================================================ */
+function initAiAgentCommandSwarm() {
+    const swarmContainer = document.getElementById('ai-agent-swarm-root');
+    if (!swarmContainer) return;
+
+    swarmContainer.innerHTML = `
+        <div class="glass-card glowing-border" style="padding:24px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-emerald); border-radius:16px; margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
+                <div>
+                    <h3 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
+                        <span>👑 IINSHA COMMAND CENTER</span>
+                        <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">SWARM ACTIVE (7/7)</span>
+                    </h3>
+                    <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Autonomous Business Operating System (AI-BOS) Control Matrix</p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="alert('💸 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
+                        💸 1-Click Approve Payouts ($1,240)
+                    </button>
+                </div>
+            </div>
+
+            <!-- 7 AGENT SWARM GRID -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:20px;">
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🎯 CEO Agent</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● ONLINE</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Daily P&L: +$2,450 | Rec: Increase RAG Ads</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Sales Agent</span>
+                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">● 12 LEADS</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Auto-Quoting Dubai & USA Clients</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Lead Hunter AI</span>
+                        <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">● 45 DRAFTS</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">OpenClaw Scraped B2B Contacts</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate AI</span>
+                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">● 98% TRUST</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Fraud Shield Active | 54 Active Partners</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(236,72,153,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🔧 Delivery Agent</span>
+                        <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">● 3 ACTIVE</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Generating n8n Workflows & Docker Compose</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💰 Finance AI</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● RECONCILED</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Stripe / bKash / PayPal Invoices Synced</p>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(59,130,246,0.3); padding:14px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🛡️ Security AI</span>
+                        <span style="font-size:0.65rem; color:#3b82f6; font-weight:bold;">● 100% SECURE</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Cloudflare WAF + Zero-Trust RBAC Active</p>
+                </div>
+            </div>
+        </div>
+    `;
 }
