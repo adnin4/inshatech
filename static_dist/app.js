@@ -3596,3 +3596,82 @@ function renderUltimateAdminControlFeatures() {
     }
 }
 window.renderUltimateAdminControlFeatures = renderUltimateAdminControlFeatures;
+
+
+
+/* ============================================================
+   IINSHA AI OS v3.0 — NEXT-GEN EVENT BUS & HITL SAFETY ZONES
+   ============================================================ */
+
+var iinshaEventBusLogs = [
+    { id: 'evt-901', name: 'lead.created', payload: 'CTO hiring signal from Dubai', actor: 'Hunter Agent', timestamp: '19:42:10', zone: 'GREEN' },
+    { id: 'evt-902', name: 'proposal.created', payload: 'Growth Tier $1,349 SoW Contract', actor: 'Sales Agent', timestamp: '19:40:05', zone: 'YELLOW' },
+    { id: 'evt-903', name: 'affiliate.converted', payload: 'Partner IINSHA-AFF-8821 earned $269', actor: 'Affiliate Agent', timestamp: '19:35:12', zone: 'GREEN' },
+    { id: 'evt-904', name: 'invoice.paid', payload: 'bKash/Payoneer $1,349 received', actor: 'Treasurer Agent', timestamp: '19:30:00', zone: 'RED (Approved)' },
+    { id: 'evt-905', name: 'workflow.health', payload: 'Cloudflare Pages & n8n 100% Uptime', actor: 'Guardian Agent', timestamp: '19:25:00', zone: 'GREEN' }
+];
+
+function publishIinshaEvent(eventName, payloadStr, actorName, zoneType) {
+    const newEvt = {
+        id: 'evt-' + Math.floor(1000 + Math.random() * 9000),
+        name: eventName,
+        payload: payloadStr,
+        actor: actorName,
+        timestamp: new Date().toLocaleTimeString(),
+        zone: zoneType || 'GREEN'
+    };
+    iinshaEventBusLogs.unshift(newEvt);
+    if (iinshaEventBusLogs.length > 25) iinshaEventBusLogs.pop();
+    renderEventBusTelemetry();
+}
+window.publishIinshaEvent = publishIinshaEvent;
+
+function renderEventBusTelemetry() {
+    const root = document.getElementById('admin-event-bus-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:14px; padding:18px; margin-top:16px; box-shadow:0 0 35px rgba(6,182,212,0.25);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:14px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
+                        <span>⚡ Event-Driven Backbone & HITL Safety Zones</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">EVENT BUS ACTIVE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time stream of decycled business events & Human-in-the-Loop policy enforcement.</p>
+                </div>
+                <button onclick="publishIinshaEvent('system.manual_ping', 'Admin triggered telemetry health check', 'Admin Copilot', 'GREEN')" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.75rem;">
+                    📡 Publish Test Event
+                </button>
+            </div>
+
+            <!-- HITL SAFETY ZONE SUMMARY BAR -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:14px;">
+                <div style="background:rgba(16,185,129,0.15); border:1px solid var(--accent-emerald); padding:10px; border-radius:8px; text-align:center;">
+                    <div style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold;">🟢 GREEN ZONE (Auto)</div>
+                    <div style="font-size:0.75rem; color:#fff;">Blog, SEO, Socials, Support FAQ</div>
+                </div>
+                <div style="background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:10px; border-radius:8px; text-align:center;">
+                    <div style="font-size:0.7rem; color:#f59e0b; font-weight:bold;">🟡 YELLOW ZONE (2-Hr Auto)</div>
+                    <div style="font-size:0.75rem; color:#fff;">Quotes <$5k, Affiliate Approval</div>
+                </div>
+                <div style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; padding:10px; border-radius:8px; text-align:center;">
+                    <div style="font-size:0.7rem; color:#fca5a5; font-weight:bold;">🔴 RED ZONE (Admin Gate)</div>
+                    <div style="font-size:0.75rem; color:#fff;">Payouts >$1k, Contracts, Pricing</div>
+                </div>
+            </div>
+
+            <!-- EVENT LOG STREAM TABLE -->
+            <div style="background:#000; border:1px solid rgba(255,255,255,0.1); border-radius:8px; max-height:160px; overflow-y:auto; padding:10px;">
+                ${iinshaEventBusLogs.map(evt => `
+                    <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem; padding:4px 0; border-bottom:1px dashed rgba(255,255,255,0.08);">
+                        <span style="color:var(--accent-cyan); font-weight:bold;">[${evt.timestamp}] ${evt.name}</span>
+                        <span style="color:#cbd5e1;">${evt.payload} (${evt.actor})</span>
+                        <span style="color:${evt.zone.includes('RED') ? '#fca5a5' : evt.zone.includes('YELLOW') ? '#f59e0b' : 'var(--accent-emerald)'}; font-weight:bold;">${evt.zone}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderEventBusTelemetry = renderEventBusTelemetry;
