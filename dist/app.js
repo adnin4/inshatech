@@ -3706,6 +3706,7 @@ function retrainExtremeAgentPrompt(agentId) {
         agent.confidence = (98.5 + Math.random() * 1.4).toFixed(1) + '%';
         alert(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
         renderExtremeAgentStudio();
+    try { renderDominationTelemetryStudio(); } catch(e){}
     }
 }
 window.retrainExtremeAgentPrompt = retrainExtremeAgentPrompt;
@@ -3748,3 +3749,111 @@ function renderExtremeAgentStudio() {
     `;
 }
 window.renderExtremeAgentStudio = renderExtremeAgentStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v4.0 — WORLD DOMINATION ARCHITECTURE & 13 AGENTS
+   ============================================================ */
+
+var iinsha13SwarmRoster = [
+    { id: 'agent-1', name: 'ORACLE Agent', role: 'Chief AI Strategy & Decision Engine', status: 'ACTIVE', confidence: '99.8%' },
+    { id: 'agent-2', name: 'HUNTER Agent', role: 'B2B Client Discovery & Intent Scraper', status: 'ACTIVE', confidence: '99.4%' },
+    { id: 'agent-3', name: 'SEDUCER Agent', role: 'AI Sales Closing & SoW Contract Generator', status: 'ACTIVE', confidence: '99.7%' },
+    { id: 'agent-4', name: 'CREATOR Agent', role: 'Omnichannel B2B Content & SEO Copywriter', status: 'ACTIVE', confidence: '97.9%' },
+    { id: 'agent-5', name: 'BUILDER Agent', role: 'Auto-Coding & Hostinger VPS n8n Deployer', status: 'ACTIVE', confidence: '99.1%' },
+    { id: 'agent-6', name: 'KEEPER Agent', role: 'Proactive Client Retention & NPS Monitor', status: 'ACTIVE', confidence: '98.5%' },
+    { id: 'agent-7', name: 'COMMANDER Agent', role: 'Affiliate Army & 2-Tier Network Manager', status: 'ACTIVE', confidence: '98.9%' },
+    { id: 'agent-8', name: 'TREASURER Agent', role: 'Automated Finance, P&L & Invoice Engine', status: 'ACTIVE', confidence: '99.6%' },
+    { id: 'agent-9', name: 'ANALYST Agent', role: 'Business Intelligence & Revenue Forecaster', status: 'ACTIVE', confidence: '99.5%' },
+    { id: 'agent-10', name: 'SCOUT Agent', role: 'Competitor Recon & Market Gap Analyzer', status: 'ACTIVE', confidence: '98.7%' },
+    { id: 'agent-11', name: 'GUARDIAN Agent', role: 'SRE Latency & Security Protocol Guard', status: 'ACTIVE', confidence: '99.9%' },
+    { id: 'agent-12', name: 'ARCHITECT Agent', role: 'DevOps & Docker Microservice Manager', status: 'ACTIVE', confidence: '99.3%' },
+    { id: 'agent-13', name: 'NEGOTIATOR Agent', role: 'Enterprise Contract & Custom Pricing AI', status: 'ACTIVE', confidence: '99.2%' }
+];
+
+var iinsha11RevenueStreams = [
+    { name: '1. Custom AI Projects', est: '$50,000 / mo', status: 'ACTIVE' },
+    { name: '2. Monthly Retainers', est: '$25,000 / mo', status: 'ACTIVE' },
+    { name: '3. Affiliate Network', est: '$45,000 / mo', status: 'ACTIVE' },
+    { name: '4. Blueprint Store', est: '$12,000 / mo', status: 'ACTIVE' },
+    { name: '5. White-Label SaaS', est: '$20,000 / mo', status: 'ACTIVE' },
+    { name: '6. AI Masterclasses', est: '$8,000 / mo', status: 'ACTIVE' },
+    { name: '7. SaaS Micro-Tools', est: '$18,000 / mo', status: 'ACTIVE' },
+    { name: '8. Strategy Consulting', est: '$15,000 / mo', status: 'ACTIVE' },
+    { name: '9. Tech Partnerships', est: '$10,000 / mo', status: 'ACTIVE' },
+    { name: '10. Data Insights Licensing', est: '$50,000 / mo', status: 'ACTIVE' },
+    { name: '11. AI Agent Swarm Licensing', est: '$100,000 / mo', status: 'ACTIVE' }
+];
+
+var iinsha10Moats = [
+    '1. Data Moat (Self-Learning Memory)',
+    '2. Network Effects Flywheel',
+    '3. High Client Switching Costs',
+    '4. Brand Mindshare Dominance',
+    '5. Scale Economics (Zero Marginal Cost)',
+    '6. Top Talent Magnet',
+    '7. Regulatory & Compliance Shield',
+    '8. Proprietary Patent Portfolio',
+    '9. Multi-Sided Ecosystem Lock',
+    '10. Sub-50ms Execution Speed'
+];
+
+function renderDominationTelemetryStudio() {
+    const root = document.getElementById('admin-domination-studio-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:18px; padding:22px; margin-top:16px; box-shadow:0 0 50px rgba(6,182,212,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
+                        <span>🌐 13-Agent Autonomous Swarm & 11 Revenue Streams Telemetry</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">A2A & MCP PROTOCOL ONLINE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time monitoring of the world's first AI-Native Autonomous Enterprise OS.</p>
+                </div>
+            </div>
+
+            <!-- 11 REVENUE STREAMS BAR -->
+            <div style="margin-bottom:16px;">
+                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px;">💰 11 Diversified Revenue Streams Engine:</div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:8px;">
+                    ${iinsha11RevenueStreams.map(r => `
+                        <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:8px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.7rem; color:#fff; font-weight:bold;">${r.name}</span>
+                            <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold;">${r.est}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- 10 COMPETITIVE MOATS BAR -->
+            <div style="margin-bottom:16px; background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#f59e0b; margin-bottom:6px;">🏰 10 Competitive Strategic Moats (Unbeatable Advantage):</div>
+                <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    ${iinsha10Moats.map(m => `
+                        <span style="font-size:0.68rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:2px 8px; border-radius:10px;">${m}</span>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- 13 AGENTS ROSTER GRID -->
+            <div>
+                <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">🤖 13 Autonomous Agent Swarm Status:</div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:8px;">
+                    ${iinsha13SwarmRoster.map(a => `
+                        <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.25); padding:8px 10px; border-radius:8px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:0.78rem; font-weight:bold; color:#fff;">${a.name}</span>
+                                <span style="font-size:0.6rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); padding:1px 6px; border-radius:6px; font-weight:bold;">${a.confidence}</span>
+                            </div>
+                            <div style="font-size:0.68rem; color:var(--accent-cyan); line-height:1.2; margin-top:2px;">${a.role}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+}
+window.renderDominationTelemetryStudio = renderDominationTelemetryStudio;
