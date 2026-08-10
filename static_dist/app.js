@@ -2399,6 +2399,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    try { if (typeof initInteractiveRoiCalculator === 'function') initInteractiveRoiCalculator(); } catch(e){}
     try { if (typeof renderGlobalMarketplaceAffiliateMatrix === 'function') renderGlobalMarketplaceAffiliateMatrix(); } catch(e){}
     initAiInteractivePlayground();
     initVerifiedTestimonialsTicker();
@@ -2713,6 +2714,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    try { if (typeof initInteractiveRoiCalculator === 'function') initInteractiveRoiCalculator(); } catch(e){}
     try { if (typeof renderGlobalMarketplaceAffiliateMatrix === 'function') renderGlobalMarketplaceAffiliateMatrix(); } catch(e){}
     initAiInteractivePlayground();
     initVerifiedTestimonialsTicker();
@@ -3393,3 +3395,128 @@ function render11AgentSwarmOrchestrator() {
     `;
 }
 window.render11AgentSwarmOrchestrator = render11AgentSwarmOrchestrator;
+
+
+
+/* ============================================================
+   ULTRA-PREMIUM SUPER UPGRADES: CURRENCY SWITCHER & INTERACTIVE ROI
+   ============================================================ */
+
+var iinshaCurrencyRates = {
+    USD: { symbol: '$', rate: 1.0 },
+    BDT: { symbol: '৳', rate: 121.5 },
+    EUR: { symbol: '€', rate: 0.92 },
+    GBP: { symbol: '£', rate: 0.79 },
+    AUD: { symbol: 'A$', rate: 1.52 }
+};
+
+var currentCurrency = 'USD';
+
+function changeGlobalCurrency(curr) {
+    if (!iinshaCurrencyRates[curr]) return;
+    currentCurrency = curr;
+    const config = iinshaCurrencyRates[curr];
+
+    // Update all price elements on page
+    document.querySelectorAll('[data-price-usd]').forEach(el => {
+        const usdVal = parseFloat(el.getAttribute('data-price-usd'));
+        if (!isNaN(usdVal)) {
+            const converted = Math.round(usdVal * config.rate);
+            el.textContent = `${config.symbol}${converted.toLocaleString()}`;
+        }
+    });
+
+    const selector = document.getElementById('global-currency-selector');
+    if (selector) selector.value = curr;
+}
+window.changeGlobalCurrency = changeGlobalCurrency;
+
+function initInteractiveRoiCalculator() {
+    const root = document.getElementById('interactive-roi-calculator-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div class="glass-card glowing-border" style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-emerald); border-radius:20px; padding:32px 24px; max-width:850px; margin:40px auto; box-shadow:0 0 40px rgba(16,185,129,0.2);">
+            <div style="text-align:center; margin-bottom:24px;">
+                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">⚡ REAL-TIME SAVINGS CALCULATOR</span>
+                <h3 style="color:#fff; margin:10px 0 6px 0; font-size:1.8rem;">Calculate Your AI Automation ROI</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Adjust your operational variables below to see estimated monthly cost reduction.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:24px;">
+                <!-- SLIDER 1 -->
+                <div>
+                    <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
+                        <span>👥 Team Size:</span>
+                        <span id="roi-team-val" style="color:var(--accent-cyan);">10 Staff</span>
+                    </label>
+                    <input type="range" id="roi-team-slider" min="1" max="100" value="10" style="width:100%; accent-color:var(--accent-cyan);" oninput="updateRoiCalculation()" />
+                </div>
+
+                <!-- SLIDER 2 -->
+                <div>
+                    <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
+                        <span>⏱️ Hours Saved / Week per Person:</span>
+                        <span id="roi-hours-val" style="color:var(--accent-emerald);">15 Hours</span>
+                    </label>
+                    <input type="range" id="roi-hours-slider" min="5" max="40" value="15" style="width:100%; accent-color:var(--accent-emerald);" oninput="updateRoiCalculation()" />
+                </div>
+
+                <!-- SLIDER 3 -->
+                <div>
+                    <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
+                        <span>💰 Average Hourly Rate ($):</span>
+                        <span id="roi-rate-val" style="color:#f59e0b;">$35 / hr</span>
+                    </label>
+                    <input type="range" id="roi-rate-slider" min="15" max="150" value="35" style="width:100%; accent-color:#f59e0b;" oninput="updateRoiCalculation()" />
+                </div>
+            </div>
+
+            <!-- RESULT CARD -->
+            <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:20px; text-align:center; margin-bottom:20px;">
+                <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; font-weight:bold; letter-spacing:1px;">Projected Net Monthly Savings</div>
+                <div id="roi-monthly-savings-display" style="font-size:2.8rem; font-weight:bold; color:var(--accent-emerald); margin:6px 0;">$21,000 / mo</div>
+                <div id="roi-yearly-savings-display" style="font-size:0.9rem; color:var(--accent-cyan);">Yearly ROI Impact: $252,000 / year</div>
+            </div>
+
+            <button onclick="claimRoiSavingsWithAi()" class="btn btn-emerald-lg" style="width:100%; font-size:1.05rem; font-weight:bold; box-shadow:0 0 25px rgba(16,185,129,0.4);">
+                🚀 Claim These Savings & Get 10% Off AI Setup →
+            </button>
+        </div>
+    `;
+
+    updateRoiCalculation();
+}
+window.initInteractiveRoiCalculator = initInteractiveRoiCalculator;
+
+function updateRoiCalculation() {
+    const team = parseInt(document.getElementById('roi-team-slider')?.value || '10');
+    const hours = parseInt(document.getElementById('roi-hours-slider')?.value || '15');
+    const rate = parseInt(document.getElementById('roi-rate-slider')?.value || '35');
+
+    const teamValEl = document.getElementById('roi-team-val');
+    const hoursValEl = document.getElementById('roi-hours-val');
+    const rateValEl = document.getElementById('roi-rate-val');
+
+    if (teamValEl) teamValEl.textContent = `${team} Staff`;
+    if (hoursValEl) hoursValEl.textContent = `${hours} Hours`;
+    if (rateValEl) rateValEl.textContent = `$${rate} / hr`;
+
+    // Monthly Savings = Team * Hours * Rate * 4 weeks
+    const monthlySavings = team * hours * rate * 4;
+    const yearlySavings = monthlySavings * 12;
+
+    const monthlyEl = document.getElementById('roi-monthly-savings-display');
+    const yearlyEl = document.getElementById('roi-yearly-savings-display');
+
+    if (monthlyEl) monthlyEl.textContent = `$${monthlySavings.toLocaleString()} / mo`;
+    if (yearlyEl) yearlyEl.textContent = `Yearly ROI Impact: $${yearlySavings.toLocaleString()} / year`;
+}
+window.updateRoiCalculation = updateRoiCalculation;
+
+function claimRoiSavingsWithAi() {
+    const monthlyEl = document.getElementById('roi-monthly-savings-display');
+    const savingsStr = monthlyEl ? monthlyEl.textContent : '$21,000 / mo';
+    openAiOrderConsultationModal(`Enterprise ROI Automation Package (${savingsStr})`, 'Enterprise Tier', 4499);
+}
+window.claimRoiSavingsWithAi = claimRoiSavingsWithAi;
