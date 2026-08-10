@@ -2334,3 +2334,30 @@ function initLanguageSwitcher() {
         alert(currentLang === 'BN' ? '🇧🇩 বাংলা ভাষা মোড সক্রিয় করা হয়েছে!' : '🇺🇸 Switched to English Language Mode!');
     };
 }
+
+
+
+/* ============================================================
+   MASTER GLOBAL INITIALIZER (UNCONDITIONAL DOM BOOTSTRAP)
+   ============================================================ */
+function initMasterApp() {
+    try { if (typeof initGlobalCurrencyConverter === 'function') initGlobalCurrencyConverter(); } catch(e){}
+    try { if (typeof initInteractiveDiagramVisualizer === 'function') initInteractiveDiagramVisualizer(); } catch(e){}
+    try { if (typeof initRoiComparisonMatrix === 'function') initRoiComparisonMatrix(); } catch(e){}
+    try { if (typeof initInteractiveAiAgentBuilder === 'function') initInteractiveAiAgentBuilder(); } catch(e){}
+    try { if (typeof initAiAgentCommandSwarm === 'function') initAiAgentCommandSwarm(); } catch(e){}
+    try { if (typeof initAiVoiceSimulator === 'function') initAiVoiceSimulator(); } catch(e){}
+    try { if (typeof initCloudLatencyDiagnostics === 'function') initCloudLatencyDiagnostics(); } catch(e){}
+    try { if (typeof renderFullCrudServiceManager === 'function') renderFullCrudServiceManager(); } catch(e){}
+    try { if (typeof initGoogleAiN8nPortfolio === 'function') initGoogleAiN8nPortfolio(); } catch(e){}
+    try { if (typeof initUltraStrongPortfolio === 'function') initUltraStrongPortfolio(); } catch(e){}
+    try { if (typeof initSecurityAuditTerminal === 'function') initSecurityAuditTerminal(); } catch(e){}
+    try { if (typeof initLanguageSwitcher === 'function') initLanguageSwitcher(); } catch(e){}
+    try { if (typeof IinshaBackendAdapter === 'object' && IinshaBackendAdapter.syncLiveMarketplaceUI) IinshaBackendAdapter.syncLiveMarketplaceUI(); } catch(e){}
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMasterApp);
+} else {
+    initMasterApp();
+}
