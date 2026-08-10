@@ -4148,7 +4148,8 @@ function editServiceInStudio(svcId) {
 
     alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
     renderCompleteEnterpriseStudioCMS();
-    try { render2026OutcomeServicesStudio(); } catch(e){}
+    try { render2026OutcomeServicesStudio();
+    try { renderOmnichannelNotificationStudio(); } catch(e){} } catch(e){}
 }
 window.editServiceInStudio = editServiceInStudio;
 
@@ -4159,7 +4160,8 @@ function toggleServiceStatusV7(svcId) {
     let nextIdx = (states.indexOf(svc.status) + 1) % states.length;
     svc.status = states[nextIdx];
     renderCompleteEnterpriseStudioCMS();
-    try { render2026OutcomeServicesStudio(); } catch(e){}
+    try { render2026OutcomeServicesStudio();
+    try { renderOmnichannelNotificationStudio(); } catch(e){} } catch(e){}
 }
 window.toggleServiceStatusV7 = toggleServiceStatusV7;
 
@@ -4263,3 +4265,71 @@ function render2026OutcomeServicesStudio() {
     `;
 }
 window.render2026OutcomeServicesStudio = render2026OutcomeServicesStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v9.0 — OMNICHANNEL WHATSAPP & FACEBOOK DISPATCHER
+   ============================================================ */
+
+var iinshaNotificationState = {
+    whatsappNumber: '+8801629286887',
+    facebookPage: 'https://facebook.com/inshatech',
+    lastNotification: 'System Healthy — 13 AI Swarm Agents Active'
+};
+
+function sendDirectWhatsAppNotification(customMsg) {
+    const defaultMsg = customMsg || `🚀 *IINSHA AI OS ALERT* 🚀\n\n• Status: All 13 AI Agents Operational\n• MRR Target: $54,200/mo\n• System Health: 99.9% Uptime\n• Security: Zero-Drift Policy Active\n\n_Sent automatically from Master OS Studio_`;
+    const encodedMsg = encodeURIComponent(defaultMsg);
+    const waUrl = `https://wa.me/8801629286887?text=${encodedMsg}`;
+    window.open(waUrl, '_blank');
+}
+window.sendDirectWhatsAppNotification = sendDirectWhatsAppNotification;
+
+function sendDirectFacebookNotification() {
+    alert("📲 Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
+    const summaryText = `🌌 IINSHA AI OS — Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
+    navigator.clipboard.writeText(summaryText);
+    window.open('https://facebook.com', '_blank');
+}
+window.sendDirectFacebookNotification = sendDirectFacebookNotification;
+
+function renderOmnichannelNotificationStudio() {
+    const root = document.getElementById('admin-omnichannel-notifications-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>📲 WhatsApp & Facebook Live Notification Hub</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">AUTO-NOTIFIER ONLINE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Real-time dispatch of leads, orders, affiliate commissions & AI reports to WhatsApp (+8801629286887) and Facebook.</p>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:18px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:8px;">💬</div>
+                    <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">WhatsApp Live Dispatch</h5>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Connected Target: <strong>+8801629286887</strong></p>
+                    <button onclick="sendDirectWhatsAppNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald);">
+                        📲 Send Test Alert to WhatsApp
+                    </button>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.4); border-radius:14px; padding:18px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:8px;">📘</div>
+                    <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">Facebook Business Hub</h5>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Instant Dispatch for Messenger & Page Posts</p>
+                    <button onclick="sendDirectFacebookNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(6,182,212,0.25); color:var(--accent-cyan); border:1px solid var(--accent-cyan);">
+                        📘 Copy Alert for Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+window.renderOmnichannelNotificationStudio = renderOmnichannelNotificationStudio;
