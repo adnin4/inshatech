@@ -3706,7 +3706,8 @@ function retrainExtremeAgentPrompt(agentId) {
         agent.confidence = (98.5 + Math.random() * 1.4).toFixed(1) + '%';
         alert(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
         renderExtremeAgentStudio();
-    try { renderDominationTelemetryStudio(); } catch(e){}
+    try { renderDominationTelemetryStudio();
+    try { renderGodModeControlStudio(); } catch(e){} } catch(e){}
     }
 }
 window.retrainExtremeAgentPrompt = retrainExtremeAgentPrompt;
@@ -3857,3 +3858,96 @@ function renderDominationTelemetryStudio() {
     `;
 }
 window.renderDominationTelemetryStudio = renderDominationTelemetryStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v5.0 — BEYOND REALITY: GOD MODE CONTROL CENTER
+   ============================================================ */
+
+var iinshaGodModeState = {
+    growthSlider: 85,
+    profitSlider: 90,
+    trustSlider: 98,
+    peaceMode: false,
+    singularityTriggered: true,
+    simulatedOutcome: "Projected MRR: $54,200/mo | 0% Churn Risk | 99.9% Uptime"
+};
+
+function togglePeaceMode() {
+    iinshaGodModeState.peaceMode = !iinshaGodModeState.peaceMode;
+    const btn = document.getElementById('god-peace-mode-btn');
+    if (btn) {
+        btn.innerHTML = iinshaGodModeState.peaceMode ? '☮️ PEACE MODE ACTIVE (100% Hands-Off)' : '☮️ Enable 1-Click Peace Mode';
+        btn.style.background = iinshaGodModeState.peaceMode ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)';
+    }
+    alert(iinshaGodModeState.peaceMode ? '☮️ Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
+}
+window.togglePeaceMode = togglePeaceMode;
+
+function updateRealitySlider(param, value) {
+    iinshaGodModeState[param + 'Slider'] = value;
+    const output = document.getElementById(param + '-slider-val');
+    if (output) output.innerText = value + '%';
+    
+    // Recalculate simulation prediction
+    const mrr = Math.floor(40000 + (iinshaGodModeState.growthSlider * 250) + (iinshaGodModeState.profitSlider * 200));
+    iinshaGodModeState.simulatedOutcome = `Projected MRR: $${mrr.toLocaleString()}/mo | Trust Index: ${iinshaGodModeState.trustSlider}% | 99.9% Uptime`;
+    const simDiv = document.getElementById('god-simulation-prediction');
+    if (simDiv) simDiv.innerText = iinshaGodModeState.simulatedOutcome;
+}
+window.updateRealitySlider = updateRealitySlider;
+
+function renderGodModeControlStudio() {
+    const root = document.getElementById('admin-god-mode-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>🌌 GOD MODE CONTROL CENTER — THE FINAL FORM</span>
+                        <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">CONSCIOUSNESS CORE ACTIVE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Adjust reality parameters, run timeline simulations, and trigger 1-Click Peace Mode.</p>
+                </div>
+                <button id="god-peace-mode-btn" onclick="togglePeaceMode()" class="btn btn-primary-sm" style="background:rgba(255,255,255,0.1); border:1px solid #8b5cf6; font-weight:bold; font-size:0.8rem; color:#a78bfa;">
+                    ☮️ Enable 1-Click Peace Mode
+                </button>
+            </div>
+
+            <!-- REALITY PARAMETER SLIDERS -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:18px;">
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:12px; border-radius:10px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
+                        <span>🚀 Growth Velocity</span>
+                        <span id="growth-slider-val" style="color:#a78bfa;">${iinshaGodModeState.growthSlider}%</span>
+                    </div>
+                    <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#8b5cf6;">
+                </div>
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:12px; border-radius:10px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
+                        <span>💰 Profit Margin</span>
+                        <span id="profit-slider-val" style="color:var(--accent-emerald);">${iinshaGodModeState.profitSlider}%</span>
+                    </div>
+                    <input type="range" min="10" max="100" value="${iinshaGodModeState.profitSlider}" oninput="updateRealitySlider('profit', this.value)" style="width:100%; accent-color:var(--accent-emerald);">
+                </div>
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:12px; border-radius:10px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
+                        <span>🛡️ Ethical Trust Index</span>
+                        <span id="trust-slider-val" style="color:var(--accent-cyan);">${iinshaGodModeState.trustSlider}%</span>
+                    </div>
+                    <input type="range" min="50" max="100" value="${iinshaGodModeState.trustSlider}" oninput="updateRealitySlider('trust', this.value)" style="width:100%; accent-color:var(--accent-cyan);">
+                </div>
+            </div>
+
+            <!-- LIVE TIMELINE SIMULATION PREDICTION -->
+            <div style="background:rgba(0,0,0,0.6); border:1px solid rgba(139,92,246,0.4); padding:14px; border-radius:10px; text-align:center;">
+                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">🔮 REAL-TIME TIMELINE SIMULATION PREDICTION</div>
+                <div id="god-simulation-prediction" style="font-size:0.9rem; font-weight:bold; color:#fff; font-family:var(--font-mono);">${iinshaGodModeState.simulatedOutcome}</div>
+            </div>
+        </div>
+    `;
+}
+window.renderGodModeControlStudio = renderGodModeControlStudio;
