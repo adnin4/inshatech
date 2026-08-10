@@ -2059,6 +2059,7 @@ function openAddNewServiceModal() {
 
     renderFullCrudServiceManager();
     initGoogleAiN8nPortfolio();
+    initUltraStrongPortfolio();
     alert("✅ New Service Added and Synced to Live Site!");
 }
 
@@ -2078,6 +2079,7 @@ function editServiceInline(id) {
 
     renderFullCrudServiceManager();
     initGoogleAiN8nPortfolio();
+    initUltraStrongPortfolio();
     alert("✅ Service Updated Successfully!");
 }
 
@@ -2086,6 +2088,7 @@ function deleteServiceAction(id) {
         IinshaBackendAdapter.deleteService(id);
         renderFullCrudServiceManager();
     initGoogleAiN8nPortfolio();
+    initUltraStrongPortfolio();
         alert("🗑️ Service Deleted Successfully!");
     }
 }
@@ -2147,6 +2150,139 @@ function initGoogleAiN8nPortfolio() {
                         <code>Stack: Stripe/bKash → n8n → Gemini OCR → Wise/Bank</code>
                     </div>
                 </div>
+            </div>
+        </div>
+    `;
+}
+
+
+
+/* ============================================================
+   ULTRA-STRONG ENTERPRISE AI PORTFOLIO SHOWCASE (6 CASE STUDIES)
+   ============================================================ */
+function initUltraStrongPortfolio() {
+    const portfolioRoot = document.getElementById('ultra-portfolio-showcase-root');
+    if (!portfolioRoot) return;
+
+    portfolioRoot.innerHTML = `
+        <div style="margin-top:40px;">
+            <div style="text-align:center; margin-bottom:32px;">
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">🏆 PROVEN ENTERPRISE PORTFOLIO</span>
+                <h2 style="margin:14px 0 8px 0; color:#fff; font-size:2rem; font-weight:800;">Featured AI Engineering & Automation Projects</h2>
+                <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 2.5), n8n VPS, OpenClaw, and Hostinger Docker infrastructure.</p>
+            </div>
+
+            <!-- 6 CASE STUDIES GRID -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+
+                <!-- CASE 1 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(16,185,129,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 10px; border-radius:12px; font-weight:bold;">FINTECH AUTOMATION</span>
+                            <span style="font-size:0.85rem; color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">$1.2M+ Processed</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Stripe & bKash Auto-Reconciliation Engine</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated multi-currency billing and payout reconciliation system connecting Stripe & bKash webhooks with 99.8% zero human error rate.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: Gemini 2.5 OCR ➔ n8n ➔ Supabase ➔ Wise API</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
+                <!-- CASE 2 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(6,182,212,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:2px 10px; border-radius:12px; font-weight:bold;">LEAD GENERATION</span>
+                            <span style="font-size:0.85rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">45,000+ B2B Leads</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">OpenClaw B2B Lead Intelligence Swarm</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Autonomous stealth scraper collecting and enriching verified decision-maker emails, achieving a 38% cold outreach reply rate.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: OpenClaw ➔ Gemini 2.5 ➔ n8n ➔ SendGrid</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
+                <!-- CASE 3 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(245,158,11,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(245,158,11,0.2); color:#f59e0b; border:1px solid #f59e0b; padding:2px 10px; border-radius:12px; font-weight:bold;">CUSTOMER SUPPORT</span>
+                            <span style="font-size:0.85rem; color:#fde68a; font-weight:bold; font-family:var(--font-mono);">120,000+ Chats</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Multilingual WhatsApp AI Agent RAG</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">24/7 customer service bot connecting Meta WhatsApp Business API with Pinecone Vector DB, handling 84% instant ticket deflection.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#f59e0b; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: Pinecone Vector ➔ Gemini 2.5 ➔ Meta API</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
+                <!-- CASE 4 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(139,92,246,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#8b5cf6; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
+                            <span style="font-size:0.85rem; color:#c4b5fd; font-weight:bold; font-family:var(--font-mono);">99.999% Uptime</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Hostinger VPS Docker Swarm</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated CI/CD failover and container recovery system ensuring continuous deployment with zero downtime during traffic spikes.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8b5cf6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: Docker Compose ➔ Hostinger VPS ➔ Telegram Bot</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
+                <!-- CASE 5 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(236,72,153,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(236,72,153,0.2); color:#ec4899; border:1px solid #ec4899; padding:2px 10px; border-radius:12px; font-weight:bold;">PROGRAMMATIC SEO</span>
+                            <span style="font-size:0.85rem; color:#fbcfe8; font-weight:bold; font-family:var(--font-mono);">1,200+ Pages</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">AI Programmatic GEO Search Generator</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated SEO/GEO generator creating schema-rich landing pages for ChatGPT Search, Perplexity AI, and Google Search indexation.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ec4899; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: Next.js SSG ➔ Gemini 2.5 ➔ Cloudflare CDN</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
+                <!-- CASE 6 -->
+                <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(59,130,246,0.3); display:flex; flex-direction:column; justify:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#3b82f6; border:1px solid #3b82f6; padding:2px 10px; border-radius:12px; font-weight:bold;">AFFILIATE NETWORK</span>
+                            <span style="font-size:0.85rem; color:#93c5fd; font-weight:bold; font-family:var(--font-mono);">1,500+ Affiliates</span>
+                        </div>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">PartnerStack-Grade Global Affiliate Engine</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Transparent affiliate dashboard with first-party cookie attribution, fraud click shielding, and automated 1-click payouts.</p>
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#3b82f6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                            <code>Stack: Custom Cookie Engine ➔ Anti-Bot Shield ➔ Wise</code>
+                        </div>
+                    </div>
+                    <button onclick="alert('📊 Case Study #6: Generated $340,000 in referral sales with zero fraud clicks.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        📋 View Execution Case Blueprint →
+                    </button>
+                </div>
+
             </div>
         </div>
     `;
