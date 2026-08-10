@@ -1,0 +1,47 @@
+name: Zero-Regression & Cloudflare Pages Guard
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Validate Wrangler Pages Specification
+        run: |
+          python -c "
+          import os, sys
+          with open('wrangler.toml', 'r') as f:
+              content = f.read()
+          errors = []
+          if 'main =' in content: errors.append('main = key present')
+          if '[assets]' in content: errors.append('[assets] section present')
+          if 'pages_build_output_dir = \".\"' not in content: errors.append('output dir is not .')
+          if errors:
+              print('INVALID WRANGLER CONFIG:', errors)
+              sys.exit(1)
+          print('Wrangler config valid for Cloudflare Pages!')
+          "
+
+      - name: Validate JS DOM Isolation Protocol
+        run: |
+          python -c "
+          import sys
+          with open('app.js', 'r') as f:
+              code = f.read()
+          if 'document.body.appendChild(modal)' not in code:
+              print('ERROR: Modal body append logic missing in app.js')
+              sys.exit(1)
+          print('JS DOM Isolation Protocol Verified!')
+          "
