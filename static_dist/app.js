@@ -4151,7 +4151,8 @@ function editServiceInStudio(svcId) {
     try { render2026OutcomeServicesStudio();
     try { renderOmnichannelNotificationStudio();
     try { renderCatalogV4Studio();
-    try { renderAutonomousEnterpriseEngineStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderAutonomousEnterpriseEngineStudio();
+    try { renderAIBOSArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.editServiceInStudio = editServiceInStudio;
 
@@ -4165,7 +4166,8 @@ function toggleServiceStatusV7(svcId) {
     try { render2026OutcomeServicesStudio();
     try { renderOmnichannelNotificationStudio();
     try { renderCatalogV4Studio();
-    try { renderAutonomousEnterpriseEngineStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderAutonomousEnterpriseEngineStudio();
+    try { renderAIBOSArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.toggleServiceStatusV7 = toggleServiceStatusV7;
 
@@ -4525,3 +4527,78 @@ function renderAutonomousEnterpriseEngineStudio() {
     `;
 }
 window.renderAutonomousEnterpriseEngineStudio = renderAutonomousEnterpriseEngineStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v12.0 — AI BUSINESS OPERATING SYSTEM (AI-BOS)
+   Gemini 3.6 Flash + Gemini 3.5 Flash-Lite Model Routing & Tool Execution Mesh
+   ============================================================ */
+
+var iinshaAIBOSModelRouter = {
+    commander: 'gemini-3.6-flash',       // Agentic Reasoning & Code
+    subagents: 'gemini-3.5-flash-lite',  // High-Volume Subagent Execution
+    strategy: 'gemini-3.5-pro',          // Strategic Reasoning & SoW Contracts
+    creatives: 'gemini-3.1-flash-image'  // Marketing Banners & Visuals
+};
+
+var iinshaAIBOSHierarchy = [
+    { level: 'Level 1: Executive', name: 'COMMANDER (AI CEO)', model: 'Gemini 3.6 Flash', role: 'Supervises all agents, prioritizes tasks, schedules n8n workflows & enforces HITL approvals' },
+    { level: 'Level 1: Executive', name: 'ORACLE (Strategy)', model: 'Gemini 3.5 Pro', role: 'Analyzes market trends, country demand & dynamic service pricing' },
+    { level: 'Level 2: Revenue', name: 'HUNTER (Lead Intel)', model: 'Gemini 3.5 Flash-Lite', role: 'Target company discovery, ICP creation & privacy-compliant prospect research' },
+    { level: 'Level 2: Revenue', name: 'NEGOTIATOR (Sales)', model: 'Gemini 3.5 Pro', role: 'Inquiry analysis, SoW drafting, objection handling & CRM updates' },
+    { level: 'Level 3: Marketing', name: 'GROWTH AGENT', model: 'Gemini 3.6 Flash', role: 'LinkedIn/X/FB campaigns, SEO landing pages & affiliate content generation' },
+    { level: 'Level 4: Product & Tech', name: 'BUILDER & ARCHITECT', model: 'Gemini 3.6 Flash', role: 'Frontend/backend code, Cloudflare Pages, Supabase RLS & n8n mesh' },
+    { level: 'Level 4: Product & Tech', name: 'GUARDIAN (Self-Healing)', model: 'Gemini 3.6 Flash', role: 'Detects runtime errors, tests staging patches & requests deployment approval' },
+    { level: 'Level 5: Finance', name: 'TREASURER (Finance)', model: 'Gemini 3.5 Flash-Lite', role: 'Calculates CAC, LTV, affiliate commissions & daily profitability briefings' }
+];
+
+function renderAIBOSArchitectureStudio() {
+    const root = document.getElementById('admin-aibos-architecture-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>👑 AI BUSINESS OPERATING SYSTEM (AI-BOS v12.0)</span>
+                        <span style="font-size:0.65rem; background:rgba(59,130,246,0.25); color:#60a5fa; border:1px solid #3b82f6; padding:3px 10px; border-radius:12px; font-weight:bold;">GEMINI 3.6 FLASH ROUTER ACTIVE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Decision → Tool Request → Permission Check → Policy Check → n8n Execution → Audit Log</p>
+                </div>
+            </div>
+
+            <!-- MODEL ROUTER TELEMETRY -->
+            <div style="background:rgba(0,0,0,0.5); border:1px solid rgba(59,130,246,0.4); padding:14px; border-radius:12px; margin-bottom:18px; display:flex; justify-content:space-around; text-align:center;">
+                <div>
+                    <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">EXECUTIVE MODEL</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:#60a5fa;">Gemini 3.6 Flash</div>
+                </div>
+                <div>
+                    <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">SUBAGENT MODEL</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:var(--accent-emerald);">Gemini 3.5 Flash-Lite</div>
+                </div>
+                <div>
+                    <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">STRATEGY ENGINE</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:#a78bfa;">Gemini 3.5 Pro</div>
+                </div>
+            </div>
+
+            <!-- AGENT HIERARCHY GRID -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+                ${iinshaAIBOSHierarchy.map(a => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(59,130,246,0.4); border-radius:14px; padding:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span style="font-size:0.7rem; color:#60a5fa; font-weight:bold; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:6px;">${a.level}</span>
+                            <span style="font-size:0.65rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:2px 8px; border-radius:10px; font-weight:bold;">${a.model}</span>
+                        </div>
+                        <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${a.name}</h5>
+                        <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">${a.role}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderAIBOSArchitectureStudio = renderAIBOSArchitectureStudio;
