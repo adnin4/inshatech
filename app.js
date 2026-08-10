@@ -1925,3 +1925,164 @@ function initCloudLatencyDiagnostics() {
     html += `</div>`;
     latencyContainer.innerHTML = html;
 }
+
+
+
+/* ============================================================
+   FULL CRUD SERVICE & MARKETPLACE DYNAMIC BACKEND CMS ENGINE
+   ============================================================ */
+const IinshaBackendAdapter = {
+    getServices: function() {
+        const stored = localStorage.getItem('iinsha_cms_services_v2');
+        if (stored) {
+            try { return JSON.parse(stored); } catch(e){}
+        }
+        return [
+            { id: 'svc_1', name: 'n8n Workflow Automation', category: 'AI & Automation', price: 499, commission: 20, status: 'Published', deliveryTime: '24 Hours', desc: 'Custom n8n AI workflow pipeline on Hostinger VPS Docker.' },
+            { id: 'svc_2', name: 'OpenClaw Stealth Scraper', category: 'Data & Scraping', price: 699, commission: 25, status: 'Published', deliveryTime: '48 Hours', desc: 'Anti-bot stealth scraper with proxy rotation & Telegram alerts.' },
+            { id: 'svc_3', name: 'Gemini 2.5 RAG Chatbot', category: 'AI Agents', price: 899, commission: 30, status: 'Published', deliveryTime: '3 Days', desc: 'Pinecone Vector DB RAG chatbot for WhatsApp & Web Chat.' },
+            { id: 'svc_4', name: 'Full AI-BOS SaaS Setup', category: 'Enterprise OS', price: 1499, commission: 35, status: 'Published', deliveryTime: '5 Days', desc: 'Complete HubSpot + Shopify + n8n AI Business Operating System.' }
+        ];
+    },
+    saveServices: function(services) {
+        localStorage.setItem('iinsha_cms_services_v2', JSON.stringify(services));
+        this.syncLiveMarketplaceUI();
+    },
+    addService: function(newSvc) {
+        const services = this.getServices();
+        newSvc.id = 'svc_' + Date.now();
+        services.unshift(newSvc);
+        this.saveServices(services);
+    },
+    updateService: function(id, updatedData) {
+        let services = this.getServices();
+        services = services.map(s => s.id === id ? { ...s, ...updatedData } : s);
+        this.saveServices(services);
+    },
+    deleteService: function(id) {
+        let services = this.getServices();
+        services = services.filter(s => s.id !== id);
+        this.saveServices(services);
+    },
+    syncLiveMarketplaceUI: function() {
+        const marketplaceContainer = document.getElementById('live-services-grid');
+        if (!marketplaceContainer) return;
+
+        const services = this.getServices();
+        let html = '';
+        services.forEach(s => {
+            html += `
+                <div class="glass-card glowing-border" style="padding:20px; border-radius:14px; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.1);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="font-size:0.75rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); padding:2px 8px; border-radius:10px; font-weight:bold;">${s.category}</span>
+                        <span style="font-size:1.1rem; color:var(--accent-emerald); font-weight:bold;">$${s.price}</span>
+                    </div>
+                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">${s.name}</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">${s.desc}</p>
+                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px;">
+                        <span>⏱️ Delivery: ${s.deliveryTime}</span>
+                        <span style="color:var(--accent-emerald); font-weight:bold;">🎁 ${s.commission}% Comm.</span>
+                    </div>
+                </div>
+            `;
+        });
+        marketplaceContainer.innerHTML = html;
+    }
+};
+
+function renderFullCrudServiceManager() {
+    const crudContainer = document.getElementById('cms-crud-services-root');
+    if (!crudContainer) return;
+
+    const services = IinshaBackendAdapter.getServices();
+
+    let rowsHtml = '';
+    services.forEach(s => {
+        rowsHtml += `
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                <td style="padding:10px; font-weight:bold; color:#fff;">${s.name}</td>
+                <td style="padding:10px; color:var(--accent-cyan);">${s.category}</td>
+                <td style="padding:10px; color:var(--accent-emerald); font-weight:bold;">$${s.price}</td>
+                <td style="padding:10px; color:#f59e0b;">${s.commission}%</td>
+                <td style="padding:10px;">
+                    <button onclick="editServiceInline('${s.id}')" class="btn btn-glass-sm" style="padding:4px 8px; font-size:0.75rem; margin-right:4px;">✏️ Edit</button>
+                    <button onclick="deleteServiceAction('${s.id}')" class="btn btn-danger-sm" style="padding:4px 8px; font-size:0.75rem;">🗑️ Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    crudContainer.innerHTML = `
+        <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-cyan); border-radius:14px; margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div>
+                    <h3 style="margin:0; color:#fff; font-size:1.1rem;">🛠️ FULL CRUD SERVICE & MARKETPLACE MANAGER</h3>
+                    <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Create, Edit, Update, and Delete Services, Prices, and Descriptions in Real-Time</p>
+                </div>
+                <button onclick="openAddNewServiceModal()" class="btn btn-primary-sm" style="font-weight:bold;">
+                    ➕ Add New Service
+                </button>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.85rem;">
+                    <thead>
+                        <tr style="background:rgba(30,41,59,0.8); color:var(--text-muted);">
+                            <th style="padding:10px;">Service Name</th>
+                            <th style="padding:10px;">Category</th>
+                            <th style="padding:10px;">Price ($)</th>
+                            <th style="padding:10px;">Comm (%)</th>
+                            <th style="padding:10px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rowsHtml}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+}
+
+function openAddNewServiceModal() {
+    const name = prompt("Enter Service Name:", "New AI Workflow");
+    if (!name) return;
+    const category = prompt("Enter Category:", "AI & Automation");
+    const price = parseFloat(prompt("Enter Price ($):", "499")) || 499;
+    const commission = parseFloat(prompt("Enter Affiliate Commission (%):", "20")) || 20;
+    const desc = prompt("Enter Description:", "Automated AI business workflow solution.");
+
+    IinshaBackendAdapter.addService({
+        name, category, price, commission, desc,
+        status: 'Published', deliveryTime: '24 Hours'
+    });
+
+    renderFullCrudServiceManager();
+    alert("✅ New Service Added and Synced to Live Site!");
+}
+
+function editServiceInline(id) {
+    const services = IinshaBackendAdapter.getServices();
+    const svc = services.find(s => s.id === id);
+    if (!svc) return;
+
+    const newName = prompt("Edit Service Name:", svc.name) || svc.name;
+    const newPrice = parseFloat(prompt("Edit Price ($):", svc.price)) || svc.price;
+    const newComm = parseFloat(prompt("Edit Commission (%):", svc.commission)) || svc.commission;
+    const newDesc = prompt("Edit Description:", svc.desc) || svc.desc;
+
+    IinshaBackendAdapter.updateService(id, {
+        name: newName, price: newPrice, commission: newComm, desc: newDesc
+    });
+
+    renderFullCrudServiceManager();
+    alert("✅ Service Updated Successfully!");
+}
+
+function deleteServiceAction(id) {
+    if (confirm("Are you sure you want to delete this service?")) {
+        IinshaBackendAdapter.deleteService(id);
+        renderFullCrudServiceManager();
+        alert("🗑️ Service Deleted Successfully!");
+    }
+}
