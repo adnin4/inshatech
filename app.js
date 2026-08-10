@@ -2399,6 +2399,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    try { if (typeof renderGlobalMarketplaceAffiliateMatrix === 'function') renderGlobalMarketplaceAffiliateMatrix(); } catch(e){}
     initAiInteractivePlayground();
     initVerifiedTestimonialsTicker();
 }
@@ -2712,6 +2713,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    try { if (typeof renderGlobalMarketplaceAffiliateMatrix === 'function') renderGlobalMarketplaceAffiliateMatrix(); } catch(e){}
     initAiInteractivePlayground();
     initVerifiedTestimonialsTicker();
 }
@@ -3043,3 +3045,193 @@ function initFloatingAiAssistantWidget() {
     `;
 }
 window.initFloatingAiAssistantWidget = initFloatingAiAssistantWidget;
+
+
+
+/* ============================================================
+   CLIENT & AFFILIATE PORTAL SYSTEM (MODAL & DASHBOARD)
+   ============================================================ */
+function openClientAffiliatePortalModal(defaultTab = 'tracker') {
+    let modal = document.getElementById('client-affiliate-portal-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'client-affiliate-portal-modal';
+        document.body.appendChild(modal);
+    }
+
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.95); backdrop-filter:blur(14px); z-index:99999; display:flex; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
+    modal.classList.add('active');
+
+    renderClientAffiliatePortalContent(defaultTab);
+}
+window.openClientAffiliatePortalModal = openClientAffiliatePortalModal;
+
+function closeClientAffiliatePortalModal() {
+    const modal = document.getElementById('client-affiliate-portal-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        modal.style.pointerEvents = 'none';
+    }
+}
+window.closeClientAffiliatePortalModal = closeClientAffiliatePortalModal;
+
+function renderClientAffiliatePortalContent(activeTab = 'tracker') {
+    const modal = document.getElementById('client-affiliate-portal-modal');
+    if (!modal) return;
+
+    const orders = localStorage.getItem('iinsha_orders_v2') ? JSON.parse(localStorage.getItem('iinsha_orders_v2')) : [
+        { id: 'ORD-88219', service: 'WhatsApp Gemini 2.5 RAG Bot', package: 'Growth Tier', price: 1349, status: 'In Development', timestamp: '2026-08-10' }
+    ];
+
+    const refCode = 'IINSHA-AFF-' + Math.floor(1000 + Math.random() * 9000);
+    const refLink = `https://inshatech.pages.dev/?ref=${refCode}`;
+
+    modal.innerHTML = `
+        <div class="glass-card glowing-border" style="width:100%; max-width:850px; max-height:92vh; display:flex; flex-direction:column; background:rgba(15,23,42,0.98); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; box-shadow:0 0 50px rgba(6,182,212,0.3); overflow:hidden; box-sizing:border-box;">
+            <!-- HEADER -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
+                <div>
+                    <h3 style="margin:0; color:#fff; font-size:1.3rem; display:flex; align-items:center; gap:10px;">
+                        <span>📊 Client & B2B Partner Hub</span>
+                        <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">LIVE CRM SYNC</span>
+                    </h3>
+                    <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">
+                        Track client orders, generate 20%-50% affiliate links, and manage automated payouts.
+                    </p>
+                </div>
+                <button onclick="closeClientAffiliatePortalModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+            </div>
+
+            <!-- TAB NAVIGATION -->
+            <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📦 Client Order Tracker</button>
+                <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">🤝 B2B Affiliate Dashboard</button>
+                <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📚 Marketing Asset Vault</button>
+            </div>
+
+            <!-- TAB CONTENT CONTAINER -->
+            <div style="flex:1; overflow-y:auto; padding-right:6px;">
+                ${activeTab === 'tracker' ? `
+                    <!-- CLIENT ORDER TRACKER -->
+                    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:12px; margin-bottom:14px;">
+                        <h4 style="margin:0 0 12px 0; color:var(--accent-cyan); font-size:0.95rem;">📦 Active Project Orders & Status</h4>
+                        ${orders.length === 0 ? '<p style="font-size:0.85rem; color:var(--text-muted);">No active orders found. Click any package button on the site to launch your first project!</p>' : `
+                            <div style="display:grid; gap:10px;">
+                                ${orders.map(o => `
+                                    <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(6,182,212,0.2); padding:12px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                                        <div>
+                                            <div style="font-size:0.85rem; font-weight:bold; color:#fff;">${o.service} (${o.package})</div>
+                                            <div style="font-size:0.75rem; color:var(--text-muted);">ID: ${o.id} | Date: ${o.timestamp}</div>
+                                        </div>
+                                        <div style="text-align:right;">
+                                            <div style="font-size:0.9rem; font-weight:bold; color:var(--accent-emerald);">$${o.price}</div>
+                                            <span style="font-size:0.7rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:2px 8px; border-radius:10px; font-weight:bold;">${o.status || 'Order Confirmed'}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `}
+                    </div>
+                ` : activeTab === 'affiliate' ? `
+                    <!-- AFFILIATE DASHBOARD -->
+                    <div>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+                            <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px; text-align:center;">
+                                <div style="font-size:0.75rem; color:var(--text-muted);">Total Clicks</div>
+                                <div style="font-size:1.4rem; font-weight:bold; color:#fff;">142</div>
+                            </div>
+                            <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px; text-align:center;">
+                                <div style="font-size:0.75rem; color:var(--text-muted);">Conversions</div>
+                                <div style="font-size:1.4rem; font-weight:bold; color:var(--accent-cyan);">6 Orders</div>
+                            </div>
+                            <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:14px; border-radius:12px; text-align:center;">
+                                <div style="font-size:0.75rem; color:var(--text-muted);">Unpaid Commission</div>
+                                <div style="font-size:1.4rem; font-weight:bold; color:#f59e0b;">$1,347.00</div>
+                            </div>
+                        </div>
+
+                        <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); padding:14px; border-radius:12px; margin-bottom:14px;">
+                            <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">🔗 Your Unique 20%-50% Referral Link:</div>
+                            <div style="display:flex; gap:8px;">
+                                <input type="text" readonly value="${refLink}" style="flex:1; background:#000; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 12px; border-radius:6px; font-size:0.8rem;" />
+                                <button onclick="navigator.clipboard.writeText('${refLink}'); alert('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">📋 Copy</button>
+                            </div>
+                        </div>
+
+                        <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:12px;">
+                            <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">💸 Request 1-Click Payout (bKash / Payoneer / Wise / Crypto)</div>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+                                <input type="text" id="affiliate-payout-method" placeholder="Payment Method (e.g. Payoneer Email or bKash No)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
+                                <input type="number" id="affiliate-payout-amount" placeholder="Amount ($)" value="1347" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
+                            </div>
+                            <button onclick="alert('🎉 Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
+                                🚀 Submit Payout Request to Admin →
+                            </button>
+                        </div>
+                    </div>
+                ` : `
+                    <!-- MARKETING ASSET VAULT -->
+                    <div style="display:grid; gap:12px;">
+                        <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">📱 Pre-Written LinkedIn Post Template</div>
+                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 2.5 + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
+                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 2.5 + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
+                        </div>
+
+                        <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;">✉️ Cold Outreach Email Script</div>
+                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
+                            <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); alert('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
+                        </div>
+                    </div>
+                `}
+            </div>
+        </div>
+    `;
+}
+
+/* ============================================================
+   GLOBAL B2B MARKETPLACE & AFFILIATE MATRIX COMPONENT
+   ============================================================ */
+function renderGlobalMarketplaceAffiliateMatrix() {
+    const root = document.getElementById('global-marketplace-matrix-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="margin-top:40px; background:rgba(15,23,42,0.8); border:1px solid var(--accent-cyan); padding:32px 20px; border-radius:20px; box-shadow:0 0 35px rgba(6,182,212,0.15);">
+            <div style="text-align:center; margin-bottom:28px;">
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">🌐 GLOBAL B2B NETWORK MATRIX</span>
+                <h3 style="color:#fff; margin:10px 0 6px 0; font-size:1.8rem;">Integrated Freelance & SaaS Affiliate Ecosystem</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; max-width:700px; margin:0 auto;">Connect IINSHA AI Automation Lab directly to top-tier engineering networks and B2B SaaS partner programs worldwide.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+                <!-- CARD 1: VETTED TECH NETWORKS -->
+                <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.3); border-radius:14px;">
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:6px;">🏆 VETTED & ELITE TECH NETWORKS</div>
+                    <h4 style="color:#fff; margin:0 0 10px 0;">Toptal, Arc.dev, Turing & Gun.io</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Connect with top 3% senior software engineers and enterprise clients for custom AI agent contracts.</p>
+                    <button onclick="openAiOrderConsultationModal('Elite Developer Hiring Pipeline', 'Enterprise Tier', 1499)" class="btn btn-primary-sm" style="width:100%; font-weight:bold;">🚀 Partner via IINSHA API →</button>
+                </div>
+
+                <!-- CARD 2: RECURRING SAAS AFFILIATES -->
+                <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:14px;">
+                    <div style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold; margin-bottom:6px;">💸 HIGH-TICKET RECURRING SAAS</div>
+                    <h4 style="color:#fff; margin:0 0 10px 0;">PartnerStack, Impact.com & ShareASale</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Earn 20%-50% monthly recurring commissions by promoting IINSHA AI & B2B SaaS integrations.</p>
+                    <button onclick="openClientAffiliatePortalModal('affiliate')" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">🤝 Open Partner Dashboard →</button>
+                </div>
+
+                <!-- CARD 3: GLOBAL REMOTE BOARDS -->
+                <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.3); border-radius:14px;">
+                    <div style="font-size:0.8rem; color:#f59e0b; font-weight:bold; margin-bottom:6px;">🌍 GLOBAL REMOTE JOB BOARDS</div>
+                    <h4 style="color:#fff; margin:0 0 10px 0;">Remotive, FlexJobs & Wellfound</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Scrape hiring signals and auto-deliver customized AI engineering proposals directly to CTOs.</p>
+                    <button onclick="openAiOrderConsultationModal('Scout Lead Automation Pipeline', 'Growth Tier', 1349)" class="btn btn-glass-sm" style="width:100%; font-weight:bold; border-color:#f59e0b; color:#f59e0b;">⚡ Launch Scout Automation →</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+window.renderGlobalMarketplaceAffiliateMatrix = renderGlobalMarketplaceAffiliateMatrix;
