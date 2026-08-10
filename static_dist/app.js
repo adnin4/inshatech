@@ -4841,3 +4841,59 @@ function autoInitIinshaAICopilot() {
     }
 }
 autoInitIinshaAICopilot();
+
+
+
+var iinshaCatalogV4Matrix = [
+    {
+        tier: 'Tier 1: Core Performance Platforms',
+        badge: 'REBRANDED BASELINE',
+        color: '#3b82f6',
+        services: [
+            { id: 't1_conversational', name: 'Conversational Experience Platform (CEP)', desc: 'Multichannel AI support & lead qualification with instant WhatsApp/FB sync.', priceUSD: '$499/mo', marketVal: '$1,800/mo on Upwork Pro', roi: '340% ROI in 60 days', bdt: '৳60,878/mo' },
+            { id: 't1_data_engine', name: 'Market Intelligence Data Engine (MIDE)', desc: 'Stealth web extraction, competitor monitoring & sentiment tracking.', priceUSD: '$750/mo', marketVal: '$2,500/mo on Enterprise Agency', roi: '410% ROI in 90 days', bdt: '৳91,500/mo' },
+            { id: 't1_bpos', name: 'Business Process Operating System (BPOS)', desc: 'End-to-end n8n workflow orchestrator replacing manual operations.', priceUSD: '$1,200/mo', marketVal: '$4,000/mo on Fiverr Enterprise', roi: '520% ROI in 30 days', bdt: '৳146,400/mo' },
+            { id: 't1_decision_intel', name: 'Decision Intelligence Dashboard (DID)', desc: 'Predictive revenue forecasting & real-time executive telemetry.', priceUSD: '$899/mo', marketVal: '$3,200/mo SaaS Retainer', roi: '290% ROI in 45 days', bdt: '৳109,678/mo' }
+        ]
+    },
+    {
+        tier: 'Tier 2: Business Operating System (BOS) Engines',
+        badge: 'ENTERPRISE SWARM',
+        color: '#8b5cf6',
+        services: [
+            { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 3.6 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: '৳305,000/mo' },
+            { id: 't2_sales_engine', name: 'Autonomous Sales & Deal Engine', desc: 'HUNTER + NEGOTIATOR swarm discovering ICP targets, drafting SoWs & handling objections.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Sales Agency', roi: '850% ROI in 30 days', bdt: '৳219,600/mo' },
+            { id: 't2_customer_intel', name: 'Omnichannel Customer Intelligence Suite', desc: 'Unified memory graph across WhatsApp, Email, FB & web lead interactions.', priceUSD: '$1,200/mo', marketVal: '$4,200/mo HubSpot/Salesforce AI', roi: '390% ROI in 60 days', bdt: '৳146,400/mo' },
+            { id: 't2_finance_os', name: 'Financial Yield & CAC Optimization OS', desc: 'TREASURER agent monitoring LTV, CAC, affiliate payouts & daily profit metrics.', priceUSD: '$1,500/mo', marketVal: '$5,000/mo FinTech Agency', roi: '450% ROI in 45 days', bdt: '৳183,000/mo' }
+        ]
+    },
+    {
+        tier: 'Tier 3: Industry-Specific Business OS (Industry-BOS)',
+        badge: 'VERTICAL TAILORED',
+        color: '#ec4899',
+        services: [
+            { id: 't3_ecom_os', name: 'E-Commerce Revenue Operating System', desc: 'Autonomous abandoned cart recovery, dynamic pricing & AI product catalog updates.', priceUSD: '$1,999/mo', marketVal: '$6,500/mo ECom Growth Agency', roi: '720% ROI in 30 days', bdt: '৳243,878/mo' },
+            { id: 't3_realestate_engine', name: 'Real Estate Deal Flow & Property Match Engine', desc: 'Instant WhatsApp virtual tours, buyer qualification & automated CRM pipeline.', priceUSD: '$1,499/mo', marketVal: '$5,000/mo PropTech Retainer', roi: '580% ROI in 60 days', bdt: '৳182,878/mo' },
+            { id: 't3_healthcare_os', name: 'Healthcare & Clinical Automation OS', desc: 'HIPAA/GDPR compliant appointment scheduling, patient intake & record sync.', priceUSD: '$2,999/mo', marketVal: '$9,500/mo MedTech Consulting', roi: '490% ROI in 90 days', bdt: '৳365,878/mo' },
+            { id: 't3_saas_engine', name: 'SaaS Growth & Churn Prevention Engine', desc: 'Product usage monitoring, automated re-engagement triggers & retention flows.', priceUSD: '$2,200/mo', marketVal: '$7,000/mo B2B SaaS Agency', roi: '610% ROI in 45 days', bdt: '৳268,400/mo' }
+        ]
+    },
+    {
+        tier: 'Tier 4: Intelligent Infrastructure & Autonomous Security',
+        badge: 'CLOUD & VECTOR',
+        color: '#10b981',
+        services: [
+            { id: 't4_self_healing', name: 'Self-Healing Infrastructure Guard (GUARDIAN)', desc: 'Runtime error detection, automated staging patches & zero-downtime hot-reloads.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Managed DevOps Rate', roi: '99.99% Uptime Guarantee', bdt: '৳219,600/mo' },
+            { id: 't4_rag_brain', name: 'Enterprise RAG Knowledge Base & Vector Brain', desc: 'Supabase pgvector database storing company knowledge, client docs & tech specs.', priceUSD: '$2,500 setup', marketVal: '$8,000/mo Enterprise AI Brain', roi: '100% Data Sovereignty', bdt: '৳305,000 setup' },
+            { id: 't4_dataform_engine', name: 'Autonomous Data Pipeline Engine', desc: 'BigQuery, dbt & Dataform data transformations with automated quality audits.', priceUSD: '$2,000/mo', marketVal: '$6,500/mo Data Engineering', roi: '430% ROI in 60 days', bdt: '৳244,000/mo' }
+        ]
+    },
+    {
+        tier: 'Tier 5: Full Agentic Swarm & Custom SoW',
+        badge: 'ULTIMATE SUITE',
+        color: '#f59e0b',
+        services: [
+            { id: 't5_full_aibos', name: 'Full AI Business Operating System (AI-BOS 13-Agent Swarm)', desc: 'Complete 13-agent hierarchy, n8n mesh, Supabase vector brain & WhatsApp dispatch.', priceUSD: '$4,999/mo', marketVal: '$25,000/mo Enterprise Retainer', roi: '1,200% ROI in 90 days', bdt: '৳609,878/mo' }
+        ]
+    }
+];
