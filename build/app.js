@@ -2360,4 +2360,221 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
 } else {
     initMasterApp();
+    bindAllPackageOrderButtons();
+}
+
+
+
+/* ============================================================
+   INTERACTIVE AI SALES & ORDER CONSULTATION ENGINE (DUAL CHAT)
+   ============================================================ */
+let currentAiOrderState = {
+    serviceName: 'AI Automation Workflow',
+    packageTier: 'Professional System',
+    price: 499,
+    chatHistory: []
+};
+
+function openAiOrderConsultationModal(serviceName = 'AI Automation Workflow', packageTier = 'Professional System', price = 499) {
+    currentAiOrderState.serviceName = serviceName;
+    currentAiOrderState.packageTier = packageTier;
+    currentAiOrderState.price = price;
+    currentAiOrderState.chatHistory = [
+        { sender: 'AI', text: `Hi there! I am the IINSHA Sales AI Agent. I see you are interested in **${serviceName}** (${packageTier} - **$${price}**). Tell me a bit about your business or project goals so I can tailor the scope for you!` }
+    ];
+
+    let modal = document.getElementById('ai-order-consultation-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'ai-order-consultation-modal';
+        document.body.appendChild(modal);
+    }
+
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.92); backdrop-filter:blur(10px); z-index:99999; display:flex; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
+
+    renderAiOrderModalContent();
+}
+
+function closeAiOrderConsultationModal() {
+    const modal = document.getElementById('ai-order-consultation-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function renderAiOrderModalContent() {
+    const modal = document.getElementById('ai-order-consultation-modal');
+    if (!modal) return;
+
+    modal.style.display = 'flex';
+
+    let chatHtml = '';
+    currentAiOrderState.chatHistory.forEach(msg => {
+        const isAi = msg.sender === 'AI';
+        chatHtml += `
+            <div style="margin-bottom:12px; text-align:${isAi ? 'left' : 'right'};">
+                <span style="font-size:0.7rem; color:${isAi ? 'var(--accent-cyan)' : 'var(--accent-emerald)'}; font-weight:bold; display:block; margin-bottom:2px;">
+                    ${isAi ? '🤖 IINSHA Sales AI Agent' : '👤 You (Client)'}
+                </span>
+                <div style="display:inline-block; max-width:85%; background:${isAi ? 'rgba(30,41,59,0.9)' : 'rgba(16,185,129,0.2)'}; border:1px solid ${isAi ? 'rgba(6,182,212,0.3)' : 'var(--accent-emerald)'}; color:#fff; padding:10px 14px; border-radius:12px; font-size:0.85rem; line-height:1.4;">
+                    ${msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
+                </div>
+            </div>
+        `;
+    });
+
+    modal.innerHTML = `
+        <div class="glass-card glowing-border" style="width:100%; max-width:620px; max-height:90vh; display:flex; flex-direction:column; background:rgba(15,23,42,0.98); border:1px solid var(--accent-cyan); border-radius:18px; padding:24px; box-shadow:0 0 40px rgba(6,182,212,0.25); overflow:hidden;">
+            <!-- HEADER -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:14px;">
+                <div>
+                    <h3 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
+                        <span>💬 AI Sales & Order Consultation</span>
+                        <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px;">LIVE AI ONLINE</span>
+                    </h3>
+                    <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">
+                        Target: <strong style="color:var(--accent-cyan);">${currentAiOrderState.serviceName}</strong> (${currentAiOrderState.packageTier} - <span style="color:var(--accent-emerald); font-weight:bold;">$${currentAiOrderState.price}</span>)
+                    </p>
+                </div>
+                <button onclick="closeAiOrderConsultationModal()" style="background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
+            </div>
+
+            <!-- CHAT BODY -->
+            <div id="ai-chat-messages-container" style="flex:1; overflow-y:auto; padding-right:8px; margin-bottom:14px; min-height:220px; max-height:340px;">
+                ${chatHtml}
+            </div>
+
+            <!-- QUICK ORDER DETAILS FORM -->
+            <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px; margin-bottom:12px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+                    <input type="text" id="order-client-name" placeholder="Your Name" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
+                    <input type="text" id="order-client-phone" placeholder="WhatsApp Number (+880...)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
+                </div>
+                <input type="email" id="order-client-email" placeholder="Your Email Address" style="width:100%; background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem; box-sizing:border-box;" />
+            </div>
+
+            <!-- CHAT INPUT & CONFIRM BUTTONS -->
+            <div style="display:flex; gap:8px; margin-bottom:10px;">
+                <input type="text" id="ai-chat-input-text" placeholder="Ask AI a question or describe requirement..." style="flex:1; background:#000; border:1px solid var(--accent-cyan); color:#fff; padding:10px 12px; border-radius:8px; font-size:0.85rem;" onkeypress="if(event.key==='Enter') sendUserMessageToAiOrderAgent();" />
+                <button onclick="sendUserMessageToAiOrderAgent()" class="btn btn-primary-sm" style="font-weight:bold;">💬 Send</button>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+                <button onclick="confirmOrderAndSyncToWhatsApp()" class="btn btn-emerald-sm" style="flex:1; width:100%; padding:12px; font-weight:bold; font-size:0.9rem; text-align:center; box-shadow:0 0 15px rgba(16,185,129,0.3);">
+                    ✅ Confirm Order & Sync Transcript to WhatsApp (+8801629286887) →
+                </button>
+            </div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        const container = document.getElementById('ai-chat-messages-container');
+        if (container) container.scrollTop = container.scrollHeight;
+    }, 50);
+}
+
+function sendUserMessageToAiOrderAgent() {
+    const input = document.getElementById('ai-chat-input-text');
+    if (!input || !input.value.trim()) return;
+
+    const userText = input.value.trim();
+    input.value = '';
+
+    currentAiOrderState.chatHistory.push({ sender: 'User', text: userText });
+    renderAiOrderModalContent();
+
+    // AI Intelligence Response Simulation
+    setTimeout(() => {
+        let aiReply = `Understood! For your project, I recommend our **${currentAiOrderState.packageTier}** ($${currentAiOrderState.price}). I've applied a **10% Launch Discount**! Total estimated price: **$${Math.round(currentAiOrderState.price * 0.9)}**. Please enter your Name and WhatsApp number below and click Confirm!`;
+        if (userText.toLowerCase().includes('price') || userText.toLowerCase().includes('discount') || userText.toLowerCase().includes('cost')) {
+            aiReply = `Great question! We offer transparent pricing for **${currentAiOrderState.serviceName}**. The base package is **$${currentAiOrderState.price}** with 24-48h delivery on Hostinger VPS Docker. Enter your details below to lock in the 10% discount!`;
+        } else if (userText.toLowerCase().includes('n8n') || userText.toLowerCase().includes('ai') || userText.toLowerCase().includes('bot')) {
+            aiReply = `Awesome! Our engineering swarm builds custom Gemini 2.5 RAG chatbots and n8n automated pipelines. We will connect your WhatsApp and Web support directly!`;
+        }
+
+        currentAiOrderState.chatHistory.push({ sender: 'AI', text: aiReply });
+        renderAiOrderModalContent();
+    }, 600);
+}
+
+function confirmOrderAndSyncToWhatsApp() {
+    const nameInput = document.getElementById('order-client-name');
+    const phoneInput = document.getElementById('order-client-phone');
+    const emailInput = document.getElementById('order-client-email');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+
+    if (!name || !phone) {
+        alert("Please enter your Name and WhatsApp phone number to confirm the order!");
+        return;
+    }
+
+    // Save order locally in CRM database
+    const newOrder = {
+        id: 'ORD-' + Date.now(),
+        clientName: name,
+        clientPhone: phone,
+        clientEmail: email,
+        service: currentAiOrderState.serviceName,
+        package: currentAiOrderState.packageTier,
+        price: currentAiOrderState.price,
+        status: 'Lead Discussion',
+        timestamp: new Date().toISOString()
+    };
+
+    const storedOrders = localStorage.getItem('iinsha_orders_v2') ? JSON.parse(localStorage.getItem('iinsha_orders_v2')) : [];
+    storedOrders.unshift(newOrder);
+    localStorage.setItem('iinsha_orders_v2', JSON.stringify(storedOrders));
+
+    // Construct full chat history summary for WhatsApp
+    let historySummary = `Hi Adnin! New Order Confirmed on Website:\n\n`;
+    historySummary += `📦 Service: ${currentAiOrderState.serviceName}\n`;
+    historySummary += `💵 Package: ${currentAiOrderState.packageTier} ($${currentAiOrderState.price})\n`;
+    historySummary += `👤 Client: ${name} (${phone}) | Email: ${email}\n\n`;
+    historySummary += `💬 AI CHAT TRANSCRIPT HISTORY:\n`;
+
+    currentAiOrderState.chatHistory.forEach(msg => {
+        historySummary += `${msg.sender}: ${msg.text}\n`;
+    });
+
+    const whatsappUrl = `https://wa.me/8801629286887?text=${encodeURIComponent(historySummary)}`;
+
+    closeAiOrderConsultationModal();
+
+    alert(`🎉 Order Confirmed! Opening WhatsApp to send chat transcript & order details to Admin (+8801629286887)...`);
+    window.open(whatsappUrl, '_blank');
+}
+
+function bindAllPackageOrderButtons() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('a, button');
+        if (!btn) return;
+
+        const text = (btn.innerText || btn.textContent || '').toLowerCase();
+        const href = (btn.getAttribute('href') || '').toLowerCase();
+
+        // Check if button is a package view, order, or consultation button
+        if (
+            text.includes('view packages') ||
+            text.includes('message before ordering') ||
+            text.includes('book consultation') ||
+            text.includes('inquire high-ticket') ||
+            text.includes('launch ai saas') ||
+            text.includes('book swarm') ||
+            text.includes('request control center') ||
+            text.includes('build rag platform') ||
+            text.includes('deploy private llm') ||
+            text.includes('secure ai systems') ||
+            href.includes('whatsapp')
+        ) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Extract service & package name from context
+            const card = btn.closest('.glass-card, .card, div');
+            const cardTitle = card ? (card.querySelector('h3, h4, h2')?.innerText || 'AI Automation Service') : 'AI Automation Service';
+
+            openAiOrderConsultationModal(cardTitle, 'Professional Tier', 499);
+        }
+    }, true);
 }
