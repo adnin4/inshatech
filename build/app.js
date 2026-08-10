@@ -868,18 +868,13 @@ function openProtectedAdminPanel() {
     const modal = document.getElementById('admin-control-modal');
     if (!modal) return;
 
+    // Move modal to body root to ensure position:fixed works correctly
+    if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+    }
+    
     modal.classList.remove('hidden');
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100vw';
-    modal.style.height = '100vh';
-    modal.style.zIndex = '10005';
-    modal.style.opacity = '1';
-    modal.style.visibility = 'visible';
+    modal.style.cssText = 'display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; opacity:1; visibility:visible; background:rgba(2,6,23,0.95); overflow-y:auto;';
     window.scrollTo(0, 0);
 
     const rootContainer = document.getElementById('index-admin-cms-root');
