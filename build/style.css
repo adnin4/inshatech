@@ -2658,3 +2658,30 @@ section {
     display: flex !important;
     pointer-events: auto !important;
 }
+
+
+
+/* ============================================================
+   CARD OVERLAY & BUTTON POINTER-EVENTS ISOLATION FIX
+   ============================================================ */
+.btn,
+button,
+a.btn,
+.glass-card a,
+.card a,
+.glass-card button,
+.card button {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* Ensure glossy glow pseudo-elements and background overlays do not block clicks */
+.glass-card::before,
+.glass-card::after,
+.glowing-border::before,
+.glowing-border::after,
+.card::before,
+.card::after {
+    pointer-events: none !important;
+}
