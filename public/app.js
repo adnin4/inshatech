@@ -870,9 +870,17 @@ function openProtectedAdminPanel() {
 
     modal.classList.remove('hidden');
     modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
     modal.style.zIndex = '10005';
     modal.style.opacity = '1';
     modal.style.visibility = 'visible';
+    window.scrollTo(0, 0);
 
     const rootContainer = document.getElementById('index-admin-cms-root');
     if (!rootContainer) return;
