@@ -1129,6 +1129,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initGlobalCurrencyConverter();
     initInteractiveDiagramVisualizer();
     initRoiComparisonMatrix();
+    initInteractiveAiAgentBuilder();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1685,5 +1686,68 @@ function initRoiComparisonMatrix() {
                 </div>
             </div>
         `;
+    };
+}
+
+
+
+/* ============================================================
+   INTERACTIVE AI AGENT BUILDER (Google AI Studio + n8n Engine)
+   ============================================================ */
+function initInteractiveAiAgentBuilder() {
+    const generateBtn = document.getElementById('build-agent-btn');
+    const outputBox = document.getElementById('agent-builder-output-box');
+
+    if (!generateBtn) return;
+
+    generateBtn.onclick = (e) => {
+        if (e) e.preventDefault();
+
+        const modelSelect = document.getElementById('agent-model-select');
+        const triggerSelect = document.getElementById('agent-trigger-select');
+        const actionSelect = document.getElementById('agent-action-select');
+
+        const model = modelSelect ? modelSelect.value : 'Google AI Studio (Gemini 2.5 Flash)';
+        const trigger = triggerSelect ? triggerSelect.value : 'WhatsApp Webhook';
+        const action = actionSelect ? actionSelect.value : 'Supabase DB + Telegram Alert';
+
+        const n8nWorkflowJSON = JSON.stringify({
+            "name": `IINSHA AI Agent (${model} + ${trigger})`,
+            "nodes": [
+                { "name": trigger, "type": "n8n-nodes-base.webhook", "position": [100, 300] },
+                { "name": "Google AI Studio (Gemini 2.5)", "type": "n8n-nodes-base.googleGemini", "position": [350, 300] },
+                { "name": action, "type": "n8n-nodes-base.httpRequest", "position": [600, 300] }
+            ],
+            "connections": {
+                [trigger]: { "main": [[{ "node": "Google AI Studio (Gemini 2.5)", "type": "main", "index": 0 }]] },
+                "Google AI Studio (Gemini 2.5)": { "main": [[{ "node": action, "type": "main", "index": 0 }]] }
+            }
+        }, null, 2);
+
+        if (outputBox) {
+            outputBox.style.display = 'block';
+            outputBox.innerHTML = `
+                <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-cyan); border-radius:14px; margin-top:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="color:var(--accent-cyan); font-weight:bold; font-size:0.9rem;">⚡ AI AGENT BLUEPRINT GENERATED</span>
+                        <span style="font-size:0.75rem; color:var(--text-muted);">Hybrid: Google AI Studio + n8n VPS</span>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                        <strong>Configured Stack:</strong> Brain: <code>${model}</code> | Trigger: <code>${trigger}</code> | Action: <code>${action}</code>
+                    </p>
+                    <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; max-height:220px; overflow-y:auto; margin-bottom:14px; border:1px solid rgba(255,255,255,0.1);">
+                        <pre style="margin:0;">${n8nWorkflowJSON.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button onclick="navigator.clipboard.writeText(this.getAttribute('data-json')); alert('n8n Workflow JSON copied to clipboard!');" data-json="${encodeURIComponent(n8nWorkflowJSON)}" class="btn btn-glass-sm" style="flex:1;">
+                            📋 Copy n8n Workflow JSON
+                        </button>
+                        <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I built an AI Agent blueprint on your website using ' + model + ' and n8n. Please deploy this to Hostinger VPS Docker for me.')}" target="_blank" class="btn btn-primary-sm" style="flex:1; text-align:center; font-weight:bold;">
+                            💬 Deploy This Agent via WhatsApp →
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
     };
 }
