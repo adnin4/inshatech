@@ -2629,3 +2629,32 @@ section {
   content-visibility: auto;
   contain-intrinsic-size: 1px 800px;
 }
+
+
+
+/* ============================================================
+   STRICT MODAL DISPLAY & POINTER-EVENTS ISOLATION RULES
+   ============================================================ */
+#ai-order-consultation-modal,
+#admin-control-modal {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 7, 18, 0.94);
+    backdrop-filter: blur(12px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#ai-order-consultation-modal.active,
+#admin-control-modal.active {
+    display: flex !important;
+    pointer-events: auto !important;
+}
