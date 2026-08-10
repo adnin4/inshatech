@@ -2058,6 +2058,7 @@ function openAddNewServiceModal() {
     });
 
     renderFullCrudServiceManager();
+    initGoogleAiN8nPortfolio();
     alert("✅ New Service Added and Synced to Live Site!");
 }
 
@@ -2076,6 +2077,7 @@ function editServiceInline(id) {
     });
 
     renderFullCrudServiceManager();
+    initGoogleAiN8nPortfolio();
     alert("✅ Service Updated Successfully!");
 }
 
@@ -2083,6 +2085,69 @@ function deleteServiceAction(id) {
     if (confirm("Are you sure you want to delete this service?")) {
         IinshaBackendAdapter.deleteService(id);
         renderFullCrudServiceManager();
+    initGoogleAiN8nPortfolio();
         alert("🗑️ Service Deleted Successfully!");
     }
+}
+
+
+
+/* ============================================================
+   GOOGLE AI + N8N INTEGRATION PORTFOLIO SHOWCASE
+   ============================================================ */
+function initGoogleAiN8nPortfolio() {
+    const portfolioRoot = document.getElementById('google-n8n-portfolio-root');
+    if (!portfolioRoot) return;
+
+    portfolioRoot.innerHTML = `
+        <div class="glass-card glowing-border" style="padding:28px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-emerald); border-radius:18px; margin-top:30px;">
+            <div style="text-align:center; margin-bottom:24px;">
+                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 12px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">⚡ ENTERPRISE INTEGRATION PORTFOLIO</span>
+                <h2 style="margin:12px 0 6px 0; color:#fff; font-size:1.8rem;">Google AI Studio + n8n Workflows</h2>
+                <p style="color:var(--text-muted); font-size:0.9rem; max-width:600px; margin:0 auto;">Production-Grade AI Automation Architecture & Pipeline Portfolio</p>
+            </div>
+
+            <!-- PORTFOLIO GRID -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                <!-- CASE 1 -->
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:20px; border-radius:14px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                        <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">PROD CASE #101</span>
+                        <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">● LIVE ON VPS</span>
+                    </div>
+                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">WhatsApp AI Customer Support</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 2.5) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
+                    <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4;">
+                        <code>Stack: Gemini 2.5 Flash → n8n → Supabase → Meta API</code>
+                    </div>
+                </div>
+
+                <!-- CASE 2 -->
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:20px; border-radius:14px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                        <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">PROD CASE #102</span>
+                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
+                    </div>
+                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">OpenClaw B2B Lead Scraper</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated stealth scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
+                    <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">
+                        <code>Stack: OpenClaw → n8n → Gemini 2.5 → Telegram Bot</code>
+                    </div>
+                </div>
+
+                <!-- CASE 3 -->
+                <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:20px; border-radius:14px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                        <span style="font-size:0.75rem; color:#fde68a; font-weight:bold; font-family:var(--font-mono);">PROD CASE #103</span>
+                        <span style="font-size:0.75rem; color:#f59e0b; font-weight:bold;">● LIVE ON VPS</span>
+                    </div>
+                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Stripe & bKash Auto-Reconciliation</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated invoice generation and payment reconciliation engine connecting Stripe & bKash webhooks to PostgreSQL DB.</p>
+                    <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#f59e0b;">
+                        <code>Stack: Stripe/bKash → n8n → Gemini OCR → Wise/Bank</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
