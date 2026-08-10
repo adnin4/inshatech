@@ -3951,3 +3951,162 @@ function renderGodModeControlStudio() {
     `;
 }
 window.renderGodModeControlStudio = renderGodModeControlStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v6.0 — ENTERPRISE DYNAMIC SERVICE CMS & SOW ENGINE
+   ============================================================ */
+
+var iinshaServiceCatalogData = [
+    {
+        id: 'svc-1',
+        title: 'Custom B2B SaaS & Subscription Systems',
+        category: 'SaaS Development',
+        headline: 'Scalable, Cloud-Native B2B SaaS Infrastructure with Built-in Recurring Billing',
+        pricing: 'MVP: $1,500 | Pro: $3,500 | Enterprise: $8,000+',
+        valueProp: '1-Click Subscription Management, Multi-tenant Auth & Stripe/Wise API',
+        status: 'Active',
+        popular: true
+    },
+    {
+        id: 'svc-2',
+        title: 'Intelligent Web Platforms & Client Portals',
+        category: 'Web Systems',
+        headline: 'High-Speed, Interactive Web Systems Built for Conversions & Seamless Client UX',
+        pricing: 'Business: $800 | Portal: $2,000 | Digital Studio: $5,000+',
+        valueProp: 'Sub-500ms Edge Latency & 3x Organic Conversion Lift Guarantee',
+        status: 'Active',
+        popular: false
+    },
+    {
+        id: 'svc-3',
+        title: 'Unified Business Workflow & Smart ERP/CRM Engines',
+        category: 'Business OS',
+        headline: 'End-to-End Enterprise Process Automation & Integrated n8n Operating Systems',
+        pricing: 'Starter: $1,000 | Complete ERP: $3,500 | Managed Retainer: $7,500',
+        valueProp: 'Eliminate 90% Manual Tasks across Email, CRM & Payments',
+        status: 'Active',
+        popular: true
+    },
+    {
+        id: 'svc-4',
+        title: 'Custom Enterprise RAG Knowledge Systems',
+        category: 'Data & RAG',
+        headline: 'Private Enterprise Knowledge Assistants & Automated Decision Engines',
+        pricing: 'Engine Setup: $2,500 + $500/mo Live Maintenance',
+        valueProp: 'Instant 24/7 Vector Retrieval over Company PDF/DB Documents',
+        status: 'Active',
+        popular: false
+    }
+];
+
+function toggleServiceStatus(svcId) {
+    const svc = iinshaServiceCatalogData.find(s => s.id === svcId);
+    if (!svc) return;
+    svc.status = svc.status === 'Active' ? 'Inactive' : 'Active';
+    renderDynamicServiceCMSStudio();
+}
+window.toggleServiceStatus = toggleServiceStatus;
+
+function addNewEnterpriseService() {
+    const title = prompt("Enter Service Title:");
+    if (!title) return;
+    const headline = prompt("Enter Positioning Headline:", "High-Performance Business Solution");
+    const pricing = prompt("Enter Pricing Tiers (e.g. Starter: $999 | Pro: $2,500):", "Starter: $999 | Pro: $2,500");
+    const valueProp = prompt("Enter Core Value Proposition:", "Guaranteed Operational Efficiency");
+
+    const newSvc = {
+        id: 'svc-' + (iinshaServiceCatalogData.length + 1),
+        title: title.trim(),
+        category: 'Custom Solution',
+        headline: headline ? headline.trim() : 'Enterprise Business System',
+        pricing: pricing ? pricing.trim() : '$1,500+',
+        valueProp: valueProp ? valueProp.trim() : 'Automated Workflow Efficiency',
+        status: 'Active',
+        popular: false
+    };
+
+    iinshaServiceCatalogData.push(newSvc);
+    alert(`✅ New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
+    renderDynamicServiceCMSStudio();
+}
+window.addNewEnterpriseService = addNewEnterpriseService;
+
+function generateSoWContractTemplate(svcId) {
+    const svc = iinshaServiceCatalogData.find(s => s.id === svcId);
+    if (!svc) return;
+
+    const sowWindow = window.open("", "_blank");
+    sowWindow.document.write(`
+        <html>
+        <head>
+            <title>Scope of Work (SoW) - ${svc.title}</title>
+            <style>
+                body { font-family: 'Inter', sans-serif; background: #0f172a; color: #fff; padding: 40px; line-height: 1.6; }
+                .card { background: #1e293b; border: 1px solid #06b6d4; padding: 30px; border-radius: 16px; max-width: 800px; margin: auto; }
+                h1 { color: #06b6d4; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+                .price-box { background: rgba(16,185,129,0.2); border: 1px solid #10b981; padding: 15px; border-radius: 8px; font-weight: bold; color: #10b981; margin-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="card">
+                <h1>IINSHA AI OS — SCOPE OF WORK (SoW) CONTRACT</h1>
+                <p><strong>Service Title:</strong> ${svc.title}</p>
+                <p><strong>Headline Scope:</strong> ${svc.headline}</p>
+                <p><strong>Value Guarantee:</strong> ${svc.valueProp}</p>
+                <div class="price-box">INVESTMENT TIERS: ${svc.pricing}</div>
+                <p style="margin-top: 30px; font-size: 0.85rem; color: #94a3b8;">Generated dynamically by Google Antigravity Subagent Engine. Agreed & Accepted via WhatsApp (+8801629286887).</p>
+            </div>
+        </body>
+        </html>
+    `);
+}
+window.generateSoWContractTemplate = generateSoWContractTemplate;
+
+function renderDynamicServiceCMSStudio() {
+    const root = document.getElementById('admin-dynamic-service-cms-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 50px rgba(6,182,212,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
+                        <span>💎 Enterprise Service CMS & SoW Contract Matrix</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ANTIGRAVITY 2.0 SYNCED</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage B2B SaaS, Web Platforms, ERP/CRM & RAG Knowledge Systems without touching code.</p>
+                </div>
+                <button onclick="addNewEnterpriseService()" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.8rem;">
+                    ➕ Add New Service
+                </button>
+            </div>
+
+            <!-- SERVICE CATALOG CARDS GRID -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+                ${iinshaServiceCatalogData.map(s => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid ${s.popular ? 'var(--accent-emerald)' : 'rgba(6,182,212,0.3)'}; border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <span style="font-size:0.9rem; font-weight:bold; color:#fff;">${s.title}</span>
+                                <span onclick="toggleServiceStatus('${s.id}')" style="cursor:pointer; font-size:0.65rem; background:${s.status === 'Active' ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'}; color:${s.status === 'Active' ? 'var(--accent-emerald)' : '#ef4444'}; border:1px solid ${s.status === 'Active' ? 'var(--accent-emerald)' : '#ef4444'}; padding:2px 8px; border-radius:10px; font-weight:bold;">
+                                    ${s.status}
+                                </span>
+                            </div>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
+                            <div style="font-size:0.72rem; color:var(--accent-cyan); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
+                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
+                                📄 Generate SoW
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderDynamicServiceCMSStudio = renderDynamicServiceCMSStudio;
