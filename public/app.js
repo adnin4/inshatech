@@ -1101,6 +1101,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initComparePageHandlers();
     initMarketplaceHandlers();
     initStorePageCheckout();
+    initAiReadinessAssessment();
     if (typeof initAuthenticPartnerConsole === 'function') {
         initAuthenticPartnerConsole();
     }
@@ -1415,3 +1416,91 @@ function initI18nLanguageSwitcher() {
 
 
 function initFOMOToasts() {}
+
+
+/* Guarantee FOMO Toast Case-Insensitive Alias */
+window.initFOMOToasts = typeof initFomoToasts === 'function' ? initFomoToasts : function(){};
+
+
+
+/* ============================================================
+   AI BUSINESS OPPORTUNITY ASSESSMENT & PROPOSAL GENERATOR
+   ============================================================ */
+function initAiReadinessAssessment() {
+    const btn = document.getElementById('calc-readiness-btn') || document.getElementById('run-ai-assessment-btn');
+    const barrierSelect = document.getElementById('readiness-barrier-select');
+    const teamSelect = document.getElementById('readiness-team-select');
+    const resultBox = document.getElementById('readiness-result-box');
+
+    if (!btn) return;
+
+    btn.onclick = (e) => {
+        if (e) e.preventDefault();
+        
+        const barrier = barrierSelect ? barrierSelect.value : 'support';
+        const team = teamSelect ? teamSelect.value : '5-20';
+
+        let score = 82;
+        let savingsUSD = 1850;
+        let recommendedTech = "n8n Stealth Automation + Gemini Vision OCR + Supabase Vector DB";
+        let title = "Enterprise AI Support & Data Pipeline";
+
+        if (barrier.includes('sales') || barrier.includes('lead')) {
+            score = 88;
+            savingsUSD = 2400;
+            recommendedTech = "OpenClaw Stealth Scraper + AI Sales Outreach Agent + Twilio Voice";
+            title = "AI Lead Generation & Sales Conversion Engine";
+        } else if (barrier.includes('scraping') || barrier.includes('data')) {
+            score = 92;
+            savingsUSD = 3100;
+            recommendedTech = "OpenClaw Playwright Stealth Cluster + Hostinger Docker VPS";
+            title = "Autonomous Web Scraping & Competitor Intelligence System";
+        } else if (barrier.includes('dev') || barrier.includes('saas')) {
+            score = 85;
+            savingsUSD = 4500;
+            recommendedTech = "Next.js Full Stack MVP + Supabase RAG Architecture + Stripe Integration";
+            title = "Production-Grade AI SaaS MVP Development";
+        }
+
+        const savingsBDT = savingsUSD * 120;
+
+        if (resultBox) {
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+                <div class="glass-card glowing-border" style="padding: 24px; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--accent-gold); border-radius: 14px; color: #fff;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+                        <span style="background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">
+                            🎯 AI Opportunity Score: ${score}% (High Potential)
+                        </span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
+                            ESTIMATED SAVINGS
+                        </span>
+                    </div>
+                    
+                    <h4 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--accent-gold); font-family: var(--font-heading);">${title}</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;"><strong>Recommended Tech Stack:</strong> ${recommendedTech}</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.6); padding: 14px; border-radius: 10px;">
+                        <div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Est. Monthly Operating Savings:</span>
+                            <strong style="font-size: 1.2rem; color: var(--accent-emerald);">$${savingsUSD.toLocaleString()} USD</strong>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">In BDT Currency (Rate 120):</span>
+                            <strong style="font-size: 1.2rem; color: var(--accent-cyan);">৳${savingsBDT.toLocaleString()} BDT</strong>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I completed the AI Opportunity Assessment for my business. Suggested solution: ' + title + ' ($' + savingsUSD + '/mo savings). Let us discuss implementation.')}" target="_blank" class="btn btn-primary" style="flex:1; padding: 12px; font-size: 0.9rem; text-align: center; font-weight: 800;">
+                            💬 Claim Implementation Slot via WhatsApp →
+                        </a>
+                        <button onclick="window.print()" class="btn btn-glass-sm" style="padding: 12px 16px;">
+                            🖨️ Save Proposal PDF
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    };
+}
