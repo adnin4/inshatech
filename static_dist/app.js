@@ -4153,7 +4153,8 @@ function editServiceInStudio(svcId) {
     try { renderCatalogV4Studio();
     try { renderAutonomousEnterpriseEngineStudio();
     try { renderAIBOSArchitectureStudio();
-    try { renderInternationalCatalogStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderInternationalCatalogStudio();
+    try { renderEnterpriseArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.editServiceInStudio = editServiceInStudio;
 
@@ -4169,7 +4170,8 @@ function toggleServiceStatusV7(svcId) {
     try { renderCatalogV4Studio();
     try { renderAutonomousEnterpriseEngineStudio();
     try { renderAIBOSArchitectureStudio();
-    try { renderInternationalCatalogStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderInternationalCatalogStudio();
+    try { renderEnterpriseArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.toggleServiceStatusV7 = toggleServiceStatusV7;
 
@@ -5012,3 +5014,126 @@ function renderInternationalCatalogStudio() {
     `;
 }
 window.renderInternationalCatalogStudio = renderInternationalCatalogStudio;
+
+
+
+/* ============================================================
+   IINSHA AI OS v16.0 — ENTERPRISE AI-BOS & DIGITAL WORKFORCE OS
+   "We turn manual business operations into measurable AI-powered systems."
+   ============================================================ */
+
+var iinshaEnterpriseDivisions = [
+    {
+        id: 'div_automation',
+        name: '1. AI Automation & Workflow Orchestration',
+        badge: 'n8n & API MESH',
+        color: '#3b82f6',
+        tagline: 'End-to-end process automation connecting CRMs, emails, payments, and legacy systems.',
+        packages: [
+            { name: 'Automation Starter', priceUSD: '$149', delivery: '2-3 Days', desc: 'Single process audit & quick n8n workflow setup.', bdt: '৳18,178' },
+            { name: 'Automation Pro', priceUSD: '$499', delivery: '5-7 Days', desc: 'Multi-step workflow, CRM sync, email alerts & webhooks.', bdt: '৳60,878' },
+            { name: 'Business Automation', priceUSD: '$999', delivery: '10-14 Days', desc: 'Department-wide automation, WhatsApp API & database sync.', bdt: '৳1,21,878' },
+            { name: 'Enterprise Automation', priceUSD: 'From $2,500', delivery: '2-4 Weeks', desc: 'Custom n8n self-hosted mesh, failover retry & zero lock-in.', bdt: 'From ৳3,05,000' }
+        ]
+    },
+    {
+        id: 'div_workforce',
+        name: '2. AI Agent & Digital Workforce',
+        badge: 'PRODUCTION AGENTS',
+        color: '#8b5cf6',
+        tagline: 'Specialized autonomous AI agents working 24/7 across Sales, Support, Research, and Operations.',
+        packages: [
+            { name: 'Single AI Agent', priceUSD: '$299 – $750', delivery: '5-7 Days', desc: '1 Production AI Agent (SDR, Support, or Research) with tool access.', bdt: '৳36,478 – ৳91,500' },
+            { name: 'AI Agent System', priceUSD: '$999 – $2,500', delivery: '2 Weeks', desc: 'Coordinated agent pair (e.g. Sales + CRM Update) with human approval.', bdt: '৳1,21,878 – ৳3,05,000' },
+            { name: 'Multi-Agent Workforce', priceUSD: '$2,500 – $7,500', delivery: '3-4 Weeks', desc: '3 to 5 Agent Swarms with RAG knowledge base & routing.', bdt: '৳3,05,000 – ৳9,15,000' },
+            { name: 'Enterprise AI Workforce', priceUSD: 'From $7,500', delivery: '6-10 Weeks', desc: 'Complete autonomous digital workforce with custom SLAs.', bdt: 'From ৳9,15,000' }
+        ]
+    },
+    {
+        id: 'div_aibos',
+        name: '3. AI Business Operating System (AI-BOS)',
+        badge: 'PREMIUM FLAGSHIP',
+        color: '#ec4899',
+        tagline: 'Centralized AI Command Center managing sales, support, marketing, finance, and internal ops.',
+        packages: [
+            { name: 'AI-BOS Essential Setup', priceUSD: '$2,500', delivery: '3 Weeks', desc: 'Core Command Center, CRM pipeline, and 2 AI Division Agents.', bdt: '৳3,05,000' },
+            { name: 'AI-BOS Growth Suite', priceUSD: '$5,000', delivery: '4-6 Weeks', desc: 'Full Executive Command Center, 5 Agent Swarms, n8n mesh & WhatsApp.', bdt: '৳6,10,000' },
+            { name: 'Enterprise AI-BOS Master', priceUSD: 'From $10,000', delivery: '6-12 Weeks', desc: 'Multi-department AI OS, private deployment & 24/7 monitoring.', bdt: 'From ৳12,20,000' }
+        ]
+    },
+    {
+        id: 'div_engineering',
+        name: '4. Web, Software & SaaS Engineering',
+        badge: 'FULL-STACK & SAAS',
+        color: '#10b981',
+        tagline: 'High-speed business applications, SaaS MVPs, admin portals, and custom CRM software.',
+        packages: [
+            { name: 'Business Website / Portal', priceUSD: '$300 – $750', delivery: '5-7 Days', desc: 'Modern responsive glassmorphic site with AI Copilot & SEO.', bdt: '৳36,600 – ৳91,500' },
+            { name: 'Custom Web Application', priceUSD: '$1,500', delivery: '2-3 Weeks', desc: 'Interactive web app with database, auth, and user dashboards.', bdt: '৳1,83,000' },
+            { name: 'SaaS MVP / Micro SaaS', priceUSD: '$2,500 – $5,000', delivery: '3-6 Weeks', desc: 'Production SaaS with multi-tenancy, Stripe billing & admin CMS.', bdt: '৳3,05,000 – ৳6,10,000' },
+            { name: 'Enterprise Software System', priceUSD: 'From $10,000', delivery: '8-12 Weeks', desc: 'Tailored ERP/CRM software with dedicated architecture.', bdt: 'From ৳12,20,000' }
+        ]
+    },
+    {
+        id: 'div_managed_care',
+        name: '5. Growth & Managed AI Operations',
+        badge: 'RECURRING MRR',
+        color: '#f59e0b',
+        tagline: 'We build it. We monitor it. We optimize it. Continuous 24/7 reliability and performance SLA.',
+        packages: [
+            { name: 'Care Retainer', priceUSD: '$750 / mo', delivery: 'Ongoing', desc: '24/7 uptime monitoring, bug fixes, backup validation & monthly report.', bdt: '৳91,500 / mo' },
+            { name: 'Growth Retainer', priceUSD: '$1,500 / mo', delivery: 'Ongoing', desc: 'Priority support, prompt tuning, model upgrades & workflow expansion.', bdt: '৳1,83,000 / mo' },
+            { name: 'Command Center Retainer', priceUSD: '$3,500+ / mo', delivery: 'Ongoing', desc: 'Dedicated solution architect, custom SLA & zero-downtime hotfixes.', bdt: '৳4,27,000+ / mo' }
+        ]
+    }
+];
+
+function renderEnterpriseArchitectureStudio() {
+    const root = document.getElementById('admin-catalog-v4-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>👑 IINSHA AI OS — 5-DIVISION ENTERPRISE STUDIO</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:#34d399; border:1px solid #10b981; padding:3px 10px; border-radius:12px; font-weight:bold;">REVENUE ENGINE ACTIVE</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Automation • AI Workforce • AI-BOS • Software Engineering • Managed AI Operations</p>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                ${iinshaEnterpriseDivisions.map(div => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid ${div.color}66; border-radius:16px; padding:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <h5 style="margin:0; color:#fff; font-size:1.05rem; font-weight:bold;">${div.name}</h5>
+                            <span style="font-size:0.7rem; background:${div.color}22; color:${div.color}; border:1px solid ${div.color}; padding:2px 10px; border-radius:10px; font-weight:bold;">${div.badge}</span>
+                        </div>
+                        <p style="font-size:0.78rem; color:var(--text-muted); margin:0 0 14px 0;">${div.tagline}</p>
+
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+                            ${div.packages.map(p => `
+                                <div style="background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px; display:flex; flex-direction:column; justify-content:space-between;">
+                                    <div>
+                                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+                                            <h6 style="margin:0; color:#fff; font-size:0.9rem; font-weight:bold;">${p.name}</h6>
+                                            <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:bold; background:rgba(217,119,6,0.15); padding:2px 8px; border-radius:6px; white-space:nowrap;">${p.priceUSD}</span>
+                                        </div>
+                                        <p style="font-size:0.75rem; color:var(--text-muted); margin:8px 0;">${p.desc}</p>
+                                    </div>
+                                    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; margin-top:8px; display:flex; justify-content:space-between; font-size:0.7rem;">
+                                        <span style="color:#60a5fa;">Timeline: ${p.delivery}</span>
+                                        <span style="color:var(--accent-emerald); font-weight:bold;">${p.bdt}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderEnterpriseArchitectureStudio = renderEnterpriseArchitectureStudio;
