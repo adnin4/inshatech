@@ -2780,3 +2780,42 @@ html, body {
     p, .hero-subtitle { font-size: 0.85rem !important; }
     .btn { width: 100% !important; justify-content: center !important; text-align: center !alignment; }
 }
+
+
+
+/* UNIVERSAL RESPONSIVE OVERRIDES */
+* {
+    box-sizing: border-box !important;
+}
+
+img, video, canvas, iframe, table {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.container, .hero-content, .section-header, .presales-box, .pkg-modal-container, 
+.lead-magnet-card, .cmd-palette-container, .admin-modal-box, .modal-content,
+.success-carousel, .intake-wizard, .urgency-bar, .activity-toast {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        width: 100% !important;
+    }
+    table {
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+    .grid, [class*="grid-"] {
+        grid-template-columns: 1fr !important;
+    }
+    div[style*="width: 800px"], div[style*="width: 900px"], div[style*="width: 1000px"], div[style*="width: 1100px"] {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
