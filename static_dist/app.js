@@ -1339,7 +1339,7 @@ function openBuildAISystemModal() {
                 </div>
             </div>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
                 <div>
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">1. Select Industry</label>
                     <select onchange="window.aiBuilderState.industry=this.value; renderAIBuilderSummary();" style="width:100%; padding:10px; background:rgba(30,41,59,0.8); border:1px solid var(--border-card); border-radius:8px; color:#fff; margin-bottom:12px;">
@@ -4751,7 +4751,7 @@ function openIinshaBusinessAuditModal() {
                 </div>
 
                 <form id="iinsha-audit-form" onsubmit="runIinshaAuditCalculation(event)">
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:16px;">
                         <div>
                             <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Company / Brand Name</label>
                             <input type="text" id="audit-company" required placeholder="e.g. Apex Tech Ltd" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;" />
