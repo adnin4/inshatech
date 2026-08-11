@@ -4152,7 +4152,8 @@ function editServiceInStudio(svcId) {
     try { renderOmnichannelNotificationStudio();
     try { renderCatalogV4Studio();
     try { renderAutonomousEnterpriseEngineStudio();
-    try { renderAIBOSArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderAIBOSArchitectureStudio();
+    try { renderInternationalCatalogStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.editServiceInStudio = editServiceInStudio;
 
@@ -4167,7 +4168,8 @@ function toggleServiceStatusV7(svcId) {
     try { renderOmnichannelNotificationStudio();
     try { renderCatalogV4Studio();
     try { renderAutonomousEnterpriseEngineStudio();
-    try { renderAIBOSArchitectureStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
+    try { renderAIBOSArchitectureStudio();
+    try { renderInternationalCatalogStudio(); } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){} } catch(e){}
 }
 window.toggleServiceStatusV7 = toggleServiceStatusV7;
 
@@ -4897,3 +4899,116 @@ var iinshaCatalogV4Matrix = [
         ]
     }
 ];
+
+
+
+var iinshaInternationalServiceCatalog = [
+    {
+        category: '1. AI Agent & AI Workforce',
+        badge: 'PRODUCTION AGENTS',
+        color: '#3b82f6',
+        description: 'Specialized autonomous AI agents and multi-agent swarms with human-in-the-loop governance.',
+        services: [
+            { id: 'cat1_exec_assistant', name: 'AI Executive Assistant', desc: 'Calendar scheduling, email prioritization, meeting summaries, and daily task orchestration.', priceUSD: '$1,250', marketVal: '$4,000/mo Human EA', roi: 'Save 15+ hrs/week', bdt: '৳1,52,500' },
+            { id: 'cat1_support_agent', name: 'AI Customer Support Agent', desc: 'Citation-based omnichannel support with escalation rules and conversation analytics.', priceUSD: '$2,500', marketVal: '$6,000/mo Support Team', roi: '70% Ticket Deflection', bdt: '৳3,05,000' },
+            { id: 'cat1_sales_agent', name: 'AI Sales & Lead Qualification Agent', desc: 'Instant website lead engagement, ICP scoring, objection handling, and CRM sync.', priceUSD: '$3,500', marketVal: '$8,000/mo Sales SDR', roi: '3x Lead Velocity', bdt: '৳4,27,000' },
+            { id: 'cat1_rag_agent', name: 'AI Knowledge Base / RAG Agent', desc: 'PDF, doc, and database ingestion with accurate vector retrieval and verified citations.', priceUSD: '$2,500', marketVal: '$7,500/mo Enterprise AI', roi: '100% Data Sovereignty', bdt: '৳3,05,000' },
+            { id: 'cat1_agent_swarm', name: 'Multi-Agent Swarm Operations System', desc: '3 to 8 coordinated agents with routing, approvals, and self-hosted n8n deployment.', priceUSD: 'From $12,000', marketVal: '$35,000/mo Consultancy', roi: '1,200% ROI in 90 days', bdt: 'From ৳14,64,000' }
+        ]
+    },
+    {
+        category: '2. Workflow Automation & AI Orchestration',
+        badge: 'n8n EXECUTION ENGINE',
+        color: '#8b5cf6',
+        description: 'End-to-end process automation connecting CRMs, emails, payments, and custom APIs.',
+        services: [
+            { id: 'cat2_starter_auto', name: 'Starter Automation Package', desc: '1-2 workflows, up to 3 integrations, basic AI reasoning step, and full documentation.', priceUSD: '$1,250', marketVal: '$3,500 Agency Rate', roi: '10-Day Rapid Delivery', bdt: '৳1,52,500' },
+            { id: 'cat2_growth_auto', name: 'Growth Automation System', desc: '3-6 interconnected workflows across CRM, Email, and WhatsApp with error alerts.', priceUSD: '$3,500', marketVal: '$10,000/mo SaaS Ops', roi: '520% ROI in 30 days', bdt: '৳4,27,000' },
+            { id: 'cat2_n8n_selfhosted', name: 'Self-Hosted n8n Enterprise Setup', desc: 'Docker/VPS deployment, SSL, database persistence, queue management, and backups.', priceUSD: '$1,500', marketVal: '$5,000 DevOps Setup', roi: 'Zero Cloud Lock-in', bdt: '৳1,83,000' },
+            { id: 'cat2_api_integration', name: 'Custom API & Webhook Integration', desc: 'REST, GraphQL, and webhook connectors uniting legacy software with modern AI.', priceUSD: '$999', marketVal: '$3,000 Custom Dev', roi: 'Seamless Connectivity', bdt: '৳1,21,878' }
+        ]
+    },
+    {
+        category: '3. Data, Browser & Research Automation',
+        badge: 'COMPLIANT EXTRACTION',
+        color: '#10b981',
+        description: 'Ethical, robots.txt and applicable law compliant web extraction and scheduled pipelines.',
+        services: [
+            { id: 'cat3_data_pipeline', name: 'Data & Browser Automation System', desc: 'Ethical web extraction, scheduled pipelines, database exports (PostgreSQL/BigQuery/Airtable).', priceUSD: 'From $2,500', marketVal: '$7,000 Data Agency', roi: '100% Structured Data', bdt: 'From ৳3,05,000' },
+            { id: 'cat3_price_monitor', name: 'E-Commerce & Competitor Monitoring', desc: 'Automated price tracking, catalog changes, website change alerts, and weekly digests.', priceUSD: '$1,800', marketVal: '$5,000 SaaS Tool', roi: 'Real-time Market Intel', bdt: '৳2,19,600' },
+            { id: 'cat3_b2b_enrich', name: 'B2B Lead Research & Enrichment', desc: 'Target company discovery, decision-maker data enrichment, and verification pipelines.', priceUSD: '$2,200', marketVal: '$6,000 Growth Agency', roi: 'Verified Contact Data', bdt: '৳2,68,400' }
+        ]
+    },
+    {
+        category: '4. Document Intelligence',
+        badge: 'STRUCTURED OCR & AI',
+        color: '#ec4899',
+        description: 'Compliant document processing, table extraction, and accounting/CRM synchronization.',
+        services: [
+            { id: 'cat4_doc_intel', name: 'AI Document Intelligence Engine', desc: 'Invoice, receipt, contract, and resume OCR with structured JSON extraction & CRM sync.', priceUSD: 'From $2,500', marketVal: '$8,000 Enterprise OCR', roi: '90% Processing Time Cut', bdt: 'From ৳3,05,000' },
+            { id: 'cat4_clause_analysis', name: 'Contract Clause & ID Extraction', desc: 'Automated legal clause analysis, identity document verification, and audit trails.', priceUSD: '$3,200', marketVal: '$9,000 LegalTech App', roi: '100% Audit Readiness', bdt: '৳3,90,400' }
+        ]
+    },
+    {
+        category: '5. AI Product, SaaS & Managed Care',
+        badge: 'FULL-STACK & RETAINER',
+        color: '#f59e0b',
+        description: 'Custom AI web applications, SaaS MVPs, internal tools, and ongoing SLA retainers.',
+        services: [
+            { id: 'cat5_audit', name: 'Discovery & Architecture Audit', desc: '60-minute consultation, business process audit, automation roadmap, & Mermaid diagram.', priceUSD: '$149', marketVal: '$1,000 Advisory Rate', roi: '2-3 Day Turnaround', bdt: '৳18,178' },
+            { id: 'cat5_ai_app', name: 'Custom AI Web App / SaaS MVP', desc: 'Full-stack web application with authentication, LLM integration, user dashboard & admin CMS.', priceUSD: 'From $6,000', marketVal: '$20,000 SaaS Agency', roi: 'Production Ready Code', bdt: 'From ৳7,32,000' },
+            { id: 'cat5_managed_care', name: 'Managed AI Care & Retainer', desc: 'Ongoing monitoring, bug fixes, model updates, workflow tweaks, and monthly reports.', priceUSD: '$750/mo', marketVal: '$2,500/mo DevOps', roi: 'SLA Guaranteed Health', bdt: '৳91,500/mo' },
+            { id: 'cat5_enterprise_retainer', name: 'Enterprise Operations Retainer', desc: 'Custom SLA, security reviews, multi-system governance, and continuous agent upgrades.', priceUSD: 'From $3,500/mo', marketVal: '$12,000/mo Retainer', roi: 'Dedicated Engineering', bdt: 'From ৳4,27,000/mo' }
+        ]
+    }
+];
+
+function renderInternationalCatalogStudio() {
+    const root = document.getElementById('admin-catalog-v4-root');
+    if (!root) return;
+
+    root.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
+                <div>
+                    <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
+                        <span>💎 INTERNATIONAL SERVICE CATALOG & PRICING MATRIX</span>
+                        <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:#34d399; border:1px solid #10b981; padding:3px 10px; border-radius:12px; font-weight:bold;">2026 MARKET VERIFIED</span>
+                    </h4>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">5 Clean Outcome-Based Categories • Transparent Scope • Compliant Standards</p>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                ${iinshaInternationalServiceCatalog.map(cat => `
+                    <div style="background:rgba(30,41,59,0.7); border:1px solid ${cat.color}66; border-radius:16px; padding:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                            <h5 style="margin:0; color:#fff; font-size:1.05rem; font-weight:bold;">${cat.category}</h5>
+                            <span style="font-size:0.7rem; background:${cat.color}22; color:${cat.color}; border:1px solid ${cat.color}; padding:2px 10px; border-radius:10px; font-weight:bold;">${cat.badge}</span>
+                        </div>
+                        <p style="font-size:0.78rem; color:var(--text-muted); margin:0 0 14px 0;">${cat.description}</p>
+
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+                            ${cat.services.map(s => `
+                                <div style="background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px; display:flex; flex-direction:column; justify-space-between;">
+                                    <div>
+                                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+                                            <h6 style="margin:0; color:#fff; font-size:0.9rem; font-weight:bold;">${s.name}</h6>
+                                            <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:bold; background:rgba(217,119,6,0.15); padding:2px 8px; border-radius:6px; white-space:nowrap;">${s.priceUSD}</span>
+                                        </div>
+                                        <p style="font-size:0.75rem; color:var(--text-muted); margin:8px 0;">${s.desc}</p>
+                                    </div>
+                                    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; margin-top:8px; display:flex; justify-content:space-between; font-size:0.7rem;">
+                                        <span style="color:#60a5fa;">${s.marketVal}</span>
+                                        <span style="color:var(--accent-emerald); font-weight:bold;">${s.bdt}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+window.renderInternationalCatalogStudio = renderInternationalCatalogStudio;
