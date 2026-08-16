@@ -3619,3 +3619,75 @@ body {
     z-index: -1 !important;
     pointer-events: none !important;
 }
+
+
+/* ==========================================================================
+   🛡️ DRIBBBLE CRACKER CYBER SECURITY SAAS UI & DYNAMIC MOTION (2026 EDITION)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #030712;
+    --accent-emerald: #00ff87;
+    --accent-cyan: #00f2fe;
+    --accent-violet: #7928ca;
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: #f8fafc !important;
+}
+
+/* Floating Capsule Pill Navbar */
+.navbar {
+    position: sticky !important;
+    top: 12px !important;
+    z-index: 1000 !important;
+    width: 95% !important;
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+    padding: 10px 24px !important;
+    background: rgba(15, 23, 42, 0.88) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(0, 255, 135, 0.35) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 255, 135, 0.25) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.navbar:hover {
+    border-color: rgba(0, 255, 135, 0.65) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 255, 135, 0.4) !important;
+}
+
+/* Glass Cards */
+.glass-card, .pkg-card, .m-product-card, .affiliate-stat-card, .bento-3d-card {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(0, 255, 135, 0.25) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+}
+
+.glass-card:hover, .pkg-card:hover, .m-product-card:hover, .affiliate-stat-card:hover, .bento-3d-card:hover {
+    border-color: rgba(0, 255, 135, 0.65) !important;
+    box-shadow: 0 25px 65px rgba(3, 7, 18, 0.9), 0 0 45px rgba(0, 255, 135, 0.45), 0 0 25px rgba(121, 40, 202, 0.35) !important;
+    transform: perspective(1000px) translateY(-6px) rotateX(1deg) !important;
+}
+
+/* Cracker Action Buttons */
+.btn-primary, .btn {
+    background: linear-gradient(135deg, #00ff87 0%, #00f2fe 50%, #7928ca 100%) !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 32px rgba(0, 255, 135, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-primary:hover, .btn:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 16px 48px rgba(0, 255, 135, 0.65), 0 0 38px rgba(121, 40, 202, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    background: linear-gradient(135deg, #00e077 0%, #00d2fe 50%, #6918ca 100%) !important;
+}
