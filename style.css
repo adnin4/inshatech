@@ -3284,3 +3284,31 @@ img, video, canvas, iframe, table {
     box-shadow: 0 16px 45px rgba(6, 182, 212, 0.65), 0 0 35px rgba(168, 85, 247, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7);
     background: linear-gradient(135deg, #0891b2 0%, #059669 50%, #9333ea 100%);
 }
+
+
+/* ==========================================================================
+   ⚡ CUSTOM SVG LOGO EMBLEM & HIGH-TECH BUTTON ICON ENGINE (2026 EDITION)
+   ========================================================================== */
+
+.logo-icon-svg {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+    vertical-align: middle;
+}
+
+.logo:hover .logo-icon-svg {
+    transform: rotate(180deg) scale(1.12);
+    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.8));
+}
+
+.btn-svg-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-svg-icon, .btn-primary:hover .btn-svg-icon {
+    transform: scale(1.2) rotate(10deg);
+}
