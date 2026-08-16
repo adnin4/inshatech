@@ -3134,3 +3134,36 @@ img, video, canvas, iframe, table {
     transform: translateY(-3px) rotate(8deg) scale(1.08);
     box-shadow: 0 12px 30px rgba(6, 182, 212, 0.5);
 }
+
+
+/* ==========================================================================
+   🤖 HOLOGRAPHIC 3D GLASSMORPHIC & NEON AI SYNAPSE ENGINE (2026 EDITION)
+   ========================================================================== */
+
+@keyframes aiPulseGlow3D {
+    0% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 0 10px rgba(99, 102, 241, 0.2); }
+    50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), 0 0 20px rgba(6, 182, 212, 0.4); }
+    100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 0 10px rgba(99, 102, 241, 0.2); }
+}
+
+/* Holographic 3D Glass Reflection Overlay */
+.glass-card::after, .pkg-card::after, .m-product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(115deg, transparent 40%, rgba(6, 182, 212, 0.15) 50%, transparent 60%);
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+}
+
+.glass-card:hover::after, .pkg-card:hover::after, .m-product-card:hover::after {
+    opacity: 1;
+}
+
+.glowing-border {
+    animation: aiPulseGlow3D 5s ease-in-out infinite;
+}
