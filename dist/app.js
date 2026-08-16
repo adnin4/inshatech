@@ -908,14 +908,12 @@ function renderAdminLoginFormCard(container) {
 
                 <div id="admin-login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 14px; display: none;">⚠️ Invalid credentials. Please try again.</div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 1rem; border: none; border-radius: 10px; cursor: pointer; margin-bottom: 12px;">🔓 Authenticate & Open Studio</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); color: #fff; font-weight: 800; font-size: 1rem; border: none; border-radius: 10px; cursor: pointer; margin-bottom: 12px;">🔓 Authenticate & Open Studio</button>
             </form>
 
-            <div style="margin: 16px 0; border-top: 1px dashed rgba(255,255,255,0.1); position: relative;">
-                <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #0f172a; padding: 0 10px; font-size: 0.75rem; color: var(--text-muted);">OR</span>
+            <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 12px;">
+                🔒 Zero-Trust Governance ● Protected by Supabase Auth, JWT Session Signatures, & Server-Side RBAC
             </div>
-
-            <button onclick="handleAdminMasterUnlock()" class="btn btn-glass" style="width: 100%; padding: 12px; border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; border-radius: 10px; cursor: pointer;">⚡ 1-Click Master Super Admin Unlock</button>
         </div>
     `;
 }
@@ -938,11 +936,7 @@ function handleAdminLoginSubmit(e) {
 }
 
 function handleAdminMasterUnlock() {
-    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-    const rootContainer = document.getElementById('index-admin-cms-root');
-    if (rootContainer) {
-        renderAdminModalCmsStudio(rootContainer);
-    }
+    alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
 }
 
 function initAdminModalLoginForm() {
