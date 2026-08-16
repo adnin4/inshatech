@@ -129,95 +129,88 @@
             </div>
         </div>
 
+        
         <!-- TIER 1: HERO SECTION -->
-        <section id="hero" class="hero-section" style="padding-top: 50px; padding-bottom: 50px;">
+        <section id="hero" class="hero-section" style="padding-top: 60px; padding-bottom: 60px;">
             <div class="container">
-                <div class="hero-grid">
+                <div class="hero-grid" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
                     <div>
                         <!-- AI RETURNING USER MEMORY BANNER -->
                         <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 20px;"></div>
 
-                        <div class="hero-badge">
-                            <span class="pulse-beacon" style="width: 6px; height: 6px;"></span> AGENTIC AI & AUTOMATION ENGINEERING PLATFORM
+                        <div class="hero-badge" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 700; padding: 6px 16px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; letter-spacing: 0.05em; margin-bottom: 16px; box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);">
+                            <span class="pulse-beacon" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span> ✨ LEVEL 5 AUTONOMOUS AI & WORKFORCE STUDIO
                         </div>
                         
-                        <!-- PRIORITY 3: SCARCITY & LIVE AVAILABILITY BADGE -->
-                        <div class="scarcity-badge" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin: 15px 0; display: inline-block;">
-                            <span class="os-pulse-dot"></span> Currently Accepting: 3 Enterprise AI Projects | Start: Within 48 Hours | SLA Response: &lt; 1 Hour
-                        </div>
-                        
-                        <h1 class="hero-title" style="font-size: 2.7rem; line-height: 1.25;">
-                            Automate Repetitive Operations & Scale Revenue <br><span class="gradient-text">With Intelligent AI Agents & Automated Workflows</span>
+                        <h1 class="hero-title" style="font-size: 3.4rem; line-height: 1.15; font-weight: 900; color: #ffffff; letter-spacing: -0.04em; margin-bottom: 20px;">
+                            Automate Operations. <br><span class="gradient-text" style="background: linear-gradient(135deg, #00f2fe 0%, #10b981 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Scale Revenue With AI Swarms</span>
                         </h1>
                         
-                        <p class="hero-subtitle" style="font-size: 1.1rem; color: #f8fafc; font-weight: 400; margin-bottom: 24px; line-height: 1.6;">
+                        <p class="hero-subtitle" style="font-size: 1.15rem; color: #94a3b8; font-weight: 400; margin-bottom: 32px; line-height: 1.7; max-width: 620px;">
                             <strong>IINSHA AI Automation Lab</strong> builds, deploys, and operates intelligent AI agents, n8n pipelines, and composable AI workforces for real-world business outcomes. Founded by Lead Engineer <strong>Adnin Sadat Mahin</strong>.
                         </p>
 
-                        <div class="hero-actions">
-                            <a href="#solution-finder" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7);">
-                                <span>🔍 Try AI Solution Finder →</span>
+                        <div class="hero-actions" style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 28px;">
+                            <a href="#solution-finder" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%); padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 0.98rem; box-shadow: 0 10px 35px rgba(16, 185, 129, 0.45);">
+                                <span>⚡ Try AI Solution Finder →</span>
                             </a>
-                            <a href="affiliate.html" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800;">
-                                <span>🎛️ Partner Control Panel (15-20% Recurring) →</span>
+                            <a href="affiliate.html" class="btn btn-primary" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; font-weight: 800; padding: 14px 24px; border-radius: 12px; font-size: 0.95rem;">
+                                <span>🎛️ Partner Control Panel (15-20%) →</span>
                             </a>
-                            <a href="#architecture-builder" class="btn btn-glass" style="color: var(--accent-emerald);">
+                            <a href="#architecture-builder" class="btn btn-glass" style="color: #34d399; padding: 14px 22px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.35);">
                                 <span>🏗️ Open Live Architecture Builder</span>
                             </a>
-                            <button id="hero-readiness-btn" class="btn btn-glass" style="color: var(--accent-purple);" onclick="openIinshaBusinessAuditModal()">
-                                <span>📊 20-Q AI Readiness Audit</span>
-                            </button>
                         </div>
 
                         <!-- PRE-SALES AI ASSISTANT HERO INPUT -->
-                        <div class="presales-box" style="margin-top: 24px;">
-                            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💡 AI Pre-Sales Assistant</div>
-                            <div style="font-size: 0.95rem; color: #fff; margin-bottom: 10px; font-weight: 600;">What do you want to automate today?</div>
-                            <div class="presales-input-row">
-                                <input type="text" id="presales-query-input" placeholder="e.g. I want to automate invoice OCR processing" class="presales-input">
-                                <button id="presales-submit-btn" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7); white-space: nowrap;">✨ Estimate Solution</button>
+                        <div class="presales-box" style="margin-top: 28px; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 20px;">
+                            <div style="font-size: 0.82rem; font-weight: 700; color: #06b6d4; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">💡 AI Pre-Sales Assistant</div>
+                            <div style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; font-weight: 600;">What do you want to automate today?</div>
+                            <div class="presales-input-row" style="display: flex; gap: 10px;">
+                                <input type="text" id="presales-query-input" placeholder="e.g. I want to automate invoice OCR processing" class="presales-input" style="flex: 1; background: rgba(3, 7, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 12px 16px; color: #fff; outline: none;">
+                                <button id="presales-submit-btn" class="btn btn-primary" style="background: linear-gradient(135deg, #06b6d4, #10b981); padding: 12px 20px; border-radius: 10px; font-weight: 700; white-space: nowrap;">✨ Estimate Solution</button>
                             </div>
-                            <div class="presales-chips">
-                                <span class="presales-chip">📄 Invoice OCR</span>
-                                <span class="presales-chip">🎧 Support Chatbot</span>
-                                <span class="presales-chip">🕷️ Price Scraper</span>
-                                <span class="presales-chip">⚡ CRM Pipeline</span>
-                                <span class="presales-chip">📱 WhatsApp Bot</span>
+                            <div class="presales-chips" style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                                <span class="presales-chip" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; color: #cbd5e1; cursor: pointer;">📄 Invoice OCR</span>
+                                <span class="presales-chip" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; color: #cbd5e1; cursor: pointer;">🎧 Support Chatbot</span>
+                                <span class="presales-chip" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; color: #cbd5e1; cursor: pointer;">🕷️ Price Scraper</span>
+                                <span class="presales-chip" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; color: #cbd5e1; cursor: pointer;">⚡ CRM Pipeline</span>
                             </div>
                             <div id="presales-output-box" style="display: none;"></div>
                         </div>
                     </div>
 
                     <!-- LEAD ENGINEER PROFILE & STUDIO CARD -->
-                    <div class="glass-card glowing-border" style="padding: 28px; background: rgba(15, 23, 42, 0.85); border-color: rgba(99, 102, 241, 0.3);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-card); padding-bottom: 12px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="adnin_sadat.jpg" alt="Adnin Sadat Mahin" style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--accent-emerald); object-fit: cover;">
+                    <div class="glass-card glowing-border" style="padding: 32px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(16, 185, 129, 0.25);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+                            <div style="display: flex; align-items: center; gap: 14px;">
+                                <img src="adnin_sadat.jpg" alt="Adnin Sadat Mahin" style="width: 58px; height: 58px; border-radius: 50%; border: 2px solid #10b981; object-fit: cover;">
                                 <div>
-                                    <div style="font-weight: 700; color: #fff; font-size: 1.05rem;">Adnin Sadat Mahin</div>
-                                    <div style="font-size: 0.78rem; color: var(--accent-emerald); display: flex; align-items: center; gap: 4px;">
-                                        <span class="pulse-beacon" style="width: 6px; height: 6px;"></span> Lead AI Automation Engineer
+                                    <div style="font-weight: 800; color: #fff; font-size: 1.15rem;">Adnin Sadat Mahin</div>
+                                    <div style="font-size: 0.82rem; color: #34d399; display: flex; align-items: center; gap: 6px;">
+                                        <span class="pulse-beacon" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%;"></span> Lead AI Automation Engineer
                                     </div>
                                 </div>
                             </div>
-                            <span class="badge-pro" style="padding: 4px 8px; font-size: 0.7rem;">VERIFIED STUDIO</span>
+                            <span class="badge-pro" style="padding: 4px 10px; font-size: 0.72rem; background: linear-gradient(135deg, #10b981, #06b6d4); color: #fff; border-radius: 6px; font-weight: 800;">VERIFIED STUDIO</span>
                         </div>
 
-                        <div style="background: rgba(0, 0, 0, 0.4); padding: 14px; border-radius: 12px; border: 1px solid var(--border-card); font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; color: #a5f3fc; margin-bottom: 16px;">
+                        <div style="background: rgba(3, 7, 18, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.25); font-family: 'Fira Code', monospace; font-size: 0.82rem; line-height: 1.8; color: #a5f3fc; margin-bottom: 20px;">
                             <div>⚡ <strong>Studio Focus:</strong> Autonomous AI & Scraping</div>
                             <div>🤖 <strong>AI Stack:</strong> Antigravity SDK, Gemini & RAG</div>
                             <div>🕷️ <strong>Scraper:</strong> OpenClaw Playwright Stealth</div>
                             <div>🐳 <strong>Hosting:</strong> Hostinger VPS (Code: IINSHA20)</div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <a href="https://github.com/Adnin1/portfolio-showcase" target="_blank" class="btn btn-glass-sm btn-full" style="color: #fff;">🐙 Public GitHub Repos</a>
-                            <a href="https://wa.me/8801629286887" target="_blank" class="btn btn-primary-sm btn-full" style="background: linear-gradient(135deg, var(--accent-emerald), #047857);">📱 Direct WhatsApp</a>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <a href="https://github.com/Adnin1/portfolio-showcase" target="_blank" class="btn btn-glass-sm btn-full" style="color: #fff; padding: 12px; border-radius: 10px; text-align: center; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);">🐙 Public GitHub Repos</a>
+                            <a href="https://wa.me/8801629286887" target="_blank" class="btn btn-primary-sm btn-full" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: 700; padding: 12px; border-radius: 10px; text-align: center; text-decoration: none;">📱 Direct WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- HONEST CAPACITY STATUS BAR -->
         <div class="container" style="padding-top: 10px;">
