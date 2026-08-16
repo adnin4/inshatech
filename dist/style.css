@@ -865,12 +865,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     50% { opacity: 0.4; }
 }
 
-/* Reveal classes — initial state (GSAP animates from these) */
-.reveal-up, .reveal-fade, .reveal-left, .reveal-right {
-    opacity: 0;
-}
-.reveal-scale {
-    opacity: 0;
+/* Reveal classes — default visible state (GSAP gracefully enhances if active) */
+.reveal-up, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1;
+    transform: none;
 }
 
 /* === TRANSFORMATION SECTION === */
