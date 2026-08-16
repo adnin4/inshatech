@@ -53,31 +53,37 @@
 
         // === REVEAL UP (text, headings, CTAs) ===
         gsap.utils.toArray('.reveal-up').forEach(el => {
-            gsap.from(el, {
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 88%',
-                    toggleActions: 'play none none none'
+            gsap.fromTo(el, 
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 98%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
         });
 
         // === REVEAL FADE ===
         gsap.utils.toArray('.reveal-fade').forEach(el => {
-            gsap.from(el, {
-                opacity: 0,
-                duration: 1,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 90%',
-                    toggleActions: 'play none none none'
+            gsap.fromTo(el,
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 98%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
         });
 
         // === REVEAL LEFT (slide from left) ===
@@ -252,9 +258,13 @@
 
     // Initialize
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScrollEngine);
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollEngine();
+            setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 500);
+        });
     } else {
         initScrollEngine();
+        setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 500);
     }
 
     window.initScrollEngine = initScrollEngine;
