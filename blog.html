@@ -16,7 +16,7 @@
     <!-- MILITARY-GRADE SECURITY HEADERS -->
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=v20260817_v9999">
+    <link rel="stylesheet" href="style.css?v=v20260817_v15">
 
     <!-- TECH ARTICLE & FAQ SCHEMA MARKUP FOR GEO CITATION -->
     <script type="application/ld+json">
@@ -55,37 +55,28 @@
     </div>
 
     <!-- Navigation Header -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon-svg" viewBox="0 0 100 100" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" />
-      <stop offset="50%" stop-color="#10b981" />
-      <stop offset="100%" stop-color="#8b5cf6" />
-    </linearGradient>
-    <filter id="logoGlow">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
-  <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="url(#logoGrad)" filter="url(#logoGlow)" opacity="0.9" />
-  <polygon points="50,18 78,32 78,68 50,82 22,68 22,32" fill="#030712" />
-  <path d="M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z" fill="url(#logoGrad)" />
-  <circle cx="50" cy="50" r="7" fill="#ffffff" />
-</svg>
-                <span class="logo-text">IINSHA <span class="highlight">AI</span> <span class="badge-pro">BLOG & LABS</span></span>
+    <!-- FLOATING GLASS NAVBAR -->
+    <header class="iinsha-navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-brand-icon">II</div>
+                <span>IINSHA AI <span class="gradient-text">AUTOMATION LAB</span></span>
             </a>
             
-            <nav class="nav-links portal-tabs">
-                <a href="index.html" class="portal-tab-btn">🏠 Main Studio</a>
-                <a href="marketplace.html" class="portal-tab-btn">🛍️ Marketplace</a>
-                <a href="compare.html" class="portal-tab-btn">⚔️ Comparisons</a>
-                <a href="blog.html" class="portal-tab-btn active">📝 Case Studies</a>
-                <a href="affiliate.html" class="portal-tab-btn" style="color: var(--accent-cyan);">🤝 Partner Portal</a>
-             <button onclick="openProtectedAdminPanel()" class="btn btn-primary-sm" style="font-size:0.8rem; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 6px 12px; border-radius: 8px; border:none; cursor:pointer;">🎛️ Control Panel (Auth)</button>
+            <nav class="nav-links">
+                <a href="index.html#hero" class="nav-link">🏠 Studio</a>
+                <a href="index.html#solutions" class="nav-link">⚡ Solutions</a>
+                <a href="index.html#transparent-pricing" class="nav-link">💎 Pricing</a>
+                <a href="index.html#case-studies" class="nav-link">📈 Results</a>
+                <a href="marketplace.html" class="nav-link">🛒 Marketplace</a>
+                <a href="compare.html" class="nav-link">⚔️ Compare</a>
+                <a href="index.html#free-roadmap" class="nav-cta">🚀 Free Roadmap</a>
+                <button onclick="openProtectedAdminPanel()" class="nav-link" style="border: 1px solid var(--accent-primary); border-radius: var(--radius-sm); margin-left: 8px; font-weight: 700; color: var(--accent-primary); background: transparent;">🎛️ Control Panel</button>
             </nav>
+            
+            <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -243,7 +234,7 @@ print(f"Extracted {len(data)} SKUs without triggering anti-bot firewalls.")</cod
         </div>
     </footer>
 
-    <script src="app.js?v=v20260817_v9999" defer></script>
+    <script src="app.js?v=v20260817_v15" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {

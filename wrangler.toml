@@ -2,9 +2,6 @@ name = "inshatech"
 pages_build_output_dir = "./dist"
 compatibility_date = "2026-08-01"
 
-[assets]
-directory = "./dist"
-
 [vars]
 ENVIRONMENT = "production"
 SUPABASE_URL = "https://your-project.supabase.co"
