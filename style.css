@@ -3532,3 +3532,75 @@ body {
     box-shadow: 0 16px 45px rgba(16, 185, 129, 0.65), 0 0 35px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
     background: linear-gradient(135deg, #059669 0%, #0891b2 50%, #7c3aed 100%) !important;
 }
+
+
+/* ==========================================================================
+   🌊 CONTINUOUS FLUID CYBER WAVE & CYPHEIR UI ENGINE (2026 EDITION)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #020617;
+    --accent-emerald: #10b981;
+    --accent-cyan: #06b6d4;
+    --accent-violet: #8b5cf6;
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: #f8fafc !important;
+}
+
+/* Floating Capsule Pill Navbar */
+.navbar {
+    position: sticky !important;
+    top: 12px !important;
+    z-index: 1000 !important;
+    width: 95% !important;
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+    padding: 10px 24px !important;
+    background: rgba(15, 23, 42, 0.88) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.25) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.navbar:hover {
+    border-color: rgba(16, 185, 129, 0.65) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Glass Cards */
+.glass-card, .pkg-card, .m-product-card, .affiliate-stat-card, .bento-3d-card {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+}
+
+.glass-card:hover, .pkg-card:hover, .m-product-card:hover, .affiliate-stat-card:hover, .bento-3d-card:hover {
+    border-color: rgba(16, 185, 129, 0.65) !important;
+    box-shadow: 0 25px 65px rgba(2, 6, 23, 0.85), 0 0 40px rgba(16, 185, 129, 0.45), 0 0 25px rgba(139, 92, 246, 0.35) !important;
+    transform: perspective(1000px) translateY(-6px) rotateX(1deg) !important;
+}
+
+/* Metallic Gradient Buttons */
+.btn-primary, .btn {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn-primary:hover, .btn:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 16px 45px rgba(16, 185, 129, 0.65), 0 0 35px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+    background: linear-gradient(135deg, #059669 0%, #0891b2 50%, #7c3aed 100%) !important;
+}
