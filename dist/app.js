@@ -6090,3 +6090,98 @@ function updateAffiliateCalculator() {
 }
 
 window.updateAffiliateCalculator = updateAffiliateCalculator;
+
+/* ============================================================
+   🚀 IINSHA AI OS vNext — MASTER MISSION ENGINE & TOOL REGISTRY
+   ============================================================ */
+
+const AGENT_TOOL_REGISTRY = {
+    'COMMANDER': { role: 'Mission Orchestrator', tools: ['task_planner', 'agent_dispatcher', 'permission_gate'], risk: 'LOW' },
+    'STRATEGIST': { role: 'Business Strategy & Roadmap', tools: ['market_reasoning', 'growth_roadmap', 'pricing_analysis'], risk: 'LOW' },
+    'RESEARCHER': { role: 'Market & Competitor Signals', tools: ['web_search', 'webpage_reader', 'competitor_monitor'], risk: 'LOW' },
+    'HUNTER': { role: 'B2B Lead Prospect Discovery', tools: ['prospect_scraper', 'linkedin_enricher', 'lead_database'], risk: 'MEDIUM' },
+    'SALES_AGENT': { role: 'Lead Qualification & Outreach', tools: ['crm_sync', 'email_draft', 'proposal_generator', 'whatsapp_dispatch'], risk: 'HIGH' },
+    'SEO_AGENT': { role: 'Programmatic Technical SEO', tools: ['keyword_discovery', 'technical_seo_audit', 'sitemap_read'], risk: 'LOW' },
+    'CONTENT_AGENT': { role: 'Content & Copywriting', tools: ['blog_writer', 'landing_page_gen', 'social_copy'], risk: 'LOW' },
+    'BUILDER': { role: 'Full-Stack Code & DevOps', tools: ['code_runner', 'github_deploy', 'n8n_webhook', 'database_mutation'], risk: 'CRITICAL' },
+    'ANALYST': { role: 'Revenue & Cost Intelligence', tools: ['roi_calculator', 'revenue_intelligence', 'cost_arbitrage'], risk: 'LOW' },
+    'GUARDIAN': { role: 'AI SRE Uptime & Reliability', tools: ['sre_health_check', 'log_reader', 'cache_purge', 'safe_auto_heal'], risk: 'LOW' }
+};
+
+const IINSHA_BUSINESS_MEMORY = {
+    userMemory: { role: 'Super Admin', preferences: 'Dark Space Cinematic UI' },
+    businessMemory: { targetICP: '20-200 Employee B2B SaaS & E-commerce', pricingTier: 'Production $997' },
+    customerMemory: { activeLeadsCount: 142, qualifiedLeadsCount: 98 },
+    agentMemory: { lastMissionId: 'MISSION-#00482', avgConfidence: '91%' },
+    operationalMemory: { uptimePercent: '99.98%', lastSreCheck: 'Passed' }
+};
+
+function executeAIMission(userGoal) {
+    const goalInput = document.getElementById('mission-goal-input');
+    const goal = userGoal || (goalInput ? goalInput.value.trim() : 'Find 100 qualified B2B leads and prepare personalized outreach draft');
+
+    const titleDisplay = document.getElementById('mission-title-display');
+    if (titleDisplay) titleDisplay.textContent = goal;
+
+    const lowerGoal = goal.toLowerCase();
+    let selectedAgents = [];
+
+    if (lowerGoal.includes('seo') || lowerGoal.includes('content') || lowerGoal.includes('blog') || lowerGoal.includes('rank')) {
+        selectedAgents = ['COMMANDER', 'RESEARCHER', 'SEO_AGENT', 'CONTENT_AGENT', 'ANALYST', 'GUARDIAN'];
+    } else if (lowerGoal.includes('code') || lowerGoal.includes('dev') || lowerGoal.includes('build') || lowerGoal.includes('api') || lowerGoal.includes('invoice')) {
+        selectedAgents = ['COMMANDER', 'RESEARCHER', 'BUILDER', 'ANALYST', 'GUARDIAN'];
+    } else {
+        selectedAgents = ['COMMANDER', 'STRATEGIST', 'RESEARCHER', 'HUNTER', 'ANALYST', 'SALES_AGENT', 'GUARDIAN'];
+    }
+
+    // Dynamic cost telemetry calculation based on actual goal complexity
+    const tokenCount = goal.length * 140 + 3200;
+    const aiCost = (tokenCount * 0.000002).toFixed(2);
+    const humanCost = (selectedAgents.length * 8.50).toFixed(2);
+    const netSaved = (humanCost - aiCost).toFixed(2);
+
+    const costEl = document.getElementById('mission-ai-cost');
+    const humanEl = document.getElementById('mission-human-cost');
+    const netSavedEl = document.getElementById('mission-net-saved');
+    const confEl = document.getElementById('mission-confidence');
+
+    if (costEl) costEl.textContent = `$${aiCost} USD`;
+    if (humanEl) humanEl.textContent = `$${humanCost} USD`;
+    if (netSavedEl) netSavedEl.textContent = `$${netSaved} USD`;
+    if (confEl) confEl.textContent = `94%`;
+
+    // Render active workforce grid
+    const grid = document.querySelector('.mission-workforce-grid');
+    if (grid) {
+        grid.innerHTML = selectedAgents.map((agentKey) => {
+            const agent = AGENT_TOOL_REGISTRY[agentKey] || { role: 'Worker Agent', tools: ['execute'] };
+            return `
+                <div class="agent-node-card active" id="node-${agentKey.toLowerCase()}">
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong style="color: #fff; font-size: 0.85rem;">${agentKey}</strong>
+                        <span style="color: var(--accent-green); font-size:0.75rem;">✓ Active</span>
+                    </div>
+                    <div class="status-indicator" style="margin-top: 4px; color: var(--accent-cyan);">Tool: ${agent.tools[0]}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Show memory banner
+    const memBanner = document.getElementById('os-memory-banner');
+    if (memBanner) {
+        memBanner.style.display = 'block';
+        memBanner.innerHTML = `🧠 <strong>LONG-TERM BUSINESS MEMORY ACTIVE:</strong> Target ICP (${IINSHA_BUSINESS_MEMORY.businessMemory.targetICP})`;
+    }
+
+    alert(`🚀 MISSION LAUNCHED!\n\nGoal: "${goal}"\nDynamic Swarm: ${selectedAgents.join(', ')}\nTelemetry Cost Saved: $${netSaved} USD`);
+}
+
+function toggleExplainabilityCard() {
+    const card = document.getElementById('explainability-card');
+    if (card) card.classList.toggle('hidden');
+}
+
+window.executeAIMission = executeAIMission;
+window.toggleExplainabilityCard = toggleExplainabilityCard;
+
