@@ -1,4 +1,10 @@
 
+/* Global Resilience Guard */
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    console.warn("IINSHA Resilience Guard captured non-fatal notice:", msg);
+    return true; // prevent default error popup
+};
+
 /* ============================================================
    GLOBAL AI ORDER STATE INITIALIZATION (TOP SCOPE)
    ============================================================ */
