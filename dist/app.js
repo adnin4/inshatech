@@ -136,48 +136,9 @@ function clampNumber(val, min, max) {
 }
 
 function initParticleCanvas() {
-    const canvas = document.getElementById('particleCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    const particles = [];
-    const particleCount = Math.min(width < 768 ? 35 : 70, 100);
-
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
-            radius: Math.random() * 1.5 + 0.5,
-            alpha: Math.random() * 0.5 + 0.2
-        });
+    if (typeof init3dParticleCanvasEngine === 'function') {
+        init3dParticleCanvasEngine();
     }
-
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0) p.x = width;
-            if (p.x > width) p.x = 0;
-            if (p.y < 0) p.y = height;
-            if (p.y > height) p.y = 0;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(99, 102, 241, ${p.alpha})`;
-            ctx.fill();
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
-    window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    });
 }
 
 function validateRoiInput(val, minVal, maxVal, defaultVal) {
@@ -2617,63 +2578,23 @@ function bindAllPackageOrderButtons() {
         const btn = e.target.closest('a, button, .btn');
         if (!btn) return;
 
-        const text = (btn.innerText || btn.textContent || '').trim().toLowerCase();
-        const href = (btn.getAttribute('href') || '').toLowerCase();
-        const id = (btn.id || '').toLowerCase();
-        const onclickAttr = (btn.getAttribute('onclick') || '').toLowerCase();
-
-        // Bypass navigation links & admin triggers
         if (
-            (href.includes('.html') && !href.includes('#')) ||
-            href.startsWith('#solution-finder') ||
-            href.startsWith('#pricing') ||
-            href.startsWith('#features') ||
-            id.includes('control') ||
-            id.includes('admin') ||
-            id.includes('login') ||
-            onclickAttr.includes('close') ||
-            onclickAttr.includes('admin') ||
-            onclickAttr.includes('confirmorder') ||
-            onclickAttr.includes('sendquickchip')
-        ) {
-            return;
-        }
-
-        // Intercept ALL Order, Purchase, Buy, View Packages, Book, and WhatsApp links
-        if (
-            text.includes('package') ||
-            text.includes('order') ||
-            text.includes('buy') ||
-            text.includes('purchase') ||
-            text.includes('book') ||
-            text.includes('inquire') ||
-            text.includes('launch') ||
-            text.includes('get started') ||
-            text.includes('checkout') ||
-            text.includes('message') ||
-            text.includes('estimate') ||
-            text.includes('readiness') ||
-            text.includes('architecture') ||
-            href.includes('whatsapp') ||
-            btn.classList.contains('btn-primary') ||
-            btn.classList.contains('btn-emerald') ||
-            btn.classList.contains('btn-glass')
+            btn.classList.contains('open-checkout-btn') ||
+            btn.classList.contains('template-buy-btn') ||
+            btn.classList.contains('order-service-btn') ||
+            btn.hasAttribute('data-order-btn')
         ) {
             e.preventDefault();
             e.stopPropagation();
 
             const card = btn.closest('.glass-card, .card, div');
-            const cardTitle = card ? (card.querySelector('h3, h4, h2')?.innerText || 'AI Automation Solution') : 'AI Automation Solution';
-
-            let extractedPrice = 499;
-            const priceMatch = (card ? card.innerText : '').match(/\$(\d+)/);
-            if (priceMatch && priceMatch[1]) {
-                extractedPrice = parseInt(priceMatch[1], 10);
-            }
+            const cardTitle = btn.getAttribute('data-service') || (card ? (card.querySelector('h3, h4, h2')?.innerText || 'AI Automation Solution') : 'AI Automation Solution');
+            const priceAttr = btn.getAttribute('data-price') || '499';
+            let extractedPrice = parseInt(priceAttr.replace(/[^0-9]/g, '')) || 499;
 
             openAiOrderConsultationModal(cardTitle, 'Professional Tier', extractedPrice);
         }
-    }, true);
+    });
 }
 function initFloatingAiAssistantWidget() {
     let widget = document.getElementById('iinsha-floating-ai-widget');
@@ -4745,10 +4666,10 @@ function openIinshaBusinessAuditModal() {
         document.body.appendChild(auditModal);
     }
 
+    auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     auditModal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(15px); z-index:10000; display:flex; align-items:center; justify-content:center; padding:20px;">
-            <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
-                <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
                 
                 <div style="text-align:center; margin-bottom:24px;">
                     <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
@@ -4800,6 +4721,442 @@ function openIinshaBusinessAuditModal() {
 function closeIinshaBusinessAuditModal() {
     const modal = document.getElementById('iinsha-audit-modal-root');
     if (modal) modal.innerHTML = '';
+}
+
+function openAiRevenueSystemModal() {
+    let modal = document.getElementById('iinsha-solution-modal-root');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-solution-modal-root';
+        document.body.appendChild(modal);
+    }
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
+    modal.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM A</span>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">📈 AI Revenue System Blueprint</h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Automate inbound lead qualification, proposal generation, and multi-channel outreach without human drop-off.</p>
+            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
+                <div style="font-weight:bold; color:#60a5fa; margin-bottom:8px;">⚡ Included Capabilities:</div>
+                • <strong>AI Sales Agent</strong> (Responds under 60 seconds)<br>
+                • <strong>CRM Data Enrichment</strong> (Apollo / LinkedIn Scraper integration)<br>
+                • <strong>Automated Proposal Engine</strong> (Generates custom PDF / Web quotes)<br>
+                • <strong>Email & WhatsApp Follow-up Cadence</strong> (n8n workflow driven)<br>
+                • <strong>Human-in-the-Loop Approval Gate</strong>
+            </div>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Revenue%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #3b82f6, #2563eb); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Revenue System (WhatsApp Inquiry) →</a>
+        </div>
+    `;
+}
+
+function openAiOpsSystemModal() {
+    let modal = document.getElementById('iinsha-solution-modal-root');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-solution-modal-root';
+        document.body.appendChild(modal);
+    }
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
+    modal.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(6,78,59,0.95)); border:1px solid #10b981; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(16,185,129,0.4); color:#fff; position:relative;">
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <span style="background:rgba(16,185,129,0.2); color:#34d399; border:1px solid #10b981; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM B</span>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">⚙️ AI Operations System Blueprint</h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Eliminate repetitive manual back-office tasks, invoice entry, and report compilation.</p>
+            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
+                <div style="font-weight:bold; color:#34d399; margin-bottom:8px;">⚡ Included Capabilities:</div>
+                • <strong>Invoice OCR & Document Parsing</strong> (Gemini Vision API)<br>
+                • <strong>Self-Healing n8n Pipelines</strong> (Auto-retry on error)<br>
+                • <strong>Internal Knowledge RAG Bot</strong> (Queries internal SOPs)<br>
+                • <strong>Database Sync</strong> (Postgres / Supabase / Airtable integration)<br>
+                • <strong>Automated Executive Summary Reports</strong>
+            </div>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Operations%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #10b981, #059669); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Operations System (WhatsApp Inquiry) →</a>
+        </div>
+    `;
+}
+
+function openAiSupportSystemModal() {
+    let modal = document.getElementById('iinsha-solution-modal-root');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-solution-modal-root';
+        document.body.appendChild(modal);
+    }
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
+    modal.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(88,28,135,0.95)); border:1px solid #a855f7; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(168,85,247,0.4); color:#fff; position:relative;">
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <span style="background:rgba(168,85,247,0.2); color:#c084fc; border:1px solid #a855f7; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM C</span>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">🎧 AI Support System Blueprint</h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Provide 24/7 intelligent customer triage with instant vector database document lookup.</p>
+            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
+                <div style="font-weight:bold; color:#c084fc; margin-bottom:8px;">⚡ Included Capabilities:</div>
+                • <strong>Omnichannel Web & WhatsApp Bot</strong><br>
+                • <strong>Pinecone RAG Vector Engine</strong> (Zero hallucination answers)<br>
+                • <strong>Ticket Triage & Routing</strong> (Assigns priority automatically)<br>
+                • <strong>Human Escalation Gate</strong> (Hands over complex queries)<br>
+                • <strong>Live Conversation Analytics & CSAT Tracking</strong>
+            </div>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Support%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #a855f7, #7e22ce); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Support System (WhatsApp Inquiry) →</a>
+        </div>
+    `;
+}
+
+function closeAiSolutionModal() {
+    const modal = document.getElementById('iinsha-solution-modal-root');
+    if (modal) modal.innerHTML = '';
+}
+
+function calculateCustomWorkforceEstimate() {
+    const checks = document.querySelectorAll('.wf-agent-check:checked');
+    const count = (checks && checks.length > 0) ? checks.length : 3;
+    const hoursPerAgent = 15;
+    const totalHours = count * hoursPerAgent;
+
+    const countEl = document.getElementById('wf-agent-count');
+    const hoursEl = document.getElementById('wf-hours-saved');
+
+    if (countEl) countEl.textContent = `${count} Agent${count !== 1 ? 's' : ''}`;
+    if (hoursEl) hoursEl.textContent = `${totalHours} Hours / wk`;
+}
+
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', calculateCustomWorkforceEstimate);
+} else {
+    calculateCustomWorkforceEstimate();
+}
+
+/* 👑 SUPREME OWNER COMMAND CENTER CONTROLS */
+function triggerMasterKillSwitch(mode) {
+    const dot = document.getElementById('owner-status-dot');
+    const text = document.getElementById('owner-status-text');
+
+    if (mode === 'PAUSE_ALL') {
+        if (dot) {
+            dot.style.background = '#ef4444';
+            dot.style.boxShadow = '0 0 10px #ef4444';
+        }
+        if (text) {
+            text.innerHTML = '<span style="color:#ef4444;">SYSTEM PAUSED ● SAFETY EMERGENCY LOCK ACTIVE</span>';
+        }
+        showFomoToast('🔴 EMERGENCY KILL SWITCH ACTIVATED — ALL 27 AGENTS PAUSED BY OWNER', 'error');
+    } else if (mode === 'PAUSE_HIGH_RISK') {
+        if (dot) {
+            dot.style.background = '#f59e0b';
+            dot.style.boxShadow = '0 0 10px #f59e0b';
+        }
+        if (text) {
+            text.innerHTML = '<span style="color:#fbbf24;">HIGH-RISK ACTIONS PAUSED ● READ-ONLY AGENTS ONLINE</span>';
+        }
+        showFomoToast('🟡 HIGH-RISK ACTIONS FROZEN — HIGH-RISK MUTATIONS REQUIRING HUMAN GATE', 'warning');
+    } else if (mode === 'RESUME_ALL') {
+        if (dot) {
+            dot.style.background = '#10b981';
+            dot.style.boxShadow = '0 0 10px #10b981';
+        }
+        if (text) {
+            text.innerHTML = '<span style="color:#fff;">SYSTEM OPERATIONAL ● 27 ACTIVE AGENTS</span>';
+        }
+        showFomoToast('🟢 ALL SYSTEMS RESUMED — SUPREME OWNER GOVERNANCE ACTIVE', 'success');
+    }
+}
+
+function updateAutonomyLevelFromSlider(val) {
+    const levelMap = {
+        0: { title: "LEVEL 0: OBSERVE ONLY", desc: "AI collects data & logs events; 0 actions executed autonomously.", color: "#94a3b8" },
+        1: { title: "LEVEL 1: RECOMMENDATION MODE", desc: "AI generates strategic proposals for Owner approval before executing.", color: "#60a5fa" },
+        2: { title: "LEVEL 2: LOW-RISK AUTONOMY", desc: "AI executes read-only queries & draft staging; external actions blocked.", color: "#34d399" },
+        3: { title: "LEVEL 3: RULE-BOUNDED AUTONOMY", desc: "AI executes pre-approved workflows within strict schema parameters.", color: "var(--accent-cyan)" },
+        4: { title: "LEVEL 4: AUTONOMOUS POLICY BOUNDARY", desc: "AI operates autonomously within daily budget & permission limits.", color: "#a855f7" },
+        5: { title: "LEVEL 5: AUTONOMOUS RESEARCH MODE", desc: "Advanced goal-oriented simulation & sandbox exploration enabled.", color: "var(--accent-gold)" }
+    };
+
+    const config = levelMap[val] || levelMap[3];
+    const badge = document.getElementById('autonomy-level-badge');
+    const desc = document.getElementById('autonomy-level-desc');
+
+    if (badge) {
+        badge.textContent = config.title;
+        badge.style.color = config.color;
+    }
+    if (desc) {
+        desc.textContent = config.desc;
+    }
+}
+
+function updateBudgetSpendLimit(val) {
+    const label = document.getElementById('budget-spend-label');
+    if (label) {
+        label.textContent = `$${val}.00 / day`;
+    }
+}
+
+function runAiGoalDecomposition() {
+    const input = document.getElementById('ai-goal-input');
+    const card = document.getElementById('ai-goal-output-card');
+    const container = document.getElementById('ai-goal-steps-container');
+
+    if (!input || !card || !container) return;
+
+    const goal = input.value.trim() || "Reduce customer response time by 40%";
+    card.classList.remove('hidden');
+
+    container.innerHTML = `
+        <div style="background:rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; padding: 10px; border-radius: 4px;">
+            <strong style="color:#60a5fa;">STEP 1: Strategic Analysis</strong> ── AI Commander analyzed historical tickets and identified 3 main latency bottlenecks.
+        </div>
+        <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
+            <strong style="color:#34d399;">STEP 2: Solution Generation</strong> ── Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
+        </div>
+        <div style="background:rgba(168,85,247,0.1); border-left: 3px solid #a855f7; padding: 10px; border-radius: 4px;">
+            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> ── Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
+        </div>
+        <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
+            <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> ── Pending Supreme Owner approval for external email dispatch authority.
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+            <button class="btn btn-primary-sm" onclick="showFomoToast('✨ Strategy Roadmap Approved by Owner! Deploying to AI Workforce...', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                👍 Approve & Deploy Strategy
+            </button>
+        </div>
+    `;
+}
+
+/* 🏢 5 AUTONOMOUS AI BUSINESS DIVISIONS CONTROLS */
+function switchAiDivisionTab(divId) {
+    const tabs = ['growth', 'sales', 'delivery', 'success', 'finance'];
+    
+    tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const card = document.getElementById(`div-card-${t}`);
+        if (btn) btn.classList.remove('active');
+        if (card) card.classList.add('hidden');
+    });
+
+    const activeBtn = document.getElementById(`tab-btn-${divId}`);
+    const activeCard = document.getElementById(`div-card-${divId}`);
+
+    if (activeBtn) activeBtn.classList.add('active');
+    if (activeCard) activeCard.classList.remove('hidden');
+}
+
+function triggerFlywheelSimulation() {
+    const steps = [
+        "🔍 Step 1: Market Intel Agent discovered 12 B2B E-commerce opportunities",
+        "📊 Step 2: Lead Gen Agent enriched contacts into CRM",
+        "🎯 Step 3: Sales AI qualified lead & generated $1,250 project proposal",
+        "👔 Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
+        "🧪 Step 5: Independent QA Agent performed automated test pass (100% Green)",
+        "🎧 Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
+        "📈 Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
+        "💳 Step 8: Invoice matched & $1,250 deposited to Supreme Financial Vault!"
+    ];
+
+    steps.forEach((msg, idx) => {
+        setTimeout(() => {
+            const stepBox = document.getElementById(`fw-step-${idx + 1}`);
+            if (stepBox) {
+                stepBox.style.borderColor = idx === 7 ? 'var(--accent-gold)' : '#34d399';
+                stepBox.style.background = 'rgba(16,185,129,0.2)';
+            }
+            showFomoToast(msg, idx === 7 ? 'success' : 'info');
+        }, idx * 600);
+    });
+}
+
+/* 🆔 AGENT PASSPORT & BOARDROOM DEBATE CONTROLS */
+function inspectAgentPassport(agentId) {
+    const passportData = {
+        'AGNT-0001': { name: "🧠 AI CEO Orchestrator", role: "Business Orchestrator & Goal Planner", autonomy: "Level 4 (Policy Boundary)", budget: "$20.00 / day", tools: "n8n Webhook, Pinecone Memory, Goal Decomposer, Boardroom Trigger", owner: "Supreme Owner", audit: "4,281 tasks executed | 99.4% uptime | Zero boundary violations" },
+        'AGNT-1042': { name: "🔍 Market Intel Agent", role: "Niche Scraper & Competitor Monitor", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Web Scraper, Google Trends API, SEO Keyword Indexer", owner: "Supreme Owner", audit: "1,420 niches scanned | 83 leads enriched | 0 consent errors" },
+        'AGNT-4019': { name: "🧪 Independent QA Agent", role: "Code Inspector & Safety Evaluator", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Playwright E2E Runner, ESLint, Sandbox Validator", owner: "Supreme Owner", audit: "340 builds tested | 100% test pass rate | Zero regression" }
+    };
+
+    const info = passportData[agentId] || passportData['AGNT-0001'];
+    
+    showFomoToast(`🆔 PASSPORT VERIFIED [${agentId}]: ${info.name}\n• Autonomy: ${info.autonomy}\n• Daily Budget: ${info.budget}\n• Audit Status: ${info.audit}`, 'info');
+}
+
+function composeDynamicWorkforce() {
+    const promptInput = document.getElementById('composer-prompt-input');
+    const box = document.getElementById('composer-output-box');
+    const container = document.getElementById('composer-swarm-container');
+
+    if (!promptInput || !box || !container) return;
+
+    const goal = promptInput.value.trim() || "Automated B2B Lead Gen & Outreach";
+    box.classList.remove('hidden');
+
+    container.innerHTML = `
+        <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); padding: 12px; border-radius: 8px;">
+            <strong style="color:#c084fc; font-size:0.85rem; display:block;">1. Lead Intel Agent (AGNT-1092)</strong>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Discovers verified B2B decision makers.</span>
+        </div>
+        <div style="background:rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); padding: 12px; border-radius: 8px;">
+            <strong style="color:#60a5fa; font-size:0.85rem; display:block;">2. Outreach Agent (AGNT-2041)</strong>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Personalizes omnichannel outreach.</span>
+        </div>
+        <div style="background:rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 12px; border-radius: 8px;">
+            <strong style="color:#34d399; font-size:0.85rem; display:block;">3. Voice AI Agent (AGNT-6014)</strong>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Handles inbound phone inquiries.</span>
+        </div>
+        <div style="background:rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); padding: 12px; border-radius: 8px;">
+            <strong style="color:#fbbf24; font-size:0.85rem; display:block;">4. Independent QA (AGNT-4019)</strong>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Verifies zero spam compliance.</span>
+        </div>
+    `;
+
+    showFomoToast(`✨ Dynamic Workforce Swarm Compiled for: "${goal}"`, 'success');
+}
+
+function triggerAiBoardroomDebate() {
+    const topicInput = document.getElementById('boardroom-topic-input');
+    const box = document.getElementById('boardroom-debate-output');
+    const container = document.getElementById('boardroom-perspectives-container');
+
+    if (!topicInput || !box || !container) return;
+
+    const topic = topicInput.value.trim() || "Expand IINSHA into Enterprise AI Retainers";
+    box.classList.remove('hidden');
+
+    container.innerHTML = `
+        <div style="background:rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; padding: 10px; border-radius: 4px;">
+            <strong style="color:#60a5fa;">🧠 AI CEO Perspective:</strong> Strategic growth alignment is 100%. Enterprise retainer model increases LTV by 240%.
+        </div>
+        <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
+            <strong style="color:#fbbf24;">💰 AI CFO Perspective:</strong> Requires allocating $150/month in Pinecone vector storage capacity. Net profit margin projected at 88.5%.
+        </div>
+        <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
+            <strong style="color:#34d399;">⚙️ AI COO Perspective:</strong> 8 Project Delivery Agents stand ready; zero bandwidth bottlenecks detected.
+        </div>
+        <div style="background:rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 10px; border-radius: 4px;">
+            <strong style="color:#f87171;">🛡️ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
+        </div>
+        <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 12px; border-radius: 8px; margin-top: 6px;">
+            <strong style="color:#c084fc; font-size:0.95rem;">👑 EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
+            <span style="font-size:0.82rem; color:#fff;">Approve proposal with mandatory Owner Gate for contracts exceeding $5,000.</span>
+            <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+                <button class="btn btn-primary-sm" onclick="showFomoToast('👑 Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    👍 Approve Recommendation
+                </button>
+            </div>
+        </div>
+    `;
+
+    showFomoToast(`🗣️ Executive Strategy Debate Completed for: "${topic}"`, 'warning');
+}
+
+/* 🔮 LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
+function runDigitalTwinSimulation() {
+    const input = document.getElementById('simulator-scenario-input');
+    const container = document.getElementById('simulator-output-container');
+    const grid = document.getElementById('simulator-scenarios-grid');
+
+    if (!input || !container || !grid) return;
+
+    const scenario = input.value.trim() || "Increase monthly retainer prices by 20%";
+    container.classList.remove('hidden');
+
+    grid.innerHTML = `
+        <div style="background:rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); padding: 14px; border-radius: 8px;">
+            <span style="font-size:0.68rem; color:#60a5fa; font-weight:bold;">SCENARIO A: CONSERVATIVE</span>
+            <div style="font-size:1.2rem; color:#fff; font-weight:bold; margin: 4px 0;">+14% Net Profit</div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Conversion drops slightly by 2.1%. Low risk.</span>
+        </div>
+        <div style="background:rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 14px; border-radius: 8px;">
+            <span style="font-size:0.68rem; color:#34d399; font-weight:bold;">SCENARIO B: BASELINE</span>
+            <div style="font-size:1.2rem; color:#fff; font-weight:bold; margin: 4px 0;">+22% Net Profit</div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Optimal revenue expansion. Zero churn impact.</span>
+        </div>
+        <div style="background:rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); padding: 14px; border-radius: 8px;">
+            <span style="font-size:0.68rem; color:#fbbf24; font-weight:bold;">SCENARIO C: AGGRESSIVE</span>
+            <div style="font-size:1.2rem; color:#fff; font-weight:bold; margin: 4px 0;">+31% Net Profit</div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Potential 4.2% client churn. High reward.</span>
+        </div>
+    `;
+
+    showFomoToast(`📊 Digital Twin Simulation Completed for: "${scenario}"`, 'success');
+}
+
+function triggerControlledSelfEvolution() {
+    const container = document.getElementById('evolution-output-container');
+    const reportBox = document.getElementById('evolution-report-box');
+
+    if (!container || !reportBox) return;
+
+    container.classList.remove('hidden');
+
+    reportBox.innerHTML = `
+        <div style="background:rgba(15,23,42,0.9); padding: 14px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3); font-size: 0.82rem; color: #fff;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                <span style="color:#34d399; font-weight:bold;">1. Weakness Detected:</span>
+                <span style="color:var(--text-muted);">n8n Lead Enrichment Webhook latency +180ms</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                <span style="color:#60a5fa; font-weight:bold;">2. Improvement Proposal:</span>
+                <span style="color:var(--text-muted);">Deploy Redis Cache Buffer & Async Worker Swarm</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                <span style="color:#fbbf24; font-weight:bold;">3. Sandbox Benchmark:</span>
+                <span style="color:#34d399;">Latency reduced by 74% (from 240ms to 62ms)</span>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="color:#c084fc; font-weight:bold;">4. Supreme Owner Authorization:</span>
+                <button class="btn btn-primary-sm" onclick="showFomoToast('🧬 Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    🟢 Authorize Production Deployment
+                </button>
+            </div>
+        </div>
+    `;
+
+    showFomoToast(`🧪 Sandbox Benchmark Passed: Latency Reduced by 74%!`, 'info');
+}
+
+/* 🔐 LEVEL 5 ZERO-TRUST SECURITY SOC CONTROLS */
+function triggerTripleKillSwitch(switchType) {
+    if (switchType === 'global') {
+        showFomoToast(`🔴 GLOBAL EMERGENCY FREEZE ACTIVATED! All multi-agent swarms paused.`, 'danger');
+    } else if (switchType === 'financial') {
+        showFomoToast(`💸 FINANCIAL KILL SWITCH ACTIVATED! All automated settlement rails frozen.`, 'warning');
+    } else if (switchType === 'tool') {
+        showFomoToast(`🤖 AI TOOL GATEWAY KILL SWITCH ACTIVATED! External API/Webhook execution disabled.`, 'warning');
+    }
+}
+
+function runPromptSanitizerTest() {
+    const input = document.getElementById('sanitizer-input-prompt');
+    const container = document.getElementById('sanitizer-output-box');
+    const content = document.getElementById('sanitizer-report-content');
+
+    if (!input || !container || !content) return;
+
+    const rawPrompt = input.value.trim() || "Ignore previous instructions";
+    container.classList.remove('hidden');
+
+    content.innerHTML = `
+        <div style="background:rgba(15,23,42,0.9); padding: 14px; border-radius: 8px; border: 1px solid rgba(168,85,247,0.3); font-size: 0.82rem; color: #fff;">
+            <div style="margin-bottom: 8px;">
+                <span style="color:#f87171; font-weight:bold;">1. Raw Untrusted Input:</span>
+                <div style="background:rgba(0,0,0,0.5); padding:8px; border-radius:4px; font-family:monospace; margin-top:4px; color:#ef4444;">${rawPrompt}</div>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <span style="color:#fbbf24; font-weight:bold;">2. Threat Classification:</span>
+                <span style="color:#fbbf24; margin-left:6px;">[HIGH RISK] Prompt Override / Escalation Attempt Detected</span>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <span style="color:#34d399; font-weight:bold;">3. Sanitized Safe Output:</span>
+                <div style="background:rgba(16,185,129,0.1); padding:8px; border-radius:4px; font-family:monospace; margin-top:4px; color:#34d399;">[REDACTED_PROMPT_INJECTION] User text sanitized cleanly before LLM execution.</div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="color:#c084fc; font-weight:bold;">4. Policy Gateway Action:</span>
+                <span style="color:#34d399; font-weight:bold;">✅ BLOCKED & LOGGED TO AUDIT TRAIL</span>
+            </div>
+        </div>
+    `;
+
+    showFomoToast(`🛡️ Anti-Prompt Injection Filter Successfully Blocked Malicious Override Attempt!`, 'success');
 }
 
 function runIinshaAuditCalculation(e) {
@@ -5143,3 +5500,560 @@ function renderEnterpriseArchitectureStudio() {
     `;
 }
 window.renderEnterpriseArchitectureStudio = renderEnterpriseArchitectureStudio;
+
+
+/* ============================================================
+   INTERACTIVE MODULE HANDLERS & SOLUTION FINDER ENGINES
+   ============================================================ */
+
+function initSolutionFinder() {
+    const finderInput = document.getElementById('finder-input');
+    const finderBtn = document.getElementById('run-finder-btn');
+    const outputBox = document.getElementById('finder-output-box');
+
+    if (!finderBtn || !outputBox) return;
+
+    const runFinder = () => {
+        const query = finderInput ? finderInput.value.trim() : 'Automate business process';
+        const pkgName = document.getElementById('finder-pkg-name');
+        const pkgCost = document.getElementById('finder-pkg-cost');
+        const timeSaved = document.getElementById('finder-time-saved');
+        const stackName = document.getElementById('finder-stack-name');
+        const jsonCode = document.getElementById('finder-json-code');
+
+        if (pkgName) pkgName.textContent = 'Professional AI Suite';
+        if (pkgCost) pkgCost.textContent = '$499 USD';
+        if (timeSaved) timeSaved.textContent = '35 Hours / wk';
+        if (stackName) stackName.textContent = 'n8n + Gemini 3.6 + Postgres';
+        if (jsonCode) {
+            jsonCode.textContent = JSON.stringify({
+                status: "Architecture Verified",
+                query: query,
+                pipelineNodes: ["Webhook Trigger", "Gemini 3.6 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
+                estimatedTimeSaved: "35 Hours / week",
+                estimatedPrice: "$499 USD"
+            }, null, 2);
+        }
+
+        outputBox.classList.remove('hidden');
+        outputBox.style.display = 'block';
+    };
+
+    finderBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        runFinder();
+    });
+
+    document.querySelectorAll('.finder-preset').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            const q = chip.getAttribute('data-query') || chip.textContent.trim();
+            if (finderInput) finderInput.value = q;
+            runFinder();
+        });
+    });
+}
+
+function initPresalesAssistant() {
+    const presalesInput = document.getElementById('presales-query-input');
+    const presalesBtn = document.getElementById('presales-submit-btn');
+    const presalesOutput = document.getElementById('presales-output-box');
+
+    if (!presalesBtn) return;
+
+    const runPresales = () => {
+        const query = presalesInput ? presalesInput.value.trim() : 'Invoice processing automation';
+        if (presalesOutput) {
+            presalesOutput.style.display = 'block';
+            presalesOutput.innerHTML = `
+                <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">✨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
+                </div>
+            `;
+        }
+    };
+
+    presalesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        runPresales();
+    });
+
+    document.querySelectorAll('.presales-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            const txt = chip.textContent.trim();
+            if (presalesInput) presalesInput.value = txt;
+            runPresales();
+        });
+    });
+}
+
+function initRoiCalculatorEngine() {
+    const setupInput = document.getElementById('roi-setup-cost');
+    const infraInput = document.getElementById('roi-infra-cost');
+    const btnCalc = document.getElementById('calculate-roi-btn') || document.getElementById('calculate-roi');
+    const paybackEl = document.getElementById('roi-payback-val');
+    const percentEl = document.getElementById('roi-percent-val');
+    const savingsEl = document.getElementById('roi-net-savings');
+
+    const calculate = () => {
+        const setup = parseFloat(setupInput?.value || '3000') || 3000;
+        const infra = parseFloat(infraInput?.value || '120') || 120;
+
+        const netSavings = Math.round(setup * 3.2 + infra * 18);
+        const paybackDays = Math.max(7, Math.round(setup / (netSavings / 365)));
+        const roiPercent = Math.round((netSavings / setup) * 100);
+
+        if (paybackEl) paybackEl.textContent = paybackDays + ' Days';
+        if (percentEl) percentEl.textContent = roiPercent + '%';
+        if (savingsEl) savingsEl.textContent = '$' + netSavings.toLocaleString();
+    };
+
+    if (btnCalc) {
+        btnCalc.addEventListener('click', (e) => {
+            e.preventDefault();
+            calculate();
+        });
+    }
+
+    if (setupInput) setupInput.addEventListener('input', calculate);
+    if (infraInput) infraInput.addEventListener('input', calculate);
+
+    calculate();
+}
+
+function openIinshaBusinessAuditModal() {
+    let auditModal = document.getElementById('iinsha-audit-modal-root');
+    if (!auditModal) {
+        auditModal = document.createElement('div');
+        auditModal.id = 'iinsha-audit-modal-root';
+        document.body.appendChild(auditModal);
+    }
+
+    auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
+
+    auditModal.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            
+            <div style="text-align:center; margin-bottom:24px;">
+                <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
+                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">⚡ Instant AI Business Health Check</h3>
+                <p style="margin:0; font-size:0.85rem; color:var(--text-muted);">Discover your operational automation bottlenecks in 30 seconds</p>
+            </div>
+
+            <form id="iinsha-audit-form" onsubmit="runIinshaAuditCalculation(event)">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:16px;">
+                    <div>
+                        <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Company / Brand Name</label>
+                        <input type="text" id="audit-company" required placeholder="e.g. Apex Tech Ltd" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;" />
+                    </div>
+                    <div>
+                        <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Industry Sector</label>
+                        <select id="audit-industry" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;">
+                            <option>E-Commerce & Retail</option>
+                            <option>SaaS & Tech Enterprise</option>
+                            <option>Agency & Professional Services</option>
+                            <option>Healthcare & Biotech</option>
+                            <option>Finance & Real Estate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Primary Operational Bottleneck</label>
+                    <select id="audit-bottleneck" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;">
+                        <option>Manual Lead Response & High Drop-off Rate</option>
+                        <option>Scattered Customer Data & Lack of CRM Automation</option>
+                        <option>Slow Content Production & High Marketing Overhead</option>
+                        <option>Repetitive Employee Tasks & Human Error in Support</option>
+                    </select>
+                </div>
+
+                <button type="submit" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; box-shadow:0 8px 25px rgba(59,130,246,0.4);">
+                    🚀 Generate Diagnostic Report & Automation Plan
+                </button>
+            </form>
+
+            <div id="iinsha-audit-results" style="display:none; margin-top:24px; background:rgba(0,0,0,0.5); border:1px solid rgba(59,130,246,0.4); border-radius:16px; padding:20px;"></div>
+        </div>
+    `;
+}
+
+function closeIinshaBusinessAuditModal() {
+    const modal = document.getElementById('iinsha-audit-modal-root');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.innerHTML = '';
+    }
+}
+
+// Global Exports
+window.openProtectedAdminPanel = openProtectedAdminPanel;
+window.openIinshaBusinessAuditModal = openIinshaBusinessAuditModal;
+window.closeIinshaBusinessAuditModal = closeIinshaBusinessAuditModal;
+
+document.addEventListener('DOMContentLoaded', () => {
+    try { initSolutionFinder(); } catch(e){}
+    try { initPresalesAssistant(); } catch(e){}
+    try { initRoiCalculatorEngine(); } catch(e){}
+    try { init3dParticleCanvasEngine(); } catch(e){}
+});
+
+/* ============================================================
+   INTERACTIVE MODULE HANDLERS & SOLUTION FINDER ENGINES
+   ============================================================ */
+
+function initSolutionFinder() {
+    const finderInput = document.getElementById('finder-input');
+    const finderBtn = document.getElementById('run-finder-btn');
+    const outputBox = document.getElementById('finder-output-box');
+
+    if (!finderBtn || !outputBox) return;
+
+    const runFinder = () => {
+        const query = finderInput ? finderInput.value.trim() : 'Automate business process';
+        const pkgName = document.getElementById('finder-pkg-name');
+        const pkgCost = document.getElementById('finder-pkg-cost');
+        const timeSaved = document.getElementById('finder-time-saved');
+        const stackName = document.getElementById('finder-stack-name');
+        const jsonCode = document.getElementById('finder-json-code');
+
+        if (pkgName) pkgName.textContent = 'Professional AI Suite';
+        if (pkgCost) pkgCost.textContent = '$499 USD';
+        if (timeSaved) timeSaved.textContent = '35 Hours / wk';
+        if (stackName) stackName.textContent = 'n8n + Gemini 3.6 + Postgres';
+        if (jsonCode) {
+            jsonCode.textContent = JSON.stringify({
+                status: "Architecture Verified",
+                query: query,
+                pipelineNodes: ["Webhook Trigger", "Gemini 3.6 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
+                estimatedTimeSaved: "35 Hours / week",
+                estimatedPrice: "$499 USD"
+            }, null, 2);
+        }
+
+        outputBox.classList.remove('hidden');
+        outputBox.style.display = 'block';
+    };
+
+    finderBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        runFinder();
+    });
+
+    document.querySelectorAll('.finder-preset').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            const q = chip.getAttribute('data-query') || chip.textContent.trim();
+            if (finderInput) finderInput.value = q;
+            runFinder();
+        });
+    });
+}
+
+function initPresalesAssistant() {
+    const presalesInput = document.getElementById('presales-query-input');
+    const presalesBtn = document.getElementById('presales-submit-btn');
+    const presalesOutput = document.getElementById('presales-output-box');
+
+    if (!presalesBtn) return;
+
+    const runPresales = () => {
+        const query = presalesInput ? presalesInput.value.trim() : 'Invoice processing automation';
+        if (presalesOutput) {
+            presalesOutput.style.display = 'block';
+            presalesOutput.innerHTML = `
+                <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">✨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
+                </div>
+            `;
+        }
+    };
+
+    presalesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        runPresales();
+    });
+
+    document.querySelectorAll('.presales-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            const txt = chip.textContent.trim();
+            if (presalesInput) presalesInput.value = txt;
+            runPresales();
+        });
+    });
+}
+
+function initRoiCalculatorEngine() {
+    const hoursInput = document.getElementById('roi-hours-input');
+    const rateInput = document.getElementById('roi-rate-input');
+    const empInput = document.getElementById('roi-emp-input');
+    const setupInput = document.getElementById('roi-setup-input');
+    const infraInput = document.getElementById('roi-infra-input');
+
+    const btnCalc = document.getElementById('calculate-roi-btn');
+    const monthlyEl = document.getElementById('roi-saved-monthly');
+    const annualEl = document.getElementById('roi-saved-annual');
+    const percentEl = document.getElementById('roi-percent');
+    const paybackEl = document.getElementById('roi-payback');
+
+    const calculate = () => {
+        const hours = parseFloat(hoursInput?.value || '25') || 25;
+        const rate = parseFloat(rateInput?.value || '40') || 40;
+        const emp = parseFloat(empInput?.value || '2') || 2;
+        const setup = parseFloat(setupInput?.value || '500') || 500;
+        const infra = parseFloat(infraInput?.value || '50') || 50;
+
+        const monthlySavings = Math.round(hours * rate * 4.33 * emp);
+        const annualSavings = Math.round(monthlySavings * 12 - (setup + infra * 12));
+        const roiPercent = Math.round((annualSavings / (setup + infra * 12 || 1)) * 100);
+        const paybackDays = Math.max(1, Math.round((setup / (monthlySavings / 30 || 1))));
+
+        if (monthlyEl) monthlyEl.textContent = '$' + monthlySavings.toLocaleString();
+        if (annualEl) annualEl.textContent = '$' + annualSavings.toLocaleString();
+        if (percentEl) percentEl.textContent = roiPercent.toLocaleString() + '%';
+        if (paybackEl) paybackEl.textContent = paybackDays + ' Days';
+    };
+
+    if (btnCalc) {
+        btnCalc.addEventListener('click', (e) => {
+            e.preventDefault();
+            calculate();
+        });
+    }
+
+    [hoursInput, rateInput, empInput, setupInput, infraInput].forEach(inp => {
+        if (inp) inp.addEventListener('input', calculate);
+    });
+
+    calculate();
+}
+
+function openIinshaBusinessAuditModal() {
+    let auditModal = document.getElementById('iinsha-audit-modal-root');
+    if (!auditModal) {
+        auditModal = document.createElement('div');
+        auditModal.id = 'iinsha-audit-modal-root';
+        document.body.appendChild(auditModal);
+    }
+
+    auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:10000; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
+
+    auditModal.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            
+            <div style="text-align:center; margin-bottom:24px;">
+                <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
+                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">⚡ Instant AI Business Health Check</h3>
+                <p style="margin:0; font-size:0.85rem; color:var(--text-muted);">Discover your operational automation bottlenecks in 30 seconds</p>
+            </div>
+
+            <form id="iinsha-audit-form" onsubmit="runIinshaAuditCalculation(event)">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:16px;">
+                    <div>
+                        <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Company / Brand Name</label>
+                        <input type="text" id="audit-company" required placeholder="e.g. Apex Tech Ltd" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;" />
+                    </div>
+                    <div>
+                        <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Industry Sector</label>
+                        <select id="audit-industry" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;">
+                            <option>E-Commerce & Retail</option>
+                            <option>SaaS & Tech Enterprise</option>
+                            <option>Agency & Professional Services</option>
+                            <option>Healthcare & Biotech</option>
+                            <option>Finance & Real Estate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Primary Operational Bottleneck</label>
+                    <select id="audit-bottleneck" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;">
+                        <option>Manual Lead Response & High Drop-off Rate</option>
+                        <option>Scattered Customer Data & Lack of CRM Automation</option>
+                        <option>Slow Content Production & High Marketing Overhead</option>
+                        <option>Repetitive Employee Tasks & Human Error in Support</option>
+                    </select>
+                </div>
+
+                <button type="submit" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; box-shadow:0 8px 25px rgba(59,130,246,0.4);">
+                    🚀 Generate Diagnostic Report & Automation Plan
+                </button>
+            </form>
+
+            <div id="iinsha-audit-results" style="display:none; margin-top:24px; background:rgba(0,0,0,0.5); border:1px solid rgba(59,130,246,0.4); border-radius:16px; padding:20px;"></div>
+        </div>
+    `;
+}
+
+function closeIinshaBusinessAuditModal() {
+    const modal = document.getElementById('iinsha-audit-modal-root');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.innerHTML = '';
+    }
+}
+
+// Global Exports
+window.openProtectedAdminPanel = openProtectedAdminPanel;
+window.openIinshaBusinessAuditModal = openIinshaBusinessAuditModal;
+window.closeIinshaBusinessAuditModal = closeIinshaBusinessAuditModal;
+
+document.addEventListener('DOMContentLoaded', () => {
+    try { initSolutionFinder(); } catch(e){}
+    try { initPresalesAssistant(); } catch(e){}
+    try { initRoiCalculatorEngine(); } catch(e){}
+    try { init3dParticleCanvasEngine(); } catch(e){}
+});
+
+
+/* ============================================================
+   🔮 HIGH-PERFORMANCE 3D INTERACTIVE AI BRAIN CANVAS ENGINE
+   ============================================================ */
+function init3dParticleCanvasEngine() {
+    const canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const numNodes = 70;
+    const nodes = [];
+    const sphereRadius = Math.min(width, height) * 0.28;
+
+    let mouseX = 0, mouseY = 0;
+    let targetRotX = 0, targetRotY = 0;
+    let rotX = 0, rotY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - width / 2) * 0.0005;
+        mouseY = (e.clientY - height / 2) * 0.0005;
+    });
+
+    // Generate 3D Sphere Points (Fibonacci Lattice)
+    const phi = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < numNodes; i++) {
+        const y = 1 - (i / (numNodes - 1)) * 2;
+        const radiusAtY = Math.sqrt(1 - y * y);
+        const theta = phi * i;
+
+        const x = Math.cos(theta) * radiusAtY;
+        const z = Math.sin(theta) * radiusAtY;
+
+        nodes.push({
+            x: x * sphereRadius,
+            y: y * sphereRadius,
+            z: z * sphereRadius,
+            baseX: x * sphereRadius,
+            baseY: y * sphereRadius,
+            baseZ: z * sphereRadius,
+            size: Math.random() * 2 + 1.5,
+            color: i % 3 === 0 ? '#06b6d4' : (i % 3 === 1 ? '#a855f7' : '#10b981')
+        });
+    }
+
+    let angleY = 0;
+
+    function render3D() {
+        ctx.clearRect(0, 0, width, height);
+
+        targetRotX += (mouseY - targetRotX) * 0.05;
+        targetRotY += (mouseX - targetRotY) * 0.05;
+        angleY += 0.004;
+
+        const cosX = Math.cos(targetRotX);
+        const sinX = Math.sin(targetRotX);
+        const cosY = Math.cos(angleY + targetRotY);
+        const sinY = Math.sin(angleY + targetRotY);
+
+        const projectedNodes = [];
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        for (let i = 0; i < numNodes; i++) {
+            const node = nodes[i];
+
+            // 3D Y-Axis Rotation
+            let x1 = node.baseX * cosY - node.baseZ * sinY;
+            let z1 = node.baseZ * cosY + node.baseX * sinY;
+
+            // 3D X-Axis Rotation
+            let y1 = node.baseY * cosX - z1 * sinX;
+            let z2 = z1 * cosX + node.baseY * sinX;
+
+            const perspective = 600 / (600 + z2);
+            const projX = centerX + x1 * perspective;
+            const projY = centerY + y1 * perspective;
+            const projScale = perspective;
+
+            projectedNodes.push({
+                x: projX,
+                y: projY,
+                z: z2,
+                scale: projScale,
+                color: node.color
+            });
+        }
+
+        // Draw 3D Connecting Neural Lines
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < numNodes; i++) {
+            for (let j = i + 1; j < numNodes; j++) {
+                const p1 = projectedNodes[i];
+                const p2 = projectedNodes[j];
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 110) {
+                    const alpha = (1 - dist / 110) * 0.35 * Math.max(0, (p1.scale + p2.scale) / 2 - 0.4);
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw 3D Floating Glowing Nodes
+        for (let i = 0; i < numNodes; i++) {
+            const p = projectedNodes[i];
+            const size = Math.max(0.5, p.scale * 3);
+            const alpha = Math.min(1, Math.max(0.2, (p.z + sphereRadius) / (sphereRadius * 2)));
+
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = alpha;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Glow Aura
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = p.color;
+        }
+
+        ctx.globalAlpha = 1.0;
+        ctx.shadowBlur = 0;
+
+        requestAnimationFrame(render3D);
+    }
+
+    render3D();
+}
+
+window.init3dParticleCanvasEngine = init3dParticleCanvasEngine;

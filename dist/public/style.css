@@ -2605,3 +2605,217 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
 }
 
+
+
+/* ============================================================
+   HARDWARE ACCELERATION & ZERO-LAG SCROLLING OPTIMIZATIONS
+   ============================================================ */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass-card, .btn, .modal-box, .admin-modal-box {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+
+
+/* ============================================================
+   STRICT MODAL DISPLAY & POINTER-EVENTS ISOLATION RULES
+   ============================================================ */
+#ai-order-consultation-modal,
+#admin-control-modal {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 7, 18, 0.94);
+    backdrop-filter: blur(12px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#ai-order-consultation-modal.active,
+#admin-control-modal.active {
+    display: flex !important;
+    pointer-events: auto !important;
+}
+
+
+
+/* ============================================================
+   CARD OVERLAY & BUTTON POINTER-EVENTS ISOLATION FIX
+   ============================================================ */
+.btn,
+button,
+a.btn,
+.glass-card a,
+.card a,
+.glass-card button,
+.card button {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* Ensure glossy glow pseudo-elements and background overlays do not block clicks */
+.glass-card::before,
+.glass-card::after,
+.glowing-border::before,
+.glowing-border::after,
+.card::before,
+.card::after {
+    pointer-events: none !important;
+}
+
+
+
+
+/* ============================================================
+   IINSHA TECH v17.0 — ULTIMATE RESPONSIVE & MOBILE DESIGN SYSTEM
+   ============================================================ */
+
+/* Global Overflow Prevention */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden !important;
+}
+
+/* Mobile Status Bar Fix */
+@media (max-width: 768px) {
+    .os-status-bar .container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+    .os-status-bar div {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        font-size: 0.72rem !important;
+    }
+}
+
+/* Mobile Navbar Scroll Fix */
+@media (max-width: 992px) {
+    .navbar .nav-container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding: 10px 14px !important;
+    }
+    .portal-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        width: 100% !important;
+        padding-bottom: 6px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .portal-tab-btn {
+        flex-shrink: 0 !important;
+        font-size: 0.78rem !important;
+        padding: 6px 10px !important;
+    }
+}
+
+/* Mobile Floating Widgets Responsiveness */
+@media (max-width: 576px) {
+    #iinsha-chat-toggle {
+        bottom: 16px !important;
+        right: 16px !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+    #iinsha-chat-window {
+        width: 94vw !important;
+        right: 3vw !important;
+        bottom: 76px !important;
+        height: 75vh !important;
+        border-radius: 16px !important;
+    }
+    #iinsha-floating-ai-widget {
+        bottom: 76px !important;
+        right: 16px !important;
+        font-size: 0.7rem !important;
+        padding: 4px 10px !important;
+    }
+    .modal-content, #admin-control-modal-content {
+        width: 95vw !important;
+        padding: 16px !important;
+        max-height: 88vh !important;
+        border-radius: 16px !important;
+    }
+    /* Grid responsiveness */
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Card & Content Typography Responsiveness */
+@media (max-width: 480px) {
+    h1, .hero-title {
+        font-size: 1.6rem !important;
+        line-height: 1.25 !important;
+    }
+    h2 { font-size: 1.35rem !important; }
+    h3 { font-size: 1.15rem !important; }
+    p, .hero-subtitle { font-size: 0.85rem !important; }
+    .btn { width: 100% !important; justify-content: center !important; text-align: center !alignment; }
+}
+
+
+
+/* UNIVERSAL RESPONSIVE OVERRIDES */
+* {
+    box-sizing: border-box !important;
+}
+
+img, video, canvas, iframe, table {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.container, .hero-content, .section-header, .presales-box, .pkg-modal-container, 
+.lead-magnet-card, .cmd-palette-container, .admin-modal-box, .modal-content,
+.success-carousel, .intake-wizard, .urgency-bar, .activity-toast {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        width: 100% !important;
+    }
+    table {
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+    .grid, [class*="grid-"] {
+        grid-template-columns: 1fr !important;
+    }
+    div[style*="width: 800px"], div[style*="width: 900px"], div[style*="width: 1000px"], div[style*="width: 1100px"] {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
