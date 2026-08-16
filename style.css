@@ -3763,3 +3763,76 @@ body {
     box-shadow: 0 16px 48px rgba(6, 182, 212, 0.65), 0 0 38px rgba(168, 85, 247, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     background: linear-gradient(135deg, #00e077 0%, #0891b2 50%, #9333ea 100%) !important;
 }
+
+
+/* ==========================================================================
+   ⚡ IINSHA MASTER v5.0 COMMAND CENTER UI SYSTEM (2026 EDITION)
+   (60% Smart City OS + 20% Cyber Security Ecosystem + 10% Vortex + 10% Cracker)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #050608;
+    --accent-purple: #a855f7;
+    --accent-cyan: #06b6d4;
+    --accent-emerald: #00ff87;
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: #f8fafc !important;
+}
+
+/* Floating Capsule Pill Navbar */
+.navbar {
+    position: sticky !important;
+    top: 12px !important;
+    z-index: 1000 !important;
+    width: 95% !important;
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+    padding: 10px 24px !important;
+    background: rgba(15, 23, 42, 0.88) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(168, 85, 247, 0.35) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 25px rgba(168, 85, 247, 0.25) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.navbar:hover {
+    border-color: rgba(168, 85, 247, 0.65) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.4) !important;
+}
+
+/* Glass Cards */
+.glass-card, .pkg-card, .m-product-card, .affiliate-stat-card, .bento-3d-card {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+}
+
+.glass-card:hover, .pkg-card:hover, .m-product-card:hover, .affiliate-stat-card:hover, .bento-3d-card:hover {
+    border-color: rgba(168, 85, 247, 0.65) !important;
+    box-shadow: 0 25px 65px rgba(5, 6, 8, 0.9), 0 0 45px rgba(168, 85, 247, 0.45), 0 0 25px rgba(6, 182, 212, 0.35) !important;
+    transform: perspective(1000px) translateY(-6px) rotateX(1deg) !important;
+}
+
+/* Master Action Buttons */
+.btn-primary, .btn {
+    background: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #00ff87 100%) !important;
+    color: #fff !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-primary:hover, .btn:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 16px 48px rgba(168, 85, 247, 0.65), 0 0 38px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    background: linear-gradient(135deg, #9333ea 0%, #0891b2 50%, #00e077 100%) !important;
+}
