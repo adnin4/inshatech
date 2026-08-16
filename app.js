@@ -6057,3 +6057,42 @@ function init3dParticleCanvasEngine() {
 }
 
 window.init3dParticleCanvasEngine = init3dParticleCanvasEngine;
+
+
+
+/* ============================================================
+   🤝 AUTHENTIC AFFILIATE EARNINGS CALCULATOR ENGINE
+   ============================================================ */
+function updateAffiliateCalculator() {
+    const clientsSlider = document.getElementById('calc-clients-slider');
+    const dealSlider = document.getElementById('calc-deal-slider');
+    const retainerSlider = document.getElementById('calc-retainer-slider');
+
+    const clientsValEl = document.getElementById('calc-clients-val');
+    const dealValEl = document.getElementById('calc-deal-val');
+    const retainerValEl = document.getElementById('calc-retainer-val');
+
+    const totalOutputEl = document.getElementById('calc-total-output');
+    const upfrontOutputEl = document.getElementById('calc-upfront-output');
+    const passiveOutputEl = document.getElementById('calc-passive-output');
+
+    if (!clientsSlider || !dealSlider || !retainerSlider) return;
+
+    const clients = parseInt(clientsSlider.value) || 5;
+    const deal = parseInt(dealSlider.value) || 500;
+    const retainer = parseInt(retainerSlider.value) || 150;
+
+    if (clientsValEl) clientsValEl.textContent = clients + ' Clients';
+    if (dealValEl) dealValEl.textContent = '$' + deal;
+    if (retainerValEl) retainerValEl.textContent = '$' + retainer + ' / mo';
+
+    const upfrontComm = Math.round(clients * deal * 0.15);
+    const passiveComm = Math.round(clients * retainer * 0.20);
+    const year1Total = upfrontComm + (passiveComm * 12);
+
+    if (upfrontOutputEl) upfrontOutputEl.textContent = '$' + upfrontComm.toLocaleString();
+    if (passiveOutputEl) passiveOutputEl.textContent = '$' + passiveComm.toLocaleString() + ' / mo';
+    if (totalOutputEl) totalOutputEl.textContent = '$' + year1Total.toLocaleString() + '.00';
+}
+
+window.updateAffiliateCalculator = updateAffiliateCalculator;
