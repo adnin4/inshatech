@@ -15,7 +15,7 @@
     <!-- MILITARY-GRADE SECURITY HEADERS -->
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=v20260817_1786926913">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786927268">
 
     <!-- GEO & RICH SCHEMA MARKUP -->
     <script type="application/ld+json">
@@ -154,12 +154,15 @@
                     <strong>✔️ Verified Deliverables:</strong> n8n Docker Setup, Failover Retry Logic, Telegram Alerts, Custom Webhooks, 14-Day Included SLA.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">SETUP PACKAGE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
                     </div>
-                    <a href="services/n8n-automation-expert.html" class="btn btn-primary-sm">Get Setup & Blueprint →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('n8n Self-Hosted Workflow Engine', 'automation', 65, 'Connect 400+ applications, APIs, webhooks, and AI models on your own Hostinger VPS Docker container. Includes failover error triggers, Telegram notifications, and PostgreSQL logging.', '✔️ n8n Docker Setup<br>✔️ Failover Retry Logic<br>✔️ Telegram Alerts<br>✔️ Custom Webhooks<br>✔️ 14-Day Included SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('n8n Self-Hosted Setup ($65)', 65, 35)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -185,12 +188,15 @@
                     <strong>✔️ Verified Deliverables:</strong> 99.8% Anti-Bot Bypass, Dynamic Proxy Mesh, Hostinger VPS Setup, CSV/Airtable Auto-Export, 30-Day SLA.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">STANDARD PACKAGE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="250">$250 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="250">$250 USD</strong>
                     </div>
-                    <a href="services/openclaw-web-scraping.html" class="btn btn-primary-sm">View Scraping Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('OpenClaw Stealth Scraping Farm', 'scraping', 250, 'Headless web scraping farm with Docker container sandboxing, proxy rotation mesh, Cloudflare Turnstile bypass (99.8% success), and automated PostgreSQL/Airtable synchronization.', '✔️ 99.8% Anti-Bot Bypass<br>✔️ Dynamic Proxy Mesh<br>✔️ Hostinger VPS Setup<br>✔️ CSV/Airtable Auto-Export<br>✔️ 30-Day SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('OpenClaw Scraping Farm ($250)', 250, 75)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -216,12 +222,15 @@
                     <strong>✔️ Verified Deliverables:</strong> Google Antigravity SDK Swarm, Pinecone RAG Index, 200k+ Context Window, Webhook API, Hostinger Docker Setup.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">PREMIUM SWARM</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="650">$650 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="650">$650 USD</strong>
                     </div>
-                    <a href="services/ai-agent-development.html" class="btn btn-primary-sm">Explore Swarm Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Claude 3.5 & Gemini 1.5 AI Swarm', 'ai', 650, 'Autonomous multi-agent swarms built with Google Antigravity SDK & Pinecone Vector DB RAG. Handles complex code reviews, document parsing, and automated pull request summaries.', '✔️ Antigravity SDK Swarm<br>✔️ Pinecone RAG Index<br>✔️ 200k+ Context Window<br>✔️ Webhook API<br>✔️ Hostinger Docker Setup')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Claude/Gemini AI Swarm ($650)', 650, 195)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -278,12 +287,15 @@
                     <strong>✔️ Verified Deliverables:</strong> Real-time Webhooks, Deduplication Engine, Field Mapping, Hostinger VPS Database Sync.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">BASIC SYNC SETUP</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
                     </div>
-                    <a href="compare.html" class="btn btn-primary-sm">Compare CRMs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Airtable & HubSpot CRM Sync', 'saas', 65, 'Flexible relational databases and B2B CRM platforms connected via n8n real-time bidirectional webhooks. Automate lead scoring, pipeline updates, and invoice logging.', '✔️ Real-time Webhooks<br>✔️ Deduplication Engine<br>✔️ Field Mapping<br>✔️ Hostinger VPS Database Sync')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Airtable & HubSpot CRM Sync ($65)', 65, 35)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -309,12 +321,15 @@
                     <strong>✔️ Verified Deliverables:</strong> Cuts response times from hours to 30s, Zendesk/Freshdesk Integration, Pinecone Vector DB, Hostinger VPS Setup.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">PACKAGE PRICE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="300">$300 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="300">$300 USD</strong>
                     </div>
-                    <a href="services/hermes-ai-support-agent.html" class="btn btn-primary-sm">Inspect Agent Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Hermes AI Ticket Triage Agent', 'ai', 300, 'Autonomous customer support agent performing Pinecone vector search over internal documentation to auto-draft 24/7 helpdesk replies and route urgent support tickets.', '✔️ Sub-30s Response Time<br>✔️ Zendesk/Freshdesk Sync<br>✔️ Pinecone Vector DB<br>✔️ Hostinger VPS Setup')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Hermes AI Support Agent ($300)', 300, 95)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -343,7 +358,7 @@
         </div>
     </footer>
 
-    <script src="app.js?v=v20260817_1786926913" defer></script>
+    <script src="app.js?v=v20260817_1786927268" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {

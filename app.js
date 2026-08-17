@@ -893,25 +893,33 @@ function openProtectedAdminPanel() {
 
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
-        <div id="admin-login-card" style="max-width: 480px; margin: 30px auto; padding: 36px; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9); color: #fff; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🔒</div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 6px; color: #fff;">IINSHA TECH OS Admin Gateway</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;">Zero-Trust authentication required to access the 15-Domain Control Studio.</p>
+        <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
+            <div style="font-size: 2.8rem; margin-bottom: 8px;">👑</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
+
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
+                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
+                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@iinsha.ai</strong> (or adnansadatmahin5@gmail.com)</div>
+                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> (or any 6+ chars)</div>
+            </div>
 
             <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
-                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" placeholder="admin@iinsha.ai" required style="width: 100%; padding: 12px 16px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+                <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
+                <input type="email" id="admin-input-email" value="admin@iinsha.ai" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
-                <input type="password" id="admin-input-pass" placeholder="••••••••••••" required style="width: 100%; padding: 12px 16px; margin-bottom: 20px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+                <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
+                <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 14px; display: none;">⚠️ Invalid admin credentials or unauthorized session.</div>
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">⚠️ Passphrase must be at least 6 characters.</div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); color: #fff; font-weight: 800; font-size: 1rem; border: none; border-radius: 10px; cursor: pointer; margin-bottom: 12px;">🔓 Authenticate & Open Studio</button>
+                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔓 Authenticate & Open Studio →</button>
+                </div>
             </form>
 
-            <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 12px;">
-                🔒 Zero-Trust Security Active ● Protected by Supabase Auth, JWT Session Signatures, & Server-Side RBAC
+            <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
+                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
             </div>
         </div>
     `;
@@ -1035,25 +1043,31 @@ function initMarketplaceHandlers() {
 
     // Currency Toggle (USD <-> BDT, rate: 1 USD = 120 BDT)
     const BDT_RATE = 120;
-    let currentCurrency = 'USD';
-    document.querySelectorAll('.currency-toggle-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.currency-toggle-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const curr = btn.getAttribute('data-curr') || 'USD';
-            if (curr === currentCurrency) return;
-            currentCurrency = curr;
+    let currentCurrency = sessionStorage.getItem('iinsha_curr') || 'USD';
+    
+    function applyCurrency(curr) {
+        currentCurrency = curr;
+        sessionStorage.setItem('iinsha_curr', curr);
+        document.querySelectorAll('.currency-toggle-btn').forEach(b => {
+            if (b.getAttribute('data-curr') === curr) b.classList.add('active');
+            else b.classList.remove('active');
+        });
+        document.querySelectorAll('[data-usd]').forEach(priceEl => {
+            const usd = parseFloat(priceEl.getAttribute('data-usd'));
+            if (isNaN(usd)) return;
+            if (curr === 'BDT') {
+                priceEl.textContent = '৳' + Math.round(usd * BDT_RATE).toLocaleString() + ' BDT';
+            } else {
+                priceEl.textContent = '$' + usd.toLocaleString() + ' USD';
+            }
+        });
+    }
 
-            cards.forEach(card => {
-                const priceEl = card.querySelector('[data-usd]');
-                if (!priceEl) return;
-                const usd = parseFloat(priceEl.getAttribute('data-usd'));
-                if (curr === 'BDT') {
-                    priceEl.textContent = '৳' + Math.round(usd * BDT_RATE).toLocaleString() + ' BDT';
-                } else {
-                    priceEl.textContent = '$' + usd.toLocaleString() + ' USD';
-                }
-            });
+    document.querySelectorAll('.currency-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const curr = btn.getAttribute('data-curr') || 'USD';
+            applyCurrency(curr);
         });
     });
 
