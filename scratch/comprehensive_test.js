@@ -353,6 +353,8 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'soc', 'telemetry.j
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'privacy', 'controls.js')), 'functions/api/privacy/controls.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'bi.js')), 'functions/api/executive/bi.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'system', 'status_public.js')), 'functions/api/system/status_public.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'live_cockpit.js')), 'functions/api/executive/live_cockpit.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'js', 'core', 'autonomous_company_os.js')), 'js/core/autonomous_company_os.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md')), 'docs/IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md exists');
 
 console.log('\n====================================================');
