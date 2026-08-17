@@ -341,6 +341,20 @@ assert(rbacContent.includes('ENTERPRISE_ROLES') && rbacContent.includes('hasPerm
 const guardContent = fs.readFileSync(path.join(BASE_DIR, 'ai_brain', 'guardrail_engine.js'), 'utf8');
 assert(guardContent.includes('validatePrompt') && guardContent.includes('sanitizeOutput'), 'Guardrail prompt injection & PII scrubber active');
 
+// 11. Check 50-Point Enterprise Hardening Modules
+console.log('\n--- 10. 50-Point Enterprise Modules (Ledger, Order State Machine, DLQ, SOC, Privacy & BI) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'supabase', 'migrations', '20260818000014_financial_ledger_and_state_machine.sql')), 'Migration 14 (Double-entry Ledger & State Machine) exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'finance', 'ledger.js')), 'functions/api/finance/ledger.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'orders', 'state_machine.js')), 'functions/api/orders/state_machine.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'ai', 'firewall.js')), 'functions/api/ai/firewall.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'ai', 'eval_lab.js')), 'functions/api/ai/eval_lab.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'queue', 'dlq.js')), 'functions/api/queue/dlq.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'soc', 'telemetry.js')), 'functions/api/soc/telemetry.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'privacy', 'controls.js')), 'functions/api/privacy/controls.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'bi.js')), 'functions/api/executive/bi.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'system', 'status_public.js')), 'functions/api/system/status_public.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md')), 'docs/IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
