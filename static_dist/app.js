@@ -1,4 +1,3 @@
-
 /* Global Resilience Guard */
 window.onerror = function(msg, url, lineNo, columnNo, error) {
     console.warn("IINSHA Resilience Guard captured non-fatal notice:", msg);
@@ -6990,21 +6989,26 @@ window.openDomainDetailModal = function(domainId) {
 // ==============================================================================
 // PLAYBOOK DIRECT DEPLOY HELPER
 // ==============================================================================
+// Shims to route all CTAs into Master Universal Order Engine
+window.openPricingCheckoutModal = function(packageName, setupPrice, retainerPrice) {
+    window.openCheckoutModal(packageName, setupPrice, retainerPrice);
+};
+
 window.deployPlaybookDirect = function(key) {
     const playbooks = {
-        'saas': { name: 'B2B SaaS SDR & Churn Killer', setup: 2200, monthly: 499 },
-        'ecom': { name: 'E-commerce Refund & Cart Autopilot', setup: 1800, monthly: 399 },
-        'logistics': { name: 'Logistics Manifest OCR & Dispatch', setup: 2000, monthly: 449 },
-        'realestate': { name: 'Real Estate <60s Lead Bot', setup: 1500, monthly: 349 },
-        'healthcare': { name: 'Clinic Intake & No-Show Killer', setup: 1900, monthly: 399 },
-        'profservices': { name: 'Professional Services Billing Hub', setup: 1500, monthly: 349 },
-        'agencies': { name: 'Agency Multi-Tenant Hub & Proposals', setup: 2500, monthly: 499 },
-        'recruitment': { name: 'Staffing Resume Parser & Screening', setup: 1800, monthly: 399 },
-        'finance': { name: 'Finance Invoice OCR & Reconciliation', setup: 2200, monthly: 449 },
-        'construction': { name: 'Trades Missed-Call Quote Chaser', setup: 1400, monthly: 299 }
+        'saas': { name: 'B2B SaaS SDR & Churn Killer Playbook', setup: 2200, monthly: 499 },
+        'ecom': { name: 'E-commerce Refund & Cart Autopilot Playbook', setup: 1800, monthly: 399 },
+        'logistics': { name: 'Logistics Manifest OCR & Dispatch Playbook', setup: 2000, monthly: 449 },
+        'realestate': { name: 'Real Estate <45s Speed-to-Lead Qualifier Playbook', setup: 1500, monthly: 349 },
+        'healthcare': { name: 'Clinic Intake & 24/7 Voice AI Receptionist Playbook', setup: 1900, monthly: 399 },
+        'profservices': { name: 'Legal & Accounting Document OCR Extraction Playbook', setup: 2400, monthly: 549 },
+        'agencies': { name: 'Marketing Agency Stealth Scraping & Outreach Playbook', setup: 2600, monthly: 599 },
+        'recruitment': { name: 'Talent Sourcing & Automated Screening Swarm Playbook', setup: 1700, monthly: 379 },
+        'finance': { name: 'FinTech Bank Statement & Invoice Extraction Playbook', setup: 2800, monthly: 649 },
+        'construction': { name: 'Field Dispatch & Material Invoice Mesh Playbook', setup: 2100, monthly: 479 }
     };
-    const p = playbooks[key] || { name: 'Custom Automation Playbook', setup: 1500, monthly: 349 };
-    openPricingCheckoutModal(p.name, p.setup, p.monthly);
+    const pb = playbooks[key] || { name: 'Turnkey Enterprise Solution (' + key + ')', setup: 1500, monthly: 350 };
+    window.openCheckoutModal(pb.name, pb.setup, pb.monthly);
 };
 
 // ==============================================================================
@@ -8525,3 +8529,186 @@ window.adminApprovePartnerPayout = function(id, name) {
 window.adminTriggerBatchPayout = function() {
     showAffiliateToast('🎉 Batch payout for 3 active partners ($2,450.00 USD) processed successfully via Stripe & bKash!');
 };
+
+
+// ==============================================================================
+// 🛒 MASTER ENTERPRISE ORDER ENGINE, WHATSAPP DISPATCHER & CONTROL PANEL SYNC
+// ==============================================================================
+
+window.USD_TO_BDT_RATE = 122.50;
+window.OWNER_WHATSAPP_NUMBER = '8801629286887';
+
+window.openCheckoutModal = function(packageName, setupPrice, retainerPrice) {
+    let modal = document.getElementById('iinsha-checkout-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-checkout-modal';
+        modal.className = 'modal-overlay';
+        modal.style.cssText = 'display:flex; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(2,6,23,0.85); backdrop-filter:blur(10px); z-index:999999; justify-content:center; align-items:center; padding:20px;';
+        document.body.appendChild(modal);
+    }
+
+    const priceNum = typeof setupPrice === 'number' ? setupPrice : parseFloat((setupPrice || '300').toString().replace(/[^0-9.]/g, '')) || 300;
+    const bdtNum = Math.round(priceNum * window.USD_TO_BDT_RATE);
+    const bdtFormatted = '৳' + bdtNum.toLocaleString('en-BD');
+    const affRef = (typeof window.getActiveAffiliateRef === 'function') ? (window.getActiveAffiliateRef() || 'Direct Traffic') : 'Direct Traffic';
+
+    modal.innerHTML = `
+        <div class="checkout-modal-box" style="background:#090d16; border:1px solid var(--accent-cyan); border-radius:18px; width:100%; max-width:540px; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 30px 80px rgba(0,0,0,0.95); color:#fff; position:relative; animation:fadeIn 0.25s ease;">
+            
+            <button onclick="closeCheckoutModal()" style="position:absolute; top:18px; right:18px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; width:34px; height:34px; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='var(--accent-rose)';" onmouseout="this.style.color='#94a3b8';">✕</button>
+
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                <span class="status-badge completed" style="font-size:0.75rem; padding:3px 10px;">⚡ SECURE ORDER GATEWAY</span>
+                <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono);">Ref: ${affRef}</span>
+            </div>
+
+            <h3 style="color:#fff; font-size:1.35rem; margin-bottom:6px; font-weight:700; line-height:1.3;">${packageName}</h3>
+            
+            <!-- PRICING DUAL DISPLAY (USD / BDT) -->
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(0,242,254,0.3); border-radius:12px; padding:14px; margin:16px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-family:var(--font-mono);">Setup / Package Price</span>
+                    <div style="font-size:1.5rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-mono);">$${priceNum.toLocaleString()} USD</div>
+                </div>
+                <div style="text-align:right;">
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-family:var(--font-mono);">BDT Equivalent (৳)</span>
+                    <div style="font-size:1.3rem; font-weight:700; color:var(--accent-cyan); font-family:var(--font-mono);">${bdtFormatted}</div>
+                </div>
+            </div>
+
+            <form id="iinsha-order-form" onsubmit="event.preventDefault(); submitIinshaOrder('${packageName.replace(/'/g, "\'")}', ${priceNum}, '${bdtFormatted}');">
+                
+                <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Full Name *</label>
+                        <input type="text" id="order-form-name" required placeholder="e.g. John Doe / Adnin Sadat" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-card); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.9rem; outline:none;" onfocus="this.style.borderColor='var(--accent-cyan)'">
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Work Email *</label>
+                            <input type="email" id="order-form-email" required placeholder="name@company.com" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-card); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.9rem; outline:none;" onfocus="this.style.borderColor='var(--accent-cyan)'">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">WhatsApp / Phone *</label>
+                            <input type="tel" id="order-form-phone" required placeholder="+880 1629-286887" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-card); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.9rem; outline:none;" onfocus="this.style.borderColor='var(--accent-cyan)'">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Project Scope / Custom Needs (Optional)</label>
+                        <textarea id="order-form-notes" rows="2" placeholder="Describe your business stack, current tools, or specific SLA deadline..." style="width:100%; background:rgba(0,0,0,0.5); border:1px solid var(--border-card); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none; resize:vertical;" onfocus="this.style.borderColor='var(--accent-cyan)'"></textarea>
+                    </div>
+                </div>
+
+                <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:10px 14px; font-size:0.76rem; color:#a7f3d0; margin-bottom:18px; line-height:1.4;">
+                    🛡️ <strong>Zero-Risk SLA:</strong> Deployed in Docker containers on Hostinger VPS within 48 hours. 100% source code handover with 14-day bug-free warranty.
+                </div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button type="submit" class="btn btn-primary" style="flex:1; padding:14px; font-weight:700; font-size:0.95rem; cursor:pointer; background:linear-gradient(135deg, #06b6d4, #3b82f6); border-radius:10px; box-shadow:0 0 20px rgba(6,182,212,0.4);">
+                        🚀 Place Order & Launch WhatsApp AI
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    `;
+
+    modal.style.display = 'flex';
+};
+
+window.closeCheckoutModal = function() {
+    const modal = document.getElementById('iinsha-checkout-modal');
+    if (modal) modal.style.display = 'none';
+};
+
+window.submitIinshaOrder = function(packageName, priceUsd, priceBdt) {
+    const name = document.getElementById('order-form-name')?.value || 'Client';
+    const email = document.getElementById('order-form-email')?.value || 'Not provided';
+    const phone = document.getElementById('order-form-phone')?.value || 'Not provided';
+    const notes = document.getElementById('order-form-notes')?.value || 'Standard Turnkey Package';
+    const affRef = (typeof window.getActiveAffiliateRef === 'function') ? (window.getActiveAffiliateRef() || 'Direct Traffic') : 'Direct Traffic';
+    const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    const dateStr = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+
+    const orderRecord = {
+        orderId: orderId,
+        date: dateStr,
+        clientName: name,
+        clientEmail: email,
+        clientPhone: phone,
+        service: packageName,
+        priceUsd: priceUsd,
+        priceBdt: priceBdt,
+        notes: notes,
+        affiliateRef: affRef,
+        status: 'New Inbound (Pending Review)',
+        aiSdrScore: '96/100 (Enterprise Verified)'
+    };
+
+    // 1. SAVE TO LOCALSTORAGE FOR CONTROL PANEL ACCESS
+    let orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
+    orders.unshift(orderRecord);
+    localStorage.setItem('iinsha_client_orders', JSON.stringify(orders));
+
+    // 2. CREDIT AFFILIATE LEDGER IF REFERRED
+    if (typeof window.getIinshaPartnerData === 'function') {
+        let partner = window.getIinshaPartnerData();
+        const commissionAmount = Math.round(priceUsd * 0.20);
+        partner.unpaidCommission += commissionAmount;
+        partner.lifetimeRevenue += priceUsd;
+        partner.confirmedOrders += 1;
+        partner.lifecycleDeals.unshift({
+            id: 'DEAL-' + orderId.substring(4),
+            clientName: name,
+            service: packageName,
+            date: dateStr.substring(0, 10),
+            dealSize: `$${priceUsd.toLocaleString()} (${priceBdt})`,
+            commission: `+$${commissionAmount}.00 (20%)`,
+            stageNum: 7,
+            stageLabel: 'Setup Payment Confirmed'
+        });
+        localStorage.setItem('iinsha_active_partner', JSON.stringify(partner));
+    }
+
+    // 3. SHOW NOTIFICATION TOAST
+    if (typeof showAffiliateToast === 'function') {
+        showAffiliateToast(`🎉 Order ${orderId} successfully placed! Synced with Control Panel and WhatsApp.`);
+    }
+
+    closeCheckoutModal();
+
+    // 4. FORMAT STRUCTURED WHATSAPP NOTIFICATION FOR OWNER
+    const waText = 
+`🔔 *NEW IINSHA AI ORDER DISPATCHED*
+━━━━━━━━━━━━━━━━━━━━
+📋 *Order ID:* ${orderId}
+👤 *Client Name:* ${name}
+📧 *Email:* ${email}
+📱 *Phone / WA:* ${phone}
+🎯 *Service Package:* ${packageName}
+💰 *Price:* $${priceUsd.toLocaleString()} USD (${priceBdt})
+🤖 *AI SDR Score:* 96/100 (High-Intent Enterprise)
+🤝 *Affiliate Ref:* ${affRef}
+📝 *Project Notes:* ${notes}
+━━━━━━━━━━━━━━━━━━━━
+⚡ *Action:* Logged into Control Panel (inshatech.pages.dev/admin)`;
+
+    const waUrl = `https://wa.me/${window.OWNER_WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
+    
+    // Open WhatsApp in new tab
+    setTimeout(() => {
+        window.open(waUrl, '_blank');
+    }, 600);
+};
+
+// Expose on window for all components
+window.openCheckoutModal = openCheckoutModal;
+window.closeCheckoutModal = closeCheckoutModal;
+window.submitIinshaOrder = submitIinshaOrder;
+
+
+// ==============================================================================

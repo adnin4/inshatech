@@ -6,7 +6,7 @@
     <title>Autonomous C-Panel OS | IINSHA AI Automation Lab</title>
     <meta name="description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=v20260817_1786973994">
+    <link rel="stylesheet" href="/style.css?v=v20260817_1786974439">
     <style>
         :root {
             --bg-cockpit: #040812;
@@ -765,7 +765,7 @@
         </div>
     </div>
 
-    <script src="/app.js?v=v20260817_1786973994"></script>
+    <script src="/app.js?v=v20260817_1786974439"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -932,38 +932,52 @@
         }
 
         // Live Telemetry Feed & Overview Deals
+        // Live Telemetry Feed & Overview Deals & CRM Kanban Sync
         function initCockpitLiveFeeds() {
+            const orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
             const dealsBox = document.getElementById('overview-deals-list');
-            if (dealsBox) {
-                dealsBox.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:8px;">
+            if (dealsBox && orders.length > 0) {
+                dealsBox.innerHTML = orders.map(o => `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:8px; margin-bottom:8px; border:1px solid rgba(0,242,254,0.2);">
                         <div>
-                            <strong style="font-size:0.88rem; color:#fff; display:block;">MediCare Diagnostics (UK)</strong>
-                            <span style="font-size:0.72rem; color:var(--text-muted);">04. Voice AI Receptionist • Stage 8 / 12</span>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <strong style="font-size:0.88rem; color:#fff;">${o.clientName}</strong>
+                                <span class="badge-gold" style="font-size:0.65rem; padding:1px 6px;">${o.orderId}</span>
+                            </div>
+                            <span style="font-size:0.72rem; color:var(--text-muted);">${o.service} • ${o.clientPhone}</span>
                         </div>
-                        <strong style="color:var(--accent-emerald); font-size:0.85rem; font-family:var(--font-mono);">$360.00 Upfront</strong>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:8px;">
-                        <div>
-                            <strong style="font-size:0.88rem; color:#fff; display:block;">Apex Freight & Logistics</strong>
-                            <span style="font-size:0.72rem; color:var(--text-muted);">06. Gemini 3.0 Vision OCR • Stage 10 / 12 (Live)</span>
+                        <div style="text-align:right;">
+                            <strong style="color:var(--accent-emerald); font-size:0.88rem; font-family:var(--font-mono);">$${o.priceUsd.toLocaleString()} USD</strong>
+                            <div style="font-size:0.68rem; color:var(--accent-cyan); font-family:var(--font-mono);">${o.priceBdt}</div>
                         </div>
-                        <strong style="color:var(--accent-emerald); font-size:0.85rem; font-family:var(--font-mono);">$300.00 Paid</strong>
                     </div>
-                `;
+                `).join('');
             }
 
-            const feed = document.getElementById('live-telemetry-feed');
-            if (feed) {
-                const logs = [
-                    "⚡ [07:22:10 UTC] Webhook: Visitor ?ref=partner10 converted to Lead Form",
-                    "🤖 [07:22:12 UTC] AI SDR Agent AGNT-2019 qualified lead with Score 94/100",
-                    "🛡️ [07:22:15 UTC] Fraud Shield: Verified IP 103.145.x.x (Zero bot flag)",
-                    "📄 [07:22:20 UTC] Gemini 3.0 Pro Vision parsed sample invoice in 420ms",
-                    "🟢 [07:22:25 UTC] n8n Hostinger Docker node execution finished successfully",
-                    "👑 [07:22:30 UTC] Commission $360.00 credited to Partner AFF-1042 ledger"
-                ];
-                feed.innerHTML = logs.map(l => `<div>${l}</div>`).join('');
+            // Also dynamically inject into Stage 1 / Stage 7 of CRM Kanban if available
+            const stage1Col = document.getElementById('kanban-col-1') || document.querySelector('.kanban-column');
+            if (stage1Col && orders.length > 0) {
+                // Keep default and prepend new real inbound orders
+                const existingCards = stage1Col.innerHTML;
+                const newCards = orders.map(o => `
+                    <div class="kanban-card" style="border:1px solid var(--accent-cyan); background:rgba(6,182,212,0.08); margin-bottom:10px; padding:12px; border-radius:10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span class="status-badge live" style="font-size:0.65rem;">NEW CLIENT</span>
+                            <span style="font-size:0.7rem; color:var(--accent-gold); font-family:var(--font-mono);">${o.orderId}</span>
+                        </div>
+                        <strong style="color:#fff; font-size:0.88rem; display:block;">${o.clientName}</strong>
+                        <div style="font-size:0.75rem; color:var(--accent-cyan); margin:2px 0;">${o.service}</div>
+                        <div style="font-size:0.7rem; color:var(--text-muted);">${o.clientEmail} • ${o.clientPhone}</div>
+                        <div style="display:flex; justify-content:space-between; margin-top:8px; align-items:center;">
+                            <span style="font-size:0.82rem; font-weight:700; color:var(--accent-emerald); font-family:var(--font-mono);">$${o.priceUsd.toLocaleString()}</span>
+                            <a href="https://wa.me/${o.clientPhone ? o.clientPhone.replace(/[^0-9]/g,'') : '8801629286887'}?text=Hi%20${encodeURIComponent(o.clientName)},%20IINSHA%20AI%20has%20received%20your%20order%20${o.orderId}" target="_blank" style="font-size:0.7rem; color:var(--accent-cyan); text-decoration:underline;">💬 Contact Client</a>
+                        </div>
+                    </div>
+                `).join('');
+                // If not already injected
+                if (!existingCards.includes(orders[0].orderId)) {
+                    stage1Col.innerHTML = newCards + existingCards;
+                }
             }
         }
 
