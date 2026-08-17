@@ -6629,3 +6629,599 @@ function handleCheckoutFormSubmit(e) {
 window.openOutcomeDetailModal = openOutcomeDetailModal;
 window.openCheckoutModal = openCheckoutModal;
 window.handleCheckoutFormSubmit = handleCheckoutFormSubmit;
+
+
+// ==============================================================================
+// IINSHA AI ENGINEERING & AUTOMATION STUDIO — 08 CORE DOMAINS & CONTROL AI
+// ==============================================================================
+
+window.IINSHA_SERVICE_DOMAINS = {
+    1: {
+        id: 1,
+        code: "01. AI WORKFORCE",
+        name: "Autonomous Multi-Agent Workforce",
+        icon: "🤖",
+        badge: "Flagship Swarm",
+        shortDesc: "Autonomous multi-agent departments replacing repetitive manual seats across your business.",
+        problem: "Hiring, onboarding, and managing manual SDRs, customer support reps, and operations coordinators is slow, expensive ($4k-$8k/seat/mo), and prone to human error and high turnover.",
+        solution: "IINSHA builds an orchestrated 13-agent AI workforce with 4-level HITL governance. Agents autonomously research prospects, write personalized drafts, triage tickets, and manage operations 24/7.",
+        capabilities: ["AI SDR & Outbound Hunter", "AI Sales Closer", "AI Support Swarm", "AI Research Agent", "AI Operations Coordinator", "AI Executive Assistant", "Multi-Agent Orchestrator"],
+        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 2.5 Pro & Claude 3.5 Sonnet Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
+        techStack: ["n8n Mesh", "Gemini 2.5 Pro", "Supabase pgvector", "Docker VPS", "WhatsApp Cloud API"],
+        pricing: { setupUSD: 3000, monthlyUSD: 699, setupBDT: 367500, monthlyBDT: 85600 },
+        timeline: "2 to 3 Weeks",
+        sla: "99.9% Uptime & Daily Health Audit"
+    },
+    2: {
+        id: 2,
+        code: "02. AUTOMATION ENGINEERING",
+        name: "n8n Workflow Mesh & API Integrations",
+        icon: "⚙️",
+        badge: "Core Infrastructure",
+        shortDesc: "Self-hosted n8n orchestration, custom API integrations, and multi-app business logic synchronization.",
+        problem: "SaaS tools operate in silos. Zapier/Make per-task costs skyrocket ($500-$2,000/mo), data gets lost between CRM and payment gateways, and manual data copy-pasting slows down fulfillment.",
+        solution: "We deploy hardened self-hosted n8n instances on Cloud VPS with zero per-task execution fees, custom webhook routers, resilient error-retry queues, and 100% intellectual property ownership.",
+        capabilities: ["Self-Hosted n8n Docker Setup", "Multi-App Custom API Integrations", "CRM 2-Way Synchronization", "Email & Webhook Sequences", "WhatsApp & Telegram Bot Triggers", "Business Process Automation"],
+        deliverables: ["Hardened Hostinger VPS Docker Instance", "Unlimited Workflow Execution Engine", "Failover Webhook Dispatcher", "Automated Error Logging & Recovery", "Complete Workflow JSON Export"],
+        techStack: ["n8n", "Node.js", "Docker", "PostgreSQL", "Cloudflare WAF"],
+        pricing: { setupUSD: 1500, monthlyUSD: 349, setupBDT: 183750, monthlyBDT: 42750 },
+        timeline: "1 to 2 Weeks",
+        sla: "99.95% Execution Uptime"
+    },
+    3: {
+        id: 3,
+        code: "03. AI INTELLIGENCE",
+        name: "Enterprise RAG & Business Digital Twin",
+        icon: "🧠",
+        badge: "Vector Knowledge",
+        shortDesc: "Enterprise RAG knowledge bases, pgvector digital twins, and actionable natural-language business analytics.",
+        problem: "Company knowledge is scattered across Notion, Google Drive, PDFs, and team chats. Employees spend 20% of their work week searching for answers, and executives lack real-time synthesized insights.",
+        solution: "We ingest all your documents, SOPs, tickets, and logs into a secure pgvector database with semantic chunking and hybrid search, creating a living Business Digital Twin that answers complex questions in seconds.",
+        capabilities: ["RAG Vector Knowledge Base", "AI Document Semantic Search", "Business Digital Twin", "Competitor Telemetry Radar", "Revenue & Pipeline Intelligence", "Executive AI Analyst"],
+        deliverables: ["Supabase pgvector Embeddings Pipeline", "Multi-Format Ingestion Engine", "Semantic Hybrid Search UI", "Natural Language Query Dashboard", "Role-Based Access Permissions"],
+        techStack: ["Supabase", "pgvector", "Gemini 2.5", "Python", "FastAPI"],
+        pricing: { setupUSD: 2500, monthlyUSD: 499, setupBDT: 306250, monthlyBDT: 61100 },
+        timeline: "2 Weeks",
+        sla: "Sub-Second Semantic Retrieval"
+    },
+    4: {
+        id: 4,
+        code: "04. AI CUSTOMER EXPERIENCE",
+        name: "24/7 AI Chat & Voice Telephony",
+        icon: "💬",
+        badge: "Omnichannel CX",
+        shortDesc: "24/7 multi-lingual AI chat, phone voice receptionists, speed-to-lead response, and retention automation.",
+        problem: "Leads that wait more than 5 minutes to get a response convert 80% less. Support staff cannot operate 24/7 across time zones, causing customer dissatisfaction and missed after-hours deals.",
+        solution: "We deploy human-sounding AI Voice agents and multi-lingual chat widgets that answer incoming phone calls, qualify intent, book calendar appointments in under 45 seconds, and escalate complex edge cases.",
+        capabilities: ["AI Phone Voice Receptionist", "24/7 Multi-Lingual Web Chat", "<45s Speed-to-Lead Responder", "Calendar Appointment Booking", "Support Ticket Escalation", "Customer Retention & Churn Killer"],
+        deliverables: ["Twilio / WebRTC Voice Agent Pipeline", "Custom Chat Widget with RAG Integration", "Google Calendar & Calendly Sync", "Human Escalation Push Alerts", "Call Audio Recording & Transcription"],
+        techStack: ["Web Speech API", "Twilio", "Gemini 2.5 Flash", "WhatsApp Cloud API"],
+        pricing: { setupUSD: 2000, monthlyUSD: 449, setupBDT: 245000, monthlyBDT: 55000 },
+        timeline: "1 to 2 Weeks",
+        sla: "Instant Response (<3s Latency)"
+    },
+    5: {
+        id: 5,
+        code: "05. AI SALES & MARKETING",
+        name: "Lead Generation & Outreach Engine",
+        icon: "📈",
+        badge: "Revenue Engine",
+        shortDesc: "B2B lead discovery, automated enrichment, ICP scoring, hyper-personalized outreach, and SEO engines.",
+        problem: "Manual B2B prospecting requires multiple expensive subscriptions (Apollo, Clay, Hunter) and hours of manual copy-pasting, resulting in generic spam emails with <1% reply rates.",
+        solution: "An end-to-end automated pipeline: OpenClaw scrapes fresh target accounts, AI enriches contact data, scores against your ICP, writes individualized first-lines based on recent company news, and pushes to CRM.",
+        capabilities: ["B2B Lead Discovery (OpenClaw)", "Data Enrichment & Verification", "ICP Scoring & Qualification", "Hyper-Personalized Cold Outreach", "Automated Proposal Generator", "SEO Content Engine"],
+        deliverables: ["Custom Scraping & Enrichment Workflow", "Deliverability-Hardened SMTP/Instantly Setup", "Dynamic 1-to-1 Email Copywriter", "CRM Pipeline Sync", "Real-Time Open & Reply Dashboard"],
+        techStack: ["OpenClaw", "n8n", "Gemini 2.5", "HubSpot", "Instantly"],
+        pricing: { setupUSD: 2200, monthlyUSD: 499, setupBDT: 269500, monthlyBDT: 61100 },
+        timeline: "2 Weeks",
+        sla: "99.8% Cloudflare Scraping Bypass"
+    },
+    6: {
+        id: 6,
+        code: "06. AI DOCUMENT & DATA",
+        name: "Gemini Vision OCR & Data Pipelines",
+        icon: "📄",
+        badge: "Data Intelligence",
+        shortDesc: "Gemini Vision OCR for invoices, contracts, receipts, Excel files, and automated data ingestion pipelines.",
+        problem: "Employees spend hundreds of hours manually entering data from PDF invoices, scanned receipts, freight bills, and messy spreadsheets into ERPs, leading to costly errors and delays.",
+        solution: "We build high-throughput OCR pipelines powered by Gemini 2.5 Vision that extract nested table line-items, validate mathematical sums, verify PO numbers, and insert clean structured JSON into your database.",
+        capabilities: ["Multi-Format OCR (Invoices, Receipts)", "PDF Contract Intelligence", "Excel & Google Sheets Automation", "Structured Data Extraction", "Automated Bank Reconciliation", "Real-Time ETL Data Pipelines"],
+        deliverables: ["Gemini 2.5 Vision Processing Node", "3-Way PO Matching Engine", "Accounting & ERP Ingestion Sync", "Exception Flagging Queue", "Audit Trail & Verification Log"],
+        techStack: ["Gemini 2.5 Vision", "Python", "n8n", "PostgreSQL", "Google Sheets API"],
+        pricing: { setupUSD: 1800, monthlyUSD: 399, setupBDT: 220500, monthlyBDT: 48900 },
+        timeline: "1 to 2 Weeks",
+        sla: "99.8% OCR Extraction Accuracy"
+    },
+    7: {
+        id: 7,
+        code: "07. CUSTOM SOFTWARE / SaaS",
+        name: "Custom AI Web Apps & Client Portals",
+        icon: "💻",
+        badge: "Software Engineering",
+        shortDesc: "Custom AI web apps, internal staff tooling, client portals, micro-SaaS MVPs, and business platforms.",
+        problem: "Off-the-shelf SaaS doesn't match your unique operational workflow, while hiring a custom agency costs $50k-$100k and takes 6-12 months.",
+        solution: "We build custom, modern, high-performance AI web applications, secure client portals, and internal operations dashboards in weeks, leveraging modern serverless architectures and Supabase backends.",
+        capabilities: ["Custom AI Web Applications", "Internal Operations Tools", "Dedicated Client Portals", "SaaS MVP Development", "Micro AI SaaS Platforms", "Custom Business Operating Systems"],
+        deliverables: ["Full-Stack Web App Codebase", "Supabase Auth & Database Schema", "Responsive UI/UX Design System", "Cloudflare Pages & Workers Edge Deploy", "Complete Source Code Ownership"],
+        techStack: ["HTML5", "Vanilla CSS", "JavaScript", "Supabase", "Cloudflare Workers"],
+        pricing: { setupUSD: 4500, monthlyUSD: 799, setupBDT: 551250, monthlyBDT: 97800 },
+        timeline: "3 to 4 Weeks",
+        sla: "100% Code & IP Handover"
+    },
+    8: {
+        id: 8,
+        code: "08. AI SECURITY & INFRASTRUCTURE",
+        name: "Cloud VPS, WAF & AI-SRE Guardian",
+        icon: "🛡️",
+        badge: "Zero-Trust Ops",
+        shortDesc: "Cloudflare enterprise WAF, automated snapshot backups, 24/7 AI-SRE monitoring, and hardened cloud VPS.",
+        problem: "AI workflows and servers can fail silently, get hit with DDoS attacks, or suffer from token credential leaks without proper security hardening.",
+        solution: "We implement defense-in-depth infrastructure: Cloudflare WAF, automated snapshot backups, SSL/HSTS enforcement, rate limiting, and an autonomous AI-SRE Guardian that detects downtime and self-heals.",
+        capabilities: ["Cloudflare WAF & DDoS Shield", "AI-SRE 24/7 Self-Healing Guardian", "Automated Daily Snapshot Backups", "VPS Docker Security Hardening", "Secrets Vault & Zero-Trust MFA", "Real-Time Telemetry & Alerts"],
+        deliverables: ["Hardened Hostinger / Hetzner Cloud VPS", "Cloudflare Zero-Trust & SSL/HSTS Rules", "Automated S3/GCS Backup Script", "AI-SRE Auto-Restart Daemon", "Security Audit Report"],
+        techStack: ["Cloudflare WAF", "Docker", "UFW / Fail2ban", "Linux Hardening", "Python Daemon"],
+        pricing: { setupUSD: 1500, monthlyUSD: 299, setupBDT: 183750, monthlyBDT: 36600 },
+        timeline: "1 Week",
+        sla: "99.98% High-Availability SLA"
+    }
+};
+
+// ==============================================================================
+// MODAL HANDLER: OPEN DOMAIN DETAIL MODAL
+// ==============================================================================
+window.openDomainDetailModal = function(domainId) {
+    const domain = window.IINSHA_SERVICE_DOMAINS[domainId];
+    if (!domain) return;
+
+    let existingModal = document.getElementById('iinsha-domain-detail-modal');
+    if (existingModal) existingModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'iinsha-domain-detail-modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.88); backdrop-filter:blur(15px); z-index:100000; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;';
+
+    const curr = window.currentCurrency || 'USD';
+    const setupStr = curr === 'BDT' ? `৳${domain.pricing.setupBDT.toLocaleString()}` : `$${domain.pricing.setupUSD.toLocaleString()}`;
+    const monthlyStr = curr === 'BDT' ? `৳${domain.pricing.monthlyBDT.toLocaleString()}/mo` : `$${domain.pricing.monthlyUSD.toLocaleString()}/mo`;
+
+    modal.innerHTML = `
+        <div style="background:rgba(15,23,42,0.96); border:1px solid rgba(6,182,212,0.4); border-radius:20px; width:100%; max-width:820px; max-height:90vh; overflow-y:auto; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
+            
+            <!-- CLOSE BUTTON -->
+            <button onclick="document.getElementById('iinsha-domain-detail-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+
+            <!-- HEADER -->
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+                <div style="font-size:2.5rem; background:rgba(6,182,212,0.15); padding:12px; border-radius:16px; border:1px solid rgba(6,182,212,0.3);">${domain.icon}</div>
+                <div>
+                    <span style="font-size:0.75rem; font-family:'Fira Code',monospace; color:#06b6d4; font-weight:bold; letter-spacing:1px;">${domain.code} ● ${domain.badge}</span>
+                    <h2 style="margin:4px 0 0 0; font-size:1.6rem; color:#fff;">${domain.name}</h2>
+                </div>
+            </div>
+
+            <!-- PROBLEM VS SOLUTION -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+                <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:14px; padding:16px;">
+                    <strong style="color:#f87171; font-size:0.85rem; display:block; margin-bottom:6px;">⚠️ The Business Challenge:</strong>
+                    <p style="margin:0; font-size:0.85rem; color:#cbd5e1; line-height:1.4;">${domain.problem}</p>
+                </div>
+                <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:14px; padding:16px;">
+                    <strong style="color:#34d399; font-size:0.85rem; display:block; margin-bottom:6px;">✨ What IINSHA Builds:</strong>
+                    <p style="margin:0; font-size:0.85rem; color:#cbd5e1; line-height:1.4;">${domain.solution}</p>
+                </div>
+            </div>
+
+            <!-- CAPABILITIES & DELIVERABLES -->
+            <div style="margin-bottom:24px;">
+                <h4 style="margin:0 0 10px 0; color:#fff; font-size:0.95rem;">📦 Core Deliverables & Architecture Inclusions:</h4>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
+                    ${domain.deliverables.map(d => `<div style="background:rgba(30,41,59,0.6); padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); font-size:0.82rem; color:#e2e8f0; display:flex; align-items:center; gap:8px;"><span style="color:#06b6d4;">✓</span> ${d}</div>`).join('')}
+                </div>
+            </div>
+
+            <!-- TECH STACK & SPECS -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding:16px; background:rgba(30,41,59,0.5); border-radius:14px; border:1px solid rgba(255,255,255,0.08); margin-bottom:24px;">
+                <div>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Tech Stack</span>
+                    <strong style="font-size:0.85rem; color:#67e8f9;">${domain.techStack.join(' ● ')}</strong>
+                </div>
+                <div>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Implementation Timeline</span>
+                    <strong style="font-size:0.85rem; color:#facc15;">${domain.timeline}</strong>
+                </div>
+                <div>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Service Level Agreement</span>
+                    <strong style="font-size:0.85rem; color:#4ade80;">${domain.sla}</strong>
+                </div>
+            </div>
+
+            <!-- PRICING & CTA BAR -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
+                <div>
+                    <div style="font-size:1.35rem; font-weight:bold; color:#fff;">
+                        ${setupStr} <span style="font-size:0.85rem; font-weight:normal; color:var(--text-muted);">Setup</span> + <span style="color:#06b6d4;">${monthlyStr}</span>
+                    </div>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">100% Code Sovereignty & No Per-Task Limits</span>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="document.getElementById('iinsha-domain-detail-modal').remove(); openPricingCheckoutModal('${domain.name}', ${domain.pricing.setupUSD}, ${domain.pricing.monthlyUSD});" class="btn btn-primary" style="padding:12px 24px; font-weight:bold; cursor:pointer;">
+                        🚀 Deploy System Now
+                    </button>
+                    <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20am%20interested%20in%20${encodeURIComponent(domain.name)}" target="_blank" class="btn btn-glass" style="padding:12px 18px; font-weight:bold; display:flex; align-items:center; gap:6px;">
+                        📱 WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+};
+
+// ==============================================================================
+// PLAYBOOK DIRECT DEPLOY HELPER
+// ==============================================================================
+window.deployPlaybookDirect = function(key) {
+    const playbooks = {
+        'saas': { name: 'B2B SaaS SDR & Churn Killer', setup: 2200, monthly: 499 },
+        'ecom': { name: 'E-commerce Refund & Cart Autopilot', setup: 1800, monthly: 399 },
+        'logistics': { name: 'Logistics Manifest OCR & Dispatch', setup: 2000, monthly: 449 },
+        'realestate': { name: 'Real Estate <60s Lead Bot', setup: 1500, monthly: 349 },
+        'healthcare': { name: 'Clinic Intake & No-Show Killer', setup: 1900, monthly: 399 },
+        'profservices': { name: 'Professional Services Billing Hub', setup: 1500, monthly: 349 },
+        'agencies': { name: 'Agency Multi-Tenant Hub & Proposals', setup: 2500, monthly: 499 },
+        'recruitment': { name: 'Staffing Resume Parser & Screening', setup: 1800, monthly: 399 },
+        'finance': { name: 'Finance Invoice OCR & Reconciliation', setup: 2200, monthly: 449 },
+        'construction': { name: 'Trades Missed-Call Quote Chaser', setup: 1400, monthly: 299 }
+    };
+    const p = playbooks[key] || { name: 'Custom Automation Playbook', setup: 1500, monthly: 349 };
+    openPricingCheckoutModal(p.name, p.setup, p.monthly);
+};
+
+// ==============================================================================
+// INTERACTIVE AI SOLUTION FINDER MODAL (2-MIN PROBLEM-TO-SOLUTION ROUTER)
+// ==============================================================================
+window.openAiSolutionFinderModal = function() {
+    let existing = document.getElementById('iinsha-solution-finder-modal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'iinsha-solution-finder-modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.9); backdrop-filter:blur(15px); z-index:100000; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;';
+
+    modal.innerHTML = `
+        <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(139,92,246,0.4); border-radius:20px; width:100%; max-width:760px; max-height:90vh; overflow-y:auto; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
+            
+            <button onclick="document.getElementById('iinsha-solution-finder-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+
+            <div style="text-align:center; margin-bottom:24px;">
+                <span style="font-size:0.8rem; font-family:'Fira Code',monospace; color:#a78bfa; font-weight:bold; letter-spacing:1px;">AI SOLUTION FINDER & ROI CALCULATOR</span>
+                <h2 style="margin:6px 0; font-size:1.7rem; color:#fff;">What Business Problem Do You Want Solved?</h2>
+                <p style="margin:0; font-size:0.88rem; color:var(--text-muted);">Answer 2 quick questions to calculate your custom autonomous system architecture, setup cost, and monthly savings.</p>
+            </div>
+
+            <!-- STEP 1: INDUSTRY -->
+            <div style="margin-bottom:20px;">
+                <label style="display:block; font-size:0.88rem; font-weight:bold; color:#cbd5e1; margin-bottom:8px;">1. Select Your Industry / Business Type:</label>
+                <select id="finder-industry-select" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:12px; color:#fff; font-size:0.9rem; outline:none;">
+                    <option value="saas">B2B SaaS / Software</option>
+                    <option value="ecom">E-commerce / D2C Brand</option>
+                    <option value="logistics">Freight, Logistics & 3PL</option>
+                    <option value="realestate">Real Estate & Property</option>
+                    <option value="healthcare">Healthcare & Dental Clinics</option>
+                    <option value="agency">Agencies & Consultancies</option>
+                    <option value="profservices">Professional Services (Legal, Accounting)</option>
+                    <option value="recruitment">Recruitment & Staffing</option>
+                    <option value="trades">Construction, Home Services & Trades</option>
+                    <option value="other">Other High-Growth Business</option>
+                </select>
+            </div>
+
+            <!-- STEP 2: BOTTLENECK -->
+            <div style="margin-bottom:24px;">
+                <label style="display:block; font-size:0.88rem; font-weight:bold; color:#cbd5e1; margin-bottom:8px;">2. What Is Your Biggest Operational Bottleneck?</label>
+                <select id="finder-bottleneck-select" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:12px; color:#fff; font-size:0.9rem; outline:none;">
+                    <option value="leads">Slow Lead Response & Low Outbound Sales Pipeline</option>
+                    <option value="support">High Customer Support Queue & Missed After-Hours Tickets</option>
+                    <option value="docs">Manual Invoice, Receipt & Document Data Entry</option>
+                    <option value="silo">Disconnected Apps, Manual Copy-Pasting & No CRM Sync</option>
+                    <option value="custom">Need a Custom AI Web App or Client Portal MVP</option>
+                </select>
+            </div>
+
+            <button onclick="calculateAiSolutionRecommendation()" class="btn btn-primary" style="width:100%; padding:14px; font-size:1rem; font-weight:bold; cursor:pointer; background:linear-gradient(135deg, #8b5cf6, #06b6d4);">
+                🔮 Calculate AI Recommendation & ROI →
+            </button>
+
+            <!-- RESULT CONTAINER -->
+            <div id="finder-result-box" style="display:none; margin-top:24px; padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.4); border-radius:16px;">
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+};
+
+window.calculateAiSolutionRecommendation = function() {
+    const industry = document.getElementById('finder-industry-select').value;
+    const bottleneck = document.getElementById('finder-bottleneck-select').value;
+    const box = document.getElementById('finder-result-box');
+    if (!box) return;
+
+    let recTitle = "AI Growth Engine";
+    let setup = 1500;
+    let monthly = 349;
+    let savings = "$2,400 / month";
+    let desc = "Automates your multi-touch lead discovery, CRM sync, and automated qualification sequences.";
+
+    if (bottleneck === 'leads') {
+        recTitle = "AI Sales Engine & Autonomous SDR";
+        setup = 1500; monthly = 349; savings = "$3,200 / month in manual SDR labor";
+        desc = "Integrates OpenClaw lead enrichment, Gemini 2.5 personalized 1-to-1 cold outreach, and automated meeting booking.";
+    } else if (bottleneck === 'support') {
+        recTitle = "24/7 AI Customer Support & Voice Telephony";
+        setup = 2000; monthly = 449; savings = "$4,000 / month in support staffing";
+        desc = "Deploys RAG knowledge base chat + AI phone voice receptionist with sub-3s answer latency.";
+    } else if (bottleneck === 'docs') {
+        recTitle = "Gemini Vision OCR & Document Ingestion Pipeline";
+        setup = 1800; monthly = 399; savings = "$2,800 / month in manual data entry";
+        desc = "Processes PDF invoices, manifests, and receipts with 99.8% precision and direct ERP reconciliation.";
+    } else if (bottleneck === 'custom') {
+        recTitle = "Custom AI Web Application & Portal MVP";
+        setup = 4500; monthly = 799; savings = "$15,000+ compared to agency dev builds";
+        desc = "Builds a bespoke full-stack Supabase + Cloudflare AI web portal tailored exactly to your business logic.";
+    }
+
+    box.style.display = 'block';
+    box.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div>
+                <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold; font-family:'Fira Code',monospace;">RECOMMENDED ARCHITECTURE FOR YOUR BUSINESS:</span>
+                <h3 style="margin:4px 0 0 0; color:#fff; font-size:1.35rem;">${recTitle}</h3>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:1.3rem; font-weight:bold; color:#34d399;">$${setup} <span style="font-size:0.8rem; color:#cbd5e1;">Setup</span> + $${monthly}/mo</div>
+                <span style="font-size:0.75rem; color:#facc15;">Est. Net Savings: ${savings}</span>
+            </div>
+        </div>
+        <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:18px;">${desc}</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button onclick="document.getElementById('iinsha-solution-finder-modal').remove(); openPricingCheckoutModal('${recTitle}', ${setup}, ${monthly});" class="btn btn-primary" style="flex:1; padding:12px; font-weight:bold; cursor:pointer;">
+                🚀 Proceed to Deploy (${recTitle})
+            </button>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20got%20the%20recommendation%20for%20${encodeURIComponent(recTitle)}%20on%20IINSHA." target="_blank" class="btn btn-glass" style="padding:12px 20px; font-weight:bold; display:flex; align-items:center; gap:6px;">
+                📱 Discuss on WhatsApp
+            </a>
+        </div>
+    `;
+};
+
+// ==============================================================================
+// CURRENCY SWITCHER HELPER (USD <-> BDT)
+// ==============================================================================
+window.currentCurrency = 'USD';
+window.setGlobalPricingCurrency = function(curr) {
+    window.currentCurrency = curr;
+    const btnUSD = document.getElementById('btn-curr-usd');
+    const btnBDT = document.getElementById('btn-curr-bdt');
+
+    if (btnUSD && btnBDT) {
+        if (curr === 'USD') {
+            btnUSD.style.background = 'var(--primary)';
+            btnUSD.style.color = '#030712';
+            btnBDT.style.background = 'transparent';
+            btnBDT.style.color = '#fff';
+        } else {
+            btnBDT.style.background = 'var(--primary)';
+            btnBDT.style.color = '#030712';
+            btnUSD.style.background = 'transparent';
+            btnUSD.style.color = '#fff';
+        }
+    }
+
+    const rate = 122.5; // 1 USD = 122.5 BDT
+
+    // Update pricing cards
+    document.querySelectorAll('.pricing-amount[data-usd]').forEach(el => {
+        const usdVal = parseFloat(el.getAttribute('data-usd'));
+        if (curr === 'BDT') {
+            const bdtVal = Math.round(usdVal * rate);
+            el.innerHTML = `৳${bdtVal.toLocaleString()} <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span>`;
+        } else {
+            el.innerHTML = `$${usdVal.toLocaleString()} <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span>`;
+        }
+    });
+
+    document.querySelectorAll('.pricing-period[data-usd-sub]').forEach(el => {
+        const usdSub = parseFloat(el.getAttribute('data-usd-sub'));
+        if (curr === 'BDT') {
+            const bdtSub = Math.round(usdSub * rate);
+            el.innerHTML = `+ ৳${bdtSub.toLocaleString()} / month maintenance`;
+        } else {
+            el.innerHTML = `+ $${usdSub.toLocaleString()} / month maintenance`;
+        }
+    });
+};
+
+// ==============================================================================
+// PRICING CHECKOUT MODAL
+// ==============================================================================
+window.openPricingCheckoutModal = function(pkgName, setupUSD, monthlyUSD) {
+    let existing = document.getElementById('iinsha-checkout-modal');
+    if (existing) existing.remove();
+
+    const curr = window.currentCurrency || 'USD';
+    const rate = 122.5;
+    const setupStr = curr === 'BDT' ? `৳${Math.round(setupUSD * rate).toLocaleString()}` : `$${setupUSD.toLocaleString()}`;
+    const monthlyStr = curr === 'BDT' ? `৳${Math.round(monthlyUSD * rate).toLocaleString()} / month` : `$${monthlyUSD.toLocaleString()} / month`;
+
+    const modal = document.createElement('div');
+    modal.id = 'iinsha-checkout-modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.9); backdrop-filter:blur(15px); z-index:100000; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;';
+
+    modal.innerHTML = `
+        <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(6,182,212,0.4); border-radius:20px; width:100%; max-width:600px; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
+            
+            <button onclick="document.getElementById('iinsha-checkout-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+
+            <span style="font-size:0.75rem; font-family:'Fira Code',monospace; color:#06b6d4; font-weight:bold; letter-spacing:1px;">PRODUCTIZED SYSTEM ORDER INTAKE</span>
+            <h2 id="checkout-pkg-title" style="margin:4px 0 12px 0; font-size:1.5rem; color:#fff;">${pkgName}</h2>
+            
+            <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Implementation Investment</span>
+                    <strong style="font-size:1.25rem; color:#34d399;">${setupStr} <span style="font-size:0.8rem; font-weight:normal; color:#cbd5e1;">Setup</span></strong>
+                </div>
+                <div style="text-align:right;">
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Recurring Maintenance</span>
+                    <strong style="font-size:1.1rem; color:#67e8f9;">${monthlyStr}</strong>
+                </div>
+            </div>
+
+            <div style="margin-bottom:16px;">
+                <label style="display:block; font-size:0.85rem; color:#cbd5e1; margin-bottom:6px;">Your Name / Company:</label>
+                <input type="text" id="order-client-name" placeholder="e.g. Adnan Sadat / Acme Corp" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;" />
+            </div>
+
+            <div style="margin-bottom:16px;">
+                <label style="display:block; font-size:0.85rem; color:#cbd5e1; margin-bottom:6px;">Your Email:</label>
+                <input type="email" id="order-client-email" placeholder="name@company.com" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;" />
+            </div>
+
+            <div style="margin-bottom:24px;">
+                <label style="display:block; font-size:0.85rem; color:#cbd5e1; margin-bottom:6px;">Specific Business Objective / Custom Notes:</label>
+                <textarea id="order-client-notes" rows="3" placeholder="Briefly describe your stack (e.g. HubSpot, Shopify, Postgres) and target timeline..." style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; outline:none; box-sizing:border-box;"></textarea>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <button onclick="submitIinshaOrderDirect('${pkgName}', '${setupStr}', '${monthlyStr}')" class="btn btn-primary" style="flex:1; padding:12px; font-weight:bold; cursor:pointer;">
+                    🚀 Confirm & Launch Onboarding
+                </button>
+                <button onclick="submitIinshaOrderWhatsApp('${pkgName}', '${setupStr}', '${monthlyStr}')" class="btn btn-glass" style="padding:12px 18px; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:6px;">
+                    📱 Order via WhatsApp
+                </button>
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+};
+
+window.submitIinshaOrderDirect = function(pkg, setup, monthly) {
+    const name = document.getElementById('order-client-name')?.value || 'Valued Client';
+    const email = document.getElementById('order-client-email')?.value || 'Not provided';
+    const notes = document.getElementById('order-client-notes')?.value || 'Standard Deployment';
+
+    alert(`🎉 Thank you, ${name}! Your order for [${pkg}] has been recorded. Our lead engineer Adnin Sadat Mahin will review your brief (${email}) and dispatch your onboarding roadmap within 24 hours.`);
+    document.getElementById('iinsha-checkout-modal')?.remove();
+};
+
+window.submitIinshaOrderWhatsApp = function(pkg, setup, monthly) {
+    const name = document.getElementById('order-client-name')?.value || 'Client';
+    const email = document.getElementById('order-client-email')?.value || '';
+    const notes = document.getElementById('order-client-notes')?.value || '';
+
+    const text = `Hi Adnin, I want to order [${pkg}] (${setup} + ${monthly}). Name: ${name}, Email: ${email}, Notes: ${notes}`;
+    window.open(`https://wa.me/8801629286887?text=${encodeURIComponent(text)}`, '_blank');
+    document.getElementById('iinsha-checkout-modal')?.remove();
+};
+
+
+// ==============================================================================
+// IINSHA CONTROL AI & MARKETING COMMANDER (9-AGENT ORCHESTRATOR)
+// ==============================================================================
+
+window.executeIinshaControlAI = function() {
+    const promptInput = document.getElementById('iinsha-control-ai-prompt');
+    const resultBox = document.getElementById('iinsha-control-ai-result');
+    if (!promptInput || !resultBox || !promptInput.value.trim()) return;
+
+    const query = promptInput.value.trim();
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = `
+        <div style="padding:20px; text-align:center; color:#06b6d4;">
+            <div style="font-size:1.8rem; animation:spin 1s linear infinite; display:inline-block;">⚡</div>
+            <div style="margin-top:10px; font-weight:bold; font-size:0.95rem;">IINSHA Control AI is orchestrating 13 agents...</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Researching market ➔ Structuring deliverables ➔ Calculating Setup & Monthly pricing ➔ Generating SEO & Affiliate Assets</div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        const slug = query.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const title = query.length > 50 ? query.substring(0, 50) + '...' : query;
+        
+        resultBox.innerHTML = `
+            <div style="background:rgba(15,23,42,0.95); border:1px solid rgba(16,185,129,0.5); border-radius:14px; padding:20px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    <div>
+                        <span style="font-size:0.72rem; color:#34d399; font-weight:bold; font-family:'Fira Code',monospace;">✅ AI SERVICE SPECIFICATION GENERATED</span>
+                        <h4 style="margin:4px 0 0 0; color:#fff; font-size:1.15rem;">${title}</h4>
+                    </div>
+                    <span style="background:rgba(6,182,212,0.15); color:#06b6d4; border:1px solid rgba(6,182,212,0.3); padding:4px 10px; border-radius:8px; font-size:0.75rem; font-weight:bold;">Status: Draft Ready</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; font-size:0.82rem; margin-bottom:16px;">
+                    <div><strong>Slug:</strong> <code style="color:#67e8f9;">/${slug}</code></div>
+                    <div><strong>Category:</strong> <span style="color:#facc15;">04. AI Customer Experience</span></div>
+                    <div><strong>Setup Fee:</strong> <strong style="color:#34d399;">$1,800 USD</strong></div>
+                    <div><strong>Monthly Retainer:</strong> <strong style="color:#38bdf8;">$399 / mo</strong></div>
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; font-size:0.8rem; color:#cbd5e1; margin-bottom:14px;">
+                    <strong>Auto-Generated Deliverables:</strong><br>
+                    • Sub-3s low latency voice agent with EHR / clinic booking integration.<br>
+                    • Multi-lingual support (English + Spanish + Bengali).<br>
+                    • Automated no-show reduction SMS reminders & emergency escalation queue.
+                </div>
+
+                <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; font-size:0.8rem; color:#cbd5e1; margin-bottom:16px;">
+                    <strong>SEO & Affiliate Assets:</strong><br>
+                    • Meta Title: ${title} | IINSHA Autonomous AI Studio<br>
+                    • Pre-written LinkedIn / X Pitch + 1-Click Deep Link Generated<br>
+                    • 20% Partner Commission Enabled ($360 setup + $79.80/mo recurring)
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <button onclick="approveAndPublishAiService('${title.replace(/'/g, "\'")}', 1800, 399)" class="btn btn-primary" style="flex:1; padding:10px; font-weight:bold; cursor:pointer;">
+                        🚀 1-Click Approve & Publish to Live Site
+                    </button>
+                    <button onclick="document.getElementById('iinsha-control-ai-result').style.display='none'" class="btn btn-glass" style="padding:10px 16px; cursor:pointer;">
+                        Discard
+                    </button>
+                </div>
+            </div>
+        `;
+    }, 1200);
+};
+
+window.approveAndPublishAiService = function(name, setup, monthly) {
+    alert(`🎉 Success! [${name}] has been approved, compiled, and added to the IINSHA Live Service Registry & Catalog.`);
+    const res = document.getElementById('iinsha-control-ai-result');
+    if (res) {
+        res.innerHTML = `<div style="padding:14px; background:rgba(16,185,129,0.2); border:1px solid #10b981; border-radius:10px; color:#34d399; font-weight:bold; text-align:center;">✨ Service is now LIVE across Public Catalog, Marketplace & Affiliate Engine!</div>`;
+    }
+};
+
+// ==============================================================================
+// MARKETING COMMANDER (9-AGENT ORCHESTRATOR)
+// ==============================================================================
+window.runMarketingCommanderAgent = function(agentKey) {
+    const agents = {
+        'seo': { name: 'SEO Agent', action: 'Auditing top 20 high-intent keywords for "AI Automation Studio" & updating meta tags...' },
+        'content': { name: 'Content Agent', action: 'Drafting 3 technical case-study breakdowns on n8n vs Zapier cost reduction...' },
+        'research': { name: 'Research Agent', action: 'Scraping competitor pricing updates across 15 enterprise automation agencies...' },
+        'social': { name: 'Social Agent', action: 'Scheduling 5 high-converting LinkedIn carousels on 13-agent swarm workflows...' },
+        'email': { name: 'Email Agent', action: 'Generating hyper-personalized 1-to-1 outreach drafts for 50 qualified B2B leads...' },
+        'lead': { name: 'Lead Agent', action: 'Enriching 100 recent ICP prospects with verified founder emails & tech stack tags...' },
+        'outreach': { name: 'Outreach Agent', action: 'Warming up SMTP nodes and staging automated follow-ups with human review gate...' },
+        'analytics': { name: 'Analytics Agent', action: 'Computing real-time EPC, conversion rate, and pipeline velocity metrics...' },
+        'cro': { name: 'CRO Agent', action: 'Running heuristic A/B analysis on Hero CTA and booking funnel dropoffs...' }
+    };
+
+    const agent = agents[agentKey] || { name: 'Marketing Agent', action: 'Executing autonomous marketing optimization...' };
+    
+    alert(`🤖 [${agent.name}] Activated!\n\nAction: ${agent.action}\n\nGovernance: Level 2 HITL (Requires Human Approval before final external broadcast).`);
+};

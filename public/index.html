@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
     
     <!-- Primary Styling -->
-    <link rel="stylesheet" href="/style.css?v=v20260817_1786929585">
+    <link rel="stylesheet" href="/style.css?v=v20260817_1786930670">
     
     <!-- Three.js (WebGL 3D Core) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -26,8 +26,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
     
     <!-- Custom Immersive Scripts -->
-    <script src="/hero3d.js?v=v20260817_1786929585" defer></script>
-    <script src="/scroll-engine.js?v=v20260817_1786929585" defer></script>
+    <script src="/hero3d.js?v=v20260817_1786930670" defer></script>
+    <script src="/scroll-engine.js?v=v20260817_1786930670" defer></script>
 </head>
 <body>
 
@@ -71,26 +71,35 @@
                     <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 20px;"></div>
                     
                     <div class="hero-eyebrow">
-                        <span class="status-dot"></span> SYSTEM ONLINE ● AUTONOMOUS MULTI-AGENT BUSINESS OS
+                        <span class="status-dot"></span> SYSTEM ONLINE ● IINSHA AI ENGINEERING & AUTOMATION STUDIO
                     </div>
                     
-                    <h1 class="hero-title">GIVE IINSHA A<br><span class="accent">BUSINESS GOAL.</span><br>WE EXECUTE IT.</h1>
+                    <h1 class="hero-title">TELL US YOUR BUSINESS PROBLEM.<br><span class="accent">WE DESIGN & AI BUILDS IT.</span><br>AUTOMATION RUNS IT.</h1>
                     
                     <p class="hero-subtitle-text">
-                        Tell IINSHA what you want done. Our autonomous AI workforce researches, plans, executes, monitors, and optimizes the work—with you retaining 4-level human control and 100% data sovereignty.
+                        Beyond simple automations — IINSHA is an end-to-end <strong>AI Workforce & Autonomous Business Operating System</strong>. Powered by self-hosted n8n workflow mesh, 13-agent swarms, Gemini 2.5 neural intelligence, and enterprise-grade security.
                     </p>
                     
-                    <div class="hero-actions">
-                        <a href="#mission-system" class="btn-primary magnetic-cta">🚀 Launch a Mission</a>
-                        <a href="#playbooks" class="btn-ghost">🏢 Explore Industry Playbooks</a>
-                        <a href="#ai-lab" class="btn-ghost" style="color: var(--accent-cyan); border-color: var(--accent-cyan);">🧮 Calculate Lost Revenue</a>
+                    <!-- DUAL CONVERSION CTAS -->
+                    <div class="hero-ctas" style="display:flex; flex-wrap:wrap; gap:14px; margin-top:24px; align-items:center;">
+                        <a href="#async-audit" class="btn btn-primary" style="padding:14px 28px; font-size:1.05rem; font-weight:700; box-shadow:0 0 25px rgba(6,182,212,0.4);">
+                            ⚡ Book Free AI Audit <span style="font-size:0.8rem; font-weight:normal; opacity:0.9;">(24hr Video Teardown)</span>
+                        </a>
+                        <button onclick="openAiSolutionFinderModal()" class="btn btn-glass" style="padding:14px 24px; font-size:1rem; font-weight:600; border:1px solid rgba(139,92,246,0.5); background:rgba(139,92,246,0.15);">
+                            🧭 AI Solution Finder <span style="font-size:0.75rem; color:#a78bfa;">(2-Min Quiz)</span>
+                        </button>
+                        <a href="#mission-system" class="btn btn-glass" style="padding:14px 20px; font-size:0.95rem; font-weight:500;">
+                            🚀 Launch Mission
+                        </a>
                     </div>
                     
-                    <div class="hero-status">
-                        <div class="status-chip"><span class="dot"></span> 13 AI AGENTS ACTIVE</div>
-                        <div class="status-chip"><span class="dot"></span> n8n SELF-HOSTED MESH</div>
-                        <div class="status-chip"><span class="dot"></span> 4-LEVEL HITL GATE</div>
-                        <div class="status-chip"><span class="dot"></span> &lt;60s SPEED-TO-LEAD</div>
+                    <!-- TELEMETRY BADGES BAR -->
+                    <div class="hero-telemetry-bar" style="margin-top:32px; display:flex; flex-wrap:wrap; gap:20px; font-size:0.82rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.08); padding-top:16px;">
+                        <span><strong style="color:#10b981;">● 99.98%</strong> Workflow Uptime</span>
+                        <span><strong style="color:#06b6d4;">● 1.4M+</strong> Tasks Executed</span>
+                        <span><strong style="color:#8b5cf6;">● &lt;45s</strong> Speed-to-Lead</span>
+                        <span><strong style="color:#f59e0b;">● 100% Free</strong> Multi-LLM & Open-Source Mesh</span>
+                        <span><strong style="color:#ec4899;">● 4-Level</strong> Zero-Trust HITL</span>
                     </div>
                 </div>
             </div>
@@ -285,84 +294,158 @@
         <!-- SECTION 4: OUTCOME-BASED SOLUTION PACKAGING -->
         <section class="section" id="solutions" style="background: rgba(8, 9, 13, 0.4);">
             <div class="container reveal-up">
-                <div class="section-header">
-                    <div class="eyebrow">business outcomes</div>
-                    <h2 class="section-title">5 Core Solution Outcomes</h2>
-                    <p class="section-subtitle">We package AI workflows into clear business outcomes. Select an outcome to inspect its capabilities.</p>
+                <div class="section-header" style="text-align: center;">
+                    <div class="eyebrow">IINSHA AI ENGINEERING & AUTOMATION STUDIO</div>
+                    <h2 class="section-title">08 Core Service Domains & Productized Systems</h2>
+                    <p class="section-subtitle" style="margin: 0 auto; max-width:800px;">A full-spectrum engineering architecture: from autonomous multi-agent workforces and workflow mesh to document intelligence, custom SaaS, and secure AI cloud infrastructure.</p>
                 </div>
                 
-                <div class="solutions-grid stagger-children">
+                <div class="solutions-grid stagger-children" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:36px;">
                     
-                    <!-- OUTCOME 1: GROW -->
-                    <div class="solution-card" onclick="openOutcomeDetailModal(1)">
-                        <div class="solution-number">🚀 OUTCOME 01</div>
-                        <div class="solution-icon">🎯</div>
-                        <h3>Grow (Sales & Revenue)</h3>
-                        <p>Lead generation, autonomous SDR prospecting, SEO content engines, and cold email pipeline automation.</p>
+                    <!-- DOMAIN 01: AI WORKFORCE -->
+                    <div class="solution-card" onclick="openDomainDetailModal(1)">
+                        <div class="solution-number">DOMAIN 01</div>
+                        <div class="solution-icon">🤖</div>
+                        <h3>01. AI Workforce</h3>
+                        <p>Autonomous multi-agent departments replacing repetitive manual seats across your business.</p>
                         <div class="solution-capabilities">
-                            <span class="cap-tag">AI Lead Hunter</span>
-                            <span class="cap-tag">Autonomous SDR</span>
-                            <span class="cap-tag">SEO Generator</span>
+                            <span class="cap-tag">AI SDR</span>
+                            <span class="cap-tag">AI Sales Agent</span>
+                            <span class="cap-tag">AI Support Agent</span>
+                            <span class="cap-tag">AI Operations</span>
+                            <span class="cap-tag">Multi-Agent Swarm</span>
                         </div>
-                        <div class="solution-cta">Explore Capabilities ➔</div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 01 →</span>
+                        </div>
                     </div>
                     
-                    <!-- OUTCOME 2: AUTOMATE -->
-                    <div class="solution-card" onclick="openOutcomeDetailModal(2)">
-                        <div class="solution-number">⚙️ OUTCOME 02</div>
-                        <div class="solution-icon">⚡</div>
-                        <h3>Automate (Operations)</h3>
-                        <p>n8n workflow mesh, invoice & document OCR extraction, CRM synchronization, and financial transaction pipelines.</p>
+                    <!-- DOMAIN 02: AUTOMATION ENGINEERING -->
+                    <div class="solution-card" onclick="openDomainDetailModal(2)">
+                        <div class="solution-number">DOMAIN 02</div>
+                        <div class="solution-icon">⚙️</div>
+                        <h3>02. Automation Engineering</h3>
+                        <p>Self-hosted n8n orchestration, custom API integrations, and multi-app business logic synchronization.</p>
                         <div class="solution-capabilities">
-                            <span class="cap-tag">n8n Core</span>
-                            <span class="cap-tag">Invoice Gemini OCR</span>
+                            <span class="cap-tag">n8n Automation</span>
+                            <span class="cap-tag">API Integration</span>
                             <span class="cap-tag">CRM Sync</span>
+                            <span class="cap-tag">WhatsApp/Telegram</span>
+                            <span class="cap-tag">Process Mesh</span>
                         </div>
-                        <div class="solution-cta">Explore Capabilities ➔</div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 02 →</span>
+                        </div>
                     </div>
                     
-                    <!-- OUTCOME 3: OPERATE -->
-                    <div class="solution-card" onclick="openOutcomeDetailModal(3)">
-                        <div class="solution-number">🤖 OUTCOME 03</div>
+                    <!-- DOMAIN 03: AI INTELLIGENCE -->
+                    <div class="solution-card" onclick="openDomainDetailModal(3)">
+                        <div class="solution-number">DOMAIN 03</div>
+                        <div class="solution-icon">🧠</div>
+                        <h3>03. AI Intelligence</h3>
+                        <p>Enterprise RAG knowledge bases, pgvector digital twins, and actionable natural-language business analytics.</p>
+                        <div class="solution-capabilities">
+                            <span class="cap-tag">RAG Knowledge Base</span>
+                            <span class="cap-tag">AI Search</span>
+                            <span class="cap-tag">Business Twin</span>
+                            <span class="cap-tag">Competitor Intel</span>
+                            <span class="cap-tag">Revenue Insights</span>
+                        </div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 03 →</span>
+                        </div>
+                    </div>
+                    
+                    <!-- DOMAIN 04: AI CUSTOMER EXPERIENCE -->
+                    <div class="solution-card" onclick="openDomainDetailModal(4)">
+                        <div class="solution-number">DOMAIN 04</div>
                         <div class="solution-icon">💬</div>
-                        <h3>Operate (AI Workforce)</h3>
-                        <p>24/7 customer support swarms, executive AI assistants, competitor intelligence monitoring, and custom digital workers.</p>
+                        <h3>04. AI Customer Experience</h3>
+                        <p>24/7 multi-lingual AI chat, phone voice receptionists, speed-to-lead response, and retention automation.</p>
                         <div class="solution-capabilities">
-                            <span class="cap-tag">WhatsApp RAG</span>
-                            <span class="cap-tag">Support Triage</span>
-                            <span class="cap-tag">AI Assistant</span>
+                            <span class="cap-tag">AI Voice Agent</span>
+                            <span class="cap-tag">AI Chat 24/7</span>
+                            <span class="cap-tag">&lt;60s Lead Response</span>
+                            <span class="cap-tag">Appointment Booking</span>
+                            <span class="cap-tag">Churn Killer</span>
                         </div>
-                        <div class="solution-cta">Explore Capabilities ➔</div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 04 →</span>
+                        </div>
                     </div>
                     
-                    <!-- OUTCOME 4: INTELLIGENCE -->
-                    <div class="solution-card" onclick="openOutcomeDetailModal(4)">
-                        <div class="solution-number">🧠 OUTCOME 04</div>
-                        <div class="solution-icon">📊</div>
-                        <h3>Intelligence (RAG & Twin)</h3>
-                        <p>Supabase Vector PGVector memory, RAG semantic document search, revenue intelligence dashboards, and Business Digital Twin.</p>
+                    <!-- DOMAIN 05: AI SALES & MARKETING -->
+                    <div class="solution-card" onclick="openDomainDetailModal(5)">
+                        <div class="solution-number">DOMAIN 05</div>
+                        <div class="solution-icon">📈</div>
+                        <h3>05. AI Sales & Marketing</h3>
+                        <p>B2B lead discovery, automated enrichment, ICP scoring, hyper-personalized outreach, and SEO engines.</p>
                         <div class="solution-capabilities">
-                            <span class="cap-tag">Vector PGVector</span>
-                            <span class="cap-tag">Semantic Search</span>
-                            <span class="cap-tag">Digital Twin</span>
+                            <span class="cap-tag">Lead Discovery</span>
+                            <span class="cap-tag">Lead Enrichment</span>
+                            <span class="cap-tag">ICP Scoring</span>
+                            <span class="cap-tag">AI Outreach</span>
+                            <span class="cap-tag">SEO Content Engine</span>
                         </div>
-                        <div class="solution-cta">Explore Capabilities ➔</div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 05 →</span>
+                        </div>
                     </div>
                     
-                    <!-- OUTCOME 5: PROTECT -->
-                    <div class="solution-card" onclick="openOutcomeDetailModal(5)">
-                        <div class="solution-number">🛡️ OUTCOME 05</div>
-                        <div class="solution-icon">🏗️</div>
-                        <h3>Protect (Security & SRE)</h3>
-                        <p>Cloudflare WAF policy enforcement, GUARDIAN AI SRE uptime monitoring, dual-stage self-healing, and Docker VPS backups.</p>
+                    <!-- DOMAIN 06: AI DOCUMENT & DATA -->
+                    <div class="solution-card" onclick="openDomainDetailModal(6)">
+                        <div class="solution-number">DOMAIN 06</div>
+                        <div class="solution-icon">📄</div>
+                        <h3>06. AI Document & Data</h3>
+                        <p>Gemini Vision OCR for invoices, contracts, receipts, Excel files, and automated data ingestion pipelines.</p>
                         <div class="solution-capabilities">
-                            <span class="cap-tag">GUARDIAN SRE</span>
+                            <span class="cap-tag">Invoice OCR</span>
+                            <span class="cap-tag">PDF Intelligence</span>
+                            <span class="cap-tag">Excel Automation</span>
+                            <span class="cap-tag">Contract Extraction</span>
+                            <span class="cap-tag">Data Pipeline</span>
+                        </div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 06 →</span>
+                        </div>
+                    </div>
+                    
+                    <!-- DOMAIN 07: CUSTOM SOFTWARE / SaaS -->
+                    <div class="solution-card" onclick="openDomainDetailModal(7)">
+                        <div class="solution-number">DOMAIN 07</div>
+                        <div class="solution-icon">💻</div>
+                        <h3>07. Custom Software & SaaS</h3>
+                        <p>Custom AI web apps, internal staff tooling, client portals, micro-SaaS MVPs, and business platforms.</p>
+                        <div class="solution-capabilities">
+                            <span class="cap-tag">AI Web Apps</span>
+                            <span class="cap-tag">Internal Tools</span>
+                            <span class="cap-tag">Client Portals</span>
+                            <span class="cap-tag">SaaS MVP</span>
+                            <span class="cap-tag">Custom Platforms</span>
+                        </div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 07 →</span>
+                        </div>
+                    </div>
+                    
+                    <!-- DOMAIN 08: AI SECURITY & INFRASTRUCTURE -->
+                    <div class="solution-card" onclick="openDomainDetailModal(8)">
+                        <div class="solution-number">DOMAIN 08</div>
+                        <div class="solution-icon">🛡️</div>
+                        <h3>08. AI Security & Infrastructure</h3>
+                        <p>Cloudflare enterprise WAF, automated snapshot backups, 24/7 AI-SRE monitoring, and hardened cloud VPS.</p>
+                        <div class="solution-capabilities">
                             <span class="cap-tag">Cloudflare WAF</span>
-                            <span class="cap-tag">Docker VPS</span>
+                            <span class="cap-tag">AI-SRE Guardian</span>
+                            <span class="cap-tag">Backup Mesh</span>
+                            <span class="cap-tag">DDoS Shield</span>
+                            <span class="cap-tag">Hardened Cloud VPS</span>
                         </div>
-                        <div class="solution-cta">Explore Capabilities ➔</div>
+                        <div class="solution-footer">
+                            <span class="solution-link">Explore Domain 08 →</span>
+                        </div>
                     </div>
-
+                    
                 </div>
             </div>
         </section>
@@ -372,74 +455,150 @@
             <div class="container reveal-up">
                 <div class="section-header" style="text-align: center;">
                     <div class="eyebrow">vertical specialization</div>
-                    <h2 class="section-title">Industry-Specific Automation Playbooks</h2>
-                    <p class="section-subtitle" style="margin: 0 auto;">Tested workflow architectures built for the specific operational systems of high-margin industries.</p>
+                    <h2 class="section-title">10 High-Value Industry Playbooks</h2>
+                    <p class="section-subtitle" style="margin: 0 auto; max-width:800px;">Tested workflow architectures built specifically for high-margin industries. Direct problem-to-outcome mapping.</p>
                 </div>
 
-                <div class="playbooks-grid stagger-children">
+                <div class="playbooks-grid stagger-children" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:20px; margin-top:36px;">
                     
-                    <!-- PLAYBOOK 1: LOGISTICS -->
+                    <!-- PLAYBOOK 1: SAAS -->
                     <div class="playbook-card">
-                        <div>
-                            <span class="playbook-badge">Freight & 3PL Logistics</span>
-                            <div class="playbook-icon">🚚</div>
-                            <h3>Manifest OCR & Container Matcher</h3>
-                            <p>Parses non-standard container manifests and BOLs via Gemini Vision OCR, matches carrier rates, and dispatches automated delay exception alerts.</p>
-                            <ul class="playbook-features">
-                                <li>Multi-modal BOL and packing list PDF parsing</li>
-                                <li>Automated container tracking sync into Postgres</li>
-                                <li>Instant delay alerts to Slack, WhatsApp & Telegram</li>
-                            </ul>
-                        </div>
-                        <button class="btn-primary open-checkout-btn" data-pkg="Logistics Automation Suite" data-price="$997" style="width: 100%; justify-content: center;">Deploy Logistics Suite →</button>
+                        <span class="playbook-badge">01. B2B SaaS</span>
+                        <div class="playbook-icon">☁️</div>
+                        <h3>Autonomous SDR & Churn Killer</h3>
+                        <p>Autonomous lead enrichment, outbound email sequences, product usage telemetry alerts, and instant meeting booking.</p>
+                        <ul class="playbook-features">
+                            <li>Multi-touch cold email + LinkedIn sequence</li>
+                            <li>Feature dropoff & churn detection trigger</li>
+                            <li>Instant CRM + Slack deal room sync</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('saas')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy SaaS Engine →</button>
                     </div>
 
-                    <!-- PLAYBOOK 2: CLINICS & HEALTHCARE -->
+                    <!-- PLAYBOOK 2: E-COMMERCE -->
                     <div class="playbook-card">
-                        <div>
-                            <span class="playbook-badge">Medical & Dental Practices</span>
-                            <div class="playbook-icon">🏥</div>
-                            <h3>Patient Intake & No-Show Killer</h3>
-                            <p>Speed-to-lead booking within 60 seconds, two-way SMS schedule confirmations, automated intake forms, and instant rebooking on cancellations.</p>
-                            <ul class="playbook-features">
-                                <li>Sub-60s speed-to-lead appointment booking</li>
-                                <li>HIPAA-compliant document & insurance intake</li>
-                                <li>Automated 2-way SMS reminder & review harvester</li>
-                            </ul>
-                        </div>
-                        <button class="btn-primary open-checkout-btn" data-pkg="Dental/Medical Booking Engine" data-price="$997" style="width: 100%; justify-content: center;">Deploy Clinic Engine →</button>
+                        <span class="playbook-badge">02. E-commerce & D2C</span>
+                        <div class="playbook-icon">🛍️</div>
+                        <h3>Refund & Cart Recovery Autopilot</h3>
+                        <p>Automatic refund verification against tracking APIs, abandoned cart dynamic discount outreach, and 24/7 AI ticket triage.</p>
+                        <ul class="playbook-features">
+                            <li>Automated 3PL tracking & refund validation</li>
+                            <li>Multi-channel SMS/WhatsApp cart recovery</li>
+                            <li>Shopify / WooCommerce real-time sync</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('ecom')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Ecom Engine →</button>
                     </div>
 
-                    <!-- PLAYBOOK 3: HOME TRADES -->
+                    <!-- PLAYBOOK 3: LOGISTICS -->
                     <div class="playbook-card">
-                        <div>
-                            <span class="playbook-badge">HVAC, Roofing & Trades</span>
-                            <div class="playbook-icon">🔧</div>
-                            <h3>Missed-Call Text-Back & Quote Chaser</h3>
-                            <p>Never lose a $5,000 contract to an unanswered phone. Instantly texts missed callers, qualifies the job scope, and follows up on pending quotes.</p>
-                            <ul class="playbook-features">
-                                <li>Instant &lt;10s missed call SMS auto-response</li>
-                                <li>Job photo intake and preliminary estimate draft</li>
-                                <li>Automated quote follow-up sequence until closed</li>
-                            </ul>
-                        </div>
-                        <button class="btn-primary open-checkout-btn" data-pkg="Trades Growth Engine" data-price="$697" style="width: 100%; justify-content: center;">Deploy Trade Engine →</button>
+                        <span class="playbook-badge">03. Freight & 3PL Logistics</span>
+                        <div class="playbook-icon">🚚</div>
+                        <h3>Manifest OCR & Dispatch Engine</h3>
+                        <p>Gemini Vision OCR parses non-standard BOLs and manifests in seconds, matches spot rates, and dispatches delay alerts.</p>
+                        <ul class="playbook-features">
+                            <li>Multi-page PDF & handwritten manifest OCR</li>
+                            <li>Automated carrier exception & delay SMS</li>
+                            <li>Driver WhatsApp proof-of-delivery sync</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('logistics')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Logistics Engine →</button>
                     </div>
 
-                    <!-- PLAYBOOK 4: B2B SAAS -->
+                    <!-- PLAYBOOK 4: REAL ESTATE -->
                     <div class="playbook-card">
-                        <div>
-                            <span class="playbook-badge">B2B SaaS & Professional Services</span>
-                            <div class="playbook-icon">💻</div>
-                            <h3>Autonomous SDR & Proposal Generator</h3>
-                            <p>Enriches inbound demo requests with firmographic data, generates customized SoW proposals, and books sales calls into calendar.</p>
-                            <ul class="playbook-features">
-                                <li>Apollo / LinkedIn API lead enrichment</li>
-                                <li>Automated 5-page proposal & contract generator</li>
-                                <li>Direct CRM bidirectional sync (HubSpot, Close)</li>
-                            </ul>
-                        </div>
-                        <button class="btn-primary open-checkout-btn" data-pkg="B2B SaaS Lead Machine" data-price="$997" style="width: 100%; justify-content: center;">Deploy SaaS Engine →</button>
+                        <span class="playbook-badge">04. Real Estate</span>
+                        <div class="playbook-icon">🏢</div>
+                        <h3>&lt;60s Lead Responder & Showing Bot</h3>
+                        <p>Responds to Zillow/Facebook leads under 45 seconds, qualifies buyer budget via conversational AI, and schedules viewings.</p>
+                        <ul class="playbook-features">
+                            <li>Sub-minute speed-to-lead qualification</li>
+                            <li>Google Calendar / Calendly direct sync</li>
+                            <li>Automated WhatsApp showing confirmations</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('realestate')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Real Estate Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 5: HEALTHCARE -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">05. Healthcare & Clinics</span>
+                        <div class="playbook-icon">🏥</div>
+                        <h3>Patient Intake & No-Show Killer</h3>
+                        <p>HIPAA-compliant patient form ingestion, automated reminder sequences via voice/SMS, and waitlist refill autopilot.</p>
+                        <ul class="playbook-features">
+                            <li>Zero-latency cancellation waitlist refill</li>
+                            <li>Multi-language voice & SMS confirmations</li>
+                            <li>EHR / Clinic management calendar sync</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('healthcare')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Clinic Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 6: PROFESSIONAL SERVICES -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">06. Professional Services</span>
+                        <div class="playbook-icon">⚖️</div>
+                        <h3>Timesheet & Billing Orchestration</h3>
+                        <p>Aggregates billable hours across calendars and commits, generates draft invoices with one click, and sends payment reminders.</p>
+                        <ul class="playbook-features">
+                            <li>Multi-calendar billable hours aggregator</li>
+                            <li>Stripe & QuickBooks automated invoicing</li>
+                            <li>Gentle escalation follow-up on overdue dues</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('profservices')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Services Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 7: AGENCIES -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">07. Agencies & Consultancies</span>
+                        <div class="playbook-icon">💼</div>
+                        <h3>Multi-Tenant Client Hub & Reporting</h3>
+                        <p>Automates weekly KPI reports across Meta/Google Ads, generates custom SoW proposals, and synchronizes client CRM stages.</p>
+                        <ul class="playbook-features">
+                            <li>Automated Google/Meta Ads PDF report builder</li>
+                            <li>One-click branded SoW proposal generator</li>
+                            <li>Multi-tenant client communication portal</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('agencies')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Agency Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 8: RECRUITMENT -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">08. Recruitment & Staffing</span>
+                        <div class="playbook-icon">👥</div>
+                        <h3>Resume Parser & Candidate Matcher</h3>
+                        <p>Extracts skills and experience from 500+ resumes in minutes, ranks candidates by job criteria, and schedules interviews.</p>
+                        <ul class="playbook-features">
+                            <li>Deep LLM resume scoring & skill extraction</li>
+                            <li>Automated candidate WhatsApp pre-screening</li>
+                            <li>Interviewer calendar self-booking link</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('recruitment')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Staffing Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 9: FINANCE & ACCOUNTING -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">09. Finance & Accounting</span>
+                        <div class="playbook-icon">📊</div>
+                        <h3>Invoice OCR & Bank Reconciliation</h3>
+                        <p>Captures line items from invoices, validates PO numbers, reconciles bank statements against ledger entries with audit trails.</p>
+                        <ul class="playbook-features">
+                            <li>Line-item OCR extraction with 99.8% precision</li>
+                            <li>Automated 3-way matching (PO vs Invoice vs Bank)</li>
+                            <li>Immutable audit log for tax compliance</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('finance')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Finance Engine →</button>
+                    </div>
+
+                    <!-- PLAYBOOK 10: CONSTRUCTION & TRADES -->
+                    <div class="playbook-card">
+                        <span class="playbook-badge">10. Construction & Trades</span>
+                        <div class="playbook-icon">🔨</div>
+                        <h3>Missed-Call SMS & Quote Chaser</h3>
+                        <p>Instantly replies to missed calls with SMS quote bot, tracks job site work orders, and follows up on pending estimates.</p>
+                        <ul class="playbook-features">
+                            <li>Instant &lt;10s missed call SMS quote intake</li>
+                            <li>Subcontractor ticketing & photo dispatch</li>
+                            <li>Automated estimate follow-up sequence</li>
+                        </ul>
+                        <button onclick="deployPlaybookDirect('construction')" class="btn btn-glass-sm" style="width:100%; margin-top:14px;">Deploy Trades Engine →</button>
                     </div>
 
                 </div>
@@ -716,58 +875,109 @@
         <section class="section" id="transparent-pricing">
             <div class="container reveal-up">
                 <div class="section-header" style="text-align: center;">
-                    <div class="eyebrow">transparent investment models</div>
+                    <div class="eyebrow">TRANSPARENT INVESTMENT & MAINTENANCE MODELS</div>
                     <h2 class="section-title">Productized System Packages</h2>
-                    <p class="section-subtitle" style="margin: 0 auto;">Self-hosted n8n orchestration. 100% intellectual property & data sovereignty.</p>
+                    <p class="section-subtitle" style="margin: 0 auto; max-width:800px;">Clear Implementation Setup Fee + Monthly Platform Maintenance. 100% intellectual property & data sovereignty.</p>
+                    
+                    <!-- CURRENCY & BILLING CONTROLS -->
+                    <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:20px; flex-wrap:wrap;">
+                        <div class="currency-toggle-group" style="display:inline-flex; background:rgba(15,23,42,0.8); padding:4px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
+                            <button onclick="setGlobalPricingCurrency('USD')" class="btn-curr-tab active-curr-tab" id="btn-curr-usd" style="padding:6px 16px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; background:var(--primary); color:#030712;">$ USD</button>
+                            <button onclick="setGlobalPricingCurrency('BDT')" class="btn-curr-tab" id="btn-curr-bdt" style="padding:6px 16px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; background:transparent; color:#fff;">৳ BDT</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="pricing-grid stagger-children">
+                <div class="pricing-grid stagger-children" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-top:36px;">
                     
-                    <!-- TIER 1: STARTER BUILD -->
-                    <div class="pricing-card">
-                        <div class="pricing-tier">Starter / Single Workflow</div>
-                        <div class="pricing-amount">$497 <span style="font-size:1.1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
-                        <div class="pricing-period">+ $197 / month flat retainer</div>
-                        <ul class="pricing-features">
-                            <li>1 Core Autonomous Workflow (e.g. Lead Machine / Invoice OCR)</li>
-                            <li>Self-Hosted n8n Docker Setup</li>
-                            <li>End-to-End Sandbox Testing</li>
-                            <li>Daily Uptime Diagnostics & Monitoring</li>
-                            <li>100% Code & Data Ownership</li>
-                        </ul>
-                        <button class="btn-ghost open-checkout-btn" onclick="openCheckoutModal('Starter / Single Workflow', 497, 197)" data-pkg="Starter / Single Workflow" data-price="$497" style="width: 100%; justify-content: center;">Deploy System →</button>
-                    </div>
-                    
-                    <!-- TIER 2: PRODUCTION BUILD (FEATURED) -->
-                    <div class="pricing-card featured">
-                        <div class="pricing-tier" style="color: var(--accent-primary);">Production Build / Full Suite</div>
-                        <div class="pricing-amount">$997 <span style="font-size:1.1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
-                        <div class="pricing-period">+ $397 / month flat retainer</div>
-                        <ul class="pricing-features">
-                            <li>Up to 3 Coordinated Multi-Agent Swarms</li>
-                            <li>n8n Mesh + Supabase Vector PGVector Memory</li>
-                            <li>24/7 Active GUARDIAN SRE Watchdog</li>
-                            <li>4-Level HITL Governance Setup</li>
-                            <li>Priority Support & WhatsApp Direct Channel</li>
-                        </ul>
-                        <button class="btn-primary open-checkout-btn" onclick="openCheckoutModal('Production Build / Full Suite', 997, 397)" data-pkg="Production Build / Full Suite" data-price="$997" style="width: 100%; justify-content: center;">Deploy Full Suite →</button>
+                    <!-- TIER 1: AI STARTER -->
+                    <div class="pricing-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div class="pricing-tier">AI Starter</div>
+                            <div class="pricing-amount" data-usd="750">$750 <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
+                            <div class="pricing-period" data-usd-sub="149">+ $149 / month maintenance</div>
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Ideal for solopreneurs & single-workflow automations.</p>
+                            <ul class="pricing-features">
+                                <li>1 Core Autonomous Workflow (e.g. Lead Machine or Invoice OCR)</li>
+                                <li>Self-Hosted n8n Docker Setup on Cloud VPS</li>
+                                <li>End-to-End Sandbox Testing & Hardening</li>
+                                <li>Daily Health Checks & Error Monitoring</li>
+                                <li>Email & Slack Technical Support</li>
+                                <li>100% Code & Data Sovereignty</li>
+                            </ul>
+                        </div>
+                        <button onclick="openPricingCheckoutModal('AI Starter System', 750, 149)" class="btn btn-glass" style="width:100%; margin-top:20px;">Deploy AI Starter →</button>
                     </div>
 
-                    <!-- TIER 3: AUTOMATION PARTNER -->
-                    <div class="pricing-card">
-                        <div class="pricing-tier">Automation Partner / Enterprise OS</div>
-                        <div class="pricing-amount">$1,997 <span style="font-size:1.1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
-                        <div class="pricing-period">+ $797 / month flat retainer</div>
-                        <ul class="pricing-features">
-                            <li>Continuous Unlimited Workflow Iterations</li>
-                            <li>Complete 13-Agent AI Workforce Mesh</li>
-                            <li>Quarterly Architecture & ROI Review</li>
-                            <li>Dedicated SRE & Same-Day SLA</li>
-                            <li>Custom LLM Fine-Tuning & Private Cloud</li>
-                        </ul>
-                        <button class="btn-ghost open-checkout-btn" onclick="openCheckoutModal('Automation Partner / Enterprise OS', 1997, 797)" data-pkg="Automation Partner / Enterprise OS" data-price="$1,997" style="width: 100%; justify-content: center;">Partner With Us →</button>
+                    <!-- TIER 2: AI GROWTH -->
+                    <div class="pricing-card featured" style="border: 2px solid #06b6d4; box-shadow: 0 0 35px rgba(6,182,212,0.25); display:flex; flex-direction:column; justify-content:space-between;">
+                        <div class="pricing-badge" style="background:#06b6d4; color:#030712; font-weight:bold; padding:4px 12px; border-radius:20px; font-size:0.75rem; align-self:flex-start; margin-bottom:10px;">MOST POPULAR</div>
+                        <div>
+                            <div class="pricing-tier">AI Growth</div>
+                            <div class="pricing-amount" data-usd="1500">$1,500 <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
+                            <div class="pricing-period" data-usd-sub="349">+ $349 / month maintenance</div>
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Multi-channel sales & support system for scaling teams.</p>
+                            <ul class="pricing-features">
+                                <li>3-5 Connected Production Workflows</li>
+                                <li>AI SDR Lead Discovery + Email/WhatsApp Outreach</li>
+                                <li>RAG Vector Knowledge Base (pgvector/Supabase)</li>
+                                <li>CRM 2-Way Sync (HubSpot / Close / Sheets)</li>
+                                <li>Sub-Minute Alerting & Auto-Failover</li>
+                                <li>Priority WhatsApp Direct Engineering Channel</li>
+                            </ul>
+                        </div>
+                        <button onclick="openPricingCheckoutModal('AI Growth System', 1500, 349)" class="btn btn-primary" style="width:100%; margin-top:20px;">Deploy AI Growth →</button>
                     </div>
 
+                    <!-- TIER 3: AI WORKFORCE -->
+                    <div class="pricing-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div class="pricing-tier">AI Workforce</div>
+                            <div class="pricing-amount" data-usd="3000">$3,000 <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
+                            <div class="pricing-period" data-usd-sub="699">+ $699 / month maintenance</div>
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Full multi-agent department replacing manual operational seats.</p>
+                            <ul class="pricing-features">
+                                <li>13-Agent Orchestration Swarm Architecture</li>
+                                <li>Multi-LLM Mesh (Gemini 2.5 Pro + Claude 3.5 Sonnet)</li>
+                                <li>4-Level HITL Governance & Explainability Audit</li>
+                                <li>Automated Document OCR & Invoicing Pipeline</li>
+                                <li>Dedicated VPS Hardening & WAF Protection</li>
+                                <li>Weekly Strategy & Performance Optimization</li>
+                            </ul>
+                        </div>
+                        <button onclick="openPricingCheckoutModal('AI Workforce System', 3000, 699)" class="btn btn-glass" style="width:100%; margin-top:20px;">Deploy AI Workforce →</button>
+                    </div>
+
+                    <!-- TIER 4: AI BUSINESS OS -->
+                    <div class="pricing-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div class="pricing-tier">AI Business OS</div>
+                            <div class="pricing-amount" data-usd="7500">$7,500 <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span></div>
+                            <div class="pricing-period" data-usd-sub="1500">+ $1,500 / month maintenance</div>
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Full-stack digital twin & autonomous enterprise operating system.</p>
+                            <ul class="pricing-features">
+                                <li>Full Business Digital Twin & Custom Web App Portal</li>
+                                <li>AI Voice Telephony & Cold Calling Integration</li>
+                                <li>Multi-Tenant Agency / Department Mesh</li>
+                                <li>AI-SRE 24/7 Automated Healing Guardian</li>
+                                <li>Custom SaaS Platform or Internal Tools MVP</li>
+                                <li>Direct WhatsApp Lead Architect Hotseat Access</li>
+                            </ul>
+                        </div>
+                        <button onclick="openPricingCheckoutModal('AI Business OS', 7500, 1500)" class="btn btn-glass" style="width:100%; margin-top:20px;">Deploy Business OS →</button>
+                    </div>
+
+                </div>
+                
+                <!-- CUSTOM ENTERPRISE BANNER -->
+                <div style="margin-top:32px; background:linear-gradient(135deg, rgba(30,41,59,0.7), rgba(15,23,42,0.9)); border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:24px 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+                    <div>
+                        <h4 style="margin:0 0 6px 0; color:#fff; font-size:1.2rem;">🛡️ Need an Air-Gapped or Custom Enterprise Sovereign Setup?</h4>
+                        <p style="margin:0; font-size:0.88rem; color:var(--text-muted);">Custom LLM fine-tuning, on-premise hardware orchestration, SOC-2 readiness, and dedicated SLA.</p>
+                    </div>
+                    <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20am%20interested%20in%20an%20Enterprise%20Sovereign%20AI%20Setup." target="_blank" class="btn btn-glass" style="border:1px solid rgba(16,185,129,0.5); background:rgba(16,185,129,0.15); color:#fff; font-weight:bold;">
+                        📱 Schedule Enterprise Briefing →
+                    </a>
                 </div>
             </div>
         </section>
@@ -935,7 +1145,7 @@
         </div>
     </div>
 
-    <script src="/app.js?v=v20260817_1786929585" defer></script>
+    <script src="/app.js?v=v20260817_1786930670" defer></script>
     <script>
         function switchLabTab(tab) {
             document.querySelectorAll('.lab-tab').forEach(el => el.classList.remove('active'));
