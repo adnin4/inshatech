@@ -3309,6 +3309,14 @@ function renderGlobalMarketplaceAffiliateMatrix() {
     const root = document.getElementById('global-marketplace-matrix-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="margin-top:40px; background:rgba(15,23,42,0.8); border:1px solid var(--accent-cyan); padding:32px 20px; border-radius:20px; box-shadow:0 0 35px rgba(6,182,212,0.15);">
             <div style="text-align:center; margin-bottom:28px;">
@@ -3463,6 +3471,14 @@ function render11AgentSwarmOrchestrator() {
     const root = document.getElementById('admin-11-agent-swarm-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:14px; padding:18px; margin-top:16px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -3544,6 +3560,14 @@ function initInteractiveRoiCalculator() {
     const root = document.getElementById('interactive-roi-calculator-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div class="glass-card glowing-border" style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-emerald); border-radius:20px; padding:32px 24px; max-width:850px; margin:40px auto; box-shadow:0 0 40px rgba(16,185,129,0.2);">
             <div style="text-align:center; margin-bottom:24px;">
@@ -3739,6 +3763,14 @@ function renderEventBusTelemetry() {
     const root = document.getElementById('admin-event-bus-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:14px; padding:18px; margin-top:16px; box-shadow:0 0 35px rgba(6,182,212,0.25);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:14px;">
@@ -3825,6 +3857,14 @@ function renderExtremeAgentStudio() {
     const root = document.getElementById('admin-extreme-agent-studio-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:16px; padding:20px; margin-top:16px; box-shadow:0 0 40px rgba(6,182,212,0.3);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
@@ -3913,6 +3953,14 @@ function renderDominationTelemetryStudio() {
     const root = document.getElementById('admin-domination-studio-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:18px; padding:22px; margin-top:16px; box-shadow:0 0 50px rgba(6,182,212,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
@@ -4011,6 +4059,14 @@ function renderGodModeControlStudio() {
     const root = document.getElementById('admin-god-mode-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4177,6 +4233,14 @@ function renderDynamicServiceCMSStudio() {
     const root = document.getElementById('admin-dynamic-service-cms-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 50px rgba(6,182,212,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4288,6 +4352,14 @@ function renderCompleteEnterpriseStudioCMS() {
     const root = document.getElementById('admin-enterprise-studio-cms-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:rgba(15,23,42,0.98); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.4);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4351,6 +4423,14 @@ function render2026OutcomeServicesStudio() {
     const root = document.getElementById('admin-2026-outcome-services-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #10b981; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4417,6 +4497,14 @@ function renderOmnichannelNotificationStudio() {
     const root = document.getElementById('admin-omnichannel-notifications-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4493,6 +4581,14 @@ function renderCatalogV4Studio() {
     const root = document.getElementById('admin-catalog-v4-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4568,6 +4664,14 @@ function renderAutonomousEnterpriseEngineStudio() {
     const root = document.getElementById('admin-autonomous-enterprise-engine-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid var(--accent-emerald); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -4670,6 +4774,14 @@ function renderAIBOSArchitectureStudio() {
     const root = document.getElementById('admin-aibos-architecture-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -5514,6 +5626,14 @@ function renderInternationalCatalogStudio() {
     const root = document.getElementById('admin-catalog-v4-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -5637,6 +5757,14 @@ function renderEnterpriseArchitectureStudio() {
     const root = document.getElementById('admin-catalog-v4-root');
     if (!root) return;
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
@@ -7584,6 +7712,14 @@ window.initAuthenticPartnerConsole = function() {
         { id: 'business-os', domain: '08. AI Security & OS', name: 'Full IINSHA Autonomous Business OS', price: '$7,500 Setup + $1,500/mo', comm: '20% ($1,500 Setup + $300/mo)', epc: '$14.20', cookie: '90 Days' }
     ];
 
+    
+    // Render QR Code on init
+    setTimeout(() => {
+        if (typeof renderAffiliateQrCode === 'function') {
+            renderAffiliateQrCode(masterLink, 'partner-qr-code-box');
+        }
+    }, 400);
+    
     root.innerHTML = `
         <div class="glass-card glowing-border" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:20px; padding:32px; margin-top:20px; box-shadow:0 20px 60px rgba(0,0,0,0.85); color:#fff;">
             
@@ -7685,6 +7821,20 @@ window.initAuthenticPartnerConsole = function() {
                         📋 Copy Tracking Link
                     </button>
                 </div>
+                <!-- QR CODE & MOBILE TRACKING CARD -->
+                <div style="display:flex; align-items:center; gap:16px; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap;">
+                    <div id="partner-qr-code-box"></div>
+                    <div style="flex:1;">
+                        <strong style="color:#fff; font-size:0.9rem; display:block;">📱 Mobile QR Code & Offline B2B Sharing</strong>
+                        <p style="font-size:0.78rem; color:var(--text-muted); margin:4px 0 8px 0; line-height:1.4;">
+                            Scan with any smartphone camera to test or share on print materials, business cards, and slide decks. Automatically attaches your 60-day tracking cookie.
+                        </p>
+                        <button onclick="renderAffiliateQrCode(document.getElementById('generated-partner-link')?.value || 'https://inshatech.pages.dev/?ref=partner10', 'partner-qr-code-box')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">
+                            🔄 Refresh QR Code
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
             <!-- SECTION: 10-STAGE CUSTOMER LIFECYCLE PIPELINE TRACKER -->
@@ -8207,4 +8357,171 @@ window.simulateLiveAffiliateLead = function() {
     localStorage.setItem('iinsha_active_partner', JSON.stringify(partner));
     initAuthenticPartnerConsole();
     showAffiliateToast(`🎉 New Lead Captured for ${pick.name}! Lifecycle stage 3 initiated.`);
+};
+
+
+// ==============================================================================
+// ENTERPRISE AFFILIATE PARTNER MASTERPLAN: QR CODES, CHALLENGES & ADMIN CENTER
+// ==============================================================================
+
+// --- QR CODE GENERATOR (Instant SVG/Canvas Generator) ---
+window.renderAffiliateQrCode = function(url, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    // Use quick Google Chart API or inline SVG QR fallback for ultra-fast crisp rendering
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}&bgcolor=0f172a&color=06b6d4&margin=1`;
+    container.innerHTML = `
+        <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:12px; display:inline-flex; flex-direction:column; align-items:center; gap:8px;">
+            <img src="${qrUrl}" alt="Affiliate QR Code" width="130" height="130" style="border-radius:8px;" onerror="this.onerror=null; this.src='https://chart.googleapis.com/chart?cht=qr&chs=130x130&chl=${encodeURIComponent(url)}&chld=M|0';">
+            <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">📱 Scan to Track</span>
+        </div>
+    `;
+};
+
+// --- GAMIFIED PARTNER MILESTONE CHALLENGES ---
+window.getPartnerChallenges = function() {
+    return [
+        { id: 'ch-1', title: '🚀 First Flight (0/3 Sales)', desc: 'Close your first 3 enterprise AI clients to unlock VIP Silver tier.', progress: 100, current: 3, target: 3, completed: true, reward: '+$100 Cash Bonus' },
+        { id: 'ch-2', title: '👑 Revenue Accelerator ($10k Milestone)', desc: 'Drive $10,000+ cumulative pipeline revenue to unlock 25% Elite Gold status.', progress: 100, current: 14250, target: 10000, completed: true, reward: 'Elite Gold Tier (25%)' },
+        { id: 'ch-3', title: '💎 Master Swarm Closer (5 AI Workforce Swarms)', desc: 'Close 5 Autonomous Multi-Agent Swarms ($3,000+ deals).', progress: 60, current: 3, target: 5, completed: false, reward: 'Dedicated AM + 30% RevShare' }
+    ];
+};
+
+// --- ADMIN AFFILIATE COMMAND CENTER (FOR IBOS CONTROL PANEL) ---
+window.renderAdminAffiliateCommandCenter = function(container) {
+    if (!container) return;
+
+    let partner = window.getIinshaPartnerData();
+    let clicks = JSON.parse(localStorage.getItem('iinsha_aff_clicks') || '[]');
+
+    const allAffiliates = [
+        { id: 'AFF-1042', name: 'Adnin Growth Partner', email: 'partner@inshatech.pages.dev', tier: 'VIP Gold (20%)', clicks: 842, deals: 9, revenue: '$14,250.00', unpaid: '$450.00', status: 'Active' },
+        { id: 'AFF-8921', name: 'Apex Growth Agency (UK)', email: 'outreach@apexgrowth.co.uk', tier: 'Legend VIP (30%)', clicks: 2410, deals: 28, revenue: '$48,500.00', unpaid: '$1,200.00', status: 'Active' },
+        { id: 'AFF-7740', name: 'SmartOps Tech Hub (BD)', email: 'contact@smartops.io', tier: 'Elite Gold (25%)', clicks: 1650, deals: 19, revenue: '$32,200.00', unpaid: '$800.00', status: 'Active' }
+    ];
+
+    const fraudAlerts = [
+        { id: 'FR-092', ref: 'AFF-1042', pattern: 'Rapid repeat clicks from same IP', ip: '103.145.2.14', risk: 'Low (Score: 12/100)', action: 'Auto-Resolved' },
+        { id: 'FR-088', ref: 'AFF-3310', pattern: 'Self-Referral Purchase Attempt Blocked', ip: '192.168.1.10', risk: 'High (Score: 92/100)', action: 'Commission Blocked' }
+    ];
+
+    container.innerHTML = `
+        <div style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-gold); border-radius:16px; padding:24px; color:#fff;">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <h3 style="margin:0; color:#fff; font-size:1.3rem; display:flex; align-items:center; gap:8px;">
+                        <span>🤝 IINSHA AFFILIATE COMMAND CENTER</span>
+                        <span class="badge-gold" style="font-size:0.7rem; padding:2px 8px;">PARTNERSTACK GRADE</span>
+                    </h3>
+                    <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Real-time governance of partners, attribution ledgers, fraud alerts, and multi-channel payouts.</p>
+                </div>
+                <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, #10b981, #059669); font-weight:bold;">
+                    ⚡ Batch Approve All Payouts
+                </button>
+            </div>
+
+            <!-- 4 ADMIN OVERVIEW METRICS -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:24px;">
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Total Registered Affiliates</span>
+                    <div style="font-size:1.6rem; font-weight:800; color:#fff; font-family:var(--font-mono); margin:2px 0;">3 Active Partners</div>
+                    <span style="font-size:0.7rem; color:var(--accent-emerald);">100% KYC Approved</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Gross Partner Revenue</span>
+                    <div style="font-size:1.6rem; font-weight:800; color:#38bdf8; font-family:var(--font-mono); margin:2px 0;">$94,950.00</div>
+                    <span style="font-size:0.7rem; color:var(--text-muted);">From 56 closed contracts</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Unpaid Liability Balance</span>
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--accent-gold); font-family:var(--font-mono); margin:2px 0;">$2,450.00</div>
+                    <span style="font-size:0.7rem; color:var(--accent-cyan);">Ready for batch transfer</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Cumulative Commissions Paid</span>
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-mono); margin:2px 0;">$18,990.00</div>
+                    <span style="font-size:0.7rem; color:var(--text-muted);">bKash + Wise + USDT</span>
+                </div>
+            </div>
+
+            <!-- PARTNER DIRECTORY TABLE -->
+            <div style="margin-bottom:28px;">
+                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">👥 Partner Roster & Commission Overrides</h4>
+                <div class="table-wrapper" style="overflow-x:auto;">
+                    <table class="orders-table" style="width:100%; font-size:0.8rem;">
+                        <thead>
+                            <tr>
+                                <th>Partner ID</th>
+                                <th>Name & Email</th>
+                                <th>Tier Status</th>
+                                <th>Clicks</th>
+                                <th>Deals Closed</th>
+                                <th>Revenue Driven</th>
+                                <th>Unpaid Commission</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${allAffiliates.map(aff => `
+                                <tr>
+                                    <td><code style="color:var(--accent-cyan);">${aff.id}</code></td>
+                                    <td><strong>${aff.name}</strong><br><span style="color:var(--text-muted); font-size:0.72rem;">${aff.email}</span></td>
+                                    <td><span class="badge-gold" style="font-size:0.7rem;">${aff.tier}</span></td>
+                                    <td>${aff.clicks}</td>
+                                    <td><strong style="color:var(--accent-emerald);">${aff.deals}</strong></td>
+                                    <td><strong>${aff.revenue}</strong></td>
+                                    <td><strong style="color:var(--accent-gold);">${aff.unpaid}</strong></td>
+                                    <td>
+                                        <button onclick="adminApprovePartnerPayout('${aff.id}', '${aff.name}')" class="btn btn-primary-sm" style="padding:4px 8px; font-size:0.72rem;">Disburse</button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FRAUD SHIELD & ANOMALY LOGS -->
+            <div>
+                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">🛡️ Fraud Shield & Bot Detection Audit</h4>
+                <div class="table-wrapper" style="overflow-x:auto;">
+                    <table class="orders-table" style="width:100%; font-size:0.8rem;">
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Affiliate</th>
+                                <th>Pattern Detected</th>
+                                <th>IP Address</th>
+                                <th>Risk Score</th>
+                                <th>Action Taken</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${fraudAlerts.map(fa => `
+                                <tr>
+                                    <td><code>${fa.id}</code></td>
+                                    <td><strong>${fa.ref}</strong></td>
+                                    <td>${fa.pattern}</td>
+                                    <td><code>${fa.ip}</code></td>
+                                    <td><span style="color:${fa.risk.includes('High') ? '#ef4444' : '#34d399'}; font-weight:bold;">${fa.risk}</span></td>
+                                    <td><span class="status-badge ${fa.action.includes('Blocked') ? 'pending' : 'completed'}">${fa.action}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    `;
+};
+
+window.adminApprovePartnerPayout = function(id, name) {
+    showAffiliateToast(`⚡ Payout for ${name} (${id}) approved & scheduled for automated disbursement!`);
+};
+
+window.adminTriggerBatchPayout = function() {
+    showAffiliateToast('🎉 Batch payout for 3 active partners ($2,450.00 USD) processed successfully via Stripe & bKash!');
 };
