@@ -4764,21 +4764,21 @@ function initIinshaAICopilotWidget() {
             <span style="font-size:1.8rem;">🤖</span>
         </div>
 
-        <div id="iinsha-chat-window" style="display:none; position:fixed; bottom:96px; right:24px; z-index:9999; width:380px; max-width:90vw; height:520px; background:rgba(15,23,42,0.96); backdrop-filter:blur(20px); border:1px solid rgba(59,130,246,0.4); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.6); display:flex; flex-direction:column; overflow:hidden;">
+        <div id="iinsha-chat-window" style="display:none; position:fixed; bottom:96px; right:24px; z-index:9999; width:380px; max-width:90vw; height:520px; background:rgba(15,23,42,0.96); backdrop-filter:blur(20px); border:1px solid rgba(59,130,246,0.4); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.6); flex-direction:column; overflow:hidden;">
             <!-- CHAT HEADER -->
             <div style="background:linear-gradient(135deg, rgba(30,41,59,0.9), rgba(59,130,246,0.3)); padding:16px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
                 <div style="display:flex; align-items:center; gap:10px;">
                     <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
                     <div>
                         <h5 style="margin:0; color:#fff; font-size:0.95rem; font-weight:bold;">IINSHA Copilot</h5>
-                        <span style="font-size:0.65rem; color:#60a5fa;">Gemini 3.6 Flash Swarm</span>
+                        <span style="font-size:0.65rem; color:#60a5fa;">Gemini 2.5 Pro RAG Swarm</span>
                     </div>
                 </div>
                 <button onclick="toggleIinshaChatWindow()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
             </div>
 
             <!-- CHAT MESSAGES BODY -->
-            <div id="iinsha-chat-messages" style="flex:1; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; font-size:0.85rem;">
+            <div id="iinsha-chat-messages" style="flex:1; padding:16px; overflow-y:auto; flex-direction:column; gap:12px; font-size:0.85rem;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(59,130,246,0.3); border-radius:14px; padding:12px; color:#e2e8f0;">
                     👋 Hello! I am <strong>IINSHA Copilot</strong> powered by <strong>Gemini 3.6 Flash</strong>. How can I help automate your business operations or calculate your ROI today?
                 </div>
