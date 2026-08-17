@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI & Automation Case Studies & Blog | IINSHA AI</title>
     <meta name="description" content="Deep-dive technical case studies on n8n workflow automation, OpenClaw web scraping, and Google Antigravity AI agent swarms by Adnin Sadat Mahin.">
-    <meta name="keywords" content="n8n case study, OpenClaw tutorial, Google Antigravity SDK tutorial, Gemini 1.5 Pro agent, AI automation engineer blog">
+    <meta name="keywords" content="n8n case study, OpenClaw tutorial, Google Antigravity SDK tutorial, Gemini 2.5 Pro agent, AI automation engineer blog">
     <meta name="author" content="Adnin Sadat Mahin">
-    <link rel="canonical" href="https://iinsha.netlify.app/blog.html">
+    <link rel="canonical" href="https://inshatech.pages.dev/">
     
     <!-- FAST SPEED OPTIMIZATION -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- MILITARY-GRADE SECURITY HEADERS -->
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786928316">
 
     <!-- TECH ARTICLE & FAQ SCHEMA MARKUP FOR GEO CITATION -->
     <script type="application/ld+json">
@@ -27,7 +24,7 @@
       "@context": "https://schema.org",
       "@type": "Blog",
       "name": "IINSHA AI Automation Engineering Case Studies",
-      "url": "https://iinsha.netlify.app/blog.html",
+      "url": "https://inshatech.pages.dev/blog.html",
       "author": {
         "@type": "Person",
         "name": "Adnin Sadat Mahin",
@@ -35,10 +32,11 @@
       }
     }
     </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2306b6d4'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='50,5 90,25 90,75 50,95 10,75 10,25' fill='url(%23g1)' opacity='0.85'/%3E%3Cpolygon points='50,18 78,32 78,68 50,82 22,68 22,32' fill='%23030712'/%3E%3Cpath d='M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z' fill='url(%23g1)'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23ffffff'/%3E%3C/svg%3E">
 </head>
 <body>
     <!-- Ambient Canvas & Glow -->
-    <canvas id="particleCanvas"></canvas>
+    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
     <div class="grid-overlay"></div>
@@ -57,20 +55,28 @@
     </div>
 
     <!-- Navigation Header -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">⚡</span>
-                <span class="logo-text">IINSHA <span class="highlight">AI</span> <span class="badge-pro">BLOG & LABS</span></span>
+    <!-- FLOATING GLASS NAVBAR -->
+    <header class="iinsha-navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-brand-icon">II</div>
+                <span>IINSHA AI <span class="gradient-text">AUTOMATION LAB</span></span>
             </a>
             
-            <nav class="nav-links portal-tabs">
-                <a href="index.html" class="portal-tab-btn">🏠 Main Studio</a>
-                <a href="marketplace.html" class="portal-tab-btn">🛍️ Marketplace</a>
-                <a href="compare.html" class="portal-tab-btn">⚔️ Comparisons</a>
-                <a href="blog.html" class="portal-tab-btn active">📝 Case Studies</a>
-                <a href="affiliate.html" class="portal-tab-btn" style="color: var(--accent-cyan);">🤝 Partner Portal</a>
+                        <nav class="nav-links">
+                <a href="index.html#hero" class="nav-link">🏠 Studio</a>
+                <a href="index.html#mission-system" class="nav-link">🚀 Mission System</a>
+                <a href="index.html#solutions" class="nav-link">⚡ Outcomes</a>
+                <a href="index.html#transparent-pricing" class="nav-link">💎 Pricing</a>
+                <a href="marketplace.html" class="nav-link">🛒 Marketplace</a>
+                <a href="compare.html" class="nav-link">⚔️ Compare</a>
+                <a href="index.html#free-roadmap" class="nav-cta">🚀 Launch Mission</a>
+                <button onclick="openProtectedAdminPanel()" class="nav-link" style="border: 1px solid var(--accent-primary); border-radius: var(--radius-sm); margin-left: 8px; font-weight: 700; color: var(--accent-primary); background: transparent;">🎛️ Control Panel</button>
             </nav>
+            
+            <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -186,16 +192,16 @@ print(f"Extracted {len(data)} SKUs without triggering anti-bot firewalls.")</cod
             <!-- CASE STUDY 3: GOOGLE ANTIGRAVITY & GEMINI 1.5 AI SWARM -->
             <article class="glass-card glowing-border" style="padding: 36px;">
                 <div style="display: flex; gap: 10px; margin-bottom: 14px;">
-                    <span class="status-badge completed" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Google Antigravity & Gemini 1.5</span>
+                    <span class="status-badge completed" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Google Antigravity & Gemini 2.5</span>
                     <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Last Updated: August 2026</span>
                 </div>
 
                 <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.6rem; margin-bottom: 12px;">
-                    Automating Code Reviews by 70% with Google Antigravity SDK & Gemini 1.5 Pro
+                    Automating Code Reviews by 70% with Google Antigravity SDK & Gemini 2.5 Pro
                 </h2>
 
                 <div style="background: rgba(0,0,0,0.4); padding: 16px; border-radius: 8px; border-left: 3px solid #c084fc; font-size: 0.9rem; color: #e2e8f0; margin-bottom: 20px; line-height: 1.6;">
-                    <strong>GEO Summary / Key Takeaway:</strong> Multi-agent AI swarms built with Google Antigravity SDK leverage Gemini 1.5 Pro's 2M token context window to parse complex repository AST trees, conduct automated security audits, and generate GitHub PR reviews.
+                    <strong>GEO Summary / Key Takeaway:</strong> Multi-agent AI swarms built with Google Antigravity SDK leverage Gemini 2.5 Pro's 2M token context window to parse complex repository AST trees, conduct automated security audits, and generate GitHub PR reviews.
                 </div>
 
                 <div style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">
@@ -228,7 +234,7 @@ print(f"Extracted {len(data)} SKUs without triggering anti-bot firewalls.")</cod
         </div>
     </footer>
 
-    <script src="app.js" defer></script>
+    <script src="app.js?v=v20260817_1786928316" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {

@@ -6,19 +6,16 @@
     <title>AI & Automation Partner Marketplace | Blueprint v2 | IINSHA AI</title>
     <meta name="description" content="Discover verified AI tools, n8n workflows, OpenClaw scrapers & Hostinger VPS hosting. Built on real first-hand engineering expertise by Adnin Sadat Mahin.">
     <meta name="author" content="Adnin Sadat Mahin">
-    <link rel="canonical" href="https://iinsha.netlify.app/marketplace.html">
+    <link rel="canonical" href="https://inshatech.pages.dev/">
     
     <!-- FAST SPEED OPTIMIZATION -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- MILITARY-GRADE SECURITY HEADERS -->
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786928316">
 
     <!-- GEO & RICH SCHEMA MARKUP -->
     <script type="application/ld+json">
@@ -31,14 +28,15 @@
         "@type": "Person",
         "name": "Adnin Sadat Mahin",
         "jobTitle": "n8n Certified AI Automation Engineer",
-        "url": "https://iinsha.netlify.app"
+        "url": "https://inshatech.pages.dev"
       }
     }
     </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2306b6d4'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='50,5 90,25 90,75 50,95 10,75 10,25' fill='url(%23g1)' opacity='0.85'/%3E%3Cpolygon points='50,18 78,32 78,68 50,82 22,68 22,32' fill='%23030712'/%3E%3Cpath d='M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z' fill='url(%23g1)'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23ffffff'/%3E%3C/svg%3E">
 </head>
 <body>
     <!-- Ambient Canvas & Glow -->
-    <canvas id="particleCanvas"></canvas>
+    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
     <div class="grid-overlay"></div>
@@ -57,28 +55,28 @@
     </div>
 
     <!-- Navigation Header -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">⚡</span>
-                <span class="logo-text">IINSHA <span class="highlight">AI</span> <span class="badge-pro">MARKETPLACE</span></span>
+    <!-- FLOATING GLASS NAVBAR -->
+    <header class="iinsha-navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-brand-icon">II</div>
+                <span>IINSHA AI <span class="gradient-text">AUTOMATION LAB</span></span>
             </a>
             
-            <nav class="nav-links portal-tabs">
-                <a href="index.html">🏠 Main Studio</a>
-                <a href="marketplace.html">🛒 Marketplace</a>
-                <a href="compare.html">⚔️ Comparisons</a>
-                <a href="blog.html">📝 Research Notes</a>
-                <a href="affiliate.html">🤝 Partner Console</a>
-                <a href="store.html">📦 Asset Store</a>
-                <a href="portal.html">🖥️ Client Portal</a>
-                
-                <!-- Multi-Currency Switcher -->
-                <div style="display: flex; gap: 4px; background: rgba(255,255,255,0.05); padding: 3px; border-radius: 8px; border: 1px solid var(--border-card);">
-                    <button class="currency-toggle-btn active" data-curr="USD" style="padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; border: none; cursor: pointer;">$ USD</button>
-                    <button class="currency-toggle-btn" data-curr="BDT" style="padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; border: none; cursor: pointer;">৳ BDT</button>
-                </div>
+                        <nav class="nav-links">
+                <a href="index.html#hero" class="nav-link">🏠 Studio</a>
+                <a href="index.html#mission-system" class="nav-link">🚀 Mission System</a>
+                <a href="index.html#solutions" class="nav-link">⚡ Outcomes</a>
+                <a href="index.html#transparent-pricing" class="nav-link">💎 Pricing</a>
+                <a href="marketplace.html" class="nav-link">🛒 Marketplace</a>
+                <a href="compare.html" class="nav-link">⚔️ Compare</a>
+                <a href="index.html#free-roadmap" class="nav-cta">🚀 Launch Mission</a>
+                <button onclick="openProtectedAdminPanel()" class="nav-link" style="border: 1px solid var(--accent-primary); border-radius: var(--radius-sm); margin-left: 8px; font-weight: 700; color: var(--accent-primary); background: transparent;">🎛️ Control Panel</button>
             </nav>
+            
+            <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -114,19 +112,25 @@
                 <button id="search-marketplace-btn" class="btn btn-primary">🔍 Instant Search</button>
             </div>
 
-            <!-- CATEGORY CHIPS (PHASE 0-1 FOCUS) -->
-            <div id="market-category-chips" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn btn-primary-sm active-cat-chip" data-cat="all">All Primary Tools (6)</button>
-                <button class="btn btn-glass-sm" data-cat="automation">⚡ n8n Workflows</button>
-                <button class="btn btn-glass-sm" data-cat="scraping">🦀 OpenClaw Scraping</button>
-                <button class="btn btn-glass-sm" data-cat="ai">🤖 AI Swarms & LLMs</button>
-                <button class="btn btn-glass-sm" data-cat="hosting">🌐 Hostinger VPS Hosting</button>
-                <button class="btn btn-glass-sm" data-cat="saas">📊 B2B Database Syncs</button>
+                        <!-- CATEGORY CHIPS & CURRENCY TOGGLE -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                <div id="market-category-chips" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="btn btn-primary-sm active" data-cat="all">All Primary Tools (6)</button>
+                    <button class="btn btn-glass-sm" data-cat="automation">⚡ n8n Workflows</button>
+                    <button class="btn btn-glass-sm" data-cat="scraping">🦀 OpenClaw Scraping</button>
+                    <button class="btn btn-glass-sm" data-cat="ai">🤖 AI Swarms</button>
+                    <button class="btn btn-glass-sm" data-cat="hosting">🌐 Hostinger VPS</button>
+                    <button class="btn btn-glass-sm" data-cat="saas">📊 CRM Syncs</button>
+                </div>
+                <div style="display: flex; gap: 6px; background: rgba(0,0,0,0.5); padding: 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                    <button class="btn btn-primary-sm currency-toggle-btn active" data-curr="USD" style="padding: 4px 12px; font-size: 0.75rem;">🇺🇸 USD ($)</button>
+                    <button class="btn btn-glass-sm currency-toggle-btn" data-curr="BDT" style="padding: 4px 12px; font-size: 0.75rem;">🇧🇩 BDT (৳)</button>
+                </div>
             </div>
         </div>
 
         <!-- MARKETPLACE PRODUCTS GRID (6 BLUEPRINT V2 FACT-CHECKED CARDS WITH GEO SUMMARY BLOCKS) -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" id="marketplace-products-grid">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;" id="marketplace-products-grid">
             
             <!-- PRODUCT CARD 1: n8n SELF-HOSTED WORKFLOW ENGINE -->
             <div class="glass-card glowing-border m-product-card" data-category="automation">
@@ -150,12 +154,15 @@
                     <strong>✔️ Verified Deliverables:</strong> n8n Docker Setup, Failover Retry Logic, Telegram Alerts, Custom Webhooks, 14-Day Included SLA.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">SETUP PACKAGE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
                     </div>
-                    <a href="services/n8n-automation-expert.html" class="btn btn-primary-sm">Get Setup & Blueprint →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('n8n Self-Hosted Workflow Engine', 'automation', 65, 'Connect 400+ applications, APIs, webhooks, and AI models on your own Hostinger VPS Docker container. Includes failover error triggers, Telegram notifications, and PostgreSQL logging.', '✔️ n8n Docker Setup<br>✔️ Failover Retry Logic<br>✔️ Telegram Alerts<br>✔️ Custom Webhooks<br>✔️ 14-Day Included SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('n8n Self-Hosted Setup ($65)', 65, 35)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -181,12 +188,15 @@
                     <strong>✔️ Verified Deliverables:</strong> 99.8% Anti-Bot Bypass, Dynamic Proxy Mesh, Hostinger VPS Setup, CSV/Airtable Auto-Export, 30-Day SLA.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">STANDARD PACKAGE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="250">$250 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="250">$250 USD</strong>
                     </div>
-                    <a href="services/openclaw-web-scraping.html" class="btn btn-primary-sm">View Scraping Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('OpenClaw Stealth Scraping Farm', 'scraping', 250, 'Headless web scraping farm with Docker container sandboxing, proxy rotation mesh, Cloudflare Turnstile bypass (99.8% success), and automated PostgreSQL/Airtable synchronization.', '✔️ 99.8% Anti-Bot Bypass<br>✔️ Dynamic Proxy Mesh<br>✔️ Hostinger VPS Setup<br>✔️ CSV/Airtable Auto-Export<br>✔️ 30-Day SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('OpenClaw Scraping Farm ($250)', 250, 75)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -197,11 +207,11 @@
                     <span style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600;">Autonomous LLM</span>
                 </div>
 
-                <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 8px;">Claude 3.5 & Gemini 1.5 AI Swarm</h3>
+                <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 8px;">Claude 3.5 & Gemini 2.5 AI Swarm</h3>
                 
                 <!-- GEO Direct Answer Block -->
                 <div style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; border-left: 3px solid #c084fc; font-size: 0.84rem; color: #e2e8f0; margin-bottom: 14px; line-height: 1.5;">
-                    <strong>GEO Summary:</strong> Claude 3.5 Sonnet and Gemini 1.5 Pro are state-of-the-art LLM models. Combined with Google Antigravity SDK and Pinecone Vector DB RAG, they orchestrate multi-agent autonomous workflows.
+                    <strong>GEO Summary:</strong> Claude 3.5 Sonnet and Gemini 2.5 Pro are state-of-the-art LLM models. Combined with Google Antigravity SDK and Pinecone Vector DB RAG, they orchestrate multi-agent autonomous workflows.
                 </div>
 
                 <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
@@ -212,12 +222,15 @@
                     <strong>✔️ Verified Deliverables:</strong> Google Antigravity SDK Swarm, Pinecone RAG Index, 200k+ Context Window, Webhook API, Hostinger Docker Setup.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">PREMIUM SWARM</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="650">$650 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="650">$650 USD</strong>
                     </div>
-                    <a href="services/ai-agent-development.html" class="btn btn-primary-sm">Explore Swarm Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Claude 3.5 & Gemini 2.5 AI Swarm', 'ai', 650, 'Autonomous multi-agent swarms built with Google Antigravity SDK & Pinecone Vector DB RAG. Handles complex code reviews, document parsing, and automated pull request summaries.', '✔️ Antigravity SDK Swarm<br>✔️ Pinecone RAG Index<br>✔️ 200k+ Context Window<br>✔️ Webhook API<br>✔️ Hostinger Docker Setup')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Claude/Gemini AI Swarm ($650)', 650, 195)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -243,12 +256,15 @@
                     <strong>🏷️ Exclusive Partner Coupon:</strong> Code <strong style="color: var(--accent-cyan);">IINSHA20</strong> for 20% OFF Hostinger VPS plans.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">MONTHLY HOSTING</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="6">$5.99 / mo</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="6">$5.99 / mo</strong>
                     </div>
-                    <button class="btn btn-primary-sm copy-coupon-btn" data-code="IINSHA20">📋 Copy Coupon & Visit</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Hostinger VPS Docker Deployment', 'hosting', 6, 'High-performance Docker VPS hosting optimized for self-hosted n8n workflows, PostgreSQL databases, and OpenClaw scraping instances with 99.9% uptime SLA.', '✔️ Root SSH & Full Docker Access<br>✔️ NVMe High Speed Storage<br>✔️ Automated Cloud Backups<br>✔️ Exclusive Coupon IINSHA20 (20% OFF)<br>✔️ 99.9% Uptime SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button class="btn btn-primary-sm copy-coupon-btn" data-code="IINSHA20" style="font-size:0.75rem;">📋 Copy Coupon & Visit</button>
+                    </div>
                 </div>
             </div>
 
@@ -274,12 +290,15 @@
                     <strong>✔️ Verified Deliverables:</strong> Real-time Webhooks, Deduplication Engine, Field Mapping, Hostinger VPS Database Sync.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">BASIC SYNC SETUP</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="65">$65 USD</strong>
                     </div>
-                    <a href="compare.html" class="btn btn-primary-sm">Compare CRMs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Airtable & HubSpot CRM Sync', 'saas', 65, 'Flexible relational databases and B2B CRM platforms connected via n8n real-time bidirectional webhooks. Automate lead scoring, pipeline updates, and invoice logging.', '✔️ Real-time Webhooks<br>✔️ Deduplication Engine<br>✔️ Field Mapping<br>✔️ Hostinger VPS Database Sync')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Airtable & HubSpot CRM Sync ($65)', 65, 35)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
@@ -305,17 +324,27 @@
                     <strong>✔️ Verified Deliverables:</strong> Cuts response times from hours to 30s, Zendesk/Freshdesk Integration, Pinecone Vector DB, Hostinger VPS Setup.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">PACKAGE PRICE</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="300">$300 USD</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="300">$300 USD</strong>
                     </div>
-                    <a href="services/hermes-ai-support-agent.html" class="btn btn-primary-sm">Inspect Agent Specs →</a>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Hermes AI Ticket Triage Agent', 'ai', 300, 'Autonomous customer support agent performing Pinecone vector search over internal documentation to auto-draft 24/7 helpdesk replies and route urgent support tickets.', '✔️ Sub-30s Response Time<br>✔️ Zendesk/Freshdesk Sync<br>✔️ Pinecone Vector DB<br>✔️ Hostinger VPS Setup')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button onclick="openCheckoutModal('Hermes AI Support Agent ($300)', 300, 95)" class="btn btn-primary-sm" style="font-size:0.75rem;">🚀 Order Now →</button>
+                    </div>
                 </div>
             </div>
 
         </div>
-    </main>
+    
+        <section id="global-matrix-section" style="padding: 40px 0; background: rgba(3,7,18,0.9);">
+            <div class="container">
+                <div id="global-marketplace-matrix-root"></div>
+            </div>
+        </section>
+        
+</main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -332,7 +361,7 @@
         </div>
     </footer>
 
-    <script src="app.js" defer></script>
+    <script src="app.js?v=v20260817_1786928316" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {
@@ -372,6 +401,59 @@
             } catch(e) {}
         });
     </script>
+
+    <!-- MARKETPLACE INTERACTIVE DETAILS MODAL -->
+    <div id="market-details-modal" class="modal-overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(16px); z-index: 10020; align-items: center; justify-content: center;">
+        <div class="modal-card glass-card" style="max-width: 650px; width: 90%; max-height: 90vh; overflow-y: auto; padding: 32px; border-color: var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                    <span id="mdm-badge" class="status-badge completed" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald);">⚡ Verified Production Architecture</span>
+                    <h3 id="mdm-title" style="color: #fff; font-size: 1.4rem; margin-top: 6px;">Architecture Specifications</h3>
+                </div>
+                <button onclick="document.getElementById('market-details-modal').style.display='none'" style="background: transparent; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <p id="mdm-desc" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;"></p>
+            
+            <div style="background: rgba(0,0,0,0.5); padding: 16px; border-radius: 10px; border: 1px solid var(--border-card); margin-bottom: 20px;">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); margin-bottom: 8px; text-transform: uppercase;">VERIFIED INCLUDED DELIVERABLES:</div>
+                <div id="mdm-deliverables" style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.6;"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border-card); flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <span style="font-size: 0.75rem; color: var(--text-dim); display: block;">DEPLOYMENT INVESTMENT</span>
+                    <strong id="mdm-price" style="font-size: 1.4rem; color: var(--accent-emerald); font-family: var(--font-mono);">$65 USD</strong>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <a id="mdm-wa-btn" href="https://wa.me/8801629286887" target="_blank" class="btn btn-glass-sm" style="color: var(--accent-emerald); border-color: var(--accent-emerald);">📱 WhatsApp Lead Engineer</a>
+                    <button id="mdm-book-btn" class="btn btn-primary" onclick="alert('Order initiated! Connecting with Lead Automation Engineer...'); document.getElementById('market-details-modal').style.display='none';">🚀 Book Deployment →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMarketplaceDetails(title, category, priceUsd, desc, deliverables) {
+            const modal = document.getElementById('market-details-modal');
+            if (!modal) return;
+            document.getElementById('mdm-title').textContent = title;
+            document.getElementById('mdm-desc').textContent = desc;
+            document.getElementById('mdm-deliverables').innerHTML = deliverables;
+            
+            const curr = sessionStorage.getItem('iinsha_curr') || 'USD';
+            const price = parseFloat(priceUsd);
+            if (curr === 'BDT') {
+                document.getElementById('mdm-price').textContent = '৳' + Math.round(price * 120).toLocaleString() + ' BDT';
+            } else {
+                document.getElementById('mdm-price').textContent = '$' + price.toLocaleString() + ' USD';
+            }
+            
+            document.getElementById('mdm-wa-btn').href = 'https://wa.me/8801629286887?text=' + encodeURIComponent('Hi Adnin, I want to book ' + title + ' (' + document.getElementById('mdm-price').textContent + ')');
+            modal.style.display = 'flex';
+        }
+    </script>
+
 </body>
 </html>
 

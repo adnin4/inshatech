@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=v20260817_1786928316">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786928370">
 
     <style>
         .ipc-card { background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-card); border-radius: 14px; padding: 24px; position: relative; margin-bottom: 20px; backdrop-filter: blur(12px); transition: all 0.3s ease; }
@@ -32,6 +32,16 @@
         
         .calc-box { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--accent-cyan); border-radius: 16px; padding: 28px; margin: 40px 0; }
         .slider-input { width: 100%; accent-color: var(--accent-cyan); cursor: pointer; height: 6px; border-radius: 3px; }
+    
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+        .faq-aff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) {
+            .calc-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+            .faq-aff-grid { grid-template-columns: 1fr !important; }
+            .hero-title { font-size: 2.2rem !important; }
+            .calc-box { padding: 18px !important; }
+        }
+
     </style>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2306b6d4'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='50,5 90,25 90,75 50,95 10,75 10,25' fill='url(%23g1)' opacity='0.85'/%3E%3Cpolygon points='50,18 78,32 78,68 50,82 22,68 22,32' fill='%23030712'/%3E%3Cpath d='M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z' fill='url(%23g1)'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23ffffff'/%3E%3C/svg%3E">
 </head>
@@ -117,7 +127,7 @@
                 <p style="font-size: 0.9rem; color: #94a3b8;">Adjust the sliders below to estimate your potential monthly recurring earnings.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
+            <div class="calc-grid">
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     <div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
@@ -234,7 +244,7 @@
         <!-- FAQ SECTION -->
         <section style="margin-top: 60px;">
             <h2 style="color: #fff; font-size: 1.8rem; text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="faq-aff-grid">
                 <div class="ipc-card">
                     <strong style="color: #fff; font-size: 1rem; display: block; margin-bottom: 8px;">How does referral tracking work?</strong>
                     <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.5;">When a visitor clicks your unique referral link (`/go/YOUR_CODE`), a secure 60-day cookie (`iinsha_aff_ref`) is saved in their browser. If they purchase or request a quote on WhatsApp within 60 days, your code is automatically attached and credited to your ledger.</p>
@@ -267,7 +277,7 @@
         
 </main>
 
-    <script src="app.js?v=v20260817_1786928316"></script>
+    <script src="app.js?v=v20260817_1786928370"></script>
     <script>
         function updateAffiliateCalculator() {
             const clients = parseInt(document.getElementById('calc-clients-slider')?.value || 5);
