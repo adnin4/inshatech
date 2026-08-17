@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
     
     <!-- Primary Styling -->
-    <link rel="stylesheet" href="style.css?v=v20260817_1786926863">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786926913">
     
     <!-- Three.js (WebGL 3D Core) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -735,7 +735,7 @@
                             <li>Daily Uptime Diagnostics & Monitoring</li>
                             <li>100% Code & Data Ownership</li>
                         </ul>
-                        <button class="btn-ghost open-checkout-btn" data-pkg="Starter / Single Workflow" data-price="$497" style="width: 100%; justify-content: center;">Deploy System →</button>
+                        <button class="btn-ghost open-checkout-btn" onclick="openCheckoutModal('Starter / Single Workflow', 497, 197)" data-pkg="Starter / Single Workflow" data-price="$497" style="width: 100%; justify-content: center;">Deploy System →</button>
                     </div>
                     
                     <!-- TIER 2: PRODUCTION BUILD (FEATURED) -->
@@ -750,7 +750,7 @@
                             <li>4-Level HITL Governance Setup</li>
                             <li>Priority Support & WhatsApp Direct Channel</li>
                         </ul>
-                        <button class="btn-primary open-checkout-btn" data-pkg="Production Build / Full Suite" data-price="$997" style="width: 100%; justify-content: center;">Deploy Full Suite →</button>
+                        <button class="btn-primary open-checkout-btn" onclick="openCheckoutModal('Production Build / Full Suite', 997, 397)" data-pkg="Production Build / Full Suite" data-price="$997" style="width: 100%; justify-content: center;">Deploy Full Suite →</button>
                     </div>
 
                     <!-- TIER 3: AUTOMATION PARTNER -->
@@ -765,7 +765,7 @@
                             <li>Dedicated SRE & Same-Day SLA</li>
                             <li>Custom LLM Fine-Tuning & Private Cloud</li>
                         </ul>
-                        <button class="btn-ghost open-checkout-btn" data-pkg="Automation Partner / Enterprise OS" data-price="$1,997" style="width: 100%; justify-content: center;">Partner With Us →</button>
+                        <button class="btn-ghost open-checkout-btn" onclick="openCheckoutModal('Automation Partner / Enterprise OS', 1997, 797)" data-pkg="Automation Partner / Enterprise OS" data-price="$1,997" style="width: 100%; justify-content: center;">Partner With Us →</button>
                     </div>
 
                 </div>
@@ -935,7 +935,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=v20260817_1786926863" defer></script>
+    <script src="app.js?v=v20260817_1786926913" defer></script>
     <script>
         function switchLabTab(tab) {
             document.querySelectorAll('.lab-tab').forEach(el => el.classList.remove('active'));
