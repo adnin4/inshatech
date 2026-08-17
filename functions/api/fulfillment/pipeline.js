@@ -3,7 +3,7 @@
  * Post-Sale Fulfillment Pipeline & Project Delivery Controller
  */
 
-import { FulfillmentEngine } from '../../ai_brain/fulfillment_engine.js';
+import { FulfillmentEngine } from '../../_shared/ai_brain/fulfillment_engine.js';
 
 export async function onRequestPost(context) {
     const origin = context.request.headers.get("Origin") || "*";

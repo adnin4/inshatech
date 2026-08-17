@@ -3,7 +3,7 @@
  * Enterprise Tool Policy Engine & Execution Gateway with HITL 2.0 Checkpointing
  */
 
-import { PERMISSION_LEVELS, AGENT_REGISTRY, ANTI_LOOP_CONFIG } from '../../ai_brain/agents/agent_registry.js';
+import { PERMISSION_LEVELS, AGENT_REGISTRY, ANTI_LOOP_CONFIG } from '../../_shared/ai_brain/agents/agent_registry.js';
 
 const TOOL_DEFINITIONS = {
     // LEVEL 0: READ ONLY (Zero Risk)

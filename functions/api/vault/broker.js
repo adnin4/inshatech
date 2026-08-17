@@ -3,7 +3,7 @@
  * Secure Secret Broker Proxy API
  */
 
-import { SecretBroker } from '../../ai_brain/secret_broker.js';
+import { SecretBroker } from '../../_shared/ai_brain/secret_broker.js';
 
 export async function onRequestPost(context) {
     const origin = context.request.headers.get("Origin") || "*";

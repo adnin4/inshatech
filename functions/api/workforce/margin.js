@@ -3,7 +3,7 @@
  * Margin Guardian & Deal Profitability Audit API
  */
 
-import { MarginGuardian } from '../../ai_brain/margin_guardian.js';
+import { MarginGuardian } from '../../_shared/ai_brain/margin_guardian.js';
 
 export async function onRequestPost(context) {
     const origin = context.request.headers.get("Origin") || "*";

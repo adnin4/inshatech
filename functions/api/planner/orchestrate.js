@@ -3,7 +3,7 @@
  * Planner Agent & Dynamic Agent Graph Synthesizer
  */
 
-import { PlannerEngine } from '../../ai_brain/planner_engine.js';
+import { PlannerEngine } from '../../_shared/ai_brain/planner_engine.js';
 
 export async function onRequestPost(context) {
     const origin = context.request.headers.get("Origin") || "*";
