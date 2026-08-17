@@ -7,16 +7,16 @@ def build_cloudflare_pages_zip():
     
     # Extensions and files allowed for Cloudflare Pages static upload
     allowed_extensions = {'.html', '.css', '.js', '.jpg', '.jpeg', '.png', '.svg', '.gif', '.ico', '.txt', '.xml'}
-    allowed_exact_files = {'_headers', '_redirects', 'robots.txt', 'sitemap.xml'}
+    allowed_exact_files = {'_headers', 'robots.txt', 'sitemap.xml'}
     
-    # Disallowed files/extensions that cause Cloudflare Pages uploader warning
-    ignored_exact_files = {'wrangler.toml', 'docker-compose.yml', 'supabase_schema.sql', 'setup_vps_security_hardening.sh'}
+    # Disallowed files/extensions that cause Cloudflare Pages uploader warning or redirect loops
+    ignored_exact_files = {'_redirects', 'wrangler.toml', 'docker-compose.yml', 'supabase_schema.sql', 'setup_vps_security_hardening.sh'}
+    excluded_dirs = {'node_modules', '.git', 'cloudflare_pages_dist', 'scratch', 'dist', 'build', 'public', 'static_dist', 'netlify_bak', '__pycache__', '.netlify', '.github'}
     
     count = 0
     with zipfile.ZipFile(output_zip, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(source_dir):
-            # Skip hidden dirs or netlify functions, node_modules, cloudflare_pages_dist
-            dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['node_modules', '.git', 'cloudflare_pages_dist', 'scratch']]
+            dirs[:] = [d for d in dirs if not d.startswith('.') and d not in excluded_dirs]
             
             for file in files:
                 filepath = os.path.join(root, file)
@@ -39,3 +39,4 @@ def build_cloudflare_pages_zip():
 
 if __name__ == "__main__":
     build_cloudflare_pages_zip()
+
