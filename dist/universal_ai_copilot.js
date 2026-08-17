@@ -530,7 +530,7 @@
                         <button class="copilot-ctrl-btn" id="copilot-expand-toggle" title="Toggle Fullscreen">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
                         </button>
-                        <button class="copilot-ctrl-btn" id="copilot-close-btn" title="Close">
+                        <button class="copilot-ctrl-btn" id="copilot-close-btn" title="Close" onclick="if(window.UniversalAiCopilotInstance) window.UniversalAiCopilotInstance.toggleWindow(false)">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         </button>
                     </div>
@@ -580,43 +580,80 @@
             const micBtn = document.getElementById('copilot-mic-btn');
             const teaser = document.getElementById('iinsha-copilot-teaser');
 
-            trigger.addEventListener('click', () => {
-                this.toggleWindow(true);
-                if (teaser) teaser.style.display = 'none';
-            });
+            if (trigger) {
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleWindow(!this.isOpen);
+                    if (teaser) teaser.style.display = 'none';
+                });
+            }
 
-            expandBtn.addEventListener('click', () => {
-                const isExp = windowEl.classList.toggle('expanded');
-                windowEl.classList.toggle('fullscreen', isExp);
-                expandBtn.title = isExp ? 'Minimize / Normal Size' : 'Maximize / Fullscreen';
-                expandBtn.innerHTML = isExp 
-                    ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`
-                    : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`;
-            });
-
-            ttsBtn.addEventListener('click', () => {
-                this.ttsEnabled = !this.ttsEnabled;
-                ttsBtn.style.color = this.ttsEnabled ? '#00f2fe' : '';
-                ttsBtn.innerHTML = this.ttsEnabled ? '🔊' : '🔇';
-                if (!this.ttsEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
-            });
-
-            sendBtn.addEventListener('click', () => this.handleSendMessage());
-
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    this.handleSendMessage();
+                    e.stopPropagation();
+                    this.toggleWindow(false);
+                });
+            }
+
+            if (expandBtn) {
+                expandBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isExp = windowEl.classList.toggle('expanded');
+                    windowEl.classList.toggle('fullscreen', isExp);
+                    expandBtn.title = isExp ? 'Minimize / Normal Size' : 'Maximize / Fullscreen';
+                    expandBtn.innerHTML = isExp 
+                        ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`
+                        : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`;
+                });
+            }
+
+            // Pressing Escape closes the window
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.isOpen) {
+                    this.toggleWindow(false);
                 }
             });
 
-            micBtn.addEventListener('click', () => this.handleVoiceInput());
+            if (ttsBtn) {
+                ttsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.ttsEnabled = !this.ttsEnabled;
+                    ttsBtn.style.color = this.ttsEnabled ? '#00f2fe' : '';
+                    ttsBtn.innerHTML = this.ttsEnabled ? '🔊' : '🔇';
+                    if (!this.ttsEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+                });
+            }
+
+            if (sendBtn) {
+                sendBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleSendMessage();
+                });
+            }
+
+            if (input) {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.handleSendMessage();
+                    }
+                });
+            }
+
+            if (micBtn) {
+                micBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleVoiceInput();
+                });
+            }
 
             // Quick chip buttons
             document.querySelectorAll('.copilot-chip').forEach(chip => {
                 chip.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     const prompt = e.currentTarget.getAttribute('data-prompt');
-                    if (prompt) {
+                    if (prompt && input) {
                         input.value = prompt;
                         this.handleSendMessage();
                     }
@@ -627,15 +664,19 @@
         toggleWindow(show) {
             const windowEl = document.getElementById('iinsha-copilot-window');
             const trigger = document.getElementById('iinsha-copilot-trigger');
+            if (!windowEl) return;
+
             if (show) {
                 windowEl.classList.remove('hidden');
-                trigger.classList.add('active');
+                windowEl.style.display = 'flex';
+                if (trigger) trigger.classList.add('active');
                 this.isOpen = true;
                 const input = document.getElementById('copilot-text-input');
                 setTimeout(() => { if (input) input.focus(); }, 150);
             } else {
                 windowEl.classList.add('hidden');
-                trigger.classList.remove('active');
+                windowEl.style.display = 'none';
+                if (trigger) trigger.classList.remove('active');
                 this.isOpen = false;
             }
         }
