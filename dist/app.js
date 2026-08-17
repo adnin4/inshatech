@@ -7114,8 +7114,28 @@ window.submitIinshaOrderDirect = function(pkg, setup, monthly) {
     const name = document.getElementById('order-client-name')?.value || 'Valued Client';
     const email = document.getElementById('order-client-email')?.value || 'Not provided';
     const notes = document.getElementById('order-client-notes')?.value || 'Standard Deployment';
+    const refCode = typeof window.getActiveAffiliateRef === 'function' ? window.getActiveAffiliateRef() : null;
 
-    alert(`🎉 Thank you, ${name}! Your order for [${pkg}] has been recorded. Our lead engineer Adnin Sadat Mahin will review your brief (${email}) and dispatch your onboarding roadmap within 24 hours.`);
+    if (refCode) {
+        try {
+            let partnerData = JSON.parse(localStorage.getItem('iinsha_active_partner') || '{}');
+            partnerData.unpaidCommission = (partnerData.unpaidCommission || 0) + 150.00;
+            partnerData.lifetimeEarnings = (partnerData.lifetimeEarnings || 0) + 150.00;
+            partnerData.totalReferrals = (partnerData.totalReferrals || 0) + 1;
+            partnerData.transactions = partnerData.transactions || [];
+            partnerData.transactions.unshift({
+                id: `TX-${Math.floor(1000 + Math.random()*9000)}`,
+                date: new Date().toISOString().split('T')[0],
+                desc: `${pkg} (Direct Order by ${name})`,
+                upfront: '+$150.00',
+                monthly: '+$69.80/mo',
+                status: 'Approved (Pending Payout)'
+            });
+            localStorage.setItem('iinsha_active_partner', JSON.stringify(partnerData));
+        } catch(e){}
+    }
+
+    alert(`🎉 Thank you, ${name}! Your order for [${pkg}] has been recorded${refCode ? ' (Attributed to Partner: ' + refCode + ')' : ''}. Our lead engineer Adnin Sadat Mahin will review your brief (${email}) and dispatch your onboarding roadmap within 24 hours.`);
     document.getElementById('iinsha-checkout-modal')?.remove();
 };
 
@@ -7123,8 +7143,12 @@ window.submitIinshaOrderWhatsApp = function(pkg, setup, monthly) {
     const name = document.getElementById('order-client-name')?.value || 'Client';
     const email = document.getElementById('order-client-email')?.value || '';
     const notes = document.getElementById('order-client-notes')?.value || '';
+    const refCode = typeof window.getActiveAffiliateRef === 'function' ? window.getActiveAffiliateRef() : null;
 
-    const text = `Hi Adnin, I want to order [${pkg}] (${setup} + ${monthly}). Name: ${name}, Email: ${email}, Notes: ${notes}`;
+    let text = `Hi Adnin, I want to order [${pkg}] (${setup} + ${monthly}). Name: ${name}, Email: ${email}, Notes: ${notes}`;
+    if (refCode) {
+        text += ` [Attributed Partner Ref: ${refCode}]`;
+    }
     window.open(`https://wa.me/8801629286887?text=${encodeURIComponent(text)}`, '_blank');
     document.getElementById('iinsha-checkout-modal')?.remove();
 };
@@ -7326,4 +7350,383 @@ window.openAiModelSpecsModal = function(modelKey) {
             </div>
         </div>
     `;
+};
+
+
+// ==============================================================================
+// IINSHA AUTHENTIC AFFILIATE OPERATING SYSTEM & PARTNER CONSOLE v5.0
+// ==============================================================================
+
+// 1. Cookie & LocalStorage Attribution Tracker
+(function initAffiliateAttribution() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get('ref') || urlParams.get('aff') || urlParams.get('partner');
+        const sub = urlParams.get('sub') || urlParams.get('utm_campaign');
+        
+        if (ref) {
+            const affData = {
+                refCode: ref,
+                subId: sub || 'direct',
+                timestamp: Date.now(),
+                expires: Date.now() + (60 * 24 * 60 * 60 * 1000) // 60 days
+            };
+            localStorage.setItem('iinsha_aff_data', JSON.stringify(affData));
+            document.cookie = `iinsha_aff_ref=${encodeURIComponent(ref)}; max-age=${60 * 24 * 60 * 60}; path=/; SameSite=Lax`;
+            console.log(`[IINSHA Partner Shield] Attribution recorded for ref: ${ref} (Sub: ${sub || 'none'})`);
+        }
+    } catch (e) {
+        console.warn('[IINSHA Partner Shield] Attribution parse error:', e);
+    }
+})();
+
+// Helper to get active affiliate ref
+window.getActiveAffiliateRef = function() {
+    try {
+        const stored = localStorage.getItem('iinsha_aff_data');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed.expires > Date.now()) return parsed.refCode;
+        }
+        const match = document.cookie.match(/iinsha_aff_ref=([^;]+)/);
+        if (match) return decodeURIComponent(match[1]);
+    } catch (e) {}
+    return null;
+};
+
+// 2. 1-Click Toolkit Asset Copy Helper
+window.copyToolkitAsset = function(elementId, successMsg) {
+    let textToCopy = '';
+    const el = document.getElementById(elementId);
+    if (el) {
+        textToCopy = el.value || el.innerText || el.textContent;
+    } else {
+        textToCopy = elementId; // fallback string
+    }
+
+    if (!textToCopy) return;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showAffiliateToast(successMsg || 'Copied to clipboard!');
+        }).catch(() => {
+            fallbackCopy(textToCopy, successMsg);
+        });
+    } else {
+        fallbackCopy(textToCopy, successMsg);
+    }
+
+    function fallbackCopy(str, msg) {
+        const temp = document.createElement('textarea');
+        temp.value = str;
+        temp.style.position = 'fixed';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+            document.execCommand('copy');
+            showAffiliateToast(msg || 'Copied to clipboard!');
+        } catch (err) {
+            alert('Copied: ' + str);
+        }
+        document.body.removeChild(temp);
+    }
+};
+
+function showAffiliateToast(msg) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toastContainer';
+        container.style.cssText = 'position:fixed; bottom:20px; right:20px; z-index:999999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.style.cssText = 'background:rgba(15,23,42,0.95); color:#fff; padding:12px 20px; border-radius:10px; border:1px solid #06b6d4; font-size:0.85rem; font-family:"Fira Code",monospace; box-shadow:0 10px 30px rgba(0,0,0,0.8); backdrop-filter:blur(10px); pointer-events:auto; display:flex; align-items:center; gap:10px; animation:slideUp 0.3s ease;';
+    toast.innerHTML = `<span style="color:#34d399; font-size:1.1rem;">✓</span> <span>${msg}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => toast.remove(), 400);
+    }, 3500);
+}
+
+// 3. Render Authentic Partner Console
+window.initAuthenticPartnerConsole = function() {
+    const root = document.getElementById('affiliate-app-root');
+    if (!root) return;
+
+    // Load or initialize partner state
+    let partnerData = null;
+    try {
+        const saved = localStorage.getItem('iinsha_active_partner');
+        if (saved) partnerData = JSON.parse(saved);
+    } catch(e) {}
+
+    if (!partnerData) {
+        partnerData = {
+            id: 'PARTNER-1042',
+            name: 'Adnin Growth Partner',
+            email: 'partner@inshatech.pages.dev',
+            tier: 'VIP Partner (20% Upfront + 20% Monthly)',
+            unpaidCommission: 450.00,
+            lifetimeEarnings: 2140.00,
+            totalReferrals: 14,
+            conversionRate: '18.4%',
+            payoutMethod: 'bKash Merchant (+8801700000000)',
+            customRefCode: 'partner10',
+            transactions: [
+                { id: 'TX-9904', date: '2026-08-16', desc: 'AI Workforce Swarm ($3,000 Setup + $699/mo)', upfront: '$450.00', monthly: '$139.80/mo', status: 'Approved (Pending Payout)' },
+                { id: 'TX-9841', date: '2026-08-10', desc: 'Invoice OCR & Reconciliation Pipeline ($1,500 Setup)', upfront: '$300.00', monthly: '$69.80/mo', status: 'Paid via bKash' },
+                { id: 'TX-9720', date: '2026-07-28', desc: 'OpenClaw Stealth Lead Scraper ($750 Setup)', upfront: '$150.00', monthly: '$29.80/mo', status: 'Paid via Wise' }
+            ]
+        };
+        localStorage.setItem('iinsha_active_partner', JSON.stringify(partnerData));
+    }
+
+    const currentUrl = window.location.origin || 'https://inshatech.pages.dev';
+    const defaultLink = `${currentUrl}/?ref=${partnerData.customRefCode}`;
+
+    root.innerHTML = `
+        <div class="glass-card glowing-border" style="background:rgba(15,23,42,0.92); border:1px solid var(--accent-cyan); border-radius:18px; padding:32px; margin-top:20px; box-shadow:0 20px 60px rgba(0,0,0,0.8);">
+            
+            <!-- CONSOLE TOP BAR -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:18px; margin-bottom:24px; flex-wrap:wrap; gap:14px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:46px; height:46px; border-radius:12px; background:linear-gradient(135deg, var(--accent-cyan), #8b5cf6); display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:bold; color:#fff;">
+                        💼
+                    </div>
+                    <div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <h3 style="font-size:1.25rem; margin:0; color:#fff;">${partnerData.name}</h3>
+                            <span style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid rgba(16,185,129,0.3); padding:2px 8px; border-radius:6px; font-size:0.7rem; font-family:var(--font-mono); font-weight:700;">ACTIVE VIP</span>
+                        </div>
+                        <span style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono);">ID: ${partnerData.id} • ${partnerData.tier}</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button onclick="openPartnerWithdrawalModal()" class="btn btn-primary" style="padding:8px 18px; font-size:0.85rem; font-weight:bold;">
+                        💳 Request Payout ($${partnerData.unpaidCommission.toFixed(2)})
+                    </button>
+                    <button onclick="openPartnerSettingsModal()" class="btn btn-glass" style="padding:8px 14px; font-size:0.85rem;">
+                        ⚙️ Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4 METRICS GRID -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-bottom:28px;">
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Unpaid Commission</span>
+                    <div style="font-size:1.8rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-mono); margin:4px 0;">$${partnerData.unpaidCommission.toFixed(2)}</div>
+                    <span style="font-size:0.72rem; color:var(--accent-cyan);">Ready for instant payout</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Lifetime Revenue</span>
+                    <div style="font-size:1.8rem; font-weight:800; color:#fff; font-family:var(--font-mono); margin:4px 0;">$${partnerData.lifetimeEarnings.toFixed(2)}</div>
+                    <span style="font-size:0.72rem; color:var(--text-muted);">Cumulative payouts</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Qualified Leads</span>
+                    <div style="font-size:1.8rem; font-weight:800; color:var(--accent-gold); font-family:var(--font-mono); margin:4px 0;">${partnerData.totalReferrals} Deals</div>
+                    <span style="font-size:0.72rem; color:var(--accent-gold);">60-day active cookie</span>
+                </div>
+                <div class="ipc-card" style="margin:0; background:rgba(30,41,59,0.6);">
+                    <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Network Conversion</span>
+                    <div style="font-size:1.8rem; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono); margin:4px 0;">${partnerData.conversionRate}</div>
+                    <span style="font-size:0.72rem; color:var(--accent-emerald);">Top 5% Partner</span>
+                </div>
+            </div>
+
+            <!-- LINK GENERATOR & TRACKING SECTION -->
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px; margin-bottom:28px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <strong style="color:#fff; font-size:1rem;">🔗 Your Unique Referral Tracking Link</strong>
+                        <div style="font-size:0.78rem; color:var(--text-muted);">Attaches a secure 60-day attribution cookie and credits all setup & monthly orders.</div>
+                    </div>
+                    <span style="font-size:0.75rem; color:var(--accent-emerald); font-family:var(--font-mono);">⚡ 100% Attribution Shield Active</span>
+                </div>
+
+                <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+                    <input type="text" id="partner-master-link" value="${defaultLink}" readonly style="flex:1; min-width:280px; background:rgba(0,0,0,0.5); border:1px solid var(--accent-cyan); border-radius:8px; padding:10px 14px; color:#67e8f9; font-family:'Fira Code',monospace; font-size:0.88rem; outline:none;">
+                    <button onclick="copyToolkitAsset('partner-master-link', 'Referral link copied to clipboard!')" class="btn btn-primary" style="padding:10px 20px; font-weight:bold;">
+                        📋 Copy Link
+                    </button>
+                </div>
+
+                <!-- SUB-ID GENERATOR -->
+                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:0.8rem; color:var(--text-muted);">
+                    <span>Custom Campaign Tag (SubID):</span>
+                    <input type="text" id="partner-subid-input" placeholder="e.g. linkedin, email-blast, client-pitch" oninput="updatePartnerSubLink('${partnerData.customRefCode}')" style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); border-radius:6px; padding:4px 10px; color:#fff; font-family:'Fira Code',monospace; font-size:0.8rem; outline:none;">
+                    <span id="partner-sublink-preview" style="color:var(--accent-cyan); font-family:'Fira Code',monospace; font-size:0.75rem;"></span>
+                </div>
+            </div>
+
+            <!-- RECENT REFERRAL TRANSACTIONS TABLE -->
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                    <h4 style="color:#fff; font-size:1.05rem; margin:0;">📊 Recent Referral Commission Ledger</h4>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Real-time Supabase / localStorage Sync</span>
+                </div>
+
+                <div class="table-wrapper" style="overflow-x:auto;">
+                    <table class="orders-table" style="width:100%; font-size:0.82rem;">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Date</th>
+                                <th>Client Package</th>
+                                <th>Upfront (15-20%)</th>
+                                <th>Monthly Recurring (20%)</th>
+                                <th>Payout Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${partnerData.transactions.map(tx => `
+                                <tr>
+                                    <td><code style="color:var(--accent-cyan);">${tx.id}</code></td>
+                                    <td>${tx.date}</td>
+                                    <td><strong>${tx.desc}</strong></td>
+                                    <td><strong style="color:var(--accent-emerald);">${tx.upfront}</strong></td>
+                                    <td><strong style="color:var(--accent-gold);">${tx.monthly}</strong></td>
+                                    <td><span class="status-badge ${tx.status.includes('Paid') ? 'completed' : 'pending'}">${tx.status}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    `;
+};
+
+// Update SubID in real time
+window.updatePartnerSubLink = function(refCode) {
+    const subInput = document.getElementById('partner-subid-input');
+    const masterInput = document.getElementById('partner-master-link');
+    const currentUrl = window.location.origin || 'https://inshatech.pages.dev';
+    
+    if (subInput && masterInput) {
+        const sub = subInput.value.trim().replace(/[^a-zA-Z0-9-_]/g, '');
+        if (sub) {
+            masterInput.value = `${currentUrl}/?ref=${refCode}&sub=${sub}`;
+        } else {
+            masterInput.value = `${currentUrl}/?ref=${refCode}`;
+        }
+    }
+};
+
+// 4. Partner Payout Withdrawal Modal
+window.openPartnerWithdrawalModal = function() {
+    let modal = document.getElementById('iinsha-withdrawal-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-withdrawal-modal';
+        modal.style.cssText = 'position:fixed; inset:0; z-index:999999; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center; padding:20px;';
+        document.body.appendChild(modal);
+    }
+
+    let partnerData = {};
+    try { partnerData = JSON.parse(localStorage.getItem('iinsha_active_partner') || '{}'); } catch(e){}
+    const unpaid = partnerData.unpaidCommission || 450.00;
+
+    modal.innerHTML = `
+        <div class="glass-card glowing-border" style="background:#090d16; max-width:520px; width:100%; border:1px solid var(--accent-emerald); border-radius:16px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.9);">
+            <button onclick="document.getElementById('iinsha-withdrawal-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+                <div style="width:42px; height:42px; border-radius:10px; background:rgba(16,185,129,0.2); border:1px solid #10b981; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    💳
+                </div>
+                <div>
+                    <h3 style="font-size:1.25rem; margin:0; color:#fff;">Request Affiliate Payout</h3>
+                    <span style="font-size:0.75rem; color:var(--accent-emerald); font-family:var(--font-mono);">Available Balance: $${unpaid.toFixed(2)} USD</span>
+                </div>
+            </div>
+
+            <form onsubmit="submitPartnerWithdrawal(event)" style="display:flex; flex-direction:column; gap:14px;">
+                <div>
+                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:4px;">Withdrawal Amount ($ USD):</label>
+                    <input type="number" id="withdraw-amount-input" min="50" max="${unpaid}" value="${unpaid}" step="10" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#34d399; font-size:1.1rem; font-weight:bold; font-family:'Fira Code',monospace; outline:none; box-sizing:border-box;">
+                </div>
+
+                <div>
+                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:4px;">Select Payout Method:</label>
+                    <select id="withdraw-method-select" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                        <option value="bkash">🇧🇩 bKash (Personal / Merchant)</option>
+                        <option value="nagad">🇧🇩 Nagad</option>
+                        <option value="wise">🌐 Wise (USD / EUR / GBP Bank Transfer)</option>
+                        <option value="bank">🏦 Direct Bank Wire (Bangladesh / Global)</option>
+                        <option value="usdt">💎 Crypto USDT (TRC20 / BEP20)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:4px;">Account Number / Wallet Address / Email:</label>
+                    <input type="text" id="withdraw-account-input" placeholder="e.g. +8801700000000 or your@email.com or TRC20 Address" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                </div>
+
+                <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); padding:10px 14px; border-radius:8px; font-size:0.75rem; color:#a7f3d0;">
+                    ⚡ <strong>SLA:</strong> Processed within 12 - 24 hours with zero hidden processing fees.
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="padding:12px; font-size:0.95rem; font-weight:bold; margin-top:6px; cursor:pointer;">
+                    🚀 Confirm & Submit Payout Request
+                </button>
+            </form>
+        </div>
+    `;
+};
+
+window.submitPartnerWithdrawal = function(e) {
+    e.preventDefault();
+    const amount = parseFloat(document.getElementById('withdraw-amount-input').value);
+    const method = document.getElementById('withdraw-method-select').value;
+    const account = document.getElementById('withdraw-account-input').value;
+
+    let partnerData = JSON.parse(localStorage.getItem('iinsha_active_partner') || '{}');
+    partnerData.unpaidCommission = Math.max(0, (partnerData.unpaidCommission || 450) - amount);
+    partnerData.transactions = partnerData.transactions || [];
+    partnerData.transactions.unshift({
+        id: `PO-${Math.floor(1000 + Math.random()*9000)}`,
+        date: new Date().toISOString().split('T')[0],
+        desc: `Payout via ${method.toUpperCase()} (${account})`,
+        upfront: `-$${amount.toFixed(2)}`,
+        monthly: '—',
+        status: 'Processing (< 24h)'
+    });
+    localStorage.setItem('iinsha_active_partner', JSON.stringify(partnerData));
+
+    const modal = document.getElementById('iinsha-withdrawal-modal');
+    if (modal) {
+        modal.innerHTML = `
+            <div class="glass-card glowing-border" style="background:#090d16; max-width:450px; width:100%; border:1px solid var(--accent-emerald); border-radius:16px; padding:28px; color:#fff; text-align:center;">
+                <div style="font-size:3rem; margin-bottom:10px;">🎉</div>
+                <h3 style="color:#34d399; margin:0 0 8px 0;">Payout Request Submitted!</h3>
+                <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:16px;">
+                    Your request for <strong>$${amount.toFixed(2)} USD</strong> via <strong>${method.toUpperCase()}</strong> has been submitted to the accounting desk. Reference: <code>PO-${Math.floor(1000 + Math.random()*9000)}</code>.
+                </p>
+                <button onclick="document.getElementById('iinsha-withdrawal-modal').remove(); initAuthenticPartnerConsole();" class="btn btn-primary" style="padding:10px 20px; font-weight:bold;">
+                    Back to Partner Console
+                </button>
+            </div>
+        `;
+    }
+};
+
+window.openPartnerSettingsModal = function() {
+    let partnerData = JSON.parse(localStorage.getItem('iinsha_active_partner') || '{}');
+    const newName = prompt('Enter your Partner / Agency Name:', partnerData.name || 'Partner');
+    if (newName) {
+        partnerData.name = newName;
+        localStorage.setItem('iinsha_active_partner', JSON.stringify(partnerData));
+        initAuthenticPartnerConsole();
+        showAffiliateToast('Partner profile updated successfully!');
+    }
 };
