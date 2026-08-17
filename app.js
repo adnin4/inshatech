@@ -1447,7 +1447,7 @@ function calculateAIBuilderEstimate() {
     let estimatedSavings = 1200;
 
     if (state.model === 'Claude 3.7 Sonnet') baseCost += 200;
-    if (state.model === 'DeepSeek R1 Swarm') baseCost += 350;
+    if (state.model === 'DeepSeek-R1 / V3 Swarm') baseCost += 350;
     if (state.database === 'Pinecone Vector DB') baseCost += 150;
     
     if (state.integrations && state.integrations.length > 2) {
@@ -1502,7 +1502,7 @@ function openBuildAISystemModal() {
                     <select onchange="window.aiBuilderState.model=this.value; renderAIBuilderSummary();" style="width:100%; padding:10px; background:rgba(30,41,59,0.8); border:1px solid var(--border-card); border-radius:8px; color:#fff; margin-bottom:12px;">
                         <option value="Gemini 3.5 Pro">Google Gemini 3.5 Pro (Recommended)</option>
                         <option value="Claude 3.7 Sonnet">Anthropic Claude 3.7 Sonnet</option>
-                        <option value="DeepSeek R1 Swarm">DeepSeek R1 Multi-Agent Swarm</option>
+                        <option value="DeepSeek-R1 / V3 Swarm">DeepSeek-R1 / V3 Multi-Agent Swarm</option>
                     </select>
 
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">3. Database & Knowledge Base</label>
@@ -6465,7 +6465,7 @@ const OUTCOME_DEFINITIONS = {
                 </div>
             </div>
             <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.5 Sonnet / Gemini 2.5 Pro + Webhook Action Bridge.
+                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.7 Sonnet / Gemini 2.5 Pro + Webhook Action Bridge.
             </div>
         `
     },
@@ -6646,7 +6646,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         problem: "Hiring, onboarding, and managing manual SDRs, customer support reps, and operations coordinators is slow, expensive ($4k-$8k/seat/mo), and prone to human error and high turnover.",
         solution: "IINSHA builds an orchestrated 13-agent AI workforce with 4-level HITL governance. Agents autonomously research prospects, write personalized drafts, triage tickets, and manage operations 24/7.",
         capabilities: ["AI SDR & Outbound Hunter", "AI Sales Closer", "AI Support Swarm", "AI Research Agent", "AI Operations Coordinator", "AI Executive Assistant", "Multi-Agent Orchestrator"],
-        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 2.5 Pro & Claude 3.5 Sonnet Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
+        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 2.5 Pro & Claude 3.7 Sonnet Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
         techStack: ["n8n Mesh", "Gemini 2.5 Pro", "Supabase pgvector", "Docker VPS", "WhatsApp Cloud API"],
         pricing: { setupUSD: 3000, monthlyUSD: 699, setupBDT: 367500, monthlyBDT: 85600 },
         timeline: "2 to 3 Weeks",
@@ -7224,4 +7224,103 @@ window.runMarketingCommanderAgent = function(agentKey) {
     const agent = agents[agentKey] || { name: 'Marketing Agent', action: 'Executing autonomous marketing optimization...' };
     
     alert(`🤖 [${agent.name}] Activated!\n\nAction: ${agent.action}\n\nGovernance: Level 2 HITL (Requires Human Approval before final external broadcast).`);
+};
+
+
+// ==============================================================================
+// IINSHA MULTI-LLM INTELLIGENCE REGISTRY (LATEST 2026 FLAGSHIP MODELS)
+// ==============================================================================
+window.IINSHA_LATEST_AI_MODELS = {
+    'claude-3-7-sonnet': {
+        name: 'Claude 3.7 Sonnet (Anthropic)',
+        badge: 'Reasoning & Agentic Coding Leader',
+        capabilities: 'Hybrid Thinking (Standard + Extended Reasoning), Multi-File Code Synthesis, Multi-Agent Swarm Orchestration',
+        context: '200,000 Tokens (128k Output)',
+        latency: '< 1.2s First Token',
+        bestFor: 'Autonomous Multi-Agent Orchestration, Complex Business Logic, Self-Healing Code'
+    },
+    'gemini-2-5-pro': {
+        name: 'Gemini 2.5 Pro (Google DeepMind)',
+        badge: '2M+ Long Context & Native Multimodal Vision',
+        capabilities: 'Native Multimodal (PDF, Invoices, Audio, Video, Code), Deep Grounding with Google Search, 2M+ Token Context',
+        context: '2,097,152 Tokens',
+        latency: '< 0.8s First Token',
+        bestFor: 'Document OCR & Invoicing, Cross-Document RAG, Video/Audio Analysis, Business Digital Twin'
+    },
+    'openai-o3-gpt4o': {
+        name: 'OpenAI o3-mini / GPT-4o (OpenAI)',
+        badge: 'High-Speed STEM Reasoning & Structured Outputs',
+        capabilities: 'Deep Math & Logic Reasoning, Real-time JSON Schema Enforcement, High-Speed Function Calling',
+        context: '128,000 - 200,000 Tokens',
+        latency: '< 0.6s First Token',
+        bestFor: 'Structured Data Extraction, Multi-App API Formatting, High-Throughput Lead Routing'
+    },
+    'deepseek-r1-v3': {
+        name: 'DeepSeek-R1 & DeepSeek-V3 (DeepSeek)',
+        badge: 'Open-Weights High-Throughput Reasoning',
+        capabilities: 'Reinforcement Learning Reasoning, Cost-Efficient Complex Inference, Uncensored Logic Processing',
+        context: '128,000 Tokens',
+        latency: '< 0.9s First Token',
+        bestFor: 'High-Volume Batch Processing, 10x Cost Reduction Pipelines, On-Premise Air-Gapped Deployments'
+    },
+    'perplexity-sonar-pro': {
+        name: 'Perplexity Sonar Pro (Perplexity AI)',
+        badge: 'Real-Time Web Grounding & Live Intelligence',
+        capabilities: 'Live Web Scraping & Semantic Search, Fact-Checked Real-Time Citations, Competitor Intelligence Monitoring',
+        context: '128,000 Tokens',
+        latency: '< 1.1s First Token',
+        bestFor: 'Competitor Tracking, B2B Lead Enrichment, Real-Time Market Research, Live Price Scraping'
+    },
+    'cartesia-elevenlabs-voice': {
+        name: 'Cartesia Sonic & ElevenLabs v3',
+        badge: 'Sub-300ms Ultra-Low Latency Conversational Voice',
+        capabilities: 'Human-Parity Emotional Cadence, Zero-Latency Interruption Handling, Multi-Lingual Natural Telephony',
+        context: 'Real-time WebSocket Audio Stream',
+        latency: '< 280ms Voice Latency',
+        bestFor: 'Inbound Clinic / Real Estate Receptionists, Outbound Appointment Scheduling, Customer Support Voice'
+    }
+};
+
+window.openAiModelSpecsModal = function(modelKey) {
+    const model = window.IINSHA_LATEST_AI_MODELS[modelKey] || window.IINSHA_LATEST_AI_MODELS['claude-3-7-sonnet'];
+    let modal = document.getElementById('iinsha-ai-specs-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-ai-specs-modal';
+        modal.style.cssText = 'position:fixed; inset:0; z-index:999999; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center; padding:20px;';
+        document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `
+        <div class="glass-card glowing-border" style="background:#090d16; max-width:650px; width:100%; border:1px solid var(--accent-cyan); border-radius:16px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.9);">
+            <button onclick="document.getElementById('iinsha-ai-specs-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                <span style="font-size:2rem;">🧠</span>
+                <div>
+                    <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:700; text-transform:uppercase;">${model.badge}</span>
+                    <h3 style="font-size:1.35rem; margin:0; color:#fff;">${model.name}</h3>
+                </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin-bottom:18px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem; margin-bottom:12px;">
+                    <div><span style="color:var(--text-muted);">Context Window:</span> <strong style="color:#67e8f9;">${model.context}</strong></div>
+                    <div><span style="color:var(--text-muted);">First Token Latency:</span> <strong style="color:#34d399;">${model.latency}</strong></div>
+                </div>
+                <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:10px;">
+                    <strong>Core Capabilities:</strong><br>${model.capabilities}
+                </div>
+                <div style="font-size:0.85rem; color:#fde047;">
+                    <strong>Optimal Workload:</strong><br>${model.bestFor}
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                <span style="font-size:0.78rem; color:var(--text-muted);">Integrated in IINSHA Multi-LLM Mesh Architecture</span>
+                <button onclick="document.getElementById('iinsha-ai-specs-modal').remove(); document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'});" class="btn btn-primary" style="padding:8px 18px; font-size:0.85rem;">
+                    Deploy with this Model →
+                </button>
+            </div>
+        </div>
+    `;
 };
