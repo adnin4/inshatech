@@ -224,12 +224,12 @@ const IINSHA_KNOWLEDGE_BASE = [
         reply_en: `⚡ **Why Self-Hosted n8n beats Zapier & Make:**<br>
 1. **Zero Task Fees:** Run 100,000+ tasks for just $5.99/mo on a Hostinger VPS instead of $299+/mo on Zapier.<br>
 2. **100% Data Sovereignty:** Your customer data and API tokens remain securely in your own private Docker container (GDPR & HIPAA safe).<br>
-3. **Custom Python & JavaScript:** Execute advanced logic, scraping routines, and Gemini 2.5 Pro reasoning without artificial limits.<br>
+3. **Custom Python & JavaScript:** Execute advanced logic, scraping routines, and Gemini 3.0 Pro & Flash reasoning without artificial limits.<br>
 4. **Use Coupon Code:** <strong>IINSHA20</strong> for 20% OFF Hostinger VPS hosting plans!`,
         reply_bn: `⚡ **Zapier/Make এর তুলনায় Self-Hosted n8n কেন সেরা:**<br>
 ১. **কোনো পার-টাস্ক ফি নেই:** Zapier-এ ৫০,০০০ টাস্কে যেখানে $299+/মাস খরচ হয়, Hostinger VPS Docker-এ n8n চালিয়ে আনলিমিটেড টাস্ক মাত্র $5.99/মাসে চালানো যায়।<br>
 ২. **১০০% ডেটা প্রাইভেসি:** আপনার এবং ক্লায়েন্টের ডাটা সম্পূর্ণ আপনার নিজস্ব প্রাইভেট সার্ভারে নিরাপদ থাকে।<br>
-৩. **কাস্টম কোড:** Python, JavaScript ও Gemini 2.5 Pro নোড আনলিমিটেড এক্সিকিউট করা যায়।<br>
+৩. **কাস্টম কোড:** Python, JavaScript ও Gemini 3.0 Pro & Flash নোড আনলিমিটেড এক্সিকিউট করা যায়।<br>
 ৪. **হোস্টিং কুপন:** Hostinger VPS-এ ২০% ছাড় পেতে ব্যবহার করুন কুপন কোড: <strong>IINSHA20</strong>!`
     },
     {
@@ -315,7 +315,7 @@ function getGeminiNeuralResponse(query) {
     // Contextual intelligent conversational fallback
     if (isBn) {
         return `🤖 **ধন্যবাদ! আপনার প্রশ্নটি পেয়েছি:** <em>"${sanitize(query)}"</em><br><br>
-আমি **IINSHA AI Gemini 2.5 Cognitive Agent**। আমি আপনাকে যেকোনো বিষয়ে সহায়তা করতে পারি:<br>
+আমি **IINSHA AI Gemini 3.0 Pro Cognitive Agent**। আমি আপনাকে যেকোনো বিষয়ে সহায়তা করতে পারি:<br>
 1. 💎 **প্রাইসিং ও প্যাকেজসমূহ** ($497 Starter, $997 Full Suite, $1,997 Partner OS)<br>
 2. ⚡ **n8n Self-Hosted vs Zapier** ($5.99 VPS-এ আনলিমিটেড অটোমেশন)<br>
 3. 🦀 **OpenClaw Stealth Lead Scraper** (99.8% Cloudflare bypass)<br>
@@ -325,7 +325,7 @@ function getGeminiNeuralResponse(query) {
     }
 
     return `🤖 **Thank you for your question!** <em>"${sanitize(query)}"</em><br><br>
-I am the **IINSHA AI Gemini 2.5 Cognitive Agent**. Here is how I can assist you:<br>
+I am the **IINSHA AI Gemini 3.0 Pro Cognitive Agent**. Here is how I can assist you:<br>
 1. 💎 **Productized Packages:** Starter ($497), Production Build ($997), Enterprise OS ($1,997)<br>
 2. ⚡ **Self-Hosted n8n Workflows:** Zero per-task fees on Hostinger VPS Docker (20% OFF code: <strong>IINSHA20</strong>)<br>
 3. 🦀 **OpenClaw Stealth Web Scrapers:** Playwright residential proxy lead extraction<br>
@@ -341,15 +341,15 @@ function initChatbotWidget() {
 
     if (!chatInput || !chatSendBtn || !chatBox) return;
 
-    // Add Gemini 2.5 Cognitive Badge to Chat Header if exists
+    // Add Gemini 3.0 Pro Cognitive Badge to Chat Header if exists
     const chatHeader = document.querySelector('.floating-chat-header');
-    if (chatHeader && !chatHeader.innerHTML.includes('Gemini 2.5')) {
+    if (chatHeader && !chatHeader.innerHTML.includes('Gemini 3.0 Pro')) {
         chatHeader.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
                 <div style="display:flex; align-items:center; gap:8px;">
                     <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
                     <div>
-                        <strong style="font-size:0.95rem; color:#fff; display:block;">IINSHA Gemini 2.5 AI Agent</strong>
+                        <strong style="font-size:0.95rem; color:#fff; display:block;">IINSHA Gemini 3.0 Pro AI Agent</strong>
                         <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">⚡ Cognitive RAG Neural Engine</span>
                     </div>
                 </div>
@@ -374,7 +374,7 @@ function initChatbotWidget() {
         const typingMsg = document.createElement('div');
         typingMsg.id = 'ai-typing-indicator';
         typingMsg.style.cssText = 'background:rgba(30,41,59,0.9); color:var(--accent-cyan); padding:8px 12px; border-radius:10px; align-self:flex-start; font-size:0.8rem; margin-bottom:10px; border:1px solid var(--border-card); font-family:var(--font-mono);';
-        typingMsg.innerHTML = '⚡ Gemini 2.5 Pro reasoning...';
+        typingMsg.innerHTML = '⚡ Gemini 3.0 Pro & Flash reasoning...';
         chatBox.appendChild(typingMsg);
         chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -513,7 +513,7 @@ function getIBOSData() {
         media: JSON.parse(localStorage.getItem('iinsha_ibos_media') || '[]'),
         aiSwarms: [
             { id: 'ai_sales', name: 'Sales AI Swarm', domain: 'Sales', model: 'Gemini 3.5 Ultra', status: 'ACTIVE' },
-            { id: 'ai_support', name: 'Support AI Swarm', domain: 'Support', model: 'Claude 3.7 Sonnet', status: 'ACTIVE' },
+            { id: 'ai_support', name: 'Support AI Swarm', domain: 'Support', model: 'Claude 3.7 Sonnet (Hybrid Thinking)', status: 'ACTIVE' },
             { id: 'ai_affiliate', name: 'Affiliate AI Assistant', domain: 'Marketing', model: 'GPT-5 Turbo', status: 'ACTIVE' },
             { id: 'ai_proposal', name: 'Proposal AI Agent', domain: 'Sales', model: 'DeepSeek-R1', status: 'ACTIVE' },
             { id: 'ai_executive', name: 'Executive AI Briefing Agent', domain: 'Executive', model: 'Gemini 3.5 Pro', status: 'ACTIVE' }
@@ -1446,8 +1446,8 @@ function calculateAIBuilderEstimate() {
     let baseTimeline = 5;
     let estimatedSavings = 1200;
 
-    if (state.model === 'Claude 3.7 Sonnet') baseCost += 200;
-    if (state.model === 'DeepSeek-R1 / V3 Swarm') baseCost += 350;
+    if (state.model === 'Claude 3.7 Sonnet (Hybrid Thinking)') baseCost += 200;
+    if (state.model === 'DeepSeek-R1 (Reasoning) & DeepSeek-V3 Swarm') baseCost += 350;
     if (state.database === 'Pinecone Vector DB') baseCost += 150;
     
     if (state.integrations && state.integrations.length > 2) {
@@ -1501,8 +1501,8 @@ function openBuildAISystemModal() {
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">2. AI Engine Model</label>
                     <select onchange="window.aiBuilderState.model=this.value; renderAIBuilderSummary();" style="width:100%; padding:10px; background:rgba(30,41,59,0.8); border:1px solid var(--border-card); border-radius:8px; color:#fff; margin-bottom:12px;">
                         <option value="Gemini 3.5 Pro">Google Gemini 3.5 Pro (Recommended)</option>
-                        <option value="Claude 3.7 Sonnet">Anthropic Claude 3.7 Sonnet</option>
-                        <option value="DeepSeek-R1 / V3 Swarm">DeepSeek-R1 / V3 Multi-Agent Swarm</option>
+                        <option value="Claude 3.7 Sonnet (Hybrid Thinking)">Anthropic Claude 3.7 Sonnet (Hybrid Thinking)</option>
+                        <option value="DeepSeek-R1 (Reasoning) & DeepSeek-V3 Swarm">DeepSeek-R1 (Reasoning) & DeepSeek-V3 Multi-Agent Swarm</option>
                     </select>
 
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">3. Database & Knowledge Base</label>
@@ -1720,7 +1720,7 @@ function initTerminalTelemetry() {
     if (runRagBtn) {
         runRagBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 2.5 Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] 🔍 Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 3.0 Pro Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] 🔍 Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1785,7 +1785,7 @@ function initInteractiveDiagramVisualizer() {
                 <path d="M 180 100 L 280 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
                 <rect x="280" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#f59e0b" stroke-width="2"/>
-                <text x="370" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🧠 Gemini 2.5 RAG Engine</text>
+                <text x="370" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🧠 Gemini 3.0 Pro RAG Engine</text>
 
                 <path d="M 460 100 L 560 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
@@ -1872,7 +1872,7 @@ function initInteractiveAiAgentBuilder() {
         const triggerSelect = document.getElementById('agent-trigger-select');
         const actionSelect = document.getElementById('agent-action-select');
 
-        const model = modelSelect ? modelSelect.value : 'Google AI Studio (Gemini 2.5 Flash)';
+        const model = modelSelect ? modelSelect.value : 'Google AI Studio (Gemini 3.0 Pro Flash)';
         const trigger = triggerSelect ? triggerSelect.value : 'WhatsApp Webhook';
         const action = actionSelect ? actionSelect.value : 'Supabase DB + Telegram Alert';
 
@@ -1880,12 +1880,12 @@ function initInteractiveAiAgentBuilder() {
             "name": `IINSHA AI Agent (${model} + ${trigger})`,
             "nodes": [
                 { "name": trigger, "type": "n8n-nodes-base.webhook", "position": [100, 300] },
-                { "name": "Google AI Studio (Gemini 2.5)", "type": "n8n-nodes-base.googleGemini", "position": [350, 300] },
+                { "name": "Google AI Studio (Gemini 3.0 Pro)", "type": "n8n-nodes-base.googleGemini", "position": [350, 300] },
                 { "name": action, "type": "n8n-nodes-base.httpRequest", "position": [600, 300] }
             ],
             "connections": {
-                [trigger]: { "main": [[{ "node": "Google AI Studio (Gemini 2.5)", "type": "main", "index": 0 }]] },
-                "Google AI Studio (Gemini 2.5)": { "main": [[{ "node": action, "type": "main", "index": 0 }]] }
+                [trigger]: { "main": [[{ "node": "Google AI Studio (Gemini 3.0 Pro)", "type": "main", "index": 0 }]] },
+                "Google AI Studio (Gemini 3.0 Pro)": { "main": [[{ "node": action, "type": "main", "index": 0 }]] }
             }
         }, null, 2);
 
@@ -2045,7 +2045,7 @@ function initAiVoiceSimulator() {
 
                     <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e2e8f0; background:#000; padding:10px; border-radius:8px;">
                         <p style="margin:0 0 6px 0; color:#94a3b8;"><strong>[CLIENT]:</strong> "Hi, I need an automated AI customer support agent for my e-commerce store."</p>
-                        <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 2.5 support bot on your Hostinger VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
+                        <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 3.0 Pro support bot on your Hostinger VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
                     </div>
                 </div>
             `;
@@ -2102,7 +2102,7 @@ const IinshaBackendAdapter = {
         return [
             { id: 'svc_1', name: 'n8n Workflow Automation', category: 'AI & Automation', price: 499, commission: 20, status: 'Published', deliveryTime: '24 Hours', desc: 'Custom n8n AI workflow pipeline on Hostinger VPS Docker.' },
             { id: 'svc_2', name: 'OpenClaw Stealth Scraper', category: 'Data & Scraping', price: 699, commission: 25, status: 'Published', deliveryTime: '48 Hours', desc: 'Anti-bot stealth scraper with proxy rotation & Telegram alerts.' },
-            { id: 'svc_3', name: 'Gemini 2.5 RAG Chatbot', category: 'AI Agents', price: 899, commission: 30, status: 'Published', deliveryTime: '3 Days', desc: 'Pinecone Vector DB RAG chatbot for WhatsApp & Web Chat.' },
+            { id: 'svc_3', name: 'Gemini 3.0 Pro RAG Chatbot', category: 'AI Agents', price: 899, commission: 30, status: 'Published', deliveryTime: '3 Days', desc: 'Pinecone Vector DB RAG chatbot for WhatsApp & Web Chat.' },
             { id: 'svc_4', name: 'Full AI-BOS SaaS Setup', category: 'Enterprise OS', price: 1499, commission: 35, status: 'Published', deliveryTime: '5 Days', desc: 'Complete HubSpot + Shopify + n8n AI Business Operating System.' }
         ];
     },
@@ -2287,9 +2287,9 @@ function initGoogleAiN8nPortfolio() {
                         <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">WhatsApp AI Customer Support</h4>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 2.5) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 3.0 Pro) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4;">
-                        <code>Stack: Gemini 2.5 Flash → n8n → Supabase → Meta API</code>
+                        <code>Stack: Gemini 3.0 Pro Flash → n8n → Supabase → Meta API</code>
                     </div>
                 </div>
 
@@ -2302,7 +2302,7 @@ function initGoogleAiN8nPortfolio() {
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">OpenClaw B2B Lead Scraper</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated stealth scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">
-                        <code>Stack: OpenClaw → n8n → Gemini 2.5 → Telegram Bot</code>
+                        <code>Stack: OpenClaw → n8n → Gemini 3.0 Pro → Telegram Bot</code>
                     </div>
                 </div>
 
@@ -2337,7 +2337,7 @@ function initUltraStrongPortfolio() {
             <div style="text-align:center; margin-bottom:32px;">
                 <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">🏆 PROVEN ENTERPRISE PORTFOLIO</span>
                 <h2 style="margin:14px 0 8px 0; color:#fff; font-size:2rem; font-weight:800;">Featured AI Engineering & Automation Projects</h2>
-                <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 2.5), n8n VPS, OpenClaw, and Hostinger Docker infrastructure.</p>
+                <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 3.0 Pro), n8n VPS, OpenClaw, and Hostinger Docker infrastructure.</p>
             </div>
 
             <!-- 6 CASE STUDIES GRID -->
@@ -2353,7 +2353,7 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Stripe & bKash Auto-Reconciliation Engine</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated multi-currency billing and payout reconciliation system connecting Stripe & bKash webhooks with 99.8% zero human error rate.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Gemini 2.5 OCR ➔ n8n ➔ Supabase ➔ Wise API</code>
+                            <code>Stack: Gemini 3.0 Pro OCR ➔ n8n ➔ Supabase ➔ Wise API</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -2371,7 +2371,7 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">OpenClaw B2B Lead Intelligence Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Autonomous stealth scraper collecting and enriching verified decision-maker emails, achieving a 38% cold outreach reply rate.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: OpenClaw ➔ Gemini 2.5 ➔ n8n ➔ SendGrid</code>
+                            <code>Stack: OpenClaw ➔ Gemini 3.0 Pro ➔ n8n ➔ SendGrid</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -2389,7 +2389,7 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Multilingual WhatsApp AI Agent RAG</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">24/7 customer service bot connecting Meta WhatsApp Business API with Pinecone Vector DB, handling 84% instant ticket deflection.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#f59e0b; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Pinecone Vector ➔ Gemini 2.5 ➔ Meta API</code>
+                            <code>Stack: Pinecone Vector ➔ Gemini 3.0 Pro ➔ Meta API</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -2425,7 +2425,7 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">AI Programmatic GEO Search Generator</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated SEO/GEO generator creating schema-rich landing pages for ChatGPT Search, Perplexity AI, and Google Search indexation.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ec4899; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Next.js SSG ➔ Gemini 2.5 ➔ Cloudflare CDN</code>
+                            <code>Stack: Next.js SSG ➔ Gemini 3.0 Pro ➔ Cloudflare CDN</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -2694,7 +2694,7 @@ function sendUserMessageToAiOrderAgent() {
         if (userText.toLowerCase().includes('price') || userText.toLowerCase().includes('discount') || userText.toLowerCase().includes('cost')) {
             aiReply = `Great question! The standard price for **${currentAiOrderState.serviceName}** is **$${currentAiOrderState.price}**, but with your automatic 10% discount, it is reduced to **$${currentAiOrderState.discountedPrice}**! This includes full deployment and 30 days priority support.`;
         } else if (userText.toLowerCase().includes('n8n') || userText.toLowerCase().includes('ai') || userText.toLowerCase().includes('bot') || userText.toLowerCase().includes('whatsapp')) {
-            aiReply = `Perfect fit! Our Gemini 2.5 RAG engine connects with n8n and Meta WhatsApp Business API for automated customer support and lead capture. Enter your name and phone below to complete booking!`;
+            aiReply = `Perfect fit! Our Gemini 3.0 Pro RAG engine connects with n8n and Meta WhatsApp Business API for automated customer support and lead capture. Enter your name and phone below to complete booking!`;
         }
 
         currentAiOrderState.chatHistory.push({ sender: 'AI', text: aiReply });
@@ -2986,7 +2986,7 @@ function sendUserMessageToAiOrderAgent() {
         if (userText.toLowerCase().includes('price') || userText.toLowerCase().includes('discount') || userText.toLowerCase().includes('cost')) {
             aiReply = `Great question! The standard price for **${currentAiOrderState.serviceName}** is **$${currentAiOrderState.price}**, but with your automatic 10% discount, it is reduced to **$${currentAiOrderState.discountedPrice}**! This includes full deployment and 30 days priority support.`;
         } else if (userText.toLowerCase().includes('n8n') || userText.toLowerCase().includes('ai') || userText.toLowerCase().includes('bot') || userText.toLowerCase().includes('whatsapp')) {
-            aiReply = `Perfect fit! Our Gemini 2.5 RAG engine connects with n8n and Meta WhatsApp Business API for automated customer support and lead capture. Enter your name and phone below to complete booking!`;
+            aiReply = `Perfect fit! Our Gemini 3.0 Pro RAG engine connects with n8n and Meta WhatsApp Business API for automated customer support and lead capture. Enter your name and phone below to complete booking!`;
         }
 
         currentAiOrderState.chatHistory.push({ sender: 'AI', text: aiReply });
@@ -3074,8 +3074,8 @@ function initAiInteractivePlayground() {
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;"><strong>Scenario:</strong> "${userPrompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}"</p>
 
                 <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; max-height:180px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px;">
-                    <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] 🧠 Gemini 2.5 Reasoning Engine Initialized...</p>
-                    <p style="margin:0 0 4px 0;">[PIPELINE] 🔗 Webhook Listener ➔ Gemini 2.5 RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
+                    <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] 🧠 Gemini 3.0 Pro Reasoning Engine Initialized...</p>
+                    <p style="margin:0 0 4px 0;">[PIPELINE] 🔗 Webhook Listener ➔ Gemini 3.0 Pro RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
                     <p style="margin:0; color:#f59e0b;">[OUTPUT] Generated n8n Workflow JSON (Node Count: 4 | Memory: 12MB)</p>
                 </div>
 
@@ -3103,7 +3103,7 @@ function initVerifiedTestimonialsTicker() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 2.5 RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
+                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Marcus Vance (CTO, Austin TX)</span>
                         <span style="color:var(--accent-emerald);">Verified $1.2K Order</span>
@@ -3192,7 +3192,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
     if (!modal) return;
 
     const orders = localStorage.getItem('iinsha_orders_v2') ? JSON.parse(localStorage.getItem('iinsha_orders_v2')) : [
-        { id: 'ORD-88219', service: 'WhatsApp Gemini 2.5 RAG Bot', package: 'Growth Tier', price: 1349, status: 'In Development', timestamp: '2026-08-10' }
+        { id: 'ORD-88219', service: 'WhatsApp Gemini 3.0 Pro RAG Bot', package: 'Growth Tier', price: 1349, status: 'In Development', timestamp: '2026-08-10' }
     ];
 
     const refCode = 'IINSHA-AFF-' + Math.floor(1000 + Math.random() * 9000);
@@ -3286,8 +3286,8 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                     <div style="display:grid; gap:12px;">
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
                             <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">📱 Pre-Written LinkedIn Post Template</div>
-                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 2.5 + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
-                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 2.5 + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
+                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
+                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
                         </div>
 
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
@@ -3792,17 +3792,17 @@ window.renderEventBusTelemetry = renderEventBusTelemetry;
    ============================================================ */
 
 var iinshaExtremeAgentsData = [
-    { id: 'agent-1', name: 'Research Agent', model: 'Gemini 2.5 Pro', confidence: '98.6%', prompt: 'Act as a Senior B2B Market Research Analyst. Scrape competitor pricing, market gaps, and tech stack hiring signals with chain-of-thought verification.', temperature: 0.2, tools: ['web_scraper', 'github_search', 'apollo_api'] },
-    { id: 'agent-2', name: 'SEO Agent', model: 'Gemini 2.5 Pro', confidence: '99.1%', prompt: 'Act as a Technical SEO Architect. Optimize meta tags, generate JSON-LD schema, cluster target keywords, and verify Google Rich Snippet compliance.', temperature: 0.1, tools: ['schema_generator', 'sitemap_builder', 'search_console_api'] },
-    { id: 'agent-3', name: 'Content Agent', model: 'Gemini 2.5 Pro', confidence: '97.8%', prompt: 'Act as an Enterprise B2B Copywriter. Write 1,800+ word technical guides, case studies, and conversion-focused landing page copy.', temperature: 0.4, tools: ['markdown_formatter', 'image_generator', 'readability_checker'] },
-    { id: 'agent-4', name: 'Marketing Agent', model: 'Gemini 2.5 Flash', confidence: '98.2%', prompt: 'Act as a Growth Marketing Director. Schedule LinkedIn pulse articles, Twitter threads, and automated email campaigns with trackable UTM links.', temperature: 0.3, tools: ['social_scheduler', 'email_swipes', 'utm_builder'] },
-    { id: 'agent-5', name: 'Lead Gen Agent', model: 'Gemini 2.5 Pro', confidence: '99.4%', prompt: 'Act as a B2B Lead Hunting Specialist. Identify hiring signals from FlexJobs/LinkedIn/Remotive and calculate client intent fit scores (0-100).', temperature: 0.2, tools: ['linkedin_scraper', 'apollo_enricher', 'intent_scorer'] },
-    { id: 'agent-6', name: 'Sales Agent', model: 'Gemini 2.5 Pro', confidence: '99.7%', prompt: 'Act as a High-Ticket AI Sales Consultant. Qualify leads, compute custom ROI savings, grant 10% launch promos, and draft ready-to-sign SoW contracts.', temperature: 0.2, tools: ['sow_generator', 'roi_calculator', 'whatsapp_sync'] },
-    { id: 'agent-7', name: 'Support Agent', model: 'Gemini 2.5 Flash', confidence: '99.2%', prompt: 'Act as a 24/7 RAG Technical Support Specialist. Answer queries on n8n workflows, Docker clusters, API keys, and auto-escalate complex tickets.', temperature: 0.1, tools: ['rag_knowledge_base', 'ticket_escalator', 'vector_search'] },
-    { id: 'agent-8', name: 'Affiliate Agent', model: 'Gemini 2.5 Flash', confidence: '98.9%', prompt: 'Act as an Affiliate Network Director. Attribute clicks/conversions across 5 commission tiers, detect self-referrals, and process 1-click payouts.', temperature: 0.1, tools: ['s2s_postback', 'fraud_detector', 'payout_engine'] },
-    { id: 'agent-9', name: 'Analytics Agent', model: 'Gemini 2.5 Pro', confidence: '99.5%', prompt: 'Act as a Chief Financial Data Analyst. Calculate daily P&L, MRR forecasts, CAC/LTV ratios, and generate executive summaries for the Founder.', temperature: 0.1, tools: ['pnl_calculator', 'revenue_forecaster', 'bi_dashboard'] },
-    { id: 'agent-10', name: 'Website Monitor Agent', model: 'Gemini 2.5 Flash', confidence: '99.9%', prompt: 'Act as a Site Reliability Engineer (SRE). Monitor Cloudflare Pages edge latency (<50ms), health ping endpoints, and auto-heal script fallbacks.', temperature: 0.0, tools: ['ping_guard', 'cache_autohealer', 'latency_tracker'] },
-    { id: 'agent-11', name: 'Admin Copilot AI', model: 'Gemini 2.5 Pro', confidence: '99.8%', prompt: 'Act as the Executive Business Copilot. Execute natural language site commands, generate DB mutation previews, and enforce Human Approval Gates.', temperature: 0.1, tools: ['command_parser', 'diff_generator', 'approval_gate'] }
+    { id: 'agent-1', name: 'Research Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '98.6%', prompt: 'Act as a Senior B2B Market Research Analyst. Scrape competitor pricing, market gaps, and tech stack hiring signals with chain-of-thought verification.', temperature: 0.2, tools: ['web_scraper', 'github_search', 'apollo_api'] },
+    { id: 'agent-2', name: 'SEO Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '99.1%', prompt: 'Act as a Technical SEO Architect. Optimize meta tags, generate JSON-LD schema, cluster target keywords, and verify Google Rich Snippet compliance.', temperature: 0.1, tools: ['schema_generator', 'sitemap_builder', 'search_console_api'] },
+    { id: 'agent-3', name: 'Content Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '97.8%', prompt: 'Act as an Enterprise B2B Copywriter. Write 1,800+ word technical guides, case studies, and conversion-focused landing page copy.', temperature: 0.4, tools: ['markdown_formatter', 'image_generator', 'readability_checker'] },
+    { id: 'agent-4', name: 'Marketing Agent', model: 'Gemini 3.0 Pro Flash', confidence: '98.2%', prompt: 'Act as a Growth Marketing Director. Schedule LinkedIn pulse articles, Twitter threads, and automated email campaigns with trackable UTM links.', temperature: 0.3, tools: ['social_scheduler', 'email_swipes', 'utm_builder'] },
+    { id: 'agent-5', name: 'Lead Gen Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '99.4%', prompt: 'Act as a B2B Lead Hunting Specialist. Identify hiring signals from FlexJobs/LinkedIn/Remotive and calculate client intent fit scores (0-100).', temperature: 0.2, tools: ['linkedin_scraper', 'apollo_enricher', 'intent_scorer'] },
+    { id: 'agent-6', name: 'Sales Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '99.7%', prompt: 'Act as a High-Ticket AI Sales Consultant. Qualify leads, compute custom ROI savings, grant 10% launch promos, and draft ready-to-sign SoW contracts.', temperature: 0.2, tools: ['sow_generator', 'roi_calculator', 'whatsapp_sync'] },
+    { id: 'agent-7', name: 'Support Agent', model: 'Gemini 3.0 Pro Flash', confidence: '99.2%', prompt: 'Act as a 24/7 RAG Technical Support Specialist. Answer queries on n8n workflows, Docker clusters, API keys, and auto-escalate complex tickets.', temperature: 0.1, tools: ['rag_knowledge_base', 'ticket_escalator', 'vector_search'] },
+    { id: 'agent-8', name: 'Affiliate Agent', model: 'Gemini 3.0 Pro Flash', confidence: '98.9%', prompt: 'Act as an Affiliate Network Director. Attribute clicks/conversions across 5 commission tiers, detect self-referrals, and process 1-click payouts.', temperature: 0.1, tools: ['s2s_postback', 'fraud_detector', 'payout_engine'] },
+    { id: 'agent-9', name: 'Analytics Agent', model: 'Gemini 3.0 Pro & Flash', confidence: '99.5%', prompt: 'Act as a Chief Financial Data Analyst. Calculate daily P&L, MRR forecasts, CAC/LTV ratios, and generate executive summaries for the Founder.', temperature: 0.1, tools: ['pnl_calculator', 'revenue_forecaster', 'bi_dashboard'] },
+    { id: 'agent-10', name: 'Website Monitor Agent', model: 'Gemini 3.0 Pro Flash', confidence: '99.9%', prompt: 'Act as a Site Reliability Engineer (SRE). Monitor Cloudflare Pages edge latency (<50ms), health ping endpoints, and auto-heal script fallbacks.', temperature: 0.0, tools: ['ping_guard', 'cache_autohealer', 'latency_tracker'] },
+    { id: 'agent-11', name: 'Admin Copilot AI', model: 'Gemini 3.0 Pro & Flash', confidence: '99.8%', prompt: 'Act as the Executive Business Copilot. Execute natural language site commands, generate DB mutation previews, and enforce Human Approval Gates.', temperature: 0.1, tools: ['command_parser', 'diff_generator', 'approval_gate'] }
 ];
 
 function retrainExtremeAgentPrompt(agentId) {
@@ -4557,7 +4557,7 @@ function toggleAutonomousSubsystem(subsystem) {
 window.toggleAutonomousSubsystem = toggleAutonomousSubsystem;
 
 function triggerAutonomousLeadHarvesting() {
-    alert("🚀 n8n + Gemini 2.5 Pro Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
+    alert("🚀 n8n + Gemini 3.0 Pro & Flash Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
     iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads += 5;
     const counterDiv = document.getElementById('auto-lead-counter');
     if (counterDiv) counterDiv.innerText = iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads + ' Verified Leads';
@@ -4771,7 +4771,7 @@ function initIinshaAICopilotWidget() {
                     <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
                     <div>
                         <h5 style="margin:0; color:#fff; font-size:0.95rem; font-weight:bold;">IINSHA Copilot</h5>
-                        <span style="font-size:0.65rem; color:#60a5fa;">Gemini 2.5 Pro RAG Swarm</span>
+                        <span style="font-size:0.65rem; color:#60a5fa;">Gemini 3.0 Pro & Flash RAG Swarm</span>
                     </div>
                 </div>
                 <button onclick="toggleIinshaChatWindow()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
@@ -6389,7 +6389,7 @@ const OUTCOME_DEFINITIONS = {
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Autonomous SDR Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Apollo + LinkedIn profile scraper & firmographic filter</li>
-                        <li>Gemini 2.5 Pro dynamic prospect research & icebreaker generator</li>
+                        <li>Gemini 3.0 Pro & Flash dynamic prospect research & icebreaker generator</li>
                         <li>Level 1 Human Review or Autonomous Email Dispatch</li>
                         <li>Automatic webhook sync to HubSpot / Supabase PGVector</li>
                     </ul>
@@ -6465,7 +6465,7 @@ const OUTCOME_DEFINITIONS = {
                 </div>
             </div>
             <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.7 Sonnet / Gemini 2.5 Pro + Webhook Action Bridge.
+                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.7 Sonnet (Hybrid Thinking) / Gemini 3.0 Pro & Flash + Webhook Action Bridge.
             </div>
         `
     },
@@ -6646,8 +6646,8 @@ window.IINSHA_SERVICE_DOMAINS = {
         problem: "Hiring, onboarding, and managing manual SDRs, customer support reps, and operations coordinators is slow, expensive ($4k-$8k/seat/mo), and prone to human error and high turnover.",
         solution: "IINSHA builds an orchestrated 13-agent AI workforce with 4-level HITL governance. Agents autonomously research prospects, write personalized drafts, triage tickets, and manage operations 24/7.",
         capabilities: ["AI SDR & Outbound Hunter", "AI Sales Closer", "AI Support Swarm", "AI Research Agent", "AI Operations Coordinator", "AI Executive Assistant", "Multi-Agent Orchestrator"],
-        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 2.5 Pro & Claude 3.7 Sonnet Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
-        techStack: ["n8n Mesh", "Gemini 2.5 Pro", "Supabase pgvector", "Docker VPS", "WhatsApp Cloud API"],
+        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 3.0 Pro & Flash & Claude 3.7 Sonnet (Hybrid Thinking) Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
+        techStack: ["n8n Mesh", "Gemini 3.0 Pro & Flash", "Supabase pgvector", "Docker VPS", "WhatsApp Cloud API"],
         pricing: { setupUSD: 3000, monthlyUSD: 699, setupBDT: 367500, monthlyBDT: 85600 },
         timeline: "2 to 3 Weeks",
         sla: "99.9% Uptime & Daily Health Audit"
@@ -6679,7 +6679,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         solution: "We ingest all your documents, SOPs, tickets, and logs into a secure pgvector database with semantic chunking and hybrid search, creating a living Business Digital Twin that answers complex questions in seconds.",
         capabilities: ["RAG Vector Knowledge Base", "AI Document Semantic Search", "Business Digital Twin", "Competitor Telemetry Radar", "Revenue & Pipeline Intelligence", "Executive AI Analyst"],
         deliverables: ["Supabase pgvector Embeddings Pipeline", "Multi-Format Ingestion Engine", "Semantic Hybrid Search UI", "Natural Language Query Dashboard", "Role-Based Access Permissions"],
-        techStack: ["Supabase", "pgvector", "Gemini 2.5", "Python", "FastAPI"],
+        techStack: ["Supabase", "pgvector", "Gemini 3.0 Pro", "Python", "FastAPI"],
         pricing: { setupUSD: 2500, monthlyUSD: 499, setupBDT: 306250, monthlyBDT: 61100 },
         timeline: "2 Weeks",
         sla: "Sub-Second Semantic Retrieval"
@@ -6695,7 +6695,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         solution: "We deploy human-sounding AI Voice agents and multi-lingual chat widgets that answer incoming phone calls, qualify intent, book calendar appointments in under 45 seconds, and escalate complex edge cases.",
         capabilities: ["AI Phone Voice Receptionist", "24/7 Multi-Lingual Web Chat", "<45s Speed-to-Lead Responder", "Calendar Appointment Booking", "Support Ticket Escalation", "Customer Retention & Churn Killer"],
         deliverables: ["Twilio / WebRTC Voice Agent Pipeline", "Custom Chat Widget with RAG Integration", "Google Calendar & Calendly Sync", "Human Escalation Push Alerts", "Call Audio Recording & Transcription"],
-        techStack: ["Web Speech API", "Twilio", "Gemini 2.5 Flash", "WhatsApp Cloud API"],
+        techStack: ["Web Speech API", "Twilio", "Gemini 3.0 Pro Flash", "WhatsApp Cloud API"],
         pricing: { setupUSD: 2000, monthlyUSD: 449, setupBDT: 245000, monthlyBDT: 55000 },
         timeline: "1 to 2 Weeks",
         sla: "Instant Response (<3s Latency)"
@@ -6711,7 +6711,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         solution: "An end-to-end automated pipeline: OpenClaw scrapes fresh target accounts, AI enriches contact data, scores against your ICP, writes individualized first-lines based on recent company news, and pushes to CRM.",
         capabilities: ["B2B Lead Discovery (OpenClaw)", "Data Enrichment & Verification", "ICP Scoring & Qualification", "Hyper-Personalized Cold Outreach", "Automated Proposal Generator", "SEO Content Engine"],
         deliverables: ["Custom Scraping & Enrichment Workflow", "Deliverability-Hardened SMTP/Instantly Setup", "Dynamic 1-to-1 Email Copywriter", "CRM Pipeline Sync", "Real-Time Open & Reply Dashboard"],
-        techStack: ["OpenClaw", "n8n", "Gemini 2.5", "HubSpot", "Instantly"],
+        techStack: ["OpenClaw", "n8n", "Gemini 3.0 Pro", "HubSpot", "Instantly"],
         pricing: { setupUSD: 2200, monthlyUSD: 499, setupBDT: 269500, monthlyBDT: 61100 },
         timeline: "2 Weeks",
         sla: "99.8% Cloudflare Scraping Bypass"
@@ -6724,10 +6724,10 @@ window.IINSHA_SERVICE_DOMAINS = {
         badge: "Data Intelligence",
         shortDesc: "Gemini Vision OCR for invoices, contracts, receipts, Excel files, and automated data ingestion pipelines.",
         problem: "Employees spend hundreds of hours manually entering data from PDF invoices, scanned receipts, freight bills, and messy spreadsheets into ERPs, leading to costly errors and delays.",
-        solution: "We build high-throughput OCR pipelines powered by Gemini 2.5 Vision that extract nested table line-items, validate mathematical sums, verify PO numbers, and insert clean structured JSON into your database.",
+        solution: "We build high-throughput OCR pipelines powered by Gemini 3.0 Pro Vision that extract nested table line-items, validate mathematical sums, verify PO numbers, and insert clean structured JSON into your database.",
         capabilities: ["Multi-Format OCR (Invoices, Receipts)", "PDF Contract Intelligence", "Excel & Google Sheets Automation", "Structured Data Extraction", "Automated Bank Reconciliation", "Real-Time ETL Data Pipelines"],
-        deliverables: ["Gemini 2.5 Vision Processing Node", "3-Way PO Matching Engine", "Accounting & ERP Ingestion Sync", "Exception Flagging Queue", "Audit Trail & Verification Log"],
-        techStack: ["Gemini 2.5 Vision", "Python", "n8n", "PostgreSQL", "Google Sheets API"],
+        deliverables: ["Gemini 3.0 Pro Vision Processing Node", "3-Way PO Matching Engine", "Accounting & ERP Ingestion Sync", "Exception Flagging Queue", "Audit Trail & Verification Log"],
+        techStack: ["Gemini 3.0 Pro Vision", "Python", "n8n", "PostgreSQL", "Google Sheets API"],
         pricing: { setupUSD: 1800, monthlyUSD: 399, setupBDT: 220500, monthlyBDT: 48900 },
         timeline: "1 to 2 Weeks",
         sla: "99.8% OCR Extraction Accuracy"
@@ -6959,7 +6959,7 @@ window.calculateAiSolutionRecommendation = function() {
     if (bottleneck === 'leads') {
         recTitle = "AI Sales Engine & Autonomous SDR";
         setup = 1500; monthly = 349; savings = "$3,200 / month in manual SDR labor";
-        desc = "Integrates OpenClaw lead enrichment, Gemini 2.5 personalized 1-to-1 cold outreach, and automated meeting booking.";
+        desc = "Integrates OpenClaw lead enrichment, Gemini 3.0 Pro personalized 1-to-1 cold outreach, and automated meeting booking.";
     } else if (bottleneck === 'support') {
         recTitle = "24/7 AI Customer Support & Voice Telephony";
         setup = 2000; monthly = 449; savings = "$4,000 / month in support staffing";
@@ -7230,54 +7230,57 @@ window.runMarketingCommanderAgent = function(agentKey) {
 // ==============================================================================
 // IINSHA MULTI-LLM INTELLIGENCE REGISTRY (LATEST 2026 FLAGSHIP MODELS)
 // ==============================================================================
+// ==============================================================================
+// IINSHA MULTI-LLM INTELLIGENCE REGISTRY (LATEST 2026 FLAGSHIP MODELS)
+// ==============================================================================
 window.IINSHA_LATEST_AI_MODELS = {
     'claude-3-7-sonnet': {
-        name: 'Claude 3.7 Sonnet (Anthropic)',
-        badge: 'Reasoning & Agentic Coding Leader',
-        capabilities: 'Hybrid Thinking (Standard + Extended Reasoning), Multi-File Code Synthesis, Multi-Agent Swarm Orchestration',
-        context: '200,000 Tokens (128k Output)',
-        latency: '< 1.2s First Token',
-        bestFor: 'Autonomous Multi-Agent Orchestration, Complex Business Logic, Self-Healing Code'
+        name: 'Claude 3.7 Sonnet (Hybrid Thinking) & Opus (Anthropic)',
+        badge: 'Reasoning & Autonomous Coding Leader',
+        capabilities: 'Hybrid Thinking (Standard Low-Latency + Deep Extended Chain-of-Thought), 128k Token Output, Multi-Agent Swarm Orchestration',
+        context: '200,000 Tokens (128k Max Output)',
+        latency: '< 0.9s First Token',
+        bestFor: 'Autonomous Multi-Agent Orchestration, Complex Architecture Code Synthesis, Self-Healing Bug Fixes'
     },
-    'gemini-2-5-pro': {
-        name: 'Gemini 2.5 Pro (Google DeepMind)',
-        badge: '2M+ Long Context & Native Multimodal Vision',
-        capabilities: 'Native Multimodal (PDF, Invoices, Audio, Video, Code), Deep Grounding with Google Search, 2M+ Token Context',
-        context: '2,097,152 Tokens',
-        latency: '< 0.8s First Token',
-        bestFor: 'Document OCR & Invoicing, Cross-Document RAG, Video/Audio Analysis, Business Digital Twin'
-    },
-    'openai-o3-gpt4o': {
-        name: 'OpenAI o3-mini / GPT-4o (OpenAI)',
-        badge: 'High-Speed STEM Reasoning & Structured Outputs',
-        capabilities: 'Deep Math & Logic Reasoning, Real-time JSON Schema Enforcement, High-Speed Function Calling',
-        context: '128,000 - 200,000 Tokens',
+    'gemini-3-pro': {
+        name: 'Gemini 3.0 Pro & 3.0 Flash (Google DeepMind)',
+        badge: '2M+ Long Context & Native Multimodal Vision OCR',
+        capabilities: 'Next-Gen Native Multimodal (High-Res Invoices, Handwritten Manifests, Video, Audio, Code), Real-Time Google Search Grounding, 2M+ Token Infinite Context',
+        context: '2,097,152 Tokens (2M+ Infinite Window)',
         latency: '< 0.6s First Token',
-        bestFor: 'Structured Data Extraction, Multi-App API Formatting, High-Throughput Lead Routing'
+        bestFor: 'High-Accuracy Invoice & Document OCR, Full Business Digital Twin Knowledge Base, Cross-Repository RAG'
+    },
+    'openai-o3-gpt45': {
+        name: 'OpenAI o3, o3-mini & GPT-4.5 (OpenAI)',
+        badge: 'STEM Reasoning & Real-Time Structured JSON Schema',
+        capabilities: 'Breakthrough STEM Math & Algorithmic Reasoning, 100% Deterministic JSON Schema Formatting, Ultra-Fast Function Calling',
+        context: '200,000 Tokens',
+        latency: '< 0.5s First Token',
+        bestFor: 'CRM 2-Way Synchronization, Multi-App API Formatting, High-Throughput Speed-to-Lead Routing'
     },
     'deepseek-r1-v3': {
-        name: 'DeepSeek-R1 & DeepSeek-V3 (DeepSeek)',
-        badge: 'Open-Weights High-Throughput Reasoning',
-        capabilities: 'Reinforcement Learning Reasoning, Cost-Efficient Complex Inference, Uncensored Logic Processing',
+        name: 'DeepSeek-R1 (Reasoning) & DeepSeek-V3 (DeepSeek)',
+        badge: 'Open-Weights High-Throughput Reasoning (10x Cost Advantage)',
+        capabilities: 'Pure Reinforcement Learning Reasoning, Uncensored Algorithmic Logic, Ultra-Low Inference Cost ($0.14/M tokens)',
         context: '128,000 Tokens',
-        latency: '< 0.9s First Token',
-        bestFor: 'High-Volume Batch Processing, 10x Cost Reduction Pipelines, On-Premise Air-Gapped Deployments'
+        latency: '< 0.8s First Token',
+        bestFor: 'Massive Batch Data Pipelines, High-Volume Lead Scoring, On-Premise Air-Gapped Enterprise Deployments'
     },
     'perplexity-sonar-pro': {
-        name: 'Perplexity Sonar Pro (Perplexity AI)',
-        badge: 'Real-Time Web Grounding & Live Intelligence',
-        capabilities: 'Live Web Scraping & Semantic Search, Fact-Checked Real-Time Citations, Competitor Intelligence Monitoring',
+        name: 'Perplexity Sonar Pro & Deep Research (Perplexity AI)',
+        badge: 'Real-Time Web Intelligence & Verified Citations',
+        capabilities: 'Autonomous Live Web Crawler, Grounded Real-Time Citation Verification, Competitor Price Radar',
         context: '128,000 Tokens',
-        latency: '< 1.1s First Token',
-        bestFor: 'Competitor Tracking, B2B Lead Enrichment, Real-Time Market Research, Live Price Scraping'
+        latency: '< 0.9s First Token',
+        bestFor: 'B2B Founder & Lead Enrichment, Competitor Pricing Tracking, Real-Time Market Trend Ingestion'
     },
     'cartesia-elevenlabs-voice': {
         name: 'Cartesia Sonic & ElevenLabs v3',
-        badge: 'Sub-300ms Ultra-Low Latency Conversational Voice',
-        capabilities: 'Human-Parity Emotional Cadence, Zero-Latency Interruption Handling, Multi-Lingual Natural Telephony',
+        badge: 'Sub-250ms Ultra-Low Latency Conversational Voice AI',
+        capabilities: 'Human-Parity Emotional Cadence, Instant Voice Interruption Handling, Multi-Lingual Natural Telephony',
         context: 'Real-time WebSocket Audio Stream',
-        latency: '< 280ms Voice Latency',
-        bestFor: 'Inbound Clinic / Real Estate Receptionists, Outbound Appointment Scheduling, Customer Support Voice'
+        latency: '< 220ms Voice Latency',
+        bestFor: '24/7 Phone Receptionists, Inbound Dental/Clinic Booking Lines, Outbound Appointment Scheduling'
     }
 };
 
