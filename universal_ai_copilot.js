@@ -86,6 +86,8 @@
             // Remove any legacy widgets if present
             const oldLegacy = document.getElementById('iinsha-ai-copilot-container');
             if (oldLegacy) oldLegacy.remove();
+            const oldFloatingWidget = document.getElementById('iinsha-floating-ai-widget');
+            if (oldFloatingWidget) oldFloatingWidget.remove();
 
             if (document.getElementById('iinsha-copilot-window')) return;
 
@@ -230,6 +232,7 @@
 
         toggleWindow(forceState) {
             const windowEl = document.getElementById('iinsha-copilot-window');
+            if (!windowEl) return;
             const teaser = document.getElementById('iinsha-copilot-teaser');
             if (teaser) teaser.style.display = 'none';
 
@@ -240,6 +243,18 @@
             } else {
                 windowEl.classList.add('hidden');
             }
+        }
+
+        openWindow(query = null) {
+            this.toggleWindow(true);
+            if (query && typeof query === 'string') {
+                this.addUserMessage(query);
+                this.processAiResponse(query);
+            }
+        }
+
+        closeWindow() {
+            this.toggleWindow(false);
         }
 
         seedInitialGreeting() {
@@ -611,6 +626,29 @@
             window.UniversalAiCopilotInstance = new UniversalAiCopilot();
         }
     }
+
+    window.openIinshaChatWindow = function(query) {
+        if (!window.UniversalAiCopilotInstance) initCopilot();
+        if (window.UniversalAiCopilotInstance) {
+            window.UniversalAiCopilotInstance.openWindow(query);
+        }
+    };
+
+    window.toggleIinshaChatWindow = function() {
+        if (!window.UniversalAiCopilotInstance) initCopilot();
+        if (window.UniversalAiCopilotInstance) {
+            window.UniversalAiCopilotInstance.toggleWindow();
+        }
+    };
+
+    window.closeIinshaChatWindow = function() {
+        if (window.UniversalAiCopilotInstance) {
+            window.UniversalAiCopilotInstance.closeWindow();
+        }
+    };
+
+    window.openCopilot = window.openIinshaChatWindow;
+    window.openAiChat = window.openIinshaChatWindow;
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCopilot);
