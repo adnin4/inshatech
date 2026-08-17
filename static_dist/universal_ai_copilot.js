@@ -63,6 +63,7 @@
             this.conversationId = sessionStorage.getItem('iinsha_copilot_conv_id') || ('conv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6));
             sessionStorage.setItem('iinsha_copilot_conv_id', this.conversationId);
             
+            this.currentMode = 'sales';
             this.history = [];
             this.state = {
                 known_facts: {},
@@ -81,9 +82,31 @@
             this.ttsEnabled = false;
             this.isOpen = false;
             
+            this.loadMemory();
             this.initDOM();
             this.bindEvents();
             this.seedInitialGreeting();
+        }
+
+        loadMemory() {
+            try {
+                const saved = sessionStorage.getItem('iinsha_copilot_memory');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.state) this.state = { ...this.state, ...parsed.state };
+                    if (parsed.currentMode) this.currentMode = parsed.currentMode;
+                }
+            } catch(e) {}
+        }
+
+        saveMemory() {
+            try {
+                sessionStorage.setItem('iinsha_copilot_memory', JSON.stringify({
+                    state: this.state,
+                    currentMode: this.currentMode,
+                    conversationId: this.conversationId
+                }));
+            } catch(e) {}
         }
 
         formatBDT(usd) {
@@ -97,6 +120,339 @@
         }
 
         initDOM() {
+            // Inject complete Gemini/Copilot/ChatGPT Glass Theme styles directly into document.head
+            if (!document.getElementById('iinsha-copilot-embedded-styles')) {
+                const styleEl = document.createElement('style');
+                styleEl.id = 'iinsha-copilot-embedded-styles';
+                styleEl.textContent = `
+                    #iinsha-copilot-trigger, .iinsha-cockpit-launcher {
+                        position: fixed !important;
+                        bottom: 24px !important;
+                        right: 24px !important;
+                        z-index: 999999 !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 12px !important;
+                        background: rgba(15, 23, 42, 0.88) !important;
+                        backdrop-filter: blur(20px) saturate(180%) !important;
+                        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                        padding: 8px 18px 8px 10px !important;
+                        border-radius: 9999px !important;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.3) !important;
+                        cursor: pointer !important;
+                        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                        user-select: none !important;
+                        font-family: 'Inter', system-ui, sans-serif !important;
+                    }
+                    #iinsha-copilot-trigger:hover {
+                        transform: translateY(-4px) scale(1.03) !important;
+                        border-color: #38bdf8 !important;
+                        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(99, 102, 241, 0.55) !important;
+                    }
+                    .copilot-trigger-avatar {
+                        width: 40px !important;
+                        height: 40px !important;
+                        border-radius: 50% !important;
+                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        position: relative !important;
+                        box-shadow: 0 0 16px rgba(99, 102, 241, 0.6) !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-trigger-status {
+                        position: absolute !important;
+                        bottom: -1px !important;
+                        right: -1px !important;
+                        width: 12px !important;
+                        height: 12px !important;
+                        background: #10b981 !important;
+                        border: 2px solid #0f172a !important;
+                        border-radius: 50% !important;
+                        box-shadow: 0 0 8px #10b981 !important;
+                    }
+                    .copilot-trigger-title {
+                        font-size: 0.88rem !important;
+                        font-weight: 700 !important;
+                        color: #ffffff !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 6px !important;
+                    }
+                    .copilot-trigger-subtitle {
+                        font-size: 0.72rem !important;
+                        color: #38bdf8 !important;
+                        font-weight: 500 !important;
+                    }
+                    #iinsha-copilot-window {
+                        position: fixed !important;
+                        bottom: 24px !important;
+                        right: 24px !important;
+                        width: 440px !important;
+                        height: 660px !important;
+                        max-width: calc(100vw - 32px) !important;
+                        max-height: calc(100vh - 48px) !important;
+                        background: rgba(13, 17, 23, 0.94) !important;
+                        backdrop-filter: blur(28px) saturate(190%) !important;
+                        -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+                        border-radius: 24px !important;
+                        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(99, 102, 241, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+                        z-index: 1000000 !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        overflow: hidden !important;
+                        font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+                        animation: copilotFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+                    }
+                    @keyframes copilotFadeIn {
+                        from { opacity: 0; transform: translateY(24px) scale(0.96); }
+                        to { opacity: 1; transform: translateY(0) scale(1); }
+                    }
+                    #iinsha-copilot-window.hidden {
+                        display: none !important;
+                    }
+                    #iinsha-copilot-window.expanded {
+                        width: 860px !important;
+                        height: 82vh !important;
+                        max-width: 94vw !important;
+                    }
+                    .copilot-header {
+                        background: rgba(15, 23, 42, 0.95) !important;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                        padding: 14px 18px !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: space-between !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-header-info {
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 12px !important;
+                    }
+                    .copilot-header-avatar {
+                        width: 36px !important;
+                        height: 36px !important;
+                        border-radius: 12px !important;
+                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        box-shadow: 0 0 14px rgba(99, 102, 241, 0.5) !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-header-meta h4 {
+                        margin: 0 !important;
+                        font-size: 0.92rem !important;
+                        font-weight: 700 !important;
+                        color: #ffffff !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 8px !important;
+                    }
+                    .copilot-online-badge {
+                        background: rgba(16, 185, 129, 0.15) !important;
+                        border: 1px solid rgba(16, 185, 129, 0.4) !important;
+                        color: #34d399 !important;
+                        font-size: 0.68rem !important;
+                        font-weight: 700 !important;
+                        padding: 2px 8px !important;
+                        border-radius: 9999px !important;
+                    }
+                    .copilot-header-meta span {
+                        font-size: 0.72rem !important;
+                        color: #94a3b8 !important;
+                        display: block !important;
+                        margin-top: 2px !important;
+                    }
+                    .copilot-header-controls {
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 8px !important;
+                    }
+                    .copilot-ctrl-btn {
+                        background: rgba(255, 255, 255, 0.06) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        color: #cbd5e1 !important;
+                        width: 32px !important;
+                        height: 32px !important;
+                        border-radius: 10px !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        cursor: pointer !important;
+                        transition: all 0.2s ease !important;
+                    }
+                    .copilot-ctrl-btn:hover {
+                        background: rgba(255, 255, 255, 0.15) !important;
+                        color: #ffffff !important;
+                        border-color: #38bdf8 !important;
+                    }
+                    .copilot-chips-bar {
+                        padding: 10px 14px !important;
+                        display: flex !important;
+                        gap: 8px !important;
+                        overflow-x: auto !important;
+                        scrollbar-width: none !important;
+                        background: rgba(15, 23, 42, 0.6) !important;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-chip {
+                        white-space: nowrap !important;
+                        background: rgba(255, 255, 255, 0.05) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+                        border-radius: 9999px !important;
+                        padding: 6px 14px !important;
+                        font-size: 0.74rem !important;
+                        font-weight: 500 !important;
+                        color: #e2e8f0 !important;
+                        cursor: pointer !important;
+                        transition: all 0.25s ease !important;
+                    }
+                    .copilot-chip:hover {
+                        background: rgba(99, 102, 241, 0.2) !important;
+                        border-color: #38bdf8 !important;
+                        color: #ffffff !important;
+                        transform: translateY(-2px) !important;
+                    }
+                    .copilot-messages {
+                        flex: 1 !important;
+                        overflow-y: auto !important;
+                        padding: 18px 16px !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        gap: 14px !important;
+                        scroll-behavior: smooth !important;
+                    }
+                    .copilot-msg {
+                        max-width: 88% !important;
+                        font-size: 0.86rem !important;
+                        line-height: 1.6 !important;
+                    }
+                    .copilot-msg.copilot-msg-user .copilot-bubble, .copilot-msg.user {
+                        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                        color: #ffffff !important;
+                        padding: 10px 16px !important;
+                        border-radius: 20px 20px 4px 20px !important;
+                        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.3) !important;
+                    }
+                    .copilot-msg.copilot-msg-assistant {
+                        display: flex !important;
+                        gap: 10px !important;
+                        align-items: flex-start !important;
+                    }
+                    .copilot-msg-avatar {
+                        width: 28px !important;
+                        height: 28px !important;
+                        border-radius: 50% !important;
+                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%) !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        flex-shrink: 0 !important;
+                        margin-top: 2px !important;
+                        box-shadow: 0 0 10px rgba(99, 102, 241, 0.4) !important;
+                    }
+                    .copilot-msg.copilot-msg-assistant .copilot-bubble {
+                        background: rgba(22, 27, 34, 0.85) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                        color: #e2e8f0 !important;
+                        padding: 12px 16px !important;
+                        border-radius: 4px 20px 20px 20px !important;
+                        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+                    }
+                    .copilot-footer {
+                        padding: 12px 16px 14px 16px !important;
+                        background: rgba(15, 23, 42, 0.95) !important;
+                        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-input-container {
+                        display: flex !important;
+                        align-items: center !important;
+                        gap: 8px !important;
+                        background: rgba(22, 27, 34, 0.95) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                        border-radius: 28px !important;
+                        padding: 4px 6px 4px 14px !important;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+                        transition: all 0.25s ease !important;
+                    }
+                    .copilot-input-container:focus-within {
+                        border-color: #6366f1 !important;
+                        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25), 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+                    }
+                    .copilot-textarea {
+                        flex: 1 !important;
+                        background: transparent !important;
+                        border: none !important;
+                        outline: none !important;
+                        color: #ffffff !important;
+                        font-size: 0.88rem !important;
+                        line-height: 1.4 !important;
+                        resize: none !important;
+                        max-height: 100px !important;
+                        padding: 8px 0 !important;
+                        font-family: 'Inter', system-ui, sans-serif !important;
+                    }
+                    .copilot-textarea::placeholder {
+                        color: #64748b !important;
+                        font-size: 0.84rem !important;
+                    }
+                    .copilot-icon-btn {
+                        background: rgba(255, 255, 255, 0.05) !important;
+                        border: none !important;
+                        color: #94a3b8 !important;
+                        width: 32px !important;
+                        height: 32px !important;
+                        border-radius: 50% !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        cursor: pointer !important;
+                        transition: all 0.2s ease !important;
+                        flex-shrink: 0 !important;
+                    }
+                    .copilot-icon-btn:hover {
+                        background: rgba(255, 255, 255, 0.15) !important;
+                        color: #ffffff !important;
+                        transform: scale(1.05) !important;
+                    }
+                    .copilot-send-btn {
+                        width: 34px !important;
+                        height: 34px !important;
+                        border-radius: 50% !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%) !important;
+                        border: none !important;
+                        color: #ffffff !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        cursor: pointer !important;
+                        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                        flex-shrink: 0 !important;
+                        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4) !important;
+                    }
+                    .copilot-send-btn:hover {
+                        transform: scale(1.1) !important;
+                        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.6) !important;
+                    }
+                    .copilot-footer-meta {
+                        text-align: center !important;
+                        margin-top: 6px !important;
+                        font-size: 0.68rem !important;
+                        color: #64748b !important;
+                        font-weight: 500 !important;
+                    }
+                `;
+                document.head.appendChild(styleEl);
+            }
+
             // Remove any legacy widgets if present
             const oldLegacy = document.getElementById('iinsha-ai-copilot-container');
             if (oldLegacy) oldLegacy.remove();
@@ -109,15 +465,24 @@
             const trigger = document.createElement('div');
             trigger.id = 'iinsha-copilot-trigger';
             trigger.setAttribute('role', 'button');
-            trigger.setAttribute('aria-label', 'Open IINSHA AI Sales Copilot');
+            trigger.setAttribute('aria-label', 'Open IINSHA AI Copilot');
             trigger.innerHTML = `
                 <div class="copilot-trigger-avatar">
-                    🤖
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                        <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="url(#geminiGradTrig)"/>
+                        <defs>
+                            <linearGradient id="geminiGradTrig" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="50%" stop-color="#38bdf8" />
+                                <stop offset="100%" stop-color="#818cf8" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
                     <div class="copilot-trigger-status"></div>
                 </div>
                 <div class="copilot-trigger-label">
-                    <span class="copilot-trigger-title">Chat with IINSHA AI ⚡</span>
-                    <span class="copilot-trigger-subtitle">● Active | Sales & Architecture Agent</span>
+                    <span class="copilot-trigger-title">✦ IINSHA AI Copilot</span>
+                    <span class="copilot-trigger-subtitle">● Online • Gemini 3.0 Pro</span>
                 </div>
             `;
             document.body.appendChild(trigger);
@@ -127,8 +492,8 @@
             teaser.id = 'iinsha-copilot-teaser';
             teaser.innerHTML = `
                 <div style="flex:1;">
-                    <strong style="color:#00f2fe; display:block; margin-bottom:2px;">⚡ Need an AI Agent for your Business?</strong>
-                    Ask me about automation, pricing, or paste your website URL to build an AI product database in 20 mins!
+                    <strong style="color:#38bdf8; display:block; margin-bottom:2px;">✨ Deploy Enterprise AI for your Business</strong>
+                    Ask about 24/7 AI agents, pricing, or paste your website URL to build an automated product catalog in 20 mins!
                 </div>
                 <button class="teaser-close" title="Close">✕</button>
             `;
@@ -148,16 +513,26 @@
                 <!-- Header -->
                 <div class="copilot-header">
                     <div class="copilot-header-info">
-                        <div class="copilot-header-avatar">🤖</div>
+                        <div class="copilot-header-avatar">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                                <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="#ffffff"/>
+                            </svg>
+                        </div>
                         <div class="copilot-header-meta">
-                            <h4>IINSHA Autonomous Copilot <span style="color:#10b981; font-size:0.75rem;">● Online</span></h4>
-                            <span>Gemini 3.0 Pro & Flash • Sales, Growth & Closing Swarm</span>
+                            <h4>IINSHA AI Copilot <span class="copilot-online-badge">Online</span></h4>
+                            <span>Gemini 3.0 Pro & Flash • 13-Agent Swarm</span>
                         </div>
                     </div>
                     <div class="copilot-header-controls">
-                        <button class="copilot-ctrl-btn" id="copilot-tts-toggle" title="Toggle AI Voice Speech">🔊</button>
-                        <button class="copilot-ctrl-btn" id="copilot-expand-toggle" title="Toggle Fullscreen">⛶</button>
-                        <button class="copilot-ctrl-btn" id="copilot-close-btn" title="Close">✕</button>
+                        <button class="copilot-ctrl-btn" id="copilot-tts-toggle" title="Toggle AI Voice Speech">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        </button>
+                        <button class="copilot-ctrl-btn" id="copilot-expand-toggle" title="Toggle Fullscreen">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                        </button>
+                        <button class="copilot-ctrl-btn" id="copilot-close-btn" title="Close">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
                     </div>
                 </div>
 
@@ -179,13 +554,15 @@
                 <div class="copilot-footer">
                     <div class="copilot-input-container">
                         <textarea id="copilot-text-input" class="copilot-textarea" placeholder="Ask anything in English, বাংলা, or Banglish..." rows="1"></textarea>
-                        <button class="copilot-icon-btn" id="copilot-mic-btn" title="Voice Input (Bangla / English)">🎤</button>
+                        <button class="copilot-icon-btn" id="copilot-mic-btn" title="Voice Input (Bangla / English)">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+                        </button>
                         <button class="copilot-send-btn" id="copilot-send-btn" title="Send Message">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
                         </button>
                     </div>
                     <div class="copilot-footer-meta">
-                        <span>🚀 Zero-Repetition Engine • Powered by Gemini 3.0 Pro & n8n Enterprise</span>
+                        <span>✨ Powered by Gemini 3.0 Pro & IINSHA Autonomous Swarm Engine</span>
                     </div>
                 </div>
             `;
@@ -292,7 +669,11 @@
             const msgEl = document.createElement('div');
             msgEl.className = 'copilot-msg copilot-msg-assistant';
             msgEl.innerHTML = `
-                <div class="copilot-msg-avatar">🤖</div>
+                <div class="copilot-msg-avatar">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                        <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="#ffffff"/>
+                    </svg>
+                </div>
                 <div class="copilot-bubble">${htmlContent}</div>
             `;
             stream.appendChild(msgEl);

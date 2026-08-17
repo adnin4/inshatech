@@ -1,0 +1,148 @@
+/**
+ * IINSHA 2.0 DESIGN SYSTEM (Linear × Vercel Aesthetic)
+ * Design Tokens, Clean Dark Enterprise Obsidian Theme,
+ * 44px Accessible Touch Targets & Mobile Bottom Navigation
+ */
+
+:root {
+    --iinsha-bg: #070D1A;
+    --iinsha-surface: #0F172A;
+    --iinsha-surface-elevated: #1E293B;
+    --iinsha-border: rgba(255, 255, 255, 0.08);
+    --iinsha-border-hover: rgba(0, 242, 254, 0.3);
+    
+    --iinsha-cyan: #00F2FE;
+    --iinsha-emerald: #10B981;
+    --iinsha-amber: #F59E0B;
+    --iinsha-rose: #F43F5E;
+    --iinsha-purple: #A855F7;
+    
+    --iinsha-text-primary: #F8FAFC;
+    --iinsha-text-secondary: #94A3B8;
+    --iinsha-text-muted: #64748B;
+    
+    --touch-target-min: 44px;
+}
+
+/* Base Utility Container */
+.iinsha-container-bounded {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Linear-style Card Surface */
+.iinsha-card {
+    background: var(--iinsha-surface);
+    border: 1px solid var(--iinsha-border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.iinsha-card:hover {
+    border-color: var(--iinsha-border-hover);
+}
+
+/* 44px Accessible Buttons */
+.iinsha-btn {
+    min-height: var(--touch-target-min);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    border: none;
+    user-select: none;
+}
+
+.iinsha-btn-primary {
+    background: linear-gradient(135deg, var(--iinsha-cyan), #0284C7);
+    color: #04101E;
+}
+
+.iinsha-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 242, 254, 0.25);
+}
+
+.iinsha-btn-glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--iinsha-border);
+    color: var(--iinsha-text-primary);
+}
+
+.iinsha-btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--iinsha-border-hover);
+}
+
+/* Universal Command Bar Modal Styling */
+.iinsha-command-bar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    z-index: 2000000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+}
+
+.iinsha-command-bar-box {
+    width: 90vw;
+    max-width: 640px;
+    background: var(--iinsha-surface);
+    border: 1px solid var(--iinsha-cyan);
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 242, 254, 0.2);
+    overflow: hidden;
+}
+
+/* Mobile Bottom Navigation Bar (Visible only <= 768px) */
+.iinsha-mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 64px;
+    background: rgba(7, 13, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--iinsha-border);
+    z-index: 99999;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--iinsha-text-secondary);
+    text-decoration: none;
+    font-size: 0.72rem;
+    min-height: 44px;
+    min-width: 60px;
+}
+
+.mobile-nav-item.active {
+    color: var(--iinsha-cyan);
+}
+
+@media (max-width: 768px) {
+    .iinsha-mobile-bottom-nav {
+        display: flex;
+    }
+}

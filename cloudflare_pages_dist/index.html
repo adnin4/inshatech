@@ -81,83 +81,6 @@
     </script>
 
 
-    <!-- SEO Master Meta Tags -->
-    
-    <meta name="keywords" content="AI agent, n8n automation, lead generation, ecommerce chatbot, business operating system, Gemini Pro, Zapier alternative, Bangladesh AI">
-    <meta name="author" content="Adnin Sadat Mahin">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    
-
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="google-search-console-verification-code">
-
-    <!-- OpenGraph / Facebook Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="IINSHA AI-BOS — Autonomous AI Business Operating System & Swarm Orchestration">
-    <meta property="og:description" content="Deploy enterprise AI agent swarms, self-hosted n8n workflows, residential stealth scrapers, and Gemini 3.0 Pro RAG systems. Save up to 90% in automation costs.">
-    <meta property="og:url" content="https://inshatech.pages.dev/">
-    <meta property="og:site_name" content="IINSHA AI-BOS">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IINSHA AI-BOS — Autonomous AI Business Operating System & Swarm Orchestration">
-    <meta name="twitter:description" content="Deploy enterprise AI agent swarms, self-hosted n8n workflows, residential stealth scrapers, and Gemini 3.0 Pro RAG systems. Save up to 90% in automation costs.">
-
-
-    <!-- Schema.org Structured Data (JSON-LD) for Google Rich Snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://inshatech.pages.dev/#organization",
-          "name": "IINSHA AI-BOS",
-          "url": "https://inshatech.pages.dev/",
-          "logo": "https://inshatech.pages.dev/favicon.ico",
-          "founder": {
-            "@type": "Person",
-            "name": "Adnin Sadat Mahin",
-            "jobTitle": "Lead AI Systems Architect",
-            "url": "https://wa.me/8801629286887"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+8801629286887",
-            "contactType": "customer service",
-            "areaServed": ["Worldwide", "BD", "US", "UK", "AE"],
-            "availableLanguage": ["English", "Bengali"]
-          },
-          "sameAs": [
-            "https://github.com/adnin4/inshatech"
-          ]
-        },
-        {
-          "@type": "SoftwareApplication",
-          "@id": "https://inshatech.pages.dev/#software",
-          "name": "IINSHA AI Business Operating System",
-          "operatingSystem": "All (Cloud & Docker Self-Hosted)",
-          "applicationCategory": "BusinessApplication",
-          "offers": {
-            "@type": "AggregateOffer",
-            "priceCurrency": "USD",
-            "lowPrice": "29",
-            "highPrice": "1997",
-            "offerCount": "23"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://inshatech.pages.dev/#website",
-          "url": "https://inshatech.pages.dev/",
-          "name": "IINSHA AI-BOS",
-          "publisher": {
-            "@id": "https://inshatech.pages.dev/#organization"
-          }
-        }
-      ]
-    }
-    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,7 +109,7 @@
     <!-- Custom Immersive Scripts -->
     <script src="hero3d.js?v=v20260817_1786987052" defer></script>
     <script src="scroll-engine.js?v=v20260817_1786987052" defer></script>
-    <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260817_1786987052">
+    <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260818_gemini_ui_v3">
 </head>
 <body>
 
@@ -1465,16 +1388,23 @@
         <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:20px;">
             You are booking the <strong id="checkout-pkg-name-display" style="color:var(--accent-cyan);">Production Build</strong>. Input details to sync with our CRM.
         </p>
-        <form id="checkout-form" onsubmit="event.preventDefault(); alert('Success! Auto-syncing with Stripe and n8n pipeline...'); document.getElementById('checkout-modal').classList.add('hidden');">
+        <form id="checkout-form" onsubmit="handlePricingCheckoutSubmit(event)">
+            <input type="hidden" id="checkout-service-id" value="ai-starter-pkg">
+            <input type="hidden" id="checkout-amount-usd" value="750">
+            <div style="margin-bottom:12px;">
+                <label style="font-size:0.75rem; color:var(--text-secondary); display:block; margin-bottom:4px;">Your Name / Company:</label>
+                <input type="text" id="checkout-customer-name" required placeholder="e.g. Acme Corp" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); border-radius:var(--radius-sm); color:#fff;">
+            </div>
             <div style="margin-bottom:12px;">
                 <label style="font-size:0.75rem; color:var(--text-secondary); display:block; margin-bottom:4px;">Work Email:</label>
-                <input type="email" required placeholder="name@company.com" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); border-radius:var(--radius-sm); color:#fff;">
+                <input type="email" id="checkout-customer-email" required placeholder="name@company.com" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); border-radius:var(--radius-sm); color:#fff;">
             </div>
             <div style="margin-bottom:16px;">
                 <label style="font-size:0.75rem; color:var(--text-secondary); display:block; margin-bottom:4px;">WhatsApp Number (Optional):</label>
-                <input type="tel" placeholder="+1234567890" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); border-radius:var(--radius-sm); color:#fff;">
+                <input type="tel" id="checkout-customer-phone" placeholder="+8801700000000" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--glass-border); border-radius:var(--radius-sm); color:#fff;">
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;">Confirm Deployment Setup →</button>
+            <div id="checkout-status-msg" style="display:none; margin-bottom:12px; font-size:0.85rem; padding:10px; border-radius:6px;"></div>
+            <button type="submit" id="checkout-submit-btn" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;">Confirm Deployment Setup →</button>
         </form>
     </div>
 
@@ -1583,12 +1513,109 @@
             if (annualEl) annualEl.textContent = `$${netAnnualGain.toLocaleString()}`;
         }
 
-        function handleAsyncAuditSubmit(e) {
+        async function handleAsyncAuditSubmit(e) {
             e.preventDefault();
+            const email = document.getElementById('audit-email')?.value || '';
+            const stack = document.getElementById('audit-stack')?.value || '';
+            const bottleneck = document.getElementById('audit-bottleneck')?.value || '';
             const form = document.getElementById('async-audit-form');
             const success = document.getElementById('async-audit-success');
+            const submitBtn = form?.querySelector('button[type="submit"]');
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Submitting Blueprint Request...';
+            }
+
+            try {
+                await fetch('/api/leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Async Audit Lead',
+                        email: email,
+                        message: `Tech Stack: ${stack} | Bottleneck: ${bottleneck}`,
+                        source: 'async_audit_blueprint'
+                    })
+                });
+            } catch (err) {
+                console.warn('Fallback: stored locally', err);
+            }
+
             if (form) form.style.display = 'none';
             if (success) success.style.display = 'block';
+        }
+
+        function openPricingCheckoutModal(pkgName, setupFeeUsd, monthlyUsd) {
+            const modal = document.getElementById('checkout-modal');
+            const pkgDisplay = document.getElementById('checkout-pkg-name-display');
+            const serviceIdInput = document.getElementById('checkout-service-id');
+            const amountInput = document.getElementById('checkout-amount-usd');
+            const statusMsg = document.getElementById('checkout-status-msg');
+
+            if (pkgDisplay) pkgDisplay.textContent = `${pkgName} ($${setupFeeUsd} Setup + $${monthlyUsd}/mo)`;
+            if (serviceIdInput) serviceIdInput.value = pkgName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            if (amountInput) amountInput.value = setupFeeUsd;
+            if (statusMsg) statusMsg.style.display = 'none';
+
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        async function handlePricingCheckoutSubmit(e) {
+            e.preventDefault();
+            const serviceId = document.getElementById('checkout-service-id')?.value || 'ai-starter-pkg';
+            const amount = parseFloat(document.getElementById('checkout-amount-usd')?.value || '750');
+            const name = document.getElementById('checkout-customer-name')?.value || 'Client';
+            const email = document.getElementById('checkout-customer-email')?.value || '';
+            const phone = document.getElementById('checkout-customer-phone')?.value || '';
+            const statusMsg = document.getElementById('checkout-status-msg');
+            const btn = document.getElementById('checkout-submit-btn');
+
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = '⏳ Provisioning Order...';
+            }
+
+            try {
+                const res = await fetch('/api/payments/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        service_id: serviceId,
+                        amount: amount,
+                        customer_name: name,
+                        customer_email: email,
+                        customer_phone: phone,
+                        payment_provider: 'manual'
+                    })
+                });
+
+                const data = await res.json();
+                if (data.status === 'SUCCESS' && data.order) {
+                    if (statusMsg) {
+                        statusMsg.style.display = 'block';
+                        statusMsg.style.background = 'rgba(16, 185, 129, 0.2)';
+                        statusMsg.style.border = '1px solid #10b981';
+                        statusMsg.style.color = '#34d399';
+                        statusMsg.innerHTML = `✅ <strong>Order Created: ${data.order.order_id}</strong><br>Total: $${data.order.amount_usd} USD (≈ ৳${data.order.amount_bdt.toLocaleString()} BDT)<br><a href="${data.order.payment_instructions.whatsapp_link}" target="_blank" style="color:#22d3ee; text-decoration:underline; font-weight:bold; margin-top:6px; display:inline-block;">💬 Complete Deployment on WhatsApp →</a>`;
+                    }
+                    if (btn) btn.style.display = 'none';
+                } else {
+                    throw new Error(data.error || 'Could not create order');
+                }
+            } catch (err) {
+                if (statusMsg) {
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'rgba(239, 68, 68, 0.2)';
+                    statusMsg.style.border = '1px solid #ef4444';
+                    statusMsg.style.color = '#f87171';
+                    statusMsg.textContent = '⚠️ ' + err.message;
+                }
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Retry Deployment Setup →';
+                }
+            }
         }
 
         function executeAIMission() {
@@ -1652,7 +1679,8 @@ Net Savings: $${netSaved} USD`);
             if (card) card.classList.toggle('hidden');
         }
     </script>
-    <script src="universal_ai_copilot.js?v=v20260817_1786987052"></script>
+    <script src="js/core/truth-labels.js?v=20260818"></script>
+    <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
 
 <script>
 function updateHomepageAffiliateCalc() {
@@ -1692,6 +1720,20 @@ function updateHomepageAffiliateCalc() {
 }
 document.addEventListener('DOMContentLoaded', function() {
     updateHomepageAffiliateCalc();
+    
+    // Server-Side Affiliate Attribution Ping
+    const urlParams = new URLSearchParams(window.location.search);
+    const affCode = urlParams.get('aff') || urlParams.get('ref');
+    if (affCode) {
+        fetch('/api/affiliate/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                affiliate_id: affCode,
+                landing_page: window.location.pathname
+            })
+        }).catch(e => console.warn('Affiliate tracking offline fallback', e));
+    }
 });
 </script>
 

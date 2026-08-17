@@ -1,7 +1,9 @@
 /**
  * Cloudflare Pages Function: /api/ai/chat
- * Stateful multi-turn AI Commander API for IINSHA AI-BOS
+ * Multi-Intent Conversational AI Business Copilot Edge Engine for IINSHA AI-BOS
  */
+
+import { CANONICAL_SERVICES } from '../services.js';
 
 export async function onRequestPost(context) {
     const { request, env } = context;
@@ -15,6 +17,24 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json"
     };
 
+    const ip = request.headers.get('cf-connecting-ip') || 'unknown';
+    if (!globalThis.chatRateLimitMap) globalThis.chatRateLimitMap = new Map();
+    const now = Date.now();
+    const minute = 60 * 1000;
+    const limit = 50;
+    
+    let record = globalThis.chatRateLimitMap.get(ip) || { count: 0, resetTime: now + minute };
+    if (now > record.resetTime) record = { count: 1, resetTime: now + minute };
+    else record.count++;
+    globalThis.chatRateLimitMap.set(ip, record);
+    
+    const remaining = Math.max(0, limit - record.count);
+    corsHeaders["X-RateLimit-Remaining"] = remaining.toString();
+
+    if (record.count > limit) {
+        return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429, headers: corsHeaders });
+    }
+
     try {
         const body = await request.json().catch(() => ({}));
         const conversationId = body.conversation_id || ("conv_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6));
@@ -22,33 +42,64 @@ export async function onRequestPost(context) {
         const history = Array.isArray(body.history) ? body.history : [];
         const state = body.state || {};
 
-        if (!userMessage) {
+        if (!userMessage || typeof userMessage !== 'string') {
             return new Response(JSON.stringify({
                 status: "ERROR",
-                error: "Message is required"
+                error: "Message is required and must be a string"
+            }), { headers: corsHeaders, status: 400 });
+        }
+        
+        if (userMessage.length > 2000) {
+            return new Response(JSON.stringify({
+                status: "ERROR",
+                error: "Message exceeds maximum length of 2000 characters"
             }), { headers: corsHeaders, status: 400 });
         }
 
-        // If Gemini API Key is present in environment, call Google Gemini 1.5/2.0 Flash
+        const sanitizedMessage = userMessage.replace(/<[^>]*>?/gm, '');
+
         const geminiApiKey = env.GEMINI_API_KEY || env.GOOGLE_API_KEY;
+
         if (geminiApiKey) {
             try {
                 const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`;
                 
-                const systemInstruction = `You are the Lead Autonomous AI Sales, Marketing & Architecture Engineer for IINSHA AI-BOS (founded by Adnin Sadat Mahin).
-You are fluent in Bengali (বাংলা), Banglish, and English.
-You solve real business bottlenecks using n8n self-hosted workflows ($5.99/mo VPS vs $500/mo Zapier), Playwright stealth scrapers, 24/7 E-commerce WhatsApp bots ($750 / ৳91,875), and B2B SaaS Lead Generation swarms ($850 / ৳104,125).
-USD to BDT exchange rate is ৳122.50.
-RULES:
-1. Never repeat canned messages or give generic non-answers.
-2. If user greets ("hi", "amar help lagbe", "ei mia"), greet back warmly and ask specifically what problem they want solved.
-3. If user asks "ki ki service available", give a concise categorized list of services.
-4. If user complains about repetition, apologize immediately and provide a fresh, direct solution.
-5. Keep track of user context across turns (e.g. industry, employee size, target leads).`;
+                const servicesContext = JSON.stringify(CANONICAL_SERVICES.map(s => ({
+                    name: s.name,
+                    category: s.category,
+                    priceUSD: s.priceUSD,
+                    priceBDT: Math.round(s.priceUSD * 122.50),
+                    badge: s.badge,
+                    desc: s.description,
+                    deliveryDays: s.deliveryDays
+                })));
+
+                const systemInstruction = `You are the Lead Autonomous AI Business Copilot & Senior AI Systems Architect for IINSHA AI-BOS (founded by Lead Engineer Adnin Sadat Mahin, WhatsApp: +8801629286887, Website: https://inshatech.pages.dev/).
+
+CORE CONVERSATIONAL PRINCIPLES:
+1. MULTILINGUAL SUPREME CAPABILITY: Respond fluently in the user's language (Banglaবাংলা, Banglish, English, or mixed). Match their exact tone and dialect naturally.
+2. NEVER REPEAT TEMPLATES OR CANNED RESPONSES:
+   - If user asks a general knowledge question ("What is RAG?", "Explain n8n vs Zapier", "How do APIs work?"), ANSWER THE QUESTION DIRECTLY FIRST with technical clarity. Do NOT force a sales pitch.
+   - If user complains about repetition ("why are you repeating same answer?", "ekoi uttoribar bari keno?"), APOLOGIZE IMMEDIATELY, acknowledge the error, and provide a fresh, direct solution.
+3. CONVERSATIONAL MEMORY & INTENT DETECTION:
+   - Keep track of known user context from prior history: Industry, Channel (WhatsApp/Web), Budget, Urgency, Selected Package.
+   - Do NOT ask questions the user already answered.
+4. CONSULTATIVE SALES & TRANSPARENT PRICING:
+   - Exchange Rate: $1 USD = ৳122.50 BDT.
+   - Use verified Canonical Services Catalog below:
+     ${servicesContext}
+   - When recommending services, explain WHY it fits their specific business need. Never invent prices or fake guarantees.
+5. HUMAN & WHATSAPP ESCALATION:
+   - If user requests to talk to Adnin or human engineer ("talk to human", "call Adnin", "whatsapp support"), offer human handoff and generate WhatsApp inquiry details.
+6. 28-PILLAR AFFILIATE & GROWTH PARTNER PROGRAM:
+   - If user asks about affiliate marketing, partner programs, referral links, or creating an account ("affiliate marketing account kivabe create korbo?", "website e affiliate marketing ache naki?", "referral link kivabe pabo"):
+   - EXPLICITLY CONFIRM: Yes! IINSHA operates a full 28-Pillar Affiliate & Growth Partner OS.
+   - COMMISSIONS: 15% upfront + 20% to 30% lifetime recurring commissions on all client deals ($150 to $3,000+ USD per client).
+   - PAYOUTS: bKash, Nagad, Wise Bank Wire, Local Bank, Crypto USDT.
+   - REGISTRATION STEPS: 1. Go to affiliate.html, 2. Enter Name, Email & Payout method, 3. Get instant 60-day tracking link (/go/your-code), 4. Track clicks & earnings in real-time on the Partner Dashboard.`;
 
                 const contents = [];
-                // Add conversation history
-                for (const msg of history.slice(-6)) {
+                for (const msg of history.slice(-8)) {
                     contents.push({
                         role: msg.role === 'assistant' ? 'model' : 'user',
                         parts: [{ text: msg.content.replace(/<[^>]*>?/gm, '') }]
@@ -56,7 +107,7 @@ RULES:
                 }
                 contents.push({
                     role: 'user',
-                    parts: [{ text: userMessage }]
+                    parts: [{ text: sanitizedMessage }]
                 });
 
                 const geminiResp = await fetch(geminiUrl, {
@@ -66,8 +117,8 @@ RULES:
                         contents,
                         systemInstruction: { parts: [{ text: systemInstruction }] },
                         generationConfig: {
-                            temperature: 0.7,
-                            maxOutputTokens: 800
+                            temperature: 0.65,
+                            maxOutputTokens: 1000
                         }
                     })
                 });
@@ -78,7 +129,7 @@ RULES:
                     if (text) {
                         return new Response(JSON.stringify({
                             status: "SUCCESS",
-                            source: "Gemini Generative Cloud Edge",
+                            source: "Gemini Generative Edge Engine",
                             conversation_id: conversationId,
                             response: text
                         }), { headers: corsHeaders });
@@ -89,7 +140,7 @@ RULES:
             }
         }
 
-        // Return stateful acknowledged response if Gemini key not configured
+        // Fallback response signaling client-side rule engine
         return new Response(JSON.stringify({
             status: "SUCCESS",
             source: "IINSHA Edge Engine",

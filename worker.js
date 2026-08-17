@@ -52,7 +52,7 @@ export default {
           gateways: [
             { id: "bkash", name: "bKash Merchant / Personal", enabled: true, currency: "BDT", account: "01629286887" },
             { id: "nagad", name: "Nagad Personal", enabled: true, currency: "BDT", account: "01629286887" },
-            { id: "stripe", name: "Stripe Credit/Debit Card", enabled: true, currency: "USD", publishableKey: "pk_live_sample" },
+            { id: "stripe", name: "Stripe Credit/Debit Card", enabled: true, currency: "USD", publishableKey: "CONFIGURATION_REQUIRED" },
             { id: "bank", name: "Bank Wire Transfer", enabled: true, currency: "USD", bank: "City Bank PLC" }
           ]
         }), { headers: corsHeaders });
@@ -138,16 +138,18 @@ export default {
       if (url.pathname.startsWith("/api/ai/telemetry")) {
         return new Response(JSON.stringify({
             status: "success",
-            system_uptime: "99.98%",
+            system_uptime: "SIMULATED",
             active_agents: 27,
             total_evaluations_run: 100,
             context_retention_rate: "99.2%",
             repeated_question_rate: "0.0%",
             tool_execution_success: "100.0%",
             grounded_answer_rate: "99.4%",
-            hallucination_rate: "0.0%",
+            hallucination_rate: "SIMULATED",
             total_tokens_processed: 48290,
-            avg_latency_ms: 114
+            avg_latency_ms: 114,
+            data_status: "SIMULATED",
+            note: "Connect to real monitoring infrastructure for live telemetry"
         }), { headers: corsHeaders });
       }
 

@@ -198,13 +198,9 @@ CREATE TABLE IF NOT EXISTS ibos_users (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO ibos_users (email, password_hash, full_name, role)
-VALUES (
-    'adnansadatmahin4@gmail.com',
-    crypt('@@@mahin12', gen_salt('bf')),
-    'Mahin Khan (Super Admin)',
-    'super_admin'
-) ON CONFLICT (email) DO NOTHING;
+-- SECURITY: Run this INSERT manually with your own secure password.
+-- Example: INSERT INTO ibos_users (email, password_hash, full_name, role)
+-- VALUES ('your@email.com', crypt('YOUR_SECURE_PASSWORD', gen_salt('bf')), 'Your Name', 'super_admin');
 
 -- ============================================================
 -- 10. VERSION CONTROL & IMMUTABLE AUDIT LOGS

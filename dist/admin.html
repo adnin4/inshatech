@@ -406,9 +406,31 @@
             background: var(--accent-cyan);
         }
     </style>
-    <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260817_1786987052">
+    <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260818_gemini_ui_v3">
 </head>
 <body>
+    <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
+        <div style="background:#0f172a; padding:40px; border-radius:12px; border:1px solid rgba(0,242,254,0.3); text-align:center;">
+            <h2 style="margin-bottom:20px; color:#00F2FE;">Secure Admin Access</h2>
+            <input type="password" id="admin-password" placeholder="Enter Master Password" style="padding:12px; border-radius:6px; border:1px solid #334155; background:#000; color:#fff; width:100%; margin-bottom:20px;">
+            <button onclick="checkAdminAuth()" style="background:#10B981; color:#000; font-weight:bold; padding:12px 24px; border:none; border-radius:6px; cursor:pointer; width:100%;">Access Commander C-Panel</button>
+            <p id="auth-error" style="color:#ef4444; font-size:0.85rem; margin-top:10px; display:none;">Invalid password.</p>
+        </div>
+    </div>
+    <script>
+        if (sessionStorage.getItem('iinsha_admin_authenticated')) {
+            document.getElementById('admin-auth-overlay').style.display = 'none';
+        }
+        function checkAdminAuth() {
+            const pwd = document.getElementById('admin-password').value;
+            if (pwd === 'iinsha_admin_2026') {
+                sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+                document.getElementById('admin-auth-overlay').style.display = 'none';
+            } else {
+                document.getElementById('auth-error').style.display = 'block';
+            }
+        }
+    </script>
 
     <!-- TOP COCKPIT HEADER BAR -->
     <header class="cockpit-header" role="banner">
@@ -1112,6 +1134,7 @@
             switchAdminCockpitTab('overview');
         });
     </script>
-    <script src="universal_ai_copilot.js?v=v20260817_1786987052"></script>
+    <script src="js/core/truth-labels.js?v=20260818"></script>
+    <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
 </body>
 </html>
