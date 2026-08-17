@@ -7701,9 +7701,12 @@ window.initAuthenticPartnerConsole = function() {
                     ${partner.lifecycleDeals.map(deal => `
                         <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;">
                             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-                                <div>
-                                    <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold;">${deal.id} • ${deal.date}</span>
-                                    <h4 style="margin:2px 0 0 0; color:#fff; font-size:1rem;">${deal.clientName} — <span style="color:#cbd5e1; font-weight:normal;">${deal.service}</span></h4>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:6px;">
+                                        <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold;">${deal.id} • ${deal.date}</span>
+                                        <button onclick="openDealLifecycleModal('${deal.id}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:3px 10px; color:var(--accent-cyan); border-color:rgba(6,182,212,0.4); cursor:pointer;">🔍 Inspect 12-Stage Journey →</button>
+                                    </div>
+                                    <h4 style="margin:0; color:#fff; font-size:1rem;">${deal.clientName} — <span style="color:#cbd5e1; font-weight:normal;">${deal.service}</span></h4>
                                 </div>
                                 <div style="text-align:right;">
                                     <strong style="color:#34d399; font-size:0.95rem; font-family:var(--font-mono);">${deal.commission}</strong>
