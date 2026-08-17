@@ -6,7 +6,7 @@
     <title>Autonomous C-Panel OS | IINSHA AI Automation Lab</title>
     <meta name="description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=v20260817_1786974517">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786974725">
     <style>
         :root {
             --bg-cockpit: #040812;
@@ -765,7 +765,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=v20260817_1786974517"></script>
+    <script src="app.js?v=v20260817_1786974725"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -903,8 +903,22 @@
             const root = document.getElementById('crm-kanban-board');
             if (!root) return;
 
+            const orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
+            
+            const liveOrdersMapped = orders.map(o => ({
+                id: o.orderId,
+                name: o.clientName,
+                size: `$${o.priceUsd.toLocaleString()} (${o.priceBdt})`,
+                comm: `+$${Math.round(o.priceUsd * 0.20)}.00`,
+                status: '⚡ ' + (o.aiSdrScore || 'AI SDR Qualified')
+            }));
+
+            const defaultCol1Deals = [
+                { id: 'DEAL-9610', name: 'Urban Real Estate', size: '$750 Setup', comm: '$150.00', status: 'AI SDR Qualifying' }
+            ];
+
             const cols = [
-                { title: '1. Lead In (<45s)', deals: [{ id: 'DEAL-9610', name: 'Urban Real Estate', size: '$750 Setup', comm: '$150.00', status: 'AI SDR Qualifying' }] },
+                { title: '1. Lead In (<45s)', deals: [...liveOrdersMapped, ...defaultCol1Deals] },
                 { title: '2. Proposal / Teardown', deals: [{ id: 'DEAL-9904', name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', comm: '$360.00', status: 'Teardown Sent' }] },
                 { title: '3. Payment Escrow Confirmed', deals: [{ id: 'DEAL-9720', name: 'SaaS Outbound Engine', size: '$3,000 Setup', comm: '$600.00', status: 'Payment Verified' }] },
                 { title: '4. Build & Delivery Live', deals: [{ id: 'DEAL-9841', name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', comm: '$300.00', status: '100% Verified Live' }] }
