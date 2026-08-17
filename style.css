@@ -152,7 +152,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 32px);
-    max-width: 1100px;
+    max-width: 1320px;
     z-index: 1000;
     background: rgba(8, 9, 13, 0.75);
     backdrop-filter: blur(20px) saturate(1.4);
@@ -206,10 +206,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     gap: 4px;
 }
 .nav-link {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-secondary);
-    padding: 8px 14px;
+    padding: 6px 10px;
     border-radius: var(--radius-sm);
     transition: color var(--duration-fast) var(--ease-smooth), background var(--duration-fast) var(--ease-smooth);
     white-space: nowrap;
@@ -1463,4 +1463,98 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     transform: translateY(-4px) !important;
     border-color: var(--accent-cyan) !important;
     box-shadow: 0 16px 35px rgba(0, 242, 254, 0.12) !important;
+}
+
+
+/* === CRITICAL FIX: FIXED BACKGROUND PARTICLE CANVAS (PREVENTS CONTENT PUSH-DOWN) === */
+#particleCanvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    opacity: 0.55 !important;
+    display: block !important;
+}
+
+.bg-glow, .grid-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+/* === CRITICAL FIX: HIGH-CONTRAST TYPOGRAPHY & BUTTON READABILITY === */
+button, .btn, .btn-primary, .btn-glass, .btn-primary-sm, .btn-glass-sm, .btn-ghost, .nav-link, .nav-cta {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    letter-spacing: 0.02em !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.btn-glass, .btn-glass-sm {
+    color: #ffffff !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    font-weight: 600 !important;
+}
+
+.btn-glass:hover, .btn-glass-sm:hover {
+    color: #00f2fe !important;
+    border-color: #00f2fe !important;
+    background: rgba(0, 242, 254, 0.12) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3) !important;
+}
+
+.btn-primary, .btn-primary-sm {
+    color: #030712 !important;
+    background: linear-gradient(135deg, #00f2fe, #0284c7) !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35) !important;
+}
+
+/* === CONTROL PANEL STUDIO STYLING & HIGH-CONTRAST INPUTS === */
+.admin-modal-box, #admin-control-modal {
+    font-family: 'Inter', sans-serif !important;
+    color: #ffffff !important;
+}
+
+.admin-modal-box input, .admin-modal-box textarea, .admin-modal-box select {
+    background: rgba(15, 23, 42, 0.95) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    font-size: 0.9rem !important;
+}
+
+.admin-modal-box input:focus, .admin-modal-box textarea:focus, .admin-modal-box select:focus {
+    border-color: #00f2fe !important;
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4) !important;
+}
+
+.active-ibos-tab {
+    background: linear-gradient(135deg, #00f2fe, #0284c7) !important;
+    color: #030712 !important;
+    font-weight: 800 !important;
+    border-color: #00f2fe !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4) !important;
+}
+
+/* === RESPONSIVE LAYOUT FOR MARKETPLACE & ADMIN STUDIO === */
+@media (max-width: 768px) {
+    .admin-modal-box {
+        width: 98% !important;
+        padding: 14px !important;
+        max-height: 96vh !important;
+    }
+    #marketplace-products-grid {
+        grid-template-columns: 1fr !important;
+    }
 }
