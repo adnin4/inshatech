@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=v20260817_1786930670">
+    <link rel="stylesheet" href="/style.css?v=v20260817_1786930904">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2306b6d4'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='50,5 90,25 90,75 50,95 10,75 10,25' fill='url(%23g1)' opacity='0.85'/%3E%3Cpolygon points='50,18 78,32 78,68 50,82 22,68 22,32' fill='%23030712'/%3E%3Cpath d='M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z' fill='url(%23g1)'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23ffffff'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -61,10 +61,11 @@
             </p>
 
             <!-- COMPARISON CATEGORY SWITCHER -->
-            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px;">
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap:wrap;">
                 <button class="btn btn-primary comp-switch-btn active" data-comp="automation">⚡ n8n vs Make vs Zapier</button>
                 <button class="btn btn-glass comp-switch-btn" data-comp="hosting">🌐 Hostinger vs Cloudways</button>
                 <button class="btn btn-glass comp-switch-btn" data-comp="scraping">🦀 OpenClaw vs Generic Scraper</button>
+                <button class="btn btn-glass comp-switch-btn" data-comp="agency">👑 IINSHA vs Traditional Agencies</button>
             </div>
         </section>
 
@@ -216,7 +217,71 @@
                 </div>
             </div>
         </section>
-    </main>
+    
+        <!-- MATRIX 4: IINSHA AI OS vs Traditional Automation Agencies -->
+        <section id="comp-matrix-agency" class="comp-matrix-panel hidden">
+            <div class="glass-card glowing-border" style="padding: 32px;">
+                <h2 style="font-family: var(--font-heading); color: #fff; margin-bottom: 8px;">👑 IINSHA Autonomous AI Studio vs Traditional Automation Agencies</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Comparing end-to-end autonomous multi-agent workforces vs single-workflow hourly agencies.</p>
+
+                <div class="table-wrapper">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Evaluation Dimension</th>
+                                <th>IINSHA AI Engineering Studio <span class="status-badge completed">Autonomous Leader</span></th>
+                                <th>Traditional Automation Agency</th>
+                                <th>Freelancers / Hourly Devs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Scope & Architecture</strong></td>
+                                <td><span style="color: var(--accent-emerald);">Full AI Workforce + RAG + Multi-Agent Swarm + SaaS</span></td>
+                                <td>Single linear Zapier/Make tasks</td>
+                                <td>Isolated script with no support</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pricing Model</strong></td>
+                                <td><strong style="color: var(--accent-cyan);">Clear Setup Fee + Flat Monthly Maintenance (Zero task fees)</strong></td>
+                                <td>$100-$150 / hour or $5k+ retainers</td>
+                                <td>Hourly or unpredictable quotes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Governance & HITL</strong></td>
+                                <td><span style="color: var(--accent-emerald);">4-Level HITL Governance & Explainability Audit</span></td>
+                                <td>No governance safeguards</td>
+                                <td>No security architecture</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AI & Vision Intelligence</strong></td>
+                                <td>Gemini 2.5 Pro Vision OCR + pgvector Digital Twin</td>
+                                <td>Basic OpenAI text completion</td>
+                                <td>None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uptime & Monitoring</strong></td>
+                                <td>24/7 AI-SRE Self-Healing Guardian + Cloudflare WAF</td>
+                                <td>Manual troubleshooting on failure</td>
+                                <td>Client must monitor failures</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code & Data Sovereignty</strong></td>
+                                <td><span class="b-tag" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald);">🏆 100% Code & VPS Handover</span></td>
+                                <td>Locked in agency cloud account</td>
+                                <td>Unversioned files</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 24px; text-align: center;">
+                    <a href="index.html#transparent-pricing" class="btn btn-primary">Deploy IINSHA Productized System →</a>
+                </div>
+            </div>
+        </section>
+
+</main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -232,6 +297,29 @@
         </div>
     </footer>
 
-    <script src="/app.js?v=v20260817_1786930670" defer></script>
+    <script src="/app.js?v=v20260817_1786930904" defer></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.comp-switch-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.comp-switch-btn').forEach(b => {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-glass');
+                });
+                btn.classList.remove('btn-glass');
+                btn.classList.add('btn-primary', 'active');
+
+                const target = btn.getAttribute('data-comp');
+                document.querySelectorAll('.comp-matrix-panel').forEach(panel => {
+                    panel.classList.add('hidden');
+                });
+                const activePanel = document.getElementById(`comp-matrix-${target}`);
+                if (activePanel) activePanel.classList.remove('hidden');
+            });
+        });
+    });
+    </script>
+
 </body>
 </html>
