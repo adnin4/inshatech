@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=v20260817_1786972008">
+    <link rel="stylesheet" href="/style.css?v=v20260817_1786972202">
 
     <style>
         .ipc-card { background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-card); border-radius: 14px; padding: 24px; position: relative; margin-bottom: 20px; backdrop-filter: blur(12px); transition: all 0.3s ease; }
@@ -173,6 +173,67 @@
             </div>
         </section>
 
+        
+        <!-- AFFILIATE LEADERBOARD & REPUTATION ENGINE -->
+        <section style="margin: 50px 0;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <span style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono); text-transform: uppercase; font-weight: 700;">🏆 NETWORK REPUTATION</span>
+                <h2 style="color: #fff; font-size: 2rem; margin: 4px 0;">Top Partner Growth Leaderboard</h2>
+                <p style="font-size: 0.9rem; color: #94a3b8;">Real-time verified rankings of top agency partners and affiliates driving enterprise AI pipelines.</p>
+            </div>
+
+            <div class="glass-card glowing-border" style="padding: 24px; background: rgba(15,23,42,0.85);">
+                <div class="table-wrapper" style="overflow-x:auto;">
+                    <table class="orders-table" style="width: 100%; font-size: 0.85rem;">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Partner / Agency</th>
+                                <th>Tier Status</th>
+                                <th>Revenue Driven</th>
+                                <th>Commission Earned</th>
+                                <th>Top Converting Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span style="font-size: 1.2rem;">🥇</span> <strong>#1</strong></td>
+                                <td><strong>Apex Growth Agency</strong> (UK)</td>
+                                <td><span class="badge-gold" style="padding: 2px 8px; font-size: 0.72rem; border-radius: 4px;">👑 VIP Legend (30%)</span></td>
+                                <td><strong style="color: #38bdf8;">$48,500 USD</strong></td>
+                                <td><strong style="color: var(--accent-emerald);">$9,700.00 USD</strong></td>
+                                <td>01. AI Workforce Swarm</td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size: 1.2rem;">🥈</span> <strong>#2</strong></td>
+                                <td><strong>SmartOps Tech Hub</strong> (BD)</td>
+                                <td><span style="background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); padding: 2px 8px; font-size: 0.72rem; border-radius: 4px; font-weight: bold;">💎 Elite Gold (25%)</span></td>
+                                <td><strong style="color: #38bdf8;">$32,200 USD</strong></td>
+                                <td><strong style="color: var(--accent-emerald);">$6,440.00 USD</strong></td>
+                                <td>06. Gemini 3.0 Vision OCR</td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size: 1.2rem;">🥉</span> <strong>#3</strong></td>
+                                <td><strong>ScaleFlow Automation</strong> (US)</td>
+                                <td><span style="background: rgba(0,242,254,0.15); color: var(--accent-cyan); border: 1px solid rgba(0,242,254,0.3); padding: 2px 8px; font-size: 0.72rem; border-radius: 4px; font-weight: bold;">🔥 VIP Silver (20%)</span></td>
+                                <td><strong style="color: #38bdf8;">$19,800 USD</strong></td>
+                                <td><strong style="color: var(--accent-emerald);">$3,960.00 USD</strong></td>
+                                <td>04. Voice AI Receptionist</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4</strong></td>
+                                <td><strong>Adnin Growth Partner</strong> (BD)</td>
+                                <td><span class="badge-gold" style="padding: 2px 8px; font-size: 0.72rem; border-radius: 4px;">👑 VIP Gold (20%)</span></td>
+                                <td><strong style="color: #38bdf8;">$14,250 USD</strong></td>
+                                <td><strong style="color: var(--accent-emerald);">$2,140.20 USD</strong></td>
+                                <td>01. AI Workforce Swarm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <!-- PARTNER LEVEL TIER MATRIX -->
         <section style="margin: 50px 0;">
             <div style="text-align: center; margin-bottom: 30px;">
@@ -290,7 +351,7 @@
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:20px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                         <strong style="color:#67e8f9; font-size:0.9rem;">📱 LinkedIn & Twitter/X Pitch Copy</strong>
-                        <button onclick="copyToolkitAsset('social-swipe-text', 'Social pitch copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
+                        <button id="copy-social-swipe-btn" onclick="copyToolkitAsset('social-swipe-text', 'Social pitch copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
                     </div>
                     <textarea id="social-swipe-text" rows="5" readonly style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#cbd5e1; font-size:0.8rem; outline:none; resize:none; font-family:'Fira Code',monospace; box-sizing:border-box;">Most companies waste 40+ hours/week on manual data entry, slow lead response, and messy Zapier bills.
 
@@ -304,7 +365,7 @@ https://inshatech.pages.dev/?ref=partner10</textarea>
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:20px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                         <strong style="color:#facc15; font-size:0.9rem;">✉️ Client B2B Email Outreach Swipe</strong>
-                        <button onclick="copyToolkitAsset('email-swipe-text', 'Email copy copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
+                        <button id="copy-email-swipe-btn" onclick="copyToolkitAsset('email-swipe-text', 'Email copy copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
                     </div>
                     <textarea id="email-swipe-text" rows="5" readonly style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#cbd5e1; font-size:0.8rem; outline:none; resize:none; font-family:'Fira Code',monospace; box-sizing:border-box;">Subject: Slashing manual ops with an AI Workforce
 
@@ -312,7 +373,7 @@ Hi {{FirstName}},
 
 Are you still handling lead qualification and invoice processing manually? 
 
-Our partner IINSHA builds self-hosted AI operating systems (n8n + multi-agent swarms + Gemini Vision OCR) with zero per-task fees.
+Our partner IINSHA builds self-hosted AI operating systems (n8n + multi-agent swarms + Gemini 3.0 Vision OCR) with zero per-task fees.
 
 You can claim a free 24-hr video audit of your stack using our priority link: https://inshatech.pages.dev/?ref=partner10
 
@@ -324,7 +385,7 @@ Best,
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:20px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                         <strong style="color:#34d399; font-size:0.9rem;">🖼️ Embeddable HTML Glass Badge</strong>
-                        <button onclick="copyToolkitAsset('badge-embed-text', 'Embed code copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
+                        <button id="copy-badge-embed-btn" onclick="copyToolkitAsset('badge-embed-text', 'Embed code copied!')" class="btn btn-glass-sm" style="padding:4px 12px; font-size:0.75rem;">📋 Copy</button>
                     </div>
                     <textarea id="badge-embed-text" rows="5" readonly style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#cbd5e1; font-size:0.8rem; outline:none; resize:none; font-family:'Fira Code',monospace; box-sizing:border-box;"><a href="https://inshatech.pages.dev/?ref=partner10" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(15,23,42,0.9); border:1px solid #06b6d4; padding:8px 16px; border-radius:10px; color:#fff; text-decoration:none; font-family:sans-serif; font-size:13px;">
   <span>⚡ Powered by <strong>IINSHA AI OS</strong></span>
@@ -336,7 +397,7 @@ Best,
 
 </main>
 
-    <script src="/app.js?v=v20260817_1786972008"></script>
+    <script src="/app.js?v=v20260817_1786972202"></script>
     <script>
         function updateAffiliateCalculator() {
             const clients = parseInt(document.getElementById('calc-clients-slider')?.value || 5);
