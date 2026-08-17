@@ -8095,3 +8095,113 @@ window.submitPartnerAuth = function(e) {
     initAuthenticPartnerConsole();
     showAffiliateToast(`Welcome, ${name}! Your partner console is ready.`);
 };
+
+
+// ==============================================================================
+// PILLAR 4: INTERACTIVE 12-STAGE CUSTOMER LIFECYCLE INSPECTOR & SIMULATOR
+// ==============================================================================
+
+window.openDealLifecycleModal = function(dealId) {
+    const partner = window.getIinshaPartnerData();
+    const deal = (partner.lifecycleDeals || []).find(d => d.id === dealId) || partner.lifecycleDeals[0];
+    if (!deal) return;
+
+    let modal = document.getElementById('iinsha-deal-lifecycle-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-deal-lifecycle-modal';
+        modal.style.cssText = 'position:fixed; inset:0; z-index:999999; background:rgba(0,0,0,0.85); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; padding:20px;';
+        document.body.appendChild(modal);
+    }
+
+    const stages = [
+        { num: 1, name: 'Affiliate Click Attributed', desc: 'Visitor arrived via ?ref=' + partner.customRefCode, done: true, time: '2026-08-01 14:22 UTC' },
+        { num: 2, name: 'Visitor Explored Solutions', desc: 'Engaged with AI Solution Finder & ROI Lab', done: true, time: '2026-08-01 14:25 UTC' },
+        { num: 3, name: 'Lead Form Submitted', desc: 'Requested 24-hr Free AI Blueprint & Video Audit', done: true, time: '2026-08-01 14:31 UTC' },
+        { num: 4, name: 'AI SDR Lead Qualification', desc: 'Scored 94/100 (Enterprise Tech Stack Verified)', done: true, time: '2026-08-01 15:00 UTC' },
+        { num: 5, name: 'Video Teardown & Quotation Sent', desc: 'Custom n8n architecture proposal dispatched', done: true, time: '2026-08-02 10:15 UTC' },
+        { num: 6, name: 'Contract Agreed & Signed', desc: 'Client accepted implementation terms', done: deal.stageStep >= 6, time: '2026-08-03 16:40 UTC' },
+        { num: 7, name: 'Setup Payment Confirmed', desc: 'Initial payment settled into financial escrow', done: deal.stageStep >= 7, time: '2026-08-04 11:20 UTC' },
+        { num: 8, name: 'Engineering & Workflow Build', desc: 'Docker VPS container & AI swarm orchestration', done: deal.stageStep >= 8, time: '2026-08-08 18:00 UTC' },
+        { num: 9, name: 'Client Sandbox UAT Verification', desc: 'End-to-end webhook & error retry verification', done: deal.stageStep >= 9, time: '2026-08-12 14:30 UTC' },
+        { num: 10, name: 'Production Live & SLA Active', desc: 'System deployed to client production domain', done: deal.stageStep >= 10, time: '2026-08-14 09:00 UTC' },
+        { num: 11, name: 'Commission Approved in Ledger', desc: '20% Upfront + 20% Monthly recurring credited', done: deal.stageStep >= 10 || deal.status.includes('Approved'), time: '2026-08-15 12:00 UTC' },
+        { num: 12, name: 'Commission Disbursed to Wallet', desc: 'Payout transferred via ' + (deal.status.includes('Paid') ? deal.status : 'Pending request'), done: deal.status.includes('Paid'), time: deal.status.includes('Paid') ? '2026-08-16 17:00 UTC' : 'Estimated <24h after request' }
+    ];
+
+    modal.innerHTML = `
+        <div class="glass-card glowing-border" style="background:#090d16; max-width:680px; width:100%; max-height:90vh; overflow-y:auto; border:1px solid var(--accent-cyan); border-radius:18px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 65px rgba(0,0,0,0.9);">
+            <button onclick="document.getElementById('iinsha-deal-lifecycle-modal').remove()" style="position:absolute; top:18px; right:18px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+
+            <div style="border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                    <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold;">${deal.id}</span>
+                    <span class="status-badge ${deal.status.includes('Paid') ? 'completed' : 'pending'}">${deal.status}</span>
+                </div>
+                <h3 style="font-size:1.35rem; margin:0 0 6px 0; color:#fff;">${deal.clientName}</h3>
+                <div style="font-size:0.85rem; color:#cbd5e1;">Service: <strong>${deal.service}</strong></div>
+                <div style="font-size:0.85rem; color:var(--accent-emerald); font-weight:bold; margin-top:4px;">Commission: ${deal.commission} (Deal Size: ${deal.dealSize})</div>
+            </div>
+
+            <h4 style="font-size:1rem; color:#fff; margin-bottom:16px;">🚦 Complete 12-Stage Lifecycle Audit Trail</h4>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                ${stages.map(s => `
+                    <div style="display:flex; gap:14px; align-items:flex-start; background:${s.done ? 'rgba(16,185,129,0.06)' : 'rgba(255,255,255,0.02)'}; border:1px solid ${s.done ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.05)'}; border-radius:10px; padding:12px 14px;">
+                        <div style="width:28px; height:28px; border-radius:50%; background:${s.done ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.1)'}; color:${s.done ? '#030712' : '#94a3b8'}; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.75rem; flex-shrink:0;">
+                            ${s.done ? '✓' : s.num}
+                        </div>
+                        <div style="flex:1;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+                                <strong style="color:${s.done ? '#fff' : '#94a3b8'}; font-size:0.88rem;">${s.name}</strong>
+                                <span style="font-size:0.7rem; color:${s.done ? '#34d399' : '#64748b'}; font-family:var(--font-mono);">${s.time}</span>
+                            </div>
+                            <p style="font-size:0.78rem; color:${s.done ? '#cbd5e1' : '#64748b'}; margin:3px 0 0 0;">${s.desc}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div style="margin-top:20px; text-align:right;">
+                <button onclick="document.getElementById('iinsha-deal-lifecycle-modal').remove()" class="btn btn-primary" style="padding:8px 20px; font-size:0.85rem;">
+                    Close Inspector
+                </button>
+            </div>
+        </div>
+    `;
+};
+
+// Simulate new live affiliate lead
+window.simulateLiveAffiliateLead = function() {
+    const partner = window.getIinshaPartnerData();
+    const demoClients = [
+        { name: 'NexGen Cloud Solutions', service: '01. Autonomous Multi-Agent SDR Swarm', size: '$3,000 Setup + $699/mo', comm: '$600.00 Upfront + $139.80/mo' },
+        { name: 'Apex Dental Care Network', service: '04. AI Customer Voice Receptionist', size: '$1,500 Setup + $349/mo', comm: '$300.00 Upfront + $69.80/mo' },
+        { name: 'Nordic Freight & Logistics', service: '06. Gemini 3.0 Pro Vision Invoice OCR', size: '$750 Setup + $149/mo', comm: '$150.00 Upfront + $29.80/mo' }
+    ];
+
+    const pick = demoClients[Math.floor(Math.random() * demoClients.length)];
+    const newDealId = `DEAL-${Math.floor(1000 + Math.random()*9000)}`;
+
+    partner.metrics.totalClicks += 12;
+    partner.metrics.uniqueVisitors += 9;
+    partner.metrics.leadsGenerated += 1;
+    partner.metrics.qualifiedLeads += 1;
+    partner.metrics.pendingCommission += 150.00;
+
+    partner.lifecycleDeals.unshift({
+        id: newDealId,
+        clientName: pick.name,
+        service: pick.service,
+        dealSize: pick.size,
+        stage: 'Lead Form Submitted (AI SDR Qualifying)',
+        stageStep: 3,
+        commission: pick.comm,
+        status: 'Under Review',
+        date: new Date().toISOString().split('T')[0]
+    });
+
+    localStorage.setItem('iinsha_active_partner', JSON.stringify(partner));
+    initAuthenticPartnerConsole();
+    showAffiliateToast(`🎉 New Lead Captured for ${pick.name}! Lifecycle stage 3 initiated.`);
+};
