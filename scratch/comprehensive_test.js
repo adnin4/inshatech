@@ -324,6 +324,23 @@ assert(fs.existsSync(path.join(BASE_DIR, 'supabase', 'seeds', '01_initial_seeds.
 assert(fs.existsSync(path.join(BASE_DIR, 'js', 'core', 'supabase-client.js')), 'js/core/supabase-client.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'css', 'iinsha-design-system.css')), 'css/iinsha-design-system.css exists');
 
+// 10. Check Enterprise Hardening 2.0 (Phases 0-24)
+console.log('\n--- 9. Enterprise Hardening 2.0 (RBAC, MFA, Autonomy & Multi-Tenancy) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'supabase', 'migrations', '20260818000013_enterprise_multi_tenancy_rls.sql')), 'Migration 13 (Multi-Tenancy & 14-Role RBAC) exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'auth', 'rbac.js')), 'functions/api/auth/rbac.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'auth', 'mfa.js')), 'functions/api/auth/mfa.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'auth', 'webauthn.js')), 'functions/api/auth/webauthn.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', '_shared', 'ai_brain', 'agents', 'agent_registry.js')), 'functions/_shared internal agent registry exists');
+
+const agentRegContent = fs.readFileSync(path.join(BASE_DIR, 'ai_brain', 'agents', 'agent_registry.js'), 'utf8');
+assert(agentRegContent.includes('AUTONOMY_SPECTRUM') && agentRegContent.includes('LEVEL_5_EXECUTE_LOW_RISK'), '7-level autonomy spectrum defined');
+
+const rbacContent = fs.readFileSync(path.join(BASE_DIR, 'functions', 'api', 'auth', 'rbac.js'), 'utf8');
+assert(rbacContent.includes('ENTERPRISE_ROLES') && rbacContent.includes('hasPermission'), '14-role RBAC permission evaluator defined');
+
+const guardContent = fs.readFileSync(path.join(BASE_DIR, 'ai_brain', 'guardrail_engine.js'), 'utf8');
+assert(guardContent.includes('validatePrompt') && guardContent.includes('sanitizeOutput'), 'Guardrail prompt injection & PII scrubber active');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
