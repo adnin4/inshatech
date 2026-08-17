@@ -1382,3 +1382,85 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
         padding: 24px !important;
     }
 }
+
+
+/* === ZERO-INVISIBLE GUARANTEE & SMOOTH MOTION DESIGN === */
+.reveal-up, .stagger-children, .stagger-children > * {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+/* === ADVANCED DYNAMIC BUTTON MICRO-ANIMATIONS === */
+.btn-primary, .btn-primary-sm {
+    background: linear-gradient(135deg, var(--accent-cyan), #0284c7) !important;
+    color: #030712 !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: var(--radius-sm, 8px) !important;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.btn-primary:hover, .btn-primary-sm:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.45) !important;
+}
+
+.btn-primary:active, .btn-primary-sm:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+.btn-glass, .btn-glass-sm {
+    background: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: var(--radius-sm, 8px) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.btn-glass:hover, .btn-glass-sm:hover {
+    border-color: var(--accent-cyan) !important;
+    color: #fff !important;
+    background: rgba(0, 242, 254, 0.1) !important;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+.btn-glass:active, .btn-glass-sm:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* === DYNAMIC TABS & PILL HIGHLIGHTS === */
+.comp-switch-btn, .currency-toggle-btn, .lab-tab, #market-category-chips button {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+}
+
+.comp-switch-btn.active, .currency-toggle-btn.active, .lab-tab.active, #market-category-chips button.active {
+    background: linear-gradient(135deg, var(--accent-cyan), #0284c7) !important;
+    color: #030712 !important;
+    font-weight: 800 !important;
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.35) !important;
+}
+
+/* === PRODUCT & OUTCOME CARDS HOVER MOTION === */
+.m-product-card, .solution-card, .pricing-card, .case-card {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.m-product-card:hover, .solution-card:hover, .pricing-card:hover, .case-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 16px 35px rgba(0, 242, 254, 0.12) !important;
+}

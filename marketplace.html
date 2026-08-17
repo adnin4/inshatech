@@ -15,7 +15,7 @@
     <!-- MILITARY-GRADE SECURITY HEADERS -->
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=v20260817_1786927268">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786927546">
 
     <!-- GEO & RICH SCHEMA MARKUP -->
     <script type="application/ld+json">
@@ -256,12 +256,15 @@
                     <strong>🏷️ Exclusive Partner Coupon:</strong> Code <strong style="color: var(--accent-cyan);">IINSHA20</strong> for 20% OFF Hostinger VPS plans.
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-card); padding-top: 14px; flex-wrap: wrap; gap: 10px;">
                     <div>
                         <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">MONTHLY HOSTING</span>
-                        <strong style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="6">$5.99 / mo</strong>
+                        <strong class="market-price-tag" style="color: var(--accent-emerald); font-size: 1.2rem;" data-usd="6">$5.99 / mo</strong>
                     </div>
-                    <button class="btn btn-primary-sm copy-coupon-btn" data-code="IINSHA20">📋 Copy Coupon & Visit</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openMarketplaceDetails('Hostinger VPS Docker Deployment', 'hosting', 6, 'High-performance Docker VPS hosting optimized for self-hosted n8n workflows, PostgreSQL databases, and OpenClaw scraping instances with 99.9% uptime SLA.', '✔️ Root SSH & Full Docker Access<br>✔️ NVMe High Speed Storage<br>✔️ Automated Cloud Backups<br>✔️ Exclusive Coupon IINSHA20 (20% OFF)<br>✔️ 99.9% Uptime SLA')" class="btn btn-glass-sm" style="font-size:0.75rem;">🔍 View Specs</button>
+                        <button class="btn btn-primary-sm copy-coupon-btn" data-code="IINSHA20" style="font-size:0.75rem;">📋 Copy Coupon & Visit</button>
+                    </div>
                 </div>
             </div>
 
@@ -358,7 +361,7 @@
         </div>
     </footer>
 
-    <script src="app.js?v=v20260817_1786927268" defer></script>
+    <script src="app.js?v=v20260817_1786927546" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {
