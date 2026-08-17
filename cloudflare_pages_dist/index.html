@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
     
     <!-- Primary Styling -->
-    <link rel="stylesheet" href="/style.css?v=v20260817_1786931131">
+    <link rel="stylesheet" href="/style.css?v=v20260817_1786931202">
     
     <!-- Three.js (WebGL 3D Core) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -26,8 +26,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
     
     <!-- Custom Immersive Scripts -->
-    <script src="/hero3d.js?v=v20260817_1786931131" defer></script>
-    <script src="/scroll-engine.js?v=v20260817_1786931131" defer></script>
+    <script src="/hero3d.js?v=v20260817_1786931202" defer></script>
+    <script src="/scroll-engine.js?v=v20260817_1786931202" defer></script>
 </head>
 <body>
 
@@ -287,6 +287,114 @@
                         <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">Mandatory Human Gate</h4>
                         <p style="font-size: 0.85rem; color: var(--text-secondary);">Executing financial payouts, deleting database records, changing API credentials, production hotfix deployment.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- MULTI-LLM MESH & AI MODEL LINEUP SECTION -->
+        <section class="section" id="ai-models-mesh" style="padding: 60px 0; background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="container reveal-up">
+                <div class="section-header" style="text-align: center; margin-bottom: 36px;">
+                    <div class="eyebrow">state-of-the-art multi-llm intelligence</div>
+                    <h2 class="section-title">Powered by the World's Most Advanced AI Models</h2>
+                    <p class="section-subtitle" style="margin: 0 auto; max-width: 820px;">
+                        No single model fits every business problem. IINSHA orchestrates a dynamic multi-LLM mesh routing each workload to its highest-performing, lowest-latency model.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    
+                    <!-- MODEL 1: CLAUDE 3.7 SONNET -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">Anthropic</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">200k Context</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">Claude 3.7 Sonnet & Opus</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                Hybrid standard and extended reasoning. Powers autonomous multi-agent swarm coordination, architectural code synthesis, and multi-step logic.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('claude-3-7-sonnet')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
+                    <!-- MODEL 2: GEMINI 2.5 PRO -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">Google DeepMind</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-emerald);">2M+ Tokens</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">Gemini 2.5 Pro & Flash</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                Industry-leading 2M token context and native multimodal vision. Extracts line-item data from invoices, non-standard PDFs, and full business archives.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('gemini-2-5-pro')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
+                    <!-- MODEL 3: OPENAI O3 & GPT-4O -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">OpenAI</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #a78bfa;">Structured JSON</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">OpenAI o3-mini & GPT-4o</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                Rapid mathematical reasoning and strict schema adherence. Automates complex API payload mappings, CRM multi-app syncs, and speed-to-lead qualification.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('openai-o3-gpt4o')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
+                    <!-- MODEL 4: DEEPSEEK-R1 & V3 -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">DeepSeek</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #f472b6;">10x Efficiency</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">DeepSeek-R1 & DeepSeek-V3</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                High-speed open-weights reasoning. Ideal for heavy batch processing, high-volume classification pipelines, and sovereign private on-premise deployments.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('deepseek-r1-v3')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
+                    <!-- MODEL 5: PERPLEXITY SONAR PRO -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3);">Perplexity</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8;">Live Web Search</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">Perplexity Sonar Pro</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                Real-time web intelligence and grounded citation search. Empowers competitor price scraping, market telemetry, and live B2B lead enrichment.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('perplexity-sonar-pro')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
+                    <!-- MODEL 6: CARTESIA & ELEVENLABS -->
+                    <div class="glass-card glowing-border" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                <span class="status-badge" style="background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3);">Voice AI</span>
+                                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-emerald);">< 280ms Latency</span>
+                            </div>
+                            <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 6px;">Cartesia Sonic & ElevenLabs v3</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                                Ultra-low latency voice synthesis. Drives 24/7 conversational phone receptionists, inbound booking lines, and instant lead callback bots.
+                            </p>
+                        </div>
+                        <button onclick="openAiModelSpecsModal('cartesia-elevenlabs-voice')" class="btn btn-glass-sm" style="width: 100%;">View Model Specs →</button>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -1145,7 +1253,7 @@
         </div>
     </div>
 
-    <script src="/app.js?v=v20260817_1786931131" defer></script>
+    <script src="/app.js?v=v20260817_1786931202" defer></script>
     <script>
         function switchLabTab(tab) {
             document.querySelectorAll('.lab-tab').forEach(el => el.classList.remove('active'));
