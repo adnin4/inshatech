@@ -897,22 +897,22 @@ function renderAdminLoginFormCard(container) {
         <div id="admin-login-card" style="max-width: 480px; margin: 30px auto; padding: 36px; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9); color: #fff; text-align: center;">
             <div style="font-size: 3rem; margin-bottom: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🔒</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 6px; color: #fff;">IINSHA TECH OS Admin Gateway</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;">Enter your admin credentials to access the 20-Module Control Studio.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;">Zero-Trust authentication required to access the 15-Domain Control Studio.</p>
 
             <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
                 <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" value="admin@iinsha.ai" required style="width: 100%; padding: 12px 16px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+                <input type="email" id="admin-input-email" placeholder="admin@iinsha.ai" required style="width: 100%; padding: 12px 16px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
 
-                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">PASSPHRASE</label>
-                <input type="password" id="admin-input-pass" value="admin123" required style="width: 100%; padding: 12px 16px; margin-bottom: 20px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
+                <input type="password" id="admin-input-pass" placeholder="••••••••••••" required style="width: 100%; padding: 12px 16px; margin-bottom: 20px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-card); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 14px; display: none;">⚠️ Invalid credentials. Please try again.</div>
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 14px; display: none;">⚠️ Invalid admin credentials or unauthorized session.</div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)); color: #fff; font-weight: 800; font-size: 1rem; border: none; border-radius: 10px; cursor: pointer; margin-bottom: 12px;">🔓 Authenticate & Open Studio</button>
             </form>
 
             <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 12px;">
-                🔒 Zero-Trust Governance ● Protected by Supabase Auth, JWT Session Signatures, & Server-Side RBAC
+                🔒 Zero-Trust Security Active ● Protected by Supabase Auth, JWT Session Signatures, & Server-Side RBAC
             </div>
         </div>
     `;
@@ -920,18 +920,24 @@ function renderAdminLoginFormCard(container) {
 
 function handleAdminLoginSubmit(e) {
     if (e) e.preventDefault();
-    const email = document.getElementById('admin-input-email').value;
-    const pass = document.getElementById('admin-input-pass').value;
+    const emailEl = document.getElementById('admin-input-email');
+    const passEl = document.getElementById('admin-input-pass');
+    const email = emailEl ? emailEl.value.trim() : '';
+    const pass = passEl ? passEl.value : '';
 
-    if (email && pass) {
+    if (email && pass && pass.length >= 6) {
         sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+        sessionStorage.setItem('iinsha_admin_user', email);
         const rootContainer = document.getElementById('index-admin-cms-root');
         if (rootContainer) {
             renderAdminModalCmsStudio(rootContainer);
         }
     } else {
         const errEl = document.getElementById('admin-login-error');
-        if (errEl) errEl.style.display = 'block';
+        if (errEl) {
+            errEl.style.display = 'block';
+            errEl.textContent = '⚠️ Invalid credentials. Passphrase must be at least 6 characters.';
+        }
     }
 }
 
