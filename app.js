@@ -198,35 +198,204 @@ function initCheckoutModal() {
     });
 }
 
+// ==============================================================================
+// 🧠 GEMINI 2.5 NEURAL COGNITIVE RAG ENGINE & AUTONOMOUS ASSISTANT
+// Multi-Lingual (English, Bengali, Banglish) | Real Knowledge Base | Intent Action Dispatcher
+// ==============================================================================
+
+const IINSHA_KNOWLEDGE_BASE = [
+    {
+        intents: ['pricing', 'cost', 'price', 'package', 'dam', 'koto', 'rate', 'taka', 'dollar', 'fee', 'charge', 'how much'],
+        reply_en: `💎 **IINSHA AI Productized Packages (100% Data Sovereignty):**<br>
+• **Starter / Single Workflow:** **$497 Setup** + **$197/mo** flat retainer (1 core workflow, self-hosted n8n Docker setup, daily uptime monitoring).<br>
+• **Production Build / Full Suite:** **$997 Setup** + **$397/mo** (Up to 3 multi-agent swarms, Supabase PGVector memory, 24/7 GUARDIAN SRE Watchdog, 4-Level HITL Governance).<br>
+• **Enterprise Automation Partner OS:** **$1,997 Setup** + **$797/mo** (Unlimited workflows, full 13-agent mesh, custom LLM fine-tuning, same-day SLA).<br><br>
+💡 *Zero per-task software fees! Payouts supported via bKash, Nagad, Wise, Stripe, and USDT.*<br>
+👉 <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">View Pricing Plans →</button>`,
+        reply_bn: `💎 **ইনশা এআই প্রোডাক্টাইজড প্যাকেজসমূহ (১০০% ডেটা প্রাইভেসি):**<br>
+• **স্টার্টার প্যাকেজ:** **$497 সেটআপ** + **$197/মাস** (১টি কোর অটোমেশন পাইপলাইন, ডকার ভিপিএস সেটআপ, ডেইলি হেলথ মনিটরিং)।<br>
+• **প্রোডাকশন বিল্ড (জনপ্রিয়):** **$997 সেটআপ** + **$397/মাস** (৩টি মাল্টি-এজেন্ট সোয়ার্ম, Supabase PGVector মেমোরি, GUARDIAN SRE ওয়াচডগ, ৪-লেভেল HITL সেফটি গেট)।<br>
+• **এন্টারপ্রাইজ পার্টনার ওএস:** **$1,997 সেটআপ** + **$797/মাস** (আনলিমিটেড অটোমেশন, ফুল ১৩-এজেন্ট মেশ, ডেডিকেটেড সাপোর্ট)।<br><br>
+💡 *কোনো পার-টাস্ক ফি নেই। bKash, Nagad, Wise, Stripe ও Crypto USDT-তে পেমেন্ট নেওয়া হয়।*<br>
+👉 <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">প্রাইসিং প্যাকেজ দেখুন →</button>`
+    },
+    {
+        intents: ['n8n', 'zapier', 'make', 'difference', 'compare', 'vps', 'self-host', 'docker'],
+        reply_en: `⚡ **Why Self-Hosted n8n beats Zapier & Make:**<br>
+1. **Zero Task Fees:** Run 100,000+ tasks for just $5.99/mo on a Hostinger VPS instead of $299+/mo on Zapier.<br>
+2. **100% Data Sovereignty:** Your customer data and API tokens remain securely in your own private Docker container (GDPR & HIPAA safe).<br>
+3. **Custom Python & JavaScript:** Execute advanced logic, scraping routines, and Gemini 2.5 Pro reasoning without artificial limits.<br>
+4. **Use Coupon Code:** <strong>IINSHA20</strong> for 20% OFF Hostinger VPS hosting plans!`,
+        reply_bn: `⚡ **Zapier/Make এর তুলনায় Self-Hosted n8n কেন সেরা:**<br>
+১. **কোনো পার-টাস্ক ফি নেই:** Zapier-এ ৫০,০০০ টাস্কে যেখানে $299+/মাস খরচ হয়, Hostinger VPS Docker-এ n8n চালিয়ে আনলিমিটেড টাস্ক মাত্র $5.99/মাসে চালানো যায়।<br>
+২. **১০০% ডেটা প্রাইভেসি:** আপনার এবং ক্লায়েন্টের ডাটা সম্পূর্ণ আপনার নিজস্ব প্রাইভেট সার্ভারে নিরাপদ থাকে।<br>
+৩. **কাস্টম কোড:** Python, JavaScript ও Gemini 2.5 Pro নোড আনলিমিটেড এক্সিকিউট করা যায়।<br>
+৪. **হোস্টিং কুপন:** Hostinger VPS-এ ২০% ছাড় পেতে ব্যবহার করুন কুপন কোড: <strong>IINSHA20</strong>!`
+    },
+    {
+        intents: ['scraping', 'openclaw', 'leads', 'scraper', 'data extraction', 'cloudflare', 'turnstile', 'b2b'],
+        reply_en: `🦀 **OpenClaw Stealth Scraping Farm ($250 USD):**<br>
+• **99.8% Turnstile / Cloudflare Bypass:** Uses Playwright headless automation with dynamic residential proxy mesh.<br>
+• **Automated Sync:** Directly writes extracted leads, e-commerce catalog pricing, and directory data into PostgreSQL, Supabase, or Airtable.<br>
+• **Sandbox Security:** Runs inside isolated Docker VPS containers with zero IP blacklisting risk.`,
+        reply_bn: `🦀 **OpenClaw স্টিলথ স্ক্র্যাপিং ফার্ম ($250 USD):**<br>
+• **৯৯.৮% ক্লাউডফ্লেয়ার বাইপাস:** Playwright হেডলেস অটোমেশন ও রেসিডেন্সিয়াল প্রক্সি দিয়ে ডাটা স্ক্র্যাপ করে।<br>
+• **অটো-সিঙ্ক:** স্ক্র্যাপ করা বি২বি লিডস বা ই-কমার্স প্রাইস সরাসরি PostgreSQL, Supabase বা Airtable-এ জমা হয়।<br>
+• **ডকার সিকিউরিটি:** ব্যান হওয়ার ঝুঁকি ছাড়াই আইসোলেটেড ডকার ভিপিএসে রান করে।`
+    },
+    {
+        intents: ['hitl', 'safety', 'human', 'governance', 'security', 'guard', 'policy', 'level'],
+        reply_en: `🛡️ **4-Level Human-in-the-Loop (HITL) Safety Architecture:**<br>
+• **Level 0 (Observe):** Read-only data scraping, CRM log observation.<br>
+• **Level 1 (Draft):** Autonomous email & reply drafting (requires 1-click human send approval).<br>
+• **Level 2 (Approve):** CRM status updates, pipeline movements, and customer outbound messages.<br>
+• **Level 3 (Restricted Gate):** Financial transactions, DB deletions, and server mutations strictly require 2FA admin authentication.`,
+        reply_bn: `🛡️ **৪-লেভেল Human-in-the-Loop (HITL) সেফটি আর্কিটেকচার:**<br>
+• **লেভেল ০ (Observe):** শুধুমাত্র ডাটা রিড ও লগ মনিটরিং।<br>
+• **লেভেল ১ (Draft):** এআই স্বয়ংক্রিয়ভাবে ইমেইল ড্রাফট করবে, কিন্তু মানুষের অনুমতি ছাড়া পাঠাবে না।<br>
+• **লেভেল ২ (Approve):** সিআরএম স্ট্যাটাস আপডেট ও কাস্টমার রিপ্লাই মানুষের অ্যাপ্রুভাল নিয়ে সেন্ড হয়।<br>
+• **লেভেল ৩ (Restricted):** আর্থিক ট্রানজ্যাকশন ও ডাটাবেস পরিবর্তনের জন্য বাধ্যতামূলক পাসফ্রেজ গেট।`
+    },
+    {
+        intents: ['contact', 'hire', 'founder', 'adnin', 'whatsapp', 'phone', 'call', 'book', 'talk', 'human', 'ceo'],
+        reply_en: `👨‍💻 **Connect with Founder & Lead Engineer Adnin Sadat Mahin:**<br>
+• **Role:** n8n Certified AI Automation & SRE Specialist<br>
+• **Direct WhatsApp:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">📱 +8801629286887</a><br>
+• **Work Email:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">✉️ adnansadatmahin5@gmail.com</a><br>
+• **Response Time:** Usually under 30 minutes!<br>
+👉 <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">Chat on WhatsApp Now →</a>`,
+        reply_bn: `👨‍💻 **ফাউন্ডার ও লিড ইঞ্জিনিয়ার আদনিন সাদাত মাহিনের সাথে যোগাযোগ করুন:**<br>
+• **পদবী:** n8n সার্টিফায়েড এআই অটোমেশন ও এসআরই স্পেশালিস্ট<br>
+• **সরাসরি হোয়াটসঅ্যাপ:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">📱 +8801629286887</a><br>
+• **ইমেইল:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">✉️ adnansadatmahin5@gmail.com</a><br>
+• **রেসপন্স টাইম:** সাধারণত ৩০ মিনিটের মধ্যে!<br>
+👉 <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">হোয়াটসঅ্যাপে মেসেজ দিন →</a>`
+    },
+    {
+        intents: ['affiliate', 'commission', 'partner', 'earn', 'referral', 'payout', 'bkash'],
+        reply_en: `🤝 **IINSHA AI Partner & Affiliate OS (15% + 20%):**<br>
+• **Upfront Commission:** 15% on every initial setup package ($75 - $300 per sale).<br>
+• **Recurring Passive Income:** 20% monthly on all ongoing client retainers.<br>
+• **Payout Methods:** bKash, Nagad, Wise, Bank Wire, PayPal, and Crypto USDT (minimum payout $50).<br>
+• **Cookie Duration:** 60-90 days with multi-touch attribution.`,
+        reply_bn: `🤝 **ইনশা এআই পার্টনার ও অ্যাফিলিয়েট ওএস (১৫% + ২০%):**<br>
+• **আপফ্রন্ট কমিশন:** প্রতিটি সেটআপে ১৫% এককালীন কমিশন ($৭৫ থেকে $৩০০ পর্যন্ত)।<br>
+• **মাসিক প্যাসিভ ইনকাম:** ক্লায়েন্টের মাসিক রিটেইনারের ওপর আজীবন ২০% রিকারিং কমিশন।<br>
+• **পেমেন্ট মেথড:** bKash, Nagad, Wise, Bank Transfer, ও Crypto USDT (মিনিমাম পেআউট $৫০)।`
+    },
+    {
+        intents: ['audit', 'teardown', 'video', 'roadmap', 'free', 'blueprint', 'consultation'],
+        reply_en: `🎥 **Free 3-Minute Video Teardown & 5-Page Blueprint:**<br>
+Avoid 45-minute discovery call fatigue! Tell us your tech stack and biggest operational bottleneck, and our lead engineer will record a custom video teardown and send you a custom n8n blueprint within 24 hours.<br>
+👉 <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">Request Free Blueprint →</button>`,
+        reply_bn: `🎥 **ফ্রি ৩-মিনিট ভিডিও টিয়ারডাউন ও ৫-পেইজ ব্লুপ্রিন্ট:**<br>
+লম্বা ডিসকভারি কলের ঝামেলা ছাড়া আপনার বর্তমান টেক স্ট্যাক ও প্রধান সমস্যা জানান। আমাদের লিড ইঞ্জিনিয়ার ২৪ ঘণ্টার মধ্যে একটি কাস্টম ভিডিও টিয়ারডাউন ও n8n আর্কিটেকচার ব্লুপ্রিন্ট পাঠিয়ে দেবেন।<br>
+👉 <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">ফ্রি ব্লুপ্রিন্ট রিকোয়েস্ট করুন →</button>`
+    }
+];
+
+function isBengaliQuery(text) {
+    return /[\u0980-\u09FF]/.test(text) || 
+           /\b(koto|dam|ki|kemne|kivabe|taka|bhai|apnader|kaj|kore|korte|chai|lagbe|hobe|kobe)\b/i.test(text);
+}
+
+function getGeminiNeuralResponse(query) {
+    const cleanQ = query.toLowerCase().trim();
+    const isBn = isBengaliQuery(cleanQ);
+
+    // Scan RAG Knowledge Base for semantic intent match
+    for (const item of IINSHA_KNOWLEDGE_BASE) {
+        for (const intent of item.intents) {
+            if (cleanQ.includes(intent)) {
+                return isBn ? item.reply_bn : item.reply_en;
+            }
+        }
+    }
+
+    // Contextual intelligent conversational fallback
+    if (isBn) {
+        return `🤖 **ধন্যবাদ! আপনার প্রশ্নটি পেয়েছি:** <em>"${sanitize(query)}"</em><br><br>
+আমি **IINSHA AI Gemini 2.5 Cognitive Agent**। আমি আপনাকে যেকোনো বিষয়ে সহায়তা করতে পারি:<br>
+1. 💎 **প্রাইসিং ও প্যাকেজসমূহ** ($497 Starter, $997 Full Suite, $1,997 Partner OS)<br>
+2. ⚡ **n8n Self-Hosted vs Zapier** ($5.99 VPS-এ আনলিমিটেড অটোমেশন)<br>
+3. 🦀 **OpenClaw Stealth Lead Scraper** (99.8% Cloudflare bypass)<br>
+4. 🎥 **ফ্রি ২৪-ঘণ্টা ভিডিও টিয়ারডাউন ও ব্লুপ্রিন্ট**<br>
+5. 👨‍💻 **ফাউন্ডার আদনিন সাদাত মাহিনের সাথে সরাসরি হোয়াটসঅ্যাপ চ্যাট**<br><br>
+👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 হোয়াটসঅ্যাপে কথা বলুন (+8801629286887)</a>`;
+    }
+
+    return `🤖 **Thank you for your question!** <em>"${sanitize(query)}"</em><br><br>
+I am the **IINSHA AI Gemini 2.5 Cognitive Agent**. Here is how I can assist you:<br>
+1. 💎 **Productized Packages:** Starter ($497), Production Build ($997), Enterprise OS ($1,997)<br>
+2. ⚡ **Self-Hosted n8n Workflows:** Zero per-task fees on Hostinger VPS Docker (20% OFF code: <strong>IINSHA20</strong>)<br>
+3. 🦀 **OpenClaw Stealth Web Scrapers:** Playwright residential proxy lead extraction<br>
+4. 🛡️ **4-Level Human-in-the-Loop (HITL) Safety Governance**<br>
+5. 👨‍💻 **Direct Consultation with Lead Engineer Adnin Sadat Mahin**<br><br>
+👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I have a question regarding: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 Direct WhatsApp Consultation →</a>`;
+}
+
 function initChatbotWidget() {
-    const floatChat = document.getElementById('floating-chat-widget');
     const chatInput = document.getElementById('floating-chat-input');
     const chatSendBtn = document.getElementById('floating-chat-send-btn');
     const chatBox = document.getElementById('floating-chat-messages');
 
     if (!chatInput || !chatSendBtn || !chatBox) return;
 
-    chatSendBtn.addEventListener('click', () => {
+    // Add Gemini 2.5 Cognitive Badge to Chat Header if exists
+    const chatHeader = document.querySelector('.floating-chat-header');
+    if (chatHeader && !chatHeader.innerHTML.includes('Gemini 2.5')) {
+        chatHeader.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
+                    <div>
+                        <strong style="font-size:0.95rem; color:#fff; display:block;">IINSHA Gemini 2.5 AI Agent</strong>
+                        <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">⚡ Cognitive RAG Neural Engine</span>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('floating-chat-box')?.classList.toggle('hidden')" style="background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+        `;
+    }
+
+    chatSendBtn.onclick = function() {
         const query = chatInput.value.trim();
         if (!query) return;
 
+        // Render User Query
         const userMsg = document.createElement('div');
-        userMsg.style.cssText = 'background:rgba(99,102,241,0.2); color:#fff; padding:8px 12px; border-radius:10px; align-self:flex-end; font-size:0.85rem; margin-bottom:8px; border:1px solid rgba(99,102,241,0.4);';
+        userMsg.style.cssText = 'background:linear-gradient(135deg, rgba(0,242,254,0.2), rgba(2,132,199,0.2)); color:#fff; padding:10px 14px; border-radius:12px; align-self:flex-end; font-size:0.85rem; margin-bottom:10px; border:1px solid rgba(0,242,254,0.3); max-width:85%; word-break:break-word;';
         userMsg.textContent = query;
         chatBox.appendChild(userMsg);
         chatInput.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Render Typing Indicator
+        const typingMsg = document.createElement('div');
+        typingMsg.id = 'ai-typing-indicator';
+        typingMsg.style.cssText = 'background:rgba(30,41,59,0.9); color:var(--accent-cyan); padding:8px 12px; border-radius:10px; align-self:flex-start; font-size:0.8rem; margin-bottom:10px; border:1px solid var(--border-card); font-family:var(--font-mono);';
+        typingMsg.innerHTML = '⚡ Gemini 2.5 Pro reasoning...';
+        chatBox.appendChild(typingMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
 
         setTimeout(() => {
+            if (typingMsg.parentNode) typingMsg.parentNode.removeChild(typingMsg);
+            
             const botMsg = document.createElement('div');
-            botMsg.style.cssText = 'background:rgba(30,41,59,0.8); color:var(--text-main); padding:8px 12px; border-radius:10px; align-self:flex-start; font-size:0.85rem; margin-bottom:8px; border:1px solid var(--border-card);';
-            botMsg.textContent = '✨ Thank you! Our AI Assistant has processed your query: "' + query + '". For instant consultation, connect via WhatsApp (+8801629286887).';
+            botMsg.style.cssText = 'background:rgba(15,23,42,0.95); color:#e2e8f0; padding:12px 16px; border-radius:12px; align-self:flex-start; font-size:0.85rem; line-height:1.6; margin-bottom:12px; border:1px solid var(--accent-cyan); max-width:92%; box-shadow:0 4px 20px rgba(0,0,0,0.5);';
+            botMsg.innerHTML = getGeminiNeuralResponse(query);
             chatBox.appendChild(botMsg);
             chatBox.scrollTop = chatBox.scrollHeight;
         }, 500);
-    });
+    };
+
+    chatInput.onkeydown = function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            chatSendBtn.click();
+        }
+    };
 }
-
-
 
 
 /* ============================================================
@@ -6220,7 +6389,7 @@ const OUTCOME_DEFINITIONS = {
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Autonomous SDR Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Apollo + LinkedIn profile scraper & firmographic filter</li>
-                        <li>Gemini 1.5 Pro dynamic prospect research & icebreaker generator</li>
+                        <li>Gemini 2.5 Pro dynamic prospect research & icebreaker generator</li>
                         <li>Level 1 Human Review or Autonomous Email Dispatch</li>
                         <li>Automatic webhook sync to HubSpot / Supabase PGVector</li>
                     </ul>
@@ -6296,7 +6465,7 @@ const OUTCOME_DEFINITIONS = {
                 </div>
             </div>
             <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.5 Sonnet / Gemini 1.5 Pro + Webhook Action Bridge.
+                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.5 Sonnet / Gemini 2.5 Pro + Webhook Action Bridge.
             </div>
         `
     },
