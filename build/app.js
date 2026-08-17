@@ -4863,91 +4863,25 @@ var iinshaTranslations = {
     }
 };
 
-// LIVE AI COPILOT CHAT WIDGET
+// UNIFIED AUTONOMOUS AI COPILOT INITIALIZER
 function initIinshaAICopilotWidget() {
-    let chatContainer = document.getElementById('iinsha-ai-copilot-container');
-    if (chatContainer) return;
-
-    chatContainer = document.createElement('div');
-    chatContainer.id = 'iinsha-ai-copilot-container';
-    chatContainer.innerHTML = `
-        <div id="iinsha-chat-toggle" onclick="toggleIinshaChatWindow()" style="position:fixed; bottom:24px; right:24px; z-index:10000; background:linear-gradient(135deg, #3b82f6, #8b5cf6); color:#fff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 10px 30px rgba(59,130,246,0.5); transition:transform 0.3s ease; border:2px solid rgba(255,255,255,0.3);">
-            <span style="font-size:1.8rem;">🤖</span>
-        </div>
-
-        <div id="iinsha-chat-window" style="display:none; position:fixed; bottom:96px; right:24px; z-index:9999; width:380px; max-width:90vw; height:520px; background:rgba(15,23,42,0.96); backdrop-filter:blur(20px); border:1px solid rgba(59,130,246,0.4); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.6); flex-direction:column; overflow:hidden;">
-            <!-- CHAT HEADER -->
-            <div style="background:linear-gradient(135deg, rgba(30,41,59,0.9), rgba(59,130,246,0.3)); padding:16px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
-                    <div>
-                        <h5 style="margin:0; color:#fff; font-size:0.95rem; font-weight:bold;">IINSHA Copilot</h5>
-                        <span style="font-size:0.65rem; color:#60a5fa;">Gemini 3.0 Pro & Flash RAG Swarm</span>
-                    </div>
-                </div>
-                <button onclick="toggleIinshaChatWindow()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
-            </div>
-
-            <!-- CHAT MESSAGES BODY -->
-            <div id="iinsha-chat-messages" style="flex:1; padding:16px; overflow-y:auto; flex-direction:column; gap:12px; font-size:0.85rem;">
-                <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(59,130,246,0.3); border-radius:14px; padding:12px; color:#e2e8f0;">
-                    👋 Hello! I am <strong>IINSHA Copilot</strong> powered by <strong>Gemini 3.6 Flash</strong>. How can I help automate your business operations or calculate your ROI today?
-                </div>
-            </div>
-
-            <!-- CHAT INPUT AREA -->
-            <div style="padding:12px; background:rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.1); display:flex; gap:8px;">
-                <input type="text" id="iinsha-chat-input" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendIinshaChatMessage()" style="flex:1; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 14px; color:#fff; font-size:0.85rem; outline:none;" />
-                <button onclick="sendIinshaChatMessage()" style="background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; border-radius:10px; padding:0 16px; font-weight:bold; cursor:pointer; font-size:0.9rem;">Send</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(chatContainer);
+    // Delegated to Master UniversalAiCopilot
+    if (window.UniversalAiCopilotInstance) {
+        // Already active
+        return;
+    }
 }
 
 function toggleIinshaChatWindow() {
-    const win = document.getElementById('iinsha-chat-window');
-    if (win) {
-        win.style.display = (win.style.display === 'none' || win.style.display === '') ? 'flex' : 'none';
+    if (window.UniversalAiCopilotInstance) {
+        window.UniversalAiCopilotInstance.toggleWindow();
     }
 }
 
 function sendIinshaChatMessage() {
-    const input = document.getElementById('iinsha-chat-input');
-    const msgContainer = document.getElementById('iinsha-chat-messages');
-    if (!input || !msgContainer || !input.value.trim()) return;
-
-    const userText = input.value.trim();
-    input.value = '';
-
-    // Append User Message
-    const userBubble = document.createElement('div');
-    userBubble.style.cssText = 'background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border-radius:14px; padding:10px 14px; align-self:flex-end; max-width:85%; word-break:break-word; font-size:0.85rem;';
-    userBubble.innerText = userText;
-    msgContainer.appendChild(userBubble);
-    msgContainer.scrollTop = msgContainer.scrollHeight;
-
-    // Simulate AI Response
-    setTimeout(() => {
-        const aiBubble = document.createElement('div');
-        aiBubble.style.cssText = 'background:rgba(30,41,59,0.8); border:1px solid rgba(59,130,246,0.3); border-radius:14px; padding:12px; color:#e2e8f0; align-self:flex-start; max-width:85%; font-size:0.85rem;';
-        
-        let reply = "";
-        const lower = userText.toLowerCase();
-        if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing') || lower.includes('দাম')) {
-            reply = "💡 Our Business Operating System packages start at $499/mo or custom SoW. You can use our interactive ROI Calculator or open the Admin Control Panel to view our Tier 1-5 Master Catalog!";
-        } else if (lower.includes('whatsapp') || lower.includes('contact') || lower.includes('call') || lower.includes('যোগাযোগ')) {
-            reply = "📱 You can reach our founder & AI architect directly on WhatsApp at <strong>+8801629286887</strong>. I can also dispatch your inquiry details immediately!";
-        } else if (lower.includes('audit') || lower.includes('health') || lower.includes('check')) {
-            reply = "⚡ You can launch our 1-click AI Business Health Check Wizard right from the top navigation bar to receive a full AI readiness score!";
-        } else {
-            reply = `🤖 Excellent query! Gemini 3.6 Flash has processed: "${userText}". Our 13-Agent Swarm can automate this via custom n8n workflows with zero code debt. Would you like to schedule a quick demo?`;
-        }
-
-        aiBubble.innerHTML = reply;
-        msgContainer.appendChild(aiBubble);
-        msgContainer.scrollTop = msgContainer.scrollHeight;
-    }, 600);
+    if (window.UniversalAiCopilotInstance) {
+        window.UniversalAiCopilotInstance.handleSendMessage();
+    }
 }
 
 // AI BUSINESS AUDIT WIZARD MODAL
