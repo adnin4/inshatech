@@ -21,15 +21,27 @@ var currentAiOrderState = {
    IBOS DATA HELPERS & SINGLE SOURCE OF TRUTH REGISTRY
    ============================================================ */
 function getSiteWords() {
+    const defaults = {
+        heroTitle: 'Tell Us Your Business Problem. We Design & AI Builds It. Automation Runs It.',
+        heroSub: 'Beyond simple automations — IINSHA is an end-to-end AI Workforce & Autonomous Business Operating System. Deploy self-hosted n8n clusters ($5.99/mo VPS), 13 specialized digital employees, and 24/7 WhatsApp sales agents.',
+        whatsapp: '+8801629286887',
+        bdtRate: 122.50
+    };
     try {
-        return JSON.parse(localStorage.getItem('iinsha_ibos_words') || '{"bdtRate": 120, "heroTitle": "IINSHA AI Lab"}');
+        const raw = localStorage.getItem('iinsha_site_words_cms');
+        if (!raw) return defaults;
+        return { ...defaults, ...JSON.parse(raw) };
     } catch(e) {
-        return { bdtRate: 120, heroTitle: "IINSHA AI Lab" };
+        return defaults;
     }
 }
 
 function saveSiteWords(words) {
-    localStorage.setItem('iinsha_ibos_words', JSON.stringify(words));
+    try {
+        localStorage.setItem('iinsha_site_words_cms', JSON.stringify(words));
+    } catch(e) {
+        console.warn('Could not persist words locally', e);
+    }
 }
 
 function getServiceRegistry() {
@@ -44,7 +56,9 @@ function getServiceRegistry() {
 }
 
 function saveServiceRegistry(reg) {
-    localStorage.setItem('iinsha_ibos_services', JSON.stringify(reg));
+    try {
+        localStorage.setItem('iinsha_ibos_services', JSON.stringify(reg));
+    } catch(e) {}
 }
 
 function getBlogPosts() {
@@ -57,14 +71,16 @@ function getBlogPosts() {
 
 function getAdminUsers() {
     try {
-        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"admin@iinsha.ai","name":"Super Admin","role":"Super Admin"}]');
+        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"adnansadatmahin5@gmail.com","name":"Adnin Sadat","role":"owner"}]');
     } catch(e) {
-        return [{ email: "admin@iinsha.ai", name: "Super Admin", role: "Super Admin" }];
+        return [{ email: "adnansadatmahin5@gmail.com", name: "Adnin Sadat", role: "owner" }];
     }
 }
 
 function saveAdminUsers(admins) {
-    localStorage.setItem('iinsha_ibos_admins', JSON.stringify(admins));
+    try {
+        localStorage.setItem('iinsha_ibos_admins', JSON.stringify(admins));
+    } catch(e) {}
 }
 
 function getPriceChangeLogs() {
@@ -81,26 +97,9 @@ function getAIExecutiveBriefing() {
         mrrUSD: 3840,
         activeClients: 14,
         systemUptime: 99.98,
-        activeSwarms: 5,
+        activeSwarms: 13,
         aiAgentThroughputTasksPerMin: 1420
     };
-}
-
-
-function getSiteWords() {
-    const defaults = {
-        heroTitle: 'Enterprise AI Automation Lab & n8n Pipeline Studio',
-        heroSub: 'Production-grade AI agents, OpenClaw stealth web scrapers, and Hostinger Docker VPS infrastructure.',
-        whatsapp: '+8801629286887',
-        bdtRate: 120
-    };
-    const raw = localStorage.getItem('iinsha_site_words_cms');
-    if (!raw) return defaults;
-    try { return { ...defaults, ...JSON.parse(raw) }; } catch(e) { return defaults; }
-}
-
-function saveSiteWords(words) {
-    localStorage.setItem('iinsha_site_words_cms', JSON.stringify(words));
 }
 
 
