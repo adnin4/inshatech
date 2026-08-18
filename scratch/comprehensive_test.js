@@ -378,6 +378,14 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'database', 'perfor
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'performance', 'optimizer.js')), 'functions/api/performance/optimizer.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_ADVANCED_PERFORMANCE_BLUEPRINT.md')), 'docs/IINSHA_ADVANCED_PERFORMANCE_BLUEPRINT.md exists');
 
+// 15. Check AI-BOS 4.0 Autonomous Enterprise & Policy-as-Code
+console.log('\n--- 14. AI-BOS 4.0 Autonomous Enterprise & Policy-as-Code ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'brain', 'context_graph.js')), 'functions/api/brain/context_graph.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'risk/predictive_engine.js')), 'functions/api/risk/predictive_engine.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance/policy_as_code.js')), 'functions/api/governance/policy_as_code.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive/company_controller.js')), 'functions/api/executive/company_controller.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_4_0_AUTONOMOUS_ENTERPRISE_SPECIFICATION.md')), 'docs/IINSHA_AIBOS_4_0_AUTONOMOUS_ENTERPRISE_SPECIFICATION.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
