@@ -430,6 +430,11 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'finance', 'leakage
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'delivery', 'evidence_pack.js')), 'functions/api/delivery/evidence_pack.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_FINAL_FRONTIER_CHECKLIST_85_CAPABILITIES.md')), 'docs/IINSHA_FINAL_FRONTIER_CHECKLIST_85_CAPABILITIES.md exists');
 
+// 22. Check Supreme Antigravity Execution Charter
+console.log('\n--- 21. Supreme Antigravity Execution Charter ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'charter.js')), 'functions/api/governance/charter.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'ANTIGRAVITY_SUPREME_EXECUTION_CHARTER.md')), 'docs/ANTIGRAVITY_SUPREME_EXECUTION_CHARTER.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
