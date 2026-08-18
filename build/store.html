@@ -658,24 +658,35 @@
             const tier = product.tiers[tierId];
             
             // Update price
-            document.getElementById(`price-${productId}`).innerText = tier.price;
+            const priceEl = document.getElementById(`price-${productId}`);
+            if (priceEl) priceEl.innerText = tier.price;
             
             // Update description
-            document.getElementById(`desc-${productId}`).innerText = tier.desc;
+            const descEl = document.getElementById(`desc-${productId}`);
+            if (descEl) descEl.innerText = tier.desc;
             
-            // Update button
+            // Update button text & click handler
             const btn = document.querySelector(`#product-${productId} .order-btn`);
-            let tierShort = tier.name;
-            if (tierId === '1') tierShort = 'Blueprint';
-            if (tierId === '2') tierShort = 'Turnkey';
-            if (tierId === '3') tierShort = 'Managed';
-            
-            btn.innerText = `Order ${tierShort} - ${tier.price}`;
-            
-            // Update WhatsApp link
-            const message = `Hi! I'm interested in ordering:\n\nProduct: ${product.name}\nTier: ${tier.name}\nPrice: ${tier.price}\n\nPlease let me know the next steps.`;
-            const encodedMessage = encodeURIComponent(message);
-            btn.href = `https://wa.me/${phone}?text=${encodedMessage}`;
+            if (btn) {
+                let tierShort = tier.name;
+                if (tierId === '1') tierShort = 'Blueprint';
+                if (tierId === '2') tierShort = 'Turnkey';
+                if (tierId === '3') tierShort = 'Managed';
+                
+                btn.innerText = `🚀 Order ${tierShort} - ${tier.price}`;
+                
+                const numPrice = parseInt(tier.price.replace(/[^0-9]/g, ''), 10) || 299;
+                btn.onclick = function() {
+                    if (typeof openCheckoutModal === 'function') {
+                        openCheckoutModal(`${product.name} (${tier.name})`, numPrice, 30);
+                    } else if (window.UniversalAiCopilotInstance && typeof window.UniversalAiCopilotInstance.triggerCheckout === 'function') {
+                        window.UniversalAiCopilotInstance.triggerCheckout(`${product.name} (${tier.name})`, tier.price);
+                    } else {
+                        const message = `Hi Adnin! I'm interested in ordering:\n\nProduct: ${product.name}\nTier: ${tier.name}\nPrice: ${tier.price}\n\nPlease let me know the deployment timeline.`;
+                        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                    }
+                };
+            }
         }
 
         // Initialize state and add event listeners

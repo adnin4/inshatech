@@ -467,6 +467,24 @@
                 if (activePanel) activePanel.classList.remove('hidden');
             });
         });
+
+        // Copy Coupon Code Handler
+        document.querySelectorAll('.copy-coupon-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.getAttribute('data-code') || 'IINSHA20';
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = `✅ Copied Code: ${code} (20% OFF)!`;
+                    btn.style.background = '#10b981';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                    }, 2500);
+                }).catch(() => {
+                    alert(`Coupon Code: ${code} (20% OFF at Hostinger VPS checkout)`);
+                });
+            });
+        });
     });
     </script>
     <script src="js/core/truth-labels.js?v=20260818"></script>

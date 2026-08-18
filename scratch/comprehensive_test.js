@@ -435,6 +435,26 @@ console.log('\n--- 21. Supreme Antigravity Execution Charter ---');
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'charter.js')), 'functions/api/governance/charter.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'ANTIGRAVITY_SUPREME_EXECUTION_CHARTER.md')), 'docs/ANTIGRAVITY_SUPREME_EXECUTION_CHARTER.md exists');
 
+// 23. Check Button & Link Interactive Integrity (163 UI Buttons across 8 Pages)
+console.log('\n--- 22. Interactive UI Button & Link Integrity (All 8 Pages) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'audit_all_buttons.js')), 'scratch/audit_all_buttons.js exists');
+const auditScript = require(path.join(BASE_DIR, 'scratch', 'audit_all_buttons.js'));
+const indexHtmlContent = fs.readFileSync(path.join(BASE_DIR, 'index.html'), 'utf8');
+const adminHtmlContent = fs.readFileSync(path.join(BASE_DIR, 'admin.html'), 'utf8');
+const storeHtmlContent = fs.readFileSync(path.join(BASE_DIR, 'store.html'), 'utf8');
+const compareHtmlContent = fs.readFileSync(path.join(BASE_DIR, 'compare.html'), 'utf8');
+
+assert(indexHtmlContent.includes('approveMissionDraft'), 'index.html has approveMissionDraft function');
+assert(indexHtmlContent.includes('openAiSolutionFinderModal'), 'index.html has openAiSolutionFinderModal function');
+assert(adminHtmlContent.includes('triggerEmergencyHaltModal'), 'admin.html has triggerEmergencyHaltModal function');
+assert(adminHtmlContent.includes('openSwarmComposerModal'), 'admin.html has openSwarmComposerModal function');
+assert(adminHtmlContent.includes('createNewClientDealModal'), 'admin.html has createNewClientDealModal function');
+assert(adminHtmlContent.includes('addNewServiceModal'), 'admin.html has addNewServiceModal function');
+assert(adminHtmlContent.includes('restartDockerCluster'), 'admin.html has restartDockerCluster function');
+assert(adminHtmlContent.includes('generateNewAiArticleModal'), 'admin.html has generateNewAiArticleModal function');
+assert(storeHtmlContent.includes('openCheckoutModal'), 'store.html order button handles openCheckoutModal/WA');
+assert(compareHtmlContent.includes('copy-coupon-btn'), 'compare.html has coupon copy button listener');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');

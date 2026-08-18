@@ -346,7 +346,7 @@
                         <!-- EXPLAINABILITY TRIGGER BUTTON -->
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 12px;">
                             <button onclick="toggleExplainabilityCard()" class="btn-ghost" style="font-size: 0.78rem; padding: 8px 16px; color: var(--accent-cyan); border-color: var(--accent-cyan);">🔍 Why Did AI Do This? (Explainability Audit)</button>
-                            <button onclick="alert('Action Draft Submitted for Human Review! Status: Level 2 Approved.');" class="btn-primary" style="font-size: 0.82rem; padding: 8px 20px;">✅ Approve Draft & Execute Pipeline →</button>
+                            <button id="approve-mission-btn" onclick="approveMissionDraft()" class="btn-primary" style="font-size: 0.82rem; padding: 8px 20px;">✅ Approve Draft & Execute Pipeline →</button>
                         </div>
 
                         <!-- EXPLAINABILITY AUDIT CARD (HIDDEN BY DEFAULT) -->
@@ -1702,6 +1702,30 @@ Net Savings: $${netSaved} USD`);
             const card = document.getElementById('explainability-card');
             if (card) card.classList.toggle('hidden');
         }
+
+        function approveMissionDraft() {
+            const btn = document.getElementById('approve-mission-btn');
+            const badge = document.getElementById('mission-policy-badge');
+            const status = document.getElementById('mission-status-badge');
+            
+            if (btn) {
+                btn.innerHTML = '⚡ Pipeline Executing Live...';
+                btn.style.background = '#10b981';
+            }
+            if (badge) {
+                badge.className = 'level-badge level-1';
+                badge.innerHTML = '🟢 LEVEL 1 (Human Approved & Executing)';
+            }
+            if (status) {
+                status.textContent = 'MISSION #00482 ● 100% EXECUTED TO DESTINATION';
+            }
+
+            setTimeout(() => {
+                if (btn) {
+                    btn.innerHTML = '✅ Pipeline Executed (100 Leads Synced)';
+                }
+            }, 1500);
+        }
     </script>
     <script src="js/core/truth-labels.js?v=20260818"></script>
     <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
@@ -1742,9 +1766,41 @@ function updateHomepageAffiliateCalc() {
     if (yUsdEl) yUsdEl.textContent = '$' + Math.round(yearlyUsd).toLocaleString() + ' USD';
     if (yBdtEl) yBdtEl.textContent = '৳' + Math.round(yearlyBdt).toLocaleString() + ' BDT';
 }
+window.openAiSolutionFinderModal = function() {
+    const lab = document.getElementById('interactive-lab') || document.getElementById('lab-panel-finder');
+    if (lab) {
+        lab.scrollIntoView({ behavior: 'smooth' });
+        if (typeof switchLabTab === 'function') switchLabTab('finder');
+        const input = document.getElementById('finder-input');
+        if (input) {
+            setTimeout(() => {
+                input.focus();
+                input.select();
+            }, 600);
+        }
+    } else {
+        if (window.UniversalAiCopilotInstance) {
+            window.UniversalAiCopilotInstance.openCopilot();
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     updateHomepageAffiliateCalc();
     
+    // Wire up preset buttons for AI solution finder
+    document.querySelectorAll('.finder-preset').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const query = this.getAttribute('data-query');
+            const input = document.getElementById('finder-input');
+            if (input && query) {
+                input.value = query;
+                const runBtn = document.getElementById('run-finder-btn');
+                if (runBtn) runBtn.click();
+            }
+        });
+    });
+
     // Server-Side Affiliate Attribution Ping
     const urlParams = new URLSearchParams(window.location.search);
     const affCode = urlParams.get('aff') || urlParams.get('ref');

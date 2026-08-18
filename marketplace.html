@@ -1112,7 +1112,7 @@
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <a id="mdm-wa-btn" href="https://wa.me/8801629286887" target="_blank" class="btn btn-glass-sm" style="color: var(--accent-emerald); border-color: var(--accent-emerald);">📱 WhatsApp Lead Engineer</a>
-                    <button id="mdm-book-btn" class="btn btn-primary" onclick="alert('Order initiated! Connecting with Lead Automation Engineer...'); document.getElementById('market-details-modal').style.display='none';">🚀 Book Deployment →</button>
+                    <button id="mdm-book-btn" class="btn btn-primary">🚀 Book Deployment →</button>
                 </div>
             </div>
         </div>
@@ -1129,12 +1129,27 @@
             const curr = sessionStorage.getItem('iinsha_curr') || 'USD';
             const price = parseFloat(priceUsd);
             if (curr === 'BDT') {
-                document.getElementById('mdm-price').textContent = '৳' + Math.round(price * 120).toLocaleString() + ' BDT';
+                document.getElementById('mdm-price').textContent = '৳' + Math.round(price * 122.50).toLocaleString() + ' BDT';
             } else {
                 document.getElementById('mdm-price').textContent = '$' + price.toLocaleString() + ' USD';
             }
             
             document.getElementById('mdm-wa-btn').href = 'https://wa.me/8801629286887?text=' + encodeURIComponent('Hi Adnin, I want to book ' + title + ' (' + document.getElementById('mdm-price').textContent + ')');
+            
+            const bookBtn = document.getElementById('mdm-book-btn');
+            if (bookBtn) {
+                bookBtn.onclick = function() {
+                    modal.style.display = 'none';
+                    if (typeof openCheckoutModal === 'function') {
+                        openCheckoutModal(title, price, 35);
+                    } else if (window.UniversalAiCopilotInstance && typeof window.UniversalAiCopilotInstance.triggerCheckout === 'function') {
+                        window.UniversalAiCopilotInstance.triggerCheckout(title, '$' + price);
+                    } else {
+                        window.open(document.getElementById('mdm-wa-btn').href, '_blank');
+                    }
+                };
+            }
+            
             modal.style.display = 'flex';
         }
     </script>
