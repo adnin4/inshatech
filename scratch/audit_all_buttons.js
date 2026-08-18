@@ -7,6 +7,8 @@ const htmlFiles = [
     'portal.html',
     'admin.html',
     'affiliate.html',
+    'affiliate-login.html',
+    'affiliate-dashboard.html',
     'compare.html',
     'blog.html'
 ];

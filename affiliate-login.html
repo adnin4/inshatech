@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Master Meta Tags -->
+    <meta name="description" content="Sign In or Register as an IINSHA AI-BOS Growth Partner & Affiliate. Access real-time tracking links, AI copywriting tools, and payout desk.">
+    <meta name="keywords" content="Affiliate Login, Partner Sign In, Affiliate Register, IINSHA AI Partner Portal">
+    <meta name="author" content="Adnin Sadat Mahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://inshatech.pages.dev/affiliate-login">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Sign In & Registration — IINSHA Growth OS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=v20260817_1786987052">
+
+    <style>
+        body {
+            background: #030712;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .auth-container {
+            max-width: 520px;
+            width: 92%;
+            margin: 40px auto;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 242, 254, 0.15);
+            backdrop-filter: blur(16px);
+        }
+
+        .auth-tab-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .auth-tab-btn.active {
+            background: rgba(0, 242, 254, 0.15);
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+            color: #030712;
+            font-weight: 800;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- FLOATING NAVBAR -->
+    <header class="iinsha-navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-brand-icon">II</div>
+                <span>IINSHA AI <span class="gradient-text">AUTOMATION LAB</span></span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="affiliate.html" class="nav-link">🤝 Program Overview</a>
+                <a href="affiliate-dashboard.html" class="nav-link">📊 Partner Dashboard</a>
+                <a href="store.html" class="nav-link">🛒 Store</a>
+                <a href="marketplace.html" class="nav-link">🏬 Marketplace</a>
+            </nav>
+
+            <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- AUTHENTICATION CARD -->
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0;">
+        <div class="auth-container">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="font-size: 2.2rem; margin-bottom: 6px;">👑</div>
+                <h1 style="color: #fff; font-size: 1.6rem; margin: 0 0 6px 0;">Growth Partner Portal</h1>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;">Sign in to your affiliate dashboard or create a new partner account to earn 15% to 30% recurring commissions.</p>
+            </div>
+
+            <!-- MODE SWITCH TABS -->
+            <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+                <button type="button" onclick="setAuthMode('signin')" id="tab-btn-signin" class="auth-tab-btn active">🔑 Partner Sign In</button>
+                <button type="button" onclick="setAuthMode('register')" id="tab-btn-register" class="auth-tab-btn">🚀 Register Account</button>
+            </div>
+
+            <!-- 1. SIGN IN FORM -->
+            <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
+                <div class="form-group">
+                    <label class="form-label">Email Address or Referral Code *</label>
+                    <input type="text" id="signin-identifier" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password / Access PIN *</label>
+                    <input type="password" id="signin-password" required value="password123" placeholder="••••••••" class="form-input">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 14px;">
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                        <input type="checkbox" checked style="accent-color: var(--accent-cyan);"> Remember Me
+                    </label>
+                    <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20need%20help%20with%20my%20IINSHA%20affiliate%20password" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    🔑 Sign In & Open Dashboard →
+                </button>
+
+                <!-- DEMO 1-CLICK LOGINS -->
+                <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center;">
+                    <span style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono); text-transform: uppercase;">⚡ 1-Click Instant Demo Login:</span>
+                    <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+                        <button type="button" onclick="quickLoginAs('mahin10')" class="btn btn-glass-sm" style="font-size: 0.75rem; padding: 6px 12px;">
+                            👑 Adnin Growth (Gold - 25%)
+                        </button>
+                        <button type="button" onclick="quickLoginAs('apex_agency')" class="btn btn-glass-sm" style="font-size: 0.75rem; padding: 6px 12px;">
+                            💎 Apex Agency (Legend - 30%)
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- 2. REGISTER FORM -->
+            <form id="form-register" onsubmit="handleRegisterSubmit(event)" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Full Name / Agency Name *</label>
+                    <input type="text" id="reg-name" required placeholder="e.g. Tanvir Ahmed" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" id="reg-email" required placeholder="tanvir@agency.com" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">WhatsApp / Phone Number *</label>
+                    <input type="tel" id="reg-phone" required placeholder="+8801700000000" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Create Password *</label>
+                    <input type="password" id="reg-password" required placeholder="Create a secure password" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Preferred Payout Method *</label>
+                    <select id="reg-payout-method" class="form-input" style="background: rgba(15,23,42,0.95);">
+                        <option value="bKash (Personal / Merchant)">🇧🇩 bKash (Personal / Merchant)</option>
+                        <option value="Nagad">🇧🇩 Nagad</option>
+                        <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire (USD/GBP/EUR)</option>
+                        <option value="Local Bank Transfer">🏦 Local Bank Transfer</option>
+                        <option value="USDT Crypto (TRC20)">⚡ USDT Crypto (TRC20 / BEP20)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payout Account / Wallet Number *</label>
+                    <input type="text" id="reg-payout-acc" required placeholder="e.g. 017xxxxxxxx or IBAN" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Custom Referral Code / Slug *</label>
+                    <input type="text" id="reg-ref-code" required placeholder="e.g. tanvir10" style="color: var(--accent-cyan); font-weight: bold; font-family: var(--font-mono);" class="form-input">
+                </div>
+
+                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+                    🚀 Create Account & Launch Dashboard →
+                </button>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05);">
+        © 2026 IINSHA AI-BOS. High-Performance Autonomous Growth Operating System.
+    </footer>
+
+    <script>
+        const REGISTRY_KEY = 'iinsha_partners_registry';
+        const ACTIVE_KEY = 'iinsha_active_partner_id';
+
+        const DEFAULT_SEEDS = {
+            'mahin10': {
+                id: 'mahin10',
+                name: 'Adnin Sadat Mahin',
+                email: 'partner@inshatech.pages.dev',
+                password: 'password123',
+                phone: '+8801629286887',
+                payoutMethod: 'bKash (Personal / Merchant)',
+                payoutAccount: '01629286887',
+                refCode: 'mahin10',
+                tier: 'VIP Gold (25%)',
+                tierLevel: 3,
+                unpaid: 680.00,
+                pending: 240.00,
+                paidOut: 2450.00,
+                totalClicks: 348,
+                uniqueVisitors: 284,
+                inboundLeads: 24,
+                conversions: 8,
+                conversionRate: '2.81%',
+                epc: '$7.04',
+                grossRevenueDriven: 9850.00,
+                trafficQuality: '99.4% Clean (Zero Fraud)',
+                registeredAt: '2026-08-18'
+            },
+            'apex_agency': {
+                id: 'apex_agency',
+                name: 'Apex Growth Agency (UK)',
+                email: 'growth@apexagency.co.uk',
+                password: 'password123',
+                phone: '+447911123456',
+                payoutMethod: 'Wise Bank Wire (USD/GBP)',
+                payoutAccount: 'GB82WEST12345678901234',
+                refCode: 'apex',
+                tier: 'VIP Legend (30%)',
+                tierLevel: 4,
+                unpaid: 1940.00,
+                pending: 580.00,
+                paidOut: 9700.00,
+                totalClicks: 1420,
+                uniqueVisitors: 1180,
+                inboundLeads: 96,
+                conversions: 28,
+                conversionRate: '2.37%',
+                epc: '$8.20',
+                grossRevenueDriven: 38400.00,
+                trafficQuality: '100% Clean',
+                registeredAt: '2026-08-01'
+            }
+        };
+
+        function getRegistry() {
+            const saved = localStorage.getItem(REGISTRY_KEY);
+            if (saved) {
+                try { return Object.assign({}, DEFAULT_SEEDS, JSON.parse(saved)); } catch (e) {}
+            }
+            return DEFAULT_SEEDS;
+        }
+
+        function saveRegistry(reg) {
+            localStorage.setItem(REGISTRY_KEY, JSON.stringify(reg));
+        }
+
+        function setAuthMode(mode) {
+            const signinForm = document.getElementById('form-signin');
+            const registerForm = document.getElementById('form-register');
+            const tabSignin = document.getElementById('tab-btn-signin');
+            const tabRegister = document.getElementById('tab-btn-register');
+
+            if (mode === 'signin') {
+                signinForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                tabSignin.classList.add('active');
+                tabRegister.classList.remove('active');
+            } else {
+                signinForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                tabSignin.classList.remove('active');
+                tabRegister.classList.add('active');
+            }
+        }
+
+        function handleSignInSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('signin-identifier').value.trim().toLowerCase();
+            const pass = document.getElementById('signin-password').value;
+
+            const reg = getRegistry();
+            let foundKey = null;
+
+            for (const k in reg) {
+                const p = reg[k];
+                if (p.email.toLowerCase() === id || p.refCode.toLowerCase() === id || p.id.toLowerCase() === id) {
+                    foundKey = p.id;
+                    break;
+                }
+            }
+
+            if (!foundKey) {
+                foundKey = id.replace(/[^a-z0-9_-]/g, '') || 'partner_' + Date.now();
+                reg[foundKey] = {
+                    id: foundKey,
+                    name: id.split('@')[0].toUpperCase() + ' Partner',
+                    email: id.includes('@') ? id : `${id}@partner.com`,
+                    password: pass,
+                    phone: '+8801629286887',
+                    payoutMethod: 'bKash (Personal / Merchant)',
+                    payoutAccount: '01629286887',
+                    refCode: foundKey,
+                    tier: '🌱 Starter Bronze (15%)',
+                    tierLevel: 1,
+                    unpaid: 0.00,
+                    pending: 0.00,
+                    paidOut: 0.00,
+                    totalClicks: 0,
+                    uniqueVisitors: 0,
+                    inboundLeads: 0,
+                    conversions: 0,
+                    conversionRate: '0.0%',
+                    epc: '$0.00',
+                    grossRevenueDriven: 0.00,
+                    trafficQuality: '100% Clean',
+                    registeredAt: new Date().toISOString().split('T')[0]
+                };
+                saveRegistry(reg);
+            }
+
+            localStorage.setItem(ACTIVE_KEY, foundKey);
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            window.location.href = 'affiliate-dashboard.html';
+        }
+
+        function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const pass = document.getElementById('reg-password').value;
+            const payoutMethod = document.getElementById('reg-payout-method').value;
+            const payoutAccount = document.getElementById('reg-payout-acc').value.trim();
+            const refCode = document.getElementById('reg-ref-code').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+
+            const key = refCode || 'partner_' + Date.now();
+            const reg = getRegistry();
+
+            reg[key] = {
+                id: key,
+                name,
+                email,
+                phone,
+                password: pass,
+                payoutMethod,
+                payoutAccount,
+                refCode: key,
+                tier: '🌱 Starter Bronze (15%)',
+                tierLevel: 1,
+                unpaid: 0.00,
+                pending: 0.00,
+                paidOut: 0.00,
+                totalClicks: 0,
+                uniqueVisitors: 0,
+                inboundLeads: 0,
+                conversions: 0,
+                conversionRate: '0.0%',
+                epc: '$0.00',
+                grossRevenueDriven: 0.00,
+                trafficQuality: '100% Clean',
+                registeredAt: new Date().toISOString().split('T')[0]
+            };
+
+            saveRegistry(reg);
+            localStorage.setItem(ACTIVE_KEY, key);
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            window.location.href = 'affiliate-dashboard.html';
+        }
+
+        function quickLoginAs(id) {
+            localStorage.setItem(ACTIVE_KEY, id);
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            window.location.href = 'affiliate-dashboard.html';
+        }
+    </script>
+</body>
+</html>

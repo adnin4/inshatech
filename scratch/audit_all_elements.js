@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
-const pages = ['index.html', 'admin.html', 'affiliate.html', 'marketplace.html', 'portal.html', 'store.html', 'compare.html', 'blog.html'];
+const pages = ['index.html', 'admin.html', 'affiliate.html', 'affiliate-login.html', 'affiliate-dashboard.html', 'marketplace.html', 'portal.html', 'store.html', 'compare.html', 'blog.html'];
 
 console.log('======================================================');
 console.log('🔍 THOROUGH AUDIT: BUTTONS, NAV, TABS, SECTIONS & LINKS');
