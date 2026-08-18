@@ -421,6 +421,15 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'content', 'pages.j
 assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_55_tracks.js')), 'scratch/verify_55_tracks.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'MASTER_VERIFICATION_PROGRAM_55_TRACKS.md')), 'docs/MASTER_VERIFICATION_PROGRAM_55_TRACKS.md exists');
 
+// 21. Check Final Frontier Checklist (85 Capabilities & Meta Intelligence)
+console.log('\n--- 20. Final Frontier Checklist (Constitution, Meta-Intelligence, Privacy Firewall, Leakage & Evidence) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'constitution.js')), 'functions/api/governance/constitution.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'meta_intelligence.js')), 'functions/api/executive/meta_intelligence.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'privacy', 'firewall.js')), 'functions/api/privacy/firewall.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'finance', 'leakage_detector.js')), 'functions/api/finance/leakage_detector.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'delivery', 'evidence_pack.js')), 'functions/api/delivery/evidence_pack.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_FINAL_FRONTIER_CHECKLIST_85_CAPABILITIES.md')), 'docs/IINSHA_FINAL_FRONTIER_CHECKLIST_85_CAPABILITIES.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
