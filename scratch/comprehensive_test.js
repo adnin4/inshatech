@@ -369,6 +369,15 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'missions', 'loop_t
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'agents', 'economics.js')), 'functions/api/agents/economics.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_3_0_REVENUE_TO_DELIVERY_LOOP.md')), 'docs/IINSHA_AIBOS_3_0_REVENUE_TO_DELIVERY_LOOP.md exists');
 
+// 14. Check Advanced Performance Engineering Modules
+console.log('\n--- 13. Advanced Performance Engineering Modules (Observatory, Semantic Cache, Compressor & DB Budgets) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'performance', 'observatory.js')), 'functions/api/performance/observatory.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'ai', 'cache.js')), 'functions/api/ai/cache.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'ai', 'compressor.js')), 'functions/api/ai/compressor.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'database', 'performance.js')), 'functions/api/database/performance.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'performance', 'optimizer.js')), 'functions/api/performance/optimizer.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_ADVANCED_PERFORMANCE_BLUEPRINT.md')), 'docs/IINSHA_ADVANCED_PERFORMANCE_BLUEPRINT.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
