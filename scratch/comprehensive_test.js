@@ -455,6 +455,21 @@ assert(adminHtmlContent.includes('generateNewAiArticleModal'), 'admin.html has g
 assert(storeHtmlContent.includes('openCheckoutModal'), 'store.html order button handles openCheckoutModal/WA');
 assert(compareHtmlContent.includes('copy-coupon-btn'), 'compare.html has coupon copy button listener');
 
+// 24. Final Master Specification, Audit & Production Gate Certification
+console.log('\n--- 23. Final Master Specification, Security, DR & Production Gate Certification ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_MASTER_SPEC.md')), 'docs/IINSHA_MASTER_SPEC.md exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'MASTER_AUDIT_REPORT.md')), 'docs/MASTER_AUDIT_REPORT.md exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_PILOT_AND_PRODUCTION_LAUNCH_RUNBOOK.md')), 'docs/IINSHA_PILOT_AND_PRODUCTION_LAUNCH_RUNBOOK.md exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'full_master_audit.js')), 'scratch/full_master_audit.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_security_certification.js')), 'scratch/verify_security_certification.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_performance_certification.js')), 'scratch/verify_performance_certification.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_disaster_recovery.js')), 'scratch/verify_disaster_recovery.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_e2e_business_loop.js')), 'scratch/verify_e2e_business_loop.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_customer_personas.js')), 'scratch/verify_customer_personas.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_owner_controls.js')), 'scratch/verify_owner_controls.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_ai_ceo_execution.js')), 'scratch/verify_ai_ceo_execution.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_final_production_gate.js')), 'scratch/verify_final_production_gate.js exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
