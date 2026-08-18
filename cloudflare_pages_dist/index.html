@@ -377,29 +377,85 @@
                     <p class="section-subtitle" style="margin: 0 auto;">You retain total ownership over critical business actions. AI executes safe operations automatically, while sensitive actions require your single-click approval.</p>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;" class="stagger-children">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;" class="stagger-children">
                     <div class="glass-card">
-                        <span class="level-badge level-0" style="margin-bottom: 12px;">🟢 LEVEL 0 — Observe</span>
-                        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">Auto-Execution</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Web searching, market analytics read, knowledge base vector retrieval, and internal diagnostic logs.</p>
+                        <span class="level-badge level-0" style="margin-bottom: 8px;">🟢 LEVEL 0 — Read Only</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Zero Side-Effects</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Telemetry reads, RAG knowledge searches, read-only analytics queries.</p>
                     </div>
 
                     <div class="glass-card">
-                        <span class="level-badge level-1" style="margin-bottom: 12px;">🔵 LEVEL 1 — Draft</span>
-                        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">Auto-Generate Draft</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Drafting email sequences, writing SEO articles, drafting SoW proposals, and constructing workflow JSONs.</p>
+                        <span class="level-badge level-1" style="margin-bottom: 8px;">🔵 LEVEL 1 — Think & Draft</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Internal Synthesis</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Drafting SoW proposals, synthesizing quotes, email copy, and architecture plans.</p>
                     </div>
 
                     <div class="glass-card">
-                        <span class="level-badge level-2" style="margin-bottom: 12px;">🟡 LEVEL 2 — Approve</span>
-                        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">User Approval Gate</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Launching marketing campaigns, updating CRM contact status, modifying package pricing, contacting leads.</p>
+                        <span class="level-badge level-0" style="margin-bottom: 8px; background:rgba(52,211,153,0.15); color:var(--accent-emerald);">🟢 LEVEL 2 — Low-Risk Execute</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Safe Internal Operations</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">CRM lead qualification, internal state tagging, affiliate tracking.</p>
                     </div>
 
                     <div class="glass-card">
-                        <span class="level-badge level-3" style="margin-bottom: 12px;">🔴 LEVEL 3 — Restricted</span>
-                        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">Mandatory Human Gate</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Executing financial payouts, deleting database records, changing API credentials, production hotfix deployment.</p>
+                        <span class="level-badge level-2" style="margin-bottom: 8px;">🟡 LEVEL 3 — External Action</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Policy-Checked Outbound</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Sending WhatsApp alerts, emailing clients, publishing blog articles.</p>
+                    </div>
+
+                    <div class="glass-card">
+                        <span class="level-badge level-2" style="margin-bottom: 8px; background:rgba(245,158,11,0.2); color:var(--accent-gold);">🟡 LEVEL 4 — Financial Gate</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Mandatory Owner 1-Click</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Escrow releases, affiliate payouts, refunds, and production deployments.</p>
+                    </div>
+
+                    <div class="glass-card">
+                        <span class="level-badge level-3" style="margin-bottom: 8px;">🔴 LEVEL 5 — Root Restricted</span>
+                        <h4 style="color: #fff; font-size: 0.98rem; margin-bottom: 4px;">Permanently Prohibited</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Dropping databases, deleting users, modifying master credentials.</p>
+                    </div>
+                </div>
+
+                <!-- WATCH AGENT WORK LIVE FLOW DEMO CARD -->
+                <div class="glass-card" style="background: rgba(15,23,42,0.85); border: 1px solid var(--accent-cyan); border-radius: 16px; padding: 24px; box-shadow: 0 0 30px rgba(0,242,254,0.1);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                        <div>
+                            <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">LIVE AGENT HANDOFF PIPELINE</span>
+                            <h3 style="color:#fff; font-size:1.15rem; margin-top:4px;">Watch Autonomous Swarm Execute in Real Time</h3>
+                        </div>
+                        <button onclick="window.location.href='admin.html'" class="btn btn-glass-sm" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">View in Command Center →</button>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(52,211,153,0.3); text-align:center;">
+                            <div style="font-size:1.4rem;">🧠</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">1. CEO Plan</strong>
+                            <span style="font-size:0.65rem; color:var(--accent-emerald); font-family:var(--font-mono);">✓ GOAL SET</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(52,211,153,0.3); text-align:center;">
+                            <div style="font-size:1.4rem;">🔍</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">2. SDR Hunter</strong>
+                            <span style="font-size:0.65rem; color:var(--accent-emerald); font-family:var(--font-mono);">✓ 100 LEADS</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid var(--accent-cyan); text-align:center; box-shadow:0 0 15px rgba(0,242,254,0.2);">
+                            <div style="font-size:1.4rem;">💼</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">3. Sales Closer</strong>
+                            <span style="font-size:0.65rem; color:var(--accent-cyan); font-family:var(--font-mono);">🟢 NEGOTIATING</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); text-align:center;">
+                            <div style="font-size:1.4rem;">📐</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">4. Architect</strong>
+                            <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">🔵 SOW READY</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(245,158,11,0.3); text-align:center;">
+                            <div style="font-size:1.4rem;">💰</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">5. AI CFO</strong>
+                            <span style="font-size:0.65rem; color:var(--accent-gold); font-family:var(--font-mono);">🟡 ESCROW LOCKED</span>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:12px; border-radius:10px; border:1px solid rgba(52,211,153,0.3); text-align:center;">
+                            <div style="font-size:1.4rem;">🛡️</div>
+                            <strong style="color:#fff; font-size:0.8rem; display:block; margin:4px 0;">6. Guardian</strong>
+                            <span style="font-size:0.65rem; color:var(--accent-emerald); font-family:var(--font-mono);">✓ POLICY SAFE</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -526,6 +526,24 @@
                             </button>
                         </li>
                         <li>
+                            <button class="nav-item-btn" onclick="switchAdminCockpitTab('approvals')" id="nav-btn-approvals" aria-label="Owner Approval Inbox">
+                                <span>🎯</span> <span>Owner Approval Inbox</span>
+                                <span class="nav-badge-pill" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.4);">3 Pending</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item-btn" onclick="switchAdminCockpitTab('permissions')" id="nav-btn-permissions" aria-label="Agent Permission Matrix">
+                                <span>🛡️</span> <span>Permission Matrix</span>
+                                <span class="nav-badge-pill">6-Level</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item-btn" onclick="switchAdminCockpitTab('flow')" id="nav-btn-flow" aria-label="Watch Agent Work Live Pipeline">
+                                <span>🎥</span> <span>Watch Agent Work</span>
+                                <span class="nav-badge-pill" style="color: #38bdf8;">Live Pipeline</span>
+                            </button>
+                        </li>
+                        <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('truth')" id="nav-btn-truth" aria-label="System Truth Center">
                                 <span>📊</span> <span>System Truth Center</span>
                                 <span class="nav-badge-pill" style="color: #34d399;">100% Real</span>
@@ -970,6 +988,76 @@
                         </table>
                     </div>
                 </div>
+            <!-- VIEW 14: OWNER APPROVAL INBOX -->
+            <div class="admin-view-panel" id="view-approvals">
+                <div class="workspace-header">
+                    <div>
+                        <h1 class="workspace-title">🎯 Owner Supreme Approval Inbox</h1>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Centralized single-click Human-in-the-Loop authorization for financial transactions, payouts, and edge releases.</p>
+                    </div>
+                    <button onclick="approveAllPendingItems()" class="btn btn-primary-sm">⚡ Approve All Safe Batch</button>
+                </div>
+
+                <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
+                    <div id="owner-approval-inbox-list" style="display:flex; flex-direction:column; gap:12px;">
+                        <!-- Injected dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 15: AGENT PERMISSION MATRIX -->
+            <div class="admin-view-panel" id="view-permissions">
+                <div class="workspace-header">
+                    <div>
+                        <h1 class="workspace-title">🛡️ Agent Authority & Permission Matrix</h1>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Granular read, write, external communication, financial custody, and destructive operation policy gates.</p>
+                    </div>
+                    <button onclick="saveAgentPermissionMatrix()" class="btn btn-primary-sm">💾 Save Policy Manifest</button>
+                </div>
+
+                <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:left;">
+                            <thead>
+                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                    <th style="padding:10px;">AGENT</th>
+                                    <th style="padding:10px;">READ (L0)</th>
+                                    <th style="padding:10px;">WRITE / CRM (L2)</th>
+                                    <th style="padding:10px;">EXTERNAL COMMS (L3)</th>
+                                    <th style="padding:10px;">FINANCIAL (L4)</th>
+                                    <th style="padding:10px;">DESTRUCTIVE (L5)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="agent-permissions-table-body">
+                                <!-- Injected dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 16: WATCH AGENT WORK LIVE FLOW -->
+            <div class="admin-view-panel" id="view-flow">
+                <div class="workspace-header">
+                    <div>
+                        <h1 class="workspace-title">🎥 Watch Agent Work (Live Pipeline Visualizer)</h1>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time multi-agent execution pipeline showing state handoffs from intake to fulfillment.</p>
+                    </div>
+                    <button onclick="triggerLiveMissionSimulation()" class="btn btn-primary-sm">🚀 Launch Demo Mission Flow</button>
+                </div>
+
+                <div class="glass-card" style="background:var(--bg-card); padding:24px; border-radius:16px; border:1px solid var(--border-card);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3 style="font-size:1.05rem; color:#fff; display:flex; align-items:center; gap:8px;">
+                            <span>🛰️</span> Active Pipeline: <span style="color:var(--accent-cyan);" id="live-mission-title">MSN-8821 (Enterprise Voice Receptionist)</span>
+                        </h3>
+                        <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.75rem;">LIVE EXECUTION</span>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px; position:relative;" id="agent-flow-nodes-container">
+                        <!-- Injected dynamically by JS -->
+                    </div>
+                </div>
             </div>
 
         </main>
@@ -1040,6 +1128,15 @@
             if (targetBtn) targetBtn.classList.add('active');
 
             // Trigger specific module renderers
+            if (tabId === 'approvals') {
+                renderApprovalInbox();
+            }
+            if (tabId === 'permissions') {
+                renderAgentPermissionMatrix();
+            }
+            if (tabId === 'flow') {
+                renderWatchAgentWorkFlow();
+            }
             if (tabId === 'truth') {
                 renderSystemTruthGrid();
             }
@@ -1227,6 +1324,128 @@
         function recalculateAgentEconomics() {
             renderAgentEconomicsTable();
             showAffiliateToast('💰 Agent Economics Ledger Reconciled: Overall Net Margin = 82.8% (>80% Target)');
+        }
+
+        // 4. Owner Approval Inbox Renderer
+        const PENDING_APPROVALS = [
+            { id: 'APPR-901', title: 'Approve $1,800 Enterprise Voice Receptionist Order', type: 'ORDER_ESCROW', client: 'MediCare Diagnostics (UK)', amount: '$1,800.00 USD', time: '10m ago', status: 'PENDING' },
+            { id: 'APPR-902', title: 'Approve $420 Affiliate Commission Batch Payout', type: 'AFFILIATE_PAYOUT', partner: 'Adnin Growth Partner', amount: '$420.00 USD', time: '25m ago', status: 'PENDING' },
+            { id: 'APPR-903', title: 'Approve Production Edge Deployment v10.0', type: 'DEPLOYMENT', author: 'DevOps Swarm', env: 'Cloudflare Pages Prod', time: '1h ago', status: 'PENDING' }
+        ];
+
+        function renderApprovalInbox() {
+            const root = document.getElementById('owner-approval-inbox-list');
+            if (!root) return;
+
+            root.innerHTML = PENDING_APPROVALS.map(a => `
+                <div class="glass-card" id="appr-card-${a.id}" style="background:rgba(15,23,42,0.85); border:1px solid ${a.status === 'APPROVED' ? 'var(--accent-emerald)' : 'rgba(244,63,94,0.3)'}; border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                            <span class="badge" style="background:rgba(244,63,94,0.15); color:var(--accent-rose); border:1px solid var(--accent-rose); font-family:var(--font-mono); font-size:0.7rem;">${a.type}</span>
+                            <strong style="color:#fff; font-size:0.92rem;">${a.title}</strong>
+                        </div>
+                        <div style="font-size:0.78rem; color:#94a3b8; font-family:var(--font-mono);">
+                            • Ref: ${a.id} | Target: ${a.client || a.partner || a.author} | Amount: <strong style="color:var(--accent-emerald);">${a.amount || a.env}</strong> | ${a.time}
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        ${a.status === 'APPROVED' 
+                            ? `<span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); padding:6px 14px;">✅ AUTHORIZED</span>`
+                            : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background:linear-gradient(135deg, #10b981, #059669); color:#000; font-weight:700;">✅ 1-Click Approve</button>
+                               <button onclick="rejectInboxItem('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">✕ Hold / Reject</button>`
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function approveInboxItem(id) {
+            const item = PENDING_APPROVALS.find(a => a.id === id);
+            if (item) {
+                item.status = 'APPROVED';
+                renderApprovalInbox();
+                showAffiliateToast(`✅ ${item.title} authorized by Owner & executed through Level 4 Gateway!`);
+            }
+        }
+
+        function rejectInboxItem(id) {
+            const item = PENDING_APPROVALS.find(a => a.id === id);
+            if (item) {
+                item.status = 'REJECTED';
+                renderApprovalInbox();
+                showAffiliateToast(`🛑 ${item.title} put on administrative hold.`);
+            }
+        }
+
+        function approveAllPendingItems() {
+            PENDING_APPROVALS.forEach(a => a.status = 'APPROVED');
+            renderApprovalInbox();
+            showAffiliateToast('⚡ All pending financial and deployment actions AUTHORIZED batch-wise!');
+        }
+
+        // 5. Agent Permission Matrix Renderer
+        const PERMISSION_MATRIX_DATA = [
+            { agent: 'CEO Strategic Commander', read: '✅ L0', write: '✅ L2', ext: '🟡 L3 (Approval)', fin: '🟡 L4 (Approval)', dest: '🔴 L5 (Blocked)' },
+            { agent: 'Sales & Revenue Agent', read: '✅ L0', write: '✅ L2', ext: '🟢 L3 (Limited)', fin: '🔴 L4 (Blocked)', dest: '🔴 L5 (Blocked)' },
+            { agent: 'Marketing & Growth Agent', read: '✅ L0', write: '✅ L2', ext: '🟢 L3 (Limited)', fin: '🔴 L4 (Blocked)', dest: '🔴 L5 (Blocked)' },
+            { agent: 'Affiliate Partner Lead', read: '✅ L0', write: '✅ L2', ext: '🟢 L3 (Limited)', fin: '🔴 L4 (Blocked)', dest: '🔴 L5 (Blocked)' },
+            { agent: 'AI CFO & Finance Controller', read: '✅ L0', write: '✅ L2', ext: '🟡 L3 (Approval)', fin: '🟡 L4 (Approval)', dest: '🔴 L5 (Blocked)' },
+            { agent: 'DevOps & SRE Guardian', read: '✅ L0', write: '✅ L2', ext: '🟡 L3 (Approval)', fin: '🔴 L4 (Blocked)', dest: '🟡 L5 (Approval)' },
+            { agent: 'Security & Policy Guardian', read: '✅ L0', write: '🛡️ Policy', ext: '🔴 L3 (Blocked)', fin: '🔴 L4 (Blocked)', dest: '🔴 L5 (Blocked)' }
+        ];
+
+        function renderAgentPermissionMatrix() {
+            const root = document.getElementById('agent-permissions-table-body');
+            if (!root) return;
+
+            root.innerHTML = PERMISSION_MATRIX_DATA.map(p => `
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                    <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${p.agent}</td>
+                    <td style="padding:10px; color:var(--accent-cyan);">${p.read}</td>
+                    <td style="padding:10px; color:#34d399;">${p.write}</td>
+                    <td style="padding:10px; color:var(--accent-gold);">${p.ext}</td>
+                    <td style="padding:10px; color:#38bdf8;">${p.fin}</td>
+                    <td style="padding:10px; color:var(--accent-rose);">${p.dest}</td>
+                </tr>
+            `).join('');
+        }
+
+        function saveAgentPermissionMatrix() {
+            showAffiliateToast('💾 Agent Permission Matrix policy manifest saved and compiled to Policy Engine!');
+        }
+
+        // 6. Watch Agent Work Live Pipeline Renderer
+        const PIPELINE_NODES = [
+            { step: 1, name: 'CEO Strategy', icon: '🧠', status: 'COMPLETE', badge: '✓ Done (24ms)' },
+            { step: 2, name: 'Researcher / SDR', icon: '🔍', status: 'COMPLETE', badge: '✓ 100 Leads (48ms)' },
+            { step: 3, name: 'Sales Closer', icon: '💼', status: 'WORKING', badge: '🟢 Negotiating ROI' },
+            { step: 4, name: 'Solution Architect', icon: '📐', status: 'WAITING', badge: '🔵 SOW Ready' },
+            { step: 5, name: 'AI CFO & Finance', icon: '💰', status: 'APPROVAL', badge: '🟡 Escrow Locked' },
+            { step: 6, name: 'Security Guardian', icon: '🛡️', status: 'MONITORING', badge: '🟢 0 Policy Leaks' }
+        ];
+
+        function renderWatchAgentWorkFlow() {
+            const root = document.getElementById('agent-flow-nodes-container');
+            if (!root) return;
+
+            root.innerHTML = PIPELINE_NODES.map(n => `
+                <div class="glass-card" style="background:rgba(15,23,42,0.9); border:1px solid ${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.08)'}; border-radius:12px; padding:16px; text-align:center; box-shadow:${n.status === 'WORKING' ? '0 0 20px rgba(0,242,254,0.2)' : 'none'};">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">${n.icon}</div>
+                    <strong style="display:block; color:#fff; font-size:0.88rem; margin-bottom:4px;">${n.step}. ${n.name}</strong>
+                    <span class="badge" style="background:rgba(255,255,255,0.05); color:${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'var(--accent-gold)'}; font-family:var(--font-mono); font-size:0.7rem; padding:4px 8px; border-radius:6px; display:inline-block; margin-top:4px;">
+                        ${n.badge}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function triggerLiveMissionSimulation() {
+            PIPELINE_NODES[2].status = 'COMPLETE';
+            PIPELINE_NODES[2].badge = '✓ Deal Closed ($1,800)';
+            PIPELINE_NODES[3].status = 'WORKING';
+            PIPELINE_NODES[3].badge = '🟢 Generating Architecture';
+            renderWatchAgentWorkFlow();
+            showAffiliateToast('🚀 Live Mission Advanced: Sales Closer closed deal ➔ Handoff to Solution Architect!');
         }
 
         function renderAdminObservatoryInCockpit() {

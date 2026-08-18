@@ -308,7 +308,8 @@ const docs = [
     'PAYMENT_ARCHITECTURE.md',
     'KNOWN_LIMITATIONS.md',
     'gap_analysis.md',
-    'openapi.yaml'
+    'openapi.yaml',
+    'FINAL_MASTER_ARCHITECTURE_VNEXT.md'
 ];
 
 docs.forEach(d => {
