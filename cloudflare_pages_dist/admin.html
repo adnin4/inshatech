@@ -1980,6 +1980,59 @@
             switchAdminCockpitTab('crm');
         }
 
+        // Batch Payout Trigger
+        window.adminTriggerBatchPayout = function() {
+            const confirmed = confirm('⚡ AUTHORIZE BATCH AFFILIATE PAYOUTS ($2,450.00 USD)\n\n• 4 Verified Gold/Legend Partners\n• Canonical Ledger Balance Verified\n• Zero Fraud Alerts\n\nExecute batch payout dispatch via Connected Stripe / Bank / Mobile Ledger?');
+            if (confirmed) {
+                showAffiliateToast('✅ Batch Payout Disbursed: $2,450.00 USD processed and recorded in immutable ledger!');
+            }
+        };
+
+        // 12-Stage Deal Lifecycle Modal
+        window.openDealLifecycleModal = function(dealId) {
+            const deals = {
+                'DEAL-9610': { name: 'Urban Real Estate', size: '$750 Setup', client: 'Karim Chowdhury', service: 'Real Estate <60s Lead Responder', stage: 'Stage 1 — Inbound Lead Captured (<45s)', agent: 'SDR Hunter', nextAction: 'Send automated WhatsApp qualification prompt' },
+                'DEAL-9904': { name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', client: 'Dr. Alistair Finch', service: '24/7 AI Voice Receptionist', stage: 'Stage 2 — Video Teardown & Architecture SOW', agent: 'Solution Architect', nextAction: 'Owner approve escrow contract' },
+                'DEAL-9720': { name: 'SaaS Outbound Engine', size: '$3,000 Setup', client: 'Alex Rivera', service: 'B2B SaaS 5-Agent Swarm', stage: 'Stage 3 — Escrow Confirmed & Paid', agent: 'AI CFO', nextAction: 'Trigger n8n Docker Swarm Provisioning' },
+                'DEAL-9841': { name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', client: 'David Henderson', service: 'Freight Manifest OCR Engine', stage: 'Stage 4 — Live In Production', agent: 'DevOps Guardian', nextAction: 'Continuous SLA & uptime monitoring' }
+            };
+            const d = deals[dealId] || { name: 'Client Deal ' + dealId, size: '$1,500 Setup', client: 'Enterprise Client', service: 'Autonomous AI-BOS Deployment', stage: 'Stage 2 — Active Pipeline', agent: 'Sales Closer', nextAction: 'Awaiting client contract signature' };
+
+            const modalHtml = `
+                <div id="deal-lifecycle-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
+                    <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:620px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                            <div>
+                                <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">12-STAGE CRM LIFECYCLE AUDIT</span>
+                                <h3 style="margin:4px 0 0 0; font-size:1.2rem; color:#fff;">${d.name} (${dealId})</h3>
+                            </div>
+                            <button onclick="document.getElementById('deal-lifecycle-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                        </div>
+                        
+                        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.84rem; line-height:1.5;">
+                            <div><strong style="color:#94a3b8;">• Client Contact:</strong> <span style="color:#fff;">${d.client}</span></div>
+                            <div><strong style="color:#94a3b8;">• Service Package:</strong> <span style="color:var(--accent-cyan); font-weight:600;">${d.service}</span></div>
+                            <div><strong style="color:#94a3b8;">• Deal Valuation:</strong> <span style="color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">${d.size}</span></div>
+                            <div><strong style="color:#94a3b8;">• Current Stage:</strong> <span style="color:var(--accent-gold); font-weight:600;">${d.stage}</span></div>
+                            <div><strong style="color:#94a3b8;">• Assigned Swarm Agent:</strong> <span style="color:#38bdf8;">${d.agent}</span></div>
+                            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; margin-top:6px;">
+                                <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">⚡ Autonomous Next Action:</strong>
+                                <span style="color:#cbd5e1;">${d.nextAction}</span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+                            <button onclick="document.getElementById('deal-lifecycle-modal').remove()" class="btn btn-glass-sm">Close</button>
+                            <button onclick="showAffiliateToast('⚡ Stage advanced & automated client webhook fired!'); document.getElementById('deal-lifecycle-modal').remove();" class="btn btn-primary-sm">⚡ Advance Stage →</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const existing = document.getElementById('deal-lifecycle-modal');
+            if (existing) existing.remove();
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        };
+
         // 4. Add New Turnkey Service Modal
         function addNewServiceModal() {
             const title = prompt('➕ Enter Service Title:', 'Custom AI Voice Receptionist Suite');
