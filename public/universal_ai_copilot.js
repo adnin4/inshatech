@@ -545,6 +545,21 @@
                     <button class="copilot-chip" data-prompt="Talk directly to engineer Adnin Sadat">📱 Talk to Founder</button>
                 </div>
 
+                <!-- Mini Mission Console HUD -->
+                <div class="copilot-mission-mini-hud" style="background:rgba(15,23,42,0.9); padding:6px 14px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.72rem; font-family:'Inter',sans-serif; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:#38bdf8; font-family:monospace; font-weight:700;">MISSION: #8421</span>
+                        <span style="color:#94a3b8;">•</span>
+                        <span style="color:#34d399; font-size:0.68rem; font-weight:600;">5 AGENTS ACTIVE</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <div style="width:60px; height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden;">
+                            <div style="width:78%; height:100%; background:linear-gradient(90deg, #38bdf8, #34d399);"></div>
+                        </div>
+                        <span style="color:#38bdf8; font-family:monospace; font-size:0.68rem;">78%</span>
+                    </div>
+                </div>
+
                 <!-- Messages Stream -->
                 <div class="copilot-messages" id="copilot-messages-stream">
                     <!-- Injected Dynamically -->
