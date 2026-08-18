@@ -413,6 +413,14 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'board
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'certification_lab.js')), 'functions/api/governance/certification_lab.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_EXECUTIVE_COUNCIL_AND_CERTIFICATION_MASTER.md')), 'docs/IINSHA_EXECUTIVE_COUNCIL_AND_CERTIFICATION_MASTER.md exists');
 
+// 20. Check 55-Track Master Verification & Certification Program
+console.log('\n--- 19. 55-Track Master Verification & Certification Program ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'package.json')), 'package.json exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'affiliate', 'portal.js')), 'functions/api/affiliate/portal.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'content', 'pages.js')), 'functions/api/content/pages.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'scratch', 'verify_55_tracks.js')), 'scratch/verify_55_tracks.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'MASTER_VERIFICATION_PROGRAM_55_TRACKS.md')), 'docs/MASTER_VERIFICATION_PROGRAM_55_TRACKS.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
