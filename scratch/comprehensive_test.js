@@ -311,7 +311,8 @@ const docs = [
     'openapi.yaml',
     'FINAL_MASTER_ARCHITECTURE_VNEXT.md',
     'IINSHA_FINAL_EVOLUTION_MASTER.md',
-    'IINSHA_PRODUCTION_HARDENED_V1.md'
+    'IINSHA_PRODUCTION_HARDENED_V1.md',
+    'IINSHA_FINAL_ACCEPTANCE_CHARTER.md'
 ];
 
 docs.forEach(d => {
