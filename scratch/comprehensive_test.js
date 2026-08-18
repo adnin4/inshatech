@@ -400,6 +400,13 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'r_and_d', 'product
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'developer', 'public_api.js')), 'functions/api/developer/public_api.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_COMPLETE_MASTER_ROADMAP_A_TO_AM.md')), 'docs/IINSHA_COMPLETE_MASTER_ROADMAP_A_TO_AM.md exists');
 
+// 18. Check Frontier Master Roadmap (80 Advanced Pillars & Meta-Orchestrator)
+console.log('\n--- 17. Frontier Master Roadmap (Meta-Orchestrator, Risk Radar, Marketplace Engine & 80-Pillar Manual) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'meta_orchestrator.js')), 'functions/api/executive/meta_orchestrator.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'risk', 'frontier_radar.js')), 'functions/api/risk/frontier_radar.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'marketplace', 'frontier_engine.js')), 'functions/api/marketplace/frontier_engine.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_FRONTIER_MASTER_ROADMAP_80_PILLARS.md')), 'docs/IINSHA_FRONTIER_MASTER_ROADMAP_80_PILLARS.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
