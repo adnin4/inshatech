@@ -407,6 +407,12 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'risk', 'frontier_r
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'marketplace', 'frontier_engine.js')), 'functions/api/marketplace/frontier_engine.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_FRONTIER_MASTER_ROADMAP_80_PILLARS.md')), 'docs/IINSHA_FRONTIER_MASTER_ROADMAP_80_PILLARS.md exists');
 
+// 19. Check AI Executive Council & Capability Certification Lab
+console.log('\n--- 18. AI Executive Council & Capability Certification Lab (Board Council, Cert Lab & 10-Track Manual) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'board_council.js')), 'functions/api/executive/board_council.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'certification_lab.js')), 'functions/api/governance/certification_lab.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_EXECUTIVE_COUNCIL_AND_CERTIFICATION_MASTER.md')), 'docs/IINSHA_EXECUTIVE_COUNCIL_AND_CERTIFICATION_MASTER.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
