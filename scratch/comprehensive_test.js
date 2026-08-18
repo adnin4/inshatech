@@ -363,6 +363,12 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'morni
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'growth', 'opportunities.js')), 'functions/api/growth/opportunities.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AUTONOMOUS_COMPANY_27_PILLARS.md')), 'docs/IINSHA_AUTONOMOUS_COMPANY_27_PILLARS.md exists');
 
+// 13. Check AI-BOS 3.0 Revenue-to-Delivery Loop & Agent Economics
+console.log('\n--- 12. AI-BOS 3.0 Revenue-to-Delivery Loop & Agent Economics ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'missions', 'loop_test.js')), 'functions/api/missions/loop_test.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'agents', 'economics.js')), 'functions/api/agents/economics.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_3_0_REVENUE_TO_DELIVERY_LOOP.md')), 'docs/IINSHA_AIBOS_3_0_REVENUE_TO_DELIVERY_LOOP.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
