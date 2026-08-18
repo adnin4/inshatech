@@ -386,6 +386,13 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance/policy_
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive/company_controller.js')), 'functions/api/executive/company_controller.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_4_0_AUTONOMOUS_ENTERPRISE_SPECIFICATION.md')), 'docs/IINSHA_AIBOS_4_0_AUTONOMOUS_ENTERPRISE_SPECIFICATION.md exists');
 
+// 16. Check Final Master Expansion Blueprint (60 Pillars & Stages A-J)
+console.log('\n--- 15. Final Master Expansion Blueprint (Enterprise Registry, Business Health, White-Label & 60-Pillar Manual) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'governance', 'enterprise_registry.js')), 'functions/api/governance/enterprise_registry.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'business_health.js')), 'functions/api/executive/business_health.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'enterprise', 'white_label.js')), 'functions/api/enterprise/white_label.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_10_0_FINAL_MASTER_EXPANSION.md')), 'docs/IINSHA_AIBOS_10_0_FINAL_MASTER_EXPANSION.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
