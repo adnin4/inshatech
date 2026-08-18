@@ -357,6 +357,12 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'live_
 assert(fs.existsSync(path.join(BASE_DIR, 'js', 'core', 'autonomous_company_os.js')), 'js/core/autonomous_company_os.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md')), 'docs/IINSHA_AIBOS_2_0_MASTER_SPECIFICATION.md exists');
 
+// 12. Check 27-Pillar Autonomous Company Modules
+console.log('\n--- 11. 27-Pillar Autonomous Company Modules (Morning Brief, Opportunity Hunter & Master Manual) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'morning_brief.js')), 'functions/api/executive/morning_brief.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'growth', 'opportunities.js')), 'functions/api/growth/opportunities.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AUTONOMOUS_COMPANY_27_PILLARS.md')), 'docs/IINSHA_AUTONOMOUS_COMPANY_27_PILLARS.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
