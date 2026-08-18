@@ -1,12 +1,12 @@
 /**
- * IINSHA 28-PILLAR AFFILIATE & GROWTH PARTNER OS v10.0 (ENTERPRISE MASTER SYSTEM)
- * International-Grade Autonomous Partner Operating System
- * Features:
- *  - Real-Time Telemetry & Causal Clicks/Conversion Tracking
- *  - Custom SubID & Deep Link Studio with SVG QR Code Generator
- *  - 28-Asset Multi-Channel Marketing Vault (LinkedIn, Cold Email, WhatsApp Bangla/English, Embeddable Badges)
- *  - Dual-Currency Commission Simulator (USD / BDT)
- *  - AI Affiliate Coach & First-Sale Strategy Assistant
+ * IINSHA 28-PILLAR AFFILIATE & GROWTH PARTNER OS v11.0 (ENTERPRISE MASTER SYSTEM)
+ * Full Auth Gateway (Sign In / Register / Switch Account / Logout)
+ * Real Marketing Workspace:
+ *  - AI Custom Pitch & Content Generator (LinkedIn, Cold Email, WhatsApp Bangla/English)
+ *  - Interactive Prospect Outreach CRM & Pipeline Tracker
+ *  - 1-Click Direct Social Share Buttons (WhatsApp, Telegram, LinkedIn, Twitter/X, Facebook)
+ *  - SubID & Deep Link Studio with Live SVG QR Code
+ *  - 28-Asset Multi-Channel Marketing Swipe Vault
  *  - 4-Tier Gamified Progression Ladder (Bronze ➔ Silver ➔ Gold ➔ Legend) with Milestone Rewards
  *  - Multi-Channel Global & Local Payout Desk (bKash, Nagad, Wise, Bank Wire, USDT)
  *  - Partner Growth Academy Masterclasses
@@ -15,30 +15,68 @@
 (function() {
     'use strict';
 
-    const STORAGE_KEY = 'iinsha_partner_profile';
+    const PARTNERS_REGISTRY_KEY = 'iinsha_partners_registry';
+    const ACTIVE_PARTNER_KEY = 'iinsha_active_partner_id';
+    const PROSPECTS_CRM_KEY = 'iinsha_partner_prospects';
     const TRANSACTIONS_KEY = 'iinsha_partner_transactions';
 
-    const DEFAULT_PARTNER = {
-        name: 'Adnin Sadat Mahin',
-        email: 'partner@inshatech.pages.dev',
-        phone: '+8801629286887',
-        payoutMethod: 'bKash (Personal / Merchant)',
-        payoutAccount: '01629286887',
-        refCode: 'mahin10',
-        tier: 'VIP Gold (25%)',
-        unpaid: 680.00,
-        pending: 240.00,
-        paidOut: 2450.00,
-        totalClicks: 348,
-        uniqueVisitors: 284,
-        inboundLeads: 24,
-        conversions: 8,
-        conversionRate: '2.81%',
-        epc: '$7.04',
-        grossRevenueDriven: 9850.00,
-        trafficQuality: '99.4% Clean (Zero Fraud)',
-        registeredAt: '2026-08-18'
+    // Default Seed Partner Profiles
+    const DEFAULT_PARTNERS = {
+        'mahin10': {
+            id: 'mahin10',
+            name: 'Adnin Sadat Mahin',
+            email: 'partner@inshatech.pages.dev',
+            password: 'password123',
+            phone: '+8801629286887',
+            payoutMethod: 'bKash (Personal / Merchant)',
+            payoutAccount: '01629286887',
+            refCode: 'mahin10',
+            tier: 'VIP Gold (25%)',
+            tierLevel: 3,
+            unpaid: 680.00,
+            pending: 240.00,
+            paidOut: 2450.00,
+            totalClicks: 348,
+            uniqueVisitors: 284,
+            inboundLeads: 24,
+            conversions: 8,
+            conversionRate: '2.81%',
+            epc: '$7.04',
+            grossRevenueDriven: 9850.00,
+            trafficQuality: '99.4% Clean (Zero Fraud)',
+            registeredAt: '2026-08-18'
+        },
+        'apex_agency': {
+            id: 'apex_agency',
+            name: 'Apex Growth Agency (UK)',
+            email: 'growth@apexagency.co.uk',
+            password: 'password123',
+            phone: '+447911123456',
+            payoutMethod: 'Wise Bank Wire (USD/GBP)',
+            payoutAccount: 'GB82WEST12345678901234',
+            refCode: 'apex',
+            tier: 'VIP Legend (30%)',
+            tierLevel: 4,
+            unpaid: 1940.00,
+            pending: 580.00,
+            paidOut: 9700.00,
+            totalClicks: 1420,
+            uniqueVisitors: 1180,
+            inboundLeads: 96,
+            conversions: 28,
+            conversionRate: '2.37%',
+            epc: '$8.20',
+            grossRevenueDriven: 38400.00,
+            trafficQuality: '100% Clean',
+            registeredAt: '2026-08-01'
+        }
     };
+
+    const DEFAULT_PROSPECTS = [
+        { id: 'PR-101', name: 'Rafiqul Islam', company: 'Dhaka E-Com Mart', niche: 'E-Commerce', channel: 'WhatsApp', offer: '24/7 AI WhatsApp Sales Bot ($750)', status: 'PROPOSAL_SENT', date: '2026-08-18' },
+        { id: 'PR-102', name: 'Marcus Sterling', company: 'Sterling SaaS Cloud', niche: 'B2B SaaS', channel: 'LinkedIn', offer: 'B2B SaaS 5-Agent Hunter Swarm ($850)', status: 'CALL_BOOKED', date: '2026-08-17' },
+        { id: 'PR-103', name: 'Dr. Sarah Jenkins', company: 'Apex Dental Care', niche: 'Clinics', channel: 'Cold Email', offer: 'AI Voice Receptionist ($1,800)', status: 'CONTACTED', date: '2026-08-16' }
+    ];
 
     const DEFAULT_TRANSACTIONS = [
         { id: 'TX-8821', date: '2026-08-17', desc: 'B2B SaaS Hunter Swarm (UK Client)', amount: '$170.00 USD', status: 'PAID', method: 'bKash 01629286887' },
@@ -47,16 +85,39 @@
         { id: 'TX-8824', date: '2026-08-18', desc: 'Voice AI Receptionist Deployment ($1,800)', amount: '$360.00 USD', status: 'UNPAID', method: 'Ready for withdrawal' }
     ];
 
-    function getPartnerData() {
-        const saved = localStorage.getItem(STORAGE_KEY);
+    // Helper functions for registry and active partner
+    function getPartnersRegistry() {
+        const saved = localStorage.getItem(PARTNERS_REGISTRY_KEY);
         if (saved) {
-            try { return Object.assign({}, DEFAULT_PARTNER, JSON.parse(saved)); } catch (e) {}
+            try { return Object.assign({}, DEFAULT_PARTNERS, JSON.parse(saved)); } catch (e) {}
         }
-        return DEFAULT_PARTNER;
+        return DEFAULT_PARTNERS;
     }
 
-    function savePartnerData(data) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    function savePartnersRegistry(registry) {
+        localStorage.setItem(PARTNERS_REGISTRY_KEY, JSON.stringify(registry));
+    }
+
+    function getActivePartner() {
+        const activeId = localStorage.getItem(ACTIVE_PARTNER_KEY) || 'mahin10';
+        const registry = getPartnersRegistry();
+        return registry[activeId] || registry['mahin10'] || Object.values(registry)[0];
+    }
+
+    function setActivePartner(partnerId) {
+        localStorage.setItem(ACTIVE_PARTNER_KEY, partnerId);
+    }
+
+    function getProspects() {
+        const saved = localStorage.getItem(PROSPECTS_CRM_KEY);
+        if (saved) {
+            try { return JSON.parse(saved); } catch (e) {}
+        }
+        return DEFAULT_PROSPECTS;
+    }
+
+    function saveProspects(prospects) {
+        localStorage.setItem(PROSPECTS_CRM_KEY, JSON.stringify(prospects));
     }
 
     function getTransactions() {
@@ -71,7 +132,7 @@
         localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(data));
     }
 
-    // Comprehensive catalog of turnkey offerings with direct commissions
+    // Catalog of turnkey solutions
     const OFFERS = [
         { id: 'b2b-lead-swarm', name: 'B2B SaaS 5-Agent Hunter Swarm', priceUSD: 850, priceBDT: 104125, commUSD: 212.50, commBDT: 26031, epc: '$8.40', conversion: '3.4%', category: 'Lead Gen', tag: '🔥 Top Converting', target: 'store.html' },
         { id: 'ecommerce-ai-whatsapp', name: '24/7 E-Commerce WhatsApp Sales Agent', priceUSD: 750, priceBDT: 91875, commUSD: 187.50, commBDT: 22968, epc: '$7.80', conversion: '4.2%', category: 'E-Commerce', tag: '⚡ 20-Min Setup', target: 'store.html' },
@@ -119,19 +180,26 @@
         }
     ];
 
-    // Master render function
+    // Master Render Function
     window.initAffiliatePortal = function() {
         const root = document.getElementById('affiliate-app-root');
         if (!root) return;
 
-        const partner = getPartnerData();
+        const partner = getActivePartner();
         const origin = window.location.origin || 'https://inshatech.pages.dev';
         const partnerRefLink = `${origin}/?ref=${partner.refCode}`;
+        const isLoggedIn = sessionStorage.getItem('iinsha_aff_logged_out') !== 'true';
+
+        if (!isLoggedIn) {
+            // Render Auth Screen (Sign In / Register)
+            renderAuthGateway(root);
+            return;
+        }
 
         root.innerHTML = `
             <div id="affiliate-portal-wrapper" style="display:flex; flex-direction:column; gap:24px;">
 
-                <!-- TOP PARTNER IDENTITY & QUICK STATS BAR -->
+                <!-- TOP AUTH & PARTNER IDENTITY BAR -->
                 <div class="ipc-card ipc-card-glowing" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:18px; padding:24px; box-shadow:0 20px 50px rgba(0,0,0,0.8);">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:18px;">
                         <div style="display:flex; align-items:center; gap:14px;">
@@ -142,19 +210,26 @@
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <h2 style="color:#fff; font-size:1.35rem; margin:0;">${partner.name}</h2>
                                     <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--accent-gold); border:1px solid var(--accent-gold); font-size:0.75rem; font-weight:800; padding:2px 10px; border-radius:20px;">${partner.tier}</span>
+                                    <span style="font-size:0.75rem; color:#34d399;">● Signed In</span>
                                 </div>
                                 <div style="font-size:0.8rem; color:#94a3b8; margin-top:3px;">
-                                    Ref Slug: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${partner.refCode}</strong> | Payout: <strong style="color:#34d399;">${partner.payoutMethod} (${partner.payoutAccount})</strong>
+                                    Ref Slug: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${partner.refCode}</strong> | Account: <strong style="color:#cbd5e1;">${partner.email}</strong> | Payout: <strong style="color:#34d399;">${partner.payoutMethod} (${partner.payoutAccount})</strong>
                                 </div>
                             </div>
                         </div>
 
-                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                             <button onclick="window.requestPartnerWithdrawal()" class="btn btn-primary" style="background:linear-gradient(135deg, #10b981, #059669); padding:10px 20px; font-weight:800; border-radius:10px;">
                                 ⚡ Withdraw Unpaid ($${partner.unpaid.toFixed(2)})
                             </button>
-                            <button onclick="window.openPartnerSettingsModal()" class="btn btn-glass-sm" style="padding:10px 16px;">
-                                ⚙️ Edit Profile & Wallet
+                            <button onclick="window.openPartnerSettingsModal()" class="btn btn-glass-sm" style="padding:10px 14px;">
+                                ⚙️ Edit Profile
+                            </button>
+                            <button onclick="window.openSwitchAccountModal()" class="btn btn-glass-sm" style="padding:10px 14px; color:var(--accent-cyan);">
+                                🔄 Switch Account
+                            </button>
+                            <button onclick="window.logoutPartner()" class="btn btn-glass-sm" style="padding:10px 14px; color:var(--accent-rose);">
+                                🚪 Sign Out
                             </button>
                         </div>
                     </div>
@@ -189,13 +264,15 @@
 
                 <!-- PORTAL TAB NAVIGATION SYSTEM -->
                 <div style="display:flex; gap:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;">
-                    <button onclick="window.switchAffiliateTab('dashboard')" class="lab-tab active" id="tab-btn-dashboard" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📊 Live Cockpit</button>
-                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🔗 Link & SubID Studio</button>
-                    <button onclick="window.switchAffiliateTab('vault')" class="lab-tab" id="tab-btn-vault" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🎨 28-Asset Swipe Vault</button>
-                    <button onclick="window.switchAffiliateTab('coach')" class="lab-tab" id="tab-btn-coach" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🧠 AI Affiliate Coach</button>
-                    <button onclick="window.switchAffiliateTab('milestones')" class="lab-tab" id="tab-btn-milestones" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🏆 Tiers & Rewards</button>
-                    <button onclick="window.switchAffiliateTab('payouts')" class="lab-tab" id="tab-btn-payouts" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">💳 Payout Ledger</button>
-                    <button onclick="window.switchAffiliateTab('academy')" class="lab-tab" id="tab-btn-academy" style="padding:8px 18px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📚 Growth Academy</button>
+                    <button onclick="window.switchAffiliateTab('dashboard')" class="lab-tab active" id="tab-btn-dashboard" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📊 Live Cockpit</button>
+                    <button onclick="window.switchAffiliateTab('workspace')" class="lab-tab" id="tab-btn-workspace" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent; color:var(--accent-cyan);">⚡ Marketing Workstation</button>
+                    <button onclick="window.switchAffiliateTab('crm')" class="lab-tab" id="tab-btn-crm" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🎯 Outreach CRM</button>
+                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🔗 Link & SubID Studio</button>
+                    <button onclick="window.switchAffiliateTab('vault')" class="lab-tab" id="tab-btn-vault" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🎨 28-Asset Swipe Vault</button>
+                    <button onclick="window.switchAffiliateTab('coach')" class="lab-tab" id="tab-btn-coach" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🧠 AI Strategy Assistant</button>
+                    <button onclick="window.switchAffiliateTab('milestones')" class="lab-tab" id="tab-btn-milestones" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🏆 Tiers & Rewards</button>
+                    <button onclick="window.switchAffiliateTab('payouts')" class="lab-tab" id="tab-btn-payouts" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">💳 Payout Ledger</button>
+                    <button onclick="window.switchAffiliateTab('academy')" class="lab-tab" id="tab-btn-academy" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📚 Growth Academy</button>
                 </div>
 
                 <!-- ================= TAB 1: LIVE COCKPIT ================= -->
@@ -230,31 +307,135 @@
                             </div>
                         </div>
 
-                        <!-- Top Converting Turnkey Solutions -->
+                        <!-- 1-Click Social Broadcast Station -->
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0;">
                             <h3 style="color:#fff; font-size:1.05rem; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                                <span>🎯</span> High-Yield Product Catalog
+                                <span>📲</span> 1-Click Social Broadcast Station
                             </h3>
-                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                ${OFFERS.slice(0, 3).map(o => `
-                                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.3); padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                                        <div>
-                                            <strong style="color:#fff; font-size:0.84rem; display:block;">${o.name}</strong>
-                                            <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono);">${o.priceUSD} USD (≈ ৳${o.priceBDT.toLocaleString()})</span>
-                                        </div>
-                                        <div style="text-align:right;">
-                                            <span style="color:#34d399; font-weight:bold; font-size:0.85rem; display:block;">+$${o.commUSD.toFixed(2)}</span>
-                                            <span style="font-size:0.68rem; color:#94a3b8;">${o.epc} EPC</span>
-                                        </div>
-                                    </div>
-                                `).join('')}
+                            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:12px;">Instantly share high-converting promotions with your tracking code attached:</p>
+                            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+                                <button onclick="window.shareToWhatsApp('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(37,211,102,0.15); border-color:#25D366; color:#25D366; font-size:0.78rem; font-weight:700;">
+                                    💬 WhatsApp
+                                </button>
+                                <button onclick="window.shareToTelegram('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(0,136,204,0.15); border-color:#0088cc; color:#38bdf8; font-size:0.78rem; font-weight:700;">
+                                    ✈️ Telegram
+                                </button>
+                                <button onclick="window.shareToLinkedIn('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(10,102,194,0.15); border-color:#0a66c2; color:#60a5fa; font-size:0.78rem; font-weight:700;">
+                                    💼 LinkedIn
+                                </button>
+                                <button onclick="window.shareToTwitter('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(255,255,255,0.08); border-color:#cbd5e1; color:#fff; font-size:0.78rem; font-weight:700;">
+                                    ✖️ Twitter / X
+                                </button>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                <!-- ================= TAB 2: LINK & SUBID STUDIO ================= -->
+                <!-- ================= TAB 2: MARKETING WORKSTATION ================= -->
+                <div id="tab-panel-workspace" class="aff-tab-panel" style="display:none;">
+                    <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px; border-color:var(--accent-cyan);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
+                            <div>
+                                <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">AI COPYWRITING STUDIO</span>
+                                <h3 style="color:#fff; font-size:1.3rem; margin:4px 0 0 0;">⚡ Custom AI Marketing Pitch Generator</h3>
+                                <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0;">Enter your prospect's company details to generate bespoke outreach messages with your affiliate link automatically embedded.</p>
+                            </div>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:16px;">
+                            <div>
+                                <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Prospect / Founder Name:</label>
+                                <input type="text" id="ai-work-prospect-name" placeholder="e.g. Tanvir Bhai / John Smith" value="Tanvir Ahmed" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                            </div>
+
+                            <div>
+                                <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Company / Brand Name:</label>
+                                <input type="text" id="ai-work-company-name" placeholder="e.g. Dhaka Trends / GrowthIQ" value="Dhaka Trends" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                            </div>
+
+                            <div>
+                                <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Target Niche / Industry:</label>
+                                <select id="ai-work-niche" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                                    <option value="ecom">🛒 E-Commerce & F-Commerce Store</option>
+                                    <option value="saas">💻 B2B SaaS & Tech Agency</option>
+                                    <option value="realestate">🏢 Real Estate & Property Developers</option>
+                                    <option value="clinic">🏥 Clinics, Dental & Healthcare</option>
+                                    <option value="general">⚡ Generic High-Zapier Spender</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Outreach Format:</label>
+                                <select id="ai-work-format" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                                    <option value="wa_bn">💬 WhatsApp Direct Pitch (Bangla)</option>
+                                    <option value="wa_en">💬 WhatsApp Direct Pitch (English)</option>
+                                    <option value="li_post">📱 LinkedIn Viral Post</option>
+                                    <option value="cold_email">✉️ B2B Cold Email Sequence</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="window.generateCustomMarketingPitch()" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:800; font-size:0.95rem; margin-bottom:16px;">
+                            ⚡ Generate Bespoke Marketing Copy & Link →
+                        </button>
+
+                        <!-- Output Box -->
+                        <div style="position:relative;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                <strong style="color:var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono);">GENERATED BESPOKE OUTREACH COPY:</strong>
+                                <button onclick="window.copyGeneratedPitch()" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 10px;">📋 Copy Text</button>
+                            </div>
+                            <textarea id="ai-work-output" rows="8" readonly style="width:100%; background:rgba(0,0,0,0.6); border:1px solid var(--accent-cyan); border-radius:10px; padding:12px; color:#fff; font-size:0.82rem; font-family:var(--font-mono); line-height:1.5; resize:none; box-sizing:border-box;">Click 'Generate Bespoke Marketing Copy' above to produce customized copy for your prospect with your affiliate link embedded!</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 3: OUTREACH CRM ================= -->
+                <div id="tab-panel-crm" class="aff-tab-panel" style="display:none;">
+                    <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
+                            <div>
+                                <h3 style="color:#fff; font-size:1.25rem; margin:0;">🎯 Partner Outreach Pipeline CRM</h3>
+                                <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0;">Log your prospect contacts, outreach channels, and deal statuses directly inside your workspace.</p>
+                            </div>
+                            <button onclick="window.openAddProspectModal()" class="btn btn-primary-sm">+ Add New Prospect</button>
+                        </div>
+
+                        <div style="overflow-x:auto;">
+                            <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
+                                <thead>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                        <th style="padding:10px;">PROSPECT</th>
+                                        <th style="padding:10px;">COMPANY</th>
+                                        <th style="padding:10px;">NICHE</th>
+                                        <th style="padding:10px;">CHANNEL</th>
+                                        <th style="padding:10px;">RECOMMENDED SOLUTION</th>
+                                        <th style="padding:10px;">STATUS</th>
+                                        <th style="padding:10px;">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="crm-prospects-table-body">
+                                    ${getProspects().map(p => `
+                                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                                            <td style="padding:10px; color:#fff; font-weight:600; font-family:sans-serif;">${p.name}</td>
+                                            <td style="padding:10px; color:var(--accent-cyan);">${p.company}</td>
+                                            <td style="padding:10px; color:#cbd5e1;">${p.niche}</td>
+                                            <td style="padding:10px; color:#94a3b8;">${p.channel}</td>
+                                            <td style="padding:10px; color:#38bdf8; font-size:0.75rem;">${p.offer}</td>
+                                            <td style="padding:10px;"><span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); font-size:0.68rem; padding:2px 6px; border-radius:4px;">${p.status}</span></td>
+                                            <td style="padding:10px;">
+                                                <button onclick="window.sendDirectProspectMessage('${p.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:2px 8px;">💬 Message</button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 4: LINK & SUBID STUDIO ================= -->
                 <div id="tab-panel-links" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px;">
                         <h3 style="color:#fff; font-size:1.2rem; margin-bottom:6px;">🔗 Advanced Custom Link & SubID Generator</h3>
@@ -307,7 +488,7 @@
                     </div>
                 </div>
 
-                <!-- ================= TAB 3: 28-ASSET SWIPE VAULT ================= -->
+                <!-- ================= TAB 5: 28-ASSET SWIPE VAULT ================= -->
                 <div id="tab-panel-vault" class="aff-tab-panel" style="display:none;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
@@ -342,7 +523,7 @@
                     </div>
                 </div>
 
-                <!-- ================= TAB 4: AI AFFILIATE COACH ================= -->
+                <!-- ================= TAB 6: AI STRATEGY ASSISTANT ================= -->
                 <div id="tab-panel-coach" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px; border-color:var(--accent-cyan);">
                         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
@@ -377,7 +558,7 @@
                     </div>
                 </div>
 
-                <!-- ================= TAB 5: TIERS & REWARDS ================= -->
+                <!-- ================= TAB 7: TIERS & REWARDS ================= -->
                 <div id="tab-panel-milestones" class="aff-tab-panel" style="display:none;">
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
                         
@@ -428,7 +609,7 @@
                     </div>
                 </div>
 
-                <!-- ================= TAB 6: PAYOUT LEDGER ================= -->
+                <!-- ================= TAB 8: PAYOUT LEDGER ================= -->
                 <div id="tab-panel-payouts" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:22px; border-radius:16px; margin:0;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
@@ -465,7 +646,7 @@
                     </div>
                 </div>
 
-                <!-- ================= TAB 7: GROWTH ACADEMY ================= -->
+                <!-- ================= TAB 9: GROWTH ACADEMY ================= -->
                 <div id="tab-panel-academy" class="aff-tab-panel" style="display:none;">
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
                         
@@ -497,7 +678,373 @@
         `;
     };
 
-    // Tab switcher
+    // Render Auth Gateway (Sign In / Register / Demo Logins)
+    function renderAuthGateway(root) {
+        const registry = getPartnersRegistry();
+        const demoAccounts = Object.values(registry);
+
+        root.innerHTML = `
+            <div id="affiliate-auth-gateway" class="ipc-card ipc-card-glowing" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); border-radius:18px; padding:32px; max-width:850px; margin:0 auto; box-shadow:0 25px 60px rgba(0,0,0,0.85);">
+                <div style="text-align:center; margin-bottom:24px;">
+                    <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem; padding:3px 12px; border-radius:20px;">AFFILIATE AUTHENTICATION GATEWAY</span>
+                    <h2 style="color:#fff; font-size:1.8rem; margin:10px 0 6px 0;">Sign In or Register as Growth Partner</h2>
+                    <p style="font-size:0.88rem; color:#94a3b8; margin:0;">Access your real-time tracking links, marketing copywriter, and commission payout desk.</p>
+                </div>
+
+                <!-- Auth Mode Switch Tabs -->
+                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:24px;">
+                    <button onclick="window.switchAuthMode('signin')" id="auth-tab-signin" class="lab-tab active" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">🔑 Partner Sign In</button>
+                    <button onclick="window.switchAuthMode('register')" id="auth-tab-register" class="lab-tab" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">🚀 Register New Account</button>
+                </div>
+
+                <!-- SIGN IN FORM -->
+                <div id="auth-panel-signin" style="display:block;">
+                    <form onsubmit="window.handlePartnerSignIn(event)" style="display:flex; flex-direction:column; gap:16px; max-width:460px; margin:0 auto;">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:6px; font-weight:600;">Email Address or Referral Code *</label>
+                            <input type="text" id="signin-identifier" required placeholder="partner@inshatech.pages.dev or mahin10" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:6px; font-weight:600;">Partner Access PIN / Password *</label>
+                            <input type="password" id="signin-password" required value="password123" placeholder="Enter your password" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #00f2fe, #0284c7); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center; margin-top:6px;">
+                            🔑 Sign In & Open Partner Dashboard →
+                        </button>
+                    </form>
+
+                    <!-- Quick 1-Click Demo Logins -->
+                    <div style="margin-top:28px; border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; text-align:center;">
+                        <span style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono); text-transform:uppercase;">⚡ Or 1-Click Instant Demo Login:</span>
+                        <div style="display:flex; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap;">
+                            ${demoAccounts.map(a => `
+                                <button onclick="window.quickDemoLogin('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; padding:6px 14px;">
+                                    👑 ${a.name} (${a.tier.split(' ')[0]})
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGISTER FORM -->
+                <div id="auth-panel-register" style="display:none;">
+                    <form onsubmit="window.handlePartnerRegister(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Full Name / Agency Name *</label>
+                            <input type="text" id="reg-name" required placeholder="e.g. Tanvir Ahmed" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Email Address *</label>
+                            <input type="email" id="reg-email" required placeholder="tanvir@agency.com" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">WhatsApp / Phone *</label>
+                            <input type="tel" id="reg-phone" required placeholder="+8801700000000" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Create Password *</label>
+                            <input type="password" id="reg-password" required placeholder="Enter password" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Preferred Payout Method *</label>
+                            <select id="reg-payout-method" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                                <option value="bKash (Personal / Merchant)">🇧🇩 bKash (Personal / Merchant)</option>
+                                <option value="Nagad">🇧🇩 Nagad</option>
+                                <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire (USD/GBP/EUR)</option>
+                                <option value="Local Bank Transfer">🏦 Local Bank Transfer</option>
+                                <option value="USDT Crypto (TRC20)">⚡ USDT Crypto (TRC20)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Payout Account / Number *</label>
+                            <input type="text" id="reg-payout-acc" required placeholder="017xxxxxxxx or IBAN" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Custom Referral Code *</label>
+                            <input type="text" id="reg-ref-code" required placeholder="e.g. tanvir10" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:var(--accent-cyan); font-weight:700; font-family:var(--font-mono); font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+
+                        <div style="grid-column: 1 / -1; margin-top:8px;">
+                            <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #10b981, #059669); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center;">
+                                🚀 Create Account & Launch Dashboard →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        `;
+    }
+
+    // Switch between Sign In and Register tabs
+    window.switchAuthMode = function(mode) {
+        const signinPanel = document.getElementById('auth-panel-signin');
+        const registerPanel = document.getElementById('auth-panel-register');
+        const signinTab = document.getElementById('auth-tab-signin');
+        const registerTab = document.getElementById('auth-tab-register');
+
+        if (mode === 'signin') {
+            if (signinPanel) signinPanel.style.display = 'block';
+            if (registerPanel) registerPanel.style.display = 'none';
+            if (signinTab) signinTab.classList.add('active');
+            if (registerTab) registerTab.classList.remove('active');
+        } else {
+            if (signinPanel) signinPanel.style.display = 'none';
+            if (registerPanel) registerPanel.style.display = 'block';
+            if (signinTab) signinTab.classList.remove('active');
+            if (registerTab) registerTab.classList.add('active');
+        }
+    };
+
+    window.handlePartnerSignIn = function(e) {
+        e.preventDefault();
+        const identifier = document.getElementById('signin-identifier').value.trim().toLowerCase();
+        const password = document.getElementById('signin-password').value;
+
+        const registry = getPartnersRegistry();
+        let matchedPartner = null;
+
+        for (const key in registry) {
+            const p = registry[key];
+            if (p.email.toLowerCase() === identifier || p.refCode.toLowerCase() === identifier || p.id.toLowerCase() === identifier) {
+                matchedPartner = p;
+                break;
+            }
+        }
+
+        if (matchedPartner) {
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            setActivePartner(matchedPartner.id);
+            window.initAffiliatePortal();
+            window.showAffiliateToast(`👋 Welcome back, ${matchedPartner.name}!`);
+        } else {
+            // Auto-provision if not in registry
+            const newId = identifier.replace(/[^a-z0-9_-]/g, '') || 'partner_' + Date.now();
+            const newP = {
+                id: newId,
+                name: identifier.split('@')[0].toUpperCase() + ' Partner',
+                email: identifier.includes('@') ? identifier : `${identifier}@partner.com`,
+                password: password || 'password123',
+                phone: '+8801629286887',
+                payoutMethod: 'bKash (Personal / Merchant)',
+                payoutAccount: '01629286887',
+                refCode: newId,
+                tier: '🌱 Starter Bronze (15%)',
+                tierLevel: 1,
+                unpaid: 0.00,
+                pending: 0.00,
+                paidOut: 0.00,
+                totalClicks: 1,
+                uniqueVisitors: 1,
+                inboundLeads: 0,
+                conversions: 0,
+                conversionRate: '0.0%',
+                epc: '$0.00',
+                grossRevenueDriven: 0.00,
+                trafficQuality: '100% Clean',
+                registeredAt: new Date().toISOString().split('T')[0]
+            };
+            registry[newId] = newP;
+            savePartnersRegistry(registry);
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            setActivePartner(newId);
+            window.initAffiliatePortal();
+            window.showAffiliateToast(`🎉 Welcome to IINSHA Partner OS, ${newP.name}!`);
+        }
+    };
+
+    window.handlePartnerRegister = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const phone = document.getElementById('reg-phone').value.trim();
+        const password = document.getElementById('reg-password').value;
+        const payoutMethod = document.getElementById('reg-payout-method').value;
+        const payoutAccount = document.getElementById('reg-payout-acc').value.trim();
+        const refCode = document.getElementById('reg-ref-code').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+
+        const newId = refCode || 'partner_' + Date.now();
+        const newPartner = {
+            id: newId,
+            name,
+            email,
+            phone,
+            password,
+            payoutMethod,
+            payoutAccount,
+            refCode: newId,
+            tier: '🌱 Starter Bronze (15%)',
+            tierLevel: 1,
+            unpaid: 0.00,
+            pending: 0.00,
+            paidOut: 0.00,
+            totalClicks: 0,
+            uniqueVisitors: 0,
+            inboundLeads: 0,
+            conversions: 0,
+            conversionRate: '0.0%',
+            epc: '$0.00',
+            grossRevenueDriven: 0.00,
+            trafficQuality: '100% Clean (New Partner)',
+            registeredAt: new Date().toISOString().split('T')[0]
+        };
+
+        const registry = getPartnersRegistry();
+        registry[newId] = newPartner;
+        savePartnersRegistry(registry);
+
+        sessionStorage.removeItem('iinsha_aff_logged_out');
+        setActivePartner(newId);
+        window.initAffiliatePortal();
+        window.showAffiliateToast(`🎉 Account Created! Welcome, ${name}! Your link: /?ref=${newId}`);
+    };
+
+    window.quickDemoLogin = function(partnerId) {
+        sessionStorage.removeItem('iinsha_aff_logged_out');
+        setActivePartner(partnerId);
+        window.initAffiliatePortal();
+        window.showAffiliateToast(`👑 Switched account to ${partnerId}!`);
+    };
+
+    window.logoutPartner = function() {
+        sessionStorage.setItem('iinsha_aff_logged_out', 'true');
+        window.initAffiliatePortal();
+        window.showAffiliateToast('🚪 Signed out of partner portal successfully.');
+    };
+
+    window.openSwitchAccountModal = function() {
+        const registry = getPartnersRegistry();
+        const accounts = Object.values(registry);
+        const modalHtml = `
+            <div id="switch-account-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
+                <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:16px; max-width:480px; width:90%; padding:24px; color:#fff; font-family:'Inter',sans-serif;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🔄 Switch Partner Profile</h3>
+                        <button onclick="document.getElementById('switch-account-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px;">
+                        ${accounts.map(a => `
+                            <div onclick="window.quickDemoLogin('${a.id}'); document.getElementById('switch-account-modal').remove();" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                <div>
+                                    <strong style="color:#fff; display:block;">${a.name}</strong>
+                                    <span style="font-size:0.75rem; color:#94a3b8;">${a.email} • Code: <span style="color:var(--accent-cyan); font-family:var(--font-mono);">${a.refCode}</span></span>
+                                </div>
+                                <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); font-size:0.7rem; padding:2px 8px; border-radius:4px;">${a.tier.split(' ')[0]}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="window.logoutPartner(); document.getElementById('switch-account-modal').remove();" class="btn btn-glass" style="width:100%; justify-content:center; color:var(--accent-rose);">+ Log In as Different User</button>
+                </div>
+            </div>
+        `;
+        const existing = document.getElementById('switch-account-modal');
+        if (existing) existing.remove();
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    };
+
+    // AI Copywriter & Marketing Workstation Pitch Generator
+    window.generateCustomMarketingPitch = function() {
+        const partner = getActivePartner();
+        const origin = window.location.origin || 'https://inshatech.pages.dev';
+        const partnerRefLink = `${origin}/?ref=${partner.refCode}`;
+
+        const name = document.getElementById('ai-work-prospect-name')?.value.trim() || 'Prospect';
+        const company = document.getElementById('ai-work-company-name')?.value.trim() || 'Your Business';
+        const niche = document.getElementById('ai-work-niche')?.value || 'ecom';
+        const format = document.getElementById('ai-work-format')?.value || 'wa_bn';
+        const outputEl = document.getElementById('ai-work-output');
+
+        let text = '';
+        if (format === 'wa_bn') {
+            text = `আসসালামু আলাইকুম ${name} ভাই,\n\n${company}-এর কাস্টমারদের ইনবক্স রিপ্লাই, ডেলিভারি চার্জ ক্যালকুলেশন এবং অর্ডার কনফার্ম করতে কি রাতেও মানুষ বসিয়ে রাখতে হচ্ছে?\n\nIINSHA-এর 24/7 AI WhatsApp & Messenger Sales Bot আপনার ওয়েবসাইটের পুরো ক্যাটালগ মাত্র ২০ মিনিটে পড়ে নিয়ে কাস্টমারের সাথে বাংলা, বাংলিশ ও ইংলিশে কথা বলে স্বয়ংক্রিয়ভাবে অর্ডার কনফার্ম করে।\n\nফ্রি ডেমো এবং ২৪ ঘণ্টার ভিডিও অডিট দেখতে নিচের লিংকে যান:\n${partnerRefLink}&subid=wa_pitch`;
+        } else if (format === 'wa_en') {
+            text = `Hey ${name}, saw your work at ${company}. If your team is spending hours on manual lead qualification or repetitive WhatsApp replies, IINSHA's autonomous AI swarms can automate 85% of it on a self-hosted VPS ($5.99/mo) with zero Zapier fees.\n\nClaim a free 24-hr system audit here:\n${partnerRefLink}&subid=wa_direct`;
+        } else if (format === 'li_post') {
+            text = `Most founders at companies like ${company} waste 40+ hours/week on manual copy-pasting, slow customer replies, and enormous Zapier monthly bills.\n\nWe switched to IINSHA AI OS: self-hosted n8n on Docker + autonomous AI agents.\n\nResult:\n- 85% reduction in manual operational labor\n- Sub-45s speed-to-lead response\n- Zero per-task fees\n\nClaim a 100% free 24-hr video teardown for your business here:\n${partnerRefLink}&subid=linkedin_post`;
+        } else {
+            text = `Subject: Slashing manual ops at ${company} with an AI Workforce\n\nHi ${name},\n\nNoticed ${company} is scaling rapidly. Are your team members still handling lead qualification, customer WhatsApp chats, or invoice data entry manually?\n\nOur partner IINSHA builds self-hosted AI operating systems (n8n + multi-agent swarms + Gemini 3.0 Vision OCR) with 100% data sovereignty and zero Zapier fees.\n\nYou can claim a customized 24-hr video audit of your current stack at zero cost:\n${partnerRefLink}&subid=cold_email\n\nBest,\n${partner.name}`;
+        }
+
+        if (outputEl) outputEl.value = text;
+        window.showAffiliateToast('✨ Custom marketing pitch generated with your affiliate link embedded!');
+    };
+
+    window.copyGeneratedPitch = function() {
+        const outputEl = document.getElementById('ai-work-output');
+        if (outputEl) {
+            outputEl.select();
+            navigator.clipboard.writeText(outputEl.value);
+            window.showAffiliateToast('✅ Bespoke outreach pitch copied to clipboard!');
+        }
+    };
+
+    // 1-Click Social Sharing
+    window.shareToWhatsApp = function(link) {
+        const text = encodeURIComponent(`⚡ Check out IINSHA AI OS — Autonomous multi-agent swarms, self-hosted n8n, and 24/7 AI WhatsApp Bots: ${link}`);
+        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    };
+
+    window.shareToTelegram = function(link) {
+        const text = encodeURIComponent(`⚡ Deploy Enterprise AI Workforce Swarms with zero Zapier fees: ${link}`);
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${text}`, '_blank');
+    };
+
+    window.shareToLinkedIn = function(link) {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(link)}`, '_blank');
+    };
+
+    window.shareToTwitter = function(link) {
+        const text = encodeURIComponent(`Slashing manual operational labor by 85% with autonomous AI swarms on @insha_ai: `);
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(link)}`, '_blank');
+    };
+
+    // Outreach CRM Handlers
+    window.openAddProspectModal = function() {
+        const name = prompt('👤 Enter Prospect Name (e.g., Tanvir Ahmed):');
+        if (!name) return;
+        const company = prompt('🏢 Enter Prospect Company Name:');
+        const niche = prompt('🎯 Enter Niche (e.g., E-Commerce, SaaS, Real Estate):', 'E-Commerce');
+        const channel = prompt('💬 Enter Outreach Channel (e.g., WhatsApp, LinkedIn, Cold Email):', 'WhatsApp');
+
+        const prospects = getProspects();
+        prospects.unshift({
+            id: 'PR-' + Math.floor(100 + Math.random() * 900),
+            name,
+            company: company || 'Enterprise',
+            niche: niche || 'General',
+            channel: channel || 'WhatsApp',
+            offer: '24/7 AI WhatsApp Sales Bot ($750)',
+            status: 'CONTACTED',
+            date: new Date().toISOString().split('T')[0]
+        });
+        saveProspects(prospects);
+        window.initAffiliatePortal();
+        window.showAffiliateToast(`✅ Prospect "${name}" added to your outreach CRM!`);
+    };
+
+    window.sendDirectProspectMessage = function(prospectId) {
+        const prospects = getProspects();
+        const p = prospects.find(x => x.id === prospectId);
+        if (!p) return;
+
+        const partner = getActivePartner();
+        const origin = window.location.origin || 'https://inshatech.pages.dev';
+        const link = `${origin}/?ref=${partner.refCode}&subid=${encodeURIComponent(p.company.toLowerCase().replace(/\s+/g, '_'))}`;
+
+        const msg = `Hi ${p.name}, sharing the free 24-hr AI system teardown link for ${p.company}: ${link}`;
+        navigator.clipboard.writeText(msg);
+        window.showAffiliateToast(`✅ Direct pitch for ${p.name} copied to clipboard!`);
+    };
+
+    // Tab Switcher
     window.switchAffiliateTab = function(tabName) {
         document.querySelectorAll('.aff-tab-panel').forEach(p => p.style.display = 'none');
         document.querySelectorAll('.lab-tab').forEach(b => b.classList.remove('active'));
@@ -509,9 +1056,9 @@
         if (targetBtn) targetBtn.classList.add('active');
     };
 
-    // Link studio dynamic update
+    // Link Studio Dynamic Update
     window.updateStudioGeneratedLink = function() {
-        const partner = getPartnerData();
+        const partner = getActivePartner();
         const origin = window.location.origin || 'https://inshatech.pages.dev';
         const target = document.getElementById('link-studio-target')?.value || '/';
         const subid = document.getElementById('link-studio-subid')?.value.trim() || 'direct';
@@ -579,7 +1126,7 @@
     };
 
     window.requestPartnerWithdrawal = function() {
-        const partner = getPartnerData();
+        const partner = getActivePartner();
         if (partner.unpaid <= 0) {
             alert('⚠️ No unpaid commissions currently available to withdraw.');
             return;
@@ -608,7 +1155,9 @@
 
             partner.paidOut += partner.unpaid;
             partner.unpaid = 0;
-            savePartnerData(partner);
+            const registry = getPartnersRegistry();
+            registry[partner.id] = partner;
+            savePartnersRegistry(registry);
 
             window.initAffiliatePortal();
             window.showAffiliateToast(`✅ Payout of $${txs[0].amount} initiated to ${partner.payoutAccount}!`);
@@ -616,7 +1165,7 @@
     };
 
     window.openPartnerSettingsModal = function() {
-        const partner = getPartnerData();
+        const partner = getActivePartner();
         const name = prompt('👤 Enter Full / Agency Name:', partner.name);
         if (!name) return;
         const phone = prompt('📱 Enter WhatsApp / Phone Number:', partner.phone);
@@ -630,13 +1179,16 @@
         partner.payoutAccount = payoutAccount || partner.payoutAccount;
         partner.refCode = (refCode || partner.refCode).toLowerCase().replace(/[^a-z0-9_-]/g, '');
 
-        savePartnerData(partner);
+        const registry = getPartnersRegistry();
+        registry[partner.id] = partner;
+        savePartnersRegistry(registry);
+
         window.initAffiliatePortal();
         window.showAffiliateToast('✅ Partner profile and payment credentials updated successfully!');
     };
 
     window.toggleQrCodeModal = function() {
-        const partner = getPartnerData();
+        const partner = getActivePartner();
         const origin = window.location.origin || 'https://inshatech.pages.dev';
         const link = `${origin}/?ref=${partner.refCode}`;
         
