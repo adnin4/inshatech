@@ -309,7 +309,8 @@ const docs = [
     'KNOWN_LIMITATIONS.md',
     'gap_analysis.md',
     'openapi.yaml',
-    'FINAL_MASTER_ARCHITECTURE_VNEXT.md'
+    'FINAL_MASTER_ARCHITECTURE_VNEXT.md',
+    'IINSHA_FINAL_EVOLUTION_MASTER.md'
 ];
 
 docs.forEach(d => {

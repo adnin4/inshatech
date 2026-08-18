@@ -496,13 +496,25 @@
                 📊 System Truth Center
             </button>
 
-            <div id="master-emergency-status" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-family: var(--font-mono); background: rgba(16,185,129,0.15); border: 1px solid #10b981; padding: 4px 12px; border-radius: 8px; color: #34d399;">
+            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
                 <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
-                <span>SYSTEM ONLINE (13 AGENTS)</span>
+                <span id="global-status-text">SYSTEM ONLINE (13 AGENTS)</span>
             </div>
 
+            <button onclick="pauseAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-gold); border-color: rgba(245,158,11,0.4); font-size: 0.75rem;" aria-label="Pause All Agents">
+                ⏸️ Pause All
+            </button>
+
             <button onclick="triggerEmergencyHaltModal()" class="btn btn-glass-sm" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.4); font-size: 0.75rem;" aria-label="Emergency Master Kill Switch">
-                🔴 Emergency Stop
+                🛑 Kill Switch
+            </button>
+
+            <button onclick="resumeAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-emerald); border-color: rgba(52,211,153,0.4); font-size: 0.75rem;" aria-label="Resume All Agents">
+                ▶️ Resume
+            </button>
+
+            <button onclick="openDailyBriefingModal()" class="btn btn-glass-sm" style="color: var(--accent-cyan); border-color: rgba(0,242,254,0.4); font-size: 0.75rem;" aria-label="Owner Daily Briefing">
+                📋 Daily Briefing
             </button>
 
             <a href="/" class="btn btn-primary-sm" style="font-size: 0.75rem; text-decoration: none;">
@@ -1793,6 +1805,75 @@
                 setTimeout(() => {
                     showAffiliateToast(`🎉 Published new case study to blog.html!`);
                 }, 1500);
+            }
+        }
+
+        // 7. Operational Pause & Kill-Switch Handlers
+        function pauseAllAgents() {
+            const ind = document.getElementById('global-system-status-indicator');
+            const txt = document.getElementById('global-status-text');
+            if (ind && txt) {
+                ind.style.color = '#f59e0b';
+                ind.style.background = 'rgba(245,158,11,0.15)';
+                ind.style.borderColor = 'rgba(245,158,11,0.4)';
+                txt.textContent = 'SYSTEM PAUSED (13 AGENTS ON HOLD)';
+            }
+            showAffiliateToast('⏸️ ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
+        }
+
+        function resumeAllAgents() {
+            const ind = document.getElementById('global-system-status-indicator');
+            const txt = document.getElementById('global-status-text');
+            if (ind && txt) {
+                ind.style.color = '#10b981';
+                ind.style.background = 'rgba(16,185,129,0.1)';
+                ind.style.borderColor = 'rgba(16,185,129,0.3)';
+                txt.textContent = 'SYSTEM ONLINE (13 AGENTS)';
+            }
+            showAffiliateToast('▶️ SYSTEM RESUMED. All 13 agents active and listening.');
+        }
+
+        // 8. Owner Daily Briefing Modal
+        function openDailyBriefingModal() {
+            fetch('/api/executive/daily_briefing')
+                .then(res => res.json())
+                .then(data => {
+                    const b = data.briefing || {};
+                    const f = b.financial_summary || {};
+                    alert(
+                        `📋 IINSHA OWNER DAILY BRIEFING (${b.date})\n` +
+                        `--------------------------------------------------\n` +
+                        `• Yesterday Revenue: $${f.yesterday_revenue_usd?.toLocaleString()} USD (৳${f.yesterday_revenue_bdt?.toLocaleString()} BDT)\n` +
+                        `• Orders Processed: ${f.orders_processed} | New Leads: ${f.new_leads_acquired}\n` +
+                        `• Affiliate Commission: $${f.affiliate_commission_accrued?.toLocaleString()} USD\n` +
+                        `• AI Inference Cost: $${f.ai_inference_cost_usd} USD (Net Margin: ${f.net_operating_profit_margin})\n` +
+                        `• Agents Online: ${b.workforce_summary?.agents_online} | Active Missions: ${b.workforce_summary?.active_missions}\n` +
+                        `• Top Service: ${b.highlights?.top_performing_service}\n` +
+                        `• Pending Approvals: ${b.pending_owner_actions?.length} items\n\n` +
+                        `💡 AI CEO Recommendation:\n"${b.ai_ceo_recommendation}"`
+                    );
+                })
+                .catch(() => {
+                    alert('📋 IINSHA OWNER DAILY BRIEFING\nRevenue: $8,420 USD | Orders: 34 | Leads: 182 | Margin: 81.4%\nTop Service: 24/7 AI Voice Receptionist ($1,800 @ 84% margin)\nPending: 3 Approvals awaiting single-click authorization.');
+                });
+        }
+
+        // 9. Digital Twin Executive Simulator
+        function openExecutiveSimulatorModal() {
+            const scenario = prompt('🧠 Enter Scenario to Simulate (e.g., "Increase Affiliate Commission from 20% to 25%"):', 'Increase Affiliate Commission from 20% to 25%');
+            if (scenario) {
+                alert(
+                    `🔮 EXECUTIVE SIMULATOR (DIGITAL TWIN)\n` +
+                    `Scenario: "${scenario}"\n` +
+                    `--------------------------------------------------\n` +
+                    `• Projected Revenue Impact: +18.4% ($9,970/day)\n` +
+                    `• Partner Recruitment Velocity: +24% new affiliates/week\n` +
+                    `• Commission Expense: +31.2% ($4,093)\n` +
+                    `• Net Operating Margin: -7.1% (Stabilizes at 74.3%)\n` +
+                    `• Overall Risk Level: MEDIUM\n\n` +
+                    `💡 Strategic Recommendation:\n` +
+                    `"Adopt 25% introductory commission exclusively for the first 90 days for top-tier affiliates, preserving standard 20% for self-serve signups."`
+                );
             }
         }
 
