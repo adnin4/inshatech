@@ -393,6 +393,13 @@ assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'busin
 assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'enterprise', 'white_label.js')), 'functions/api/enterprise/white_label.js exists');
 assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_AIBOS_10_0_FINAL_MASTER_EXPANSION.md')), 'docs/IINSHA_AIBOS_10_0_FINAL_MASTER_EXPANSION.md exists');
 
+// 17. Check Complete Master Roadmap A to AM (181 Capabilities & North Star Operating Grid)
+console.log('\n--- 16. Complete Master Roadmap A to AM (North Star, Product Discovery & Public Developer API) ---');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'executive', 'north_star.js')), 'functions/api/executive/north_star.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'r_and_d', 'product_discovery.js')), 'functions/api/r_and_d/product_discovery.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'developer', 'public_api.js')), 'functions/api/developer/public_api.js exists');
+assert(fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_COMPLETE_MASTER_ROADMAP_A_TO_AM.md')), 'docs/IINSHA_COMPLETE_MASTER_ROADMAP_A_TO_AM.md exists');
+
 console.log('\n====================================================');
 console.log(`RESULTS: ${passCount} PASSED, ${failCount} FAILED`);
 console.log('====================================================\n');
