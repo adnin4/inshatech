@@ -1109,186 +1109,150 @@
                 return;
             }
 
-            // D. Greetings & Salutations ("hi", "hello", "assalamualaikum", "kemon achen", "hey", "salaam")
-            const isGreeting = /^(hi|hello|hey|salam|assalamu\s*alaikum|assalamualaikum|kemon\s*acho|kemon\s*achen|hlw|yo)\b/i.test(lower);
+            // D. How Are You / Pleasantries ("how are you", "kemon achen", "kemon acho", "valocen", "valo acho")
+            const isHowAreYou = /(how\s*are\s*you|kemon\s*acho|kemon\s*achen|valo\s*acho|bhalo\s*acho|valocen|bhalocen)/i.test(lower);
+            if (isHowAreYou) {
+                const bnHOW = `😊 <strong>আলহামদুলিল্লাহ, ভালো আছি!</strong><br><br>আপনার ব্যবসার কোন কাজটি স্বয়ংক্রিয় বা সহজ করতে সাহায্য করতে পারি বলুন।`;
+                const enHOW = `😊 <strong>I'm doing great, thank you!</strong><br><br>How can I assist you with your business or automation goals today?`;
+                this.addAssistantMessage(isBn ? bnHOW : enHOW, isBn ? "আলহামদুলিল্লাহ, ভালো আছি! কীভাবে সাহায্য করতে পারি?" : "I'm doing great! How can I assist you today?");
+                return;
+            }
+
+            // E. Greetings & Salutations ("hi", "hello", "hey", "salam", "assalamualaikum")
+            const isGreeting = /^(hi|hello|hey|salam|assalamu\s*alaikum|assalamualaikum|hlw|yo)\b/i.test(lower);
             if (isGreeting) {
-                const bnGreet = `
-                    <div>
-                        👋 <strong>আসসালামু আলাইকুম! IINSHA AI-BOS-এ আপনাকে স্বাগতম।</strong><br><br>
-                        আমি ফাউন্ডার আদনিন সাদাত মাহিনের অটোনোমাস এআই সেলস ও সলিউশন কো-পাইলট। আপনার ব্যবসার কোন কাজটি স্বয়ংক্রিয় করতে চান?<br><br>
-                        🔹 <strong>১. B2B লিড জেনারেশন</strong> (১০০% ভেরিফাইড ইমেইল ও ডিসিশন-মেকার)<br>
-                        🔹 <strong>২. ২৪/৭ হোয়াটসঅ্যাপ/মেসেঞ্জার সেলস বট</strong> (কাস্টমার হ্যান্ডলিং ও অর্ডার কনফার্ম)<br>
-                        🔹 <strong>৩. n8n সেলফ-হোস্টেড ক্লাস্টার</strong> (Zapier-এর মাসিক $৫০০ খরচ কমিয়ে $৫.৯৯)<br>
-                        🔹 <strong>৪. কাস্টম এআই আর্কিটেকচার বা সমস্যা সমাধান</strong><br><br>
-                        👉 <em>আপনার রিকোয়ারমেন্ট জানান, আমি এখনই পূর্ণাঙ্গ গাইডলাইন দিচ্ছি।</em>
-                    </div>
-                `;
-                const enGreet = `
-                    <div>
-                        👋 <strong>Hello! Welcome to IINSHA AI-BOS.</strong><br><br>
-                        I'm your Autonomous AI Sales & Architecture Copilot. How can I assist your business today?<br><br>
-                        1. 🎯 <strong>B2B Lead Generation Swarms</strong> (Extract verified decision-makers in <45s)<br>
-                        2. 💬 <strong>24/7 E-Commerce Sales Agents</strong> (WhatsApp/Messenger instant order closing)<br>
-                        3. ⚡ <strong>Self-Hosted n8n Clusters</strong> (Replace $500/mo Zapier for $5.99/mo on VPS)<br>
-                        4. 🛠️ <strong>Custom AI Engineering & Architecture</strong><br><br>
-                        👉 <em>Feel free to ask any specific question or describe your project!</em>
-                    </div>
-                `;
-                this.addAssistantMessage(isBn ? bnGreet : enGreet, isBn ? "আসসালামু আলাইকুম! কীভাবে সাহায্য করতে পারি?" : "Hello! How can I assist your business today?");
+                const bnGreet = `👋 <strong>আসসালামু আলাইকুম! কেমন আছেন?</strong><br><br>IINSHA AI-BOS-এ আপনাকে স্বাগতম। আপনার ব্যবসা বা ওয়েবসাইটের অটোমেশন, B2B লিড জেনারেশন বা AI চ্যাটবট তৈরিতে কীভাবে সাহায্য করতে পারি বলুন।`;
+                const enGreet = `👋 <strong>Hello! Welcome to IINSHA AI-BOS.</strong><br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
+                this.addAssistantMessage(isBn ? bnGreet : enGreet, isBn ? "আসসালামু আলাইকুম! কেমন আছেন?" : "Hello! How can I assist your business today?");
                 return;
             }
 
-            // E. Help Inquiries ("amar help lagbe", "i need help", "can you help")
-            if (lower.includes('help') || lower.includes('shahajjo') || lower.includes('sahajjo')) {
-                const bnHelp = `
-                    <div>
-                        🤝 <strong>হ্যাঁ ভাই, অবশ্যই! আপনার কী সাহায্য লাগবে বলুন?</strong><br><br>
-                        আমরা নিচের সেবাগুলো সরাসরি ইনস্ট্যান্ট ডেলিভারি ও সেটআপ দিয়ে থাকি:<br>
-                        • 🎯 <strong>B2B লিড জেনারেশন:</strong> যে কোনো দেশের স্পেসিফিক কোম্পানির সিইও/ডিসিশন মেকারদের ভেরিফাইড লিড।<br>
-                        • 🤖 <strong>ই-কমার্স বট:</strong> ফেসবুক পেজ ও হোয়াটসঅ্যাপে স্বয়ংক্রিয়ভাবে প্রোডাক্ট বিক্রি ও অর্ডার কনফার্ম।<br>
-                        • ⚡ <strong>n8n ক্লাস্টার:</strong> আনলিমিটেড অটোমেশন সেটআপ।<br>
-                        • 🛠️ <strong>কাস্টম প্রজেক্ট:</strong> আপনার ওয়েবসাইটের যে কোনো অটোমেশন ফিক্স।<br><br>
-                        👉 <em>আপনার ব্যবসার বর্তমান সমস্যা বা লক্ষ্যটি বিস্তারিত লিখুন, আমি এখনই সমাধান ব্লুপ্রিন্ট দিচ্ছি।</em>
-                    </div>
-                `;
-                const enHelp = `
-                    <div>
-                        🤝 <strong>Yes, absolutely! Tell me what you need help with.</strong><br><br>
-                        Here is what we can deliver immediately:<br>
-                        • 🎯 <strong>B2B Lead Swarms:</strong> Extract verified decision-makers for any niche with zero bounce rate.<br>
-                        • 💬 <strong>24/7 E-Commerce Bot:</strong> Auto-reply, answer catalog questions, and close orders in WhatsApp.<br>
-                        • ⚡ <strong>Self-Hosted n8n:</strong> Deploy enterprise workflow infrastructure on a $5.99/mo VPS.<br>
-                        • 🛠️ <strong>Custom AI Engineering:</strong> Bespoke RAG pipelines & scrapers.<br><br>
-                        👉 <em>Describe your project or current bottleneck and I will generate the solution!</em>
-                    </div>
-                `;
-                this.addAssistantMessage(isBn ? bnHelp : enHelp, isBn ? "আপনার কী সাহায্য লাগবে জানান।" : "Tell me what you need help with.");
+            // F. Help / Problem Fixing Requests ("can you help me?", "amar help lagbe", "tumi ki amar problem fix korte parba?", "help")
+            if (lower.includes('help') || lower.includes('shahajjo') || lower.includes('sahajjo') || lower.includes('problem fix') || lower.includes('fix korte')) {
+                const bnHelp = `🤝 <strong>হ্যাঁ, অবশ্যই! আপনার কী ধরণের সাহায্য প্রয়োজন বিস্তারিত বলুন।</strong><br><br>আমরা নিচের সেবাগুলো সরাসরি সেটআপ ও ডেলিভারি দিয়ে থাকি:<br>• 🎯 <strong>B2B লিড জেনারেশন:</strong> যে কোনো দেশের ভেরিফাইড ডিসিশন-মেকার লিড。<br>• 💬 <strong>হোয়াটসঅ্যাপ সেলস বট:</strong> ২৪/৭ প্রোডাক্ট বিক্রি ও অর্ডার কনফার্মেশন。<br>• ⚡ <strong>n8n ক্লাস্টার:</strong> Zapier-এর চেয়ে ৯০% কম খরচে আনলিমিটেড অটোমেশন。<br>• 🛠️ <strong>কাস্টম AI ইঞ্জিনিয়ারিং:</strong> যে কোনো বাগ ফিক্স ও সিস্টেম ইন্টিগ্রেশন。<br><br>👉 <em>আপনার বর্তমান সমস্যা বা প্রজেক্টের রিকোয়ারমেন্ট লিখুন, আমি এখনই সমাধান দিচ্ছি।</em>`;
+                const enHelp = `🤝 <strong>Yes, absolutely! Tell me what you need help with.</strong><br><br>Here is what we specialize in delivering:<br>• 🎯 <strong>B2B Lead Generation Swarms:</strong> Extract verified corporate decision-makers with 0% bounce rate.<br>• 💬 <strong>24/7 E-Commerce Sales Agents:</strong> WhatsApp/Messenger instant catalog & order closing.<br>• ⚡ <strong>Self-Hosted n8n Clusters:</strong> Unlimited workflows for $5.99/mo VPS (90% savings vs Zapier).<br>• 🛠️ <strong>Custom AI Engineering:</strong> Web scraping, vector RAG, and bug fixing.<br><br>👉 <em>Describe your project or current bottleneck and I will generate the solution!</em>`;
+                this.addAssistantMessage(isBn ? bnHelp : enHelp, isBn ? "হ্যাঁ অবশ্যই, কী ধরণের সাহায্য প্রয়োজন জানান।" : "Yes absolutely, tell me what you need help with.");
                 return;
             }
 
-            // F. Service Offerings & Inquiries ("ki ki service available?", "what services", "apnader service ki ki?")
-            if (lower.includes('service') || lower.includes('services') || lower.includes('offer') || lower.includes('seba') || lower.includes('list')) {
+            // G. Service Offerings & Inquiries ("ki ki service available?", "what services", "apnader service ki ki?")
+            if (lower.includes('service') || lower.includes('services') || lower.includes('offer') || lower.includes('seba') || lower.includes('list') || lower.includes('ki ki')) {
                 const bnServices = `
                     <div>
-                        💎 <strong>IINSHA AI-BOS এর প্রধান সার্ভিস ও সলিউশনসমূহ:</strong><br><br>
-                        1. 🎯 <strong>B2B SaaS 5-Agent Lead Gen Swarm ($850 / ৳১,০৪,১২৫):</strong> প্লে-রাইট রেসিডেনশিয়াল স্ক্র্যাপার দিয়ে ৫০-২০০ কর্মচারীর ভেরিফাইড লিড এক্সট্র্যাক্ট।<br><br>
-                        2. 💬 <strong>24/7 E-Commerce WhatsApp Sales Bot ($750 / ৳৯১,৮৭৫):</strong> ২০ মিনিটে শপের ক্যাটালগ এম্বেড করে স্বয়ংক্রিয় সেলস ও অর্ডার কনফার্মেশন।<br><br>
-                        3. 🎙️ <strong>AI Voice Receptionist ($1,800 / ৳২,২০,৫০০):</strong> Twilio + Gemini WebRTC দিয়ে সরাসরি ফোন কলে কাস্টমার হ্যান্ডলিং।<br><br>
-                        4. ⚡ <strong>Self-Hosted n8n Enterprise Cluster ($497 / ৳৬০,৮৮২):</strong> Hostinger VPS-এ আনলিমিটেড অটোমেশন (Zapier-এর ৯০% খরচ সাশ্রয়)।<br><br>
-                        5. 📑 <strong>Invoice & Document OCR Pipeline ($249 / ৳৩০,৫০২):</strong> Gemini Vision দিয়ে ইনভয়েস ও রসিদ স্বয়ংক্রিয়ভাবে এক্সেল/কুইকবুকসে শিট করা।
+                        💎 <strong>IINSHA AI-BOS এর প্রধান সেবা ও সমাধানসমূহ:</strong><br><br>
+                        🎯 <strong>১. B2B লিড জেনারেশন সোয়ার্ম ($850 / ৳১,০৪,১২৫):</strong> ১০০+ ভেরিফাইড ডিসিশন-মেকার লিড ডেলিভারি。<br>
+                        💬 <strong>২. ২৪/৭ হোয়াটসঅ্যাপ সেলস বট ($750 / ৳৯১,৮৭৫):</strong> স্বয়ংক্রিয় প্রোডাক্ট ক্যাটালগ ও অর্ডার কনফার্মেশন。<br>
+                        ⚡ <strong>৩. Self-Hosted n8n ক্লাস্টার ($497 / ৳৬০,৮৮২):</strong> আনলিমিটেড অটোমেশন ($৫.৯৯/মাস হোস্টিংয়ে)।<br>
+                        🎙️ <strong>৪. AI ভয়েস রিসেপশনিস্ট ($১,৮০০ / ৳২,২০,৫০০):</strong> সরাসরি ফোন কলে কাস্টমার হ্যান্ডলিং。<br>
+                        📑 <strong>৫. ইনভয়েস ও ডকুমেন্ট OCR ($২৪৯ / ৳৩০,৫০২):</strong> স্বয়ংক্রিয় রসিদ ও ইনভয়েস এক্সট্র্যাকশন。<br><br>
+                        👉 <em>আপনার ব্যবসার জন্য কোন সার্ভিসটি প্রয়োজন? বিস্তারিত জানাতে পারেন।</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 সকল প্রোডাক্ট স্টোরে দেখুন</button>
-                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('All Services Consultation', '$497')">📱 হোয়াটসঅ্যাপে পরামর্শ নিন</button>
+                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 স্টোরে দেখুন</button>
+                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Services Consultation', '$497')">📱 হোয়াটসঅ্যাপে আলোচনা</button>
                     </div>
                 `;
                 const enServices = `
                     <div>
-                        💎 <strong>IINSHA AI-BOS Core Services & Turnkey Solutions:</strong><br><br>
-                        1. 🎯 <strong>B2B SaaS 5-Agent Hunter Swarm ($850 / ৳104,125):</strong> Residential stealth scraper delivering verified executive leads.<br><br>
-                        2. 💬 <strong>24/7 E-Commerce WhatsApp Sales Bot ($750 / ৳91,875):</strong> 20-min store ingestion, vector catalog search & live order confirmation.<br><br>
-                        3. 🎙️ <strong>AI Voice Receptionist ($1,800 / ৳220,500):</strong> Inbound phone call handling with Twilio + Gemini Ultra-low latency.<br><br>
-                        4. ⚡ <strong>Self-Hosted n8n Enterprise Cluster ($497 / ৳60,882):</strong> Dockerized VPS setup with unlimited workflows (90% savings vs Zapier).<br><br>
-                        5. 📑 <strong>Autonomous Invoice OCR Pipeline ($249 / ৳30,502):</strong> Instant financial document ingestion to Google Sheets/QuickBooks.
+                        💎 <strong>IINSHA AI-BOS Core Turnkey Solutions:</strong><br><br>
+                        🎯 <strong>1. B2B SaaS Lead Hunter Swarm ($850 / ৳104,125):</strong> 100+ verified corporate leads.<br>
+                        💬 <strong>2. 24/7 WhatsApp Sales Agent ($750 / ৳91,875):</strong> Instant catalog ingestion & chat checkout.<br>
+                        ⚡ <strong>3. Self-Hosted n8n Enterprise Cluster ($497 / ৳60,882):</strong> Unlimited workflows on $5.99 VPS.<br>
+                        🎙️ <strong>4. AI Voice Receptionist ($1,800 / ৳220,500):</strong> Inbound phone booking via Twilio.<br>
+                        📑 <strong>5. Autonomous Invoice OCR ($249 / ৳30,502):</strong> Instant financial data ingestion.<br><br>
+                        👉 <em>Which service best fits your business goals?</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Store Catalog</button>
-                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('All Services Inquiry', '$497')">📱 WhatsApp Consultation</button>
+                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Store</button>
+                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Services Inquiry', '$497')">📱 WhatsApp Chat</button>
                     </div>
                 `;
                 this.addAssistantMessage(isBn ? bnServices : enServices, isBn ? "এখানে আমাদের সমস্ত সার্ভিসের তালিকা দেওয়া হলো।" : "Here is our full catalog of services and pricing.");
                 return;
             }
 
-            // G. Pricing & Cost Queries
+            // H. Pricing & Cost Queries
             if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing') || lower.includes('dam') || lower.includes('taka') || lower.includes('koto') || lower.includes('rate')) {
                 const priceHtml = `
                     <div>
-                        💰 <strong>IINSHA AI-BOS Transparent Pricing (USD & BDT @ ৳${USD_TO_BDT_RATE}):</strong><br><br>
-                        💎 <strong>1. Starter Automation Build:</strong> $497 USD (${this.formatBDT(497)})<br>
-                        <em>- 3 Core n8n Workflows + Lead Routing + Hostinger VPS Docker Setup + 14-Day SLA.</em><br><br>
-                        💎 <strong>2. Production Agent Swarm:</strong> $997 USD (${this.formatBDT(997)})<br>
-                        <em>- 5 Autonomous Agents + 24/7 WhatsApp AI Sales Qualifier + CRM Bi-directional Sync.</em><br><br>
-                        💎 <strong>3. Enterprise AI Partner OS:</strong> $1,997 USD (${this.formatBDT(1997)})<br>
-                        <em>- Full AI Operating System + Twilio Voice Receptionist + Custom pgvector RAG + Dedicated Engineer.</em>
+                        💰 <strong>IINSHA AI-BOS প্যাকেজ ও প্রাইসিং (USD & BDT @ ৳${USD_TO_BDT_RATE}):</strong><br><br>
+                        💎 <strong>১. Starter Automation Build:</strong> $497 USD (${this.formatBDT(497)})<br>
+                        <em>- ৩টি কোর n8n ওয়ার্কফ্লো + হোস্টিংগার ভিপিএস সেটআপ + ১৪ দিনের সাপোর্ট।</em><br><br>
+                        💎 <strong>২. Production Agent Swarm:</strong> $997 USD (${this.formatBDT(997)})<br>
+                        <em>- ৫টি অটোনোমাস এজেন্টস + ২৪/৭ হোয়াটসঅ্যাপ সেলস বট + CRM সিঙ্ক।</em><br><br>
+                        💎 <strong>৩. Enterprise AI Partner OS:</strong> $1,997 USD (${this.formatBDT(1997)})<br>
+                        <em>- ফুল AI অপারেটিং সিস্টেম + ভয়েস রিসেপশনিস্ট + কাস্টম pgvector RAG।</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerCheckout('Starter Automation Build Package', '$497')">🚀 Order Starter ($497)</button>
-                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 View All Store Assets</button>
-                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Pricing Inquiry', '$497')">📱 WhatsApp Quote</button>
+                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerCheckout('Starter Automation Build Package', '$497')">🚀 অর্ডার করুন ($497)</button>
+                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 স্টোরে দেখুন</button>
+                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Pricing Inquiry', '$497')">📱 হোয়াটসঅ্যাপ কোট</button>
                     </div>
                 `;
                 this.addAssistantMessage(priceHtml, "Here is our productized pricing in USD and Bangladeshi Taka.");
                 return;
             }
 
-            // H. n8n vs Zapier Cost Optimization
-            if (lower.includes('n8n') || lower.includes('zapier') || lower.includes('make.com') || lower.includes('vps') || lower.includes('docker') || lower.includes('save') || lower.includes('khoroch')) {
+            // I. n8n vs Zapier Cost Optimization
+            if (lower.includes('n8n') || lower.includes('zapier') || lower.includes('make.com') || lower.includes('vps') || lower.includes('docker') || lower.includes('khoroch')) {
                 const n8nHtml = `
                     <div>
-                        ⚡ <strong>Why Self-Hosted n8n Saves 90%+ Over Zapier & Make:</strong><br><br>
-                        • <strong>Zapier / Make Cost:</strong> $299 to $600/month for high-volume task runs (expensive per-task pricing).<br>
-                        • <strong>IINSHA Self-Hosted n8n:</strong> Deployed on Hostinger VPS at only <strong>$5.99/month</strong> for <strong>UNLIMITED executions</strong> with zero per-task fees.<br>
-                        • <strong>Data Privacy:</strong> Your customer data never leaves your private PostgreSQL Docker container.<br>
-                        • <strong>Our Deployment Package ($497):</strong> Complete installation, SSL, automated daily backups, and 3 custom workflows ready to run.
+                        ⚡ <strong>Self-Hosted n8n বনাম Zapier এর সাশ্রয়:</strong><br><br>
+                        • <strong>Zapier / Make এর খরচ:</strong> প্রতি মাসে $২৯৯ থেকে $৬০০+ (প্রতি টাস্কে আলাদা খরচ)।<br>
+                        • <strong>IINSHA Self-Hosted n8n:</strong> Hostinger VPS-এ মাত্র <strong>$৫.৯৯/মাস</strong> খরচে <strong>আনলিমিটেড টাস্ক</strong> চালানো যায়。<br>
+                        • <strong>ডেটা প্রাইভেসি:</strong> আপনার কাস্টমার ডেটা সম্পূর্ণ আপনার প্রাইভেট সার্ভারেই সংরক্ষিত থাকে।<br>
+                        • <strong>আমাদের সেটআপ ($497):</strong> সম্পূর্ণ ইনস্টলেশন, SSL, অটো-ব্যাকআপ এবং ৩টি কাস্টম ওয়ার্কফ্লো রেডি করে ডেলিভারি।
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerCheckout('Self-Hosted n8n Enterprise Cluster Deployment', '$497')">🚀 Deploy n8n Cluster ($497)</button>
-                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('n8n Cluster Deployment Consultation', '$497')">📱 Talk with DevOps Engineer</button>
+                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerCheckout('Self-Hosted n8n Enterprise Cluster Deployment', '$497')">🚀 ডিপ্লয় n8n ($497)</button>
+                        <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('n8n Cluster Consultation', '$497')">📱 ইঞ্জিনিয়ারের সাথে কথা বলুন</button>
                     </div>
                 `;
                 this.addAssistantMessage(n8nHtml, "Self-hosted n8n reduces automation costs by over 90% compared to Zapier.");
                 return;
             }
 
-            // I. Founder & Agency Authority Queries ("who made this?", "adnin", "company", "location")
+            // J. Founder & Agency Authority Queries ("who made this?", "adnin", "company", "location")
             if (lower.includes('adnin') || lower.includes('founder') || lower.includes('who are you') || lower.includes('location') || lower.includes('address') || lower.includes('tumi k')) {
                 const founderHtml = `
                     <div>
-                        👤 <strong>About IINSHA AI-BOS & Founder:</strong><br><br>
-                        • <strong>Lead AI Architect & Founder:</strong> Adnin Sadat Mahin.<br>
-                        • <strong>Specialization:</strong> Autonomous AI Swarm Orchestration, Self-Hosted n8n Enterprise Clusters, and Playwright Stealth Scraping.<br>
-                        • <strong>Headquarters:</strong> Mirpur DOHS, Dhaka, Bangladesh (Serving global clients across US, UK, EU, UAE & BD).<br>
-                        • <strong>Direct Contact:</strong> WhatsApp: <code>+880 1629 286887</code> | Email: <code>adnin4tech@gmail.com</code>
+                        👤 <strong>IINSHA AI-BOS ও ফাউন্ডার পরিচিতি:</strong><br><br>
+                        • <strong>লিড এআই আর্কিটেক্ট ও ফাউন্ডার:</strong> আদনিন সাদাত মাহিন (Adnin Sadat Mahin)<br>
+                        • <strong>স্পেশালাইজেশন:</strong> অটোনোমাস AI সোয়ার্ম, n8n এন্টারপ্রাইজ ক্লাস্টার, এবং Playwright স্টিলথ স্ক্র্যাপিং。<br>
+                        • <strong>হেডকোয়ার্টার:</strong> মিরপুর ডিওএইচএস, ঢাকা, বাংলাদেশ (গ্লোবাল ক্লায়েন্ট: US, UK, EU, UAE, BD)।<br>
+                        • <strong>সরাসরি যোগাযোগ:</strong> হোয়াটসঅ্যাপ: <code>+880 1629 286887</code> | ইমেইল: <code>adnin4tech@gmail.com</code>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Direct Discussion with Adnin', 'Executive')">📱 Direct WhatsApp (+8801629286887)</button>
+                        <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('Direct Discussion with Adnin', 'Executive')">📱 সরাসরি হোয়াটসঅ্যাপে চ্যাট করুন</button>
                     </div>
                 `;
                 this.addAssistantMessage(founderHtml, "IINSHA AI-BOS is founded by Lead AI Architect Adnin Sadat Mahin.");
                 return;
             }
 
-            // J. Dynamic Tailored Response for Uncategorized Inquiries
-            const sanitizedQuery = query.replace(/</g, '&lt;');
+            // K. Dynamic Tailored Response for Uncategorized Inquiries (Clean, Polite & Direct)
             const dynamicBn = `
                 <div>
-                    💡 <strong>আপনার প্রশ্নটি বুঝতে পেরেছি:</strong> <em>"${sanitizedQuery}"</em><br><br>
-                    আপনার এই রিকোয়ারমেন্টটি আমাদের অটোনোমাস ইঞ্জিন দিয়ে কাস্টমাইজড ভাবে বাস্তবায়ন করা সম্ভব। আমাদের সিস্টেম স্বয়ংক্রিয়ভাবে ডাটা প্রসেস ও এক্সিকিউট করতে সক্ষম।<br><br>
-                    👉 <strong>আপনার জন্য উপযুক্ত পরবর্তী ধাপ:</strong><br>
-                    • আপনি যদি সরাসরি কোনো অটোমেশন প্রোডাক্ট বা বট কিনতে চান, স্টোর ক্যাটালগ দেখতে পারেন。<br>
-                    • অথবা আপনার প্রজেক্টের বাজেট ও সময়সীমা জানালে আমি এখনই কাস্টম কোটেশন তৈরি করে দিচ্ছি।
+                    💡 আপনার বিষয়টি বুঝতে পেরেছি। এটি আমাদের অটোমেশন ও AI সিস্টেম দিয়ে কাস্টমাইজড ভাবে বাস্তবায়ন করা সম্ভব。<br><br>
+                    👉 <em>আপনার বর্তমান সেটআপ বা নির্দিষ্ট রিকোয়ারমেন্ট সম্পর্কে আর একটু বিস্তারিত জানাবেন কি?</em>
                 </div>
                 <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                    <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 প্রোডাক্ট ক্যাটালগ দেখুন</button>
-                    <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('${query.replace(/'/g, "\\'")}', 'Custom Inquiry')">📱 হোয়াটসঅ্যাপে বিস্তারিত জানান</button>
+                    <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 স্টোর দেখুন</button>
+                    <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('${query.replace(/'/g, "\\'")}', 'Custom Inquiry')">📱 হোয়াটসঅ্যাপে জানান</button>
                 </div>
             `;
             const dynamicEn = `
                 <div>
-                    💡 <strong>Understood your request:</strong> <em>"${sanitizedQuery}"</em><br><br>
-                    Our autonomous engineering architecture is designed to handle this workflow seamlessly with real-time data sync and custom integration logic.<br><br>
-                    👉 <strong>Recommended Next Steps:</strong><br>
-                    • Browse our turnkey catalog for instant 1-click deployment.<br>
-                    • Or tell me your timeline and budget to generate a custom Statement of Work (SoW).
+                    💡 Understood! We can definitely design and automate this workflow for your business.<br><br>
+                    👉 <em>Could you share a few more details about your current setup or requirements?</em>
                 </div>
                 <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                    <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Solutions</button>
-                    <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('${query.replace(/'/g, "\\'")}', 'Custom Inquiry')">📱 WhatsApp Consultation →</button>
+                    <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Store</button>
+                    <button class="copilot-btn-outline-sm" onclick="window.UniversalAiCopilotInstance.triggerWhatsAppConsult('${query.replace(/'/g, "\\'")}', 'Custom Inquiry')">📱 WhatsApp Chat</button>
                 </div>
             `;
 
-            this.addAssistantMessage(isBn ? dynamicBn : dynamicEn, isBn ? "আপনার রিকোয়ারমেন্ট অনুযায়ী বিস্তারিত আলোচনা করতে পারেন।" : "Understood your inquiry. Let me know how you would like to proceed.");
+            this.addAssistantMessage(isBn ? dynamicBn : dynamicEn, isBn ? "আপনার রিকোয়ারমেন্টটি বিস্তারিত জানান।" : "Could you share a few more details about your requirements?");
         }
 
         triggerCheckout(packageName, priceStr) {

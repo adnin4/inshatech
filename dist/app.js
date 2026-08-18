@@ -302,7 +302,28 @@ function getGeminiNeuralResponse(query) {
     const cleanQ = query.toLowerCase().trim();
     const isBn = isBengaliQuery(cleanQ);
 
-    // Scan RAG Knowledge Base for semantic intent match
+    // 1. How Are You / Pleasantries
+    if (/(how\s*are\s*you|kemon\s*acho|kemon\s*achen|valo\s*acho|bhalo\s*acho|valocen|bhalocen)/i.test(cleanQ)) {
+        return isBn 
+            ? `😊 **আলহামদুলিল্লাহ, ভালো আছি!**<br><br>আপনার ব্যবসার কোন কাজটি স্বয়ংক্রিয় বা সহজ করতে সাহায্য করতে পারি বলুন।`
+            : `😊 **I'm doing great, thank you!**<br><br>How can I assist you with your business or automation needs today?`;
+    }
+
+    // 2. Greetings & Salutations
+    if (/^(hi|hello|hey|salam|assalamu\s*alaikum|assalamualaikum|hlw|yo)\b/i.test(cleanQ)) {
+        return isBn
+            ? `👋 **আসসালামু আলাইকুম! কেমন আছেন?**<br><br>IINSHA AI-BOS-এ আপনাকে স্বাগতম। আপনার ব্যবসা বা ওয়েবসাইটের অটোমেশন, B2B লিড জেনারেশন বা AI চ্যাটবট তৈরিতে কীভাবে সাহায্য করতে পারি বলুন।`
+            : `👋 **Hello! Welcome to IINSHA AI-BOS.**<br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
+    }
+
+    // 3. Help Inquiries & Problem Fixing
+    if (cleanQ.includes('help') || cleanQ.includes('shahajjo') || cleanQ.includes('sahajjo') || cleanQ.includes('problem fix') || cleanQ.includes('fix korte')) {
+        return isBn
+            ? `🤝 **হ্যাঁ, অবশ্যই! আপনার কী ধরণের সাহায্য প্রয়োজন বিস্তারিত বলুন।**<br><br>আমরা B2B লিড জেনারেশন, ২৪/৭ হোয়াটসঅ্যাপ সেলস বট, n8n ওয়ার্কফ্লো অটোমেশন এবং কাস্টম AI ইঞ্জিনিয়ারিং সেবা দিয়ে থাকি। আপনার সমস্যা বা প্রজেক্টের রিকোয়ারমেন্ট লিখুন, আমি এখনই সমাধান দিচ্ছি।`
+            : `🤝 **Yes, absolutely! Tell me what you need help with.**<br><br>We specialize in B2B lead generation swarms, 24/7 WhatsApp/Messenger sales bots, self-hosted n8n workflows, and custom AI engineering. Describe your problem and I will help you solve it!`;
+    }
+
+    // 4. Scan RAG Knowledge Base for semantic intent match
     for (const item of IINSHA_KNOWLEDGE_BASE) {
         for (const intent of item.intents) {
             if (cleanQ.includes(intent)) {
@@ -311,26 +332,12 @@ function getGeminiNeuralResponse(query) {
         }
     }
 
-    // Contextual intelligent conversational fallback
+    // 5. Contextual intelligent concise conversational fallback
     if (isBn) {
-        return `🤖 **ধন্যবাদ! আপনার প্রশ্নটি পেয়েছি:** <em>"${sanitize(query)}"</em><br><br>
-আমি **IINSHA AI Gemini 3.0 Pro Cognitive Agent**। আমি আপনাকে যেকোনো বিষয়ে সহায়তা করতে পারি:<br>
-1. 💎 **প্রাইসিং ও প্যাকেজসমূহ** ($497 Starter, $997 Full Suite, $1,997 Partner OS)<br>
-2. ⚡ **n8n Self-Hosted vs Zapier** ($5.99 VPS-এ আনলিমিটেড অটোমেশন)<br>
-3. 🦀 **OpenClaw Stealth Lead Scraper** (99.8% Cloudflare bypass)<br>
-4. 🎥 **ফ্রি ২৪-ঘণ্টা ভিডিও টিয়ারডাউন ও ব্লুপ্রিন্ট**<br>
-5. 👨‍💻 **ফাউন্ডার আদনিন সাদাত মাহিনের সাথে সরাসরি হোয়াটসঅ্যাপ চ্যাট**<br><br>
-👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 হোয়াটসঅ্যাপে কথা বলুন (+8801629286887)</a>`;
+        return `💡 আপনার বিষয়টি বুঝতে পেরেছি। এটি আমাদের অটোমেশন ও AI সিস্টেম দিয়ে কাস্টমাইজড ভাবে বাস্তবায়ন করা সম্ভব।<br><br>👉 <em>আপনার বর্তমান সেটআপ বা নির্দিষ্ট রিকোয়ারমেন্ট সম্পর্কে আর একটু বিস্তারিত জানাবেন কি?</em><br><br>👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 হোয়াটসঅ্যাপে জানান (+8801629286887)</a>`;
     }
 
-    return `🤖 **Thank you for your question!** <em>"${sanitize(query)}"</em><br><br>
-I am the **IINSHA AI Gemini 3.0 Pro Cognitive Agent**. Here is how I can assist you:<br>
-1. 💎 **Productized Packages:** Starter ($497), Production Build ($997), Enterprise OS ($1,997)<br>
-2. ⚡ **Self-Hosted n8n Workflows:** Zero per-task fees on Hostinger VPS Docker (20% OFF code: <strong>IINSHA20</strong>)<br>
-3. 🦀 **OpenClaw Stealth Web Scrapers:** Playwright residential proxy lead extraction<br>
-4. 🛡️ **4-Level Human-in-the-Loop (HITL) Safety Governance**<br>
-5. 👨‍💻 **Direct Consultation with Lead Engineer Adnin Sadat Mahin**<br><br>
-👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I have a question regarding: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 Direct WhatsApp Consultation →</a>`;
+    return `💡 Understood! We can definitely design and automate this workflow for your business.<br><br>👉 <em>Could you share a few more details about your current setup or requirements?</em><br><br>👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 WhatsApp Chat (+8801629286887)</a>`;
 }
 
 function initChatbotWidget() {
