@@ -44,12 +44,19 @@ jobs:
       - name: Run 45-Pillar Final Closure Certification
         run: node scratch/final_closure_certification.js
 
-      - name: Run Automated E2E Edge Runtime & Security Verification (12 Checks)
+      - name: Run Automated E2E Edge Runtime & Security Verification (18 Checks)
         run: node scratch/e2e_runtime_verification.js
+
+      - name: Verify Build Info & Deployment Parity Artifacts
+        run: |
+          echo ">>> Verifying build-info.json and version.json..."
+          test -f build-info.json
+          test -f version.json
+          node -e "const v = require('./build-info.json'); console.log('Live build SHA:', v.git_sha);"
 
       - name: Verify Database Migrations & Edge Runtime Assets
         run: |
-          echo ">>> Verifying 15 SQL database migrations..."
+          echo ">>> Verifying SQL database migrations..."
           count=$(ls -1 supabase/migrations/*.sql | wc -l)
           echo "Found $count SQL migrations."
           test $count -ge 14
