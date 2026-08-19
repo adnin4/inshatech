@@ -1,0 +1,62 @@
+{
+  "academy_tiers": [
+    {
+      "tier": "Beginner",
+      "badge": "🥉 Bronze Partner",
+      "min_sales": 0,
+      "commission_rate": "15% Upfront + 10% Recurring",
+      "modules": [
+        "Affiliate Fundamentals & 60-Day Cookie Tracking",
+        "Understanding the IINSHA 5-Pillar Solutions",
+        "Setting up your custom referral slug"
+      ]
+    },
+    {
+      "tier": "Intermediate",
+      "badge": "🥈 Silver Partner",
+      "min_sales": 5,
+      "commission_rate": "20% Upfront + 15% Recurring",
+      "modules": [
+        "B2B LinkedIn Cold Outreach & Email Swipes",
+        "Targeting E-Commerce Founders for WhatsApp Automation",
+        "Leveraging the 1-Click Marketing Asset Center"
+      ]
+    },
+    {
+      "tier": "Advanced",
+      "badge": "🥇 Gold Partner",
+      "min_sales": 20,
+      "commission_rate": "25% Upfront + 20% Recurring",
+      "modules": [
+        "Closing High-Ticket Enterprise Retainers ($1,800+)",
+        "Co-marketing & Webinars with IINSHA Founders",
+        "White-label agency reselling strategies"
+      ]
+    },
+    {
+      "tier": "Elite Partner",
+      "badge": "👑 VIP Platinum Partner",
+      "min_sales": 50,
+      "commission_rate": "30% Upfront + 25% Lifetime Recurring",
+      "modules": [
+        "Dedicated VIP Account Manager & Custom Contract Terms",
+        "Direct Slack & WhatsApp War Room Access",
+        "Quarterly Revenue Sharing Pools"
+      ]
+    }
+  ],
+  "active_challenges": [
+    {
+      "id": "challenge-30-day-surge",
+      "title": "⚡ 30-Day Growth Sprint",
+      "requirement": "Generate 10 qualified leads & 3 verified closed sales within 30 days",
+      "reward": "$250 USD Cash Bonus + Instant Tier Upgrade to Silver"
+    },
+    {
+      "id": "challenge-first-enterprise",
+      "title": "🎙️ High-Ticket Voice AI Closer",
+      "requirement": "Refer 1 client for AI Voice Receptionist ($1,800 package)",
+      "reward": "$450 USD Instant Commission + Custom Branded Agency Landing Page"
+    }
+  ]
+}
