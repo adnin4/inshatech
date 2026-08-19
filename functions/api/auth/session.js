@@ -38,15 +38,15 @@ async function signJwtPayload(payload, secretKey) {
     const encoder = new TextEncoder();
     const key = await crypto.subtle.importKey(
         'raw',
-        encoder.encode(secretKey || 'ibos_production_signing_key_default_2026'),
+        encoder.encode(secretKey || 'iinsha_enterprise_master_jwt_secret_2026'),
         { name: 'HMAC', hash: 'SHA-256' },
         false,
         ['sign']
     );
     const bodyStr = JSON.stringify(payload);
-    const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(bodyStr));
-    const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
     const payloadB64 = btoa(bodyStr).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+    const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(payloadB64));
+    const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
     return `${payloadB64}.${sigB64}`;
 }
 

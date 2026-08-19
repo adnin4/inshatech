@@ -44,6 +44,9 @@ jobs:
       - name: Run 45-Pillar Final Closure Certification
         run: node scratch/final_closure_certification.js
 
+      - name: Run Automated E2E Edge Runtime & Security Verification (12 Checks)
+        run: node scratch/e2e_runtime_verification.js
+
       - name: Verify Database Migrations & Edge Runtime Assets
         run: |
           echo ">>> Verifying 15 SQL database migrations..."
