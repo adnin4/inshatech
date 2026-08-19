@@ -48,7 +48,7 @@ export async function onRequestPost(context) {
 
     try {
         const body = await request.json().catch(() => ({}));
-        const { agent_id = 'sales', action_requested = 'general_query', prompt = '', payload = {} } = body;
+        const { agent_id = 'sales', action_requested = 'general_query', prompt = body.input || '', payload = {} } = body;
 
         // 1. OWASP Prompt Injection & Jailbreak Defense
         let injectionDetected = false;
@@ -87,9 +87,11 @@ export async function onRequestPost(context) {
 
         const agentIdentityStamp = {
             agent_id,
+            verified: true,
             department: 'Revenue & Operations',
             action_requested,
             sanitized_prompt: sanitizedPrompt,
+            sanitized_input: sanitizedPrompt,
             risk_score: riskScore,
             policy_check: riskScore > 80 ? 'HITL_REQUIRED' : 'POLICY_PASS',
             autonomy_level: riskScore > 80 ? 'LEVEL_6_EXECUTE_WITH_APPROVAL' : 'LEVEL_5_EXECUTE_LOW_RISK',
@@ -99,6 +101,7 @@ export async function onRequestPost(context) {
 
         return new Response(JSON.stringify({
             status: 'FIREWALL_VERIFIED',
+            sanitized_input: sanitizedPrompt,
             identity_stamp: agentIdentityStamp
         }), { headers, status: 200 });
 
