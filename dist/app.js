@@ -1035,7 +1035,7 @@ function openProtectedAdminPanel() {
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span style="background:rgba(217,119,6,0.2); color:var(--accent-gold); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(217,119,6,0.3);">Super Admin Mode</span>
-                        <button onclick="document.getElementById('admin-control-modal').style.display='none'" class="btn btn-glass-sm" style="font-weight:700;">✕ Close</button>
+                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">✕ Close</button>
                     </div>
                 </div>
                 <div id="index-admin-cms-root"></div>
@@ -1484,7 +1484,7 @@ function openBuildAISystemModal() {
 
     modal.innerHTML = `
         <div style="background:#030712; border:1px solid var(--accent-gold); border-radius:16px; width:95%; max-width:850px; padding:30px; color:#fff; box-shadow:0 30px 80px rgba(0,0,0,0.9); position:relative;">
-            <button onclick="document.getElementById('build-ai-system-modal').style.display='none'" style="position:absolute; top:16px; right:20px; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
+            <button onclick="(function(){ const _el = document.getElementById('build-ai-system-modal'); if (_el) _el.style.display = 'none'" style="position:absolute; })(); top:16px; right:20px; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
                 <span style="font-size:1.8rem;">🏆</span>
                 <div>
@@ -1524,8 +1524,8 @@ function openBuildAISystemModal() {
             </div>
 
             <div style="margin-top:20px; display:flex; gap:12px; justify-content:flex-end;">
-                <button onclick="document.getElementById('build-ai-system-modal').style.display='none'" class="btn btn-glass-sm">Close</button>
-                <button onclick="deployConfiguredAISystem()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">🚀 Order Configured AI System & Book Call</button>
+                <button onclick="(function(){ const _e = document.getElementById('build-ai-system-modal'); if (_e) _e.style.display = 'none'" class="btn btn-glass-sm">Close</button>
+                <button onclick="deployConfiguredAISystem()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); })() color:#000; font-weight:800;">🚀 Order Configured AI System & Book Call</button>
             </div>
         </div>
     `;
@@ -5399,9 +5399,9 @@ function runPromptSanitizerTest() {
 
 function runIinshaAuditCalculation(e) {
     e.preventDefault();
-    const company = document.getElementById('audit-company').value;
-    const industry = document.getElementById('audit-industry').value;
-    const bottleneck = document.getElementById('audit-bottleneck').value;
+    const company = ((document.getElementById('audit-company') ? document.getElementById('audit-company')?.value || '') : "");
+    const industry = ((document.getElementById('audit-industry') ? document.getElementById('audit-industry')?.value || '') : "");
+    const bottleneck = ((document.getElementById('audit-bottleneck') ? document.getElementById('audit-bottleneck')?.value || '') : "");
 
     const resDiv = document.getElementById('iinsha-audit-results');
     if (!resDiv) return;
@@ -6612,7 +6612,7 @@ function openOutcomeDetailModal(outcomeIndex) {
     document.getElementById('oim-badge').textContent = data.badge;
     document.getElementById('oim-title').textContent = data.title;
     document.getElementById('oim-subtitle').textContent = data.subtitle;
-    document.getElementById('oim-content-box').innerHTML = data.deliverables;
+    (function(){ const _el = document.getElementById('oim-content-box'); if (_el) _el.innerHTML = data.deliverables; })();
     
     const waLink = document.getElementById('oim-wa-link');
     if (waLink) {
@@ -6636,7 +6636,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                         <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:var(--accent-emerald);">🚀 SECURE ONBOARDING INTAKE</span>
                         <h3 id="checkout-pkg-title" style="color:#fff; font-size:1.4rem; margin-top:6px;">Package Checkout</h3>
                     </div>
-                    <button onclick="document.getElementById('iinsha-checkout-modal').style.display='none'" style="background:transparent; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+                    <button onclick="(function(){ const _el = document.getElementById('iinsha-checkout-modal'); if (_el) _el.style.display = 'none'" style="background:transparent; })(); border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
                 </div>
                 
                 <div style="background:rgba(0,0,0,0.5); padding:16px; border-radius:10px; border:1px solid var(--border-card); margin-bottom:20px;">
@@ -6688,14 +6688,14 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 
 function handleCheckoutFormSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('chk-name').value;
-    const email = document.getElementById('chk-email').value;
-    const method = document.getElementById('chk-method').value;
+    const name = ((document.getElementById('chk-name') ? document.getElementById('chk-name')?.value || '') : "");
+    const email = ((document.getElementById('chk-email') ? document.getElementById('chk-email')?.value || '') : "");
+    const method = ((document.getElementById('chk-method') ? document.getElementById('chk-method')?.value || '') : "");
     const pkg = document.getElementById('checkout-pkg-title').textContent;
     
     alert('Thank you ' + name + '! Your onboarding order for [' + pkg + '] has been recorded. Lead Automation Engineer Adnin Sadat Mahin will email you at ' + email + ' within 2 hours with your VPS deployment intake link.');
     
-    document.getElementById('iinsha-checkout-modal').style.display = 'none';
+    (function(){ const _el = document.getElementById('iinsha-checkout-modal'); if (_el) _el.style.display = 'none'; })();
 }
 
 window.openOutcomeDetailModal = openOutcomeDetailModal;
@@ -7022,8 +7022,8 @@ window.openAiSolutionFinderModal = function() {
 };
 
 window.calculateAiSolutionRecommendation = function() {
-    const industry = document.getElementById('finder-industry-select').value;
-    const bottleneck = document.getElementById('finder-bottleneck-select').value;
+    const industry = ((document.getElementById('finder-industry-select') ? document.getElementById('finder-industry-select')?.value || '') : "");
+    const bottleneck = ((document.getElementById('finder-bottleneck-select') ? document.getElementById('finder-bottleneck-select')?.value || '') : "");
     const box = document.getElementById('finder-result-box');
     if (!box) return;
 
@@ -7289,7 +7289,7 @@ window.executeIinshaControlAI = function() {
                     <button onclick="approveAndPublishAiService('${title.replace(/'/g, "\'")}', 1800, 399)" class="btn btn-primary" style="flex:1; padding:10px; font-weight:bold; cursor:pointer;">
                         🚀 1-Click Approve & Publish to Live Site
                     </button>
-                    <button onclick="document.getElementById('iinsha-control-ai-result').style.display='none'" class="btn btn-glass" style="padding:10px 16px; cursor:pointer;">
+                    <button onclick="(function(){ const _el = document.getElementById('iinsha-control-ai-result'); if (_el) _el.style.display = 'none'" class="btn btn-glass" style="padding:10px 16px; })(); cursor:pointer;">
                         Discard
                     </button>
                 </div>
@@ -8064,9 +8064,9 @@ window.openPartnerWithdrawalModal = function() {
 
 window.submitPartnerWithdrawal = function(e) {
     e.preventDefault();
-    const amount = parseFloat(document.getElementById('withdraw-amount-input').value);
-    const method = document.getElementById('withdraw-method-select').value;
-    const account = document.getElementById('withdraw-account-input').value;
+    const amount = parseFloat(((document.getElementById('withdraw-amount-input') ? document.getElementById('withdraw-amount-input')?.value || '') : ""));
+    const method = ((document.getElementById('withdraw-method-select') ? document.getElementById('withdraw-method-select')?.value || '') : "");
+    const account = ((document.getElementById('withdraw-account-input') ? document.getElementById('withdraw-account-input')?.value || '') : "");
 
     let partner = window.getIinshaPartnerData();
     partner.metrics.unpaidCommission = Math.max(0, partner.metrics.unpaidCommission - amount);
@@ -8157,10 +8157,10 @@ window.openPartnerAuthModal = function() {
 
 window.submitPartnerAuth = function(e) {
     e.preventDefault();
-    const name = document.getElementById('partner-reg-name').value;
-    const email = document.getElementById('partner-reg-email').value;
-    const slug = document.getElementById('partner-reg-slug').value.trim().replace(/[^a-zA-Z0-9-_]/g, '') || 'partner';
-    const payout = document.getElementById('partner-reg-payout').value;
+    const name = ((document.getElementById('partner-reg-name') ? document.getElementById('partner-reg-name')?.value || '') : "");
+    const email = ((document.getElementById('partner-reg-email') ? document.getElementById('partner-reg-email')?.value || '') : "");
+    const slug = ((document.getElementById('partner-reg-slug') ? document.getElementById('partner-reg-slug')?.value || '') : "").trim().replace(/[^a-zA-Z0-9-_]/g, '') || 'partner';
+    const payout = ((document.getElementById('partner-reg-payout') ? document.getElementById('partner-reg-payout')?.value || '') : "");
 
     const newPartner = {
         id: `AFF-${Math.floor(1000 + Math.random()*9000)}`,
@@ -8683,3 +8683,156 @@ window.submitIinshaOrder = submitIinshaOrder;
 
 
 // ==============================================================================
+
+
+/* ==============================================================================
+   UNIVERSAL UI BUTTON & INTERACTIVE EVENT BINDER (ZERO DEAD BUTTONS)
+   ============================================================================== */
+
+function initUniversalButtonBindings() {
+    // 1. Bind all .open-intake-btn (Service card CTA buttons across index.html)
+    document.querySelectorAll('.open-intake-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.premium-card') || btn.closest('.service-card') || btn.parentElement;
+                const titleEl = card ? (card.querySelector('h3') || card.querySelector('h4') || card.querySelector('.card-title')) : null;
+                const title = titleEl ? titleEl.textContent.trim() : 'AI Architecture Consultation';
+                
+                // Open checkout/intake modal
+                if (typeof openCheckoutModal === 'function') {
+                    openCheckoutModal(title, 750, 199);
+                } else {
+                    const intakeSection = document.getElementById('ai-intake') || document.getElementById('pricing') || document.querySelector('.services-grid');
+                    if (intakeSection) intakeSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    });
+
+    // 2. Bind all .open-pkg-modal-btn & .package-order-btn
+    document.querySelectorAll('.open-pkg-modal-btn, .package-order-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pkg = btn.dataset.package || btn.getAttribute('data-package') || 'AI Automation Suite';
+                const price = parseInt(btn.dataset.price || '850', 10);
+                if (typeof openCheckoutModal === 'function') {
+                    openCheckoutModal(pkg, price, Math.round(price * 0.25));
+                }
+            });
+        }
+    });
+
+    // 3. Bind .blueprint-filter-btn & .service-tab-btn
+    document.querySelectorAll('.blueprint-filter-btn, .service-tab-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parent = btn.parentElement;
+                if (parent) {
+                    parent.querySelectorAll('.blueprint-filter-btn, .service-tab-btn').forEach(b => b.classList.remove('active'));
+                }
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter || btn.getAttribute('data-category') || 'all';
+                document.querySelectorAll('.blueprint-card, .service-card, .premium-card').forEach(card => {
+                    const cat = card.dataset.category || card.getAttribute('data-category') || '';
+                    if (filter === 'all' || cat.toLowerCase().includes(filter.toLowerCase()) || filter.toLowerCase().includes(cat.toLowerCase())) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+
+    // 4. Bind .sticky-cta-btn (Mobile Sticky Bottom Bar)
+    document.querySelectorAll('.sticky-cta-btn, #sticky-mobile-cta-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (typeof openCheckoutModal === 'function') {
+                    openCheckoutModal('Free Architecture Blueprint', 0, 0);
+                } else {
+                    window.open('https://wa.me/8801629286887?text=Hi%20IINSHA%20AI,%20I%20want%20the%20Free%20Architecture%20Blueprint', '_blank');
+                }
+            });
+        }
+    });
+
+    // 5. Bind .chatbot-toggle, .chat-trigger-btn, .chatbot-quick-btn
+    document.querySelectorAll('.chatbot-toggle, .chat-trigger-btn, .chatbot-quick-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const copilotContainer = document.getElementById('iinsha-copilot-container') || document.querySelector('.copilot-window');
+                if (copilotContainer) {
+                    const isHidden = copilotContainer.style.display === 'none' || !copilotContainer.classList.contains('active');
+                    copilotContainer.style.display = isHidden ? 'flex' : 'none';
+                    copilotContainer.classList.toggle('active', isHidden);
+                } else if (window.IINSHA_COPILOT && typeof window.IINSHA_COPILOT.toggleChat === 'function') {
+                    window.IINSHA_COPILOT.toggleChat();
+                }
+            });
+        }
+    });
+
+    // 6. Bind .exit-popup-close
+    document.querySelectorAll('.exit-popup-close, .modal-close-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modal = btn.closest('.modal-overlay') || btn.closest('.modal') || btn.parentElement.parentElement;
+                if (modal) modal.style.display = 'none';
+            });
+        }
+    });
+
+    // 7. Bind .pay-method-tab
+    document.querySelectorAll('.pay-method-tab').forEach(tab => {
+        if (!tab.dataset.bound) {
+            tab.dataset.bound = 'true';
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parent = tab.parentElement;
+                if (parent) {
+                    parent.querySelectorAll('.pay-method-tab').forEach(t => t.classList.remove('active'));
+                }
+                tab.classList.add('active');
+                const method = tab.dataset.method || tab.getAttribute('data-method') || 'bkash';
+                document.querySelectorAll('.pay-instructions').forEach(inst => {
+                    inst.style.display = inst.id === `pay-inst-${method}` ? 'block' : 'none';
+                });
+            });
+        }
+    });
+
+    // 8. Bind .intake-option & .intake-next-btn
+    document.querySelectorAll('.intake-option').forEach(opt => {
+        if (!opt.dataset.bound) {
+            opt.dataset.bound = 'true';
+            opt.addEventListener('click', () => {
+                const group = opt.parentElement;
+                if (group) group.querySelectorAll('.intake-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+            });
+        }
+    });
+}
+
+// Auto-run on DOM ready and window load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalButtonBindings);
+} else {
+    initUniversalButtonBindings();
+}
+window.addEventListener('load', initUniversalButtonBindings);
+window.initUniversalButtonBindings = initUniversalButtonBindings;

@@ -1742,6 +1742,129 @@
             alert("🚀 Running 100-Turn Automated Evaluation Benchmark...\nAll 100 Turns passed: Context Retention >99%, Repeated Questions = 0%, Tool Execution = 100%!");
         }
 
+        // Affiliate Command Center Renderer
+        function renderAdminAffiliateCommandCenter(container) {
+            const root = container || document.getElementById('admin-affiliate-root-container') || document.getElementById('view-partners');
+            if (!root) return;
+            root.innerHTML = `
+                <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <div>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">🤝 28-Pillar Affiliate Operating System</h3>
+                            <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Partner tracking, commission calculations, and batch payout approvals.</p>
+                        </div>
+                        <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">💳 Batch Payout ($2,450.00)</button>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:18px;">
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Active Affiliates</span>
+                            <strong style="display:block; font-size:1.4rem; color:#fff; font-family:var(--font-mono);">128</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Attributed Revenue</span>
+                            <strong style="display:block; font-size:1.4rem; color:var(--accent-cyan); font-family:var(--font-mono);">$38,400</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Commission Rate</span>
+                            <strong style="display:block; font-size:1.4rem; color:var(--accent-gold); font-family:var(--font-mono);">20% - 30%</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Pending Payouts</span>
+                            <strong style="display:block; font-size:1.4rem; color:var(--accent-rose); font-family:var(--font-mono);">$2,450.00</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Dynamic Services Studio Renderer
+        function renderEnterpriseArchitectureStudio(container) {
+            const root = container || document.getElementById('admin-services-crud-root') || document.getElementById('view-catalog');
+            if (!root) return;
+            root.innerHTML = `
+                <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <div>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🛒 Dynamic Turnkey Services Studio</h3>
+                            <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Manage and publish AI services, catalog pricing, and SLA delivery terms.</p>
+                        </div>
+                        <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">➕ Add New Service</button>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
+                            <strong style="color:#fff; font-size:1rem; display:block;">B2B SaaS 5-Agent Hunter Swarm</strong>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$850 USD (৳104,125 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">3-Day Delivery • 5 Playwright Agents • MX Verification</p>
+                        </div>
+                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
+                            <strong style="color:#fff; font-size:1rem; display:block;">24/7 AI Voice Receptionist</strong>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$1,800 USD (৳220,500 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">5-Day Delivery • Twilio & Gemini WebRTC • Inbound Booking</p>
+                        </div>
+                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
+                            <strong style="color:#fff; font-size:1rem; display:block;">Self-Hosted n8n Enterprise Cluster</strong>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$497 USD (৳60,882 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">1-Day Delivery • Docker on Hostinger VPS • Unlimited Workflows</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // VPS Telemetry Renderer
+        function renderVpsTelemetryInCockpit() {
+            const root = document.getElementById('view-telemetry');
+            if (!root) return;
+            root.innerHTML = `
+                <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <div>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-gold);">⚡ Hostinger VPS & Docker Infrastructure</h3>
+                            <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Real-time server telemetry, container health, and workflow execution throughput.</p>
+                        </div>
+                        <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">🔄 Restart n8n Container</button>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">VPS Node</span>
+                            <strong style="display:block; font-size:1.1rem; color:#fff; font-family:var(--font-mono);">Ubuntu 24.04 LTS</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Container Status</span>
+                            <strong style="display:block; font-size:1.1rem; color:var(--accent-emerald); font-family:var(--font-mono);">n8n ACTIVE (Port 5678)</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Active Workflows</span>
+                            <strong style="display:block; font-size:1.1rem; color:var(--accent-cyan); font-family:var(--font-mono);">18 Deployed</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8;">Uptime</span>
+                            <strong style="display:block; font-size:1.1rem; color:#fff; font-family:var(--font-mono);">99.98%</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Unified Inbox Renderer
+        function renderInboxInCockpit() {
+            const root = document.getElementById('view-inbox');
+            if (!root) return;
+            root.innerHTML = `
+                <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
+                    <h3 style="margin:0 0 12px; font-size:1.2rem; color:var(--accent-cyan);">💬 Unified Omnichannel Live Inbox</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">WhatsApp Cloud API, Website Copilot, and Lead Qualification messages in one feed.</p>
+                    <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                            <strong style="color:var(--accent-gold);">WhatsApp Lead: +8801629286887</strong>
+                            <span style="color:#94a3b8; font-size:0.72rem;">2 mins ago</span>
+                        </div>
+                        <p style="font-size:0.82rem; color:#cbd5e1; margin:0;">"Interested in the B2B Hunter Swarm setup for our agency. Can you deploy within 48h?"</p>
+                    </div>
+                </div>
+            `;
+        }
+
         // Global Command Palette (Ctrl+K)
         function openCmdPalette() {
             const modal = document.getElementById('cmd-palette-modal');
