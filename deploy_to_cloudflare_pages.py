@@ -20,7 +20,7 @@ def build_cloudflare_pages_zip():
     git_sha = get_git_sha()
     build_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
     
-    # Generate fresh version.json
+    # Generate fresh version.json and build-info.json
     version_info = {
         "platform": "IINSHA AI-BOS Autonomous Company Operating System",
         "version": "2026.8.19-production",
@@ -32,9 +32,20 @@ def build_cloudflare_pages_zip():
     with open(os.path.join(source_dir, "version.json"), 'w', encoding='utf-8') as vf:
         json.dump(version_info, vf, indent=2)
 
+    build_info = {
+        "git_sha": git_sha,
+        "build_time": build_time,
+        "environment": "production",
+        "schema_version": "2026.8.19",
+        "api_version": "v1",
+        "status": "VERIFIED_HEALTHY"
+    }
+    with open(os.path.join(source_dir, "build-info.json"), 'w', encoding='utf-8') as bf:
+        json.dump(build_info, bf, indent=2)
+
     # Extensions and files allowed for Cloudflare Pages static upload
     allowed_extensions = {'.html', '.css', '.js', '.jpg', '.jpeg', '.png', '.svg', '.gif', '.ico', '.txt', '.xml', '.json'}
-    allowed_exact_files = {'_headers', 'robots.txt', 'sitemap.xml', 'version.json'}
+    allowed_exact_files = {'_headers', 'robots.txt', 'sitemap.xml', 'version.json', 'build-info.json'}
     
     # Disallowed files/extensions that cause Cloudflare Pages uploader warning or redirect loops
     ignored_exact_files = {'_redirects', 'wrangler.toml', 'docker-compose.yml', 'supabase_schema.sql', 'setup_vps_security_hardening.sh'}

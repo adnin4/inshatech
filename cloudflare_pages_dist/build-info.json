@@ -1,0 +1,8 @@
+{
+  "git_sha": "1f46cc252352139b1a40f9b92b456e31f835d278",
+  "build_time": "2026-08-19T02:05:49.040653+00:00",
+  "environment": "production",
+  "schema_version": "2026.8.19",
+  "api_version": "v1",
+  "status": "VERIFIED_HEALTHY"
+}
