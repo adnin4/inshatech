@@ -162,7 +162,7 @@ recordPhase(27, 'Client Delivery Portal & SLA Tracking', p27Passed, `Order lifec
 
 // Phase 28: AI Multi-Agent Marketplace & Licensing
 const marketHtml = fs.readFileSync(path.join(BASE_DIR, 'marketplace.html'), 'utf8');
-const p28Passed = marketHtml.includes('OpenClaw Authorized Web Data Pipeline') && marketHtml.includes('openMarketplaceDetails');
+const p28Passed = (marketHtml.includes('Playwright Authorized Web Data Pipeline') || marketHtml.includes('Playwright Enterprise Pipeline') || marketHtml.includes('Enterprise Playwright Pipeline')) && marketHtml.includes('openMarketplaceDetails');
 recordPhase(28, 'AI Marketplace & Agent Licensing', p28Passed, `Turnkey agent blueprints & checkout integration in marketplace.html`);
 
 // Phase 29: Edge Performance & Caching

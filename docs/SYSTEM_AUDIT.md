@@ -40,7 +40,7 @@ The IINSHA AI-BOS project has **strong visual presentation** (Glassmorphism, Thr
 | `scroll-engine.js` | 9 KB | 259 | GSAP scroll animations | ✅ Excellent quality |
 | `worker.js` | 7 KB | 170 | Cloudflare Worker API gateway | ⚠️ All endpoints return static mock data |
 | `supabase_schema.sql` | 14 KB | 328 | PostgreSQL schema (17 tables) | ✅ Solid foundation |
-| `docker-compose.yml` | 2 KB | 81 | n8n + PostgreSQL + OpenClaw | ⚠️ Hardcoded default passwords |
+| `docker-compose.yml` | 2 KB | 81 | n8n + PostgreSQL + Playwright Pipeline | ⚠️ Hardcoded default passwords |
 
 ### HTML Sub-Pages
 | Page | Size | Key Issue |

@@ -52,7 +52,7 @@ export async function onRequestGet(context) {
             { name: "Dead Letter Queue (DLQ)", status: "HEALTHY", latency: "10ms", dropped_items_count: 0 }
         ],
         metrics: {
-            requests_total_last_24h: 14280,
+            requests_total_last_24h: 1280,
             error_rate_percentage: "0.02%",
             cpu_utilization: "14.2%",
             memory_allocated_mb: 64,

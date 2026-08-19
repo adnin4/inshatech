@@ -34,7 +34,7 @@ const CANONICAL_CATALOG = {
     'invoice-ocr-pipeline': { name: 'Autonomous Invoice & Document OCR Pipeline', baseUSD: 249, floorUSD: 200, deliveryDays: 1 },
     'ai-saas-mvp': { name: 'Full-Stack Autonomous AI SaaS MVP', baseUSD: 2500, floorUSD: 2000, deliveryDays: 7 },
     'custom-agent-swarm': { name: 'Custom Multi-Agent Department Mesh', baseUSD: 1200, floorUSD: 1000, deliveryDays: 4 },
-    'openclaw-scraping-farm': { name: 'OpenClaw Authorized Web Data Pipeline', baseUSD: 75, floorUSD: 50, deliveryDays: 1 },
+    'openclaw-scraping-farm': { name: 'Playwright Pipeline Authorized Web Data Pipeline', baseUSD: 75, floorUSD: 50, deliveryDays: 1 },
     'stripe-churn-recovery': { name: 'Stripe Churn Recovery n8n Engine', baseUSD: 50, floorUSD: 40, deliveryDays: 1 },
     'apollo-enrichment-leadgen': { name: 'Apollo MX Verifier & Enrichment Swarm', baseUSD: 60, floorUSD: 45, deliveryDays: 1 }
 };

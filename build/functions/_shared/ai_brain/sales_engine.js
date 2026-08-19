@@ -24,7 +24,7 @@ export class SalesEngine {
         bn: 'কোন সমস্যা নেই। আমি একটা ডিটেইল্ড প্রোপোজাল তৈরি করে দিই। ইমেইল নাকি হোয়াটসঅ্যাপে পাঠাব?'
       },
       'need_proof': {
-        en: 'Great question! We have verified case studies: Stripe churn recovery saved $38,400/year, OpenClaw scraper extracted 12,000 leads in 48 hours. I can walk you through the technical architecture if you\'d like.',
+        en: 'Great question! We have verified case studies: Stripe churn recovery saved $38,400/year, Playwright Pipeline scraper extracted 12,000 leads in 48 hours. I can walk you through the technical architecture if you\'d like.',
         bn: 'ভালো প্রশ্ন! আমাদের ভেরিফাইড কেস স্টাডি আছে। আমি টেকনিক্যাল আর্কিটেকচার দেখাতে পারি।'
       },
       'competitor': {

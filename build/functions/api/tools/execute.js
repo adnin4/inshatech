@@ -240,7 +240,7 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             };
         }
 
-        // 5. Playwright / OpenClaw Web Extraction Connector
+        // 5. Playwright / Playwright Pipeline Web Extraction Connector
         case 'execute_browser_automation': {
             const targetUrl = args.target_url || 'https://example.com';
             const extractType = args.extract_type || 'json_metadata';

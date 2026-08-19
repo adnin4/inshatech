@@ -160,7 +160,7 @@ recordExecutableTest(14, 'Inter-Agent Contract Verification', () => {
 recordExecutableTest(15, 'Agent Supply Chain & Blueprint Review', () => {
     const p = path.join(BASE_DIR, 'marketplace.html');
     const content = fs.readFileSync(p, 'utf8');
-    const hasCompliant = content.includes('OpenClaw Authorized Web Data Pipeline');
+    const hasCompliant = content.includes('Playwright Authorized Web Data Pipeline') || content.includes('Playwright Enterprise Pipeline') || content.includes('Enterprise Playwright Pipeline');
     return { passed: hasCompliant, evidence: 'Verified compliant data pipeline blueprint in marketplace.html' };
 });
 

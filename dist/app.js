@@ -51,7 +51,7 @@ function getServiceRegistry() {
     } catch(e) {}
     return [
         { slug: 'ai-agents', title: 'AI Swarm Agents & Support', category: 'AI Agents', price: 499, commission_rate: 20, packages: [{ name: 'Starter', price: 499, delivery: '3 Days', features: ['24/7 AI Bot'] }], features: ['Production Ready'] },
-        { slug: 'web-scraping', title: 'OpenClaw Resilient Market Scraper', category: 'Web Scraping', price: 599, commission_rate: 20, packages: [{ name: 'Pro', price: 599, delivery: '4 Days', features: ['Playwright Cluster'] }], features: ['Authorized Web Data Extraction'] }
+        { slug: 'web-scraping', title: 'Playwright Pipeline Resilient Market Scraper', category: 'Web Scraping', price: 599, commission_rate: 20, packages: [{ name: 'Pro', price: 599, delivery: '4 Days', features: ['Playwright Cluster'] }], features: ['Authorized Web Data Extraction'] }
     ];
 }
 
@@ -232,11 +232,11 @@ const IINSHA_KNOWLEDGE_BASE = [
     },
     {
         intents: ['scraping', 'openclaw', 'leads', 'scraper', 'data extraction', 'cloudflare', 'turnstile', 'b2b'],
-        reply_en: `🦀 **OpenClaw Resilient Scraping Farm ($250 USD):**<br>
+        reply_en: `🦀 **Playwright Pipeline Resilient Scraping Farm ($250 USD):**<br>
 • **99.8% Turnstile / Authorized Web Data Extraction:** Uses Playwright headless automation with dynamic residential proxy mesh.<br>
 • **Automated Sync:** Directly writes extracted leads, e-commerce catalog pricing, and directory data into PostgreSQL, Supabase, or Airtable.<br>
 • **Sandbox Security:** Runs inside isolated Docker VPS containers with zero IP blacklisting risk.`,
-        reply_bn: `🦀 **OpenClaw স্টিলথ স্ক্র্যাপিং ফার্ম ($250 USD):**<br>
+        reply_bn: `🦀 **Playwright Pipeline স্টিলথ স্ক্র্যাপিং ফার্ম ($250 USD):**<br>
 • **৯৯.৮% ক্লাউডফ্লেয়ার বাইপাস:** Playwright হেডলেস অটোমেশন ও রেসিডেন্সিয়াল প্রক্সি দিয়ে ডাটা স্ক্র্যাপ করে।<br>
 • **অটো-সিঙ্ক:** স্ক্র্যাপ করা বি২বি লিডস বা ই-কমার্স প্রাইস সরাসরি PostgreSQL, Supabase বা Airtable-এ জমা হয়।<br>
 • **ডকার সিকিউরিটি:** ব্যান হওয়ার ঝুঁকি ছাড়াই আইসোলেটেড ডকার ভিপিএসে রান করে।`
@@ -492,7 +492,7 @@ function getAIExecutiveBriefing() {
         revenueYesterdayBDT: "৳" + (2540 * siteWords.bdtRate).toLocaleString() + " BDT",
         affiliateSales: 31,
         lostLeads: 12,
-        bestProduct: "OpenClaw Stealth Price Monitor ($599)",
+        bestProduct: "Playwright Enterprise Pipeline Price Monitor ($599)",
         worstFunnel: "Checkout Drop-off on Mobile (2.4%)",
         suggestions: [
             "Scale Facebook Ad budget by +25% for AI Lead Capture Pipeline.",
@@ -542,7 +542,7 @@ function renderAdminModalCmsStudio(container) {
         { id: 'c2', name: 'Rifat Hossain', company: 'Apex E-commerce Ltd', email: 'rifat@apex.com', phone: '+8801800000000', totalSpent: 1249, status: 'Active' }
     ];
     const projects = data.projects.length ? data.projects : [
-        { id: 'p1', title: 'OpenClaw Stealth Price Monitor', client: 'Apex E-commerce Ltd', phase: 'Deployment', progress: 85, price: 599, status: 'On Track' },
+        { id: 'p1', title: 'Playwright Enterprise Pipeline Price Monitor', client: 'Apex E-commerce Ltd', phase: 'Deployment', progress: 85, price: 599, status: 'On Track' },
         { id: 'p2', title: 'Gemini Customer Support RAG Bot', client: 'SMMA Growth Agency', phase: 'Development', progress: 60, price: 450, status: 'In Progress' }
     ];
 
@@ -1310,7 +1310,7 @@ window.addEventListener('DOMContentLoaded', () => {
 /* Live FOMO Activity Stream Notification Toast Engine */
 function initFomoToasts() {
     const notifications = [
-        "🛒 Tanvir A. (Dhaka) just ordered OpenClaw Resilient Scraper ($599)",
+        "🛒 Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
         "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
         "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
         "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
@@ -1646,12 +1646,12 @@ function initAiReadinessAssessment() {
         if (barrier.includes('sales') || barrier.includes('lead')) {
             score = 88;
             savingsUSD = 2400;
-            recommendedTech = "OpenClaw Resilient Scraper + AI Sales Outreach Agent + Twilio Voice";
+            recommendedTech = "Playwright Pipeline Resilient Scraper + AI Sales Outreach Agent + Twilio Voice";
             title = "AI Lead Generation & Sales Conversion Engine";
         } else if (barrier.includes('scraping') || barrier.includes('data')) {
             score = 92;
             savingsUSD = 3100;
-            recommendedTech = "OpenClaw Playwright Stealth Cluster + Hostinger Docker VPS";
+            recommendedTech = "Playwright Pipeline Playwright Stealth Cluster + Hostinger Docker VPS";
             title = "Autonomous Web Scraping & Competitor Intelligence System";
         } else if (barrier.includes('dev') || barrier.includes('saas')) {
             score = 85;
@@ -1716,7 +1716,7 @@ function initTerminalTelemetry() {
     if (runScraperBtn) {
         runScraperBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ▶ Executing OpenClaw Stealth Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ▶ Executing Playwright Enterprise Pipeline Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1806,7 +1806,7 @@ function initInteractiveDiagramVisualizer() {
                 <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
 
                 <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
-                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ OpenClaw Resilient Scraper</text>
+                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ Playwright Pipeline Resilient Scraper</text>
 
                 <line x1="500" y1="100" x2="600" y2="100" stroke="#10b981" stroke-width="3"/>
 
@@ -1971,7 +1971,7 @@ function initAiAgentCommandSwarm() {
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Lead Hunter AI</span>
                         <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">● 45 DRAFTS</span>
                     </div>
-                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">OpenClaw Scraped B2B Contacts</p>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Playwright Pipeline Scraped B2B Contacts</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
@@ -2106,7 +2106,7 @@ const IinshaBackendAdapter = {
         }
         return [
             { id: 'svc_1', name: 'n8n Workflow Automation', category: 'AI & Automation', price: 499, commission: 20, status: 'Published', deliveryTime: '24 Hours', desc: 'Custom n8n AI workflow pipeline on Hostinger VPS Docker.' },
-            { id: 'svc_2', name: 'OpenClaw Resilient Scraper', category: 'Data & Scraping', price: 699, commission: 25, status: 'Published', deliveryTime: '48 Hours', desc: 'Anti-bot resilient data scraper with proxy rotation & Telegram alerts.' },
+            { id: 'svc_2', name: 'Playwright Pipeline Resilient Scraper', category: 'Data & Scraping', price: 699, commission: 25, status: 'Published', deliveryTime: '48 Hours', desc: 'Anti-bot resilient data scraper with proxy rotation & Telegram alerts.' },
             { id: 'svc_3', name: 'Gemini 3.0 Pro RAG Chatbot', category: 'AI Agents', price: 899, commission: 30, status: 'Published', deliveryTime: '3 Days', desc: 'Pinecone Vector DB RAG chatbot for WhatsApp & Web Chat.' },
             { id: 'svc_4', name: 'Full AI-BOS SaaS Setup', category: 'Enterprise OS', price: 1499, commission: 35, status: 'Published', deliveryTime: '5 Days', desc: 'Complete HubSpot + Shopify + n8n AI Business Operating System.' }
         ];
@@ -2304,10 +2304,10 @@ function initGoogleAiN8nPortfolio() {
                         <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">PROD CASE #102</span>
                         <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
-                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">OpenClaw B2B Lead Scraper</h4>
+                    <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Playwright Pipeline B2B Lead Scraper</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">
-                        <code>Stack: OpenClaw → n8n → Gemini 3.0 Pro → Telegram Bot</code>
+                        <code>Stack: Playwright Pipeline → n8n → Gemini 3.0 Pro → Telegram Bot</code>
                     </div>
                 </div>
 
@@ -2342,7 +2342,7 @@ function initUltraStrongPortfolio() {
             <div style="text-align:center; margin-bottom:32px;">
                 <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">🏆 PROVEN ENTERPRISE PORTFOLIO</span>
                 <h2 style="margin:14px 0 8px 0; color:#fff; font-size:2rem; font-weight:800;">Featured AI Engineering & Automation Projects</h2>
-                <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 3.0 Pro), n8n VPS, OpenClaw, and Hostinger Docker infrastructure.</p>
+                <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 3.0 Pro), n8n VPS, Playwright Pipeline, and Hostinger Docker infrastructure.</p>
             </div>
 
             <!-- 6 CASE STUDIES GRID -->
@@ -2373,10 +2373,10 @@ function initUltraStrongPortfolio() {
                             <span style="font-size:0.75rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:2px 10px; border-radius:12px; font-weight:bold;">LEAD GENERATION</span>
                             <span style="font-size:0.85rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">45,000+ B2B Leads</span>
                         </div>
-                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">OpenClaw B2B Lead Intelligence Swarm</h3>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Playwright Pipeline B2B Lead Intelligence Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Autonomous resilient data scraper collecting and enriching verified decision-maker emails, achieving a 38% cold outreach reply rate.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: OpenClaw ➔ Gemini 3.0 Pro ➔ n8n ➔ SendGrid</code>
+                            <code>Stack: Playwright Pipeline ➔ Gemini 3.0 Pro ➔ n8n ➔ SendGrid</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -3111,7 +3111,7 @@ function initVerifiedTestimonialsTicker() {
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The OpenClaw resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
+                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Tariq Al-Maktoum (Dubai UAE)</span>
                         <span style="color:var(--accent-cyan);">Verified $2.4K Order</span>
@@ -6780,10 +6780,10 @@ window.IINSHA_SERVICE_DOMAINS = {
         badge: "Revenue Engine",
         shortDesc: "B2B lead discovery, automated enrichment, ICP scoring, hyper-personalized outreach, and SEO engines.",
         problem: "Manual B2B prospecting requires multiple expensive subscriptions (Apollo, Clay, Hunter) and hours of manual copy-pasting, resulting in generic spam emails with <1% reply rates.",
-        solution: "An end-to-end automated pipeline: OpenClaw scrapes fresh target accounts, AI enriches contact data, scores against your ICP, writes individualized first-lines based on recent company news, and pushes to CRM.",
-        capabilities: ["B2B Lead Discovery (OpenClaw)", "Data Enrichment & Verification", "ICP Scoring & Qualification", "Hyper-Personalized Cold Outreach", "Automated Proposal Generator", "SEO Content Engine"],
+        solution: "An end-to-end automated pipeline: Playwright Pipeline scrapes fresh target accounts, AI enriches contact data, scores against your ICP, writes individualized first-lines based on recent company news, and pushes to CRM.",
+        capabilities: ["B2B Lead Discovery (Playwright Pipeline)", "Data Enrichment & Verification", "ICP Scoring & Qualification", "Hyper-Personalized Cold Outreach", "Automated Proposal Generator", "SEO Content Engine"],
         deliverables: ["Custom Scraping & Enrichment Workflow", "Deliverability-Hardened SMTP/Instantly Setup", "Dynamic 1-to-1 Email Copywriter", "CRM Pipeline Sync", "Real-Time Open & Reply Dashboard"],
-        techStack: ["OpenClaw", "n8n", "Gemini 3.0 Pro", "HubSpot", "Instantly"],
+        techStack: ["Playwright Pipeline", "n8n", "Gemini 3.0 Pro", "HubSpot", "Instantly"],
         pricing: { setupUSD: 2200, monthlyUSD: 499, setupBDT: 269500, monthlyBDT: 61100 },
         timeline: "2 Weeks",
         sla: "99.8% Cloudflare Scraping Bypass"
@@ -7036,7 +7036,7 @@ window.calculateAiSolutionRecommendation = function() {
     if (bottleneck === 'leads') {
         recTitle = "AI Sales Engine & Autonomous SDR";
         setup = 1500; monthly = 349; savings = "$3,200 / month in manual SDR labor";
-        desc = "Integrates OpenClaw lead enrichment, Gemini 3.0 Pro personalized 1-to-1 cold outreach, and automated meeting booking.";
+        desc = "Integrates Playwright Pipeline lead enrichment, Gemini 3.0 Pro personalized 1-to-1 cold outreach, and automated meeting booking.";
     } else if (bottleneck === 'support') {
         recTitle = "24/7 AI Customer Support & Voice Telephony";
         setup = 2000; monthly = 449; savings = "$4,000 / month in support staffing";
@@ -7655,7 +7655,7 @@ window.initAuthenticPartnerConsole = function() {
         { id: 'automation-eng', domain: '02. Automation Engineering', name: 'Self-Hosted n8n & API Integrations', price: '$1,500 Setup + $349/mo', comm: '20% ($300 Setup + $69.80/mo)', epc: '$6.10', cookie: '60 Days' },
         { id: 'ai-intelligence', domain: '03. AI Intelligence', name: 'Enterprise RAG & pgvector Digital Twin', price: '$1,800 Setup + $399/mo', comm: '20% ($360 Setup + $79.80/mo)', epc: '$5.80', cookie: '60 Days' },
         { id: 'voice-ai', domain: '04. AI Customer Experience', name: '24/7 Sub-250ms Voice AI Receptionist', price: '$1,500 Setup + $349/mo', comm: '20% ($300 Setup + $69.80/mo)', epc: '$7.20', cookie: '60 Days' },
-        { id: 'lead-scraping', domain: '05. AI Sales & Marketing', name: 'OpenClaw Stealth Lead Scraper & SDR', price: '$1,200 Setup + $299/mo', comm: '20% ($240 Setup + $59.80/mo)', epc: '$6.50', cookie: '60 Days' },
+        { id: 'lead-scraping', domain: '05. AI Sales & Marketing', name: 'Playwright Enterprise Pipeline Lead Scraper & SDR', price: '$1,200 Setup + $299/mo', comm: '20% ($240 Setup + $59.80/mo)', epc: '$6.50', cookie: '60 Days' },
         { id: 'doc-ocr', domain: '06. AI Document & Data', name: 'Gemini 3.0 Pro Vision Invoice OCR', price: '$750 Setup + $149/mo', comm: '20% ($150 Setup + $29.80/mo)', epc: '$4.90', cookie: '60 Days' },
         { id: 'custom-saas', domain: '07. Custom Software/SaaS', name: 'Full-Stack Business Platform & Portal', price: '$4,500 Setup + $899/mo', comm: '20% ($900 Setup + $179.80/mo)', epc: '$9.80', cookie: '90 Days' },
         { id: 'business-os', domain: '08. AI Security & OS', name: 'Full IINSHA Autonomous Business OS', price: '$7,500 Setup + $1,500/mo', comm: '20% ($1,500 Setup + $300/mo)', epc: '$14.20', cookie: '90 Days' }
@@ -7751,7 +7751,7 @@ window.initAuthenticPartnerConsole = function() {
                             <option value="automation">⚡ 02. Automation Engineering (n8n Docker)</option>
                             <option value="intelligence">🧠 03. AI Intelligence (RAG & Digital Twin)</option>
                             <option value="voice">📞 04. AI Customer Voice Receptionist</option>
-                            <option value="leads">🦀 05. OpenClaw Stealth Lead Scraper</option>
+                            <option value="leads">🦀 05. Playwright Enterprise Pipeline Lead Scraper</option>
                             <option value="ocr">📄 06. Gemini 3.0 Pro Vision Invoice OCR</option>
                             <option value="saas">💻 07. Custom Software / SaaS Platform</option>
                             <option value="security">🛡️ 08. AI Security & Business OS</option>

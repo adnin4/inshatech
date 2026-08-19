@@ -34,7 +34,7 @@ export default {
           source: "Supabase PostgreSQL Database Engine",
           words: {
             HERO_TITLE: "Transform Your Business With Enterprise AI Automation",
-            HERO_SUBTITLE: "Production-grade AI agents, OpenClaw stealth web scrapers, and Hostinger Docker VPS infrastructure.",
+            HERO_SUBTITLE: "Production-grade AI agents, Playwright Enterprise Pipeline web scrapers, and Hostinger Docker VPS infrastructure.",
             HERO_CTA_TEXT: "Explore AI Agency Solutions",
             NAVBAR_BRAND: "IINSHA TECH OS v1000",
             FOOTER_TEXT: "© 2026 IINSHA TECH OS. All Rights Reserved. Powered by Cloudflare Pages & Supabase.",

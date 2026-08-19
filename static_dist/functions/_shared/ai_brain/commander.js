@@ -308,7 +308,7 @@ I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.ta
             if (health) {
                 return `⚡ **Hostinger VPS & n8n Engine Real-Time Telemetry**
 • **Node Status:** ${health.vps_node} (${health.uptime} Uptime)
-• **Active Containers:** ${health.containers.length} Docker services running (n8n, Traefik SSL, pgvector, OpenClaw)
+• **Active Containers:** ${health.containers.length} Docker services running (n8n, Traefik SSL, pgvector, Playwright Pipeline)
 • **Memory & Load:** ${health.system_load} • Zero task fees`;
             }
         }
