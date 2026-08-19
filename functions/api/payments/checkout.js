@@ -76,12 +76,14 @@ export async function onRequestPost(context) {
         }
 
         // 2. SERVER-AUTHORITATIVE PRICE LOOKUP (Never trust client-sent amounts)
-        const catalogItem = CANONICAL_CATALOG[service_id] || {
-            name: package_name || service_id,
-            baseUSD: typeof body.amount === 'number' && body.amount > 0 ? Math.min(body.amount, 50000) : 497,
-            floorUSD: 200,
-            deliveryDays: 3
-        };
+        const catalogItem = CANONICAL_CATALOG[service_id];
+        if (!catalogItem) {
+            return new Response(JSON.stringify({
+                status: 'INVALID_SERVICE',
+                error: `Unknown service_id '${service_id}'. Use /api/tools/execute with get_services to list valid services.`,
+                valid_service_ids: Object.keys(CANONICAL_CATALOG)
+            }), { headers: corsHeaders, status: 400 });
+        }
 
         let calculatedUSD = catalogItem.baseUSD;
 

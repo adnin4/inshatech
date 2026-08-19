@@ -27,17 +27,35 @@ function assertTest(name, condition, detail = '') {
 }
 
 async function runE2ESuite() {
-    // 1. Test functions/api/auth/session.js (JWT Token Generation & Password Hash)
+    // Pre-compute password hash for testing
+    const encoder = new TextEncoder();
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode('iinsha_admin_2026'));
+    const testPasswordHash = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+    const testEnv = { ADMIN_PASSWORD_HASH: testPasswordHash, JWT_SECRET: 'test_jwt_secret_e2e' };
+
+    // 1. Test Auth: Rejects when ADMIN_PASSWORD_HASH not configured
     try {
         const sessionModule = await import('../functions/api/auth/session.js');
         
-        // Test Auth Success with valid password
+        const reqNoEnv = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Origin': 'https://inshatech.pages.dev' },
+            body: JSON.stringify({ email: 'adnansadatmahin5@gmail.com', password: 'iinsha_admin_2026' })
+        });
+        const resNoEnv = await sessionModule.onRequestPost({ request: reqNoEnv, env: {} });
+        assertTest(
+            'Auth Session: Rejects Login When ADMIN_PASSWORD_HASH Not Configured (503)',
+            resNoEnv.status === 503,
+            'Server correctly requires ADMIN_PASSWORD_HASH environment variable'
+        );
+
+        // Test Auth Success with valid password AND configured env
         const reqSuccess = new Request('https://inshatech.pages.dev/api/auth/session', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Origin': 'https://inshatech.pages.dev' },
             body: JSON.stringify({ email: 'adnansadatmahin5@gmail.com', password: 'iinsha_admin_2026' })
         });
-        const resSuccess = await sessionModule.onRequestPost({ request: reqSuccess, env: {} });
+        const resSuccess = await sessionModule.onRequestPost({ request: reqSuccess, env: testEnv });
         const dataSuccess = await resSuccess.json();
         
         assertTest(
@@ -52,7 +70,7 @@ async function runE2ESuite() {
             headers: { 'Content-Type': 'application/json', 'Origin': 'https://inshatech.pages.dev' },
             body: JSON.stringify({ email: 'adnansadatmahin5@gmail.com', password: 'WRONG_PASSWORD_TEST' })
         });
-        const resFail = await sessionModule.onRequestPost({ request: reqFail, env: {} });
+        const resFail = await sessionModule.onRequestPost({ request: reqFail, env: testEnv });
         assertTest(
             'Auth Session: Blocks Invalid Credentials with 401 Unauthorized',
             resFail.status === 401,
@@ -67,7 +85,7 @@ async function runE2ESuite() {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${validToken}`, 'Origin': 'https://inshatech.pages.dev' }
         });
-        const resGateValid = await gateModule.onRequestGet({ request: reqGateValid, env: {} });
+        const resGateValid = await gateModule.onRequestGet({ request: reqGateValid, env: testEnv });
         const dataGateValid = await resGateValid.json();
 
         assertTest(
@@ -81,7 +99,7 @@ async function runE2ESuite() {
             method: 'GET',
             headers: { 'Authorization': 'Bearer forged.signature.token', 'Origin': 'https://inshatech.pages.dev' }
         });
-        const resGateForged = await gateModule.onRequestGet({ request: reqGateForged, env: {} });
+        const resGateForged = await gateModule.onRequestGet({ request: reqGateForged, env: testEnv });
         assertTest(
             'Admin Gate: Rejects Forged Token Signature with 401',
             resGateForged.status === 401,

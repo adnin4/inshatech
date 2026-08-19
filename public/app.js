@@ -8578,10 +8578,12 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
     const affRef = (typeof window.getActiveAffiliateRef === 'function') ? (window.getActiveAffiliateRef() || 'Direct Traffic') : 'Direct Traffic';
     const dateStr = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-    let orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    let orderId = null;
     let signedOrderToken = null;
+    let serverPrice = priceUsd;
+    let serverBdt = priceBdt;
 
-    // 0. LIVE EDGE API CALL TO /api/payments/checkout
+    // 0. LIVE EDGE API CALL TO /api/payments/checkout — THIS IS THE SOURCE OF TRUTH
     try {
         const serviceSlug = packageName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'b2b-lead-swarm';
         const response = await fetch('/api/payments/checkout', {
@@ -8601,12 +8603,26 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
             if (data.order && data.order.order_id) {
                 orderId = data.order.order_id;
                 signedOrderToken = data.order_token;
+                serverPrice = data.order.total_usd || priceUsd;
+                serverBdt = data.order.total_bdt ? `৳${data.order.total_bdt.toLocaleString('en-BD')}` : priceBdt;
             }
+        } else {
+            // API rejected the order — do NOT proceed with local fallback
+            const errData = await response.json().catch(() => ({}));
+            if (typeof showAffiliateToast === 'function') {
+                showAffiliateToast(`⚠️ Order could not be placed: ${errData.error || 'Server unavailable. Please try again.'}`);
+            }
+            return; // BLOCK — no fake local order
         }
     } catch(e) {
-        console.warn('Edge checkout async fallback active:', e);
+        // Network error — do NOT create a fake order
+        if (typeof showAffiliateToast === 'function') {
+            showAffiliateToast('⚠️ Network error. Please check your connection and try again.');
+        }
+        return; // BLOCK — no fake local order
     }
 
+    // 1. SAVE TO LOCALSTORAGE AS UI CACHE ONLY (backend is source of truth)
     const orderRecord = {
         orderId: orderId,
         date: dateStr,
@@ -8614,44 +8630,25 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
         clientEmail: email,
         clientPhone: phone,
         service: packageName,
-        priceUsd: priceUsd,
-        priceBdt: priceBdt,
+        priceUsd: serverPrice,
+        priceBdt: serverBdt,
         notes: notes,
         affiliateRef: affRef,
         signedToken: signedOrderToken,
-        status: 'New Inbound (Edge Verified)',
-        aiSdrScore: '98/100 (Enterprise Verified)'
+        status: 'Edge Verified (Server-Authoritative)',
+        source: 'edge_api'
     };
-
-    // 1. SAVE TO LOCALSTORAGE FOR CONTROL PANEL ACCESS
     let orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
     orders.unshift(orderRecord);
     localStorage.setItem('iinsha_client_orders', JSON.stringify(orders));
 
-    // 2. CREDIT AFFILIATE LEDGER IF REFERRED
-    if (typeof window.getIinshaPartnerData === 'function') {
-        let partner = window.getIinshaPartnerData();
-        const commissionAmount = Math.round(priceUsd * 0.20);
-        partner.unpaidCommission = (partner.unpaidCommission || 0) + commissionAmount;
-        partner.lifetimeRevenue = (partner.lifetimeRevenue || 0) + priceUsd;
-        partner.confirmedOrders = (partner.confirmedOrders || 0) + 1;
-        if (!Array.isArray(partner.lifecycleDeals)) partner.lifecycleDeals = [];
-        partner.lifecycleDeals.unshift({
-            id: 'DEAL-' + orderId.substring(4),
-            clientName: name,
-            service: packageName,
-            date: dateStr.substring(0, 10),
-            dealSize: `$${priceUsd.toLocaleString()} (${priceBdt})`,
-            commission: `+$${commissionAmount}.00 (20%)`,
-            stageNum: 7,
-            stageLabel: 'Setup Payment Confirmed'
-        });
-        localStorage.setItem('iinsha_active_partner', JSON.stringify(partner));
-    }
+    // NOTE: Affiliate commission is calculated and credited SERVER-SIDE only.
+    // Frontend does NOT mutate partner.unpaidCommission, lifetimeRevenue, or confirmedOrders.
+    // The partner dashboard reads commission data from the backend API.
 
-    // 3. SHOW NOTIFICATION TOAST
+    // 2. SHOW NOTIFICATION TOAST
     if (typeof showAffiliateToast === 'function') {
-        showAffiliateToast(`🎉 Order ${orderId} successfully placed! Synced with Edge Ledger and WhatsApp.`);
+        showAffiliateToast(`🎉 Order ${orderId} successfully placed! Server-verified and synced.`);
     }
 
     closeCheckoutModal();

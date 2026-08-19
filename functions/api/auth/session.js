@@ -34,6 +34,27 @@ async function hashSha256(str) {
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// MFA TOTP verification — requires MFA_SECRET env var to be configured
+async function verifyMfaToken(token, mfaSecret) {
+    if (!token || !mfaSecret) return false;
+    // TOTP window check: current 30s window ± 1
+    const encoder = new TextEncoder();
+    try {
+        const counter = Math.floor(Date.now() / 30000);
+        for (let offset = -1; offset <= 1; offset++) {
+            const counterBytes = new ArrayBuffer(8);
+            new DataView(counterBytes).setBigUint64(0, BigInt(counter + offset));
+            const key = await crypto.subtle.importKey('raw', encoder.encode(mfaSecret), { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+            const sig = await crypto.subtle.sign('HMAC', key, counterBytes);
+            const arr = new Uint8Array(sig);
+            const off = arr[arr.length - 1] & 0xf;
+            const code = ((arr[off] & 0x7f) << 24 | arr[off+1] << 16 | arr[off+2] << 8 | arr[off+3]) % 1000000;
+            if (String(code).padStart(6, '0') === String(token).padStart(6, '0')) return true;
+        }
+    } catch(e) { /* MFA verification failed */ }
+    return false;
+}
+
 async function signJwtPayload(payload, secretKey) {
     const encoder = new TextEncoder();
     const key = await crypto.subtle.importKey(
@@ -118,21 +139,33 @@ export async function onRequestPost(context) {
         loginAttempts.set(ip, recentAttempts);
 
         const expectedEmail = env.ADMIN_EMAIL || 'adnansadatmahin5@gmail.com';
-        // Password hash check: SHA256 of canonical password or env configured hash
-        const inputHash = password ? await hashSha256(password) : '';
-        const expectedHash = env.ADMIN_PASSWORD_HASH || await hashSha256('iinsha_admin_2026');
 
-        const isAuth = (email === expectedEmail || !email) && (inputHash === expectedHash);
+        // SECURITY: Password hash MUST be configured via env. No hardcoded fallback.
+        const expectedHash = env.ADMIN_PASSWORD_HASH;
+        if (!expectedHash) {
+            return new Response(JSON.stringify({
+                status: 'CONFIGURATION_ERROR',
+                error: 'Server authentication not configured. Set ADMIN_PASSWORD_HASH environment variable.'
+            }), { status: 503, headers: corsHeaders });
+        }
+
+        const inputHash = password ? await hashSha256(password) : '';
+        const isAuth = (email === expectedEmail) && (inputHash === expectedHash);
 
         if (isAuth) {
             loginAttempts.delete(ip);
+
+            // MFA state: only true if MFA was actually challenged and verified
+            const mfaConfigured = Boolean(env.MFA_SECRET);
+            const mfaPassed = body.mfa_token ? await verifyMfaToken(body.mfa_token, env.MFA_SECRET) : false;
 
             const sessionPayload = {
                 sub: expectedEmail,
                 name: 'Adnin Sadat Mahin',
                 role: 'owner',
                 hierarchy_level: 1,
-                mfa_verified: true,
+                mfa_verified: mfaConfigured ? mfaPassed : false,
+                mfa_required: mfaConfigured,
                 ip: ip,
                 iat: Math.floor(now / 1000),
                 exp: Math.floor(now / 1000) + 86400

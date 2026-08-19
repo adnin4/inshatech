@@ -3,10 +3,12 @@
  * Cryptographically Verified Payment Ingestion Webhook with Replay Protection & Idempotency
  */
 
+// WARNING: In-memory Map is NOT durable across Worker restarts.
+// Production deployment MUST use KV/D1/Durable Objects for event deduplication.
 const processedEvents = new Map();
 
 async function verifyHmacSignature(rawBody, signatureHeader, secretKey) {
-    if (!signatureHeader || !secretKey) return true; // development fallback if secret not set
+    if (!signatureHeader || !secretKey) return false; // SECURITY: Reject if no signature or secret configured
     try {
         const encoder = new TextEncoder();
         let signatureHex = signatureHeader;
@@ -54,7 +56,15 @@ export async function onRequestPost(context) {
     try {
         const bodyText = await request.text();
         const signature = request.headers.get('Stripe-Signature') || request.headers.get('X-Webhook-Signature') || '';
-        const secretKey = env.WEBHOOK_SECRET || env.STRIPE_WEBHOOK_SECRET || 'iinsha_webhook_signing_secret_prod_2026';
+        const secretKey = env.WEBHOOK_SECRET || env.STRIPE_WEBHOOK_SECRET;
+
+        // SECURITY: Webhook secret MUST be configured via env
+        if (!secretKey) {
+            return new Response(JSON.stringify({
+                status: 'CONFIGURATION_ERROR',
+                error: 'Webhook secret not configured. Set WEBHOOK_SECRET environment variable.'
+            }), { headers, status: 503 });
+        }
 
         // 1. Cryptographic HMAC Signature Verification
         const isValid = await verifyHmacSignature(bodyText, signature, secretKey);
