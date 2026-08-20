@@ -53,23 +53,26 @@ jobs:
       - name: 10. Multi-Tenant RLS Adversarial Attack Suite
         run: node scratch/rls_tenant_isolation_test.js
 
-      - name: 11. Automated Disaster Recovery Failover Drill
+      - name: 11. Direct DB Access & Backend Authority Audit
+        run: node scratch/audit_direct_db_access.js
+
+      - name: 12. Automated Disaster Recovery Failover Drill
         run: node scratch/disaster_recovery_drill.js
 
-      - name: 12. 52-Sector Master Production Evidence Generation
+      - name: 13. 52-Sector Master Production Evidence Generation
         run: node scratch/generate_52_sector_evidence_report.js
 
-      - name: 13. Verify Build Info & Deployment Parity Artifacts
+      - name: 14. Verify Build Info & Deployment Parity Artifacts
         run: |
           echo ">>> Verifying build-info.json and version.json..."
           test -f build-info.json
           test -f version.json
           node -e "const v = require('./build-info.json'); console.log('Current commit build SHA:', v.git_sha);"
 
-      - name: 14. Verify Database Migrations (15 SQL Files & RLS Policies)
+      - name: 15. Verify Database Migrations (16 SQL Files & RLS Policies)
         run: |
           echo ">>> Verifying SQL database migrations..."
           count=$(ls -1 supabase/migrations/*.sql | wc -l)
           echo "Found $count SQL migrations."
-          test $count -ge 14
+          test $count -ge 15
           echo ">>> All production verification gates successfully passed."

@@ -1,0 +1,11 @@
+{
+  "scan_time": "2026-08-20T03:07:26.208Z",
+  "total_files_scanned": 665,
+  "direct_db_access_points": [],
+  "summary": {
+    "public_catalog_reads": 0,
+    "server_edge_operations": 0,
+    "unauthorized_direct_mutations": 0
+  },
+  "policy_compliance": "ENFORCED"
+}
