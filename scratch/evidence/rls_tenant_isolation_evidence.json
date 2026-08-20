@@ -7,25 +7,25 @@
       "test": "RLS Policy: Tenant A Blocked from Querying Tenant B Orders (Expect Denied)",
       "status": "PASS",
       "evidence": "Tenant 'tenant_alpha_enterprise' request to 'tenant_beta_corp' resource correctly rejected (403 Forbidden / Empty Set)",
-      "timestamp": "2026-08-20T03:07:26.174Z"
+      "timestamp": "2026-08-20T03:35:54.616Z"
     },
     {
       "test": "RLS Policy: Tenant A Blocked from Vector Search in Tenant B Knowledge Store",
       "status": "PASS",
       "evidence": "Vector search strictly scoped by RLS WHERE tenant_id = 'tenant_alpha_enterprise'. Zero cross-tenant data leakage.",
-      "timestamp": "2026-08-20T03:07:26.174Z"
+      "timestamp": "2026-08-20T03:35:54.617Z"
     },
     {
       "test": "RLS Policy: Tenant A Blocked from Modifying Tenant B CRM Leads",
       "status": "PASS",
       "evidence": "CRM Mutations restricted by RLS WITH CHECK (tenant_id = auth.jwt() -> 'tenant_id').",
-      "timestamp": "2026-08-20T03:07:26.174Z"
+      "timestamp": "2026-08-20T03:35:54.617Z"
     },
     {
       "test": "Database Schema: Row Level Security (RLS) Explicitly Enabled on All Core Tables",
       "status": "PASS",
       "evidence": "Found 118 tables with 'ENABLE ROW LEVEL SECURITY' across migrations.",
-      "timestamp": "2026-08-20T03:07:26.175Z"
+      "timestamp": "2026-08-20T03:35:54.618Z"
     }
   ]
 }

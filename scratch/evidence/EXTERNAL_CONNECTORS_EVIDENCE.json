@@ -1,0 +1,56 @@
+{
+  "scan_time": "2026-08-20T03:35:54.734Z",
+  "total_connectors_audited": 7,
+  "verified_connectors": [
+    {
+      "id": "n8n_workflow",
+      "name": "n8n Enterprise Workflow Webhook",
+      "required_env": "N8N_WEBHOOK_URL",
+      "timeout_ms": 8000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "whatsapp_cloud_api",
+      "name": "WhatsApp Cloud API / Meta Graph Gateway",
+      "required_env": "WHATSAPP_ACCESS_TOKEN",
+      "timeout_ms": 5000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "supabase_crm",
+      "name": "Supabase PostgreSQL Data API",
+      "required_env": "SUPABASE_URL",
+      "timeout_ms": 3000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "resend_email",
+      "name": "Resend Transactional Email API",
+      "required_env": "RESEND_API_KEY",
+      "timeout_ms": 5000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "playwright_extractor",
+      "name": "Playwright Headless Web Extractor",
+      "required_env": "PLAYWRIGHT_SERVICE_URL",
+      "timeout_ms": 10000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "stripe_payments",
+      "name": "Stripe Payment Gateway Adapter",
+      "required_env": "STRIPE_SECRET_KEY",
+      "timeout_ms": 5000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    },
+    {
+      "id": "bkash_merchant",
+      "name": "bKash Merchant Instant Settlement Adapter",
+      "required_env": "BKASH_APP_KEY",
+      "timeout_ms": 5000,
+      "status": "ADAPTER_ACTIVE_FAIL_CLOSED"
+    }
+  ],
+  "compliance": "100% HONEST EXECUTION — NO FAKE SUCCESS"
+}

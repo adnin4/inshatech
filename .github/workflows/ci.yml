@@ -56,20 +56,23 @@ jobs:
       - name: 11. Direct DB Access & Backend Authority Audit
         run: node scratch/audit_direct_db_access.js
 
-      - name: 12. Automated Disaster Recovery Failover Drill
+      - name: 12. External Connectors Fail-Safe Verification (7 Connectors)
+        run: node scratch/verify_external_connectors.js
+
+      - name: 13. Automated Disaster Recovery Failover Drill
         run: node scratch/disaster_recovery_drill.js
 
-      - name: 13. 52-Sector Master Production Evidence Generation
+      - name: 14. 52-Sector Master Production Evidence Generation
         run: node scratch/generate_52_sector_evidence_report.js
 
-      - name: 14. Verify Build Info & Deployment Parity Artifacts
+      - name: 15. Verify Build Info & Deployment Parity Artifacts
         run: |
           echo ">>> Verifying build-info.json and version.json..."
           test -f build-info.json
           test -f version.json
           node -e "const v = require('./build-info.json'); console.log('Current commit build SHA:', v.git_sha);"
 
-      - name: 15. Verify Database Migrations (16 SQL Files & RLS Policies)
+      - name: 16. Verify Database Migrations (16 SQL Files & RLS Policies)
         run: |
           echo ">>> Verifying SQL database migrations..."
           count=$(ls -1 supabase/migrations/*.sql | wc -l)
