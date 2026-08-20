@@ -4,6 +4,6 @@ compatibility_date = "2026-08-01"
 
 [vars]
 ENVIRONMENT = "production"
-SUPABASE_URL = "https://your-project.supabase.co"
+SUPABASE_URL = "https://kitwadizsvjmuxkfewxj.supabase.co"
 BDT_EXCHANGE_RATE = "120"
 SYSTEM_NAME = "IINSHA TECH OS v1000 Master Control Studio"
