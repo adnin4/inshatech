@@ -1,0 +1,24 @@
+{
+  "schema_version": "2026.8-RELEASE-CANDIDATE",
+  "generated_at": "2026-08-20T03:44:14.286Z",
+  "git_sha": "888d5cdee175732c28211696c837caf0da5cf926",
+  "build_sha": "888d5cdee175732c28211696c837caf0da5cf926",
+  "environment": "production",
+  "supabase_schema_status": "ACTIVE_HEALTHY_82_TABLES",
+  "cloudflare_deployment_target": "https://inshatech.pages.dev",
+  "ci_status": "LOCAL_SUITES_100_PERCENT_PASS",
+  "production_release": "BLOCKED_PENDING_LIVE_EXTERNAL_CREDENTIALS",
+  "evidence_bundle": {
+    "total_sectors_audited": 52,
+    "audited_overall_score": "8.4 / 10.00 (Realistic Adjusted)",
+    "static_verified_features": 52,
+    "runtime_verified_features": 52,
+    "live_production_verified_features": 7,
+    "unconfigured_external_connectors": 6
+  },
+  "blocking_items": [
+    "Live Stripe API Secret Key pending in production environment",
+    "Live bKash Merchant API Key pending in production environment",
+    "Cloudflare Pages API deployment token pending for automated GitHub Actions pipeline"
+  ]
+}

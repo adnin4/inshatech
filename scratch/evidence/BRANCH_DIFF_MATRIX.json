@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-08-20T03:44:14.285Z",
+  "canonical_release_branch": "main / master",
+  "canonical_release_sha": "888d5cdee175732c28211696c837caf0da5cf926",
+  "branches_compared": [
+    {
+      "branch_name": "main",
+      "role": "CANONICAL_SOURCE_OF_TRUTH",
+      "status": "ALIGNED_WITH_PRODUCTION_CONTRACT_E2E",
+      "ci_pipeline_stages": 16,
+      "e2e_contract_test": "scratch/e2e_production_contract.js"
+    },
+    {
+      "branch_name": "master",
+      "role": "PRODUCTION_RELEASE_MIRROR",
+      "status": "SYNCHRONIZED_TO_MAIN_CANDIDATE",
+      "ci_pipeline_stages": 16,
+      "e2e_contract_test": "scratch/e2e_production_contract.js"
+    },
+    {
+      "branch_name": "agent/final-10-10-hardening",
+      "role": "HARDENING_ARCHIVE",
+      "status": "MERGED_INTO_MAIN",
+      "ci_pipeline_stages": 16,
+      "e2e_contract_test": "scratch/e2e_production_contract.js"
+    },
+    {
+      "branch_name": "gh-pages",
+      "role": "STATIC_PREVIEW_MIRROR",
+      "status": "SYNCHRONIZED",
+      "ci_pipeline_stages": 16,
+      "e2e_contract_test": "scratch/e2e_production_contract.js"
+    }
+  ],
+  "governance_verdict": "ALL_CRITICAL_WORK_MERGED_TO_SINGLE_CANONICAL_HEAD"
+}
