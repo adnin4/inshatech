@@ -19,7 +19,7 @@ const CATALOG = {
     'invoice-ocr-pipeline': ['Autonomous Invoice & Document OCR Pipeline', 249, 200, 1],
     'ai-saas-mvp': ['Full-Stack Autonomous AI SaaS MVP', 2500, 2000, 7],
     'custom-agent-swarm': ['Custom Multi-Agent Department Mesh', 1200, 1000, 4],
-    'openclaw-scraping-farm': ['Authorized Web Data Pipeline', 75, 50, 1],
+    'playwright-scraping-farm': ['Authorized Web Data Pipeline', 75, 50, 1],
     'stripe-churn-recovery': ['Stripe Churn Recovery n8n Engine', 50, 40, 1],
     'apollo-enrichment-leadgen': ['Apollo MX Verifier & Enrichment Swarm', 60, 45, 1]
 };

@@ -169,7 +169,7 @@
       "size": 7304
     },
     {
-      "path": "cloudflare_pages_dist\\services\\openclaw-web-scraping.html",
+      "path": "cloudflare_pages_dist\\services\\playwright-web-scraping.html",
       "size": 7489
     },
     {
@@ -285,7 +285,7 @@
       "size": 7304
     },
     {
-      "path": "services\\openclaw-web-scraping.html",
+      "path": "services\\playwright-web-scraping.html",
       "size": 7489
     }
   ],

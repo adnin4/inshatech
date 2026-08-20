@@ -246,7 +246,7 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             const extractType = args.extract_type || 'json_metadata';
 
             return {
-                connector: 'openclaw_playwright_mesh',
+                connector: 'playwright_pipeline_mesh',
                 target_url: targetUrl,
                 status: 'PIPELINE_EXECUTED',
                 extracted_records: 1,

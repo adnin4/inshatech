@@ -185,7 +185,7 @@ class ToolExecutor {
                         { name: 'iinsha-n8n-engine', status: 'RUNNING', port: 5678, ram_usage: '284 MB / 8 GB' },
                         { name: 'traefik-ssl-gateway', status: 'RUNNING', port: 443, ssl_expiry: '82 days remaining' },
                         { name: 'pgvector-digital-twin', status: 'RUNNING', port: 5432, vectors_count: 1420 },
-                        { name: 'openclaw-stealth-scraper', status: 'IDLE_READY', port: 8080, proxies_alive: 48 }
+                        { name: 'playwright-data-pipeline', status: 'IDLE_READY', port: 8080, proxies_alive: 48 }
                     ],
                     active_agents: 27,
                     system_load: '0.18, 0.22, 0.19'

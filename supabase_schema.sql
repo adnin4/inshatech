@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS ibos_content_words (
 -- Insert Default Universal Content Words
 INSERT INTO ibos_content_words (word_key, word_value, category) VALUES
 ('HERO_TITLE', 'Transform Your Business With Enterprise AI Automation', 'hero'),
-('HERO_SUBTITLE', 'Production-grade AI agents, OpenClaw stealth web scrapers, and Hostinger Docker VPS infrastructure.', 'hero'),
+('HERO_SUBTITLE', 'Production-grade AI agents, Playwright Enterprise Pipeline web scrapers, and Hostinger Docker VPS infrastructure.', 'hero'),
 ('HERO_CTA_TEXT', 'Explore AI Agency Solutions', 'hero'),
 ('NAVBAR_BRAND', 'IINSHA TECH OS', 'navigation'),
 ('FOOTER_TEXT', '© 2026 IINSHA TECH OS. All Rights Reserved. Powered by Cloudflare Pages & Supabase.', 'footer'),

@@ -231,7 +231,7 @@ const IINSHA_KNOWLEDGE_BASE = [
 ৪. **হোস্টিং কুপন:** Hostinger VPS-এ ২০% ছাড় পেতে ব্যবহার করুন কুপন কোড: <strong>IINSHA20</strong>!`
     },
     {
-        intents: ['scraping', 'openclaw', 'leads', 'scraper', 'data extraction', 'cloudflare', 'turnstile', 'b2b'],
+        intents: ['scraping', 'playwright', 'leads', 'scraper', 'data extraction', 'cloudflare', 'turnstile', 'b2b'],
         reply_en: `🦀 **Playwright Pipeline Resilient Scraping Farm ($250 USD):**<br>
 • **99.8% Turnstile / Authorized Web Data Extraction:** Uses Playwright headless automation with dynamic residential proxy mesh.<br>
 • **Automated Sync:** Directly writes extracted leads, e-commerce catalog pricing, and directory data into PostgreSQL, Supabase, or Airtable.<br>
@@ -521,7 +521,7 @@ function getIBOSData() {
             { id: 'ai_support', name: 'Support AI Swarm', domain: 'Support', model: 'Claude 3.7 Sonnet (Hybrid Thinking)', status: 'ACTIVE' },
             { id: 'ai_affiliate', name: 'Affiliate AI Assistant', domain: 'Marketing', model: 'GPT-5 Turbo', status: 'ACTIVE' },
             { id: 'ai_proposal', name: 'Proposal AI Agent', domain: 'Sales', model: 'DeepSeek-R1', status: 'ACTIVE' },
-            { id: 'ai_executive', name: 'Executive AI Briefing Agent', domain: 'Executive', model: 'Gemini 3.5 Pro', status: 'ACTIVE' }
+            { id: 'ai_executive', name: 'Executive AI Briefing Agent', domain: 'Executive', model: 'Gemini 1.5 Pro', status: 'ACTIVE' }
         ]
     };
 }
@@ -1439,7 +1439,7 @@ function initBuildYourAISystemWizard() {
         industry: 'E-Commerce',
         problem: 'Customer Support Load',
         automation: 'AI Chatbot & RAG',
-        model: 'Gemini 3.5 Pro',
+        model: 'Gemini 1.5 Pro',
         database: 'Supabase PostgreSQL',
         integrations: ['WhatsApp API', 'Stripe Payments']
     };
@@ -1505,7 +1505,7 @@ function openBuildAISystemModal() {
 
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">2. AI Engine Model</label>
                     <select onchange="window.aiBuilderState.model=this.value; renderAIBuilderSummary();" style="width:100%; padding:10px; background:rgba(30,41,59,0.8); border:1px solid var(--border-card); border-radius:8px; color:#fff; margin-bottom:12px;">
-                        <option value="Gemini 3.5 Pro">Google Gemini 3.5 Pro (Recommended)</option>
+                        <option value="Gemini 1.5 Pro">Google Gemini 1.5 Pro (Recommended)</option>
                         <option value="Claude 3.7 Sonnet (Hybrid Thinking)">Anthropic Claude 3.7 Sonnet (Hybrid Thinking)</option>
                         <option value="DeepSeek-R1 (Reasoning) & DeepSeek-V3 Swarm">DeepSeek-R1 (Reasoning) & DeepSeek-V3 Multi-Agent Swarm</option>
                     </select>
@@ -4759,7 +4759,7 @@ window.renderAutonomousEnterpriseEngineStudio = renderAutonomousEnterpriseEngine
 
 /* ============================================================
    IINSHA AI OS v12.0 — AI BUSINESS OPERATING SYSTEM (AI-BOS)
-   Gemini 3.6 Flash + Gemini 3.5 Flash-Lite Model Routing & Tool Execution Mesh
+   Gemini 1.5 Flash + Gemini 1.5 Flash Model Routing & Tool Execution Mesh
    ============================================================ */
 
 var iinshaAIBOSModelRouter = {
@@ -4770,14 +4770,14 @@ var iinshaAIBOSModelRouter = {
 };
 
 var iinshaAIBOSHierarchy = [
-    { level: 'Level 1: Executive', name: 'COMMANDER (AI CEO)', model: 'Gemini 3.6 Flash', role: 'Supervises all agents, prioritizes tasks, schedules n8n workflows & enforces HITL approvals' },
-    { level: 'Level 1: Executive', name: 'ORACLE (Strategy)', model: 'Gemini 3.5 Pro', role: 'Analyzes market trends, country demand & dynamic service pricing' },
-    { level: 'Level 2: Revenue', name: 'HUNTER (Lead Intel)', model: 'Gemini 3.5 Flash-Lite', role: 'Target company discovery, ICP creation & privacy-compliant prospect research' },
-    { level: 'Level 2: Revenue', name: 'NEGOTIATOR (Sales)', model: 'Gemini 3.5 Pro', role: 'Inquiry analysis, SoW drafting, objection handling & CRM updates' },
-    { level: 'Level 3: Marketing', name: 'GROWTH AGENT', model: 'Gemini 3.6 Flash', role: 'LinkedIn/X/FB campaigns, SEO landing pages & affiliate content generation' },
-    { level: 'Level 4: Product & Tech', name: 'BUILDER & ARCHITECT', model: 'Gemini 3.6 Flash', role: 'Frontend/backend code, Cloudflare Pages, Supabase RLS & n8n mesh' },
-    { level: 'Level 4: Product & Tech', name: 'GUARDIAN (Self-Healing)', model: 'Gemini 3.6 Flash', role: 'Detects runtime errors, tests staging patches & requests deployment approval' },
-    { level: 'Level 5: Finance', name: 'TREASURER (Finance)', model: 'Gemini 3.5 Flash-Lite', role: 'Calculates CAC, LTV, affiliate commissions & daily profitability briefings' }
+    { level: 'Level 1: Executive', name: 'COMMANDER (AI CEO)', model: 'Gemini 1.5 Flash', role: 'Supervises all agents, prioritizes tasks, schedules n8n workflows & enforces HITL approvals' },
+    { level: 'Level 1: Executive', name: 'ORACLE (Strategy)', model: 'Gemini 1.5 Pro', role: 'Analyzes market trends, country demand & dynamic service pricing' },
+    { level: 'Level 2: Revenue', name: 'HUNTER (Lead Intel)', model: 'Gemini 1.5 Flash', role: 'Target company discovery, ICP creation & privacy-compliant prospect research' },
+    { level: 'Level 2: Revenue', name: 'NEGOTIATOR (Sales)', model: 'Gemini 1.5 Pro', role: 'Inquiry analysis, SoW drafting, objection handling & CRM updates' },
+    { level: 'Level 3: Marketing', name: 'GROWTH AGENT', model: 'Gemini 1.5 Flash', role: 'LinkedIn/X/FB campaigns, SEO landing pages & affiliate content generation' },
+    { level: 'Level 4: Product & Tech', name: 'BUILDER & ARCHITECT', model: 'Gemini 1.5 Flash', role: 'Frontend/backend code, Cloudflare Pages, Supabase RLS & n8n mesh' },
+    { level: 'Level 4: Product & Tech', name: 'GUARDIAN (Self-Healing)', model: 'Gemini 1.5 Flash', role: 'Detects runtime errors, tests staging patches & requests deployment approval' },
+    { level: 'Level 5: Finance', name: 'TREASURER (Finance)', model: 'Gemini 1.5 Flash', role: 'Calculates CAC, LTV, affiliate commissions & daily profitability briefings' }
 ];
 
 function renderAIBOSArchitectureStudio() {
@@ -4808,15 +4808,15 @@ function renderAIBOSArchitectureStudio() {
             <div style="background:rgba(0,0,0,0.5); border:1px solid rgba(59,130,246,0.4); padding:14px; border-radius:12px; margin-bottom:18px; display:flex; justify-content:space-around; text-align:center;">
                 <div>
                     <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">EXECUTIVE MODEL</div>
-                    <div style="font-size:0.9rem; font-weight:bold; color:#60a5fa;">Gemini 3.6 Flash</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:#60a5fa;">Gemini 1.5 Flash</div>
                 </div>
                 <div>
                     <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">SUBAGENT MODEL</div>
-                    <div style="font-size:0.9rem; font-weight:bold; color:var(--accent-emerald);">Gemini 3.5 Flash-Lite</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:var(--accent-emerald);">Gemini 1.5 Flash</div>
                 </div>
                 <div>
                     <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">STRATEGY ENGINE</div>
-                    <div style="font-size:0.9rem; font-weight:bold; color:#a78bfa;">Gemini 3.5 Pro</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:#a78bfa;">Gemini 1.5 Pro</div>
                 </div>
             </div>
 
@@ -4862,7 +4862,7 @@ var iinshaTranslations = {
         heroTitle: "Supercharge Your Business With AI Business Operating System",
         heroSub: "Autonomous agent swarms, n8n workflows, and decision intelligence built for maximum ROI.",
         auditBtn: "⚡ Run Free AI Business Audit",
-        chatTitle: "IINSHA AI Copilot (Gemini 3.6 Flash)",
+        chatTitle: "IINSHA AI Copilot (Gemini 1.5 Flash)",
         chatPlaceholder: "Ask anything or describe your business process..."
     },
     BN: {
@@ -5466,7 +5466,7 @@ var iinshaCatalogV4Matrix = [
         badge: 'ENTERPRISE SWARM',
         color: '#8b5cf6',
         services: [
-            { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 3.6 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: '৳305,000/mo' },
+            { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 1.5 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: '৳305,000/mo' },
             { id: 't2_sales_engine', name: 'Autonomous Sales & Deal Engine', desc: 'HUNTER + NEGOTIATOR swarm discovering ICP targets, drafting SoWs & handling objections.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Sales Agency', roi: '850% ROI in 30 days', bdt: '৳219,600/mo' },
             { id: 't2_customer_intel', name: 'Omnichannel Customer Intelligence Suite', desc: 'Unified memory graph across WhatsApp, Email, FB & web lead interactions.', priceUSD: '$1,200/mo', marketVal: '$4,200/mo HubSpot/Salesforce AI', roi: '390% ROI in 60 days', bdt: '৳146,400/mo' },
             { id: 't2_finance_os', name: 'Financial Yield & CAC Optimization OS', desc: 'TREASURER agent monitoring LTV, CAC, affiliate payouts & daily profit metrics.', priceUSD: '$1,500/mo', marketVal: '$5,000/mo FinTech Agency', roi: '450% ROI in 45 days', bdt: '৳183,000/mo' }
@@ -5783,7 +5783,7 @@ function initSolutionFinder() {
             jsonCode.textContent = JSON.stringify({
                 status: "Architecture Verified",
                 query: query,
-                pipelineNodes: ["Webhook Trigger", "Gemini 3.6 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
+                pipelineNodes: ["Webhook Trigger", "Gemini 1.5 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
                 estimatedTimeSaved: "35 Hours / week",
                 estimatedPrice: "$499 USD"
             }, null, 2);
@@ -5983,7 +5983,7 @@ function initSolutionFinder() {
             jsonCode.textContent = JSON.stringify({
                 status: "Architecture Verified",
                 query: query,
-                pipelineNodes: ["Webhook Trigger", "Gemini 3.6 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
+                pipelineNodes: ["Webhook Trigger", "Gemini 1.5 Flash Engine", "Postgres Vector DB", "WhatsApp Alert"],
                 estimatedTimeSaved: "35 Hours / week",
                 estimatedPrice: "$499 USD"
             }, null, 2);

@@ -21,7 +21,7 @@ const personas = [
     {
         name: 'Technical Automation Consultant',
         interest: 'B2B Lead Scraper 5-Agent Swarm with MX Verification ($850 / ৳1,04,125)',
-        journey: 'Direct CLI/API Review -> OpenClaw Architecture Inspection -> Checkout -> Instant Repository Access',
+        journey: 'Direct CLI/API Review -> Playwright Pipeline Architecture Inspection -> Checkout -> Instant Repository Access',
         status: 'VERIFIED_PASS'
     },
     {

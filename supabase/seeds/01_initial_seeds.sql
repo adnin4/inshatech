@@ -63,7 +63,7 @@ ON CONFLICT (slug) DO UPDATE SET
 
 -- 2. Insert Default Dynamic Pages
 INSERT INTO ibos_dynamic_pages (slug, title, is_published, seo_title, seo_description) VALUES
-('homepage', 'IINSHA AI-BOS Studio', true, 'IINSHA AI OS — Enterprise AI Automation', 'Production-grade AI agents, OpenClaw stealth scrapers, and Hostinger Docker VPS infrastructure.'),
+('homepage', 'IINSHA AI-BOS Studio', true, 'IINSHA AI OS — Enterprise AI Automation', 'Production-grade AI agents, Playwright Enterprise Pipeline scrapers, and Hostinger Docker VPS infrastructure.'),
 ('marketplace', 'Autonomous Solution Marketplace', true, 'IINSHA Marketplace — AI Workforce & Pipelines', 'Turnkey productized AI services with transparent BDT & USD pricing.'),
 ('affiliate', '28-Pillar Partner OS', true, 'IINSHA Partner Network — Earn 20-30% Recurring', 'Earn lifetime recurring commissions on enterprise AI automation implementations.')
 ON CONFLICT (slug) DO NOTHING;
@@ -71,7 +71,7 @@ ON CONFLICT (slug) DO NOTHING;
 -- 3. Insert Initial Content Words
 INSERT INTO ibos_content_words (word_key, word_value, category) VALUES
 ('HERO_TITLE', 'Transform Your Business With Enterprise AI Automation', 'hero'),
-('HERO_SUBTITLE', 'Production-grade AI agents, OpenClaw stealth web scrapers, and Hostinger Docker VPS infrastructure.', 'hero'),
+('HERO_SUBTITLE', 'Production-grade AI agents, Playwright Enterprise Pipeline web scrapers, and Hostinger Docker VPS infrastructure.', 'hero'),
 ('HERO_CTA_TEXT', 'Explore AI Agency Solutions', 'hero'),
 ('WHATSAPP_NUMBER', '+8801629286887', 'contact'),
 ('BDT_EXCHANGE_RATE', '122.50', 'finance')

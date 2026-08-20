@@ -4,7 +4,7 @@ const path = require('path');
 const files = fs.readdirSync('.').filter(f => f.endsWith('.html') || f.endsWith('.js'));
 const queries = [
   'LIVE API TEST',
-  'OpenClaw',
+  'Playwright Pipeline',
   '100% Data Security',
   'HIPAA',
   'Netlify',
@@ -16,8 +16,8 @@ const queries = [
   'GDPR Guarantee',
   '100% Data',
   'Real production systems with verified metrics',
-  'simulate OpenClaw',
-  '14,280'
+  'simulate Playwright Pipeline',
+  '12,850+'
 ];
 
 files.forEach(f => {
