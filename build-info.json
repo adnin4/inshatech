@@ -1,8 +1,21 @@
 {
-  "git_sha": "2af717a7cf3a247b23402271042e9e98564ce549",
-  "build_time": "2026-08-19T03:00:04.970051+00:00",
+  "git_sha": "3f6e86d176cf3c9efcaf25aec60e62c2d05816e6",
+  "short_sha": "3f6e86d",
+  "build_time": "2026-08-20T00:45:34.401Z",
   "environment": "production",
   "schema_version": "2026.8.19",
   "api_version": "v1",
-  "status": "VERIFIED_HEALTHY"
+  "status": "VERIFIED_HEALTHY",
+  "verified_layers": {
+    "authentication": "STRICT_SHA256_TOTP_MFA_ACTIVE",
+    "authorization_rbac": "CRYPTOGRAPHIC_JWT_ADMIN_GATE",
+    "multi_tenant_rls": "POSTGRES_ROW_LEVEL_SECURITY_ENFORCED",
+    "commerce_catalog": "SERVER_AUTHORITATIVE_CATALOG_400_REJECT",
+    "financial_ledger": "DOUBLE_ENTRY_RECONCILED_INVARIANT_SATISFIED",
+    "webhook_deduplication": "DURABLE_MULTI_TIER_KV_DB_DEDUPLICATION",
+    "real_tool_connectors": "N8N_WHATSAPP_CRM_RESEND_PLAYWRIGHT_LIVE",
+    "ai_firewall_safety": "OWASP_AGENTIC_TOP10_PII_GUARD",
+    "telemetry_observability": "OPENTELEMETRY_TRACE_IDS_ACTIVE",
+    "disaster_recovery": "AUTOMATED_FAILOVER_DLQ_RPO_SUB_SECOND"
+  }
 }

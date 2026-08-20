@@ -20,10 +20,12 @@ console.log('===================================================================
 // 1. Get Live Git SHA
 let gitSha = 'UNKNOWN_SHA';
 try {
-    const gitExe = 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.3\\resources\\app\\git\\cmd\\git.exe';
-    gitSha = execSync(`"${gitExe}" rev-parse HEAD`, { cwd: BASE_DIR }).toString().trim();
+    gitSha = execSync('git rev-parse HEAD', { cwd: BASE_DIR }).toString().trim();
 } catch (e) {
-    try { gitSha = execSync('git rev-parse HEAD', { cwd: BASE_DIR }).toString().trim(); } catch (err) {}
+    try {
+        const gitExe = 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.3\\resources\\app\\git\\cmd\\git.exe';
+        gitSha = execSync(`"${gitExe}" rev-parse HEAD`, { cwd: BASE_DIR }).toString().trim();
+    } catch (err) {}
 }
 
 const buildTime = new Date().toISOString();

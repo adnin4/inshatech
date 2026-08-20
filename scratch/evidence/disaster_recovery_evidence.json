@@ -10,25 +10,25 @@
       "drill": "Edge Failover: Global Anycast Seamlessly Re-routes Traffic during Regional Outage",
       "status": "PASS",
       "detail": "Primary 'SIN' degraded -> Automatic failover to 'NRT' in 38ms.",
-      "timestamp": "2026-08-19T03:00:00.048Z"
+      "timestamp": "2026-08-20T00:45:34.650Z"
     },
     {
       "drill": "Dead Letter Queue: Poison & Dropped Messages Buffered for Zero Data Loss",
       "status": "PASS",
       "detail": "Buffered failed event 'dlq_msg_884920' in DLQ with full payload context.",
-      "timestamp": "2026-08-19T03:00:00.048Z"
+      "timestamp": "2026-08-20T00:45:34.650Z"
     },
     {
       "drill": "DLQ Re-drive: Operator Can Replay Dead-Letter Queue Items without Corruption",
       "status": "PASS",
       "detail": "DLQ re-drive processed item 'dlq_msg_884920' with zero double-billing.",
-      "timestamp": "2026-08-19T03:00:00.048Z"
+      "timestamp": "2026-08-20T00:45:34.650Z"
     },
     {
       "drill": "Recovery SLA Metrics: Verified RPO < 1s and RTO < 5s Compliance",
       "status": "PASS",
       "detail": "Measured RPO: 0.5s | Measured RTO: 0.00s | SLA: Target Exceeded.",
-      "timestamp": "2026-08-19T03:00:00.048Z"
+      "timestamp": "2026-08-20T00:45:34.650Z"
     }
   ]
 }

@@ -1,4 +1,7 @@
 const fs = require('fs');
+const path = require('path');
+
+const BASE_DIR = process.env.GITHUB_WORKSPACE || path.resolve(__dirname, '..');
 
 const htmlFiles = [
     'index.html',
@@ -15,14 +18,16 @@ const htmlFiles = [
 
 console.log('=== COMPREHENSIVE BUTTON & LINK AUDIT ===');
 
-const allFunctionsInAppJs = fs.readFileSync('app.js', 'utf8');
+const appJsPath = path.join(BASE_DIR, 'app.js');
+const allFunctionsInAppJs = fs.existsSync(appJsPath) ? fs.readFileSync(appJsPath, 'utf8') : '';
 
 let grandTotalButtons = 0;
 let grandTotalIssues = 0;
 
 htmlFiles.forEach(file => {
-    if (!fs.existsSync(file)) return;
-    const content = fs.readFileSync(file, 'utf8');
+    const fullPath = path.join(BASE_DIR, file);
+    if (!fs.existsSync(fullPath)) return;
+    const content = fs.readFileSync(fullPath, 'utf8');
     
     console.log(`\n--- Inspecting ${file} ---`);
     

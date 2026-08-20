@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_DIR = 'C:\\Users\\mahin khan\\.gemini\\antigravity\\scratch\\portfolio-showcase';
+const BASE_DIR = process.env.GITHUB_WORKSPACE || path.resolve(__dirname, '..');
 
 console.log('====================================================');
 console.log('IINSHA AI AUTONOMOUS COMPANY OS — COMPREHENSIVE QA');
