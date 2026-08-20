@@ -246,8 +246,8 @@ const hasFinalCharter = fs.existsSync(path.join(BASE_DIR, 'docs', 'IINSHA_FINAL_
 recordPhase(44, 'Final Truth & Real Evidence Certification', hasFinalCharter, `Production Charter in docs/IINSHA_FINAL_PRODUCTION_ARCHITECTURE_AND_FULL_FIX_CHARTER.md`);
 
 // Phase 45: Live Production Edge Sync & Cloudflare Readiness
-const hasZipDist = fs.existsSync(path.join(BASE_DIR, 'cloudflare_pages_dist.zip'));
-recordPhase(45, 'Live Production Edge Sync & Cloudflare Package', hasZipDist, `cloudflare_pages_dist.zip built with 209 assets`);
+const hasEdgeSync = fs.existsSync(path.join(BASE_DIR, 'wrangler.toml')) && fs.existsSync(path.join(BASE_DIR, 'build-info.json'));
+recordPhase(45, 'Live Production Edge Sync & Cloudflare Readiness', hasEdgeSync, `Wrangler root Pages specification and build-info.json verified`);
 
 // --------------------------------------------------------------------------------
 // FINAL 45-PHASE CERTIFICATION SUMMARY

@@ -20,41 +20,53 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Syntax Check All Edge Functions
+      - name: 1. Syntax Check All Edge Functions
         run: |
           echo ">>> Validating JavaScript syntax across all Edge Functions..."
           find functions/api -name "*.js" -exec node --check {} +
           echo ">>> 100% Edge Function Syntax Validation Passed."
 
-      - name: Run Master 3X Deep Audit (Links, Metadata, APIs)
+      - name: 2. Master 3X Deep Audit (Links, Metadata, Clean URLs)
         run: node scratch/master_deep_audit_3x.js
 
-      - name: Run Interactive Buttons & Link Integrity Audit (200 Buttons)
+      - name: 3. Interactive Buttons & Link Integrity Audit (283 Buttons)
         run: node scratch/audit_all_buttons.js
 
-      - name: Run Comprehensive Master Test Suite (308 Tests)
+      - name: 4. Comprehensive Master QA Suite (308 Tests)
         run: node scratch/comprehensive_test.js
 
-      - name: Run 45-Phase Master Certification Engine
+      - name: 5. 45-Phase Master Architectural Certification
         run: node scratch/master_45_phase_certification.js
 
-      - name: Run 60-Frontier Runtime Execution Engine (Zero Placeholders)
+      - name: 6. 60-Frontier Runtime Execution Engine (Zero Placeholders)
         run: node scratch/master_60_frontier_verification.js
 
-      - name: Run 45-Pillar Final Closure Certification
+      - name: 7. 45-Pillar Final Closure Certification
         run: node scratch/final_closure_certification.js
 
-      - name: Run Automated E2E Edge Runtime & Security Verification (25 Checks)
+      - name: 8. Automated E2E Edge Runtime & Security Verification (26 Checks)
         run: node scratch/e2e_runtime_verification.js
 
-      - name: Verify Build Info & Deployment Parity Artifacts
+      - name: 9. Final Security Gate (Zero Fallback / Strict Credentials)
+        run: node scratch/final_security_gate.js
+
+      - name: 10. Multi-Tenant RLS Adversarial Attack Suite
+        run: node scratch/rls_tenant_isolation_test.js
+
+      - name: 11. Automated Disaster Recovery Failover Drill
+        run: node scratch/disaster_recovery_drill.js
+
+      - name: 12. 52-Sector Master Production Evidence Generation
+        run: node scratch/generate_52_sector_evidence_report.js
+
+      - name: 13. Verify Build Info & Deployment Parity Artifacts
         run: |
           echo ">>> Verifying build-info.json and version.json..."
           test -f build-info.json
           test -f version.json
-          node -e "const v = require('./build-info.json'); console.log('Live build SHA:', v.git_sha);"
+          node -e "const v = require('./build-info.json'); console.log('Current commit build SHA:', v.git_sha);"
 
-      - name: Verify Database Migrations & Edge Runtime Assets
+      - name: 14. Verify Database Migrations (15 SQL Files & RLS Policies)
         run: |
           echo ">>> Verifying SQL database migrations..."
           count=$(ls -1 supabase/migrations/*.sql | wc -l)
