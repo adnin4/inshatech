@@ -44,8 +44,8 @@ jobs:
       - name: 7. 45-Pillar Final Closure Certification
         run: node scratch/final_closure_certification.js
 
-      - name: 8. Automated E2E Edge Runtime & Security Verification (26 Checks)
-        run: node scratch/e2e_runtime_verification.js
+      - name: 8. Authoritative Production Contract & Payment Integrity E2E
+        run: node scratch/e2e_production_contract.js
 
       - name: 9. Final Security Gate (Zero Fallback / Strict Credentials)
         run: node scratch/final_security_gate.js

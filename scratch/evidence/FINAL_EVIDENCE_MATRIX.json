@@ -1,0 +1,43 @@
+{
+  "schema_version": "2026.8-L4",
+  "generated_at": "2026-08-20T03:37:38.144Z",
+  "overall_system_status": "PRODUCTION_READY_CORE",
+  "production_release": "BLOCKED_PENDING_LIVE_EXTERNAL_CREDS",
+  "evidence_levels": {
+    "L0_CODE_PRESENT": 52,
+    "L1_STATIC_VERIFIED": 52,
+    "L2_RUNTIME_VERIFIED": 52,
+    "L3_INTEGRATION_VERIFIED": 45,
+    "L4_LIVE_PRODUCTION_VERIFIED": 7
+  },
+  "connectors": {
+    "n8n_workflow": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "NOT_CONFIGURED"
+    },
+    "whatsapp_cloud_api": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "NOT_CONFIGURED"
+    },
+    "supabase_crm": {
+      "level": "L4_LIVE_PRODUCTION_VERIFIED",
+      "live_creds": "ACTIVE_HEALTHY"
+    },
+    "resend_email": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "NOT_CONFIGURED"
+    },
+    "playwright_extractor": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "LOCAL_ENGINE_ACTIVE"
+    },
+    "stripe_payments": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "NOT_CONFIGURED"
+    },
+    "bkash_merchant": {
+      "level": "L2_RUNTIME_VERIFIED",
+      "live_creds": "NOT_CONFIGURED"
+    }
+  }
+}
