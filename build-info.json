@@ -1,21 +1,10 @@
 {
-  "git_sha": "82c5d064170b308a27f784dc3c4c3b6a593331b4",
-  "short_sha": "82c5d06",
-  "build_time": "2026-08-20T01:03:18.569Z",
+  "git_sha": "WORKFLOW_GENERATED",
+  "short_sha": "WORKFLOW_GENERATED",
+  "build_time": "WORKFLOW_GENERATED",
   "environment": "production",
-  "schema_version": "2026.8.19",
+  "schema_version": "2026.8.20",
   "api_version": "v1",
-  "status": "VERIFIED_HEALTHY",
-  "verified_layers": {
-    "authentication": "STRICT_SHA256_TOTP_MFA_ACTIVE",
-    "authorization_rbac": "CRYPTOGRAPHIC_JWT_ADMIN_GATE",
-    "multi_tenant_rls": "POSTGRES_ROW_LEVEL_SECURITY_ENFORCED",
-    "commerce_catalog": "SERVER_AUTHORITATIVE_CATALOG_400_REJECT",
-    "financial_ledger": "DOUBLE_ENTRY_RECONCILED_INVARIANT_SATISFIED",
-    "webhook_deduplication": "DURABLE_MULTI_TIER_KV_DB_DEDUPLICATION",
-    "real_tool_connectors": "N8N_WHATSAPP_CRM_RESEND_PLAYWRIGHT_LIVE",
-    "ai_firewall_safety": "OWASP_AGENTIC_TOP10_PII_GUARD",
-    "telemetry_observability": "OPENTELEMETRY_TRACE_IDS_ACTIVE",
-    "disaster_recovery": "AUTOMATED_FAILOVER_DLQ_RPO_SUB_SECOND"
-  }
+  "status": "BUILD_ARTIFACT",
+  "verification": "This file is generated during CI/deployment. It must not be interpreted as a runtime health or security certification."
 }
