@@ -24,7 +24,7 @@ jobs:
         run: |
           echo ">>> Validating JavaScript syntax across all Edge Functions..."
           find functions/api -name "*.js" -exec node --check {} +
-          echo ">>> 100% Edge Function Syntax Validation Passed."
+          echo ">>> Edge Function syntax validation passed."
 
       - name: 2. Master 3X Deep Audit (Links, Metadata, Clean URLs)
         run: node scratch/master_deep_audit_3x.js
@@ -44,8 +44,8 @@ jobs:
       - name: 7. 45-Pillar Final Closure Certification
         run: node scratch/final_closure_certification.js
 
-      - name: 8. Automated E2E Edge Runtime & Security Verification (26 Checks)
-        run: node scratch/e2e_runtime_verification.js
+      - name: 8. Automated E2E Production Contract Verification
+        run: node scratch/e2e_production_contract.js
 
       - name: 9. Final Security Gate (Zero Fallback / Strict Credentials)
         run: node scratch/final_security_gate.js
@@ -66,10 +66,10 @@ jobs:
           test -f version.json
           node -e "const v = require('./build-info.json'); console.log('Current commit build SHA:', v.git_sha);"
 
-      - name: 14. Verify Database Migrations (15 SQL Files & RLS Policies)
+      - name: 14. Verify Database Migrations (SQL Files & RLS Policies)
         run: |
           echo ">>> Verifying SQL database migrations..."
           count=$(ls -1 supabase/migrations/*.sql | wc -l)
           echo "Found $count SQL migrations."
-          test $count -ge 14
-          echo ">>> All production verification gates successfully passed."
+          test $count -ge 17
+          echo ">>> Production verification gates completed."
