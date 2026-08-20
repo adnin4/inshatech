@@ -1,37 +1,61 @@
-name: Deploy to GitHub Pages & Verify Cloudflare Build
+name: Deploy Production to Cloudflare Pages
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "cloudflare-production"
   cancel-in-progress: false
+
+env:
+  NODE_VERSION: "22"
+  LIVE_URL: "https://inshatech.pages.dev"
+  ENVIRONMENT: "production"
+  SCHEMA_VERSION: "2026.8.20"
+  API_VERSION: "v1"
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          fetch-depth: 0
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Generate build metadata
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/generate-build-info.mjs
+
+      - name: Verify no developer-machine paths
+        shell: bash
+        run: |
+          if grep -RInE 'C:\\\\Users\\\\|/Users/|/home/[A-Za-z0-9_.-]+/' --exclude-dir=.git --exclude='*.map' .; then
+            echo 'ERROR: developer-machine absolute path detected'
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=inshatech
+
+      - name: Verify live SHA parity
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          LIVE_URL: ${{ env.LIVE_URL }}
+        run: node scripts/verify-live-parity.mjs
