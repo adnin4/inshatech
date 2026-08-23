@@ -1,0 +1,58 @@
+version: 1
+title: IINSHA AI-BOS Final 100x10 Real-World Release Gates
+rules:
+  score_is_real_only: true
+  evidence_required: true
+  live_verified_requires_external_evidence: true
+  provider_absence_state: NOT_CONFIGURED
+  high_impact_actions_owner_controlled: true
+hard_gates:
+  p0_security_findings: 0
+  p1_release_blockers: 0
+  ci: PASS
+  canonical_branch: required
+  sha_parity: required
+  supabase_rls: PASS
+  security_gate: PASS
+  staging: PASS
+  backup_restore_drill: PASS
+  rollback_drill: PASS
+  required_provider_states: LIVE_VERIFIED
+  payment_e2e: REAL_VERIFIED
+  project_execution: REAL_VERIFIED
+  independent_qa: REAL_VERIFIED
+  deployment: REAL_VERIFIED
+  customer_acceptance: REAL_VERIFIED
+  support: REAL_VERIFIED
+  renewal: REAL_VERIFIED
+  learning_loop: REAL_VERIFIED
+  pilot_customers: 5
+  sector_matrix: COMPLETE
+business_loop:
+  - REAL_MARKET
+  - REAL_LEAD
+  - REAL_SALES
+  - REAL_NEGOTIATION
+  - REAL_PAYMENT
+  - REAL_PROJECT
+  - REAL_BUILD
+  - REAL_QA
+  - REAL_CLIENT_APPROVAL
+  - REAL_DELIVERY
+  - REAL_SUPPORT
+  - REAL_RENEWAL
+  - REAL_UPSELL
+  - REAL_REFERRAL
+  - REAL_EXPERIENCE
+  - REAL_LEARNING
+  - BETTER_SKILL
+  - BETTER_AGENT
+  - MORE_LEADS
+sector_10_10_gates:
+  - IMPLEMENTED
+  - TESTED
+  - SECURITY_VERIFIED
+  - CONFIGURED
+  - DEPLOYED
+  - LIVE_EXERCISED
+  - EVIDENCE_VERIFIED
