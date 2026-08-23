@@ -1,7 +1,7 @@
 -- IINSHA AI-BOS — Mission Completion Control Plane
--- Additive only. No destructive operations.
--- Sensitive tables are RLS-enabled; canonical tenant policy is intentionally
--- delegated to the existing tenant-claim model rather than guessed here.
+-- Additive only. Sensitive tables are RLS-enabled.
+-- No secrets are stored here. Tenant-facing access remains fail-closed until
+-- the canonical tenant/role claim mapping is verified and explicit policies are added.
 
 create table if not exists public.integration_connections (
   id uuid primary key default gen_random_uuid(),
@@ -86,17 +86,14 @@ create table if not exists public.delivery_releases (
   completed_at timestamptz
 );
 
-create table if not exists public.renewal_opportunities (
-  id uuid primary key default gen_random_uuid(),
-  project_id uuid,
-  customer_user_id uuid,
-  due_at timestamptz,
-  status text not null default 'SCHEDULED'
-    check (status in ('SCHEDULED','DUE','CONTACTED','RENEWED','LOST','CANCELLED')),
-  offer_meta jsonb not null default '{}'::jsonb,
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
-);
+-- Renewal table is created in the preceding autonomous-company completion migration.
+-- Extend it here instead of redefining it, avoiding schema drift when both migrations run.
+alter table if exists public.renewal_opportunities
+  add column if not exists customer_user_id uuid;
+alter table if exists public.renewal_opportunities
+  add column if not exists offer_meta jsonb not null default '{}'::jsonb;
+alter table if exists public.renewal_opportunities
+  add column if not exists updated_at timestamptz not null default now();
 
 create table if not exists public.mission_evidence (
   id uuid primary key default gen_random_uuid(),
