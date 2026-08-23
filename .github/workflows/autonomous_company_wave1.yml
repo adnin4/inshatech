@@ -1,0 +1,29 @@
+name: Autonomous Company Wave 1
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [feature/autonomous-company-wave1-v2]
+
+jobs:
+  wave1-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify syntax
+        run: |
+          node --check ai_brain/lead_acquisition_engine.js
+          node --check ai_brain/lead_outreach_policy.js
+          node --check ai_brain/margin_guardian.js
+
+      - name: Run autonomous company Wave 1 tests
+        run: node --test scratch/autonomous_company_wave1_test.mjs
