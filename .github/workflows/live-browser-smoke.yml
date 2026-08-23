@@ -1,0 +1,33 @@
+name: Live Browser Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "staging/activation-v1"
+
+permissions:
+  contents: read
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    env:
+      LIVE_URL: https://inshatech.pages.dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright
+        run: npm install --no-save playwright@latest
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run live browser smoke suite
+        run: npx playwright test scratch/live-browser-smoke.spec.mjs --reporter=line
