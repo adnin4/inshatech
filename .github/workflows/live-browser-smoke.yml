@@ -1,10 +1,13 @@
-name: Live Browser Smoke
+name: Staging Browser Smoke (Manual)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "staging/activation-v1"
+    inputs:
+      target_url:
+        description: "Staging/preview URL to verify"
+        required: true
+        default: "https://staging-activation-v1.inshatech.pages.dev"
+        type: string
 
 permissions:
   contents: read
@@ -13,7 +16,7 @@ jobs:
   browser-smoke:
     runs-on: ubuntu-latest
     env:
-      LIVE_URL: https://inshatech.pages.dev
+      LIVE_URL: ${{ inputs.target_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,6 +25,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Install Playwright
         run: npm install --no-save playwright@latest
@@ -29,5 +36,5 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run live browser smoke suite
+      - name: Run browser smoke suite
         run: npx playwright test scratch/live-browser-smoke.spec.mjs --reporter=line
