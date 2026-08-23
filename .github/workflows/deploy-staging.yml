@@ -1,0 +1,70 @@
+name: Deploy Staging Activation
+
+on:
+  push:
+    branches:
+      - "staging/activation-v1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "22"
+  ENVIRONMENT: "staging"
+  API_VERSION: "v1"
+
+concurrency:
+  group: "cloudflare-staging-activation"
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Syntax / lifecycle regression
+        run: npm test
+
+      - name: Generate staging build metadata
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/generate-build-info.mjs
+
+  deploy-preview:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Deploy Cloudflare Pages preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=inshatech --branch=staging/activation-v1
