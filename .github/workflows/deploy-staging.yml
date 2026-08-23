@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "staging/activation-v1"
+      - "staging/activation-v1-fix2"
   workflow_dispatch:
 
 permissions:
