@@ -1,0 +1,28 @@
+name: Live Surface Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "staging/activation-v1"
+
+permissions:
+  contents: read
+
+jobs:
+  live-surface-smoke:
+    runs-on: ubuntu-latest
+    env:
+      LIVE_URL: https://inshatech.pages.dev
+      NODE_VERSION: "22"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Run live surface smoke test
+        run: node scripts/live-surface-smoke.mjs
