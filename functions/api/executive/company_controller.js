@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/company_controller
  * IINSHA AI-BOS 4.0: Master Autonomous Company Controller
  * Evaluates the 10 Generations Matrix and 7-Test Architectural Scorecard
@@ -15,7 +15,7 @@ export async function onRequestGet(context) {
 
     const companyControllerState = {
         as_of: new Date().toISOString(),
-        current_generation: "IINSHA 4.0 — Self-Optimizing Autonomous Enterprise",
+        current_generation: "IINSHA 4.0 â€” Self-Optimizing Autonomous Enterprise",
         roadmap_generations: [
             { gen: "1.0", name: "Website / Service Platform", status: "COMPLETED" },
             { gen: "2.0", name: "AI-BOS + 13 Agent Workforce", status: "COMPLETED" },
@@ -49,3 +49,4 @@ export async function onRequestGet(context) {
         company_controller: companyControllerState
     }), { headers, status: 200 });
 }
+

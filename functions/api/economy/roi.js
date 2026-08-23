@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/economy/roi
  * Agent Economy & Direct Revenue Influence ROI Analytics
  */
@@ -9,7 +9,7 @@ export const AGENT_ECONOMY_STATS = [
         name: "AI Sales Executive",
         compute_cost_usd: 18.42,
         revenue_influenced_usd: 4820.00,
-        economic_roi_multiplier: "261.6×",
+        economic_roi_multiplier: "261.6Ã—",
         tasks_completed: 321,
         status: "HIGH_VALUE_PRODUCER"
     },
@@ -18,7 +18,7 @@ export const AGENT_ECONOMY_STATS = [
         name: "Solution Architect Lead",
         compute_cost_usd: 12.10,
         revenue_influenced_usd: 2400.00,
-        economic_roi_multiplier: "198.3×",
+        economic_roi_multiplier: "198.3Ã—",
         tasks_completed: 184,
         status: "HIGH_VALUE_PRODUCER"
     },
@@ -27,7 +27,7 @@ export const AGENT_ECONOMY_STATS = [
         name: "CEO Strategic Commander",
         compute_cost_usd: 4.80,
         revenue_influenced_usd: 7220.00,
-        economic_roi_multiplier: "1504.1×",
+        economic_roi_multiplier: "1504.1Ã—",
         tasks_completed: 142,
         status: "EXECUTIVE_ORCHESTRATOR"
     }
@@ -50,9 +50,10 @@ export async function onRequestGet(context) {
         aggregate_economy: {
             total_ai_compute_spend_usd: totalCost,
             total_revenue_influenced_usd: totalRev,
-            overall_portfolio_roi: `${(totalRev / totalCost).toFixed(1)}×`,
+            overall_portfolio_roi: `${(totalRev / totalCost).toFixed(1)}Ã—`,
             cost_to_revenue_ratio_percent: `${((totalCost / totalRev) * 100).toFixed(2)}%`
         },
         agents: AGENT_ECONOMY_STATS
     }), { headers, status: 200 });
 }
+

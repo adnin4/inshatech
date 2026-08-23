@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/tenants/switch
  * Multi-Tenancy Organization & Workspace Switcher API
  */
@@ -45,3 +45,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

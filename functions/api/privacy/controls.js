@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/privacy/controls
  * Enterprise Privacy, GDPR, CCPA & Compliance Center API
  * Implements GDPR Art. 15 (Data Portability Export), Art. 17 (Right to Erasure / AI Memory Purge), and Compliance Manifest.
@@ -89,3 +89,4 @@ export async function onRequestOptions(context) {
         status: 204
     });
 }
+

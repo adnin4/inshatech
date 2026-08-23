@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/live_cockpit
  * One-Person AI Company Live Sovereign Cockpit API
  * Answers the 8 Core Owner Questions in Real Time:
@@ -108,3 +108,4 @@ export async function onRequestGet(context) {
         live_cockpit: liveCockpitData
     }), { headers, status: 200 });
 }
+

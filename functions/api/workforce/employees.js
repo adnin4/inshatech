@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/workforce/employees
  * Digital Employee Registry & Departmental Role Governance API
  */
@@ -77,3 +77,4 @@ export async function onRequestGet(context) {
         employees: DIGITAL_EMPLOYEES
     }), { headers, status: 200 });
 }
+

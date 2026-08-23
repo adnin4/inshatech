@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA Guardrail & Security Engine
  * Performs Pre-Execution Prompt Injection Defense and Post-Execution PII / Credential Redaction.
  */
@@ -68,3 +68,4 @@ export class GuardrailEngine {
         return sanitized;
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/database/performance
  * PostgreSQL Database Query Budget & Slow Query Auditor API
  * Enforces: Dashboard <= 8 queries, Service page <= 3 queries, Order page <= 5 queries
@@ -34,3 +34,4 @@ export async function onRequestGet(context) {
         database_performance: queryBudgetReport
     }), { headers, status: 200 });
 }
+

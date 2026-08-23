@@ -1,4 +1,4 @@
-/** Payment webhook — verify first, mutate second, record durable event last. */
+﻿/** Payment webhook â€” verify first, mutate second, record durable event last. */
 async function hmac(raw, secret) {
     const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
     return [...new Uint8Array(await crypto.subtle.sign('HMAC', k, new TextEncoder().encode(raw)))].map(b => b.toString(16).padStart(2, '0')).join('');
@@ -69,3 +69,4 @@ export async function onRequestPost({ request, env = {} }) {
         return new Response(JSON.stringify({ status: 'ERROR' }), { status: 500, headers: H });
     }
 }
+

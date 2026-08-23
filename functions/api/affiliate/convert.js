@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/affiliate/convert
  * Attribution Conversion & Commission Calculation Engine
  */
@@ -76,3 +76,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

@@ -1,14 +1,16 @@
-# Known Limitations
+# 📋 IINSHA AI-BOS: KNOWN_LIMITATIONS & TRUTH-IN-ADVERTISING REGISTER
 
-## External Configurations Required
-- Supabase URL & Anon/Service Keys
-- Gemini API Key for AI operations
-- Stripe Secret Keys and Webhook Secrets
+## Unconfigured Integrations Policy
+In strict compliance with the **Zero-Fake-Success Rule**, any external provider lacking live production API credentials will transparently output:
+```json
+{
+  "status": "NOT_CONFIGURED",
+  "message": "Production credentials required for live execution. Connect API keys in sovereign admin vault."
+}
+```
 
-## State Constraints
-- The UI contains `DEMO` and `SIMULATED` markers managed by the Truth System. Features with these tags do not execute full backend logic by default unless configured.
-- Complex n8n workflows must be hosted separately and connected via API.
-
-## Roadmap
-- Fully decentralized AI inference nodes.
-- Native mobile app wrappers.
+## Data Source Transparency Matrix
+- `● REAL CLIENT VERIFIED`: Production client telemetry.
+- `● INTERNAL BENCHMARK`: Measured under simulated staging load.
+- `● LAB TEST / SANDBOX`: Architectural prototypes.
+- `● SIMULATED EXAMPLE`: Synthetic demo data.

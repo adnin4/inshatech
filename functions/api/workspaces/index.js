@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/workspaces/index
  * Multi-Tenant Workspace & Client Isolation API
  */
@@ -39,3 +39,4 @@ export async function onRequestGet(context) {
         workspaces: WORKSPACE_REGISTRY
     }), { headers, status: 200 });
 }
+

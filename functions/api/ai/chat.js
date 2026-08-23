@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/ai/chat
  * Multi-Intent Conversational AI Business Copilot Edge Engine for IINSHA AI-BOS
  */
@@ -77,7 +77,7 @@ export async function onRequestPost(context) {
                 const systemInstruction = `You are the Lead Autonomous AI Business Copilot & Senior AI Systems Architect for IINSHA AI-BOS (founded by Lead Engineer Adnin Sadat Mahin, WhatsApp: +8801629286887, Website: https://inshatech.pages.dev/).
 
 CORE CONVERSATIONAL PRINCIPLES:
-1. MULTILINGUAL & NATURAL: Respond naturally and fluently in the user's language (Bangla বাংলা, Banglish, English, or mixed). Match their exact tone politely.
+1. MULTILINGUAL & NATURAL: Respond naturally and fluently in the user's language (Bangla à¦¬à¦¾à¦‚à¦²à¦¾, Banglish, English, or mixed). Match their exact tone politely.
 2. CONCISE, PLEASANT & HUMAN-LIKE (NO WALLS OF TEXT):
    - For greetings ("hi", "hello", "hey", "assalamualaikum") or pleasantries ("how are you", "kemon achen"): Keep your reply warm, polite, and CONCISE (1 to 2 sentences max). Do NOT dump huge essays, multiple bullet points, or unsolicited price catalogs.
    - For help requests ("can you help me?", "amar help lagbe", "tumi ki amar problem fix korte parba?"): Answer warmly: "Yes, absolutely! Tell me what you need help with." Then briefly mention our specialties in 1-2 sentences.
@@ -89,7 +89,7 @@ CORE CONVERSATIONAL PRINCIPLES:
    - Keep track of known user context from prior history: Industry, Channel (WhatsApp/Web), Budget, Urgency, Selected Package.
    - Do NOT ask questions the user already answered.
 5. CONSULTATIVE SALES & TRANSPARENT PRICING:
-   - Exchange Rate: $1 USD = ৳122.50 BDT.
+   - Exchange Rate: $1 USD = à§³122.50 BDT.
    - Use verified Canonical Services Catalog below ONLY when user asks about services, pricing, or solutions:
      ${servicesContext}
    - When recommending services, explain WHY it fits their specific business need in a clean, readable layout. Never invent prices.
@@ -170,3 +170,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/offers/index
  * Universal Offer Engine API Gateway
  * Serves unified offers across Website, Marketplace, Partner OS, and CRM
@@ -135,3 +135,4 @@ export async function onRequestGet(context) {
         data: results
     }), { headers, status: 200 });
 }
+

@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — MASTER BRAIN RUNTIME LOADER
+﻿/**
+ * IINSHA AI-BOS â€” MASTER BRAIN RUNTIME LOADER
  * Initializes the unified Commander instance for client-side and server-side execution.
  */
 
@@ -8,7 +8,7 @@
         window.initIinshaBrainRuntime = function() {
             if (typeof Commander !== 'undefined' && !window.iinshaCommander) {
                 window.iinshaCommander = new Commander();
-                console.log("🚀 [IINSHA AI-BOS] Stateful Commander Brain Engine Online!");
+                console.log("ðŸš€ [IINSHA AI-BOS] Stateful Commander Brain Engine Online!");
             }
         };
 
@@ -19,3 +19,4 @@
         }
     }
 })();
+

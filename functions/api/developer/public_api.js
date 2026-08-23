@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/developer/public_api
  * Developer Ecosystem, Public API Gateway & Key Provisioning Engine
  */
@@ -40,3 +40,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

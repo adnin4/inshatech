@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/enterprise/white_label
  * White-Label Enterprise AI-BOS Provisioning API
  * Enables external companies to run IINSHA AI-BOS under their custom domain, branding, and policies
@@ -47,3 +47,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

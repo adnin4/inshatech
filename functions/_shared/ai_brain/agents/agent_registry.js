@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS: 13-Agent Autonomous Organization Registry
  * Strict 6-Layer Architecture:
  * 1. Identity | 2. Goal | 3. Memory | 4. Tools | 5. Permissions | 6. Evaluation
@@ -209,3 +209,4 @@ export const ANTI_LOOP_CONFIG = {
   max_cost_usd: 20.00,
   max_retries_per_tool: 3
 };
+

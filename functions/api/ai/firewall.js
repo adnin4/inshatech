@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/ai/firewall
  * AI Permission Firewall: OWASP Prompt Injection Detection, PII Redaction & Risk Scoring
  */
@@ -116,3 +116,4 @@ export async function onRequestOptions(context) {
         status: 204
     });
 }
+

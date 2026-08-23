@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/workforce/negotiate
  * Agent-to-Agent Commercial Negotiation Handler
  */
@@ -44,3 +44,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/missions/loop_test
  * IINSHA AI-BOS 3.0: Autonomous Revenue-to-Delivery Loop Validator
  * Exercises the complete 10-Step Loop:
@@ -64,3 +64,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

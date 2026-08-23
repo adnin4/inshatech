@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 1: CONVERSATION STATE ENGINE
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 1: CONVERSATION STATE ENGINE
  * Stateful conversation architecture managing session contracts, state transitions,
  * known facts, decisions, constraints, and question/answer deduplication.
  */
@@ -196,3 +196,4 @@ if (typeof module !== 'undefined' && module.exports) {
     window.ConversationStateEngine = ConversationStateEngine;
     window.MemoryStorageAdapter = MemoryStorageAdapter;
 }
+

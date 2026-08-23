@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/content/pages
  * CMS Dynamic Pages & Version History API
  */
@@ -24,3 +24,4 @@ export async function onRequestGet(context) {
         pages: dynamicPages
     }), { headers, status: 200 });
 }
+

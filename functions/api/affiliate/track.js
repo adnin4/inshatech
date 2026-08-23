@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/affiliate/track
  * Server-Side Affiliate Click Tracking & Attribution Engine
  */
@@ -99,3 +99,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

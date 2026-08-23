@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 14: AGENT OBSERVABILITY & TELEMETRY RECORDER
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 14: AGENT OBSERVABILITY & TELEMETRY RECORDER
  * Logs request-level execution metrics:
  * request_id, conversation_id, mission_id, agent, model, tokens, latency_ms,
  * tool_calls, verification_score, retries, cost_usd, status.
@@ -72,3 +72,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.AgentObservability = AgentObservability;
 }
+

@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 5: COMMANDER SUPERVISOR ORCHESTRATOR
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 5: COMMANDER SUPERVISOR ORCHESTRATOR
  * The central brain loop uniting:
  * User Request -> Load State -> Parse Intent -> Build Context -> Anti-Repetition Guard ->
  * Task Plan -> Dynamic Agents -> Real Tools -> Verifier -> Memory & State -> Response.
@@ -267,22 +267,22 @@ class Commander {
 
             if (leadTool && leadTool.status === 'SUCCESS') {
                 const d = leadTool.data;
-                return `🎯 **IINSHA Multi-Agent Lead Generation Swarm Execution**
+                return `ðŸŽ¯ **IINSHA Multi-Agent Lead Generation Swarm Execution**
 
 I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.target_icp}**.
 
-📊 **Execution Summary & Grounded Results:**
-• **Target ICP:** ${d.target_icp}
-• **Verified Decision Makers Delivered:** **${d.total_delivered} Deliverable Leads**
-• **Deliverability / Verification Status:** ${d.verification_rate} (MX Validated)
-• **Export Readiness:** JSON / CSV / CRM Webhook Ready
+ðŸ“Š **Execution Summary & Grounded Results:**
+â€¢ **Target ICP:** ${d.target_icp}
+â€¢ **Verified Decision Makers Delivered:** **${d.total_delivered} Deliverable Leads**
+â€¢ **Deliverability / Verification Status:** ${d.verification_rate} (MX Validated)
+â€¢ **Export Readiness:** JSON / CSV / CRM Webhook Ready
 
-💼 **Sample Verified Prospect Profiles:**
-1. **${d.sample_leads[0].name}** — *${d.sample_leads[0].title}* at **${d.sample_leads[0].company}** (${d.sample_leads[0].email})
-2. **${d.sample_leads[1].name}** — *${d.sample_leads[1].title}* at **${d.sample_leads[1].company}** (${d.sample_leads[1].email})
-3. **${d.sample_leads[2].name}** — *${d.sample_leads[2].title}* at **${d.sample_leads[2].company}** (${d.sample_leads[2].email})
+ðŸ’¼ **Sample Verified Prospect Profiles:**
+1. **${d.sample_leads[0].name}** â€” *${d.sample_leads[0].title}* at **${d.sample_leads[0].company}** (${d.sample_leads[0].email})
+2. **${d.sample_leads[1].name}** â€” *${d.sample_leads[1].title}* at **${d.sample_leads[1].company}** (${d.sample_leads[1].email})
+3. **${d.sample_leads[2].name}** â€” *${d.sample_leads[2].title}* at **${d.sample_leads[2].company}** (${d.sample_leads[2].email})
 
-⚡ *All 100 leads are loaded into memory and ready to sync to your CRM or trigger personalized AI SDR outreach.*`;
+âš¡ *All 100 leads are loaded into memory and ready to sync to your CRM or trigger personalized AI SDR outreach.*`;
             }
 
             // If user only gave initial requirements
@@ -292,24 +292,24 @@ I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.ta
         if (intentObj.intent === 'PRICING_AND_SERVICE_INQUIRY') {
             const prop = toolResults.find(t => t.tool === 'proposal_generator')?.data;
             if (prop) {
-                return `🏛️ **IINSHA Enterprise Dual-Currency Pricing Breakdown**
+                return `ðŸ›ï¸ **IINSHA Enterprise Dual-Currency Pricing Breakdown**
 
-📦 **Package:** ${prop.package}
-💰 **Setup Price (USD):** **${prop.pricing.setup_usd}**
-৳ **BDT Equivalent (৳):** **${prop.pricing.setup_bdt}**
-🔄 **Monthly Retainer:** ${prop.pricing.monthly_retainer_usd} (${prop.pricing.monthly_retainer_bdt})
+ðŸ“¦ **Package:** ${prop.package}
+ðŸ’° **Setup Price (USD):** **${prop.pricing.setup_usd}**
+à§³ **BDT Equivalent (à§³):** **${prop.pricing.setup_bdt}**
+ðŸ”„ **Monthly Retainer:** ${prop.pricing.monthly_retainer_usd} (${prop.pricing.monthly_retainer_bdt})
 
-🛡️ **SLA Guarantee:** ${prop.sla} (100% source code handover with 14-day warranty).`;
+ðŸ›¡ï¸ **SLA Guarantee:** ${prop.sla} (100% source code handover with 14-day warranty).`;
             }
         }
 
         if (intentObj.intent === 'SYSTEM_DIAGNOSTICS') {
             const health = toolResults.find(t => t.tool === 'health_check')?.data;
             if (health) {
-                return `⚡ **Hostinger VPS & n8n Engine Real-Time Telemetry**
-• **Node Status:** ${health.vps_node} (${health.uptime} Uptime)
-• **Active Containers:** ${health.containers.length} Docker services running (n8n, Traefik SSL, pgvector, Playwright Pipeline)
-• **Memory & Load:** ${health.system_load} • Zero task fees`;
+                return `âš¡ **Hostinger VPS & n8n Engine Real-Time Telemetry**
+â€¢ **Node Status:** ${health.vps_node} (${health.uptime} Uptime)
+â€¢ **Active Containers:** ${health.containers.length} Docker services running (n8n, Traefik SSL, pgvector, Playwright Pipeline)
+â€¢ **Memory & Load:** ${health.system_load} â€¢ Zero task fees`;
             }
         }
 
@@ -323,7 +323,7 @@ I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.ta
         let repaired = originalText;
         issues.forEach(issue => {
             if (issue.includes('dual currency')) {
-                repaired += `\n\n*(Note: Dual Currency Rate standard: $1 USD = ৳122.50 BDT)*`;
+                repaired += `\n\n*(Note: Dual Currency Rate standard: $1 USD = à§³122.50 BDT)*`;
             }
         });
         return repaired;
@@ -335,3 +335,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.Commander = Commander;
 }
+

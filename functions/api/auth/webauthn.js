@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/auth/webauthn
  * FIDO2 / WebAuthn Passkeys Passwordless Authentication Engine
  */
@@ -59,3 +59,4 @@ export async function onRequestPost(context) {
         });
     }
 }
+

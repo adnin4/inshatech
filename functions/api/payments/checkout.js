@@ -1,4 +1,4 @@
-/** Server-authoritative checkout: preserves service, coupon, affiliate, currency and payment-option features while failing closed on storage. */
+﻿/** Server-authoritative checkout: preserves service, coupon, affiliate, currency and payment-option features while failing closed on storage. */
 const ORIGINS = new Set(['https://inshatech.pages.dev', 'https://inshatech.com', 'https://www.inshatech.com', 'https://admin.inshatech.com']);
 const cors = r => {
     const o = r.headers.get('Origin') || '';
@@ -111,3 +111,4 @@ export async function onRequestPost({ request, env = {} }) {
 export function onRequestOptions({ request }) {
     return new Response(null, { status: 204, headers: cors(request) });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI Business Digital Twin & Scenario Simulator v2.0
  * Explainable, 3-Tier Forecasting (Conservative, Base, Aggressive) with Underlying Assumptions & Confidence Ratings
  */
@@ -85,8 +85,9 @@ export class DigitalTwinSimulator {
             ],
             confidence_level: "High (89% based on historical conversion elasticities)",
             executiveRecommendation: base.projectedMarginPercent >= 55.0
-                ? "🟢 Recommended Strategy: Base projection maintains >55% gross margin while scaling partner acquisition."
-                : "⚠️ Caution: High affiliate payouts compress base margins. Recommend introducing milestone bonus tiers instead."
+                ? "ðŸŸ¢ Recommended Strategy: Base projection maintains >55% gross margin while scaling partner acquisition."
+                : "âš ï¸ Caution: High affiliate payouts compress base margins. Recommend introducing milestone bonus tiers instead."
         };
     }
 }
+

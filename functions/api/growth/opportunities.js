@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/growth/opportunities
  * Autonomous Opportunity Hunter Engine: "AI Finds Its Own Work"
  * Continuously evaluates market demand, under-leveraged niches, and automated growth vectors.
@@ -52,3 +52,4 @@ export async function onRequestGet(context) {
         opportunity_radar: opportunityRadar
     }), { headers, status: 200 });
 }
+

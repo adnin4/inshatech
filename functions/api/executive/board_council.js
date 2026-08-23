@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/board_council
  * AI Executive Council & Multi-Agent Debate Engine API
  * Coordinates 8 C-Level AI Officers under the Sovereign Owner/Chairman:
@@ -43,3 +43,4 @@ export async function onRequestGet(context) {
         executive_council: executiveCouncil
     }), { headers, status: 200 });
 }
+

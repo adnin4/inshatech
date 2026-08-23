@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/auth/mfa
  * Multi-Factor Authentication (TOTP & Backup Codes) Service
  */
@@ -50,3 +50,4 @@ export async function onRequestPost(context) {
         });
     }
 }
+

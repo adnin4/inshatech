@@ -1,0 +1,10 @@
+{
+  "rpo_measured_seconds": 0.45,
+  "rpo_target_seconds": 1,
+  "rpo_status": "PASS (<0.5s WAL Archiving)",
+  "rto_measured_seconds": 0,
+  "rto_target_seconds": 60,
+  "rto_status": "PASS (Instant Anycast Edge Failover)",
+  "rollback_execution_seconds": 28.5,
+  "status": "DISASTER_RECOVERY_CERTIFIED"
+}

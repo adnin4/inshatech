@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/governance/enterprise_registry
  * Enterprise Governance Layer & Digital Identity Fabric API
  * Registers and tracks AI Agents, Models, Trust Scores, and Privilege Lifecycles
@@ -55,3 +55,4 @@ export async function onRequestGet(context) {
         enterprise_registry: enterpriseRegistry
     }), { headers, status: 200 });
 }
+

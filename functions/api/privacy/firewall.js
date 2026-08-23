@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/privacy/firewall
  * Privacy Firewall, PII Redaction & Claim Ledger API
  */
@@ -34,3 +34,4 @@ export async function onRequestGet(context) {
         privacy_firewall: privacyState
     }), { headers, status: 200 });
 }
+

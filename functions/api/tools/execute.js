@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/tools/execute
  * Enterprise Tool Policy Engine & Production External Connectors Gateway
  * Implements 7-Level Bounded Execution Spectrum (L0 to L6) with Real Business Connectors (n8n, WhatsApp Cloud API, Supabase CRM, Resend Email, Playwright Data Extractor).
@@ -426,3 +426,4 @@ export async function onRequestOptions(context) {
         status: 204
     });
 }
+

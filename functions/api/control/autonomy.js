@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/control/autonomy
  * Autonomy Slider Policy Engine & Operational Mode Dispatcher
  */
@@ -61,3 +61,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,0 +1,41 @@
+{
+  "roles": [
+    {
+      "role": "super_admin",
+      "tier": 14,
+      "scope": "GLOBAL_SYSTEM_CONTROL",
+      "can_mutate_ledger": false,
+      "requires_mfa": true
+    },
+    {
+      "role": "owner",
+      "tier": 10,
+      "scope": "ORGANIZATION_ADMIN",
+      "can_mutate_ledger": false,
+      "requires_mfa": true
+    },
+    {
+      "role": "developer",
+      "tier": 6,
+      "scope": "API_AND_PROJECTS",
+      "can_mutate_ledger": false,
+      "requires_mfa": false
+    },
+    {
+      "role": "customer",
+      "tier": 1,
+      "scope": "OWN_ORDERS_AND_PROJECTS",
+      "can_mutate_ledger": false,
+      "requires_mfa": false
+    },
+    {
+      "role": "affiliate",
+      "tier": 1,
+      "scope": "OWN_REFERRALS_AND_COMMISSIONS",
+      "can_mutate_ledger": false,
+      "requires_mfa": false
+    }
+  ],
+  "security_definer_function": "public.has_role_on_account",
+  "status": "VERIFIED_HIERARCHICAL"
+}

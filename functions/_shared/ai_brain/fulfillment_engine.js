@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI Fulfillment Engine
  * Manages post-sale project creation, architectural generation,
  * workflow construction, QA validation, and automated client delivery.
@@ -67,3 +67,4 @@ export class FulfillmentEngine {
         return projectPlan;
     }
 }
+

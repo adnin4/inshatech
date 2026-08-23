@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/eval/continuous_drift
  * Continuous AI Evaluation & Model Quality Drift Detector
  */
@@ -44,3 +44,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

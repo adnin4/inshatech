@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/governance/certification_lab
  * Capability Certification System & Autonomous Verification Lab API
  * Evaluates modules across 3 Lifecycle Statuses: DESIGNED -> IMPLEMENTED -> CERTIFIED
@@ -46,3 +46,4 @@ export async function onRequestGet(context) {
         certification_lab: certificationReport
     }), { headers, status: 200 });
 }
+

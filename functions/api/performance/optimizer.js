@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/performance/optimizer
  * Autonomous Performance Optimizer & Continuous Regression Guard API
  */
@@ -33,3 +33,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

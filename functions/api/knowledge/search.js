@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/knowledge/search
  * Canonical RAG search across services, faqs, and company knowledge base
  */
@@ -307,3 +307,4 @@ export async function onRequestGet(context) {
         });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/eval/golden
  * Golden Test Suite Benchmark Runner
  */
@@ -58,3 +58,4 @@ export async function onRequestGet(context) {
         cases: GOLDEN_BENCHMARK_SUITE
     }), { headers, status: 200 });
 }
+

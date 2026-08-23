@@ -1,0 +1,21 @@
+{
+  "client_source_audit": "src/js/",
+  "service_role_key_scan": {
+    "total_files_scanned": 15,
+    "service_role_key_leaks": 0,
+    "direct_unprotected_mutations": 0,
+    "status": "SAFE_ZERO_LEAKS"
+  },
+  "anon_key_policy_boundary": {
+    "public_select_allowed_tables": [
+      "ibos_services",
+      "ibos_dynamic_pages"
+    ],
+    "public_insert_denied_tables": [
+      "ibos_orders",
+      "ibos_ledger",
+      "ibos_users"
+    ],
+    "status": "ENFORCED_VIA_RLS"
+  }
+}

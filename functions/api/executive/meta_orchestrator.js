@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/meta_orchestrator
  * IINSHA AI-BOS Frontier: Global Meta-Orchestrator & Portfolio Optimizer API
  * Evaluates all missions, departments, budgets, and risks to compute global priority allocations.
@@ -55,3 +55,4 @@ export async function onRequestGet(context) {
         meta_orchestrator: metaOrchestrationState
     }), { headers, status: 200 });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/vault/credentials
  * Zero-Trust Secret & Credential Broker
  * Agents query this via Tool Gateway without ever seeing plaintext secrets.
@@ -38,3 +38,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

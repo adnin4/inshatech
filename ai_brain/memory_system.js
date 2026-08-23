@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 8 & 9: 5-LAYER MEMORY SYSTEM & COMPRESSION ENGINE
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 8 & 9: 5-LAYER MEMORY SYSTEM & COMPRESSION ENGINE
  * Layer 1: Conversation Memory (Short-Term Turns)
  * Layer 2: User Memory (Profile, preferences, language)
  * Layer 3: Business Memory (IINSHA services, SOPs, pricing, SLA rules)
@@ -31,8 +31,8 @@ class MemorySystem {
             sops: [
                 "Always verify ICP company size and industry before executing lead discovery.",
                 "Never trigger external outbound messaging or email send without Level 2 HITL approval.",
-                "Always present dual currency ($ USD and ৳ BDT @ 122.50) for all pricing inquiries.",
-                "Never hallucinate lead numbers or mock search data — execute real tools and report exact counts."
+                "Always present dual currency ($ USD and à§³ BDT @ 122.50) for all pricing inquiries.",
+                "Never hallucinate lead numbers or mock search data â€” execute real tools and report exact counts."
             ]
         };
 
@@ -154,3 +154,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.MemorySystem = MemorySystem;
 }
+

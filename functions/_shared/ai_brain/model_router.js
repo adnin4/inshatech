@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 10: MODEL ROUTER & AI PROVIDER ABSTRACTION
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 10: MODEL ROUTER & AI PROVIDER ABSTRACTION
  * Unifies OpenAI, Google Gemini, and Local Deterministic Engine behind a common interface.
  * Routes tasks to Fast, Balanced, or Deep Reasoning tiers dynamically.
  */
@@ -120,3 +120,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.ModelRouter = ModelRouter;
 }
+

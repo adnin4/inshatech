@@ -23,7 +23,7 @@ var currentAiOrderState = {
 function getSiteWords() {
     const defaults = {
         heroTitle: 'Tell Us Your Business Problem. We Design & AI Builds It. Automation Runs It.',
-        heroSub: 'Beyond simple automations — IINSHA is an end-to-end AI Workforce & Autonomous Business Operating System. Deploy self-hosted n8n clusters ($5.99/mo VPS), 13 specialized digital employees, and 24/7 WhatsApp sales agents.',
+        heroSub: 'Beyond simple automations â€” IINSHA is an end-to-end AI Workforce & Autonomous Business Operating System. Deploy self-hosted n8n clusters ($5.99/mo VPS), 13 specialized digital employees, and 24/7 WhatsApp sales agents.',
         whatsapp: '+8801629286887',
         bdtRate: 122.50
     };
@@ -197,98 +197,98 @@ function initCheckoutModal() {
 }
 
 // ==============================================================================
-// 🧠 GEMINI 2.5 NEURAL COGNITIVE RAG ENGINE & AUTONOMOUS ASSISTANT
+// ðŸ§  GEMINI 2.5 NEURAL COGNITIVE RAG ENGINE & AUTONOMOUS ASSISTANT
 // Multi-Lingual (English, Bengali, Banglish) | Real Knowledge Base | Intent Action Dispatcher
 // ==============================================================================
 
 const IINSHA_KNOWLEDGE_BASE = [
     {
         intents: ['pricing', 'cost', 'price', 'package', 'dam', 'koto', 'rate', 'taka', 'dollar', 'fee', 'charge', 'how much'],
-        reply_en: `💎 **IINSHA AI Productized Packages (100% Data Sovereignty):**<br>
-• **Starter / Single Workflow:** **$497 Setup** + **$197/mo** flat retainer (1 core workflow, self-hosted n8n Docker setup, daily uptime monitoring).<br>
-• **Production Build / Full Suite:** **$997 Setup** + **$397/mo** (Up to 3 multi-agent swarms, Supabase PGVector memory, 24/7 GUARDIAN SRE Watchdog, 4-Level HITL Governance).<br>
-• **Enterprise Automation Partner OS:** **$1,997 Setup** + **$797/mo** (Unlimited workflows, full 13-agent mesh, custom LLM fine-tuning, same-day SLA).<br><br>
-💡 *Zero per-task software fees! Payouts supported via bKash, Nagad, Wise, Stripe, and USDT.*<br>
-👉 <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">View Pricing Plans →</button>`,
-        reply_bn: `💎 **ইনশা এআই প্রোডাক্টাইজড প্যাকেজসমূহ (১০০% ডেটা প্রাইভেসি):**<br>
-• **স্টার্টার প্যাকেজ:** **$497 সেটআপ** + **$197/মাস** (১টি কোর অটোমেশন পাইপলাইন, ডকার ভিপিএস সেটআপ, ডেইলি হেলথ মনিটরিং)।<br>
-• **প্রোডাকশন বিল্ড (জনপ্রিয়):** **$997 সেটআপ** + **$397/মাস** (৩টি মাল্টি-এজেন্ট সোয়ার্ম, Supabase PGVector মেমোরি, GUARDIAN SRE ওয়াচডগ, ৪-লেভেল HITL সেফটি গেট)।<br>
-• **এন্টারপ্রাইজ পার্টনার ওএস:** **$1,997 সেটআপ** + **$797/মাস** (আনলিমিটেড অটোমেশন, ফুল ১৩-এজেন্ট মেশ, ডেডিকেটেড সাপোর্ট)।<br><br>
-💡 *কোনো পার-টাস্ক ফি নেই। bKash, Nagad, Wise, Stripe ও Crypto USDT-তে পেমেন্ট নেওয়া হয়।*<br>
-👉 <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">প্রাইসিং প্যাকেজ দেখুন →</button>`
+        reply_en: `ðŸ’Ž **IINSHA AI Productized Packages (Full Private Data Sovereignty):**<br>
+â€¢ **Starter / Single Workflow:** **$497 Setup** + **$197/mo** flat retainer (1 core workflow, self-hosted n8n Docker setup, daily uptime monitoring).<br>
+â€¢ **Production Build / Full Suite:** **$997 Setup** + **$397/mo** (Up to 3 multi-agent swarms, Supabase PGVector memory, 24/7 GUARDIAN SRE Watchdog, 4-Level HITL Governance).<br>
+â€¢ **Enterprise Automation Partner OS:** **$1,997 Setup** + **$797/mo** (Unlimited workflows, full 13-agent mesh, custom LLM fine-tuning, same-day SLA).<br><br>
+ðŸ’¡ *Zero per-task software fees! Payouts supported via bKash, Nagad, Wise, Stripe, and USDT.*<br>
+ðŸ‘‰ <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">View Pricing Plans â†’</button>`,
+        reply_bn: `ðŸ’Ž **à¦‡à¦¨à¦¶à¦¾ à¦à¦†à¦‡ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà¦¾à¦‡à¦œà¦¡ à¦ªà§à¦¯à¦¾à¦•à§‡à¦œà¦¸à¦®à§‚à¦¹ (à§§à§¦à§¦% à¦¡à§‡à¦Ÿà¦¾ à¦ªà§à¦°à¦¾à¦‡à¦­à§‡à¦¸à¦¿):**<br>
+â€¢ **à¦¸à§à¦Ÿà¦¾à¦°à§à¦Ÿà¦¾à¦° à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ:** **$497 à¦¸à§‡à¦Ÿà¦†à¦ª** + **$197/à¦®à¦¾à¦¸** (à§§à¦Ÿà¦¿ à¦•à§‹à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦ªà¦¾à¦‡à¦ªà¦²à¦¾à¦‡à¦¨, à¦¡à¦•à¦¾à¦° à¦­à¦¿à¦ªà¦¿à¦à¦¸ à¦¸à§‡à¦Ÿà¦†à¦ª, à¦¡à§‡à¦‡à¦²à¦¿ à¦¹à§‡à¦²à¦¥ à¦®à¦¨à¦¿à¦Ÿà¦°à¦¿à¦‚)à¥¤<br>
+â€¢ **à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à¦¶à¦¨ à¦¬à¦¿à¦²à§à¦¡ (à¦œà¦¨à¦ªà§à¦°à¦¿à§Ÿ):** **$997 à¦¸à§‡à¦Ÿà¦†à¦ª** + **$397/à¦®à¦¾à¦¸** (à§©à¦Ÿà¦¿ à¦®à¦¾à¦²à§à¦Ÿà¦¿-à¦à¦œà§‡à¦¨à§à¦Ÿ à¦¸à§‹à§Ÿà¦¾à¦°à§à¦®, Supabase PGVector à¦®à§‡à¦®à§‹à¦°à¦¿, GUARDIAN SRE à¦“à§Ÿà¦¾à¦šà¦¡à¦—, à§ª-à¦²à§‡à¦­à§‡à¦² HITL à¦¸à§‡à¦«à¦Ÿà¦¿ à¦—à§‡à¦Ÿ)à¥¤<br>
+â€¢ **à¦à¦¨à§à¦Ÿà¦¾à¦°à¦ªà§à¦°à¦¾à¦‡à¦œ à¦ªà¦¾à¦°à§à¦Ÿà¦¨à¦¾à¦° à¦“à¦à¦¸:** **$1,997 à¦¸à§‡à¦Ÿà¦†à¦ª** + **$797/à¦®à¦¾à¦¸** (à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨, à¦«à§à¦² à§§à§©-à¦à¦œà§‡à¦¨à§à¦Ÿ à¦®à§‡à¦¶, à¦¡à§‡à¦¡à¦¿à¦•à§‡à¦Ÿà§‡à¦¡ à¦¸à¦¾à¦ªà§‹à¦°à§à¦Ÿ)à¥¤<br><br>
+ðŸ’¡ *à¦•à§‹à¦¨à§‹ à¦ªà¦¾à¦°-à¦Ÿà¦¾à¦¸à§à¦• à¦«à¦¿ à¦¨à§‡à¦‡à¥¤ bKash, Nagad, Wise, Stripe à¦“ Crypto USDT-à¦¤à§‡ à¦ªà§‡à¦®à§‡à¦¨à§à¦Ÿ à¦¨à§‡à¦“à§Ÿà¦¾ à¦¹à§Ÿà¥¤*<br>
+ðŸ‘‰ <button onclick="document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ à¦¦à§‡à¦–à§à¦¨ â†’</button>`
     },
     {
         intents: ['n8n', 'zapier', 'make', 'difference', 'compare', 'vps', 'self-host', 'docker'],
-        reply_en: `⚡ **Why Self-Hosted n8n beats Zapier & Make:**<br>
+        reply_en: `âš¡ **Why Self-Hosted n8n beats Zapier & Make:**<br>
 1. **Zero Task Fees:** Run 100,000+ tasks for just $5.99/mo on a Hostinger VPS instead of $299+/mo on Zapier.<br>
-2. **100% Data Sovereignty:** Your customer data and API tokens remain securely in your own private Docker container (GDPR & HIPAA safe).<br>
+2. **Full Private Data Sovereignty:** Your customer data and API tokens remain securely in your own private Docker container (GDPR Compliant & AES-256 Encrypted).<br>
 3. **Custom Python & JavaScript:** Execute advanced logic, scraping routines, and Gemini 3.0 Pro & Flash reasoning without artificial limits.<br>
 4. **Use Coupon Code:** <strong>IINSHA20</strong> for 20% OFF Hostinger VPS hosting plans!`,
-        reply_bn: `⚡ **Zapier/Make এর তুলনায় Self-Hosted n8n কেন সেরা:**<br>
-১. **কোনো পার-টাস্ক ফি নেই:** Zapier-এ ৫০,০০০ টাস্কে যেখানে $299+/মাস খরচ হয়, Hostinger VPS Docker-এ n8n চালিয়ে আনলিমিটেড টাস্ক মাত্র $5.99/মাসে চালানো যায়।<br>
-২. **১০০% ডেটা প্রাইভেসি:** আপনার এবং ক্লায়েন্টের ডাটা সম্পূর্ণ আপনার নিজস্ব প্রাইভেট সার্ভারে নিরাপদ থাকে।<br>
-৩. **কাস্টম কোড:** Python, JavaScript ও Gemini 3.0 Pro & Flash নোড আনলিমিটেড এক্সিকিউট করা যায়।<br>
-৪. **হোস্টিং কুপন:** Hostinger VPS-এ ২০% ছাড় পেতে ব্যবহার করুন কুপন কোড: <strong>IINSHA20</strong>!`
+        reply_bn: `âš¡ **Zapier/Make à¦à¦° à¦¤à§à¦²à¦¨à¦¾à§Ÿ Self-Hosted n8n à¦•à§‡à¦¨ à¦¸à§‡à¦°à¦¾:**<br>
+à§§. **à¦•à§‹à¦¨à§‹ à¦ªà¦¾à¦°-à¦Ÿà¦¾à¦¸à§à¦• à¦«à¦¿ à¦¨à§‡à¦‡:** Zapier-à¦ à§«à§¦,à§¦à§¦à§¦ à¦Ÿà¦¾à¦¸à§à¦•à§‡ à¦¯à§‡à¦–à¦¾à¦¨à§‡ $299+/à¦®à¦¾à¦¸ à¦–à¦°à¦š à¦¹à§Ÿ, Hostinger VPS Docker-à¦ n8n à¦šà¦¾à¦²à¦¿à§Ÿà§‡ à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦Ÿà¦¾à¦¸à§à¦• à¦®à¦¾à¦¤à§à¦° $5.99/à¦®à¦¾à¦¸à§‡ à¦šà¦¾à¦²à¦¾à¦¨à§‹ à¦¯à¦¾à§Ÿà¥¤<br>
+à§¨. **à§§à§¦à§¦% à¦¡à§‡à¦Ÿà¦¾ à¦ªà§à¦°à¦¾à¦‡à¦­à§‡à¦¸à¦¿:** à¦†à¦ªà¦¨à¦¾à¦° à¦à¦¬à¦‚ à¦•à§à¦²à¦¾à¦¯à¦¼à§‡à¦¨à§à¦Ÿà§‡à¦° à¦¡à¦¾à¦Ÿà¦¾ à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦†à¦ªà¦¨à¦¾à¦° à¦¨à¦¿à¦œà¦¸à§à¦¬ à¦ªà§à¦°à¦¾à¦‡à¦­à§‡à¦Ÿ à¦¸à¦¾à¦°à§à¦­à¦¾à¦°à§‡ à¦¨à¦¿à¦°à¦¾à¦ªà¦¦ à¦¥à¦¾à¦•à§‡à¥¤<br>
+à§©. **à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦•à§‹à¦¡:** Python, JavaScript à¦“ Gemini 3.0 Pro & Flash à¦¨à§‹à¦¡ à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦à¦•à§à¦¸à¦¿à¦•à¦¿à¦‰à¦Ÿ à¦•à¦°à¦¾ à¦¯à¦¾à§Ÿà¥¤<br>
+à§ª. **à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚ à¦•à§à¦ªà¦¨:** Hostinger VPS-à¦ à§¨à§¦% à¦›à¦¾à§œ à¦ªà§‡à¦¤à§‡ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§à¦¨ à¦•à§à¦ªà¦¨ à¦•à§‹à¦¡: <strong>IINSHA20</strong>!`
     },
     {
         intents: ['scraping', 'playwright', 'leads', 'scraper', 'data extraction', 'cloudflare', 'turnstile', 'b2b'],
-        reply_en: `🦀 **Playwright Pipeline Resilient Scraping Farm ($250 USD):**<br>
-• **99.8% Turnstile / Authorized Web Data Extraction:** Uses Playwright headless automation with dynamic residential proxy mesh.<br>
-• **Automated Sync:** Directly writes extracted leads, e-commerce catalog pricing, and directory data into PostgreSQL, Supabase, or Airtable.<br>
-• **Sandbox Security:** Runs inside isolated Docker VPS containers with zero IP blacklisting risk.`,
-        reply_bn: `🦀 **Playwright Pipeline স্টিলথ স্ক্র্যাপিং ফার্ম ($250 USD):**<br>
-• **৯৯.৮% ক্লাউডফ্লেয়ার বাইপাস:** Playwright হেডলেস অটোমেশন ও রেসিডেন্সিয়াল প্রক্সি দিয়ে ডাটা স্ক্র্যাপ করে।<br>
-• **অটো-সিঙ্ক:** স্ক্র্যাপ করা বি২বি লিডস বা ই-কমার্স প্রাইস সরাসরি PostgreSQL, Supabase বা Airtable-এ জমা হয়।<br>
-• **ডকার সিকিউরিটি:** ব্যান হওয়ার ঝুঁকি ছাড়াই আইসোলেটেড ডকার ভিপিএসে রান করে।`
+        reply_en: `ðŸ¦€ **Playwright Pipeline Resilient Scraping Farm ($250 USD):**<br>
+â€¢ **99.8% Turnstile / Authorized Web Data Extraction:** Uses Playwright headless automation with dynamic residential proxy mesh.<br>
+â€¢ **Automated Sync:** Directly writes extracted leads, e-commerce catalog pricing, and directory data into PostgreSQL, Supabase, or Airtable.<br>
+â€¢ **Sandbox Security:** Runs inside isolated Docker VPS containers with zero IP blacklisting risk.`,
+        reply_bn: `ðŸ¦€ **Playwright Pipeline à¦¸à§à¦Ÿà¦¿à¦²à¦¥ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ à¦«à¦¾à¦°à§à¦® ($250 USD):**<br>
+â€¢ **à§¯à§¯.à§®% à¦•à§à¦²à¦¾à¦‰à¦¡à¦«à§à¦²à§‡à¦¯à¦¼à¦¾à¦° à¦¬à¦¾à¦‡à¦ªà¦¾à¦¸:** Playwright à¦¹à§‡à¦¡à¦²à§‡à¦¸ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ à¦°à§‡à¦¸à¦¿à¦¡à§‡à¦¨à§à¦¸à¦¿à¦¯à¦¼à¦¾à¦² à¦ªà§à¦°à¦•à§à¦¸à¦¿ à¦¦à¦¿à§Ÿà§‡ à¦¡à¦¾à¦Ÿà¦¾ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ª à¦•à¦°à§‡à¥¤<br>
+â€¢ **à¦…à¦Ÿà§‹-à¦¸à¦¿à¦™à§à¦•:** à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ª à¦•à¦°à¦¾ à¦¬à¦¿à§¨à¦¬à¦¿ à¦²à¦¿à¦¡à¦¸ à¦¬à¦¾ à¦‡-à¦•à¦®à¦¾à¦°à§à¦¸ à¦ªà§à¦°à¦¾à¦‡à¦¸ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ PostgreSQL, Supabase à¦¬à¦¾ Airtable-à¦ à¦œà¦®à¦¾ à¦¹à§Ÿà¥¤<br>
+â€¢ **à¦¡à¦•à¦¾à¦° à¦¸à¦¿à¦•à¦¿à¦‰à¦°à¦¿à¦Ÿà¦¿:** à¦¬à§à¦¯à¦¾à¦¨ à¦¹à¦“à§Ÿà¦¾à¦° à¦à§à¦à¦•à¦¿ à¦›à¦¾à§œà¦¾à¦‡ à¦†à¦‡à¦¸à§‹à¦²à§‡à¦Ÿà§‡à¦¡ à¦¡à¦•à¦¾à¦° à¦­à¦¿à¦ªà¦¿à¦à¦¸à§‡ à¦°à¦¾à¦¨ à¦•à¦°à§‡à¥¤`
     },
     {
         intents: ['hitl', 'safety', 'human', 'governance', 'security', 'guard', 'policy', 'level'],
-        reply_en: `🛡️ **4-Level Human-in-the-Loop (HITL) Safety Architecture:**<br>
-• **Level 0 (Observe):** Read-only data scraping, CRM log observation.<br>
-• **Level 1 (Draft):** Autonomous email & reply drafting (requires 1-click human send approval).<br>
-• **Level 2 (Approve):** CRM status updates, pipeline movements, and customer outbound messages.<br>
-• **Level 3 (Restricted Gate):** Financial transactions, DB deletions, and server mutations strictly require 2FA admin authentication.`,
-        reply_bn: `🛡️ **৪-লেভেল Human-in-the-Loop (HITL) সেফটি আর্কিটেকচার:**<br>
-• **লেভেল ০ (Observe):** শুধুমাত্র ডাটা রিড ও লগ মনিটরিং।<br>
-• **লেভেল ১ (Draft):** এআই স্বয়ংক্রিয়ভাবে ইমেইল ড্রাফট করবে, কিন্তু মানুষের অনুমতি ছাড়া পাঠাবে না।<br>
-• **লেভেল ২ (Approve):** সিআরএম স্ট্যাটাস আপডেট ও কাস্টমার রিপ্লাই মানুষের অ্যাপ্রুভাল নিয়ে সেন্ড হয়।<br>
-• **লেভেল ৩ (Restricted):** আর্থিক ট্রানজ্যাকশন ও ডাটাবেস পরিবর্তনের জন্য বাধ্যতামূলক পাসফ্রেজ গেট।`
+        reply_en: `ðŸ›¡ï¸ **4-Level Human-in-the-Loop (HITL) Safety Architecture:**<br>
+â€¢ **Level 0 (Observe):** Read-only data scraping, CRM log observation.<br>
+â€¢ **Level 1 (Draft):** Autonomous email & reply drafting (requires 1-click human send approval).<br>
+â€¢ **Level 2 (Approve):** CRM status updates, pipeline movements, and customer outbound messages.<br>
+â€¢ **Level 3 (Restricted Gate):** Financial transactions, DB deletions, and server mutations strictly require 2FA admin authentication.`,
+        reply_bn: `ðŸ›¡ï¸ **à§ª-à¦²à§‡à¦­à§‡à¦² Human-in-the-Loop (HITL) à¦¸à§‡à¦«à¦Ÿà¦¿ à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦°:**<br>
+â€¢ **à¦²à§‡à¦­à§‡à¦² à§¦ (Observe):** à¦¶à§à¦§à§à¦®à¦¾à¦¤à§à¦° à¦¡à¦¾à¦Ÿà¦¾ à¦°à¦¿à¦¡ à¦“ à¦²à¦— à¦®à¦¨à¦¿à¦Ÿà¦°à¦¿à¦‚à¥¤<br>
+â€¢ **à¦²à§‡à¦­à§‡à¦² à§§ (Draft):** à¦à¦†à¦‡ à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿà¦­à¦¾à¦¬à§‡ à¦‡à¦®à§‡à¦‡à¦² à¦¡à§à¦°à¦¾à¦«à¦Ÿ à¦•à¦°à¦¬à§‡, à¦•à¦¿à¦¨à§à¦¤à§ à¦®à¦¾à¦¨à§à¦·à§‡à¦° à¦…à¦¨à§à¦®à¦¤à¦¿ à¦›à¦¾à§œà¦¾ à¦ªà¦¾à¦ à¦¾à¦¬à§‡ à¦¨à¦¾à¥¤<br>
+â€¢ **à¦²à§‡à¦­à§‡à¦² à§¨ (Approve):** à¦¸à¦¿à¦†à¦°à¦à¦® à¦¸à§à¦Ÿà§à¦¯à¦¾à¦Ÿà¦¾à¦¸ à¦†à¦ªà¦¡à§‡à¦Ÿ à¦“ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦°à¦¿à¦ªà§à¦²à¦¾à¦‡ à¦®à¦¾à¦¨à§à¦·à§‡à¦° à¦…à§à¦¯à¦¾à¦ªà§à¦°à§à¦­à¦¾à¦² à¦¨à¦¿à§Ÿà§‡ à¦¸à§‡à¦¨à§à¦¡ à¦¹à§Ÿà¥¤<br>
+â€¢ **à¦²à§‡à¦­à§‡à¦² à§© (Restricted):** à¦†à¦°à§à¦¥à¦¿à¦• à¦Ÿà§à¦°à¦¾à¦¨à¦œà§à¦¯à¦¾à¦•à¦¶à¦¨ à¦“ à¦¡à¦¾à¦Ÿà¦¾à¦¬à§‡à¦¸ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨à§‡à¦° à¦œà¦¨à§à¦¯ à¦¬à¦¾à¦§à§à¦¯à¦¤à¦¾à¦®à§‚à¦²à¦• à¦ªà¦¾à¦¸à¦«à§à¦°à§‡à¦œ à¦—à§‡à¦Ÿà¥¤`
     },
     {
         intents: ['contact', 'hire', 'founder', 'adnin', 'whatsapp', 'phone', 'call', 'book', 'talk', 'human', 'ceo'],
-        reply_en: `👨‍💻 **Connect with Founder & Lead Engineer Adnin Sadat Mahin:**<br>
-• **Role:** n8n Certified AI Automation & SRE Specialist<br>
-• **Direct WhatsApp:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">📱 +8801629286887</a><br>
-• **Work Email:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">✉️ adnansadatmahin5@gmail.com</a><br>
-• **Response Time:** Usually under 30 minutes!<br>
-👉 <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">Chat on WhatsApp Now →</a>`,
-        reply_bn: `👨‍💻 **ফাউন্ডার ও লিড ইঞ্জিনিয়ার আদনিন সাদাত মাহিনের সাথে যোগাযোগ করুন:**<br>
-• **পদবী:** n8n সার্টিফায়েড এআই অটোমেশন ও এসআরই স্পেশালিস্ট<br>
-• **সরাসরি হোয়াটসঅ্যাপ:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">📱 +8801629286887</a><br>
-• **ইমেইল:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">✉️ adnansadatmahin5@gmail.com</a><br>
-• **রেসপন্স টাইম:** সাধারণত ৩০ মিনিটের মধ্যে!<br>
-👉 <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">হোয়াটসঅ্যাপে মেসেজ দিন →</a>`
+        reply_en: `ðŸ‘¨â€ðŸ’» **Connect with Founder & Lead Engineer Adnin Sadat Mahin:**<br>
+â€¢ **Role:** n8n Certified AI Automation & SRE Specialist<br>
+â€¢ **Direct WhatsApp:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">ðŸ“± +8801629286887</a><br>
+â€¢ **Work Email:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">âœ‰ï¸ adnansadatmahin5@gmail.com</a><br>
+â€¢ **Response Time:** Usually under 30 minutes!<br>
+ðŸ‘‰ <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">Chat on WhatsApp Now â†’</a>`,
+        reply_bn: `ðŸ‘¨â€ðŸ’» **à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦° à¦“ à¦²à¦¿à¦¡ à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à¦¯à¦¼à¦¾à¦° à¦†à¦¦à¦¨à¦¿à¦¨ à¦¸à¦¾à¦¦à¦¾à¦¤ à¦®à¦¾à¦¹à¦¿à¦¨à§‡à¦° à¦¸à¦¾à¦¥à§‡ à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦— à¦•à¦°à§à¦¨:**<br>
+â€¢ **à¦ªà¦¦à¦¬à§€:** n8n à¦¸à¦¾à¦°à§à¦Ÿà¦¿à¦«à¦¾à§Ÿà§‡à¦¡ à¦à¦†à¦‡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ à¦à¦¸à¦†à¦°à¦‡ à¦¸à§à¦ªà§‡à¦¶à¦¾à¦²à¦¿à¦¸à§à¦Ÿ<br>
+â€¢ **à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª:** <a href="https://wa.me/8801629286887" target="_blank" style="color:var(--accent-cyan);">ðŸ“± +8801629286887</a><br>
+â€¢ **à¦‡à¦®à§‡à¦‡à¦²:** <a href="mailto:adnansadatmahin5@gmail.com" style="color:var(--accent-cyan);">âœ‰ï¸ adnansadatmahin5@gmail.com</a><br>
+â€¢ **à¦°à§‡à¦¸à¦ªà¦¨à§à¦¸ à¦Ÿà¦¾à¦‡à¦®:** à¦¸à¦¾à¦§à¦¾à¦°à¦£à¦¤ à§©à§¦ à¦®à¦¿à¦¨à¦¿à¦Ÿà§‡à¦° à¦®à¦§à§à¦¯à§‡!<br>
+ðŸ‘‰ <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20Automation%20system" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ªà§‡ à¦®à§‡à¦¸à§‡à¦œ à¦¦à¦¿à¦¨ â†’</a>`
     },
     {
         intents: ['affiliate', 'commission', 'partner', 'earn', 'referral', 'payout', 'bkash'],
-        reply_en: `🤝 **IINSHA AI Partner & Affiliate OS (15% + 20%):**<br>
-• **Upfront Commission:** 15% on every initial setup package ($75 - $300 per sale).<br>
-• **Recurring Passive Income:** 20% monthly on all ongoing client retainers.<br>
-• **Payout Methods:** bKash, Nagad, Wise, Bank Wire, PayPal, and Crypto USDT (minimum payout $50).<br>
-• **Cookie Duration:** 60-90 days with multi-touch attribution.`,
-        reply_bn: `🤝 **ইনশা এআই পার্টনার ও অ্যাফিলিয়েট ওএস (১৫% + ২০%):**<br>
-• **আপফ্রন্ট কমিশন:** প্রতিটি সেটআপে ১৫% এককালীন কমিশন ($৭৫ থেকে $৩০০ পর্যন্ত)।<br>
-• **মাসিক প্যাসিভ ইনকাম:** ক্লায়েন্টের মাসিক রিটেইনারের ওপর আজীবন ২০% রিকারিং কমিশন।<br>
-• **পেমেন্ট মেথড:** bKash, Nagad, Wise, Bank Transfer, ও Crypto USDT (মিনিমাম পেআউট $৫০)।`
+        reply_en: `ðŸ¤ **IINSHA AI Partner & Affiliate OS (15% + 20%):**<br>
+â€¢ **Upfront Commission:** 15% on every initial setup package ($75 - $300 per sale).<br>
+â€¢ **Recurring Passive Income:** 20% monthly on all ongoing client retainers.<br>
+â€¢ **Payout Methods:** bKash, Nagad, Wise, Bank Wire, PayPal, and Crypto USDT (minimum payout $50).<br>
+â€¢ **Cookie Duration:** 60-90 days with multi-touch attribution.`,
+        reply_bn: `ðŸ¤ **à¦‡à¦¨à¦¶à¦¾ à¦à¦†à¦‡ à¦ªà¦¾à¦°à§à¦Ÿà¦¨à¦¾à¦° à¦“ à¦…à§à¦¯à¦¾à¦«à¦¿à¦²à¦¿à¦¯à¦¼à§‡à¦Ÿ à¦“à¦à¦¸ (à§§à§«% + à§¨à§¦%):**<br>
+â€¢ **à¦†à¦ªà¦«à§à¦°à¦¨à§à¦Ÿ à¦•à¦®à¦¿à¦¶à¦¨:** à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ à¦¸à§‡à¦Ÿà¦†à¦ªà§‡ à§§à§«% à¦à¦•à¦•à¦¾à¦²à§€à¦¨ à¦•à¦®à¦¿à¦¶à¦¨ ($à§­à§« à¦¥à§‡à¦•à§‡ $à§©à§¦à§¦ à¦ªà¦°à§à¦¯à¦¨à§à¦¤)à¥¤<br>
+â€¢ **à¦®à¦¾à¦¸à¦¿à¦• à¦ªà§à¦¯à¦¾à¦¸à¦¿à¦­ à¦‡à¦¨à¦•à¦¾à¦®:** à¦•à§à¦²à¦¾à¦¯à¦¼à§‡à¦¨à§à¦Ÿà§‡à¦° à¦®à¦¾à¦¸à¦¿à¦• à¦°à¦¿à¦Ÿà§‡à¦‡à¦¨à¦¾à¦°à§‡à¦° à¦“à¦ªà¦° à¦†à¦œà§€à¦¬à¦¨ à§¨à§¦% à¦°à¦¿à¦•à¦¾à¦°à¦¿à¦‚ à¦•à¦®à¦¿à¦¶à¦¨à¥¤<br>
+â€¢ **à¦ªà§‡à¦®à§‡à¦¨à§à¦Ÿ à¦®à§‡à¦¥à¦¡:** bKash, Nagad, Wise, Bank Transfer, à¦“ Crypto USDT (à¦®à¦¿à¦¨à¦¿à¦®à¦¾à¦® à¦ªà§‡à¦†à¦‰à¦Ÿ $à§«à§¦)à¥¤`
     },
     {
         intents: ['audit', 'teardown', 'video', 'roadmap', 'free', 'blueprint', 'consultation'],
-        reply_en: `🎥 **Free 3-Minute Video Teardown & 5-Page Blueprint:**<br>
+        reply_en: `ðŸŽ¥ **Free 3-Minute Video Teardown & 5-Page Blueprint:**<br>
 Avoid 45-minute discovery call fatigue! Tell us your tech stack and biggest operational bottleneck, and our lead engineer will record a custom video teardown and send you a custom n8n blueprint within 24 hours.<br>
-👉 <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">Request Free Blueprint →</button>`,
-        reply_bn: `🎥 **ফ্রি ৩-মিনিট ভিডিও টিয়ারডাউন ও ৫-পেইজ ব্লুপ্রিন্ট:**<br>
-লম্বা ডিসকভারি কলের ঝামেলা ছাড়া আপনার বর্তমান টেক স্ট্যাক ও প্রধান সমস্যা জানান। আমাদের লিড ইঞ্জিনিয়ার ২৪ ঘণ্টার মধ্যে একটি কাস্টম ভিডিও টিয়ারডাউন ও n8n আর্কিটেকচার ব্লুপ্রিন্ট পাঠিয়ে দেবেন।<br>
-👉 <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">ফ্রি ব্লুপ্রিন্ট রিকোয়েস্ট করুন →</button>`
+ðŸ‘‰ <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">Request Free Blueprint â†’</button>`,
+        reply_bn: `ðŸŽ¥ **à¦«à§à¦°à¦¿ à§©-à¦®à¦¿à¦¨à¦¿à¦Ÿ à¦­à¦¿à¦¡à¦¿à¦“ à¦Ÿà¦¿à¦¯à¦¼à¦¾à¦°à¦¡à¦¾à¦‰à¦¨ à¦“ à§«-à¦ªà§‡à¦‡à¦œ à¦¬à§à¦²à§à¦ªà§à¦°à¦¿à¦¨à§à¦Ÿ:**<br>
+à¦²à¦®à§à¦¬à¦¾ à¦¡à¦¿à¦¸à¦•à¦­à¦¾à¦°à¦¿ à¦•à¦²à§‡à¦° à¦à¦¾à¦®à§‡à¦²à¦¾ à¦›à¦¾à§œà¦¾ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦Ÿà§‡à¦• à¦¸à§à¦Ÿà§à¦¯à¦¾à¦• à¦“ à¦ªà§à¦°à¦§à¦¾à¦¨ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦œà¦¾à¦¨à¦¾à¦¨à¥¤ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦²à¦¿à¦¡ à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à¦¯à¦¼à¦¾à¦° à§¨à§ª à¦˜à¦£à§à¦Ÿà¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦à¦•à¦Ÿà¦¿ à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦­à¦¿à¦¡à¦¿à¦“ à¦Ÿà¦¿à¦¯à¦¼à¦¾à¦°à¦¡à¦¾à¦‰à¦¨ à¦“ n8n à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à¦šà¦¾à¦° à¦¬à§à¦²à§à¦ªà§à¦°à¦¿à¦¨à§à¦Ÿ à¦ªà¦¾à¦ à¦¿à§Ÿà§‡ à¦¦à§‡à¦¬à§‡à¦¨à¥¤<br>
+ðŸ‘‰ <button onclick="document.getElementById('async-audit').scrollIntoView({behavior:'smooth'})" class="btn btn-primary-sm" style="margin-top:8px;">à¦«à§à¦°à¦¿ à¦¬à§à¦²à§à¦ªà§à¦°à¦¿à¦¨à§à¦Ÿ à¦°à¦¿à¦•à§‹à§Ÿà§‡à¦¸à§à¦Ÿ à¦•à¦°à§à¦¨ â†’</button>`
     }
 ];
 
@@ -304,22 +304,22 @@ function getGeminiNeuralResponse(query) {
     // 1. How Are You / Pleasantries
     if (/(how\s*are\s*you|kemon\s*acho|kemon\s*achen|valo\s*acho|bhalo\s*acho|valocen|bhalocen)/i.test(cleanQ)) {
         return isBn 
-            ? `😊 **আলহামদুলিল্লাহ, ভালো আছি!**<br><br>আপনার ব্যবসার কোন কাজটি স্বয়ংক্রিয় বা সহজ করতে সাহায্য করতে পারি বলুন।`
-            : `😊 **I'm doing great, thank you!**<br><br>How can I assist you with your business or automation needs today?`;
+            ? `ðŸ˜Š **à¦†à¦²à¦¹à¦¾à¦®à¦¦à§à¦²à¦¿à¦²à§à¦²à¦¾à¦¹, à¦­à¦¾à¦²à§‹ à¦†à¦›à¦¿!**<br><br>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦•à§‹à¦¨ à¦•à¦¾à¦œà¦Ÿà¦¿ à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦¬à¦¾ à¦¸à¦¹à¦œ à¦•à¦°à¦¤à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`
+            : `ðŸ˜Š **I'm doing great, thank you!**<br><br>How can I assist you with your business or automation needs today?`;
     }
 
     // 2. Greetings & Salutations
     if (/^(hi|hello|hey|salam|assalamu\s*alaikum|assalamualaikum|hlw|yo)\b/i.test(cleanQ)) {
         return isBn
-            ? `👋 **আসসালামু আলাইকুম! কেমন আছেন?**<br><br>IINSHA AI-BOS-এ আপনাকে স্বাগতম। আপনার ব্যবসা বা ওয়েবসাইটের অটোমেশন, B2B লিড জেনারেশন বা AI চ্যাটবট তৈরিতে কীভাবে সাহায্য করতে পারি বলুন।`
-            : `👋 **Hello! Welcome to IINSHA AI-BOS.**<br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
+            ? `ðŸ‘‹ **à¦†à¦¸à¦¸à¦¾à¦²à¦¾à¦®à§ à¦†à¦²à¦¾à¦‡à¦•à§à¦®! à¦•à§‡à¦®à¦¨ à¦†à¦›à§‡à¦¨?**<br><br>IINSHA AI-BOS-à¦ à¦†à¦ªà¦¨à¦¾à¦•à§‡ à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®à¥¤ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾ à¦¬à¦¾ à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿà§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨, B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¬à¦¾ AI à¦šà§à¦¯à¦¾à¦Ÿà¦¬à¦Ÿ à¦¤à§ˆà¦°à¦¿à¦¤à§‡ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`
+            : `ðŸ‘‹ **Hello! Welcome to IINSHA AI-BOS.**<br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
     }
 
     // 3. Help Inquiries & Problem Fixing
     if (cleanQ.includes('help') || cleanQ.includes('shahajjo') || cleanQ.includes('sahajjo') || cleanQ.includes('problem fix') || cleanQ.includes('fix korte')) {
         return isBn
-            ? `🤝 **হ্যাঁ, অবশ্যই! আপনার কী ধরণের সাহায্য প্রয়োজন বিস্তারিত বলুন।**<br><br>আমরা B2B লিড জেনারেশন, ২৪/৭ হোয়াটসঅ্যাপ সেলস বট, n8n ওয়ার্কফ্লো অটোমেশন এবং কাস্টম AI ইঞ্জিনিয়ারিং সেবা দিয়ে থাকি। আপনার সমস্যা বা প্রজেক্টের রিকোয়ারমেন্ট লিখুন, আমি এখনই সমাধান দিচ্ছি।`
-            : `🤝 **Yes, absolutely! Tell me what you need help with.**<br><br>We specialize in B2B lead generation swarms, 24/7 WhatsApp/Messenger sales bots, self-hosted n8n workflows, and custom AI engineering. Describe your problem and I will help you solve it!`;
+            ? `ðŸ¤ **à¦¹à§à¦¯à¦¾à¦, à¦…à¦¬à¦¶à§à¦¯à¦‡! à¦†à¦ªà¦¨à¦¾à¦° à¦•à§€ à¦§à¦°à¦£à§‡à¦° à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦¬à¦²à§à¦¨à¥¤**<br><br>à¦†à¦®à¦°à¦¾ B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨, à§¨à§ª/à§­ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ, n8n à¦“à§Ÿà¦¾à¦°à§à¦•à¦«à§à¦²à§‹ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦à¦¬à¦‚ à¦•à¦¾à¦¸à§à¦Ÿà¦® AI à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à§Ÿà¦¾à¦°à¦¿à¦‚ à¦¸à§‡à¦¬à¦¾ à¦¦à¦¿à§Ÿà§‡ à¦¥à¦¾à¦•à¦¿à¥¤ à¦†à¦ªà¦¨à¦¾à¦° à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¬à¦¾ à¦ªà§à¦°à¦œà§‡à¦•à§à¦Ÿà§‡à¦° à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦²à¦¿à¦–à§à¦¨, à¦†à¦®à¦¿ à¦à¦–à¦¨à¦‡ à¦¸à¦®à¦¾à¦§à¦¾à¦¨ à¦¦à¦¿à¦šà§à¦›à¦¿à¥¤`
+            : `ðŸ¤ **Yes, absolutely! Tell me what you need help with.**<br><br>We specialize in B2B lead generation swarms, 24/7 WhatsApp/Messenger sales bots, self-hosted n8n workflows, and custom AI engineering. Describe your problem and I will help you solve it!`;
     }
 
     // 4. Scan RAG Knowledge Base for semantic intent match
@@ -333,10 +333,10 @@ function getGeminiNeuralResponse(query) {
 
     // 5. Contextual intelligent concise conversational fallback
     if (isBn) {
-        return `💡 আপনার বিষয়টি বুঝতে পেরেছি। এটি আমাদের অটোমেশন ও AI সিস্টেম দিয়ে কাস্টমাইজড ভাবে বাস্তবায়ন করা সম্ভব।<br><br>👉 <em>আপনার বর্তমান সেটআপ বা নির্দিষ্ট রিকোয়ারমেন্ট সম্পর্কে আর একটু বিস্তারিত জানাবেন কি?</em><br><br>👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 হোয়াটসঅ্যাপে জানান (+8801629286887)</a>`;
+        return `ðŸ’¡ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦¿à¦·à§Ÿà¦Ÿà¦¿ à¦¬à§à¦à¦¤à§‡ à¦ªà§‡à¦°à§‡à¦›à¦¿à¥¤ à¦à¦Ÿà¦¿ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ AI à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¦à¦¿à§Ÿà§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦‡à¦œà¦¡ à¦­à¦¾à¦¬à§‡ à¦¬à¦¾à¦¸à§à¦¤à¦¬à¦¾à§Ÿà¦¨ à¦•à¦°à¦¾ à¦¸à¦®à§à¦­à¦¬à¥¤<br><br>ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦¸à§‡à¦Ÿà¦†à¦ª à¦¬à¦¾ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡ à¦†à¦° à¦à¦•à¦Ÿà§ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¬à§‡à¦¨ à¦•à¦¿?</em><br><br>ðŸ‘‰ <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">ðŸ“± à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ªà§‡ à¦œà¦¾à¦¨à¦¾à¦¨ (+8801629286887)</a>`;
     }
 
-    return `💡 Understood! We can definitely design and automate this workflow for your business.<br><br>👉 <em>Could you share a few more details about your current setup or requirements?</em><br><br>👉 <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">📱 WhatsApp Chat (+8801629286887)</a>`;
+    return `ðŸ’¡ Understood! We can definitely design and automate this workflow for your business.<br><br>ðŸ‘‰ <em>Could you share a few more details about your current setup or requirements?</em><br><br>ðŸ‘‰ <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, query: ' + query)}" target="_blank" class="btn btn-primary-sm" style="margin-top:8px;">ðŸ“± WhatsApp Chat (+8801629286887)</a>`;
 }
 
 function initChatbotWidget() {
@@ -355,10 +355,10 @@ function initChatbotWidget() {
                     <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
                     <div>
                         <strong style="font-size:0.95rem; color:#fff; display:block;">IINSHA Gemini 3.0 Pro AI Agent</strong>
-                        <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">⚡ Cognitive RAG Neural Engine</span>
+                        <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">âš¡ Cognitive RAG Neural Engine</span>
                     </div>
                 </div>
-                <button onclick="document.getElementById('floating-chat-box')?.classList.toggle('hidden')" style="background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                <button onclick="document.getElementById('floating-chat-box')?.classList.toggle('hidden')" style="background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">âœ•</button>
             </div>
         `;
     }
@@ -379,7 +379,7 @@ function initChatbotWidget() {
         const typingMsg = document.createElement('div');
         typingMsg.id = 'ai-typing-indicator';
         typingMsg.style.cssText = 'background:rgba(30,41,59,0.9); color:var(--accent-cyan); padding:8px 12px; border-radius:10px; align-self:flex-start; font-size:0.8rem; margin-bottom:10px; border:1px solid var(--border-card); font-family:var(--font-mono);';
-        typingMsg.innerHTML = '⚡ Gemini 3.0 Pro & Flash reasoning...';
+        typingMsg.innerHTML = 'âš¡ Gemini 3.0 Pro & Flash reasoning...';
         chatBox.appendChild(typingMsg);
         chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -489,7 +489,7 @@ function getAIExecutiveBriefing() {
     return {
         greeting: "Good Morning Mahin! Here is your IINSHAA OS v50 Executive Intelligence Briefing:",
         revenueYesterday: "$2,540.00",
-        revenueYesterdayBDT: "৳" + (2540 * siteWords.bdtRate).toLocaleString() + " BDT",
+        revenueYesterdayBDT: "à§³" + (2540 * siteWords.bdtRate).toLocaleString() + " BDT",
         affiliateSales: 31,
         lostLeads: 12,
         bestProduct: "Playwright Enterprise Pipeline Price Monitor ($599)",
@@ -518,7 +518,7 @@ function getIBOSData() {
         media: JSON.parse(localStorage.getItem('iinsha_ibos_media') || '[]'),
         aiSwarms: [
             { id: 'ai_sales', name: 'Sales AI Swarm', domain: 'Sales', model: 'Gemini 1.5 Pro / Flash', status: 'ACTIVE' },
-            { id: 'ai_support', name: 'Support AI Swarm', domain: 'Support', model: 'Claude 3.7 Sonnet (Hybrid Thinking)', status: 'ACTIVE' },
+            { id: 'ai_support', name: 'Support AI Swarm', domain: 'Support', model: 'Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking)', status: 'ACTIVE' },
             { id: 'ai_affiliate', name: 'Affiliate AI Assistant', domain: 'Marketing', model: 'GPT-5 Turbo', status: 'ACTIVE' },
             { id: 'ai_proposal', name: 'Proposal AI Agent', domain: 'Sales', model: 'DeepSeek-R1', status: 'ACTIVE' },
             { id: 'ai_executive', name: 'Executive AI Briefing Agent', domain: 'Executive', model: 'Gemini 1.5 Pro', status: 'ACTIVE' }
@@ -552,7 +552,7 @@ function renderAdminModalCmsStudio(container) {
             <!-- IBOS HEADER BRANDING -->
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <div style="font-size:2.4rem; background:linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">🛡️</div>
+                    <div style="font-size:2.4rem; background:linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">ðŸ›¡ï¸</div>
                     <div>
                         <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin:0; color:#fff;">IINSHAA OS v50 Enterprise Operating System</h2>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:700;">15 Domains | 20 Levels | 10 Control Systems | Single Source Kernel</span>
@@ -560,27 +560,27 @@ function renderAdminModalCmsStudio(container) {
                 </div>
                 <div style="display:flex; gap:10px; align-items:center;">
                     <span class="badge-gold" style="font-size:0.72rem; padding:4px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold);">Super Admin Mode</span>
-                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
+                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">ðŸ”’ Lock OS</button>
                 </div>
             </div>
 
             <!-- IBOS MODULE NAVIGATION TABS (15 ENTERPRISE DOMAINS) -->
             <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.08);">
-                <button onclick="ibosSwitchTab('exec')" class="btn btn-glass-sm ${ibosActiveTab === 'exec' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'exec' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📊 AI Briefing</button>
-                <button onclick="ibosSwitchTab('market')" class="btn btn-glass-sm ${ibosActiveTab === 'market' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'market' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">🛍️ Marketplace 2.0</button>
-                <button onclick="ibosSwitchTab('pricing')" class="btn btn-glass-sm ${ibosActiveTab === 'pricing' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'pricing' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">💲 Pricing Engine</button>
-                <button onclick="ibosSwitchTab('affiliate')" class="btn btn-glass-sm ${ibosActiveTab === 'affiliate' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'affiliate' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🤝 Affiliate BOS 5.0</button>
-                <button onclick="ibosSwitchTab('ai')" class="btn btn-glass-sm ${ibosActiveTab === 'ai' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'ai' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🤖 AI Swarms</button>
-                <button onclick="ibosSwitchTab('crm')" class="btn btn-glass-sm ${ibosActiveTab === 'crm' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'crm' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">👥 Client CRM</button>
-                <button onclick="ibosSwitchTab('projects')" class="btn btn-glass-sm ${ibosActiveTab === 'projects' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'projects' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">📂 Projects</button>
-                <button onclick="ibosSwitchTab('blog')" class="btn btn-glass-sm ${ibosActiveTab === 'blog' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'blog' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">📝 Blog CMS</button>
-                <button onclick="ibosSwitchTab('media')" class="btn btn-glass-sm ${ibosActiveTab === 'media' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'media' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">🖼️ Media Library</button>
-                <button onclick="ibosSwitchTab('analytics')" class="btn btn-glass-sm ${ibosActiveTab === 'analytics' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'analytics' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📈 Analytics 360</button>
-                <button onclick="ibosSwitchTab('automation')" class="btn btn-glass-sm ${ibosActiveTab === 'automation' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'automation' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">⚡ Automations</button>
-                <button onclick="ibosSwitchTab('flags')" class="btn btn-glass-sm ${ibosActiveTab === 'flags' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'flags' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🚩 Feature Flags</button>
-                <button onclick="ibosSwitchTab('audit')" class="btn btn-glass-sm ${ibosActiveTab === 'audit' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'audit' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📜 Audit Sourcing</button>
-                <button onclick="ibosSwitchTab('rbac')" class="btn btn-glass-sm ${ibosActiveTab === 'rbac' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'rbac' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">🛡️ RBAC Credentials</button>
-                <button onclick="ibosSwitchTab('settings')" class="btn btn-glass-sm ${ibosActiveTab === 'settings' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'settings' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">⚙️ System Settings</button>
+                <button onclick="ibosSwitchTab('exec')" class="btn btn-glass-sm ${ibosActiveTab === 'exec' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'exec' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“Š AI Briefing</button>
+                <button onclick="ibosSwitchTab('market')" class="btn btn-glass-sm ${ibosActiveTab === 'market' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'market' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ›ï¸ Marketplace 2.0</button>
+                <button onclick="ibosSwitchTab('pricing')" class="btn btn-glass-sm ${ibosActiveTab === 'pricing' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'pricing' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ’² Pricing Engine</button>
+                <button onclick="ibosSwitchTab('affiliate')" class="btn btn-glass-sm ${ibosActiveTab === 'affiliate' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'affiliate' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸ¤ Affiliate BOS 5.0</button>
+                <button onclick="ibosSwitchTab('ai')" class="btn btn-glass-sm ${ibosActiveTab === 'ai' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'ai' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸ¤– AI Swarms</button>
+                <button onclick="ibosSwitchTab('crm')" class="btn btn-glass-sm ${ibosActiveTab === 'crm' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'crm' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ‘¥ Client CRM</button>
+                <button onclick="ibosSwitchTab('projects')" class="btn btn-glass-sm ${ibosActiveTab === 'projects' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'projects' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ“‚ Projects</button>
+                <button onclick="ibosSwitchTab('blog')" class="btn btn-glass-sm ${ibosActiveTab === 'blog' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'blog' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ“ Blog CMS</button>
+                <button onclick="ibosSwitchTab('media')" class="btn btn-glass-sm ${ibosActiveTab === 'media' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'media' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ–¼ï¸ Media Library</button>
+                <button onclick="ibosSwitchTab('analytics')" class="btn btn-glass-sm ${ibosActiveTab === 'analytics' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'analytics' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“ˆ Analytics 360</button>
+                <button onclick="ibosSwitchTab('automation')" class="btn btn-glass-sm ${ibosActiveTab === 'automation' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'automation' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">âš¡ Automations</button>
+                <button onclick="ibosSwitchTab('flags')" class="btn btn-glass-sm ${ibosActiveTab === 'flags' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'flags' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸš© Feature Flags</button>
+                <button onclick="ibosSwitchTab('audit')" class="btn btn-glass-sm ${ibosActiveTab === 'audit' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'audit' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“œ Audit Sourcing</button>
+                <button onclick="ibosSwitchTab('rbac')" class="btn btn-glass-sm ${ibosActiveTab === 'rbac' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'rbac' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ›¡ï¸ RBAC Credentials</button>
+                <button onclick="ibosSwitchTab('settings')" class="btn btn-glass-sm ${ibosActiveTab === 'settings' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'settings' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">âš™ï¸ System Settings</button>
             </div>
 
             <!-- IBOS MODULE TAB CONTENT PANEL -->
@@ -612,7 +612,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
             <!-- LEVEL 8: AI EXECUTIVE DAILY BRIEFING -->
             <div>
                 <div class="ipc-card ipc-card-gold" style="margin-bottom:20px; background:linear-gradient(135deg, rgba(15,23,42,0.95), rgba(245,158,11,0.1));">
-                    <h3 style="color:var(--accent-gold); font-size:1.2rem; margin-bottom:8px;">🤖 ${sanitize(briefing.greeting)}</h3>
+                    <h3 style="color:var(--accent-gold); font-size:1.2rem; margin-bottom:8px;">ðŸ¤– ${sanitize(briefing.greeting)}</h3>
                     <div class="admin-stat-grid" style="margin:16px 0;">
                         <div class="admin-stat-card">
                             <span style="font-size:0.7rem; color:var(--text-muted);">YESTERDAY REVENUE</span>
@@ -631,19 +631,19 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         </div>
                     </div>
 
-                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:8px;">💡 AI Autonomous Strategy Suggestions:</h4>
+                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:8px;">ðŸ’¡ AI Autonomous Strategy Suggestions:</h4>
                     <ul style="padding-left:20px; margin:0; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
                         ${briefing.suggestions.map(s => `<li>${sanitize(s)}</li>`).join('')}
                     </ul>
                 </div>
 
                 <div class="ipc-card">
-                    <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">⚡ Quick Command Shortcuts</h4>
+                    <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">âš¡ Quick Command Shortcuts</h4>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">➕ Add New Service</button>
-                        <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);">✍️ Publish Blog Article</button>
-                        <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">🤝 Approve Partner Sale</button>
-                        <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">👥 Admin Credentials CMS</button>
+                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">âž• Add New Service</button>
+                        <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);">âœï¸ Publish Blog Article</button>
+                        <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">ðŸ¤ Approve Partner Sale</button>
+                        <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">ðŸ‘¥ Admin Credentials CMS</button>
                     </div>
                 </div>
             </div>
@@ -656,10 +656,10 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
             <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;">🛍️ Marketplace Domain CMS (${services.length} Services Active)</h3>
+                        <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;">ðŸ›ï¸ Marketplace Domain CMS (${services.length} Services Active)</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Single Source of Truth Service Registry Catalog.</p>
                     </div>
-                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">➕ Add New Service</button>
+                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">âž• Add New Service</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -674,8 +674,8 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                 </div>
                             </div>
                             <div style="display:flex; gap:8px;">
-                                <button class="btn btn-glass-sm ibos-btn-edit-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:var(--accent-cyan); border-color:var(--accent-cyan);">✏️ Edit Service</button>
-                                <button class="btn btn-glass-sm ibos-btn-delete-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:#fca5a5; border-color:#ef4444;">🗑️ Delete</button>
+                                <button class="btn btn-glass-sm ibos-btn-edit-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:var(--accent-cyan); border-color:var(--accent-cyan);">âœï¸ Edit Service</button>
+                                <button class="btn btn-glass-sm ibos-btn-delete-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:#fca5a5; border-color:#ef4444;">ðŸ—‘ï¸ Delete</button>
                             </div>
                         </div>
                     `).join('')}
@@ -688,7 +688,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
         return `
             <!-- PRICING DOMAIN -->
             <div>
-                <h3 style="color:var(--accent-emerald); font-size:1.15rem; margin-bottom:6px;">💲 Dynamic Pricing Engine & BDT Currency Converter</h3>
+                <h3 style="color:var(--accent-emerald); font-size:1.15rem; margin-bottom:6px;">ðŸ’² Dynamic Pricing Engine & BDT Currency Converter</h3>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">Edits here dynamically update Marketplace, Asset Store, Checkout Modal, Partner Portal, and AI Sales Agent.</p>
 
                 <div class="ipc-card ipc-card-gold">
@@ -698,7 +698,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                             <label style="font-size:0.75rem; color:var(--text-muted); display:block;">USD to BDT Rate:</label>
                             <input type="number" id="ibos-bdt-rate-input" class="dash-select" value="${siteWords.bdtRate}" style="width:140px;">
                         </div>
-                        <button id="ibos-btn-update-rate" class="btn btn-primary-sm" style="background:var(--accent-gold); color:#000; font-weight:800;">💾 Save Currency Rate</button>
+                        <button id="ibos-btn-update-rate" class="btn btn-primary-sm" style="background:var(--accent-gold); color:#000; font-weight:800;">ðŸ’¾ Save Currency Rate</button>
                     </div>
                 </div>
             </div>
@@ -709,7 +709,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
         return `
             <!-- AFFILIATE DOMAIN 5.0 -->
             <div>
-                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">🤝 Enterprise Affiliate Network 5.0 (Impact / PartnerStack Rules)</h3>
+                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">ðŸ¤ Enterprise Affiliate Network 5.0 (Impact / PartnerStack Rules)</h3>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">100% Service Auto-Sync, Unique Referral Links & Ownership Attribution.</p>
 
                 <div class="ipc-card">
@@ -741,7 +741,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
         return `
             <!-- AI SWARM DOMAIN -->
             <div>
-                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">🤖 Multi-Agent AI Swarm Orchestra (14 AI Agents)</h3>
+                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">ðŸ¤– Multi-Agent AI Swarm Orchestra (14 AI Agents)</h3>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">Configure specialized AI Agents & Pinecone Vector RAG Knowledge Base.</p>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -752,7 +752,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                 <span class="badge-pro" style="margin-left:8px; font-size:0.7rem;">${sanitize(agent.model)}</span>
                                 <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">Domain: ${sanitize(agent.domain)}</div>
                             </div>
-                            <button class="btn btn-glass-sm" onclick="alert('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">⚙️ Config Prompt & RAG</button>
+                            <button class="btn btn-glass-sm" onclick="alert('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">âš™ï¸ Config Prompt & RAG</button>
                         </div>
                     `).join('')}
                 </div>
@@ -766,10 +766,10 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
             <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <h3 style="color:var(--accent-gold); font-size:1.15rem; margin:0;">🛡️ Identity Domain & RBAC Credential CMS</h3>
+                        <h3 style="color:var(--accent-gold); font-size:1.15rem; margin:0;">ðŸ›¡ï¸ Identity Domain & RBAC Credential CMS</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Manage Admin User ID & Passwords anytime.</p>
                     </div>
-                    <button id="ibos-btn-add-admin" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">➕ Add Admin User</button>
+                    <button id="ibos-btn-add-admin" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">âž• Add Admin User</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -782,7 +782,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                     User ID: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${sanitize(adm.email)}</strong> | Password: <strong style="color:var(--accent-gold); font-family:var(--font-mono);">${sanitize(adm.password)}</strong>
                                 </div>
                             </div>
-                            <button class="btn btn-glass-sm ibos-btn-edit-admin" data-admin-idx="${aIdx}" style="font-size:0.75rem; color:var(--accent-gold); border-color:var(--accent-gold);">✏️ Change Credentials</button>
+                            <button class="btn btn-glass-sm ibos-btn-edit-admin" data-admin-idx="${aIdx}" style="font-size:0.75rem; color:var(--accent-gold); border-color:var(--accent-gold);">âœï¸ Change Credentials</button>
                         </div>
                     `).join('')}
                 </div>
@@ -794,7 +794,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
     return `
         <!-- PLATFORM DOMAIN & SETTINGS -->
         <div>
-            <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin-bottom:12px;">⚙️ Platform Domain Settings & Branding</h3>
+            <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin-bottom:12px;">âš™ï¸ Platform Domain Settings & Branding</h3>
             <div class="ipc-card">
                 <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px;">Global Headline Words</h4>
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -806,7 +806,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <label style="font-size:0.75rem; color:var(--text-muted); display:block;">Hero Subtitle:</label>
                         <input type="text" id="ibos-hero-sub" class="dash-select" style="width:100%;" value="${sanitize(siteWords.heroSub)}">
                     </div>
-                    <button id="ibos-btn-save-words" class="btn btn-primary-sm" style="background:var(--accent-cyan); color:#000; font-weight:800;">💾 Save Headlines</button>
+                    <button id="ibos-btn-save-words" class="btn btn-primary-sm" style="background:var(--accent-cyan); color:#000; font-weight:800;">ðŸ’¾ Save Headlines</button>
                 </div>
             </div>
         </div>
@@ -816,7 +816,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
 
 
 /* ============================================================
-   IBOS MASTER ENTERPRISE ADMIN CONTROL PANEL — INTERACTIVE CRUD ENGINE
+   IBOS MASTER ENTERPRISE ADMIN CONTROL PANEL â€” INTERACTIVE CRUD ENGINE
    Granular Control for Every Single Word, Service, Pricing & Credential
    ============================================================ */
 
@@ -846,7 +846,7 @@ function bindIBOSModuleListeners() {
             if (heroTitleEl && heroTitle) heroTitleEl.innerHTML = sanitize(heroTitle);
             if (heroSubEl && heroSub) heroSubEl.innerHTML = sanitize(heroSub);
 
-            alert('✅ Global CMS Headlines & Words saved successfully!');
+            alert('âœ… Global CMS Headlines & Words saved successfully!');
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -857,7 +857,7 @@ function bindIBOSModuleListeners() {
         btnUpdateRate.addEventListener('click', () => {
             const inputRate = parseFloat(document.getElementById('ibos-bdt-rate-input')?.value);
             if (isNaN(inputRate) || inputRate <= 0) {
-                alert('⚠️ Please enter a valid exchange rate (e.g. 120)');
+                alert('âš ï¸ Please enter a valid exchange rate (e.g. 120)');
                 return;
             }
             const words = getSiteWords();
@@ -867,7 +867,7 @@ function bindIBOSModuleListeners() {
             // Update currency elements across page
             document.querySelectorAll('.currency-toggle-btn.active').forEach(b => b.click());
 
-            alert(`✅ Exchange Rate saved! 1 USD = ৳${inputRate} BDT across all services.`);
+            alert(`âœ… Exchange Rate saved! 1 USD = à§³${inputRate} BDT across all services.`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -901,7 +901,7 @@ function bindIBOSModuleListeners() {
             });
 
             saveServiceRegistry(registry);
-            alert(`🎉 New Service "${title}" ($${price}) added to Single Source Registry!`);
+            alert(`ðŸŽ‰ New Service "${title}" ($${price}) added to Single Source Registry!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -924,7 +924,7 @@ function bindIBOSModuleListeners() {
             svc.commission_rate = !isNaN(newComm) ? newComm : svc.commission_rate;
 
             saveServiceRegistry(registry);
-            alert(`✅ Service "${svc.title}" updated successfully!`);
+            alert(`âœ… Service "${svc.title}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -936,10 +936,10 @@ function bindIBOSModuleListeners() {
             const svc = registry[idx];
             if (!svc) return;
 
-            if (confirm(`⚠️ Are you sure you want to delete service "${svc.title}"?`)) {
+            if (confirm(`âš ï¸ Are you sure you want to delete service "${svc.title}"?`)) {
                 registry.splice(idx, 1);
                 saveServiceRegistry(registry);
-                alert(`🗑️ Service deleted from OS Registry.`);
+                alert(`ðŸ—‘ï¸ Service deleted from OS Registry.`);
                 renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
             }
         });
@@ -959,7 +959,7 @@ function bindIBOSModuleListeners() {
             admins.push({ email, password, name: email.split('@')[0], role });
             saveAdminUsers(admins);
 
-            alert(`🛡️ New Admin User "${email}" created!`);
+            alert(`ðŸ›¡ï¸ New Admin User "${email}" created!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -980,7 +980,7 @@ function bindIBOSModuleListeners() {
             adm.password = newPass || adm.password;
 
             saveAdminUsers(admins);
-            alert(`✅ Admin Credentials for "${adm.email}" updated successfully!`);
+            alert(`âœ… Admin Credentials for "${adm.email}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -1008,7 +1008,7 @@ function bindIBOSModuleListeners() {
                 sales_total: 0
             });
             localStorage.setItem('iinsha_ibos_affiliates', JSON.stringify(affs));
-            alert(`🤝 Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
+            alert(`ðŸ¤ Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -1027,15 +1027,15 @@ function openProtectedAdminPanel() {
             <div class="admin-modal-box" style="background: #030712; border: 1px solid var(--accent-gold); border-radius: 16px; width: 95%; max-width: 1100px; max-height: 90vh; overflow-y: auto; padding: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95); color: #fff;">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️</span>
+                        <span style="font-size:1.8rem; color:var(--accent-gold);">ðŸ›¡ï¸</span>
                         <div>
                             <h2 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin:0;">IINSHA TECH OS v1000 Master Control Panel</h2>
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">● Active Super Admin Session | 20 Enterprise Modules</p>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">â— Active Super Admin Session | 20 Enterprise Modules</p>
                         </div>
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span style="background:rgba(217,119,6,0.2); color:var(--accent-gold); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(217,119,6,0.3);">Super Admin Mode</span>
-                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">✕ Close</button>
+                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">âœ• Close</button>
                     </div>
                 </div>
                 <div id="index-admin-cms-root"></div>
@@ -1068,32 +1068,32 @@ function openProtectedAdminPanel() {
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
         <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
-            <div style="font-size: 2.8rem; margin-bottom: 8px;">👑</div>
+            <div style="font-size: 2.8rem; margin-bottom: 8px;">ðŸ‘‘</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
 
             <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
-                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@iinsha.ai</strong> (or adnansadatmahin5@gmail.com)</div>
+                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">ðŸ”‘ Authorized Master Credentials:</div>
+                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@inshatech.pages.dev</strong> (or adnansadatmahin5@gmail.com)</div>
                 <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> (or any 6+ chars)</div>
             </div>
 
             <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" value="admin@iinsha.ai" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="email" id="admin-input-email" value="admin@inshatech.pages.dev" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
                 <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">⚠️ Passphrase must be at least 6 characters.</div>
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">âš ï¸ Passphrase must be at least 6 characters.</div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔓 Authenticate & Open Studio →</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">ðŸ”“ Authenticate & Open Studio â†’</button>
                 </div>
             </form>
 
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
+                ðŸ”’ Single Source Kernel â— 15 Domains â— RBAC Active
             </div>
         </div>
     `;
@@ -1117,13 +1117,13 @@ function handleAdminLoginSubmit(e) {
         const errEl = document.getElementById('admin-login-error');
         if (errEl) {
             errEl.style.display = 'block';
-            errEl.textContent = '⚠️ Invalid credentials. Passphrase must be at least 6 characters.';
+            errEl.textContent = 'âš ï¸ Invalid credentials. Passphrase must be at least 6 characters.';
         }
     }
 }
 
 function handleAdminMasterUnlock() {
-    alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
+    alert("ðŸ”’ Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
 }
 
 function initAdminModalLoginForm() {
@@ -1144,7 +1144,7 @@ function initAdminModalLoginForm() {
 
 
 /* ============================================================
-   Compare Page Handlers — Tab Switching & Coupon Copy
+   Compare Page Handlers â€” Tab Switching & Coupon Copy
    ============================================================ */
 function initComparePageHandlers() {
     const switchBtns = document.querySelectorAll('.comp-switch-btn');
@@ -1168,7 +1168,7 @@ function initComparePageHandlers() {
             const code = btn.getAttribute('data-code') || 'IINSHA20';
             navigator.clipboard.writeText(code).then(() => {
                 const orig = btn.textContent;
-                btn.textContent = '✅ Copied!';
+                btn.textContent = 'âœ… Copied!';
                 btn.style.background = 'var(--accent-emerald)';
                 setTimeout(() => {
                     btn.textContent = orig;
@@ -1180,7 +1180,7 @@ function initComparePageHandlers() {
 }
 
 /* ============================================================
-   Marketplace Page Handlers — Search, Filter, Currency
+   Marketplace Page Handlers â€” Search, Filter, Currency
    ============================================================ */
 function initMarketplaceHandlers() {
     const searchInput = document.getElementById('marketplace-search-input');
@@ -1230,7 +1230,7 @@ function initMarketplaceHandlers() {
             const usd = parseFloat(priceEl.getAttribute('data-usd'));
             if (isNaN(usd)) return;
             if (curr === 'BDT') {
-                priceEl.textContent = '৳' + Math.round(usd * BDT_RATE).toLocaleString() + ' BDT';
+                priceEl.textContent = 'à§³' + Math.round(usd * BDT_RATE).toLocaleString() + ' BDT';
             } else {
                 priceEl.textContent = '$' + usd.toLocaleString() + ' USD';
             }
@@ -1251,7 +1251,7 @@ function initMarketplaceHandlers() {
             const code = btn.getAttribute('data-code') || 'IINSHA20';
             navigator.clipboard.writeText(code).then(() => {
                 const orig = btn.textContent;
-                btn.textContent = '✅ Copied!';
+                btn.textContent = 'âœ… Copied!';
                 setTimeout(() => { btn.textContent = orig; }, 2000);
             });
         });
@@ -1259,7 +1259,7 @@ function initMarketplaceHandlers() {
 }
 
 /* ============================================================
-   Store Page Checkout — Real Checkout Modal Integration
+   Store Page Checkout â€” Real Checkout Modal Integration
    ============================================================ */
 function initStorePageCheckout() {
     document.querySelectorAll('.store-buy-btn').forEach(btn => {
@@ -1283,7 +1283,7 @@ function initStorePageCheckout() {
 }
 
 /* ============================================================
-   Master DOMContentLoaded — Register All Page Handlers
+   Master DOMContentLoaded â€” Register All Page Handlers
    ============================================================ */
 window.addEventListener('DOMContentLoaded', () => {
     initFOMOToasts();
@@ -1310,11 +1310,11 @@ window.addEventListener('DOMContentLoaded', () => {
 /* Live FOMO Activity Stream Notification Toast Engine */
 function initFomoToasts() {
     const notifications = [
-        "🛒 Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
-        "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
-        "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
-        "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
-        "🚀 Hostinger VPS Docker Container #04 deployed successfully"
+        "ðŸ›’ Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
+        "âš¡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
+        "ðŸ¤ Partner #1042 earned $150.00 recurring affiliate commission!",
+        "ðŸ“„ New Client Quote generated for Invoice OCR Pipeline ($249)",
+        "ðŸš€ Hostinger VPS Docker Container #04 deployed successfully"
     ];
 
     let toastContainer = document.getElementById('toastContainer');
@@ -1330,7 +1330,7 @@ function initFomoToasts() {
         const toast = document.createElement('div');
         toast.className = 'glass-toast';
         toast.style.cssText = 'background:rgba(15,23,42,0.92); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); backdrop-filter:blur(10px); animation:slideUp 0.4s ease; pointer-events:auto;';
-        toast.innerHTML = `<span style="color:var(--accent-emerald);">● LIVE</span> ${randomMsg}`;
+        toast.innerHTML = `<span style="color:var(--accent-emerald);">â— LIVE</span> ${randomMsg}`;
         toastContainer.appendChild(toast);
 
         setTimeout(() => {
@@ -1378,7 +1378,7 @@ function initVoiceAssistant() {
         micBtn.id = 'floating-chat-mic-btn';
         micBtn.type = 'button';
         micBtn.title = 'Speak your requirement (Voice AI)';
-        micBtn.innerHTML = '🎤';
+        micBtn.innerHTML = 'ðŸŽ¤';
         micBtn.style.cssText = 'background: rgba(99, 102, 241, 0.2); border: 1px solid var(--accent-primary); color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.2s; margin-left: 6px;';
         
         chatSendBtn.parentNode.insertBefore(micBtn, chatSendBtn.nextSibling);
@@ -1386,7 +1386,7 @@ function initVoiceAssistant() {
         micBtn.addEventListener('click', () => {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                alert('⚠️ Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
+                alert('âš ï¸ Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
                 return;
             }
 
@@ -1395,25 +1395,25 @@ function initVoiceAssistant() {
             recognition.interimResults = false;
 
             micBtn.style.background = '#ef4444';
-            micBtn.innerHTML = '🔴 Listening...';
+            micBtn.innerHTML = 'ðŸ”´ Listening...';
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
                 chatInput.value = transcript;
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = '🎤';
+                micBtn.innerHTML = 'ðŸŽ¤';
                 chatSendBtn.click();
             };
 
             recognition.onerror = (err) => {
                 console.warn('Voice recognition error:', err);
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = '🎤';
+                micBtn.innerHTML = 'ðŸŽ¤';
             };
 
             recognition.onend = () => {
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = '🎤';
+                micBtn.innerHTML = 'ðŸŽ¤';
             };
 
             recognition.start();
@@ -1451,7 +1451,7 @@ function calculateAIBuilderEstimate() {
     let baseTimeline = 5;
     let estimatedSavings = 1200;
 
-    if (state.model === 'Claude 3.7 Sonnet (Hybrid Thinking)') baseCost += 200;
+    if (state.model === 'Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking)') baseCost += 200;
     if (state.model === 'DeepSeek-R1 (Reasoning) & DeepSeek-V3 Swarm') baseCost += 350;
     if (state.database === 'Pinecone Vector DB') baseCost += 150;
     
@@ -1484,9 +1484,9 @@ function openBuildAISystemModal() {
 
     modal.innerHTML = `
         <div style="background:#030712; border:1px solid var(--accent-gold); border-radius:16px; width:95%; max-width:850px; padding:30px; color:#fff; box-shadow:0 30px 80px rgba(0,0,0,0.9); position:relative;">
-            <button onclick="(function(){ const _el = document.getElementById('build-ai-system-modal'); if (_el) _el.style.display = 'none'" style="position:absolute; })(); top:16px; right:20px; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
+            <button onclick="(function(){ const _el = document.getElementById('build-ai-system-modal'); if (_el) _el.style.display = 'none'" style="position:absolute; })(); top:16px; right:20px; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">âœ•</button>
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
-                <span style="font-size:1.8rem;">🏆</span>
+                <span style="font-size:1.8rem;">ðŸ†</span>
                 <div>
                     <h3 style="margin:0; font-size:1.4rem; color:var(--text-main);">Build Your Custom AI System Studio</h3>
                     <span style="font-size:0.8rem; color:var(--accent-gold);">Interactive B2B System Configurator & Proposal Generator</span>
@@ -1506,7 +1506,7 @@ function openBuildAISystemModal() {
                     <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">2. AI Engine Model</label>
                     <select onchange="window.aiBuilderState.model=this.value; renderAIBuilderSummary();" style="width:100%; padding:10px; background:rgba(30,41,59,0.8); border:1px solid var(--border-card); border-radius:8px; color:#fff; margin-bottom:12px;">
                         <option value="Gemini 1.5 Pro">Google Gemini 1.5 Pro (Recommended)</option>
-                        <option value="Claude 3.7 Sonnet (Hybrid Thinking)">Anthropic Claude 3.7 Sonnet (Hybrid Thinking)</option>
+                        <option value="Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking)">Anthropic Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking)</option>
                         <option value="DeepSeek-R1 (Reasoning) & DeepSeek-V3 Swarm">DeepSeek-R1 (Reasoning) & DeepSeek-V3 Multi-Agent Swarm</option>
                     </select>
 
@@ -1525,7 +1525,7 @@ function openBuildAISystemModal() {
 
             <div style="margin-top:20px; display:flex; gap:12px; justify-content:flex-end;">
                 <button onclick="(function(){ const _e = document.getElementById('build-ai-system-modal'); if (_e) _e.style.display = 'none'" class="btn btn-glass-sm">Close</button>
-                <button onclick="deployConfiguredAISystem()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); })() color:#000; font-weight:800;">🚀 Order Configured AI System & Book Call</button>
+                <button onclick="deployConfiguredAISystem()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); })() color:#000; font-weight:800;">ðŸš€ Order Configured AI System & Book Call</button>
             </div>
         </div>
     `;
@@ -1578,18 +1578,18 @@ function initI18nLanguageSwitcher() {
 
     const translations = {
         bn: {
-            heroTag: 'এন্টারপ্রাইজ এআই ও ওয়েব স্ক্র্যাপিং স্টুডিও',
-            heroTitle: 'এআই এজেন্ট, n8n অটোমেশন ও উচ্চমানের ওয়েব স্ক্র্যাপিং সিস্টেম',
-            heroSub: 'আপনার বিজনেসের সময় ও খরচ বাচাতে তৈরি কাস্টম এআই সলিউশন।',
-            btnBuild: '🏆 কাস্টম এআই সিস্টেম ডিজাইন করুন',
-            btnControl: '🎛️ মাস্টার কন্ট্রোল প্যানেল'
+            heroTag: 'à¦à¦¨à§à¦Ÿà¦¾à¦°à¦ªà§à¦°à¦¾à¦‡à¦œ à¦à¦†à¦‡ à¦“ à¦“à§Ÿà§‡à¦¬ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ à¦¸à§à¦Ÿà§à¦¡à¦¿à¦“',
+            heroTitle: 'à¦à¦†à¦‡ à¦à¦œà§‡à¦¨à§à¦Ÿ, n8n à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ à¦‰à¦šà§à¦šà¦®à¦¾à¦¨à§‡à¦° à¦“à§Ÿà§‡à¦¬ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®',
+            heroSub: 'à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦¿à¦œà¦¨à§‡à¦¸à§‡à¦° à¦¸à¦®à§Ÿ à¦“ à¦–à¦°à¦š à¦¬à¦¾à¦šà¦¾à¦¤à§‡ à¦¤à§ˆà¦°à¦¿ à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦à¦†à¦‡ à¦¸à¦²à¦¿à¦‰à¦¶à¦¨à¥¤',
+            btnBuild: 'ðŸ† à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦à¦†à¦‡ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¡à¦¿à¦œà¦¾à¦‡à¦¨ à¦•à¦°à§à¦¨',
+            btnControl: 'ðŸŽ›ï¸ à¦®à¦¾à¦¸à§à¦Ÿà¦¾à¦° à¦•à¦¨à§à¦Ÿà§à¦°à§‹à¦² à¦ªà§à¦¯à¦¾à¦¨à§‡à¦²'
         },
         en: {
             heroTag: 'Enterprise AI Agent & Web Scraping Studio',
             heroTitle: 'AI Swarms, n8n Automations & High-Yield Scraping Engines',
             heroSub: 'Engineering autonomous AI workflows, stealth web scrapers, and high-converting B2B automation tools.',
-            btnBuild: '🏆 Build Your Custom AI System',
-            btnControl: '🎛️ Control Panel (Auth)'
+            btnBuild: 'ðŸ† Build Your Custom AI System',
+            btnControl: 'ðŸŽ›ï¸ Control Panel (Auth)'
         }
     };
 
@@ -1599,7 +1599,7 @@ function initI18nLanguageSwitcher() {
         const dict = translations[lang];
 
         const btnLang = document.getElementById('site-lang-toggle-btn');
-        if (btnLang) btnLang.textContent = lang === 'en' ? '🇧🇩 বাংলা' : '🇬🇧 English';
+        if (btnLang) btnLang.textContent = lang === 'en' ? 'ðŸ‡§ðŸ‡© à¦¬à¦¾à¦‚à¦²à¦¾' : 'ðŸ‡¬ðŸ‡§ English';
 
         const tag = document.querySelector('.hero .section-tag');
         if (tag) tag.textContent = dict.heroTag;
@@ -1668,7 +1668,7 @@ function initAiReadinessAssessment() {
                 <div class="glass-card glowing-border" style="padding: 24px; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--accent-gold); border-radius: 14px; color: #fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                         <span style="background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">
-                            🎯 AI Opportunity Score: ${score}% (High Potential)
+                            ðŸŽ¯ AI Opportunity Score: ${score}% (High Potential)
                         </span>
                         <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
                             ESTIMATED SAVINGS
@@ -1685,16 +1685,16 @@ function initAiReadinessAssessment() {
                         </div>
                         <div>
                             <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">In BDT Currency (Rate 120):</span>
-                            <strong style="font-size: 1.2rem; color: var(--accent-cyan);">৳${savingsBDT.toLocaleString()} BDT</strong>
+                            <strong style="font-size: 1.2rem; color: var(--accent-cyan);">à§³${savingsBDT.toLocaleString()} BDT</strong>
                         </div>
                     </div>
 
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I completed the AI Opportunity Assessment for my business. Suggested solution: ' + title + ' ($' + savingsUSD + '/mo savings). Let us discuss implementation.')}" target="_blank" class="btn btn-primary" style="flex:1; padding: 12px; font-size: 0.9rem; text-align: center; font-weight: 800;">
-                            💬 Claim Implementation Slot via WhatsApp →
+                            ðŸ’¬ Claim Implementation Slot via WhatsApp â†’
                         </a>
                         <button onclick="window.print()" class="btn btn-glass-sm" style="padding: 12px 16px;">
-                            🖨️ Save Proposal PDF
+                            ðŸ–¨ï¸ Save Proposal PDF
                         </button>
                     </div>
                 </div>
@@ -1716,7 +1716,7 @@ function initTerminalTelemetry() {
     if (runScraperBtn) {
         runScraperBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ▶ Executing Playwright Enterprise Pipeline Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] â–¶ Executing Playwright Enterprise Pipeline Playwright Scraper...\n[${new Date().toLocaleTimeString()}] âœ” Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] ðŸ“Š Extracted 120 Competitor Price Datapoints in 1.14s\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1725,7 +1725,7 @@ function initTerminalTelemetry() {
     if (runRagBtn) {
         runRagBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 3.0 Pro Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] 🔍 Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] âš¡ Executing Gemini 3.0 Pro Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] ðŸ” Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] ðŸ’¬ Synthesized 100% Accurate AI Support Response in 78ms\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1738,10 +1738,10 @@ function initGlobalCurrencyConverter() {
 
     const rates = {
         USD: { symbol: '$', rate: 1 },
-        BDT: { symbol: '৳', rate: 120 },
-        EUR: { symbol: '€', rate: 0.92 },
-        GBP: { symbol: '£', rate: 0.78 },
-        AED: { symbol: 'د.إ', rate: 3.67 }
+        BDT: { symbol: 'à§³', rate: 120 },
+        EUR: { symbol: 'â‚¬', rate: 0.92 },
+        GBP: { symbol: 'Â£', rate: 0.78 },
+        AED: { symbol: 'Ø¯.Ø¥', rate: 3.67 }
     };
 
     toggles.forEach(btn => {
@@ -1785,33 +1785,33 @@ function initInteractiveDiagramVisualizer() {
                     </linearGradient>
                 </defs>
                 <rect x="20" y="70" width="160" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
-                <text x="100" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">💬 WhatsApp / Web Chat</text>
+                <text x="100" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸ’¬ WhatsApp / Web Chat</text>
 
                 <path d="M 180 100 L 280 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
                 <rect x="280" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#f59e0b" stroke-width="2"/>
-                <text x="370" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🧠 Gemini 3.0 Pro RAG Engine</text>
+                <text x="370" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸ§  Gemini 3.0 Pro RAG Engine</text>
 
                 <path d="M 460 100 L 560 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
                 <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#8b5cf6" stroke-width="2"/>
-                <text x="665" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">⚡ n8n Pipeline & Supabase</text>
+                <text x="665" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">âš¡ n8n Pipeline & Supabase</text>
             </svg>
         `,
         scraper: `
             <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
                 <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#06b6d4" stroke-width="2"/>
-                <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🌐 E-Commerce Target Site</text>
+                <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸŒ E-Commerce Target Site</text>
 
                 <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
 
                 <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
-                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ Playwright Pipeline Resilient Scraper</text>
+                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸ•·ï¸ Playwright Pipeline Resilient Scraper</text>
 
                 <line x1="500" y1="100" x2="600" y2="100" stroke="#10b981" stroke-width="3"/>
 
                 <rect x="600" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#f59e0b" stroke-width="2"/>
-                <text x="690" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">📊 Price Monitor Alert</text>
+                <text x="690" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸ“Š Price Monitor Alert</text>
             </svg>
         `
     };
@@ -1850,7 +1850,7 @@ function initRoiComparisonMatrix() {
                     <p style="font-size:0.75rem; color:var(--text-muted);">3-Year Retainer & Project Fees</p>
                 </div>
                 <div style="background:rgba(16,185,129,0.15); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px; text-align:center; box-shadow: 0 0 20px rgba(16,185,129,0.2);">
-                    <span style="font-size:0.8rem; color:var(--accent-emerald); font-family:var(--font-mono); font-weight:bold;">⚡ IINSHA AI AUTOMATION</span>
+                    <span style="font-size:0.8rem; color:var(--accent-emerald); font-family:var(--font-mono); font-weight:bold;">âš¡ IINSHA AI AUTOMATION</span>
                     <h3 style="font-size:1.5rem; color:var(--accent-emerald); margin:8px 0;">$2,490</h3>
                     <p style="font-size:0.75rem; color:#fff; font-weight:bold;">97% Cost Savings ($84,510 Saved)</p>
                 </div>
@@ -1899,7 +1899,7 @@ function initInteractiveAiAgentBuilder() {
             outputBox.innerHTML = `
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-cyan); border-radius:14px; margin-top:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                        <span style="color:var(--accent-cyan); font-weight:bold; font-size:0.9rem;">⚡ AI AGENT BLUEPRINT GENERATED</span>
+                        <span style="color:var(--accent-cyan); font-weight:bold; font-size:0.9rem;">âš¡ AI AGENT BLUEPRINT GENERATED</span>
                         <span style="font-size:0.75rem; color:var(--text-muted);">Hybrid: Google AI Studio + n8n VPS</span>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
@@ -1910,10 +1910,10 @@ function initInteractiveAiAgentBuilder() {
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button onclick="navigator.clipboard.writeText(this.getAttribute('data-json')); alert('n8n Workflow JSON copied to clipboard!');" data-json="${encodeURIComponent(n8nWorkflowJSON)}" class="btn btn-glass-sm" style="flex:1;">
-                            📋 Copy n8n Workflow JSON
+                            ðŸ“‹ Copy n8n Workflow JSON
                         </button>
                         <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I built an AI Agent blueprint on your website using ' + model + ' and n8n. Please deploy this to Hostinger VPS Docker for me.')}" target="_blank" class="btn btn-primary-sm" style="flex:1; text-align:center; font-weight:bold;">
-                            💬 Deploy This Agent via WhatsApp →
+                            ðŸ’¬ Deploy This Agent via WhatsApp â†’
                         </a>
                     </div>
                 </div>
@@ -1936,14 +1936,14 @@ function initAiAgentCommandSwarm() {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
-                        <span>👑 IINSHA COMMAND CENTER</span>
+                        <span>ðŸ‘‘ IINSHA COMMAND CENTER</span>
                         <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">SWARM ACTIVE (7/7)</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Autonomous Business Operating System (AI-BOS) Control Matrix</p>
                 </div>
                 <div style="display:flex; gap:10px;">
-                    <button onclick="alert('💸 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
-                        💸 1-Click Approve Payouts ($1,240)
+                    <button onclick="alert('ðŸ’¸ 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
+                        ðŸ’¸ 1-Click Approve Payouts ($1,240)
                     </button>
                 </div>
             </div>
@@ -1952,56 +1952,56 @@ function initAiAgentCommandSwarm() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:20px;">
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🎯 CEO Agent</span>
-                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● ONLINE</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸŽ¯ CEO Agent</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">â— ONLINE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Daily P&L: +$2,450 | Rec: Increase RAG Ads</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Sales Agent</span>
-                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">● 12 LEADS</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’¼ Sales Agent</span>
+                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">â— 12 LEADS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Auto-Quoting Dubai & USA Clients</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Lead Hunter AI</span>
-                        <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">● 45 DRAFTS</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ“¢ Lead Hunter AI</span>
+                        <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">â— 45 DRAFTS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Playwright Pipeline Scraped B2B Contacts</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate AI</span>
-                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">● 98% TRUST</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ¤ Affiliate AI</span>
+                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">â— 98% TRUST</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Fraud Shield Active | 54 Active Partners</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(236,72,153,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🔧 Delivery Agent</span>
-                        <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">● 3 ACTIVE</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ”§ Delivery Agent</span>
+                        <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">â— 3 ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Generating n8n Workflows & Docker Compose</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💰 Finance AI</span>
-                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● RECONCILED</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’° Finance AI</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">â— RECONCILED</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Stripe / bKash / PayPal Invoices Synced</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(59,130,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🛡️ Security AI</span>
-                        <span style="font-size:0.65rem; color:#3b82f6; font-weight:bold;">● 100% SECURE</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ›¡ï¸ Security AI</span>
+                        <span style="font-size:0.65rem; color:#3b82f6; font-weight:bold;">â— 100% SECURE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Cloudflare WAF + Zero-Trust RBAC Active</p>
                 </div>
@@ -2027,7 +2027,7 @@ function initAiVoiceSimulator() {
         isCalling = !isCalling;
 
         if (isCalling) {
-            startCallBtn.innerHTML = '🛑 End AI Voice Call Simulator';
+            startCallBtn.innerHTML = 'ðŸ›‘ End AI Voice Call Simulator';
             startCallBtn.classList.remove('btn-primary-sm');
             startCallBtn.classList.add('btn-danger-sm');
             voiceOutputBox.style.display = 'block';
@@ -2035,8 +2035,8 @@ function initAiVoiceSimulator() {
             voiceOutputBox.innerHTML = `
                 <div style="background:rgba(3,7,18,0.9); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px; margin-top:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; margin-bottom:10px;">
-                        <span style="font-size:0.8rem; font-weight:bold; color:var(--accent-emerald);">📞 LIVE AI VOICE AGENT CALL IN PROGRESS</span>
-                        <span style="font-size:0.7rem; color:#10b981; animation:pulse 1s infinite;">● 00:14 | 24kHz HD Audio</span>
+                        <span style="font-size:0.8rem; font-weight:bold; color:var(--accent-emerald);">ðŸ“ž LIVE AI VOICE AGENT CALL IN PROGRESS</span>
+                        <span style="font-size:0.7rem; color:#10b981; animation:pulse 1s infinite;">â— 00:14 | 24kHz HD Audio</span>
                     </div>
 
                     <!-- AUDIO WAVE ANIMATION -->
@@ -2055,7 +2055,7 @@ function initAiVoiceSimulator() {
                 </div>
             `;
         } else {
-            startCallBtn.innerHTML = '🎙️ Simulate AI Telephony Voice Call';
+            startCallBtn.innerHTML = 'ðŸŽ™ï¸ Simulate AI Telephony Voice Call';
             startCallBtn.classList.remove('btn-danger-sm');
             startCallBtn.classList.add('btn-primary-sm');
             voiceOutputBox.innerHTML = '<p style="font-size:0.75rem; color:var(--text-muted); text-anchor:center;">Call Ended. Session telemetry saved to CRM.</p>';
@@ -2084,7 +2084,7 @@ function initCloudLatencyDiagnostics() {
             <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:8px; text-align:center;">
                 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">${node.location}</span>
                 <div style="font-size:1.1rem; color:var(--accent-emerald); font-weight:bold; margin:4px 0;">${node.ping}</div>
-                <span style="font-size:0.65rem; color:#10b981;">● ${node.status}</span>
+                <span style="font-size:0.65rem; color:#10b981;">â— ${node.status}</span>
             </div>
         `;
     });
@@ -2147,8 +2147,8 @@ const IinshaBackendAdapter = {
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">${s.name}</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">${s.desc}</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px;">
-                        <span>⏱️ Delivery: ${s.deliveryTime}</span>
-                        <span style="color:var(--accent-emerald); font-weight:bold;">🎁 ${s.commission}% Comm.</span>
+                        <span>â±ï¸ Delivery: ${s.deliveryTime}</span>
+                        <span style="color:var(--accent-emerald); font-weight:bold;">ðŸŽ ${s.commission}% Comm.</span>
                     </div>
                 </div>
             `;
@@ -2172,8 +2172,8 @@ function renderFullCrudServiceManager() {
                 <td style="padding:10px; color:var(--accent-emerald); font-weight:bold;">$${s.price}</td>
                 <td style="padding:10px; color:#f59e0b;">${s.commission}%</td>
                 <td style="padding:10px;">
-                    <button onclick="editServiceInline('${s.id}')" class="btn btn-glass-sm" style="padding:4px 8px; font-size:0.75rem; margin-right:4px;">✏️ Edit</button>
-                    <button onclick="deleteServiceAction('${s.id}')" class="btn btn-danger-sm" style="padding:4px 8px; font-size:0.75rem;">🗑️ Delete</button>
+                    <button onclick="editServiceInline('${s.id}')" class="btn btn-glass-sm" style="padding:4px 8px; font-size:0.75rem; margin-right:4px;">âœï¸ Edit</button>
+                    <button onclick="deleteServiceAction('${s.id}')" class="btn btn-danger-sm" style="padding:4px 8px; font-size:0.75rem;">ðŸ—‘ï¸ Delete</button>
                 </td>
             </tr>
         `;
@@ -2183,11 +2183,11 @@ function renderFullCrudServiceManager() {
         <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-cyan); border-radius:14px; margin-top:20px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
                 <div>
-                    <h3 style="margin:0; color:#fff; font-size:1.1rem;">🛠️ FULL CRUD SERVICE & MARKETPLACE MANAGER</h3>
+                    <h3 style="margin:0; color:#fff; font-size:1.1rem;">ðŸ› ï¸ FULL CRUD SERVICE & MARKETPLACE MANAGER</h3>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Create, Edit, Update, and Delete Services, Prices, and Descriptions in Real-Time</p>
                 </div>
                 <button onclick="openAddNewServiceModal()" class="btn btn-primary-sm" style="font-weight:bold;">
-                    ➕ Add New Service
+                    âž• Add New Service
                 </button>
             </div>
 
@@ -2229,7 +2229,7 @@ function openAddNewServiceModal() {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("✅ New Service Added and Synced to Live Site!");
+    alert("âœ… New Service Added and Synced to Live Site!");
 }
 
 function editServiceInline(id) {
@@ -2251,7 +2251,7 @@ function editServiceInline(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("✅ Service Updated Successfully!");
+    alert("âœ… Service Updated Successfully!");
 }
 
 function deleteServiceAction(id) {
@@ -2262,7 +2262,7 @@ function deleteServiceAction(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-        alert("🗑️ Service Deleted Successfully!");
+        alert("ðŸ—‘ï¸ Service Deleted Successfully!");
     }
 }
 
@@ -2278,7 +2278,7 @@ function initGoogleAiN8nPortfolio() {
     portfolioRoot.innerHTML = `
         <div class="glass-card glowing-border" style="padding:28px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-emerald); border-radius:18px; margin-top:30px;">
             <div style="text-align:center; margin-bottom:24px;">
-                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 12px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">⚡ ENTERPRISE INTEGRATION PORTFOLIO</span>
+                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 12px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">âš¡ ENTERPRISE INTEGRATION PORTFOLIO</span>
                 <h2 style="margin:12px 0 6px 0; color:#fff; font-size:1.8rem;">Google AI Studio + n8n Workflows</h2>
                 <p style="color:var(--text-muted); font-size:0.9rem; max-width:600px; margin:0 auto;">Production-Grade AI Automation Architecture & Pipeline Portfolio</p>
             </div>
@@ -2289,12 +2289,12 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">PROD CASE #101</span>
-                        <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">● LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">â— LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">WhatsApp AI Customer Support</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 3.0 Pro) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4;">
-                        <code>Stack: Gemini 3.0 Pro Flash → n8n → Supabase → Meta API</code>
+                        <code>Stack: Gemini 3.0 Pro Flash â†’ n8n â†’ Supabase â†’ Meta API</code>
                     </div>
                 </div>
 
@@ -2302,12 +2302,12 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">PROD CASE #102</span>
-                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">â— LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Playwright Pipeline B2B Lead Scraper</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">
-                        <code>Stack: Playwright Pipeline → n8n → Gemini 3.0 Pro → Telegram Bot</code>
+                        <code>Stack: Playwright Pipeline â†’ n8n â†’ Gemini 3.0 Pro â†’ Telegram Bot</code>
                     </div>
                 </div>
 
@@ -2315,12 +2315,12 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:#fde68a; font-weight:bold; font-family:var(--font-mono);">PROD CASE #103</span>
-                        <span style="font-size:0.75rem; color:#f59e0b; font-weight:bold;">● LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#f59e0b; font-weight:bold;">â— LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Stripe & bKash Auto-Reconciliation</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated invoice generation and payment reconciliation engine connecting Stripe & bKash webhooks to PostgreSQL DB.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#f59e0b;">
-                        <code>Stack: Stripe/bKash → n8n → Gemini OCR → Wise/Bank</code>
+                        <code>Stack: Stripe/bKash â†’ n8n â†’ Gemini OCR â†’ Wise/Bank</code>
                     </div>
                 </div>
             </div>
@@ -2340,7 +2340,7 @@ function initUltraStrongPortfolio() {
     portfolioRoot.innerHTML = `
         <div style="margin-top:40px;">
             <div style="text-align:center; margin-bottom:32px;">
-                <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">🏆 PROVEN ENTERPRISE PORTFOLIO</span>
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">ðŸ† PROVEN ENTERPRISE PORTFOLIO</span>
                 <h2 style="margin:14px 0 8px 0; color:#fff; font-size:2rem; font-weight:800;">Featured AI Engineering & Automation Projects</h2>
                 <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 3.0 Pro), n8n VPS, Playwright Pipeline, and Hostinger Docker infrastructure.</p>
             </div>
@@ -2358,11 +2358,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Stripe & bKash Auto-Reconciliation Engine</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated multi-currency billing and payout reconciliation system connecting Stripe & bKash webhooks with 99.8% zero human error rate.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Gemini 3.0 Pro OCR ➔ n8n ➔ Supabase ➔ Wise API</code>
+                            <code>Stack: Gemini 3.0 Pro OCR âž” n8n âž” Supabase âž” Wise API</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2376,11 +2376,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Playwright Pipeline B2B Lead Intelligence Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Autonomous resilient data scraper collecting and enriching verified decision-maker emails, achieving a 38% cold outreach reply rate.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Playwright Pipeline ➔ Gemini 3.0 Pro ➔ n8n ➔ SendGrid</code>
+                            <code>Stack: Playwright Pipeline âž” Gemini 3.0 Pro âž” n8n âž” SendGrid</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2394,11 +2394,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Multilingual WhatsApp AI Agent RAG</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">24/7 customer service bot connecting Meta WhatsApp Business API with Pinecone Vector DB, handling 84% instant ticket deflection.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#f59e0b; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Pinecone Vector ➔ Gemini 3.0 Pro ➔ Meta API</code>
+                            <code>Stack: Pinecone Vector âž” Gemini 3.0 Pro âž” Meta API</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2412,11 +2412,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Hostinger VPS Docker Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated CI/CD failover and container recovery system ensuring continuous deployment with zero downtime during traffic spikes.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8b5cf6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Docker Compose ➔ Hostinger VPS ➔ Telegram Bot</code>
+                            <code>Stack: Docker Compose âž” Hostinger VPS âž” Telegram Bot</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2430,11 +2430,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">AI Programmatic GEO Search Generator</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated SEO/GEO generator creating schema-rich landing pages for ChatGPT Search, Perplexity AI, and Google Search indexation.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ec4899; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Next.js SSG ➔ Gemini 3.0 Pro ➔ Cloudflare CDN</code>
+                            <code>Stack: Next.js SSG âž” Gemini 3.0 Pro âž” Cloudflare CDN</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2448,11 +2448,11 @@ function initUltraStrongPortfolio() {
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">PartnerStack-Grade Global Affiliate Engine</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Transparent affiliate dashboard with first-party cookie attribution, fraud click shielding, and automated 1-click payouts.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#3b82f6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Custom Cookie Engine ➔ Anti-Bot Shield ➔ Wise</code>
+                            <code>Stack: Custom Cookie Engine âž” Anti-Bot Shield âž” Wise</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #6: Generated $340,000 in referral sales with zero fraud clicks.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
-                        📋 View Execution Case Blueprint →
+                    <button onclick="alert('ðŸ“Š Case Study #6: Generated $340,000 in referral sales with zero fraud clicks.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                        ðŸ“‹ View Execution Case Blueprint â†’
                     </button>
                 </div>
 
@@ -2473,16 +2473,16 @@ function initSecurityAuditTerminal() {
     termContainer.innerHTML = `
         <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-emerald); border-radius:14px; margin-top:20px;">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px;">
-                <span style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); font-family:var(--font-mono);">🛡️ SYSTEM SECURITY & HEALTH AUDIT TERMINAL</span>
+                <span style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); font-family:var(--font-mono);">ðŸ›¡ï¸ SYSTEM SECURITY & HEALTH AUDIT TERMINAL</span>
                 <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:bold;">HEALTH SCORE: 100% (PASSED)</span>
             </div>
 
             <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; max-height:160px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08);">
-                <p style="margin:0 0 4px 0;">[07:24:01] 🔍 Scanning Cloudflare Pages WAF & DDoS Protection... PASSED</p>
-                <p style="margin:0 0 4px 0;">[07:24:02] 🔒 Checking Supabase PostgreSQL Row-Level Security (RLS)... PASSED</p>
-                <p style="margin:0 0 4px 0;">[07:24:03] 🔑 Verifying JWT Auth Token Expiration & Anti-CSRF Guard... PASSED</p>
-                <p style="margin:0 0 4px 0;">[07:24:04] 🌐 Edge TLS 1.3 Encryption & HSTS Headers Validated... PASSED</p>
-                <p style="margin:0; color:var(--accent-cyan);">[07:24:05] ✅ ZERO VULNERABILITIES DETECTED — PLATFORM 100% SECURE</p>
+                <p style="margin:0 0 4px 0;">[07:24:01] ðŸ” Scanning Cloudflare Pages WAF & DDoS Protection... PASSED</p>
+                <p style="margin:0 0 4px 0;">[07:24:02] ðŸ”’ Checking Supabase PostgreSQL Row-Level Security (RLS)... PASSED</p>
+                <p style="margin:0 0 4px 0;">[07:24:03] ðŸ”‘ Verifying JWT Auth Token Expiration & Anti-CSRF Guard... PASSED</p>
+                <p style="margin:0 0 4px 0;">[07:24:04] ðŸŒ Edge TLS 1.3 Encryption & HSTS Headers Validated... PASSED</p>
+                <p style="margin:0; color:var(--accent-cyan);">[07:24:05] âœ… ZERO VULNERABILITIES DETECTED â€” PLATFORM 100% SECURE</p>
             </div>
         </div>
     `;
@@ -2496,9 +2496,9 @@ function initLanguageSwitcher() {
 
     langBtn.onclick = () => {
         currentLang = currentLang === 'EN' ? 'BN' : 'EN';
-        langBtn.innerHTML = currentLang === 'EN' ? '🌐 BN / EN' : '🌐 EN / BN';
+        langBtn.innerHTML = currentLang === 'EN' ? 'ðŸŒ BN / EN' : 'ðŸŒ EN / BN';
 
-        alert(currentLang === 'BN' ? '🇧🇩 বাংলা ভাষা মোড সক্রিয় করা হয়েছে!' : '🇺🇸 Switched to English Language Mode!');
+        alert(currentLang === 'BN' ? 'ðŸ‡§ðŸ‡© à¦¬à¦¾à¦‚à¦²à¦¾ à¦­à¦¾à¦·à¦¾ à¦®à§‹à¦¡ à¦¸à¦•à§à¦°à¦¿à§Ÿ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!' : 'ðŸ‡ºðŸ‡¸ Switched to English Language Mode!');
     };
 }
 
@@ -2555,7 +2555,7 @@ function openAiOrderConsultationModal(serviceName = 'AI Automation Solution', pa
     currentAiOrderState.price = price;
     currentAiOrderState.discountedPrice = Math.round(price * 0.9);
     currentAiOrderState.chatHistory = [
-        { sender: 'AI', text: `Welcome to IINSHA TECH! 🤖 I am your AI Solutions Architect. You have selected **${serviceName}** (${packageTier} — **$${price}**).\n\nTell me your project goal or click a quick requirement below to lock in an instant **10% Launch Discount ($${currentAiOrderState.discountedPrice})**!` }
+        { sender: 'AI', text: `Welcome to IINSHA TECH! ðŸ¤– I am your AI Solutions Architect. You have selected **${serviceName}** (${packageTier} â€” **$${price}**).\n\nTell me your project goal or click a quick requirement below to lock in an instant **10% Launch Discount ($${currentAiOrderState.discountedPrice})**!` }
     ];
 
     let modal = document.getElementById('ai-order-consultation-modal');
@@ -2592,7 +2592,7 @@ function renderAiOrderModalContent() {
             <div style="margin-bottom:12px; text-align:${isAi ? 'left' : 'right'};">
                 <div style="display:inline-flex; align-items:center; gap:6px; margin-bottom:3px; float:${isAi ? 'none' : 'right'};">
                     <span style="font-size:0.75rem; color:${isAi ? 'var(--accent-cyan)' : 'var(--accent-emerald)'}; font-weight:bold;">
-                        ${isAi ? '🤖 IINSHA Enterprise AI' : '👤 You (Client)'}
+                        ${isAi ? 'ðŸ¤– IINSHA Enterprise AI' : 'ðŸ‘¤ You (Client)'}
                     </span>
                 </div>
                 <div style="clear:both;"></div>
@@ -2609,14 +2609,14 @@ function renderAiOrderModalContent() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:14px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:8px;">
-                        <span>🧠 AI Sales & Consultation Studio</span>
+                        <span>ðŸ§  AI Sales & Consultation Studio</span>
                         <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">GEMINI 2.5 ACTIVE</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">
-                        Selected: <strong style="color:var(--accent-cyan);">${currentAiOrderState.serviceName}</strong> (<span style="color:#f59e0b;">$${currentAiOrderState.price}</span> ➔ <span style="color:var(--accent-emerald); font-weight:bold;">$${currentAiOrderState.discountedPrice} with 10% Discount</span>)
+                        Selected: <strong style="color:var(--accent-cyan);">${currentAiOrderState.serviceName}</strong> (<span style="color:#f59e0b;">$${currentAiOrderState.price}</span> âž” <span style="color:var(--accent-emerald); font-weight:bold;">$${currentAiOrderState.discountedPrice} with 10% Discount</span>)
                     </p>
                 </div>
-                <button onclick="closeAiOrderConsultationModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+                <button onclick="closeAiOrderConsultationModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">âœ•</button>
             </div>
 
             <!-- CHAT BODY -->
@@ -2626,15 +2626,15 @@ function renderAiOrderModalContent() {
 
             <!-- PRESET QUICK RESPONSE CHIPS -->
             <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
-                <button onclick="sendQuickChipToAi('🚀 Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🚀 Customer Support Bot</button>
-                <button onclick="sendQuickChipToAi('⚡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">⚡ n8n Workflow VPS</button>
-                <button onclick="sendQuickChipToAi('🕷️ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🕷️ Web Scraper</button>
-                <button onclick="sendQuickChipToAi('📊 Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">📊 AI SaaS MVP</button>
+                <button onclick="sendQuickChipToAi('ðŸš€ Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸš€ Customer Support Bot</button>
+                <button onclick="sendQuickChipToAi('âš¡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">âš¡ n8n Workflow VPS</button>
+                <button onclick="sendQuickChipToAi('ðŸ•·ï¸ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ•·ï¸ Web Scraper</button>
+                <button onclick="sendQuickChipToAi('ðŸ“Š Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ“Š AI SaaS MVP</button>
             </div>
 
             <!-- CLIENT CHECKOUT FORM -->
             <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(255,255,255,0.1); padding:12px; border-radius:12px; margin-bottom:12px;">
-                <div style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:8px;">📋 CONFIRM YOUR ORDER DETAILS:</div>
+                <div style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:8px;">ðŸ“‹ CONFIRM YOUR ORDER DETAILS:</div>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
                     <input type="text" id="order-client-name" placeholder="Your Name *" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
                     <input type="text" id="order-client-phone" placeholder="WhatsApp Number (+880...) *" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
@@ -2645,11 +2645,11 @@ function renderAiOrderModalContent() {
             <!-- CHAT INPUT & CONFIRM BUTTONS -->
             <div style="display:flex; gap:8px; margin-bottom:12px;">
                 <input type="text" id="ai-chat-input-text" placeholder="Type a message or question for AI..." style="flex:1; background:#000; border:1px solid var(--accent-cyan); color:#fff; padding:10px 12px; border-radius:8px; font-size:0.85rem;" onkeypress="if(event.key==='Enter') sendUserMessageToAiOrderAgent();" />
-                <button onclick="sendUserMessageToAiOrderAgent()" class="btn btn-primary-sm" style="font-weight:bold; padding:0 16px;">💬 Chat</button>
+                <button onclick="sendUserMessageToAiOrderAgent()" class="btn btn-primary-sm" style="font-weight:bold; padding:0 16px;">ðŸ’¬ Chat</button>
             </div>
 
             <button onclick="confirmOrderAndSyncToWhatsApp()" class="btn btn-emerald-sm" style="width:100%; padding:14px; font-weight:bold; font-size:0.95rem; text-align:center; box-shadow:0 0 20px rgba(16,185,129,0.4); border-radius:10px;">
-                ✅ Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
+                âœ… Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) â†’
             </button>
         </div>
     `;
@@ -2721,15 +2721,15 @@ function confirmOrderAndSyncToWhatsApp() {
     storedOrders.unshift(newOrder);
     localStorage.setItem('iinsha_orders_v2', JSON.stringify(storedOrders));
 
-    let summary = `👑 NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
-    summary += `📦 Service: ${currentAiOrderState.serviceName}\n`;
-    summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
-    summary += `🏷️ Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
-    summary += `👤 CLIENT DETAILS:\n`;
-    summary += `• Name: ${name}\n`;
-    summary += `• WhatsApp: ${phone}\n`;
-    summary += `• Email: ${email || 'N/A'}\n\n`;
-    summary += `💬 FULL AI CHAT TRANSCRIPT HISTORY:\n`;
+    let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
+    summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
+    summary += `ðŸ’µ Package: ${currentAiOrderState.packageTier}\n`;
+    summary += `ðŸ·ï¸ Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
+    summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
+    summary += `â€¢ Name: ${name}\n`;
+    summary += `â€¢ WhatsApp: ${phone}\n`;
+    summary += `â€¢ Email: ${email || 'N/A'}\n\n`;
+    summary += `ðŸ’¬ FULL AI CHAT TRANSCRIPT HISTORY:\n`;
 
     currentAiOrderState.chatHistory.forEach(msg => {
         summary += `${msg.sender}: ${msg.text}\n`;
@@ -2739,7 +2739,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    alert(`ðŸŽ‰ Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
     window.open(whatsappUrl, '_blank');
 }
 
@@ -2785,20 +2785,6 @@ window.openIinshaChatWindow = function() {
     }
 };
 window.openCopilot = window.openIinshaChatWindow;
-widget.style.cssText = "position:fixed; bottom:96px; right:24px; z-index:9998; background:rgba(15,23,42,0.9); backdrop-filter:blur(10px); border:1px solid rgba(59,130,246,0.4); border-radius:30px; padding:6px 14px; font-size:0.75rem; color:#fff; cursor:pointer; box-shadow:0 8px 25px rgba(0,0,0,0.5); display:flex; align-items:center; gap:8px;"; widget.onclick = function() { if(window.toggleIinshaChatWindow) window.toggleIinshaChatWindow(); };;
-    widget.innerHTML = `
-        <div onclick="openAiOrderConsultationModal('IINSHA AI Support & Sales Assistant', 'Custom Package', 499)" class="glass-card glowing-border" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); padding:12px 18px; border-radius:30px; display:flex; align-items:center; gap:10px; box-shadow:0 0 25px rgba(6,182,212,0.3); transition:all 0.3s ease;">
-            <div style="position:relative; width:36px; height:36px; background:rgba(6,182,212,0.2); border:1px solid var(--accent-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
-                🤖
-                <span style="position:absolute; top:0; right:0; width:10px; height:10px; background:#10b981; border-radius:50%; border:2px solid #000; animation:pulse 1.2s infinite;"></span>
-            </div>
-            <div>
-                <span style="font-size:0.85rem; font-weight:bold; color:#fff; display:block;">Chat with IINSHA AI</span>
-                <span style="font-size:0.7rem; color:var(--accent-emerald);">● Online | Sales & Support</span>
-            </div>
-        </div>
-    `;
-}
 
 function initMasterApp() {
     try { if (typeof initGlobalCurrencyConverter === 'function') initGlobalCurrencyConverter(); } catch(e){}
@@ -2815,8 +2801,36 @@ function initMasterApp() {
     try { if (typeof initLanguageSwitcher === 'function') initLanguageSwitcher(); } catch(e){}
     try { if (typeof initFloatingAiAssistantWidget === 'function') initFloatingAiAssistantWidget(); } catch(e){}
     try { if (typeof bindAllPackageOrderButtons === 'function') bindAllPackageOrderButtons(); } catch(e){}
+    try { if (typeof initMobileNavigationMenu === 'function') initMobileNavigationMenu(); } catch(e){}
     try { if (typeof IinshaBackendAdapter === 'object' && IinshaBackendAdapter.syncLiveMarketplaceUI) IinshaBackendAdapter.syncLiveMarketplaceUI(); } catch(e){}
 }
+
+function initMobileNavigationMenu() {
+    const navToggle = document.querySelector('.nav-toggle, #nav-toggle-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if (!navToggle || !navLinks) return;
+
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('mobile-open');
+        navToggle.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+            navLinks.classList.remove('mobile-open');
+            navToggle.classList.remove('active');
+        }
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+            navToggle.classList.remove('active');
+        });
+    });
+}
+window.initMobileNavigationMenu = initMobileNavigationMenu;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMasterApp);
@@ -2855,7 +2869,7 @@ function openAiOrderConsultationModal(serviceName = 'AI Automation Solution', pa
     currentAiOrderState.price = price;
     currentAiOrderState.discountedPrice = Math.round(price * 0.9);
     currentAiOrderState.chatHistory = [
-        { sender: 'AI', text: `Welcome to IINSHA TECH! 🤖 I am your AI Solutions Architect. You have selected **${serviceName}** (${packageTier} — **$${price}**).\n\nTell me your project goal or click a quick requirement below to lock in an instant **10% Launch Discount ($${currentAiOrderState.discountedPrice})**!` }
+        { sender: 'AI', text: `Welcome to IINSHA TECH! ðŸ¤– I am your AI Solutions Architect. You have selected **${serviceName}** (${packageTier} â€” **$${price}**).\n\nTell me your project goal or click a quick requirement below to lock in an instant **10% Launch Discount ($${currentAiOrderState.discountedPrice})**!` }
     ];
 
     let modal = document.getElementById('ai-order-consultation-modal');
@@ -2894,7 +2908,7 @@ function renderAiOrderModalContent() {
             <div style="margin-bottom:12px; text-align:${isAi ? 'left' : 'right'};">
                 <div style="display:inline-flex; align-items:center; gap:6px; margin-bottom:3px; float:${isAi ? 'none' : 'right'};">
                     <span style="font-size:0.75rem; color:${isAi ? 'var(--accent-cyan)' : 'var(--accent-emerald)'}; font-weight:bold;">
-                        ${isAi ? '🤖 IINSHA Enterprise AI' : '👤 You (Client)'}
+                        ${isAi ? 'ðŸ¤– IINSHA Enterprise AI' : 'ðŸ‘¤ You (Client)'}
                     </span>
                 </div>
                 <div style="clear:both;"></div>
@@ -2911,14 +2925,14 @@ function renderAiOrderModalContent() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:14px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:8px;">
-                        <span>🧠 AI Sales & Consultation Studio</span>
+                        <span>ðŸ§  AI Sales & Consultation Studio</span>
                         <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">GEMINI 2.5 ACTIVE</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">
-                        Selected: <strong style="color:var(--accent-cyan);">${currentAiOrderState.serviceName}</strong> (<span style="color:#f59e0b;">$${currentAiOrderState.price}</span> ➔ <span style="color:var(--accent-emerald); font-weight:bold;">$${currentAiOrderState.discountedPrice} with 10% Discount</span>)
+                        Selected: <strong style="color:var(--accent-cyan);">${currentAiOrderState.serviceName}</strong> (<span style="color:#f59e0b;">$${currentAiOrderState.price}</span> âž” <span style="color:var(--accent-emerald); font-weight:bold;">$${currentAiOrderState.discountedPrice} with 10% Discount</span>)
                     </p>
                 </div>
-                <button onclick="closeAiOrderConsultationModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+                <button onclick="closeAiOrderConsultationModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">âœ•</button>
             </div>
 
             <!-- CHAT BODY -->
@@ -2928,15 +2942,15 @@ function renderAiOrderModalContent() {
 
             <!-- PRESET QUICK RESPONSE CHIPS -->
             <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
-                <button onclick="sendQuickChipToAi('🚀 Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🚀 Customer Support Bot</button>
-                <button onclick="sendQuickChipToAi('⚡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">⚡ n8n Workflow VPS</button>
-                <button onclick="sendQuickChipToAi('🕷️ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🕷️ Web Scraper</button>
-                <button onclick="sendQuickChipToAi('📊 Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">📊 AI SaaS MVP</button>
+                <button onclick="sendQuickChipToAi('ðŸš€ Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸš€ Customer Support Bot</button>
+                <button onclick="sendQuickChipToAi('âš¡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">âš¡ n8n Workflow VPS</button>
+                <button onclick="sendQuickChipToAi('ðŸ•·ï¸ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ•·ï¸ Web Scraper</button>
+                <button onclick="sendQuickChipToAi('ðŸ“Š Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ“Š AI SaaS MVP</button>
             </div>
 
             <!-- CLIENT CHECKOUT FORM -->
             <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(255,255,255,0.1); padding:12px; border-radius:12px; margin-bottom:12px;">
-                <div style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:8px;">📋 CONFIRM YOUR ORDER DETAILS:</div>
+                <div style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:8px;">ðŸ“‹ CONFIRM YOUR ORDER DETAILS:</div>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
                     <input type="text" id="order-client-name" placeholder="Your Name *" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
                     <input type="text" id="order-client-phone" placeholder="WhatsApp Number (+880...) *" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.8rem;" />
@@ -2947,11 +2961,11 @@ function renderAiOrderModalContent() {
             <!-- CHAT INPUT & CONFIRM BUTTONS -->
             <div style="display:flex; gap:8px; margin-bottom:12px;">
                 <input type="text" id="ai-chat-input-text" placeholder="Type a message or question for AI..." style="flex:1; background:#000; border:1px solid var(--accent-cyan); color:#fff; padding:10px 12px; border-radius:8px; font-size:0.85rem;" onkeypress="if(event.key==='Enter') sendUserMessageToAiOrderAgent();" />
-                <button onclick="sendUserMessageToAiOrderAgent()" class="btn btn-primary-sm" style="font-weight:bold; padding:0 16px;">💬 Chat</button>
+                <button onclick="sendUserMessageToAiOrderAgent()" class="btn btn-primary-sm" style="font-weight:bold; padding:0 16px;">ðŸ’¬ Chat</button>
             </div>
 
             <button onclick="confirmOrderAndSyncToWhatsApp()" class="btn btn-emerald-sm" style="width:100%; padding:14px; font-weight:bold; font-size:0.95rem; text-align:center; box-shadow:0 0 20px rgba(16,185,129,0.4); border-radius:10px;">
-                ✅ Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
+                âœ… Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) â†’
             </button>
         </div>
     `;
@@ -3025,15 +3039,15 @@ function confirmOrderAndSyncToWhatsApp() {
     storedOrders.unshift(newOrder);
     localStorage.setItem('iinsha_orders_v2', JSON.stringify(storedOrders));
 
-    let summary = `👑 NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
-    summary += `📦 Service: ${currentAiOrderState.serviceName}\n`;
-    summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
-    summary += `🏷️ Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
-    summary += `👤 CLIENT DETAILS:\n`;
-    summary += `• Name: ${name}\n`;
-    summary += `• WhatsApp: ${phone}\n`;
-    summary += `• Email: ${email || 'N/A'}\n\n`;
-    summary += `💬 FULL AI CHAT TRANSCRIPT HISTORY:\n`;
+    let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
+    summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
+    summary += `ðŸ’µ Package: ${currentAiOrderState.packageTier}\n`;
+    summary += `ðŸ·ï¸ Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
+    summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
+    summary += `â€¢ Name: ${name}\n`;
+    summary += `â€¢ WhatsApp: ${phone}\n`;
+    summary += `â€¢ Email: ${email || 'N/A'}\n\n`;
+    summary += `ðŸ’¬ FULL AI CHAT TRANSCRIPT HISTORY:\n`;
 
     currentAiOrderState.chatHistory.forEach(msg => {
         summary += `${msg.sender}: ${msg.text}\n`;
@@ -3043,7 +3057,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    alert(`ðŸŽ‰ Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
     window.open(whatsappUrl, '_blank');
 }
 window.confirmOrderAndSyncToWhatsApp = confirmOrderAndSyncToWhatsApp;
@@ -3067,19 +3081,19 @@ function initAiInteractivePlayground() {
         playOutput.innerHTML = `
             <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-emerald); border-radius:14px; margin-top:16px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px;">
-                    <span style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); font-family:var(--font-mono);">⚡ GEMINI 2.5 & N8N PLAYGROUND SIMULATION</span>
+                    <span style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); font-family:var(--font-mono);">âš¡ GEMINI 2.5 & N8N PLAYGROUND SIMULATION</span>
                     <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:bold;">EXECUTION TIME: 42ms</span>
                 </div>
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;"><strong>Scenario:</strong> "${userPrompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}"</p>
 
                 <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; max-height:180px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px;">
-                    <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] 🧠 Gemini 3.0 Pro Reasoning Engine Initialized...</p>
-                    <p style="margin:0 0 4px 0;">[PIPELINE] 🔗 Webhook Listener ➔ Gemini 3.0 Pro RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
+                    <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] ðŸ§  Gemini 3.0 Pro Reasoning Engine Initialized...</p>
+                    <p style="margin:0 0 4px 0;">[PIPELINE] ðŸ”— Webhook Listener âž” Gemini 3.0 Pro RAG âž” Supabase Vector DB âž” Telegram Alert</p>
                     <p style="margin:0; color:#f59e0b;">[OUTPUT] Generated n8n Workflow JSON (Node Count: 4 | Memory: 12MB)</p>
                 </div>
 
                 <button onclick="openAiOrderConsultationModal('Custom Playground Solution', 'Enterprise Tier', 499)" class="btn btn-emerald-sm" style="width:100%; text-align:center; font-weight:bold;">
-                    🚀 Deploy This Playground Pipeline to Hostinger VPS Docker →
+                    ðŸš€ Deploy This Playground Pipeline to Hostinger VPS Docker â†’
                 </button>
             </div>
         `;
@@ -3094,35 +3108,35 @@ function initVerifiedTestimonialsTicker() {
     testimonialContainer.innerHTML = `
         <div style="margin-top:40px; background:rgba(15,23,42,0.6); padding:30px 20px; border-radius:18px; border:1px solid rgba(255,255,255,0.08);">
             <div style="text-align:center; margin-bottom:24px;">
-                <span style="font-size:0.8rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">⭐⭐⭐⭐⭐ VERIFIED CLIENT REVIEWS</span>
+                <span style="font-size:0.8rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">â­â­â­â­â­ VERIFIED CLIENT REVIEWS</span>
                 <h3 style="color:#fff; margin:10px 0 4px 0; font-size:1.6rem;">Trusted by Enterprise Leaders Worldwide</h3>
                 <p style="color:var(--text-muted); font-size:0.85rem;">Authentic engineering feedback from USA, Dubai, UK, and Bangladesh clients.</p>
             </div>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">⭐⭐⭐⭐⭐</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
-                        <span style="font-weight:bold; color:#fff;">— Marcus Vance (CTO, Austin TX)</span>
+                        <span style="font-weight:bold; color:#fff;">â€” Marcus Vance (CTO, Austin TX)</span>
                         <span style="color:var(--accent-emerald);">Verified $1.2K Order</span>
                     </div>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">⭐⭐⭐⭐⭐</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
-                        <span style="font-weight:bold; color:#fff;">— Tariq Al-Maktoum (Dubai UAE)</span>
+                        <span style="font-weight:bold; color:#fff;">â€” Tariq Al-Maktoum (Dubai UAE)</span>
                         <span style="color:var(--accent-cyan);">Verified $2.4K Order</span>
                     </div>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">⭐⭐⭐⭐⭐</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
-                        <span style="font-weight:bold; color:#fff;">— Rifat H. (Chittagong BD)</span>
+                        <span style="font-weight:bold; color:#fff;">â€” Rifat H. (Chittagong BD)</span>
                         <span style="color:var(--accent-emerald);">Verified Partner</span>
                     </div>
                 </div>
@@ -3151,21 +3165,8 @@ window.openIinshaChatWindow = function() {
     }
 };
 window.openCopilot = window.openIinshaChatWindow;
-widget.style.cssText = "position:fixed; bottom:96px; right:24px; z-index:9998; background:rgba(15,23,42,0.9); backdrop-filter:blur(10px); border:1px solid rgba(59,130,246,0.4); border-radius:30px; padding:6px 14px; font-size:0.75rem; color:#fff; cursor:pointer; box-shadow:0 8px 25px rgba(0,0,0,0.5); display:flex; align-items:center; gap:8px;"; widget.onclick = function() { if(window.toggleIinshaChatWindow) window.toggleIinshaChatWindow(); };;
-    widget.innerHTML = `
-        <div onclick="openAiOrderConsultationModal('IINSHA AI Support & Sales Assistant', 'Custom Package', 499)" class="glass-card glowing-border" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); padding:12px 18px; border-radius:30px; display:flex; align-items:center; gap:10px; box-shadow:0 0 25px rgba(6,182,212,0.3); transition:all 0.3s ease;">
-            <div style="position:relative; width:36px; height:36px; background:rgba(6,182,212,0.2); border:1px solid var(--accent-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
-                🤖
-                <span style="position:absolute; top:0; right:0; width:10px; height:10px; background:#10b981; border-radius:50%; border:2px solid #000; animation:pulse 1.2s infinite;"></span>
-            </div>
-            <div>
-                <span style="font-size:0.85rem; font-weight:bold; color:#fff; display:block;">Chat with IINSHA AI</span>
-                <span style="font-size:0.7rem; color:var(--accent-emerald);">● Online | Sales & Support</span>
-            </div>
-        </div>
-    `;
-}
-window.initFloatingAiAssistantWidget = initFloatingAiAssistantWidget;
+
+
 
 
 
@@ -3214,21 +3215,21 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.3rem; display:flex; align-items:center; gap:10px;">
-                        <span>📊 Client & B2B Partner Hub</span>
+                        <span>ðŸ“Š Client & B2B Partner Hub</span>
                         <span style="font-size:0.7rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">LIVE CRM SYNC</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">
                         Track client orders, generate 20%-50% affiliate links, and manage automated payouts.
                     </p>
                 </div>
-                <button onclick="closeClientAffiliatePortalModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+                <button onclick="closeClientAffiliatePortalModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">âœ•</button>
             </div>
 
             <!-- TAB NAVIGATION -->
             <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
-                <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📦 Client Order Tracker</button>
-                <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">🤝 B2B Affiliate Dashboard</button>
-                <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📚 Marketing Asset Vault</button>
+                <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ“¦ Client Order Tracker</button>
+                <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ¤ B2B Affiliate Dashboard</button>
+                <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ“š Marketing Asset Vault</button>
             </div>
 
             <!-- TAB CONTENT CONTAINER -->
@@ -3236,7 +3237,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                 ${activeTab === 'tracker' ? `
                     <!-- CLIENT ORDER TRACKER -->
                     <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:12px; margin-bottom:14px;">
-                        <h4 style="margin:0 0 12px 0; color:var(--accent-cyan); font-size:0.95rem;">📦 Active Project Orders & Status</h4>
+                        <h4 style="margin:0 0 12px 0; color:var(--accent-cyan); font-size:0.95rem;">ðŸ“¦ Active Project Orders & Status</h4>
                         ${orders.length === 0 ? '<p style="font-size:0.85rem; color:var(--text-muted);">No active orders found. Click any package button on the site to launch your first project!</p>' : `
                             <div style="display:grid; gap:10px;">
                                 ${orders.map(o => `
@@ -3273,21 +3274,21 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                         </div>
 
                         <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); padding:14px; border-radius:12px; margin-bottom:14px;">
-                            <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">🔗 Your Unique 20%-50% Referral Link:</div>
+                            <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">ðŸ”— Your Unique 20%-50% Referral Link:</div>
                             <div style="display:flex; gap:8px;">
                                 <input type="text" readonly value="${refLink}" style="flex:1; background:#000; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 12px; border-radius:6px; font-size:0.8rem;" />
-                                <button onclick="navigator.clipboard.writeText('${refLink}'); alert('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">📋 Copy</button>
+                                <button onclick="navigator.clipboard.writeText('${refLink}'); alert('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">ðŸ“‹ Copy</button>
                             </div>
                         </div>
 
                         <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:12px;">
-                            <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">💸 Request 1-Click Payout (bKash / Payoneer / Wise / Crypto)</div>
+                            <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">ðŸ’¸ Request 1-Click Payout (bKash / Payoneer / Wise / Crypto)</div>
                             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
                                 <input type="text" id="affiliate-payout-method" placeholder="Payment Method (e.g. Payoneer Email or bKash No)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                                 <input type="number" id="affiliate-payout-amount" placeholder="Amount ($)" value="1347" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                             </div>
-                            <button onclick="alert('🎉 Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
-                                🚀 Submit Payout Request to Admin →
+                            <button onclick="alert('ðŸŽ‰ Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
+                                ðŸš€ Submit Payout Request to Admin â†’
                             </button>
                         </div>
                     </div>
@@ -3295,15 +3296,15 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                     <!-- MARKETING ASSET VAULT -->
                     <div style="display:grid; gap:12px;">
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">📱 Pre-Written LinkedIn Post Template</div>
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">ðŸ“± Pre-Written LinkedIn Post Template</div>
                             <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
-                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
+                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">ðŸ“‹ Copy LinkedIn Post</button>
                         </div>
 
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;">✉️ Cold Outreach Email Script</div>
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;">âœ‰ï¸ Cold Outreach Email Script</div>
                             <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
-                            <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); alert('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
+                            <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); alert('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">ðŸ“‹ Copy Email Script</button>
                         </div>
                     </div>
                 `}
@@ -3330,7 +3331,7 @@ function renderGlobalMarketplaceAffiliateMatrix() {
     root.innerHTML = `
         <div style="margin-top:40px; background:rgba(15,23,42,0.8); border:1px solid var(--accent-cyan); padding:32px 20px; border-radius:20px; box-shadow:0 0 35px rgba(6,182,212,0.15);">
             <div style="text-align:center; margin-bottom:28px;">
-                <span style="font-size:0.8rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">🌐 GLOBAL B2B NETWORK MATRIX</span>
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">ðŸŒ GLOBAL B2B NETWORK MATRIX</span>
                 <h3 style="color:#fff; margin:10px 0 6px 0; font-size:1.8rem;">Integrated Freelance & SaaS Affiliate Ecosystem</h3>
                 <p style="color:var(--text-muted); font-size:0.9rem; max-width:700px; margin:0 auto;">Connect IINSHA AI Automation Lab directly to top-tier engineering networks and B2B SaaS partner programs worldwide.</p>
             </div>
@@ -3338,26 +3339,26 @@ function renderGlobalMarketplaceAffiliateMatrix() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <!-- CARD 1: VETTED TECH NETWORKS -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:6px;">🏆 VETTED & ELITE TECH NETWORKS</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:6px;">ðŸ† VETTED & ELITE TECH NETWORKS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">Toptal, Arc.dev, Turing & Gun.io</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Connect with top 3% senior software engineers and enterprise clients for custom AI agent contracts.</p>
-                    <button onclick="openAiOrderConsultationModal('Elite Developer Hiring Pipeline', 'Enterprise Tier', 1499)" class="btn btn-primary-sm" style="width:100%; font-weight:bold;">🚀 Partner via IINSHA API →</button>
+                    <button onclick="openAiOrderConsultationModal('Elite Developer Hiring Pipeline', 'Enterprise Tier', 1499)" class="btn btn-primary-sm" style="width:100%; font-weight:bold;">ðŸš€ Partner via IINSHA API â†’</button>
                 </div>
 
                 <!-- CARD 2: RECURRING SAAS AFFILIATES -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold; margin-bottom:6px;">💸 HIGH-TICKET RECURRING SAAS</div>
+                    <div style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold; margin-bottom:6px;">ðŸ’¸ HIGH-TICKET RECURRING SAAS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">PartnerStack, Impact.com & ShareASale</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Earn 20%-50% monthly recurring commissions by promoting IINSHA AI & B2B SaaS integrations.</p>
-                    <button onclick="openClientAffiliatePortalModal('affiliate')" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">🤝 Open Partner Dashboard →</button>
+                    <button onclick="openClientAffiliatePortalModal('affiliate')" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">ðŸ¤ Open Partner Dashboard â†’</button>
                 </div>
 
                 <!-- CARD 3: GLOBAL REMOTE BOARDS -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:#f59e0b; font-weight:bold; margin-bottom:6px;">🌍 GLOBAL REMOTE JOB BOARDS</div>
+                    <div style="font-size:0.8rem; color:#f59e0b; font-weight:bold; margin-bottom:6px;">ðŸŒ GLOBAL REMOTE JOB BOARDS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">Remotive, FlexJobs & Wellfound</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Scrape hiring signals and auto-deliver customized AI engineering proposals directly to CTOs.</p>
-                    <button onclick="openAiOrderConsultationModal('Scout Lead Automation Pipeline', 'Growth Tier', 1349)" class="btn btn-glass-sm" style="width:100%; font-weight:bold; border-color:#f59e0b; color:#f59e0b;">⚡ Launch Scout Automation →</button>
+                    <button onclick="openAiOrderConsultationModal('Scout Lead Automation Pipeline', 'Growth Tier', 1349)" class="btn btn-glass-sm" style="width:100%; font-weight:bold; border-color:#f59e0b; color:#f59e0b;">âš¡ Launch Scout Automation â†’</button>
                 </div>
             </div>
         </div>
@@ -3368,7 +3369,7 @@ window.renderGlobalMarketplaceAffiliateMatrix = renderGlobalMarketplaceAffiliate
 
 
 /* ============================================================
-   IINSHA AI OS v1000 — ADMIN COPILOT AI & 11-AGENT SWARM
+   IINSHA AI OS v1000 â€” ADMIN COPILOT AI & 11-AGENT SWARM
    ============================================================ */
 
 var iinsha11AgentRoster = [
@@ -3406,7 +3407,7 @@ function handleAdminCopilotCommand() {
                 <div style="color:var(--accent-cyan); font-weight:bold;">[PROPOSED DB MUTATION PREVIEW]</div>
                 <div>Action: UPDATE_PACKAGE_PRICING</div>
                 <div>Target: Growth System Package</div>
-                <div>Old Price: $1,499.00 ➔ New Price: $1,349.00 (10% Promo Applied)</div>
+                <div>Old Price: $1,499.00 âž” New Price: $1,349.00 (10% Promo Applied)</div>
                 <div>Affected Tables: Supabase.services, DOM UI Cards</div>
             </div>
         `;
@@ -3437,9 +3438,9 @@ function handleAdminCopilotCommand() {
         <div class="glass-card glowing-border" style="width:100%; max-width:650px; background:rgba(15,23,42,0.98); border:1px solid var(--accent-cyan); border-radius:18px; padding:24px; box-shadow:0 0 50px rgba(6,182,212,0.4); box-sizing:border-box;">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:14px;">
                 <h3 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
-                    <span>🛡️ Admin Copilot — Human Approval Gate</span>
+                    <span>ðŸ›¡ï¸ Admin Copilot â€” Human Approval Gate</span>
                 </h3>
-                <button onclick="document.getElementById('copilot-approval-gate-modal').remove()" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">✕</button>
+                <button onclick="document.getElementById('copilot-approval-gate-modal').remove()" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">âœ•</button>
             </div>
 
             <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">
@@ -3449,8 +3450,8 @@ function handleAdminCopilotCommand() {
             ${proposedChangesHtml}
 
             <div style="display:flex; gap:10px; justify-content:flex-end;">
-                <button onclick="document.getElementById('copilot-approval-gate-modal').remove()" class="btn btn-glass-sm" style="font-weight:bold;">✕ Reject & Cancel</button>
-                <button onclick="executeAdminCopilotApproval('${targetAction}', '${cmd.replace(/'/g, "\'")}')" class="btn btn-emerald-sm" style="font-weight:bold;">⚡ Approve & Execute →</button>
+                <button onclick="document.getElementById('copilot-approval-gate-modal').remove()" class="btn btn-glass-sm" style="font-weight:bold;">âœ• Reject & Cancel</button>
+                <button onclick="executeAdminCopilotApproval('${targetAction}', '${cmd.replace(/'/g, "\'")}')" class="btn btn-emerald-sm" style="font-weight:bold;">âš¡ Approve & Execute â†’</button>
             </div>
         </div>
     `;
@@ -3468,11 +3469,11 @@ function executeAdminCopilotApproval(action, cmdText) {
         const timeStr = new Date().toLocaleTimeString();
         const logEntry = document.createElement('div');
         logEntry.style.cssText = 'font-size:0.8rem; font-family:var(--font-mono); color:var(--accent-emerald); padding:4px 0; border-bottom:1px dashed rgba(255,255,255,0.1);';
-        logEntry.innerHTML = `[${timeStr}] ✅ [APPROVED & EXECUTED] ${action}: "${cmdText}" (Synced to Supabase & WhatsApp)`;
+        logEntry.innerHTML = `[${timeStr}] âœ… [APPROVED & EXECUTED] ${action}: "${cmdText}" (Synced to Supabase & WhatsApp)`;
         logContainer.prepend(logEntry);
     }
 
-    alert(`🎉 Command Executed: ${cmdText}
+    alert(`ðŸŽ‰ Command Executed: ${cmdText}
 System state updated & Admin WhatsApp (+8801629286887) notified!`);
 }
 window.executeAdminCopilotApproval = executeAdminCopilotApproval;
@@ -3494,7 +3495,7 @@ function render11AgentSwarmOrchestrator() {
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
-                        <span>🧠 11-Agent Multi-Agent Swarm Orchestrator</span>
+                        <span>ðŸ§  11-Agent Multi-Agent Swarm Orchestrator</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ALL AGENTS OPERATIONAL</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Self-orchestrating AI Agents for Sales, SEO, Lead Gen, Content, Support, and Admin Copilot.</p>
@@ -3504,11 +3505,11 @@ function render11AgentSwarmOrchestrator() {
             <!-- ADMIN COPILOT PROMPT BOX -->
             <div style="background:rgba(30,41,59,0.8); border:1px solid var(--accent-cyan); padding:14px; border-radius:10px; margin-bottom:14px;">
                 <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
-                    <span>🤖 Admin Copilot AI — Speak in Natural Language:</span>
+                    <span>ðŸ¤– Admin Copilot AI â€” Speak in Natural Language:</span>
                 </div>
                 <div style="display:flex; gap:8px;">
                     <input type="text" id="admin-copilot-input" placeholder="e.g. 'Update Growth package price to $1499' or 'Draft e-commerce lead campaign'" style="flex:1; background:#000; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 12px; border-radius:6px; font-size:0.8rem;" onkeypress="if(event.key==='Enter') handleAdminCopilotCommand()" />
-                    <button onclick="handleAdminCopilotCommand()" class="btn btn-primary-sm" style="font-weight:bold;">⚡ Submit Command</button>
+                    <button onclick="handleAdminCopilotCommand()" class="btn btn-primary-sm" style="font-weight:bold;">âš¡ Submit Command</button>
                 </div>
                 <div id="admin-copilot-log-output" style="margin-top:10px; max-height:100px; overflow-y:auto;"></div>
             </div>
@@ -3539,9 +3540,9 @@ window.render11AgentSwarmOrchestrator = render11AgentSwarmOrchestrator;
 
 var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
-    BDT: { symbol: '৳', rate: 121.5 },
-    EUR: { symbol: '€', rate: 0.92 },
-    GBP: { symbol: '£', rate: 0.79 },
+    BDT: { symbol: 'à§³', rate: 121.5 },
+    EUR: { symbol: 'â‚¬', rate: 0.92 },
+    GBP: { symbol: 'Â£', rate: 0.79 },
     AUD: { symbol: 'A$', rate: 1.52 }
 };
 
@@ -3581,7 +3582,7 @@ function initInteractiveRoiCalculator() {
     root.innerHTML = `
         <div class="glass-card glowing-border" style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-emerald); border-radius:20px; padding:32px 24px; max-width:850px; margin:40px auto; box-shadow:0 0 40px rgba(16,185,129,0.2);">
             <div style="text-align:center; margin-bottom:24px;">
-                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">⚡ REAL-TIME SAVINGS CALCULATOR</span>
+                <span style="font-size:0.8rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">âš¡ REAL-TIME SAVINGS CALCULATOR</span>
                 <h3 style="color:#fff; margin:10px 0 6px 0; font-size:1.8rem;">Calculate Your AI Automation ROI</h3>
                 <p style="color:var(--text-muted); font-size:0.9rem;">Adjust your operational variables below to see estimated monthly cost reduction.</p>
             </div>
@@ -3590,7 +3591,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 1 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>👥 Team Size:</span>
+                        <span>ðŸ‘¥ Team Size:</span>
                         <span id="roi-team-val" style="color:var(--accent-cyan);">10 Staff</span>
                     </label>
                     <input type="range" id="roi-team-slider" min="1" max="100" value="10" style="width:100%; accent-color:var(--accent-cyan);" oninput="updateRoiCalculation()" />
@@ -3599,7 +3600,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 2 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>⏱️ Hours Saved / Week per Person:</span>
+                        <span>â±ï¸ Hours Saved / Week per Person:</span>
                         <span id="roi-hours-val" style="color:var(--accent-emerald);">15 Hours</span>
                     </label>
                     <input type="range" id="roi-hours-slider" min="5" max="40" value="15" style="width:100%; accent-color:var(--accent-emerald);" oninput="updateRoiCalculation()" />
@@ -3608,7 +3609,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 3 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>💰 Average Hourly Rate ($):</span>
+                        <span>ðŸ’° Average Hourly Rate ($):</span>
                         <span id="roi-rate-val" style="color:#f59e0b;">$35 / hr</span>
                     </label>
                     <input type="range" id="roi-rate-slider" min="15" max="150" value="35" style="width:100%; accent-color:#f59e0b;" oninput="updateRoiCalculation()" />
@@ -3623,7 +3624,7 @@ function initInteractiveRoiCalculator() {
             </div>
 
             <button onclick="claimRoiSavingsWithAi()" class="btn btn-emerald-lg" style="width:100%; font-size:1.05rem; font-weight:bold; box-shadow:0 0 25px rgba(16,185,129,0.4);">
-                🚀 Claim These Savings & Get 10% Off AI Setup →
+                ðŸš€ Claim These Savings & Get 10% Off AI Setup â†’
             </button>
         </div>
     `;
@@ -3682,19 +3683,19 @@ function toggleAgentKillSwitch(agentId) {
     if (agentId === 'all') {
         iinshaTelemetryData.killSwitchActive = !iinshaTelemetryData.killSwitchActive;
         const stateStr = iinshaTelemetryData.killSwitchActive ? 'PAUSED / LOCKED' : 'OPERATIONAL';
-        alert(`🚨 EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
+        alert(`ðŸš¨ EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
     } else {
-        alert(`⚠️ Agent ${agentId} status updated: Manual Override toggled.`);
+        alert(`âš ï¸ Agent ${agentId} status updated: Manual Override toggled.`);
     }
     if (typeof render11AgentSwarmOrchestrator === 'function') render11AgentSwarmOrchestrator();
 }
 window.toggleAgentKillSwitch = toggleAgentKillSwitch;
 
 function openAiAffiliateCoach() {
-    const prompt = prompt("🤖 AI Affiliate Coach Bot: Enter your target niche or question (e.g. 'E-commerce in Bangladesh' or 'How to get more clicks'):");
+    const prompt = prompt("ðŸ¤– AI Affiliate Coach Bot: Enter your target niche or question (e.g. 'E-commerce in Bangladesh' or 'How to get more clicks'):");
     if (!prompt) return;
 
-    alert(`🧠 AI Affiliate Coach Strategy for "${prompt}":\n\n1. Content Strategy: Publish 3 LinkedIn posts comparing manual workflow vs n8n automation.\n2. Target Link: Use your sub-ID link https://inshatech.pages.dev/?ref=IINSHA-AFF-8821&subid=linkedin-aug\n3. Expected Conversion: 12-18% lead conversion rate!`);
+    alert(`ðŸ§  AI Affiliate Coach Strategy for "${prompt}":\n\n1. Content Strategy: Publish 3 LinkedIn posts comparing manual workflow vs n8n automation.\n2. Target Link: Use your sub-ID link https://inshatech.pages.dev/?ref=IINSHA-AFF-8821&subid=linkedin-aug\n3. Expected Conversion: 12-18% lead conversion rate!`);
 }
 window.openAiAffiliateCoach = openAiAffiliateCoach;
 
@@ -3706,12 +3707,12 @@ function renderUltimateAdminControlFeatures() {
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:14px;">
                     <div>
                         <h4 style="margin:0; color:#fff; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
-                            <span>🛰️ Live Telemetry, Token Cost & Emergency Controls</span>
+                            <span>ðŸ›°ï¸ Live Telemetry, Token Cost & Emergency Controls</span>
                             <span style="font-size:0.65rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:2px 8px; border-radius:10px; font-weight:bold;">GEMINI 2.5 PRO ACTIVE</span>
                         </h4>
                     </div>
                     <button onclick="toggleAgentKillSwitch('all')" class="btn" style="background:#ef4444; color:#fff; font-weight:bold; font-size:0.75rem; padding:6px 14px; border-radius:8px;">
-                        🚨 ${iinshaTelemetryData.killSwitchActive ? '▶️ RESUME ALL AGENTS' : '🛑 EMERGENCY KILL SWITCH'}
+                        ðŸš¨ ${iinshaTelemetryData.killSwitchActive ? 'â–¶ï¸ RESUME ALL AGENTS' : 'ðŸ›‘ EMERGENCY KILL SWITCH'}
                     </button>
                 </div>
 
@@ -3731,8 +3732,8 @@ function renderUltimateAdminControlFeatures() {
                 </div>
 
                 <div style="font-size:0.75rem; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center;">
-                    <span>🛡️ Session Security: 2FA Verified | S2S Postback Engine Online</span>
-                    <button onclick="openAiAffiliateCoach()" class="btn btn-emerald-sm" style="font-weight:bold; font-size:0.75rem;">🤖 Launch AI Affiliate Coach →</button>
+                    <span>ðŸ›¡ï¸ Session Security: 2FA Verified | S2S Postback Engine Online</span>
+                    <button onclick="openAiAffiliateCoach()" class="btn btn-emerald-sm" style="font-weight:bold; font-size:0.75rem;">ðŸ¤– Launch AI Affiliate Coach â†’</button>
                 </div>
             </div>
         `;
@@ -3743,7 +3744,7 @@ window.renderUltimateAdminControlFeatures = renderUltimateAdminControlFeatures;
 
 
 /* ============================================================
-   IINSHA AI OS v3.0 — NEXT-GEN EVENT BUS & HITL SAFETY ZONES
+   IINSHA AI OS v3.0 â€” NEXT-GEN EVENT BUS & HITL SAFETY ZONES
    ============================================================ */
 
 var iinshaEventBusLogs = [
@@ -3786,28 +3787,28 @@ function renderEventBusTelemetry() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:14px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
-                        <span>⚡ Event-Driven Backbone & HITL Safety Zones</span>
+                        <span>âš¡ Event-Driven Backbone & HITL Safety Zones</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">EVENT BUS ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time stream of decycled business events & Human-in-the-Loop policy enforcement.</p>
                 </div>
                 <button onclick="publishIinshaEvent('system.manual_ping', 'Admin triggered telemetry health check', 'Admin Copilot', 'GREEN')" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.75rem;">
-                    📡 Publish Test Event
+                    ðŸ“¡ Publish Test Event
                 </button>
             </div>
 
             <!-- HITL SAFETY ZONE SUMMARY BAR -->
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:14px;">
                 <div style="background:rgba(16,185,129,0.15); border:1px solid var(--accent-emerald); padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold;">🟢 GREEN ZONE (Auto)</div>
+                    <div style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold;">ðŸŸ¢ GREEN ZONE (Auto)</div>
                     <div style="font-size:0.75rem; color:#fff;">Blog, SEO, Socials, Support FAQ</div>
                 </div>
                 <div style="background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:#f59e0b; font-weight:bold;">🟡 YELLOW ZONE (2-Hr Auto)</div>
+                    <div style="font-size:0.7rem; color:#f59e0b; font-weight:bold;">ðŸŸ¡ YELLOW ZONE (2-Hr Auto)</div>
                     <div style="font-size:0.75rem; color:#fff;">Quotes <$5k, Affiliate Approval</div>
                 </div>
                 <div style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:#fca5a5; font-weight:bold;">🔴 RED ZONE (Admin Gate)</div>
+                    <div style="font-size:0.7rem; color:#fca5a5; font-weight:bold;">ðŸ”´ RED ZONE (Admin Gate)</div>
                     <div style="font-size:0.75rem; color:#fff;">Payouts >$1k, Contracts, Pricing</div>
                 </div>
             </div>
@@ -3830,7 +3831,7 @@ window.renderEventBusTelemetry = renderEventBusTelemetry;
 
 
 /* ============================================================
-   IINSHA AI OS v3.0 — EXTREME AI AGENT TRAINING & REASONING STUDIO
+   IINSHA AI OS v3.0 â€” EXTREME AI AGENT TRAINING & REASONING STUDIO
    ============================================================ */
 
 var iinshaExtremeAgentsData = [
@@ -3851,11 +3852,11 @@ function retrainExtremeAgentPrompt(agentId) {
     const agent = iinshaExtremeAgentsData.find(a => a.id === agentId);
     if (!agent) return;
 
-    const newPrompt = prompt(`🧠 Re-Train & Fine-Tune System Prompt for [${agent.name}]:`, agent.prompt);
+    const newPrompt = prompt(`ðŸ§  Re-Train & Fine-Tune System Prompt for [${agent.name}]:`, agent.prompt);
     if (newPrompt && newPrompt.trim()) {
         agent.prompt = newPrompt.trim();
         agent.confidence = (98.5 + Math.random() * 1.4).toFixed(1) + '%';
-        alert(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
+        alert(`âœ… [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
         renderExtremeAgentStudio();
     try { renderDominationTelemetryStudio();
     try { renderGodModeControlStudio(); } catch(e){} } catch(e){}
@@ -3880,7 +3881,7 @@ function renderExtremeAgentStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.15rem; display:flex; align-items:center; gap:8px;">
-                        <span>🧠 Extreme AI Agent Training & Persona Fine-Tuner Studio</span>
+                        <span>ðŸ§  Extreme AI Agent Training & Persona Fine-Tuner Studio</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">WORLD-CLASS PROMPTS</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Inspect, re-train, adjust temperature, and fine-tune system prompt personas for all 11 autonomous agents.</p>
@@ -3900,7 +3901,7 @@ function renderExtremeAgentStudio() {
                             <p style="font-size:0.75rem; color:#cbd5e1; background:#000; padding:8px; border-radius:6px; margin:0 0 10px 0; line-height:1.3; max-height:60px; overflow-y:auto;">"${a.prompt}"</p>
                         </div>
                         <button onclick="retrainExtremeAgentPrompt('${a.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.75rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
-                            ⚡ Re-Train & Fine-Tune Persona →
+                            âš¡ Re-Train & Fine-Tune Persona â†’
                         </button>
                     </div>
                 `).join('')}
@@ -3913,7 +3914,7 @@ window.renderExtremeAgentStudio = renderExtremeAgentStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v4.0 — WORLD DOMINATION ARCHITECTURE & 13 AGENTS
+   IINSHA AI OS v4.0 â€” WORLD DOMINATION ARCHITECTURE & 13 AGENTS
    ============================================================ */
 
 var iinsha13SwarmRoster = [
@@ -3976,7 +3977,7 @@ function renderDominationTelemetryStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
-                        <span>🌐 13-Agent Autonomous Swarm & 11 Revenue Streams Telemetry</span>
+                        <span>ðŸŒ 13-Agent Autonomous Swarm & 11 Revenue Streams Telemetry</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">A2A & MCP PROTOCOL ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time monitoring of the world's first AI-Native Autonomous Enterprise OS.</p>
@@ -3985,7 +3986,7 @@ function renderDominationTelemetryStudio() {
 
             <!-- 11 REVENUE STREAMS BAR -->
             <div style="margin-bottom:16px;">
-                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px;">💰 11 Diversified Revenue Streams Engine:</div>
+                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px;">ðŸ’° 11 Diversified Revenue Streams Engine:</div>
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:8px;">
                     ${iinsha11RevenueStreams.map(r => `
                         <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:8px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
@@ -3998,7 +3999,7 @@ function renderDominationTelemetryStudio() {
 
             <!-- 10 COMPETITIVE MOATS BAR -->
             <div style="margin-bottom:16px; background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
-                <div style="font-size:0.8rem; font-weight:bold; color:#f59e0b; margin-bottom:6px;">🏰 10 Competitive Strategic Moats (Unbeatable Advantage):</div>
+                <div style="font-size:0.8rem; font-weight:bold; color:#f59e0b; margin-bottom:6px;">ðŸ° 10 Competitive Strategic Moats (Unbeatable Advantage):</div>
                 <div style="display:flex; flex-wrap:wrap; gap:6px;">
                     ${iinsha10Moats.map(m => `
                         <span style="font-size:0.68rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:2px 8px; border-radius:10px;">${m}</span>
@@ -4008,7 +4009,7 @@ function renderDominationTelemetryStudio() {
 
             <!-- 13 AGENTS ROSTER GRID -->
             <div>
-                <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">🤖 13 Autonomous Agent Swarm Status:</div>
+                <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">ðŸ¤– 13 Autonomous Agent Swarm Status:</div>
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:8px;">
                     ${iinsha13SwarmRoster.map(a => `
                         <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.25); padding:8px 10px; border-radius:8px;">
@@ -4029,7 +4030,7 @@ window.renderDominationTelemetryStudio = renderDominationTelemetryStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v5.0 — BEYOND REALITY: GOD MODE CONTROL CENTER
+   IINSHA AI OS v5.0 â€” BEYOND REALITY: GOD MODE CONTROL CENTER
    ============================================================ */
 
 var iinshaGodModeState = {
@@ -4045,10 +4046,10 @@ function togglePeaceMode() {
     iinshaGodModeState.peaceMode = !iinshaGodModeState.peaceMode;
     const btn = document.getElementById('god-peace-mode-btn');
     if (btn) {
-        btn.innerHTML = iinshaGodModeState.peaceMode ? '☮️ PEACE MODE ACTIVE (100% Hands-Off)' : '☮️ Enable 1-Click Peace Mode';
+        btn.innerHTML = iinshaGodModeState.peaceMode ? 'â˜®ï¸ PEACE MODE ACTIVE (100% Hands-Off)' : 'â˜®ï¸ Enable 1-Click Peace Mode';
         btn.style.background = iinshaGodModeState.peaceMode ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)';
     }
-    alert(iinshaGodModeState.peaceMode ? '☮️ Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
+    alert(iinshaGodModeState.peaceMode ? 'â˜®ï¸ Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
 }
 window.togglePeaceMode = togglePeaceMode;
 
@@ -4082,13 +4083,13 @@ function renderGodModeControlStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>🌌 GOD MODE CONTROL CENTER — THE FINAL FORM</span>
+                        <span>ðŸŒŒ GOD MODE CONTROL CENTER â€” THE FINAL FORM</span>
                         <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">CONSCIOUSNESS CORE ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Adjust reality parameters, run timeline simulations, and trigger 1-Click Peace Mode.</p>
                 </div>
                 <button id="god-peace-mode-btn" onclick="togglePeaceMode()" class="btn btn-primary-sm" style="background:rgba(255,255,255,0.1); border:1px solid #8b5cf6; font-weight:bold; font-size:0.8rem; color:#a78bfa;">
-                    ☮️ Enable 1-Click Peace Mode
+                    â˜®ï¸ Enable 1-Click Peace Mode
                 </button>
             </div>
 
@@ -4096,21 +4097,21 @@ function renderGodModeControlStudio() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:18px;">
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
-                        <span>🚀 Growth Velocity</span>
+                        <span>ðŸš€ Growth Velocity</span>
                         <span id="growth-slider-val" style="color:#a78bfa;">${iinshaGodModeState.growthSlider}%</span>
                     </div>
                     <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#8b5cf6;">
                 </div>
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
-                        <span>💰 Profit Margin</span>
+                        <span>ðŸ’° Profit Margin</span>
                         <span id="profit-slider-val" style="color:var(--accent-emerald);">${iinshaGodModeState.profitSlider}%</span>
                     </div>
                     <input type="range" min="10" max="100" value="${iinshaGodModeState.profitSlider}" oninput="updateRealitySlider('profit', this.value)" style="width:100%; accent-color:var(--accent-emerald);">
                 </div>
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
-                        <span>🛡️ Ethical Trust Index</span>
+                        <span>ðŸ›¡ï¸ Ethical Trust Index</span>
                         <span id="trust-slider-val" style="color:var(--accent-cyan);">${iinshaGodModeState.trustSlider}%</span>
                     </div>
                     <input type="range" min="50" max="100" value="${iinshaGodModeState.trustSlider}" oninput="updateRealitySlider('trust', this.value)" style="width:100%; accent-color:var(--accent-cyan);">
@@ -4119,7 +4120,7 @@ function renderGodModeControlStudio() {
 
             <!-- LIVE TIMELINE SIMULATION PREDICTION -->
             <div style="background:rgba(0,0,0,0.6); border:1px solid rgba(139,92,246,0.4); padding:14px; border-radius:10px; text-align:center;">
-                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">🔮 REAL-TIME TIMELINE SIMULATION PREDICTION</div>
+                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">ðŸ”® REAL-TIME TIMELINE SIMULATION PREDICTION</div>
                 <div id="god-simulation-prediction" style="font-size:0.9rem; font-weight:bold; color:#fff; font-family:var(--font-mono);">${iinshaGodModeState.simulatedOutcome}</div>
             </div>
         </div>
@@ -4130,7 +4131,7 @@ window.renderGodModeControlStudio = renderGodModeControlStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v6.0 — ENTERPRISE DYNAMIC SERVICE CMS & SOW ENGINE
+   IINSHA AI OS v6.0 â€” ENTERPRISE DYNAMIC SERVICE CMS & SOW ENGINE
    ============================================================ */
 
 var iinshaServiceCatalogData = [
@@ -4203,7 +4204,7 @@ function addNewEnterpriseService() {
     };
 
     iinshaServiceCatalogData.push(newSvc);
-    alert(`✅ New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
+    alert(`âœ… New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
     renderDynamicServiceCMSStudio();
 }
 window.addNewEnterpriseService = addNewEnterpriseService;
@@ -4226,7 +4227,7 @@ function generateSoWContractTemplate(svcId) {
         </head>
         <body>
             <div class="card">
-                <h1>IINSHA AI OS — SCOPE OF WORK (SoW) CONTRACT</h1>
+                <h1>IINSHA AI OS â€” SCOPE OF WORK (SoW) CONTRACT</h1>
                 <p><strong>Service Title:</strong> ${svc.title}</p>
                 <p><strong>Headline Scope:</strong> ${svc.headline}</p>
                 <p><strong>Value Guarantee:</strong> ${svc.valueProp}</p>
@@ -4256,13 +4257,13 @@ function renderDynamicServiceCMSStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
-                        <span>💎 Enterprise Service CMS & SoW Contract Matrix</span>
+                        <span>ðŸ’Ž Enterprise Service CMS & SoW Contract Matrix</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ANTIGRAVITY 2.0 SYNCED</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage B2B SaaS, Web Platforms, ERP/CRM & RAG Knowledge Systems without touching code.</p>
                 </div>
                 <button onclick="addNewEnterpriseService()" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.8rem;">
-                    ➕ Add New Service
+                    âž• Add New Service
                 </button>
             </div>
 
@@ -4279,11 +4280,11 @@ function renderDynamicServiceCMSStudio() {
                             </div>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.72rem; color:var(--accent-cyan); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">ðŸŽ¯ ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
-                                📄 Generate SoW
+                                ðŸ“„ Generate SoW
                             </button>
                         </div>
                     </div>
@@ -4297,7 +4298,7 @@ window.renderDynamicServiceCMSStudio = renderDynamicServiceCMSStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v7.0 — COMPLETE ENTERPRISE STUDIO CMS & MCP BRIDGE
+   IINSHA AI OS v7.0 â€” COMPLETE ENTERPRISE STUDIO CMS & MCP BRIDGE
    ============================================================ */
 
 var iinshaFullServicePortfolio = [
@@ -4329,7 +4330,7 @@ function editServiceInStudio(svcId) {
     if (newPricing) svc.pricing = newPricing.trim();
     if (newValueProp) svc.valueProp = newValueProp.trim();
 
-    alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
+    alert(`âœ… Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
     renderCompleteEnterpriseStudioCMS();
     try { render2026OutcomeServicesStudio();
     try { renderOmnichannelNotificationStudio();
@@ -4375,7 +4376,7 @@ function renderCompleteEnterpriseStudioCMS() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>👑 Studio Management Engine & Dynamic Service CMS</span>
+                        <span>ðŸ‘‘ Studio Management Engine & Dynamic Service CMS</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ANTIGRAVITY 2.0 MCP BRIDGE ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage Core Baseline Services & Enterprise Systems Layer with 100% Live CMS Controls.</p>
@@ -4396,14 +4397,14 @@ function renderCompleteEnterpriseStudioCMS() {
                             <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">ðŸŽ¯ ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="editServiceInStudio('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
-                                ✏️ Edit Service & Price
+                                âœï¸ Edit Service & Price
                             </button>
                             <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
-                                📄 SoW Contract
+                                ðŸ“„ SoW Contract
                             </button>
                         </div>
                     </div>
@@ -4417,14 +4418,14 @@ window.renderCompleteEnterpriseStudioCMS = renderCompleteEnterpriseStudioCMS;
 
 
 /* ============================================================
-   IINSHA AI OS v8.0 — 2026 AAAS OUTCOME-BASED MATRIX & ZERO-PERSON ENTERPRISE
+   IINSHA AI OS v8.0 â€” 2026 AAAS OUTCOME-BASED MATRIX & ZERO-PERSON ENTERPRISE
    ============================================================ */
 
 var iinsha2026OutcomeServices = [
-    { id: 'aaas-1', category: 'AaaS (Agent-as-a-Service)', title: 'AgentForge AI — No-Code Agent Builder', pricing: '$0.02 / agent-run | $199/mo base', status: 'Active', headline: 'Build, Deploy & Monitor Autonomous AI Agents with Zero Code', valueProp: 'Per-execution micro-billing with MCP & A2A protocol support' },
-    { id: 'aaas-2', category: 'Outcome SaaS', title: 'OutcomeStudio AI — Goal-to-Delivery Engine', pricing: '$49 / completed business outcome', status: 'Active', headline: 'Zero-Seat Outcome-Based Task Execution Engine', valueProp: 'Pay strictly for delivered results (e.g. 100% verified onboarding)' },
-    { id: 'aaas-3', category: 'Outcome SaaS', title: 'LeadEngine AI — Autonomous Prospecting', pricing: '$15 / qualified B2B lead', status: 'Active', headline: 'Self-Aware Lead Discovery, Scoring & Autonomous Nurturing', valueProp: 'Guaranteed ICP enrichment with zero manual sales effort' },
-    { id: 'aaas-4', category: 'AaaS (Agent-as-a-Service)', title: 'SupportAutopilot AI — 24/7 RAG Ticket Resolver', pricing: '$0.50 / resolved ticket', status: 'Active', headline: 'Autonomous RAG Customer Service Agent with Zero Human Drift', valueProp: 'Instant sub-sec responses with automatic human escalation safety' },
+    { id: 'aaas-1', category: 'AaaS (Agent-as-a-Service)', title: 'AgentForge AI â€” No-Code Agent Builder', pricing: '$0.02 / agent-run | $199/mo base', status: 'Active', headline: 'Build, Deploy & Monitor Autonomous AI Agents with Zero Code', valueProp: 'Per-execution micro-billing with MCP & A2A protocol support' },
+    { id: 'aaas-2', category: 'Outcome SaaS', title: 'OutcomeStudio AI â€” Goal-to-Delivery Engine', pricing: '$49 / completed business outcome', status: 'Active', headline: 'Zero-Seat Outcome-Based Task Execution Engine', valueProp: 'Pay strictly for delivered results (e.g. 100% verified onboarding)' },
+    { id: 'aaas-3', category: 'Outcome SaaS', title: 'LeadEngine AI â€” Autonomous Prospecting', pricing: '$15 / qualified B2B lead', status: 'Active', headline: 'Self-Aware Lead Discovery, Scoring & Autonomous Nurturing', valueProp: 'Guaranteed ICP enrichment with zero manual sales effort' },
+    { id: 'aaas-4', category: 'AaaS (Agent-as-a-Service)', title: 'SupportAutopilot AI â€” 24/7 RAG Ticket Resolver', pricing: '$0.50 / resolved ticket', status: 'Active', headline: 'Autonomous RAG Customer Service Agent with Zero Human Drift', valueProp: 'Instant sub-sec responses with automatic human escalation safety' },
     { id: 'ent-2026-1', category: 'Enterprise Systems', title: 'Autonomous Agent Swarm Team Deployment', pricing: '$25,000 - $150,000 + Managed Retainer', status: 'Active', headline: 'Deploy 3-10 Specialized AI Agents operating your core business', valueProp: 'Complete digital employee workforce with 24/7 uptime' },
     { id: 'ent-2026-2', category: 'Zero-Person Enterprise', title: 'Autonomous "Zero-Person Company" System', pricing: '$250,000 - $2,000,000+', status: 'Active', headline: 'Complete Autonomous Business Empire Run 100% by AI Swarms', valueProp: 'Self-governing, self-marketing & self-sustaining corporate entity' }
 ];
@@ -4446,7 +4447,7 @@ function render2026OutcomeServicesStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>🚀 2026 AaaS & Outcome-Based Pricing Matrix</span>
+                        <span>ðŸš€ 2026 AaaS & Outcome-Based Pricing Matrix</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">PARADIGM SHIFT ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">From seat-based pricing to Agent-as-a-Service (AaaS) & Outcome-based billing.</p>
@@ -4462,10 +4463,10 @@ function render2026OutcomeServicesStudio() {
                         </div>
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
-                        <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">ðŸ’° ${s.pricing}</div>
+                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">ðŸŽ¯ ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
-                            📄 Generate 2026 Outcome SoW
+                            ðŸ“„ Generate 2026 Outcome SoW
                         </button>
                     </div>
                 `).join('')}
@@ -4478,17 +4479,17 @@ window.render2026OutcomeServicesStudio = render2026OutcomeServicesStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v9.0 — OMNICHANNEL WHATSAPP & FACEBOOK DISPATCHER
+   IINSHA AI OS v9.0 â€” OMNICHANNEL WHATSAPP & FACEBOOK DISPATCHER
    ============================================================ */
 
 var iinshaNotificationState = {
     whatsappNumber: '+8801629286887',
     facebookPage: 'https://facebook.com/inshatech',
-    lastNotification: 'System Healthy — 13 AI Swarm Agents Active'
+    lastNotification: 'System Healthy â€” 13 AI Swarm Agents Active'
 };
 
 function sendDirectWhatsAppNotification(customMsg) {
-    const defaultMsg = customMsg || `🚀 *IINSHA AI OS ALERT* 🚀\n\n• Status: All 13 AI Agents Operational\n• MRR Target: $54,200/mo\n• System Health: 99.9% Uptime\n• Security: Zero-Drift Policy Active\n\n_Sent automatically from Master OS Studio_`;
+    const defaultMsg = customMsg || `ðŸš€ *IINSHA AI OS ALERT* ðŸš€\n\nâ€¢ Status: All 13 AI Agents Operational\nâ€¢ MRR Target: $54,200/mo\nâ€¢ System Health: 99.9% Uptime\nâ€¢ Security: Zero-Drift Policy Active\n\n_Sent automatically from Master OS Studio_`;
     const encodedMsg = encodeURIComponent(defaultMsg);
     const waUrl = `https://wa.me/8801629286887?text=${encodedMsg}`;
     window.open(waUrl, '_blank');
@@ -4496,8 +4497,8 @@ function sendDirectWhatsAppNotification(customMsg) {
 window.sendDirectWhatsAppNotification = sendDirectWhatsAppNotification;
 
 function sendDirectFacebookNotification() {
-    alert("📲 Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
-    const summaryText = `🌌 IINSHA AI OS — Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
+    alert("ðŸ“² Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
+    const summaryText = `ðŸŒŒ IINSHA AI OS â€” Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
     navigator.clipboard.writeText(summaryText);
     window.open('https://facebook.com', '_blank');
 }
@@ -4520,7 +4521,7 @@ function renderOmnichannelNotificationStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>📲 WhatsApp & Facebook Live Notification Hub</span>
+                        <span>ðŸ“² WhatsApp & Facebook Live Notification Hub</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">AUTO-NOTIFIER ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Real-time dispatch of leads, orders, affiliate commissions & AI reports to WhatsApp (+8801629286887) and Facebook.</p>
@@ -4529,20 +4530,20 @@ function renderOmnichannelNotificationStudio() {
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:18px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:8px;">💬</div>
+                    <div style="font-size:2rem; margin-bottom:8px;">ðŸ’¬</div>
                     <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">WhatsApp Live Dispatch</h5>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Connected Target: <strong>+8801629286887</strong></p>
                     <button onclick="sendDirectWhatsAppNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald);">
-                        📲 Send Test Alert to WhatsApp
+                        ðŸ“² Send Test Alert to WhatsApp
                     </button>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.4); border-radius:14px; padding:18px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:8px;">📘</div>
+                    <div style="font-size:2rem; margin-bottom:8px;">ðŸ“˜</div>
                     <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">Facebook Business Hub</h5>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Instant Dispatch for Messenger & Page Posts</p>
                     <button onclick="sendDirectFacebookNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(6,182,212,0.25); color:var(--accent-cyan); border:1px solid var(--accent-cyan);">
-                        📘 Copy Alert for Facebook
+                        ðŸ“˜ Copy Alert for Facebook
                     </button>
                 </div>
             </div>
@@ -4554,7 +4555,7 @@ window.renderOmnichannelNotificationStudio = renderOmnichannelNotificationStudio
 
 
 /* ============================================================
-   IINSHA AI OS v10.0 — COMPLETE SERVICE CATALOG v4.0 (143+ SERVICES)
+   IINSHA AI OS v10.0 â€” COMPLETE SERVICE CATALOG v4.0 (143+ SERVICES)
    ============================================================ */
 
 var iinshaMasterCatalogV4 = [
@@ -4604,7 +4605,7 @@ function renderCatalogV4Studio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>🚀 MASTER SERVICE CATALOG v4.0 (143+ SERVICES)</span>
+                        <span>ðŸš€ MASTER SERVICE CATALOG v4.0 (143+ SERVICES)</span>
                         <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">MARKETPLACE STANDARD</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Effectiveness-focused positioning across 5 Tiers: Core, Business OS, Industry OS, Dev Tools & Predictive AI.</p>
@@ -4620,10 +4621,10 @@ function renderCatalogV4Studio() {
                         </div>
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
-                        <div style="font-size:0.75rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <div style="font-size:0.75rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">ðŸ’° ${s.pricing}</div>
+                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">ðŸŽ¯ ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#a78bfa; border-color:#8b5cf6;">
-                            📄 Generate v4.0 SoW Contract
+                            ðŸ“„ Generate v4.0 SoW Contract
                         </button>
                     </div>
                 `).join('')}
@@ -4636,7 +4637,7 @@ window.renderCatalogV4Studio = renderCatalogV4Studio;
 
 
 /* ============================================================
-   IINSHA AI OS v11.0 — AUTONOMOUS ENTERPRISE OPERATING ENGINE
+   IINSHA AI OS v11.0 â€” AUTONOMOUS ENTERPRISE OPERATING ENGINE
    ============================================================ */
 
 var iinshaAutonomousEngineState = {
@@ -4658,12 +4659,12 @@ function toggleAutonomousSubsystem(subsystem) {
         statusSpan.style.color = iinshaAutonomousEngineState[subsystem] ? 'var(--accent-emerald)' : '#ef4444';
         statusSpan.style.borderColor = iinshaAutonomousEngineState[subsystem] ? 'var(--accent-emerald)' : '#ef4444';
     }
-    alert(`🤖 ${subsystem} updated to: ${iinshaAutonomousEngineState[subsystem] ? 'AUTONOMOUS ACTIVE' : 'PAUSED'}`);
+    alert(`ðŸ¤– ${subsystem} updated to: ${iinshaAutonomousEngineState[subsystem] ? 'AUTONOMOUS ACTIVE' : 'PAUSED'}`);
 }
 window.toggleAutonomousSubsystem = toggleAutonomousSubsystem;
 
 function triggerAutonomousLeadHarvesting() {
-    alert("🚀 n8n + Gemini 3.0 Pro & Flash Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
+    alert("ðŸš€ n8n + Gemini 3.0 Pro & Flash Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
     iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads += 5;
     const counterDiv = document.getElementById('auto-lead-counter');
     if (counterDiv) counterDiv.innerText = iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads + ' Verified Leads';
@@ -4687,7 +4688,7 @@ function renderAutonomousEnterpriseEngineStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>🤖 ULTIMATE AUTONOMOUS ENTERPRISE ENGINE (n8n + GEMINI 2.5)</span>
+                        <span>ðŸ¤– ULTIMATE AUTONOMOUS ENTERPRISE ENGINE (n8n + GEMINI 2.5)</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">100% HANDS-OFF EARNING ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Self-executing Sales, Marketing, Affiliate Monitoring, Social Outreach & Transaction Healing Engine.</p>
@@ -4699,19 +4700,19 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 1: SALES & CLIENT CONVINCER -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Autonomous Sales Engine</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’¼ Autonomous Sales Engine</span>
                         <span id="salesAutoPilot-status-badge" onclick="toggleAutonomousSubsystem('salesAutoPilot')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">Auto-captures leads, generates SoW proposals & dispatches WhatsApp proposals to +8801629286887.</p>
                     <button onclick="triggerAutonomousLeadHarvesting()" class="btn btn-primary-sm" style="width:100%; font-size:0.72rem; font-weight:bold;">
-                        🎯 Harvest New B2B Leads Now
+                        ðŸŽ¯ Harvest New B2B Leads Now
                     </button>
                 </div>
 
                 <!-- SUBSYSTEM 2: MARKETING & SOCIAL OUTREACH -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Marketing & Social Swarm</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ“¢ Marketing & Social Swarm</span>
                         <span id="marketingAutoPilot-status-badge" onclick="toggleAutonomousSubsystem('marketingAutoPilot')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">SEDUCER & SCOUT Agents generate LinkedIn posts, Facebook campaigns & B2B cold emails.</p>
@@ -4721,7 +4722,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 3: AFFILIATE EMPIRE MONITOR -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate Empire Monitor</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ¤ Affiliate Empire Monitor</span>
                         <span id="affiliateAutoMonitor-status-badge" onclick="toggleAutonomousSubsystem('affiliateAutoMonitor')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">TREASURER & ANALYST Agents monitor clicks, fraud detection & send motivation alerts via WhatsApp.</p>
@@ -4731,7 +4732,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 4: SELF-HEALING TRANSACTION GUARD -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🛡️ Self-Healing & Revenue Guard</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ›¡ï¸ Self-Healing & Revenue Guard</span>
                         <span id="selfHealingGuard-status-badge" onclick="toggleAutonomousSubsystem('selfHealingGuard')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">GUARDIAN & KEEPER Agents monitor 500 errors, latencies & auto-patch routes within 60 seconds.</p>
@@ -4758,7 +4759,7 @@ window.renderAutonomousEnterpriseEngineStudio = renderAutonomousEnterpriseEngine
 
 
 /* ============================================================
-   IINSHA AI OS v12.0 — AI BUSINESS OPERATING SYSTEM (AI-BOS)
+   IINSHA AI OS v12.0 â€” AI BUSINESS OPERATING SYSTEM (AI-BOS)
    Gemini 1.5 Flash + Gemini 1.5 Flash Model Routing & Tool Execution Mesh
    ============================================================ */
 
@@ -4797,10 +4798,10 @@ function renderAIBOSArchitectureStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>👑 AI BUSINESS OPERATING SYSTEM (AI-BOS v12.0)</span>
+                        <span>ðŸ‘‘ AI BUSINESS OPERATING SYSTEM (AI-BOS v12.0)</span>
                         <span style="font-size:0.65rem; background:rgba(59,130,246,0.25); color:#60a5fa; border:1px solid #3b82f6; padding:3px 10px; border-radius:12px; font-weight:bold;">GEMINI 3.6 FLASH ROUTER ACTIVE</span>
                     </h4>
-                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Decision → Tool Request → Permission Check → Policy Check → n8n Execution → Audit Log</p>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Decision â†’ Tool Request â†’ Permission Check â†’ Policy Check â†’ n8n Execution â†’ Audit Log</p>
                 </div>
             </div>
 
@@ -4841,7 +4842,7 @@ window.renderAIBOSArchitectureStudio = renderAIBOSArchitectureStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v13.0 — ULTIMATE AI COPILOT & DIAGNOSTIC SUITE
+   IINSHA AI OS v13.0 â€” ULTIMATE AI COPILOT & DIAGNOSTIC SUITE
    - Live AI Copilot Chat Widget (Bottom Right)
    - Interactive AI Business Health Check Audit Wizard
    - Multi-Currency & Multi-Language Dynamic Engine
@@ -4850,9 +4851,9 @@ window.renderAIBOSArchitectureStudio = renderAIBOSArchitectureStudio;
 var iinshaActiveCurrency = 'USD';
 var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
-    BDT: { symbol: '৳', rate: 122.0 },
-    EUR: { symbol: '€', rate: 0.92 },
-    GBP: { symbol: '£', rate: 0.78 },
+    BDT: { symbol: 'à§³', rate: 122.0 },
+    EUR: { symbol: 'â‚¬', rate: 0.92 },
+    GBP: { symbol: 'Â£', rate: 0.78 },
     AED: { symbol: 'AED ', rate: 3.67 }
 };
 
@@ -4861,16 +4862,16 @@ var iinshaTranslations = {
     EN: {
         heroTitle: "Supercharge Your Business With AI Business Operating System",
         heroSub: "Autonomous agent swarms, n8n workflows, and decision intelligence built for maximum ROI.",
-        auditBtn: "⚡ Run Free AI Business Audit",
+        auditBtn: "âš¡ Run Free AI Business Audit",
         chatTitle: "IINSHA AI Copilot (Gemini 1.5 Flash)",
         chatPlaceholder: "Ask anything or describe your business process..."
     },
     BN: {
-        heroTitle: "এআই বিজনেস অপারেটিং সিস্টেম দিয়ে আপনার ব্যবসা অটোমেট করুন",
-        heroSub: "অটোনোমাস এজেন্ট সোয়ার্ম, n8n ওয়ার্কফ্লো এবং ডিসিশন ইন্টেলিজেন্স সেরা ROI এর জন্য।",
-        auditBtn: "⚡ ফ্রি এআই বিজনেস অডিট করুন",
-        chatTitle: "ইনশা এআই কোপাইলট (জেমিনাই ৩.৬ ফ্ল্যাশ)",
-        chatPlaceholder: "আপনার ব্যবসার যেকোনো প্রশ্ন লিখুন..."
+        heroTitle: "à¦à¦†à¦‡ à¦¬à¦¿à¦œà¦¨à§‡à¦¸ à¦…à¦ªà¦¾à¦°à§‡à¦Ÿà¦¿à¦‚ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¦à¦¿à§Ÿà§‡ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾ à¦…à¦Ÿà§‹à¦®à§‡à¦Ÿ à¦•à¦°à§à¦¨",
+        heroSub: "à¦…à¦Ÿà§‹à¦¨à§‹à¦®à¦¾à¦¸ à¦à¦œà§‡à¦¨à§à¦Ÿ à¦¸à§‹à¦¯à¦¼à¦¾à¦°à§à¦®, n8n à¦“à¦¯à¦¼à¦¾à¦°à§à¦•à¦«à§à¦²à§‹ à¦à¦¬à¦‚ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨ à¦‡à¦¨à§à¦Ÿà§‡à¦²à¦¿à¦œà§‡à¦¨à§à¦¸ à¦¸à§‡à¦°à¦¾ ROI à¦à¦° à¦œà¦¨à§à¦¯à¥¤",
+        auditBtn: "âš¡ à¦«à§à¦°à¦¿ à¦à¦†à¦‡ à¦¬à¦¿à¦œà¦¨à§‡à¦¸ à¦…à¦¡à¦¿à¦Ÿ à¦•à¦°à§à¦¨",
+        chatTitle: "à¦‡à¦¨à¦¶à¦¾ à¦à¦†à¦‡ à¦•à§‹à¦ªà¦¾à¦‡à¦²à¦Ÿ (à¦œà§‡à¦®à¦¿à¦¨à¦¾à¦‡ à§©.à§¬ à¦«à§à¦²à§à¦¯à¦¾à¦¶)",
+        chatPlaceholder: "à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦¯à§‡à¦•à§‹à¦¨à§‹ à¦ªà§à¦°à¦¶à§à¦¨ à¦²à¦¿à¦–à§à¦¨..."
     }
 };
 
@@ -4907,11 +4908,11 @@ function openIinshaBusinessAuditModal() {
     auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     auditModal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
-            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
                 
                 <div style="text-align:center; margin-bottom:24px;">
                     <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
-                    <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">⚡ Instant AI Business Health Check</h3>
+                    <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">âš¡ Instant AI Business Health Check</h3>
                     <p style="margin:0; font-size:0.85rem; color:var(--text-muted);">Discover your operational automation bottlenecks in 30 seconds</p>
                 </div>
 
@@ -4944,7 +4945,7 @@ function openIinshaBusinessAuditModal() {
                     </div>
 
                     <button type="submit" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; box-shadow:0 8px 25px rgba(59,130,246,0.4);">
-                        🚀 Generate Diagnostic Report & Automation Plan
+                        ðŸš€ Generate Diagnostic Report & Automation Plan
                     </button>
                 </form>
 
@@ -4971,19 +4972,19 @@ function openAiRevenueSystemModal() {
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     modal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
-            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
             <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM A</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">📈 AI Revenue System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">ðŸ“ˆ AI Revenue System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Automate inbound lead qualification, proposal generation, and multi-channel outreach without human drop-off.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
-                <div style="font-weight:bold; color:#60a5fa; margin-bottom:8px;">⚡ Included Capabilities:</div>
-                • <strong>AI Sales Agent</strong> (Responds under 60 seconds)<br>
-                • <strong>CRM Data Enrichment</strong> (Apollo / LinkedIn Scraper integration)<br>
-                • <strong>Automated Proposal Engine</strong> (Generates custom PDF / Web quotes)<br>
-                • <strong>Email & WhatsApp Follow-up Cadence</strong> (n8n workflow driven)<br>
-                • <strong>Human-in-the-Loop Approval Gate</strong>
+                <div style="font-weight:bold; color:#60a5fa; margin-bottom:8px;">âš¡ Included Capabilities:</div>
+                â€¢ <strong>AI Sales Agent</strong> (Responds under 60 seconds)<br>
+                â€¢ <strong>CRM Data Enrichment</strong> (Apollo / LinkedIn Scraper integration)<br>
+                â€¢ <strong>Automated Proposal Engine</strong> (Generates custom PDF / Web quotes)<br>
+                â€¢ <strong>Email & WhatsApp Follow-up Cadence</strong> (n8n workflow driven)<br>
+                â€¢ <strong>Human-in-the-Loop Approval Gate</strong>
             </div>
-            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Revenue%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #3b82f6, #2563eb); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Revenue System (WhatsApp Inquiry) →</a>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Revenue%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #3b82f6, #2563eb); text-align:center; padding:14px; text-decoration:none; display:block;">ðŸ’¬ Deploy AI Revenue System (WhatsApp Inquiry) â†’</a>
         </div>
     `;
 }
@@ -4998,19 +4999,19 @@ function openAiOpsSystemModal() {
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     modal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(6,78,59,0.95)); border:1px solid #10b981; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(16,185,129,0.4); color:#fff; position:relative;">
-            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
             <span style="background:rgba(16,185,129,0.2); color:#34d399; border:1px solid #10b981; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM B</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">⚙️ AI Operations System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">âš™ï¸ AI Operations System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Eliminate repetitive manual back-office tasks, invoice entry, and report compilation.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
-                <div style="font-weight:bold; color:#34d399; margin-bottom:8px;">⚡ Included Capabilities:</div>
-                • <strong>Invoice OCR & Document Parsing</strong> (Gemini Vision API)<br>
-                • <strong>Self-Healing n8n Pipelines</strong> (Auto-retry on error)<br>
-                • <strong>Internal Knowledge RAG Bot</strong> (Queries internal SOPs)<br>
-                • <strong>Database Sync</strong> (Postgres / Supabase / Airtable integration)<br>
-                • <strong>Automated Executive Summary Reports</strong>
+                <div style="font-weight:bold; color:#34d399; margin-bottom:8px;">âš¡ Included Capabilities:</div>
+                â€¢ <strong>Invoice OCR & Document Parsing</strong> (Gemini Vision API)<br>
+                â€¢ <strong>Self-Healing n8n Pipelines</strong> (Auto-retry on error)<br>
+                â€¢ <strong>Internal Knowledge RAG Bot</strong> (Queries internal SOPs)<br>
+                â€¢ <strong>Database Sync</strong> (Postgres / Supabase / Airtable integration)<br>
+                â€¢ <strong>Automated Executive Summary Reports</strong>
             </div>
-            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Operations%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #10b981, #059669); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Operations System (WhatsApp Inquiry) →</a>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Operations%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #10b981, #059669); text-align:center; padding:14px; text-decoration:none; display:block;">ðŸ’¬ Deploy AI Operations System (WhatsApp Inquiry) â†’</a>
         </div>
     `;
 }
@@ -5025,19 +5026,19 @@ function openAiSupportSystemModal() {
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     modal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(88,28,135,0.95)); border:1px solid #a855f7; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(168,85,247,0.4); color:#fff; position:relative;">
-            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
             <span style="background:rgba(168,85,247,0.2); color:#c084fc; border:1px solid #a855f7; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM C</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">🎧 AI Support System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">ðŸŽ§ AI Support System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Provide 24/7 intelligent customer triage with instant vector database document lookup.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
-                <div style="font-weight:bold; color:#c084fc; margin-bottom:8px;">⚡ Included Capabilities:</div>
-                • <strong>Omnichannel Web & WhatsApp Bot</strong><br>
-                • <strong>Pinecone RAG Vector Engine</strong> (Zero hallucination answers)<br>
-                • <strong>Ticket Triage & Routing</strong> (Assigns priority automatically)<br>
-                • <strong>Human Escalation Gate</strong> (Hands over complex queries)<br>
-                • <strong>Live Conversation Analytics & CSAT Tracking</strong>
+                <div style="font-weight:bold; color:#c084fc; margin-bottom:8px;">âš¡ Included Capabilities:</div>
+                â€¢ <strong>Omnichannel Web & WhatsApp Bot</strong><br>
+                â€¢ <strong>Pinecone RAG Vector Engine</strong> (Zero hallucination answers)<br>
+                â€¢ <strong>Ticket Triage & Routing</strong> (Assigns priority automatically)<br>
+                â€¢ <strong>Human Escalation Gate</strong> (Hands over complex queries)<br>
+                â€¢ <strong>Live Conversation Analytics & CSAT Tracking</strong>
             </div>
-            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Support%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #a855f7, #7e22ce); text-align:center; padding:14px; text-decoration:none; display:block;">💬 Deploy AI Support System (WhatsApp Inquiry) →</a>
+            <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20want%20to%20deploy%20the%20AI%20Support%20System" target="_blank" class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #a855f7, #7e22ce); text-align:center; padding:14px; text-decoration:none; display:block;">ðŸ’¬ Deploy AI Support System (WhatsApp Inquiry) â†’</a>
         </div>
     `;
 }
@@ -5066,7 +5067,7 @@ if (document.readyState === 'loading') {
     calculateCustomWorkforceEstimate();
 }
 
-/* 👑 SUPREME OWNER COMMAND CENTER CONTROLS */
+/* ðŸ‘‘ SUPREME OWNER COMMAND CENTER CONTROLS */
 function triggerMasterKillSwitch(mode) {
     const dot = document.getElementById('owner-status-dot');
     const text = document.getElementById('owner-status-text');
@@ -5077,27 +5078,27 @@ function triggerMasterKillSwitch(mode) {
             dot.style.boxShadow = '0 0 10px #ef4444';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#ef4444;">SYSTEM PAUSED ● SAFETY EMERGENCY LOCK ACTIVE</span>';
+            text.innerHTML = '<span style="color:#ef4444;">SYSTEM PAUSED â— SAFETY EMERGENCY LOCK ACTIVE</span>';
         }
-        showFomoToast('🔴 EMERGENCY KILL SWITCH ACTIVATED — ALL 27 AGENTS PAUSED BY OWNER', 'error');
+        showFomoToast('ðŸ”´ EMERGENCY KILL SWITCH ACTIVATED â€” ALL 27 AGENTS PAUSED BY OWNER', 'error');
     } else if (mode === 'PAUSE_HIGH_RISK') {
         if (dot) {
             dot.style.background = '#f59e0b';
             dot.style.boxShadow = '0 0 10px #f59e0b';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#fbbf24;">HIGH-RISK ACTIONS PAUSED ● READ-ONLY AGENTS ONLINE</span>';
+            text.innerHTML = '<span style="color:#fbbf24;">HIGH-RISK ACTIONS PAUSED â— READ-ONLY AGENTS ONLINE</span>';
         }
-        showFomoToast('🟡 HIGH-RISK ACTIONS FROZEN — HIGH-RISK MUTATIONS REQUIRING HUMAN GATE', 'warning');
+        showFomoToast('ðŸŸ¡ HIGH-RISK ACTIONS FROZEN â€” HIGH-RISK MUTATIONS REQUIRING HUMAN GATE', 'warning');
     } else if (mode === 'RESUME_ALL') {
         if (dot) {
             dot.style.background = '#10b981';
             dot.style.boxShadow = '0 0 10px #10b981';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#fff;">SYSTEM OPERATIONAL ● 27 ACTIVE AGENTS</span>';
+            text.innerHTML = '<span style="color:#fff;">SYSTEM OPERATIONAL â— 27 ACTIVE AGENTS</span>';
         }
-        showFomoToast('🟢 ALL SYSTEMS RESUMED — SUPREME OWNER GOVERNANCE ACTIVE', 'success');
+        showFomoToast('ðŸŸ¢ ALL SYSTEMS RESUMED â€” SUPREME OWNER GOVERNANCE ACTIVE', 'success');
     }
 }
 
@@ -5143,26 +5144,26 @@ function runAiGoalDecomposition() {
 
     container.innerHTML = `
         <div style="background:rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; padding: 10px; border-radius: 4px;">
-            <strong style="color:#60a5fa;">STEP 1: Strategic Analysis</strong> ── AI Commander analyzed historical tickets and identified 3 main latency bottlenecks.
+            <strong style="color:#60a5fa;">STEP 1: Strategic Analysis</strong> â”€â”€ AI Commander analyzed historical tickets and identified 3 main latency bottlenecks.
         </div>
         <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
-            <strong style="color:#34d399;">STEP 2: Solution Generation</strong> ── Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
+            <strong style="color:#34d399;">STEP 2: Solution Generation</strong> â”€â”€ Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
         </div>
         <div style="background:rgba(168,85,247,0.1); border-left: 3px solid #a855f7; padding: 10px; border-radius: 4px;">
-            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> ── Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
+            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> â”€â”€ Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
         </div>
         <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
-            <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> ── Pending Supreme Owner approval for external email dispatch authority.
+            <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> â”€â”€ Pending Supreme Owner approval for external email dispatch authority.
         </div>
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
-            <button class="btn btn-primary-sm" onclick="showFomoToast('✨ Strategy Roadmap Approved by Owner! Deploying to AI Workforce...', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                👍 Approve & Deploy Strategy
+            <button class="btn btn-primary-sm" onclick="showFomoToast('âœ¨ Strategy Roadmap Approved by Owner! Deploying to AI Workforce...', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                ðŸ‘ Approve & Deploy Strategy
             </button>
         </div>
     `;
 }
 
-/* 🏢 5 AUTONOMOUS AI BUSINESS DIVISIONS CONTROLS */
+/* ðŸ¢ 5 AUTONOMOUS AI BUSINESS DIVISIONS CONTROLS */
 function switchAiDivisionTab(divId) {
     const tabs = ['growth', 'sales', 'delivery', 'success', 'finance'];
     
@@ -5182,14 +5183,14 @@ function switchAiDivisionTab(divId) {
 
 function triggerFlywheelSimulation() {
     const steps = [
-        "🔍 Step 1: Market Intel Agent discovered 12 B2B E-commerce opportunities",
-        "📊 Step 2: Lead Gen Agent enriched contacts into CRM",
-        "🎯 Step 3: Sales AI qualified lead & generated $1,250 project proposal",
-        "👔 Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
-        "🧪 Step 5: Independent QA Agent performed automated test pass (100% Green)",
-        "🎧 Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
-        "📈 Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
-        "💳 Step 8: Invoice matched & $1,250 deposited to Supreme Financial Vault!"
+        "ðŸ” Step 1: Market Intel Agent discovered 12 B2B E-commerce opportunities",
+        "ðŸ“Š Step 2: Lead Gen Agent enriched contacts into CRM",
+        "ðŸŽ¯ Step 3: Sales AI qualified lead & generated $1,250 project proposal",
+        "ðŸ‘” Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
+        "ðŸ§ª Step 5: Independent QA Agent performed automated test pass (100% Green)",
+        "ðŸŽ§ Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
+        "ðŸ“ˆ Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
+        "ðŸ’³ Step 8: Invoice matched & $1,250 deposited to Supreme Financial Vault!"
     ];
 
     steps.forEach((msg, idx) => {
@@ -5204,17 +5205,17 @@ function triggerFlywheelSimulation() {
     });
 }
 
-/* 🆔 AGENT PASSPORT & BOARDROOM DEBATE CONTROLS */
+/* ðŸ†” AGENT PASSPORT & BOARDROOM DEBATE CONTROLS */
 function inspectAgentPassport(agentId) {
     const passportData = {
-        'AGNT-0001': { name: "🧠 AI CEO Orchestrator", role: "Business Orchestrator & Goal Planner", autonomy: "Level 4 (Policy Boundary)", budget: "$20.00 / day", tools: "n8n Webhook, Pinecone Memory, Goal Decomposer, Boardroom Trigger", owner: "Supreme Owner", audit: "4,281 tasks executed | 99.4% uptime | Zero boundary violations" },
-        'AGNT-1042': { name: "🔍 Market Intel Agent", role: "Niche Scraper & Competitor Monitor", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Web Scraper, Google Trends API, SEO Keyword Indexer", owner: "Supreme Owner", audit: "1,420 niches scanned | 83 leads enriched | 0 consent errors" },
-        'AGNT-4019': { name: "🧪 Independent QA Agent", role: "Code Inspector & Safety Evaluator", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Playwright E2E Runner, ESLint, Sandbox Validator", owner: "Supreme Owner", audit: "340 builds tested | 100% test pass rate | Zero regression" }
+        'AGNT-0001': { name: "ðŸ§  AI CEO Orchestrator", role: "Business Orchestrator & Goal Planner", autonomy: "Level 4 (Policy Boundary)", budget: "$20.00 / day", tools: "n8n Webhook, Pinecone Memory, Goal Decomposer, Boardroom Trigger", owner: "Supreme Owner", audit: "4,281 tasks executed | 99.4% uptime | Zero boundary violations" },
+        'AGNT-1042': { name: "ðŸ” Market Intel Agent", role: "Niche Scraper & Competitor Monitor", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Web Scraper, Google Trends API, SEO Keyword Indexer", owner: "Supreme Owner", audit: "1,420 niches scanned | 83 leads enriched | 0 consent errors" },
+        'AGNT-4019': { name: "ðŸ§ª Independent QA Agent", role: "Code Inspector & Safety Evaluator", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Playwright E2E Runner, ESLint, Sandbox Validator", owner: "Supreme Owner", audit: "340 builds tested | 100% test pass rate | Zero regression" }
     };
 
     const info = passportData[agentId] || passportData['AGNT-0001'];
     
-    showFomoToast(`🆔 PASSPORT VERIFIED [${agentId}]: ${info.name}\n• Autonomy: ${info.autonomy}\n• Daily Budget: ${info.budget}\n• Audit Status: ${info.audit}`, 'info');
+    showFomoToast(`ðŸ†” PASSPORT VERIFIED [${agentId}]: ${info.name}\nâ€¢ Autonomy: ${info.autonomy}\nâ€¢ Daily Budget: ${info.budget}\nâ€¢ Audit Status: ${info.audit}`, 'info');
 }
 
 function composeDynamicWorkforce() {
@@ -5246,7 +5247,7 @@ function composeDynamicWorkforce() {
         </div>
     `;
 
-    showFomoToast(`✨ Dynamic Workforce Swarm Compiled for: "${goal}"`, 'success');
+    showFomoToast(`âœ¨ Dynamic Workforce Swarm Compiled for: "${goal}"`, 'success');
 }
 
 function triggerAiBoardroomDebate() {
@@ -5261,32 +5262,32 @@ function triggerAiBoardroomDebate() {
 
     container.innerHTML = `
         <div style="background:rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; padding: 10px; border-radius: 4px;">
-            <strong style="color:#60a5fa;">🧠 AI CEO Perspective:</strong> Strategic growth alignment is 100%. Enterprise retainer model increases LTV by 240%.
+            <strong style="color:#60a5fa;">ðŸ§  AI CEO Perspective:</strong> Strategic growth alignment is 100%. Enterprise retainer model increases LTV by 240%.
         </div>
         <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
-            <strong style="color:#fbbf24;">💰 AI CFO Perspective:</strong> Requires allocating $150/month in Pinecone vector storage capacity. Net profit margin projected at 88.5%.
+            <strong style="color:#fbbf24;">ðŸ’° AI CFO Perspective:</strong> Requires allocating $150/month in Pinecone vector storage capacity. Net profit margin projected at 88.5%.
         </div>
         <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
-            <strong style="color:#34d399;">⚙️ AI COO Perspective:</strong> 8 Project Delivery Agents stand ready; zero bandwidth bottlenecks detected.
+            <strong style="color:#34d399;">âš™ï¸ AI COO Perspective:</strong> 8 Project Delivery Agents stand ready; zero bandwidth bottlenecks detected.
         </div>
         <div style="background:rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 10px; border-radius: 4px;">
-            <strong style="color:#f87171;">🛡️ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
+            <strong style="color:#f87171;">ðŸ›¡ï¸ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
         </div>
         <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 12px; border-radius: 8px; margin-top: 6px;">
-            <strong style="color:#c084fc; font-size:0.95rem;">👑 EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
+            <strong style="color:#c084fc; font-size:0.95rem;">ðŸ‘‘ EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
             <span style="font-size:0.82rem; color:#fff;">Approve proposal with mandatory Owner Gate for contracts exceeding $5,000.</span>
             <div style="display:flex; justify-content:flex-end; margin-top:8px;">
-                <button class="btn btn-primary-sm" onclick="showFomoToast('👑 Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    👍 Approve Recommendation
+                <button class="btn btn-primary-sm" onclick="showFomoToast('ðŸ‘‘ Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    ðŸ‘ Approve Recommendation
                 </button>
             </div>
         </div>
     `;
 
-    showFomoToast(`🗣️ Executive Strategy Debate Completed for: "${topic}"`, 'warning');
+    showFomoToast(`ðŸ—£ï¸ Executive Strategy Debate Completed for: "${topic}"`, 'warning');
 }
 
-/* 🔮 LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
+/* ðŸ”® LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
 function runDigitalTwinSimulation() {
     const input = document.getElementById('simulator-scenario-input');
     const container = document.getElementById('simulator-output-container');
@@ -5315,7 +5316,7 @@ function runDigitalTwinSimulation() {
         </div>
     `;
 
-    showFomoToast(`📊 Digital Twin Simulation Completed for: "${scenario}"`, 'success');
+    showFomoToast(`ðŸ“Š Digital Twin Simulation Completed for: "${scenario}"`, 'success');
 }
 
 function triggerControlledSelfEvolution() {
@@ -5342,24 +5343,24 @@ function triggerControlledSelfEvolution() {
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="color:#c084fc; font-weight:bold;">4. Supreme Owner Authorization:</span>
-                <button class="btn btn-primary-sm" onclick="showFomoToast('🧬 Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    🟢 Authorize Production Deployment
+                <button class="btn btn-primary-sm" onclick="showFomoToast('ðŸ§¬ Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    ðŸŸ¢ Authorize Production Deployment
                 </button>
             </div>
         </div>
     `;
 
-    showFomoToast(`🧪 Sandbox Benchmark Passed: Latency Reduced by 74%!`, 'info');
+    showFomoToast(`ðŸ§ª Sandbox Benchmark Passed: Latency Reduced by 74%!`, 'info');
 }
 
-/* 🔐 LEVEL 5 ZERO-TRUST SECURITY SOC CONTROLS */
+/* ðŸ” LEVEL 5 ZERO-TRUST SECURITY SOC CONTROLS */
 function triggerTripleKillSwitch(switchType) {
     if (switchType === 'global') {
-        showFomoToast(`🔴 GLOBAL EMERGENCY FREEZE ACTIVATED! All multi-agent swarms paused.`, 'danger');
+        showFomoToast(`ðŸ”´ GLOBAL EMERGENCY FREEZE ACTIVATED! All multi-agent swarms paused.`, 'danger');
     } else if (switchType === 'financial') {
-        showFomoToast(`💸 FINANCIAL KILL SWITCH ACTIVATED! All automated settlement rails frozen.`, 'warning');
+        showFomoToast(`ðŸ’¸ FINANCIAL KILL SWITCH ACTIVATED! All automated settlement rails frozen.`, 'warning');
     } else if (switchType === 'tool') {
-        showFomoToast(`🤖 AI TOOL GATEWAY KILL SWITCH ACTIVATED! External API/Webhook execution disabled.`, 'warning');
+        showFomoToast(`ðŸ¤– AI TOOL GATEWAY KILL SWITCH ACTIVATED! External API/Webhook execution disabled.`, 'warning');
     }
 }
 
@@ -5389,19 +5390,19 @@ function runPromptSanitizerTest() {
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="color:#c084fc; font-weight:bold;">4. Policy Gateway Action:</span>
-                <span style="color:#34d399; font-weight:bold;">✅ BLOCKED & LOGGED TO AUDIT TRAIL</span>
+                <span style="color:#34d399; font-weight:bold;">âœ… BLOCKED & LOGGED TO AUDIT TRAIL</span>
             </div>
         </div>
     `;
 
-    showFomoToast(`🛡️ Anti-Prompt Injection Filter Successfully Blocked Malicious Override Attempt!`, 'success');
+    showFomoToast(`ðŸ›¡ï¸ Anti-Prompt Injection Filter Successfully Blocked Malicious Override Attempt!`, 'success');
 }
 
 function runIinshaAuditCalculation(e) {
     e.preventDefault();
-    const company = ((document.getElementById('audit-company') ? document.getElementById('audit-company')?.value || '') : "");
-    const industry = ((document.getElementById('audit-industry') ? document.getElementById('audit-industry')?.value || '') : "");
-    const bottleneck = ((document.getElementById('audit-bottleneck') ? document.getElementById('audit-bottleneck')?.value || '') : "");
+    const company = document.getElementById('audit-company') ? (document.getElementById('audit-company').value || '') : '';
+    const industry = document.getElementById('audit-industry') ? (document.getElementById('audit-industry').value || '') : '';
+    const bottleneck = document.getElementById('audit-bottleneck') ? (document.getElementById('audit-bottleneck').value || '') : '';
 
     const resDiv = document.getElementById('iinsha-audit-results');
     if (!resDiv) return;
@@ -5416,7 +5417,7 @@ function runIinshaAuditCalculation(e) {
             
             <div style="display:flex; gap:10px; justify-content:center; margin-top:14px;">
                 <button onclick="dispatchAuditToWhatsApp('${company}', '${industry}', '${bottleneck}')" style="background:#25D366; color:#fff; border:none; padding:10px 18px; border-radius:10px; font-size:0.85rem; font-weight:bold; cursor:pointer;">
-                    📱 Dispatch Report to Owner WhatsApp (+8801629286887)
+                    ðŸ“± Dispatch Report to Owner WhatsApp (+8801629286887)
                 </button>
             </div>
         </div>
@@ -5424,7 +5425,7 @@ function runIinshaAuditCalculation(e) {
 }
 
 function dispatchAuditToWhatsApp(company, industry, bottleneck) {
-    const text = encodeURIComponent(`⚡ AI Audit Triggered for ${company} (${industry}). Bottleneck: ${bottleneck}. Automation Potential: 84%.`);
+    const text = encodeURIComponent(`âš¡ AI Audit Triggered for ${company} (${industry}). Bottleneck: ${bottleneck}. Automation Potential: 84%.`);
     window.open(`https://wa.me/8801629286887?text=${text}`, '_blank');
 }
 
@@ -5455,10 +5456,10 @@ var iinshaCatalogV4Matrix = [
         badge: 'REBRANDED BASELINE',
         color: '#3b82f6',
         services: [
-            { id: 't1_conversational', name: 'Conversational Experience Platform (CEP)', desc: 'Multichannel AI support & lead qualification with instant WhatsApp/FB sync.', priceUSD: '$499/mo', marketVal: '$1,800/mo on Upwork Pro', roi: '340% ROI in 60 days', bdt: '৳60,878/mo' },
-            { id: 't1_data_engine', name: 'Market Intelligence Data Engine (MIDE)', desc: 'Stealth web extraction, competitor monitoring & sentiment tracking.', priceUSD: '$750/mo', marketVal: '$2,500/mo on Enterprise Agency', roi: '410% ROI in 90 days', bdt: '৳91,500/mo' },
-            { id: 't1_bpos', name: 'Business Process Operating System (BPOS)', desc: 'End-to-end n8n workflow orchestrator replacing manual operations.', priceUSD: '$1,200/mo', marketVal: '$4,000/mo on Fiverr Enterprise', roi: '520% ROI in 30 days', bdt: '৳146,400/mo' },
-            { id: 't1_decision_intel', name: 'Decision Intelligence Dashboard (DID)', desc: 'Predictive revenue forecasting & real-time executive telemetry.', priceUSD: '$899/mo', marketVal: '$3,200/mo SaaS Retainer', roi: '290% ROI in 45 days', bdt: '৳109,678/mo' }
+            { id: 't1_conversational', name: 'Conversational Experience Platform (CEP)', desc: 'Multichannel AI support & lead qualification with instant WhatsApp/FB sync.', priceUSD: '$499/mo', marketVal: '$1,800/mo on Upwork Pro', roi: '340% ROI in 60 days', bdt: 'à§³60,878/mo' },
+            { id: 't1_data_engine', name: 'Market Intelligence Data Engine (MIDE)', desc: 'Stealth web extraction, competitor monitoring & sentiment tracking.', priceUSD: '$750/mo', marketVal: '$2,500/mo on Enterprise Agency', roi: '410% ROI in 90 days', bdt: 'à§³91,500/mo' },
+            { id: 't1_bpos', name: 'Business Process Operating System (BPOS)', desc: 'End-to-end n8n workflow orchestrator replacing manual operations.', priceUSD: '$1,200/mo', marketVal: '$4,000/mo on Fiverr Enterprise', roi: '520% ROI in 30 days', bdt: 'à§³146,400/mo' },
+            { id: 't1_decision_intel', name: 'Decision Intelligence Dashboard (DID)', desc: 'Predictive revenue forecasting & real-time executive telemetry.', priceUSD: '$899/mo', marketVal: '$3,200/mo SaaS Retainer', roi: '290% ROI in 45 days', bdt: 'à§³109,678/mo' }
         ]
     },
     {
@@ -5466,10 +5467,10 @@ var iinshaCatalogV4Matrix = [
         badge: 'ENTERPRISE SWARM',
         color: '#8b5cf6',
         services: [
-            { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 1.5 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: '৳305,000/mo' },
-            { id: 't2_sales_engine', name: 'Autonomous Sales & Deal Engine', desc: 'HUNTER + NEGOTIATOR swarm discovering ICP targets, drafting SoWs & handling objections.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Sales Agency', roi: '850% ROI in 30 days', bdt: '৳219,600/mo' },
-            { id: 't2_customer_intel', name: 'Omnichannel Customer Intelligence Suite', desc: 'Unified memory graph across WhatsApp, Email, FB & web lead interactions.', priceUSD: '$1,200/mo', marketVal: '$4,200/mo HubSpot/Salesforce AI', roi: '390% ROI in 60 days', bdt: '৳146,400/mo' },
-            { id: 't2_finance_os', name: 'Financial Yield & CAC Optimization OS', desc: 'TREASURER agent monitoring LTV, CAC, affiliate payouts & daily profit metrics.', priceUSD: '$1,500/mo', marketVal: '$5,000/mo FinTech Agency', roi: '450% ROI in 45 days', bdt: '৳183,000/mo' }
+            { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 1.5 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: 'à§³305,000/mo' },
+            { id: 't2_sales_engine', name: 'Autonomous Sales & Deal Engine', desc: 'HUNTER + NEGOTIATOR swarm discovering ICP targets, drafting SoWs & handling objections.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Sales Agency', roi: '850% ROI in 30 days', bdt: 'à§³219,600/mo' },
+            { id: 't2_customer_intel', name: 'Omnichannel Customer Intelligence Suite', desc: 'Unified memory graph across WhatsApp, Email, FB & web lead interactions.', priceUSD: '$1,200/mo', marketVal: '$4,200/mo HubSpot/Salesforce AI', roi: '390% ROI in 60 days', bdt: 'à§³146,400/mo' },
+            { id: 't2_finance_os', name: 'Financial Yield & CAC Optimization OS', desc: 'TREASURER agent monitoring LTV, CAC, affiliate payouts & daily profit metrics.', priceUSD: '$1,500/mo', marketVal: '$5,000/mo FinTech Agency', roi: '450% ROI in 45 days', bdt: 'à§³183,000/mo' }
         ]
     },
     {
@@ -5477,10 +5478,10 @@ var iinshaCatalogV4Matrix = [
         badge: 'VERTICAL TAILORED',
         color: '#ec4899',
         services: [
-            { id: 't3_ecom_os', name: 'E-Commerce Revenue Operating System', desc: 'Autonomous abandoned cart recovery, dynamic pricing & AI product catalog updates.', priceUSD: '$1,999/mo', marketVal: '$6,500/mo ECom Growth Agency', roi: '720% ROI in 30 days', bdt: '৳243,878/mo' },
-            { id: 't3_realestate_engine', name: 'Real Estate Deal Flow & Property Match Engine', desc: 'Instant WhatsApp virtual tours, buyer qualification & automated CRM pipeline.', priceUSD: '$1,499/mo', marketVal: '$5,000/mo PropTech Retainer', roi: '580% ROI in 60 days', bdt: '৳182,878/mo' },
-            { id: 't3_healthcare_os', name: 'Healthcare & Clinical Automation OS', desc: 'HIPAA/GDPR compliant appointment scheduling, patient intake & record sync.', priceUSD: '$2,999/mo', marketVal: '$9,500/mo MedTech Consulting', roi: '490% ROI in 90 days', bdt: '৳365,878/mo' },
-            { id: 't3_saas_engine', name: 'SaaS Growth & Churn Prevention Engine', desc: 'Product usage monitoring, automated re-engagement triggers & retention flows.', priceUSD: '$2,200/mo', marketVal: '$7,000/mo B2B SaaS Agency', roi: '610% ROI in 45 days', bdt: '৳268,400/mo' }
+            { id: 't3_ecom_os', name: 'E-Commerce Revenue Operating System', desc: 'Autonomous abandoned cart recovery, dynamic pricing & AI product catalog updates.', priceUSD: '$1,999/mo', marketVal: '$6,500/mo ECom Growth Agency', roi: '720% ROI in 30 days', bdt: 'à§³243,878/mo' },
+            { id: 't3_realestate_engine', name: 'Real Estate Deal Flow & Property Match Engine', desc: 'Instant WhatsApp virtual tours, buyer qualification & automated CRM pipeline.', priceUSD: '$1,499/mo', marketVal: '$5,000/mo PropTech Retainer', roi: '580% ROI in 60 days', bdt: 'à§³182,878/mo' },
+            { id: 't3_healthcare_os', name: 'Healthcare & Clinical Automation OS', desc: 'HIPAA/GDPR compliant appointment scheduling, patient intake & record sync.', priceUSD: '$2,999/mo', marketVal: '$9,500/mo MedTech Consulting', roi: '490% ROI in 90 days', bdt: 'à§³365,878/mo' },
+            { id: 't3_saas_engine', name: 'SaaS Growth & Churn Prevention Engine', desc: 'Product usage monitoring, automated re-engagement triggers & retention flows.', priceUSD: '$2,200/mo', marketVal: '$7,000/mo B2B SaaS Agency', roi: '610% ROI in 45 days', bdt: 'à§³268,400/mo' }
         ]
     },
     {
@@ -5488,9 +5489,9 @@ var iinshaCatalogV4Matrix = [
         badge: 'CLOUD & VECTOR',
         color: '#10b981',
         services: [
-            { id: 't4_self_healing', name: 'Self-Healing Infrastructure Guard (GUARDIAN)', desc: 'Runtime error detection, automated staging patches & zero-downtime hot-reloads.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Managed DevOps Rate', roi: '99.99% Uptime Guarantee', bdt: '৳219,600/mo' },
-            { id: 't4_rag_brain', name: 'Enterprise RAG Knowledge Base & Vector Brain', desc: 'Supabase pgvector database storing company knowledge, client docs & tech specs.', priceUSD: '$2,500 setup', marketVal: '$8,000/mo Enterprise AI Brain', roi: '100% Data Sovereignty', bdt: '৳305,000 setup' },
-            { id: 't4_dataform_engine', name: 'Autonomous Data Pipeline Engine', desc: 'BigQuery, dbt & Dataform data transformations with automated quality audits.', priceUSD: '$2,000/mo', marketVal: '$6,500/mo Data Engineering', roi: '430% ROI in 60 days', bdt: '৳244,000/mo' }
+            { id: 't4_self_healing', name: 'Self-Healing Infrastructure Guard (GUARDIAN)', desc: 'Runtime error detection, automated staging patches & zero-downtime hot-reloads.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Managed DevOps Rate', roi: '99.99% Uptime Guarantee', bdt: 'à§³219,600/mo' },
+            { id: 't4_rag_brain', name: 'Enterprise RAG Knowledge Base & Vector Brain', desc: 'Supabase pgvector database storing company knowledge, client docs & tech specs.', priceUSD: '$2,500 setup', marketVal: '$8,000/mo Enterprise AI Brain', roi: 'Full Private Data Sovereignty', bdt: 'à§³305,000 setup' },
+            { id: 't4_dataform_engine', name: 'Autonomous Data Pipeline Engine', desc: 'BigQuery, dbt & Dataform data transformations with automated quality audits.', priceUSD: '$2,000/mo', marketVal: '$6,500/mo Data Engineering', roi: '430% ROI in 60 days', bdt: 'à§³244,000/mo' }
         ]
     },
     {
@@ -5498,7 +5499,7 @@ var iinshaCatalogV4Matrix = [
         badge: 'ULTIMATE SUITE',
         color: '#f59e0b',
         services: [
-            { id: 't5_full_aibos', name: 'Full AI Business Operating System (AI-BOS 13-Agent Swarm)', desc: 'Complete 13-agent hierarchy, n8n mesh, Supabase vector brain & WhatsApp dispatch.', priceUSD: '$4,999/mo', marketVal: '$25,000/mo Enterprise Retainer', roi: '1,200% ROI in 90 days', bdt: '৳609,878/mo' }
+            { id: 't5_full_aibos', name: 'Full AI Business Operating System (AI-BOS 13-Agent Swarm)', desc: 'Complete 13-agent hierarchy, n8n mesh, Supabase vector brain & WhatsApp dispatch.', priceUSD: '$4,999/mo', marketVal: '$25,000/mo Enterprise Retainer', roi: '1,200% ROI in 90 days', bdt: 'à§³609,878/mo' }
         ]
     }
 ];
@@ -5512,11 +5513,11 @@ var iinshaInternationalServiceCatalog = [
         color: '#3b82f6',
         description: 'Specialized autonomous AI agents and multi-agent swarms with human-in-the-loop governance.',
         services: [
-            { id: 'cat1_exec_assistant', name: 'AI Executive Assistant', desc: 'Calendar scheduling, email prioritization, meeting summaries, and daily task orchestration.', priceUSD: '$1,250', marketVal: '$4,000/mo Human EA', roi: 'Save 15+ hrs/week', bdt: '৳1,52,500' },
-            { id: 'cat1_support_agent', name: 'AI Customer Support Agent', desc: 'Citation-based omnichannel support with escalation rules and conversation analytics.', priceUSD: '$2,500', marketVal: '$6,000/mo Support Team', roi: '70% Ticket Deflection', bdt: '৳3,05,000' },
-            { id: 'cat1_sales_agent', name: 'AI Sales & Lead Qualification Agent', desc: 'Instant website lead engagement, ICP scoring, objection handling, and CRM sync.', priceUSD: '$3,500', marketVal: '$8,000/mo Sales SDR', roi: '3x Lead Velocity', bdt: '৳4,27,000' },
-            { id: 'cat1_rag_agent', name: 'AI Knowledge Base / RAG Agent', desc: 'PDF, doc, and database ingestion with accurate vector retrieval and verified citations.', priceUSD: '$2,500', marketVal: '$7,500/mo Enterprise AI', roi: '100% Data Sovereignty', bdt: '৳3,05,000' },
-            { id: 'cat1_agent_swarm', name: 'Multi-Agent Swarm Operations System', desc: '3 to 8 coordinated agents with routing, approvals, and self-hosted n8n deployment.', priceUSD: 'From $12,000', marketVal: '$35,000/mo Consultancy', roi: '1,200% ROI in 90 days', bdt: 'From ৳14,64,000' }
+            { id: 'cat1_exec_assistant', name: 'AI Executive Assistant', desc: 'Calendar scheduling, email prioritization, meeting summaries, and daily task orchestration.', priceUSD: '$1,250', marketVal: '$4,000/mo Human EA', roi: 'Save 15+ hrs/week', bdt: 'à§³1,52,500' },
+            { id: 'cat1_support_agent', name: 'AI Customer Support Agent', desc: 'Citation-based omnichannel support with escalation rules and conversation analytics.', priceUSD: '$2,500', marketVal: '$6,000/mo Support Team', roi: '70% Ticket Deflection', bdt: 'à§³3,05,000' },
+            { id: 'cat1_sales_agent', name: 'AI Sales & Lead Qualification Agent', desc: 'Instant website lead engagement, ICP scoring, objection handling, and CRM sync.', priceUSD: '$3,500', marketVal: '$8,000/mo Sales SDR', roi: '3x Lead Velocity', bdt: 'à§³4,27,000' },
+            { id: 'cat1_rag_agent', name: 'AI Knowledge Base / RAG Agent', desc: 'PDF, doc, and database ingestion with accurate vector retrieval and verified citations.', priceUSD: '$2,500', marketVal: '$7,500/mo Enterprise AI', roi: 'Full Private Data Sovereignty', bdt: 'à§³3,05,000' },
+            { id: 'cat1_agent_swarm', name: 'Multi-Agent Swarm Operations System', desc: '3 to 8 coordinated agents with routing, approvals, and self-hosted n8n deployment.', priceUSD: 'From $12,000', marketVal: '$35,000/mo Consultancy', roi: '1,200% ROI in 90 days', bdt: 'From à§³14,64,000' }
         ]
     },
     {
@@ -5525,10 +5526,10 @@ var iinshaInternationalServiceCatalog = [
         color: '#8b5cf6',
         description: 'End-to-end process automation connecting CRMs, emails, payments, and custom APIs.',
         services: [
-            { id: 'cat2_starter_auto', name: 'Starter Automation Package', desc: '1-2 workflows, up to 3 integrations, basic AI reasoning step, and full documentation.', priceUSD: '$1,250', marketVal: '$3,500 Agency Rate', roi: '10-Day Rapid Delivery', bdt: '৳1,52,500' },
-            { id: 'cat2_growth_auto', name: 'Growth Automation System', desc: '3-6 interconnected workflows across CRM, Email, and WhatsApp with error alerts.', priceUSD: '$3,500', marketVal: '$10,000/mo SaaS Ops', roi: '520% ROI in 30 days', bdt: '৳4,27,000' },
-            { id: 'cat2_n8n_selfhosted', name: 'Self-Hosted n8n Enterprise Setup', desc: 'Docker/VPS deployment, SSL, database persistence, queue management, and backups.', priceUSD: '$1,500', marketVal: '$5,000 DevOps Setup', roi: 'Zero Cloud Lock-in', bdt: '৳1,83,000' },
-            { id: 'cat2_api_integration', name: 'Custom API & Webhook Integration', desc: 'REST, GraphQL, and webhook connectors uniting legacy software with modern AI.', priceUSD: '$999', marketVal: '$3,000 Custom Dev', roi: 'Seamless Connectivity', bdt: '৳1,21,878' }
+            { id: 'cat2_starter_auto', name: 'Starter Automation Package', desc: '1-2 workflows, up to 3 integrations, basic AI reasoning step, and full documentation.', priceUSD: '$1,250', marketVal: '$3,500 Agency Rate', roi: '10-Day Rapid Delivery', bdt: 'à§³1,52,500' },
+            { id: 'cat2_growth_auto', name: 'Growth Automation System', desc: '3-6 interconnected workflows across CRM, Email, and WhatsApp with error alerts.', priceUSD: '$3,500', marketVal: '$10,000/mo SaaS Ops', roi: '520% ROI in 30 days', bdt: 'à§³4,27,000' },
+            { id: 'cat2_n8n_selfhosted', name: 'Self-Hosted n8n Enterprise Setup', desc: 'Docker/VPS deployment, SSL, database persistence, queue management, and backups.', priceUSD: '$1,500', marketVal: '$5,000 DevOps Setup', roi: 'Zero Cloud Lock-in', bdt: 'à§³1,83,000' },
+            { id: 'cat2_api_integration', name: 'Custom API & Webhook Integration', desc: 'REST, GraphQL, and webhook connectors uniting legacy software with modern AI.', priceUSD: '$999', marketVal: '$3,000 Custom Dev', roi: 'Seamless Connectivity', bdt: 'à§³1,21,878' }
         ]
     },
     {
@@ -5537,9 +5538,9 @@ var iinshaInternationalServiceCatalog = [
         color: '#10b981',
         description: 'Ethical, robots.txt and applicable law compliant web extraction and scheduled pipelines.',
         services: [
-            { id: 'cat3_data_pipeline', name: 'Data & Browser Automation System', desc: 'Ethical web extraction, scheduled pipelines, database exports (PostgreSQL/BigQuery/Airtable).', priceUSD: 'From $2,500', marketVal: '$7,000 Data Agency', roi: '100% Structured Data', bdt: 'From ৳3,05,000' },
-            { id: 'cat3_price_monitor', name: 'E-Commerce & Competitor Monitoring', desc: 'Automated price tracking, catalog changes, website change alerts, and weekly digests.', priceUSD: '$1,800', marketVal: '$5,000 SaaS Tool', roi: 'Real-time Market Intel', bdt: '৳2,19,600' },
-            { id: 'cat3_b2b_enrich', name: 'B2B Lead Research & Enrichment', desc: 'Target company discovery, decision-maker data enrichment, and verification pipelines.', priceUSD: '$2,200', marketVal: '$6,000 Growth Agency', roi: 'Verified Contact Data', bdt: '৳2,68,400' }
+            { id: 'cat3_data_pipeline', name: 'Data & Browser Automation System', desc: 'Ethical web extraction, scheduled pipelines, database exports (PostgreSQL/BigQuery/Airtable).', priceUSD: 'From $2,500', marketVal: '$7,000 Data Agency', roi: '100% Structured Data', bdt: 'From à§³3,05,000' },
+            { id: 'cat3_price_monitor', name: 'E-Commerce & Competitor Monitoring', desc: 'Automated price tracking, catalog changes, website change alerts, and weekly digests.', priceUSD: '$1,800', marketVal: '$5,000 SaaS Tool', roi: 'Real-time Market Intel', bdt: 'à§³2,19,600' },
+            { id: 'cat3_b2b_enrich', name: 'B2B Lead Research & Enrichment', desc: 'Target company discovery, decision-maker data enrichment, and verification pipelines.', priceUSD: '$2,200', marketVal: '$6,000 Growth Agency', roi: 'Verified Contact Data', bdt: 'à§³2,68,400' }
         ]
     },
     {
@@ -5548,8 +5549,8 @@ var iinshaInternationalServiceCatalog = [
         color: '#ec4899',
         description: 'Compliant document processing, table extraction, and accounting/CRM synchronization.',
         services: [
-            { id: 'cat4_doc_intel', name: 'AI Document Intelligence Engine', desc: 'Invoice, receipt, contract, and resume OCR with structured JSON extraction & CRM sync.', priceUSD: 'From $2,500', marketVal: '$8,000 Enterprise OCR', roi: '90% Processing Time Cut', bdt: 'From ৳3,05,000' },
-            { id: 'cat4_clause_analysis', name: 'Contract Clause & ID Extraction', desc: 'Automated legal clause analysis, identity document verification, and audit trails.', priceUSD: '$3,200', marketVal: '$9,000 LegalTech App', roi: '100% Audit Readiness', bdt: '৳3,90,400' }
+            { id: 'cat4_doc_intel', name: 'AI Document Intelligence Engine', desc: 'Invoice, receipt, contract, and resume OCR with structured JSON extraction & CRM sync.', priceUSD: 'From $2,500', marketVal: '$8,000 Enterprise OCR', roi: '90% Processing Time Cut', bdt: 'From à§³3,05,000' },
+            { id: 'cat4_clause_analysis', name: 'Contract Clause & ID Extraction', desc: 'Automated legal clause analysis, identity document verification, and audit trails.', priceUSD: '$3,200', marketVal: '$9,000 LegalTech App', roi: '100% Audit Readiness', bdt: 'à§³3,90,400' }
         ]
     },
     {
@@ -5558,10 +5559,10 @@ var iinshaInternationalServiceCatalog = [
         color: '#f59e0b',
         description: 'Custom AI web applications, SaaS MVPs, internal tools, and ongoing SLA retainers.',
         services: [
-            { id: 'cat5_audit', name: 'Discovery & Architecture Audit', desc: '60-minute consultation, business process audit, automation roadmap, & Mermaid diagram.', priceUSD: '$149', marketVal: '$1,000 Advisory Rate', roi: '2-3 Day Turnaround', bdt: '৳18,178' },
-            { id: 'cat5_ai_app', name: 'Custom AI Web App / SaaS MVP', desc: 'Full-stack web application with authentication, LLM integration, user dashboard & admin CMS.', priceUSD: 'From $6,000', marketVal: '$20,000 SaaS Agency', roi: 'Production Ready Code', bdt: 'From ৳7,32,000' },
-            { id: 'cat5_managed_care', name: 'Managed AI Care & Retainer', desc: 'Ongoing monitoring, bug fixes, model updates, workflow tweaks, and monthly reports.', priceUSD: '$750/mo', marketVal: '$2,500/mo DevOps', roi: 'SLA Guaranteed Health', bdt: '৳91,500/mo' },
-            { id: 'cat5_enterprise_retainer', name: 'Enterprise Operations Retainer', desc: 'Custom SLA, security reviews, multi-system governance, and continuous agent upgrades.', priceUSD: 'From $3,500/mo', marketVal: '$12,000/mo Retainer', roi: 'Dedicated Engineering', bdt: 'From ৳4,27,000/mo' }
+            { id: 'cat5_audit', name: 'Discovery & Architecture Audit', desc: '60-minute consultation, business process audit, automation roadmap, & Mermaid diagram.', priceUSD: '$149', marketVal: '$1,000 Advisory Rate', roi: '2-3 Day Turnaround', bdt: 'à§³18,178' },
+            { id: 'cat5_ai_app', name: 'Custom AI Web App / SaaS MVP', desc: 'Full-stack web application with authentication, LLM integration, user dashboard & admin CMS.', priceUSD: 'From $6,000', marketVal: '$20,000 SaaS Agency', roi: 'Production Ready Code', bdt: 'From à§³7,32,000' },
+            { id: 'cat5_managed_care', name: 'Managed AI Care & Retainer', desc: 'Ongoing monitoring, bug fixes, model updates, workflow tweaks, and monthly reports.', priceUSD: '$750/mo', marketVal: '$2,500/mo DevOps', roi: 'SLA Guaranteed Health', bdt: 'à§³91,500/mo' },
+            { id: 'cat5_enterprise_retainer', name: 'Enterprise Operations Retainer', desc: 'Custom SLA, security reviews, multi-system governance, and continuous agent upgrades.', priceUSD: 'From $3,500/mo', marketVal: '$12,000/mo Retainer', roi: 'Dedicated Engineering', bdt: 'From à§³4,27,000/mo' }
         ]
     }
 ];
@@ -5583,10 +5584,10 @@ function renderInternationalCatalogStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>💎 INTERNATIONAL SERVICE CATALOG & PRICING MATRIX</span>
+                        <span>ðŸ’Ž INTERNATIONAL SERVICE CATALOG & PRICING MATRIX</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:#34d399; border:1px solid #10b981; padding:3px 10px; border-radius:12px; font-weight:bold;">2026 MARKET VERIFIED</span>
                     </h4>
-                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">5 Clean Outcome-Based Categories • Transparent Scope • Compliant Standards</p>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">5 Clean Outcome-Based Categories â€¢ Transparent Scope â€¢ Compliant Standards</p>
                 </div>
             </div>
 
@@ -5627,7 +5628,7 @@ window.renderInternationalCatalogStudio = renderInternationalCatalogStudio;
 
 
 /* ============================================================
-   IINSHA AI OS v16.0 — ENTERPRISE AI-BOS & DIGITAL WORKFORCE OS
+   IINSHA AI OS v16.0 â€” ENTERPRISE AI-BOS & DIGITAL WORKFORCE OS
    "We turn manual business operations into measurable AI-powered systems."
    ============================================================ */
 
@@ -5639,10 +5640,10 @@ var iinshaEnterpriseDivisions = [
         color: '#3b82f6',
         tagline: 'End-to-end process automation connecting CRMs, emails, payments, and legacy systems.',
         packages: [
-            { name: 'Automation Starter', priceUSD: '$149', delivery: '2-3 Days', desc: 'Single process audit & quick n8n workflow setup.', bdt: '৳18,178' },
-            { name: 'Automation Pro', priceUSD: '$499', delivery: '5-7 Days', desc: 'Multi-step workflow, CRM sync, email alerts & webhooks.', bdt: '৳60,878' },
-            { name: 'Business Automation', priceUSD: '$999', delivery: '10-14 Days', desc: 'Department-wide automation, WhatsApp API & database sync.', bdt: '৳1,21,878' },
-            { name: 'Enterprise Automation', priceUSD: 'From $2,500', delivery: '2-4 Weeks', desc: 'Custom n8n self-hosted mesh, failover retry & zero lock-in.', bdt: 'From ৳3,05,000' }
+            { name: 'Automation Starter', priceUSD: '$149', delivery: '2-3 Days', desc: 'Single process audit & quick n8n workflow setup.', bdt: 'à§³18,178' },
+            { name: 'Automation Pro', priceUSD: '$499', delivery: '5-7 Days', desc: 'Multi-step workflow, CRM sync, email alerts & webhooks.', bdt: 'à§³60,878' },
+            { name: 'Business Automation', priceUSD: '$999', delivery: '10-14 Days', desc: 'Department-wide automation, WhatsApp API & database sync.', bdt: 'à§³1,21,878' },
+            { name: 'Enterprise Automation', priceUSD: 'From $2,500', delivery: '2-4 Weeks', desc: 'Custom n8n self-hosted mesh, failover retry & zero lock-in.', bdt: 'From à§³3,05,000' }
         ]
     },
     {
@@ -5652,10 +5653,10 @@ var iinshaEnterpriseDivisions = [
         color: '#8b5cf6',
         tagline: 'Specialized autonomous AI agents working 24/7 across Sales, Support, Research, and Operations.',
         packages: [
-            { name: 'Single AI Agent', priceUSD: '$299 – $750', delivery: '5-7 Days', desc: '1 Production AI Agent (SDR, Support, or Research) with tool access.', bdt: '৳36,478 – ৳91,500' },
-            { name: 'AI Agent System', priceUSD: '$999 – $2,500', delivery: '2 Weeks', desc: 'Coordinated agent pair (e.g. Sales + CRM Update) with human approval.', bdt: '৳1,21,878 – ৳3,05,000' },
-            { name: 'Multi-Agent Workforce', priceUSD: '$2,500 – $7,500', delivery: '3-4 Weeks', desc: '3 to 5 Agent Swarms with RAG knowledge base & routing.', bdt: '৳3,05,000 – ৳9,15,000' },
-            { name: 'Enterprise AI Workforce', priceUSD: 'From $7,500', delivery: '6-10 Weeks', desc: 'Complete autonomous digital workforce with custom SLAs.', bdt: 'From ৳9,15,000' }
+            { name: 'Single AI Agent', priceUSD: '$299 â€“ $750', delivery: '5-7 Days', desc: '1 Production AI Agent (SDR, Support, or Research) with tool access.', bdt: 'à§³36,478 â€“ à§³91,500' },
+            { name: 'AI Agent System', priceUSD: '$999 â€“ $2,500', delivery: '2 Weeks', desc: 'Coordinated agent pair (e.g. Sales + CRM Update) with human approval.', bdt: 'à§³1,21,878 â€“ à§³3,05,000' },
+            { name: 'Multi-Agent Workforce', priceUSD: '$2,500 â€“ $7,500', delivery: '3-4 Weeks', desc: '3 to 5 Agent Swarms with RAG knowledge base & routing.', bdt: 'à§³3,05,000 â€“ à§³9,15,000' },
+            { name: 'Enterprise AI Workforce', priceUSD: 'From $7,500', delivery: '6-10 Weeks', desc: 'Complete autonomous digital workforce with custom SLAs.', bdt: 'From à§³9,15,000' }
         ]
     },
     {
@@ -5665,9 +5666,9 @@ var iinshaEnterpriseDivisions = [
         color: '#ec4899',
         tagline: 'Centralized AI Command Center managing sales, support, marketing, finance, and internal ops.',
         packages: [
-            { name: 'AI-BOS Essential Setup', priceUSD: '$2,500', delivery: '3 Weeks', desc: 'Core Command Center, CRM pipeline, and 2 AI Division Agents.', bdt: '৳3,05,000' },
-            { name: 'AI-BOS Growth Suite', priceUSD: '$5,000', delivery: '4-6 Weeks', desc: 'Full Executive Command Center, 5 Agent Swarms, n8n mesh & WhatsApp.', bdt: '৳6,10,000' },
-            { name: 'Enterprise AI-BOS Master', priceUSD: 'From $10,000', delivery: '6-12 Weeks', desc: 'Multi-department AI OS, private deployment & 24/7 monitoring.', bdt: 'From ৳12,20,000' }
+            { name: 'AI-BOS Essential Setup', priceUSD: '$2,500', delivery: '3 Weeks', desc: 'Core Command Center, CRM pipeline, and 2 AI Division Agents.', bdt: 'à§³3,05,000' },
+            { name: 'AI-BOS Growth Suite', priceUSD: '$5,000', delivery: '4-6 Weeks', desc: 'Full Executive Command Center, 5 Agent Swarms, n8n mesh & WhatsApp.', bdt: 'à§³6,10,000' },
+            { name: 'Enterprise AI-BOS Master', priceUSD: 'From $10,000', delivery: '6-12 Weeks', desc: 'Multi-department AI OS, private deployment & 24/7 monitoring.', bdt: 'From à§³12,20,000' }
         ]
     },
     {
@@ -5677,10 +5678,10 @@ var iinshaEnterpriseDivisions = [
         color: '#10b981',
         tagline: 'High-speed business applications, SaaS MVPs, admin portals, and custom CRM software.',
         packages: [
-            { name: 'Business Website / Portal', priceUSD: '$300 – $750', delivery: '5-7 Days', desc: 'Modern responsive glassmorphic site with AI Copilot & SEO.', bdt: '৳36,600 – ৳91,500' },
-            { name: 'Custom Web Application', priceUSD: '$1,500', delivery: '2-3 Weeks', desc: 'Interactive web app with database, auth, and user dashboards.', bdt: '৳1,83,000' },
-            { name: 'SaaS MVP / Micro SaaS', priceUSD: '$2,500 – $5,000', delivery: '3-6 Weeks', desc: 'Production SaaS with multi-tenancy, Stripe billing & admin CMS.', bdt: '৳3,05,000 – ৳6,10,000' },
-            { name: 'Enterprise Software System', priceUSD: 'From $10,000', delivery: '8-12 Weeks', desc: 'Tailored ERP/CRM software with dedicated architecture.', bdt: 'From ৳12,20,000' }
+            { name: 'Business Website / Portal', priceUSD: '$300 â€“ $750', delivery: '5-7 Days', desc: 'Modern responsive glassmorphic site with AI Copilot & SEO.', bdt: 'à§³36,600 â€“ à§³91,500' },
+            { name: 'Custom Web Application', priceUSD: '$1,500', delivery: '2-3 Weeks', desc: 'Interactive web app with database, auth, and user dashboards.', bdt: 'à§³1,83,000' },
+            { name: 'SaaS MVP / Micro SaaS', priceUSD: '$2,500 â€“ $5,000', delivery: '3-6 Weeks', desc: 'Production SaaS with multi-tenancy, Stripe billing & admin CMS.', bdt: 'à§³3,05,000 â€“ à§³6,10,000' },
+            { name: 'Enterprise Software System', priceUSD: 'From $10,000', delivery: '8-12 Weeks', desc: 'Tailored ERP/CRM software with dedicated architecture.', bdt: 'From à§³12,20,000' }
         ]
     },
     {
@@ -5690,9 +5691,9 @@ var iinshaEnterpriseDivisions = [
         color: '#f59e0b',
         tagline: 'We build it. We monitor it. We optimize it. Continuous 24/7 reliability and performance SLA.',
         packages: [
-            { name: 'Care Retainer', priceUSD: '$750 / mo', delivery: 'Ongoing', desc: '24/7 uptime monitoring, bug fixes, backup validation & monthly report.', bdt: '৳91,500 / mo' },
-            { name: 'Growth Retainer', priceUSD: '$1,500 / mo', delivery: 'Ongoing', desc: 'Priority support, prompt tuning, model upgrades & workflow expansion.', bdt: '৳1,83,000 / mo' },
-            { name: 'Command Center Retainer', priceUSD: '$3,500+ / mo', delivery: 'Ongoing', desc: 'Dedicated solution architect, custom SLA & zero-downtime hotfixes.', bdt: '৳4,27,000+ / mo' }
+            { name: 'Care Retainer', priceUSD: '$750 / mo', delivery: 'Ongoing', desc: '24/7 uptime monitoring, bug fixes, backup validation & monthly report.', bdt: 'à§³91,500 / mo' },
+            { name: 'Growth Retainer', priceUSD: '$1,500 / mo', delivery: 'Ongoing', desc: 'Priority support, prompt tuning, model upgrades & workflow expansion.', bdt: 'à§³1,83,000 / mo' },
+            { name: 'Command Center Retainer', priceUSD: '$3,500+ / mo', delivery: 'Ongoing', desc: 'Dedicated solution architect, custom SLA & zero-downtime hotfixes.', bdt: 'à§³4,27,000+ / mo' }
         ]
     }
 ];
@@ -5714,10 +5715,10 @@ function renderEnterpriseArchitectureStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>👑 IINSHA AI OS — 5-DIVISION ENTERPRISE STUDIO</span>
+                        <span>ðŸ‘‘ IINSHA AI OS â€” 5-DIVISION ENTERPRISE STUDIO</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:#34d399; border:1px solid #10b981; padding:3px 10px; border-radius:12px; font-weight:bold;">REVENUE ENGINE ACTIVE</span>
                     </h4>
-                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Automation • AI Workforce • AI-BOS • Software Engineering • Managed AI Operations</p>
+                    <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Automation â€¢ AI Workforce â€¢ AI-BOS â€¢ Software Engineering â€¢ Managed AI Operations</p>
                 </div>
             </div>
 
@@ -5821,7 +5822,7 @@ function initPresalesAssistant() {
             presalesOutput.style.display = 'block';
             presalesOutput.innerHTML = `
                 <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">✨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">âœ¨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
                     <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
                     <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
                 </div>
@@ -5890,11 +5891,11 @@ function openIinshaBusinessAuditModal() {
 
     auditModal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
-            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
             
             <div style="text-align:center; margin-bottom:24px;">
                 <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
-                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">⚡ Instant AI Business Health Check</h3>
+                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">âš¡ Instant AI Business Health Check</h3>
                 <p style="margin:0; font-size:0.85rem; color:var(--text-muted);">Discover your operational automation bottlenecks in 30 seconds</p>
             </div>
 
@@ -5927,7 +5928,7 @@ function openIinshaBusinessAuditModal() {
                 </div>
 
                 <button type="submit" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; box-shadow:0 8px 25px rgba(59,130,246,0.4);">
-                    🚀 Generate Diagnostic Report & Automation Plan
+                    ðŸš€ Generate Diagnostic Report & Automation Plan
                 </button>
             </form>
 
@@ -6021,7 +6022,7 @@ function initPresalesAssistant() {
             presalesOutput.style.display = 'block';
             presalesOutput.innerHTML = `
                 <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">✨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">âœ¨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
                     <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
                     <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
                 </div>
@@ -6101,11 +6102,11 @@ function openIinshaBusinessAuditModal() {
 
     auditModal.innerHTML = `
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
-            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
             
             <div style="text-align:center; margin-bottom:24px;">
                 <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">GEMINI 3.6 FLASH DIAGNOSTIC ENGINE</span>
-                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">⚡ Instant AI Business Health Check</h3>
+                <h3 style="margin:10px 0 6px 0; font-size:1.6rem; color:#fff;">âš¡ Instant AI Business Health Check</h3>
                 <p style="margin:0; font-size:0.85rem; color:var(--text-muted);">Discover your operational automation bottlenecks in 30 seconds</p>
             </div>
 
@@ -6138,7 +6139,7 @@ function openIinshaBusinessAuditModal() {
                 </div>
 
                 <button type="submit" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; box-shadow:0 8px 25px rgba(59,130,246,0.4);">
-                    🚀 Generate Diagnostic Report & Automation Plan
+                    ðŸš€ Generate Diagnostic Report & Automation Plan
                 </button>
             </form>
 
@@ -6169,7 +6170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================================
-   🔮 HIGH-PERFORMANCE 3D INTERACTIVE AI BRAIN CANVAS ENGINE
+   ðŸ”® HIGH-PERFORMANCE 3D INTERACTIVE AI BRAIN CANVAS ENGINE
    ============================================================ */
 function init3dParticleCanvasEngine() {
     const canvas = document.getElementById('particleCanvas');
@@ -6315,7 +6316,7 @@ window.init3dParticleCanvasEngine = init3dParticleCanvasEngine;
 
 
 /* ============================================================
-   🤝 AUTHENTIC AFFILIATE EARNINGS CALCULATOR ENGINE
+   ðŸ¤ AUTHENTIC AFFILIATE EARNINGS CALCULATOR ENGINE
    ============================================================ */
 function updateAffiliateCalculator() {
     const clientsSlider = document.getElementById('calc-clients-slider');
@@ -6352,7 +6353,7 @@ function updateAffiliateCalculator() {
 window.updateAffiliateCalculator = updateAffiliateCalculator;
 
 /* ============================================================
-   🚀 IINSHA AI OS vNext — MASTER MISSION ENGINE & TOOL REGISTRY
+   ðŸš€ IINSHA AI OS vNext â€” MASTER MISSION ENGINE & TOOL REGISTRY
    ============================================================ */
 
 const AGENT_TOOL_REGISTRY = {
@@ -6419,7 +6420,7 @@ function executeAIMission(userGoal) {
                 <div class="agent-node-card active" id="node-${agentKey.toLowerCase()}">
                     <div style="display: flex; justify-content: space-between;">
                         <strong style="color: #fff; font-size: 0.85rem;">${agentKey}</strong>
-                        <span style="color: var(--accent-green); font-size:0.75rem;">✓ Active</span>
+                        <span style="color: var(--accent-green); font-size:0.75rem;">âœ“ Active</span>
                     </div>
                     <div class="status-indicator" style="margin-top: 4px; color: var(--accent-cyan);">Tool: ${agent.tools[0]}</div>
                 </div>
@@ -6431,10 +6432,10 @@ function executeAIMission(userGoal) {
     const memBanner = document.getElementById('os-memory-banner');
     if (memBanner) {
         memBanner.style.display = 'block';
-        memBanner.innerHTML = `🧠 <strong>LONG-TERM BUSINESS MEMORY ACTIVE:</strong> Target ICP (${IINSHA_BUSINESS_MEMORY.businessMemory.targetICP})`;
+        memBanner.innerHTML = `ðŸ§  <strong>LONG-TERM BUSINESS MEMORY ACTIVE:</strong> Target ICP (${IINSHA_BUSINESS_MEMORY.businessMemory.targetICP})`;
     }
 
-    alert(`🚀 MISSION LAUNCHED!\n\nGoal: "${goal}"\nDynamic Swarm: ${selectedAgents.join(', ')}\nTelemetry Cost Saved: $${netSaved} USD`);
+    alert(`ðŸš€ MISSION LAUNCHED!\n\nGoal: "${goal}"\nDynamic Swarm: ${selectedAgents.join(', ')}\nTelemetry Cost Saved: $${netSaved} USD`);
 }
 
 function toggleExplainabilityCard() {
@@ -6448,17 +6449,17 @@ window.toggleExplainabilityCard = toggleExplainabilityCard;
 
 
 // ==============================================================================
-// 🌟 IINSHA AI MASTER OUTCOME INTELLIGENCE ENGINE (5 DOMAINS)
+// ðŸŒŸ IINSHA AI MASTER OUTCOME INTELLIGENCE ENGINE (5 DOMAINS)
 // ==============================================================================
 const OUTCOME_DEFINITIONS = {
     1: {
-        badge: "🎯 OUTCOME 01 — REVENUE & GROWTH ACCELERATION",
+        badge: "ðŸŽ¯ OUTCOME 01 â€” REVENUE & GROWTH ACCELERATION",
         title: "Grow: Autonomous Inbound SDR & Lead Hunter",
         subtitle: "Automate outbound prospecting, LinkedIn engagement, enrichment, and cold email deliverability without human manual labor.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
-                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Autonomous SDR Engine</strong>
+                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">âš¡ Autonomous SDR Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Apollo + LinkedIn profile scraper & firmographic filter</li>
                         <li>Gemini 3.0 Pro & Flash dynamic prospect research & icebreaker generator</li>
@@ -6467,7 +6468,7 @@ const OUTCOME_DEFINITIONS = {
                     </ul>
                 </div>
                 <div class="glass-card" style="padding: 16px; border-color: rgba(16, 185, 129, 0.3);">
-                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">📈 Proven Impact Metrics</strong>
+                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ“ˆ Proven Impact Metrics</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Speed-to-Lead:</strong> < 45 seconds from form submit</li>
                         <li><strong>Response Rate:</strong> 4.8x higher via hyper-personalization</li>
@@ -6482,13 +6483,13 @@ const OUTCOME_DEFINITIONS = {
         `
     },
     2: {
-        badge: "⚙️ OUTCOME 02 — MISSION CRITICAL PROCESS AUTOMATION",
+        badge: "âš™ï¸ OUTCOME 02 â€” MISSION CRITICAL PROCESS AUTOMATION",
         title: "Automate: n8n Core Mesh & Document OCR Extraction",
         subtitle: "Eliminate manual data entry, PDF invoice processing, and siloed CRM synchronization with 99.4% OCR accuracy.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(16, 185, 129, 0.3);">
-                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Multi-Modal OCR & ETL</strong>
+                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">âš¡ Multi-Modal OCR & ETL</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>PDF / Image invoice parser with Gemini Vision structured JSON</li>
                         <li>Automatic reconciliation against QuickBooks / Xero</li>
@@ -6497,9 +6498,9 @@ const OUTCOME_DEFINITIONS = {
                     </ul>
                 </div>
                 <div class="glass-card" style="padding: 16px; border-color: rgba(245, 158, 11, 0.3);">
-                    <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block; margin-bottom: 6px;">📊 Operational Impact</strong>
+                    <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ“Š Operational Impact</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li><strong>Processing Time:</strong> 12 mins ➔ 8 seconds per invoice</li>
+                        <li><strong>Processing Time:</strong> 12 mins âž” 8 seconds per invoice</li>
                         <li><strong>Error Rate:</strong> < 0.1% with Level 2 HITL validation</li>
                         <li><strong>Monthly Savings:</strong> $3,200+ in administrative overhead</li>
                         <li><strong>Execution Cost:</strong> $0 per task on self-hosted VPS</li>
@@ -6512,13 +6513,13 @@ const OUTCOME_DEFINITIONS = {
         `
     },
     3: {
-        badge: "🤖 OUTCOME 03 — 24/7 AI DIGITAL WORKFORCE",
+        badge: "ðŸ¤– OUTCOME 03 â€” 24/7 AI DIGITAL WORKFORCE",
         title: "Operate: Omnichannel Support & Executive AI Assistant",
         subtitle: "Deploy autonomous customer support swarms across WhatsApp, Zendesk, and Web Chat with sub-30s triage times.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3);">
-                    <strong style="color: var(--accent-purple); font-size: 0.95rem; display: block; margin-bottom: 6px;">💬 Omnichannel Triage Swarm</strong>
+                    <strong style="color: var(--accent-purple); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ’¬ Omnichannel Triage Swarm</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>WhatsApp Cloud API + Zendesk + Intercom live integration</li>
                         <li>Semantic vector search over company knowledge base</li>
@@ -6527,7 +6528,7 @@ const OUTCOME_DEFINITIONS = {
                     </ul>
                 </div>
                 <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
-                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">🕊️ Verified Support Metrics</strong>
+                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">♞ Verified Support Metrics</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>First Response Time:</strong> < 25 seconds 24/7/365</li>
                         <li><strong>Deflection Rate:</strong> 74% of tier-1 support tickets</li>
@@ -6537,18 +6538,18 @@ const OUTCOME_DEFINITIONS = {
                 </div>
             </div>
             <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Pinecone Vector DB RAG + Claude 3.7 Sonnet (Hybrid Thinking) / Gemini 3.0 Pro & Flash + Webhook Action Bridge.
+                <strong>Architecture:</strong> Pinecone Vector DB RAG + Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking) / Gemini 3.0 Pro & Flash + Webhook Action Bridge.
             </div>
         `
     },
     4: {
-        badge: "🧠 OUTCOME 04 — ENTERPRISE DATA INTELLIGENCE",
+        badge: "ðŸ§  OUTCOME 04 â€” ENTERPRISE DATA INTELLIGENCE",
         title: "Intelligence: Supabase PGVector Memory & Business Digital Twin",
         subtitle: "Transform unstructured business data into queryable semantic intelligence with unified company-wide memory.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(245, 158, 11, 0.3);">
-                    <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block; margin-bottom: 6px;">📊 5-Tier Memory Architecture</strong>
+                    <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ“Š 5-Tier Memory Architecture</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Business Memory (SOPs, product catalogs, pricing rules)</li>
                         <li>Customer Memory (historical tickets, preferences, sentiment)</li>
@@ -6557,7 +6558,7 @@ const OUTCOME_DEFINITIONS = {
                     </ul>
                 </div>
                 <div class="glass-card" style="padding: 16px; border-color: rgba(16, 185, 129, 0.3);">
-                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">💡 Executive Insights</strong>
+                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ’¡ Executive Insights</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Query Latency:</strong> < 120ms semantic search over 1M records</li>
                         <li><strong>Zero Hallucination:</strong> Grounded strictly in PGVector chunks</li>
@@ -6572,13 +6573,13 @@ const OUTCOME_DEFINITIONS = {
         `
     },
     5: {
-        badge: "🛡️ OUTCOME 05 — ZERO-TRUST SECURITY & SITE RELIABILITY",
+        badge: "ðŸ›¡ï¸ OUTCOME 05 â€” ZERO-TRUST SECURITY & SITE RELIABILITY",
         title: "Protect: GUARDIAN SRE Watchdog & Cloudflare WAF",
         subtitle: "Autonomous uptime monitoring, synthetic transaction testing, auto-healing failovers, and military-grade WAF firewalls.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(239, 68, 68, 0.3);">
-                    <strong style="color: #f87171; font-size: 0.95rem; display: block; margin-bottom: 6px;">🏗️ Self-Healing Reliability Engine</strong>
+                    <strong style="color: #f87171; font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ—ï¸ Self-Healing Reliability Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>60-second synthetic transaction ping & error detection</li>
                         <li>Automated Docker container restart & cache purge triggers</li>
@@ -6587,7 +6588,7 @@ const OUTCOME_DEFINITIONS = {
                     </ul>
                 </div>
                 <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
-                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">🔒 Security SLA Guarantees</strong>
+                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ”’ Security SLA Guarantees</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Monitored Uptime:</strong> 99.98% production availability</li>
                         <li><strong>Mean Time to Recovery (MTTR):</strong> < 90 seconds</li>
@@ -6633,10 +6634,10 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
             <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary);">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
                     <div>
-                        <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:var(--accent-emerald);">🚀 SECURE ONBOARDING INTAKE</span>
+                        <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:var(--accent-emerald);">ðŸš€ SECURE ONBOARDING INTAKE</span>
                         <h3 id="checkout-pkg-title" style="color:#fff; font-size:1.4rem; margin-top:6px;">Package Checkout</h3>
                     </div>
-                    <button onclick="(function(){ const _el = document.getElementById('iinsha-checkout-modal'); if (_el) _el.style.display = 'none'" style="background:transparent; })(); border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+                    <button onclick="(function(){ const _el = document.getElementById('iinsha-checkout-modal'); if (_el) _el.style.display = 'none'" style="background:transparent; })(); border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">âœ•</button>
                 </div>
                 
                 <div style="background:rgba(0,0,0,0.5); padding:16px; border-radius:10px; border:1px solid var(--border-card); margin-bottom:20px;">
@@ -6668,11 +6669,11 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                             <option value="USDT Crypto (TRC20)">Crypto USDT (TRC20 / ERC20)</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="padding:14px; font-size:1rem; font-weight:800; margin-top:8px;">🚀 Confirm Onboarding & Lock Blueprint</button>
+                    <button type="submit" class="btn btn-primary" style="padding:14px; font-size:1rem; font-weight:800; margin-top:8px;">ðŸš€ Confirm Onboarding & Lock Blueprint</button>
                 </form>
 
                 <div style="text-align:center; font-size:0.75rem; color:var(--text-dim);">
-                    🛡️ 14-Day Money-Back Guarantee & 100% Code Ownership Included.
+                    ðŸ›¡ï¸ 14-Day Money-Back Guarantee & 100% Code Ownership Included.
                 </div>
             </div>
         `;
@@ -6688,9 +6689,9 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 
 function handleCheckoutFormSubmit(e) {
     e.preventDefault();
-    const name = ((document.getElementById('chk-name') ? document.getElementById('chk-name')?.value || '') : "");
-    const email = ((document.getElementById('chk-email') ? document.getElementById('chk-email')?.value || '') : "");
-    const method = ((document.getElementById('chk-method') ? document.getElementById('chk-method')?.value || '') : "");
+    const name = document.getElementById('chk-name') ? (document.getElementById('chk-name').value || '') : '';
+    const email = document.getElementById('chk-email') ? (document.getElementById('chk-email').value || '') : '';
+    const method = document.getElementById('chk-method') ? (document.getElementById('chk-method').value || '') : '';
     const pkg = document.getElementById('checkout-pkg-title').textContent;
     
     alert('Thank you ' + name + '! Your onboarding order for [' + pkg + '] has been recorded. Lead Automation Engineer Adnin Sadat Mahin will email you at ' + email + ' within 2 hours with your VPS deployment intake link.');
@@ -6704,7 +6705,7 @@ window.handleCheckoutFormSubmit = handleCheckoutFormSubmit;
 
 
 // ==============================================================================
-// IINSHA AI ENGINEERING & AUTOMATION STUDIO — 08 CORE DOMAINS & CONTROL AI
+// IINSHA AI ENGINEERING & AUTOMATION STUDIO â€” 08 CORE DOMAINS & CONTROL AI
 // ==============================================================================
 
 window.IINSHA_SERVICE_DOMAINS = {
@@ -6712,13 +6713,13 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 1,
         code: "01. AI WORKFORCE",
         name: "Autonomous Multi-Agent Workforce",
-        icon: "🤖",
+        icon: "ðŸ¤–",
         badge: "Flagship Swarm",
         shortDesc: "Autonomous multi-agent departments replacing repetitive manual seats across your business.",
         problem: "Hiring, onboarding, and managing manual SDRs, customer support reps, and operations coordinators is slow, expensive ($4k-$8k/seat/mo), and prone to human error and high turnover.",
         solution: "IINSHA builds an orchestrated 13-agent AI workforce with 4-level HITL governance. Agents autonomously research prospects, write personalized drafts, triage tickets, and manage operations 24/7.",
         capabilities: ["AI SDR & Outbound Hunter", "AI Sales Closer", "AI Support Swarm", "AI Research Agent", "AI Operations Coordinator", "AI Executive Assistant", "Multi-Agent Orchestrator"],
-        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 3.0 Pro & Flash & Claude 3.7 Sonnet (Hybrid Thinking) Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
+        deliverables: ["13-Agent Orchestration Blueprint", "Gemini 3.0 Pro & Flash & Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking) Integration", "pgvector RAG Long-Term Memory", "4-Level HITL Governance Gatekeeper", "Slack / Discord / WhatsApp Command Center"],
         techStack: ["n8n Mesh", "Gemini 3.0 Pro & Flash", "Supabase pgvector", "Docker VPS", "WhatsApp Cloud API"],
         pricing: { setupUSD: 3000, monthlyUSD: 699, setupBDT: 367500, monthlyBDT: 85600 },
         timeline: "2 to 3 Weeks",
@@ -6728,7 +6729,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 2,
         code: "02. AUTOMATION ENGINEERING",
         name: "n8n Workflow Mesh & API Integrations",
-        icon: "⚙️",
+        icon: "âš™ï¸",
         badge: "Core Infrastructure",
         shortDesc: "Self-hosted n8n orchestration, custom API integrations, and multi-app business logic synchronization.",
         problem: "SaaS tools operate in silos. Zapier/Make per-task costs skyrocket ($500-$2,000/mo), data gets lost between CRM and payment gateways, and manual data copy-pasting slows down fulfillment.",
@@ -6744,7 +6745,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 3,
         code: "03. AI INTELLIGENCE",
         name: "Enterprise RAG & Business Digital Twin",
-        icon: "🧠",
+        icon: "ðŸ§ ",
         badge: "Vector Knowledge",
         shortDesc: "Enterprise RAG knowledge bases, pgvector digital twins, and actionable natural-language business analytics.",
         problem: "Company knowledge is scattered across Notion, Google Drive, PDFs, and team chats. Employees spend 20% of their work week searching for answers, and executives lack real-time synthesized insights.",
@@ -6760,7 +6761,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 4,
         code: "04. AI CUSTOMER EXPERIENCE",
         name: "24/7 AI Chat & Voice Telephony",
-        icon: "💬",
+        icon: "ðŸ’¬",
         badge: "Omnichannel CX",
         shortDesc: "24/7 multi-lingual AI chat, phone voice receptionists, speed-to-lead response, and retention automation.",
         problem: "Leads that wait more than 5 minutes to get a response convert 80% less. Support staff cannot operate 24/7 across time zones, causing customer dissatisfaction and missed after-hours deals.",
@@ -6776,7 +6777,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 5,
         code: "05. AI SALES & MARKETING",
         name: "Lead Generation & Outreach Engine",
-        icon: "📈",
+        icon: "ðŸ“ˆ",
         badge: "Revenue Engine",
         shortDesc: "B2B lead discovery, automated enrichment, ICP scoring, hyper-personalized outreach, and SEO engines.",
         problem: "Manual B2B prospecting requires multiple expensive subscriptions (Apollo, Clay, Hunter) and hours of manual copy-pasting, resulting in generic spam emails with <1% reply rates.",
@@ -6786,13 +6787,13 @@ window.IINSHA_SERVICE_DOMAINS = {
         techStack: ["Playwright Pipeline", "n8n", "Gemini 3.0 Pro", "HubSpot", "Instantly"],
         pricing: { setupUSD: 2200, monthlyUSD: 499, setupBDT: 269500, monthlyBDT: 61100 },
         timeline: "2 Weeks",
-        sla: "99.8% Cloudflare Scraping Bypass"
+        sla: "Resilient Browser Automation (Playwright Architecture)"
     },
     6: {
         id: 6,
         code: "06. AI DOCUMENT & DATA",
         name: "Gemini Vision OCR & Data Pipelines",
-        icon: "📄",
+        icon: "ðŸ“„",
         badge: "Data Intelligence",
         shortDesc: "Gemini Vision OCR for invoices, contracts, receipts, Excel files, and automated data ingestion pipelines.",
         problem: "Employees spend hundreds of hours manually entering data from PDF invoices, scanned receipts, freight bills, and messy spreadsheets into ERPs, leading to costly errors and delays.",
@@ -6808,7 +6809,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 7,
         code: "07. CUSTOM SOFTWARE / SaaS",
         name: "Custom AI Web Apps & Client Portals",
-        icon: "💻",
+        icon: "ðŸ’»",
         badge: "Software Engineering",
         shortDesc: "Custom AI web apps, internal staff tooling, client portals, micro-SaaS MVPs, and business platforms.",
         problem: "Off-the-shelf SaaS doesn't match your unique operational workflow, while hiring a custom agency costs $50k-$100k and takes 6-12 months.",
@@ -6824,7 +6825,7 @@ window.IINSHA_SERVICE_DOMAINS = {
         id: 8,
         code: "08. AI SECURITY & INFRASTRUCTURE",
         name: "Cloud VPS, WAF & AI-SRE Guardian",
-        icon: "🛡️",
+        icon: "ðŸ›¡ï¸",
         badge: "Zero-Trust Ops",
         shortDesc: "Cloudflare enterprise WAF, automated snapshot backups, 24/7 AI-SRE monitoring, and hardened cloud VPS.",
         problem: "AI workflows and servers can fail silently, get hit with DDoS attacks, or suffer from token credential leaks without proper security hardening.",
@@ -6853,20 +6854,20 @@ window.openDomainDetailModal = function(domainId) {
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.88); backdrop-filter:blur(15px); z-index:100000; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;';
 
     const curr = window.currentCurrency || 'USD';
-    const setupStr = curr === 'BDT' ? `৳${domain.pricing.setupBDT.toLocaleString()}` : `$${domain.pricing.setupUSD.toLocaleString()}`;
-    const monthlyStr = curr === 'BDT' ? `৳${domain.pricing.monthlyBDT.toLocaleString()}/mo` : `$${domain.pricing.monthlyUSD.toLocaleString()}/mo`;
+    const setupStr = curr === 'BDT' ? `à§³${domain.pricing.setupBDT.toLocaleString()}` : `$${domain.pricing.setupUSD.toLocaleString()}`;
+    const monthlyStr = curr === 'BDT' ? `à§³${domain.pricing.monthlyBDT.toLocaleString()}/mo` : `$${domain.pricing.monthlyUSD.toLocaleString()}/mo`;
 
     modal.innerHTML = `
         <div style="background:rgba(15,23,42,0.96); border:1px solid rgba(6,182,212,0.4); border-radius:20px; width:100%; max-width:820px; max-height:90vh; overflow-y:auto; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
             
             <!-- CLOSE BUTTON -->
-            <button onclick="document.getElementById('iinsha-domain-detail-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+            <button onclick="document.getElementById('iinsha-domain-detail-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">âœ•</button>
 
             <!-- HEADER -->
             <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
                 <div style="font-size:2.5rem; background:rgba(6,182,212,0.15); padding:12px; border-radius:16px; border:1px solid rgba(6,182,212,0.3);">${domain.icon}</div>
                 <div>
-                    <span style="font-size:0.75rem; font-family:'Fira Code',monospace; color:#06b6d4; font-weight:bold; letter-spacing:1px;">${domain.code} ● ${domain.badge}</span>
+                    <span style="font-size:0.75rem; font-family:'Fira Code',monospace; color:#06b6d4; font-weight:bold; letter-spacing:1px;">${domain.code} â— ${domain.badge}</span>
                     <h2 style="margin:4px 0 0 0; font-size:1.6rem; color:#fff;">${domain.name}</h2>
                 </div>
             </div>
@@ -6874,20 +6875,20 @@ window.openDomainDetailModal = function(domainId) {
             <!-- PROBLEM VS SOLUTION -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
                 <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:14px; padding:16px;">
-                    <strong style="color:#f87171; font-size:0.85rem; display:block; margin-bottom:6px;">⚠️ The Business Challenge:</strong>
+                    <strong style="color:#f87171; font-size:0.85rem; display:block; margin-bottom:6px;">âš ï¸ The Business Challenge:</strong>
                     <p style="margin:0; font-size:0.85rem; color:#cbd5e1; line-height:1.4;">${domain.problem}</p>
                 </div>
                 <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:14px; padding:16px;">
-                    <strong style="color:#34d399; font-size:0.85rem; display:block; margin-bottom:6px;">✨ What IINSHA Builds:</strong>
+                    <strong style="color:#34d399; font-size:0.85rem; display:block; margin-bottom:6px;">âœ¨ What IINSHA Builds:</strong>
                     <p style="margin:0; font-size:0.85rem; color:#cbd5e1; line-height:1.4;">${domain.solution}</p>
                 </div>
             </div>
 
             <!-- CAPABILITIES & DELIVERABLES -->
             <div style="margin-bottom:24px;">
-                <h4 style="margin:0 0 10px 0; color:#fff; font-size:0.95rem;">📦 Core Deliverables & Architecture Inclusions:</h4>
+                <h4 style="margin:0 0 10px 0; color:#fff; font-size:0.95rem;">ðŸ“¦ Core Deliverables & Architecture Inclusions:</h4>
                 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
-                    ${domain.deliverables.map(d => `<div style="background:rgba(30,41,59,0.6); padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); font-size:0.82rem; color:#e2e8f0; display:flex; align-items:center; gap:8px;"><span style="color:#06b6d4;">✓</span> ${d}</div>`).join('')}
+                    ${domain.deliverables.map(d => `<div style="background:rgba(30,41,59,0.6); padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); font-size:0.82rem; color:#e2e8f0; display:flex; align-items:center; gap:8px;"><span style="color:#06b6d4;">âœ“</span> ${d}</div>`).join('')}
                 </div>
             </div>
 
@@ -6895,7 +6896,7 @@ window.openDomainDetailModal = function(domainId) {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding:16px; background:rgba(30,41,59,0.5); border-radius:14px; border:1px solid rgba(255,255,255,0.08); margin-bottom:24px;">
                 <div>
                     <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Tech Stack</span>
-                    <strong style="font-size:0.85rem; color:#67e8f9;">${domain.techStack.join(' ● ')}</strong>
+                    <strong style="font-size:0.85rem; color:#67e8f9;">${domain.techStack.join(' â— ')}</strong>
                 </div>
                 <div>
                     <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Implementation Timeline</span>
@@ -6917,10 +6918,10 @@ window.openDomainDetailModal = function(domainId) {
                 </div>
                 <div style="display:flex; gap:10px;">
                     <button onclick="document.getElementById('iinsha-domain-detail-modal').remove(); openPricingCheckoutModal('${domain.name}', ${domain.pricing.setupUSD}, ${domain.pricing.monthlyUSD});" class="btn btn-primary" style="padding:12px 24px; font-weight:bold; cursor:pointer;">
-                        🚀 Deploy System Now
+                        ðŸš€ Deploy System Now
                     </button>
                     <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20am%20interested%20in%20${encodeURIComponent(domain.name)}" target="_blank" class="btn btn-glass" style="padding:12px 18px; font-weight:bold; display:flex; align-items:center; gap:6px;">
-                        📱 WhatsApp
+                        ðŸ“± WhatsApp
                     </a>
                 </div>
             </div>
@@ -6970,7 +6971,7 @@ window.openAiSolutionFinderModal = function() {
     modal.innerHTML = `
         <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(139,92,246,0.4); border-radius:20px; width:100%; max-width:760px; max-height:90vh; overflow-y:auto; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
             
-            <button onclick="document.getElementById('iinsha-solution-finder-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-solution-finder-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
 
             <div style="text-align:center; margin-bottom:24px;">
                 <span style="font-size:0.8rem; font-family:'Fira Code',monospace; color:#a78bfa; font-weight:bold; letter-spacing:1px;">AI SOLUTION FINDER & ROI CALCULATOR</span>
@@ -7008,7 +7009,7 @@ window.openAiSolutionFinderModal = function() {
             </div>
 
             <button onclick="calculateAiSolutionRecommendation()" class="btn btn-primary" style="width:100%; padding:14px; font-size:1rem; font-weight:bold; cursor:pointer; background:linear-gradient(135deg, #8b5cf6, #06b6d4);">
-                🔮 Calculate AI Recommendation & ROI →
+                ðŸ”® Calculate AI Recommendation & ROI â†’
             </button>
 
             <!-- RESULT CONTAINER -->
@@ -7022,8 +7023,8 @@ window.openAiSolutionFinderModal = function() {
 };
 
 window.calculateAiSolutionRecommendation = function() {
-    const industry = ((document.getElementById('finder-industry-select') ? document.getElementById('finder-industry-select')?.value || '') : "");
-    const bottleneck = ((document.getElementById('finder-bottleneck-select') ? document.getElementById('finder-bottleneck-select')?.value || '') : "");
+    const industry = document.getElementById('finder-industry-select') ? (document.getElementById('finder-industry-select').value || '') : '';
+    const bottleneck = document.getElementById('finder-bottleneck-select') ? (document.getElementById('finder-bottleneck-select').value || '') : '';
     const box = document.getElementById('finder-result-box');
     if (!box) return;
 
@@ -7066,10 +7067,10 @@ window.calculateAiSolutionRecommendation = function() {
         <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:18px;">${desc}</p>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
             <button onclick="document.getElementById('iinsha-solution-finder-modal').remove(); openPricingCheckoutModal('${recTitle}', ${setup}, ${monthly});" class="btn btn-primary" style="flex:1; padding:12px; font-weight:bold; cursor:pointer;">
-                🚀 Proceed to Deploy (${recTitle})
+                ðŸš€ Proceed to Deploy (${recTitle})
             </button>
             <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20got%20the%20recommendation%20for%20${encodeURIComponent(recTitle)}%20on%20IINSHA." target="_blank" class="btn btn-glass" style="padding:12px 20px; font-weight:bold; display:flex; align-items:center; gap:6px;">
-                📱 Discuss on WhatsApp
+                ðŸ“± Discuss on WhatsApp
             </a>
         </div>
     `;
@@ -7105,7 +7106,7 @@ window.setGlobalPricingCurrency = function(curr) {
         const usdVal = parseFloat(el.getAttribute('data-usd'));
         if (curr === 'BDT') {
             const bdtVal = Math.round(usdVal * rate);
-            el.innerHTML = `৳${bdtVal.toLocaleString()} <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span>`;
+            el.innerHTML = `à§³${bdtVal.toLocaleString()} <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span>`;
         } else {
             el.innerHTML = `$${usdVal.toLocaleString()} <span style="font-size:1rem; font-weight:500; color:var(--text-dim);">Setup</span>`;
         }
@@ -7115,7 +7116,7 @@ window.setGlobalPricingCurrency = function(curr) {
         const usdSub = parseFloat(el.getAttribute('data-usd-sub'));
         if (curr === 'BDT') {
             const bdtSub = Math.round(usdSub * rate);
-            el.innerHTML = `+ ৳${bdtSub.toLocaleString()} / month maintenance`;
+            el.innerHTML = `+ à§³${bdtSub.toLocaleString()} / month maintenance`;
         } else {
             el.innerHTML = `+ $${usdSub.toLocaleString()} / month maintenance`;
         }
@@ -7131,8 +7132,8 @@ window.openPricingCheckoutModal = function(pkgName, setupUSD, monthlyUSD) {
 
     const curr = window.currentCurrency || 'USD';
     const rate = 122.5;
-    const setupStr = curr === 'BDT' ? `৳${Math.round(setupUSD * rate).toLocaleString()}` : `$${setupUSD.toLocaleString()}`;
-    const monthlyStr = curr === 'BDT' ? `৳${Math.round(monthlyUSD * rate).toLocaleString()} / month` : `$${monthlyUSD.toLocaleString()} / month`;
+    const setupStr = curr === 'BDT' ? `à§³${Math.round(setupUSD * rate).toLocaleString()}` : `$${setupUSD.toLocaleString()}`;
+    const monthlyStr = curr === 'BDT' ? `à§³${Math.round(monthlyUSD * rate).toLocaleString()} / month` : `$${monthlyUSD.toLocaleString()} / month`;
 
     const modal = document.createElement('div');
     modal.id = 'iinsha-checkout-modal';
@@ -7141,7 +7142,7 @@ window.openPricingCheckoutModal = function(pkgName, setupUSD, monthlyUSD) {
     modal.innerHTML = `
         <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(6,182,212,0.4); border-radius:20px; width:100%; max-width:600px; padding:32px; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; position:relative; box-sizing:border-box;">
             
-            <button onclick="document.getElementById('iinsha-checkout-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-checkout-modal').remove()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">âœ•</button>
 
             <span style="font-size:0.75rem; font-family:'Fira Code',monospace; color:#06b6d4; font-weight:bold; letter-spacing:1px;">PRODUCTIZED SYSTEM ORDER INTAKE</span>
             <h2 id="checkout-pkg-title" style="margin:4px 0 12px 0; font-size:1.5rem; color:#fff;">${pkgName}</h2>
@@ -7174,10 +7175,10 @@ window.openPricingCheckoutModal = function(pkgName, setupUSD, monthlyUSD) {
 
             <div style="display:flex; gap:12px;">
                 <button onclick="submitIinshaOrderDirect('${pkgName}', '${setupStr}', '${monthlyStr}')" class="btn btn-primary" style="flex:1; padding:12px; font-weight:bold; cursor:pointer;">
-                    🚀 Confirm & Launch Onboarding
+                    ðŸš€ Confirm & Launch Onboarding
                 </button>
                 <button onclick="submitIinshaOrderWhatsApp('${pkgName}', '${setupStr}', '${monthlyStr}')" class="btn btn-glass" style="padding:12px 18px; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:6px;">
-                    📱 Order via WhatsApp
+                    ðŸ“± Order via WhatsApp
                 </button>
             </div>
 
@@ -7212,7 +7213,7 @@ window.submitIinshaOrderDirect = function(pkg, setup, monthly) {
         } catch(e){}
     }
 
-    alert(`🎉 Thank you, ${name}! Your order for [${pkg}] has been recorded${refCode ? ' (Attributed to Partner: ' + refCode + ')' : ''}. Our lead engineer Adnin Sadat Mahin will review your brief (${email}) and dispatch your onboarding roadmap within 24 hours.`);
+    alert(`ðŸŽ‰ Thank you, ${name}! Your order for [${pkg}] has been recorded${refCode ? ' (Attributed to Partner: ' + refCode + ')' : ''}. Our lead engineer Adnin Sadat Mahin will review your brief (${email}) and dispatch your onboarding roadmap within 24 hours.`);
     document.getElementById('iinsha-checkout-modal')?.remove();
 };
 
@@ -7244,9 +7245,9 @@ window.executeIinshaControlAI = function() {
     resultBox.style.display = 'block';
     resultBox.innerHTML = `
         <div style="padding:20px; text-align:center; color:#06b6d4;">
-            <div style="font-size:1.8rem; animation:spin 1s linear infinite; display:inline-block;">⚡</div>
+            <div style="font-size:1.8rem; animation:spin 1s linear infinite; display:inline-block;">âš¡</div>
             <div style="margin-top:10px; font-weight:bold; font-size:0.95rem;">IINSHA Control AI is orchestrating 13 agents...</div>
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Researching market ➔ Structuring deliverables ➔ Calculating Setup & Monthly pricing ➔ Generating SEO & Affiliate Assets</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Researching market âž” Structuring deliverables âž” Calculating Setup & Monthly pricing âž” Generating SEO & Affiliate Assets</div>
         </div>
     `;
 
@@ -7258,7 +7259,7 @@ window.executeIinshaControlAI = function() {
             <div style="background:rgba(15,23,42,0.95); border:1px solid rgba(16,185,129,0.5); border-radius:14px; padding:20px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
                     <div>
-                        <span style="font-size:0.72rem; color:#34d399; font-weight:bold; font-family:'Fira Code',monospace;">✅ AI SERVICE SPECIFICATION GENERATED</span>
+                        <span style="font-size:0.72rem; color:#34d399; font-weight:bold; font-family:'Fira Code',monospace;">âœ… AI SERVICE SPECIFICATION GENERATED</span>
                         <h4 style="margin:4px 0 0 0; color:#fff; font-size:1.15rem;">${title}</h4>
                     </div>
                     <span style="background:rgba(6,182,212,0.15); color:#06b6d4; border:1px solid rgba(6,182,212,0.3); padding:4px 10px; border-radius:8px; font-size:0.75rem; font-weight:bold;">Status: Draft Ready</span>
@@ -7273,21 +7274,21 @@ window.executeIinshaControlAI = function() {
 
                 <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; font-size:0.8rem; color:#cbd5e1; margin-bottom:14px;">
                     <strong>Auto-Generated Deliverables:</strong><br>
-                    • Sub-3s low latency voice agent with EHR / clinic booking integration.<br>
-                    • Multi-lingual support (English + Spanish + Bengali).<br>
-                    • Automated no-show reduction SMS reminders & emergency escalation queue.
+                    â€¢ Sub-3s low latency voice agent with EHR / clinic booking integration.<br>
+                    â€¢ Multi-lingual support (English + Spanish + Bengali).<br>
+                    â€¢ Automated no-show reduction SMS reminders & emergency escalation queue.
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; font-size:0.8rem; color:#cbd5e1; margin-bottom:16px;">
                     <strong>SEO & Affiliate Assets:</strong><br>
-                    • Meta Title: ${title} | IINSHA Autonomous AI Studio<br>
-                    • Pre-written LinkedIn / X Pitch + 1-Click Deep Link Generated<br>
-                    • 20% Partner Commission Enabled ($360 setup + $79.80/mo recurring)
+                    â€¢ Meta Title: ${title} | IINSHA Autonomous AI Studio<br>
+                    â€¢ Pre-written LinkedIn / X Pitch + 1-Click Deep Link Generated<br>
+                    â€¢ 20% Partner Commission Enabled ($360 setup + $79.80/mo recurring)
                 </div>
 
                 <div style="display:flex; gap:10px;">
                     <button onclick="approveAndPublishAiService('${title.replace(/'/g, "\'")}', 1800, 399)" class="btn btn-primary" style="flex:1; padding:10px; font-weight:bold; cursor:pointer;">
-                        🚀 1-Click Approve & Publish to Live Site
+                        ðŸš€ 1-Click Approve & Publish to Live Site
                     </button>
                     <button onclick="(function(){ const _el = document.getElementById('iinsha-control-ai-result'); if (_el) _el.style.display = 'none'" class="btn btn-glass" style="padding:10px 16px; })(); cursor:pointer;">
                         Discard
@@ -7299,10 +7300,10 @@ window.executeIinshaControlAI = function() {
 };
 
 window.approveAndPublishAiService = function(name, setup, monthly) {
-    alert(`🎉 Success! [${name}] has been approved, compiled, and added to the IINSHA Live Service Registry & Catalog.`);
+    alert(`ðŸŽ‰ Success! [${name}] has been approved, compiled, and added to the IINSHA Live Service Registry & Catalog.`);
     const res = document.getElementById('iinsha-control-ai-result');
     if (res) {
-        res.innerHTML = `<div style="padding:14px; background:rgba(16,185,129,0.2); border:1px solid #10b981; border-radius:10px; color:#34d399; font-weight:bold; text-align:center;">✨ Service is now LIVE across Public Catalog, Marketplace & Affiliate Engine!</div>`;
+        res.innerHTML = `<div style="padding:14px; background:rgba(16,185,129,0.2); border:1px solid #10b981; border-radius:10px; color:#34d399; font-weight:bold; text-align:center;">âœ¨ Service is now LIVE across Public Catalog, Marketplace & Affiliate Engine!</div>`;
     }
 };
 
@@ -7324,7 +7325,7 @@ window.runMarketingCommanderAgent = function(agentKey) {
 
     const agent = agents[agentKey] || { name: 'Marketing Agent', action: 'Executing autonomous marketing optimization...' };
     
-    alert(`🤖 [${agent.name}] Activated!\n\nAction: ${agent.action}\n\nGovernance: Level 2 HITL (Requires Human Approval before final external broadcast).`);
+    alert(`ðŸ¤– [${agent.name}] Activated!\n\nAction: ${agent.action}\n\nGovernance: Level 2 HITL (Requires Human Approval before final external broadcast).`);
 };
 
 
@@ -7336,7 +7337,7 @@ window.runMarketingCommanderAgent = function(agentKey) {
 // ==============================================================================
 window.IINSHA_LATEST_AI_MODELS = {
     'claude-3-7-sonnet': {
-        name: 'Claude 3.7 Sonnet (Hybrid Thinking) & Opus (Anthropic)',
+        name: 'Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking) & Opus (Anthropic)',
         badge: 'Reasoning & Autonomous Coding Leader',
         capabilities: 'Hybrid Thinking (Standard Low-Latency + Deep Extended Chain-of-Thought), 128k Token Output, Multi-Agent Swarm Orchestration',
         context: '200,000 Tokens (128k Max Output)',
@@ -7397,9 +7398,9 @@ window.openAiModelSpecsModal = function(modelKey) {
 
     modal.innerHTML = `
         <div class="glass-card glowing-border" style="background:#090d16; max-width:650px; width:100%; border:1px solid var(--accent-cyan); border-radius:16px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.9);">
-            <button onclick="document.getElementById('iinsha-ai-specs-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-ai-specs-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">âœ•</button>
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-                <span style="font-size:2rem;">🧠</span>
+                <span style="font-size:2rem;">ðŸ§ </span>
                 <div>
                     <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:700; text-transform:uppercase;">${model.badge}</span>
                     <h3 style="font-size:1.35rem; margin:0; color:#fff;">${model.name}</h3>
@@ -7422,7 +7423,7 @@ window.openAiModelSpecsModal = function(modelKey) {
             <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
                 <span style="font-size:0.78rem; color:var(--text-muted);">Integrated in IINSHA Multi-LLM Mesh Architecture</span>
                 <button onclick="document.getElementById('iinsha-ai-specs-modal').remove(); document.getElementById('transparent-pricing').scrollIntoView({behavior:'smooth'});" class="btn btn-primary" style="padding:8px 18px; font-size:0.85rem;">
-                    Deploy with this Model →
+                    Deploy with this Model â†’
                 </button>
             </div>
         </div>
@@ -7573,8 +7574,8 @@ window.getIinshaPartnerData = function() {
                 }
             ],
             payoutHistory: [
-                { id: 'PAY-101', date: '2026-08-09', method: 'bKash Merchant (+8801700000000)', amount: '$300.00 USD', bdt: '৳36,750 BDT', status: 'Completed', txId: 'BK-99382109' },
-                { id: 'PAY-100', date: '2026-07-26', method: 'Wise Bank Wire (USD)', amount: '$600.00 USD', bdt: '—', status: 'Completed', txId: 'WISE-4491028' }
+                { id: 'PAY-101', date: '2026-08-09', method: 'bKash Merchant (+8801700000000)', amount: '$300.00 USD', bdt: 'à§³36,750 BDT', status: 'Completed', txId: 'BK-99382109' },
+                { id: 'PAY-100', date: '2026-07-26', method: 'Wise Bank Wire (USD)', amount: '$600.00 USD', bdt: 'â€”', status: 'Completed', txId: 'WISE-4491028' }
             ]
         };
         localStorage.setItem('iinsha_active_partner', JSON.stringify(data));
@@ -7630,7 +7631,7 @@ function showAffiliateToast(msg) {
 
     const toast = document.createElement('div');
     toast.style.cssText = 'background:rgba(15,23,42,0.96); color:#fff; padding:12px 20px; border-radius:10px; border:1px solid #06b6d4; font-size:0.85rem; font-family:"Fira Code",monospace; box-shadow:0 12px 35px rgba(0,0,0,0.85); backdrop-filter:blur(10px); pointer-events:auto; display:flex; align-items:center; gap:10px; animation:slideUp 0.3s ease;';
-    toast.innerHTML = `<span style="color:#34d399; font-size:1.1rem;">✓</span> <span>${msg}</span>`;
+    toast.innerHTML = `<span style="color:#34d399; font-size:1.1rem;">âœ“</span> <span>${msg}</span>`;
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -7676,23 +7677,23 @@ window.initAuthenticPartnerConsole = function() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:20px; margin-bottom:28px; flex-wrap:wrap; gap:16px;">
                 <div style="display:flex; align-items:center; gap:14px;">
                     <div style="width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg, var(--accent-cyan), #8b5cf6); display:flex; align-items:center; justify-content:center; font-size:1.6rem;">
-                        👑
+                        ðŸ‘‘
                     </div>
                     <div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <h3 style="font-size:1.35rem; margin:0; color:#fff;">${partner.name}</h3>
                             <span class="badge-gold" style="font-size:0.75rem; padding:3px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold); border-radius:6px; font-weight:700;">${partner.tier}</span>
                         </div>
-                        <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">Partner ID: <strong>${partner.id}</strong> • Organization: ${partner.company}</span>
+                        <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">Partner ID: <strong>${partner.id}</strong> â€¢ Organization: ${partner.company}</span>
                     </div>
                 </div>
 
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <button onclick="openPartnerWithdrawalModal()" class="btn btn-primary" style="padding:10px 20px; font-size:0.9rem; font-weight:bold; cursor:pointer;">
-                        💳 Request Payout ($${partner.metrics.unpaidCommission.toFixed(2)})
+                        ðŸ’³ Request Payout ($${partner.metrics.unpaidCommission.toFixed(2)})
                     </button>
                     <button onclick="openPartnerAuthModal()" class="btn btn-glass" style="padding:10px 16px; font-size:0.9rem; cursor:pointer;">
-                        👤 Switch Account
+                        ðŸ‘¤ Switch Account
                     </button>
                 </div>
             </div>
@@ -7725,8 +7726,8 @@ window.initAuthenticPartnerConsole = function() {
                     <span style="font-size:0.7rem; color:var(--accent-cyan);">60-day cookie window</span>
                 </div>
                 <div class="ipc-card" style="margin:0; padding:16px; background:rgba(30,41,59,0.7);">
-                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Leads ➔ Orders</span>
-                    <div style="font-size:1.7rem; font-weight:800; color:var(--accent-gold); font-family:var(--font-mono); margin:2px 0;">${partner.metrics.leadsGenerated} ➔ ${partner.metrics.ordersConfirmed}</div>
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Leads âž” Orders</span>
+                    <div style="font-size:1.7rem; font-weight:800; color:var(--accent-gold); font-family:var(--font-mono); margin:2px 0;">${partner.metrics.leadsGenerated} âž” ${partner.metrics.ordersConfirmed}</div>
                     <span style="font-size:0.7rem; color:var(--accent-emerald);">Conversion Rate: ${partner.metrics.conversionRate}</span>
                 </div>
             </div>
@@ -7735,7 +7736,7 @@ window.initAuthenticPartnerConsole = function() {
             <div style="background:rgba(15,23,42,0.85); border:1px solid rgba(6,182,212,0.3); border-radius:16px; padding:24px; margin-bottom:32px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <strong style="font-size:1.05rem; color:#fff;">🎯 Multi-Service Deep Link & SubID Generator</strong>
+                        <strong style="font-size:1.05rem; color:#fff;">ðŸŽ¯ Multi-Service Deep Link & SubID Generator</strong>
                         <div style="font-size:0.8rem; color:var(--text-muted);">Generate targeted links for any specific service, landing page, or marketing campaign.</div>
                     </div>
                     <span style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid rgba(16,185,129,0.3); padding:4px 10px; border-radius:8px; font-size:0.75rem; font-family:var(--font-mono); font-weight:700;">60-Day Multi-Touch Shield</span>
@@ -7745,16 +7746,16 @@ window.initAuthenticPartnerConsole = function() {
                     <div>
                         <label style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:4px;">Target Service / Page:</label>
                         <select id="link-gen-service-select" onchange="generateCustomPartnerLink()" style="width:100%; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; outline:none; box-sizing:border-box;">
-                            <option value="">🏠 Homepage (Default All Services)</option>
-                            <option value="marketplace">🛒 Marketplace Catalog</option>
-                            <option value="ai-workforce">🤖 01. AI Workforce (SDR & Swarms)</option>
-                            <option value="automation">⚡ 02. Automation Engineering (n8n Docker)</option>
-                            <option value="intelligence">🧠 03. AI Intelligence (RAG & Digital Twin)</option>
-                            <option value="voice">📞 04. AI Customer Voice Receptionist</option>
-                            <option value="leads">🦀 05. Playwright Enterprise Pipeline Lead Scraper</option>
-                            <option value="ocr">📄 06. Gemini 3.0 Pro Vision Invoice OCR</option>
-                            <option value="saas">💻 07. Custom Software / SaaS Platform</option>
-                            <option value="security">🛡️ 08. AI Security & Business OS</option>
+                            <option value="">ðŸ  Homepage (Default All Services)</option>
+                            <option value="marketplace">ðŸ›’ Marketplace Catalog</option>
+                            <option value="ai-workforce">ðŸ¤– 01. AI Workforce (SDR & Swarms)</option>
+                            <option value="automation">âš¡ 02. Automation Engineering (n8n Docker)</option>
+                            <option value="intelligence">ðŸ§  03. AI Intelligence (RAG & Digital Twin)</option>
+                            <option value="voice">ðŸ“ž 04. AI Customer Voice Receptionist</option>
+                            <option value="leads">ðŸ¦€ 05. Playwright Enterprise Pipeline Lead Scraper</option>
+                            <option value="ocr">ðŸ“„ 06. Gemini 3.0 Pro Vision Invoice OCR</option>
+                            <option value="saas">ðŸ’» 07. Custom Software / SaaS Platform</option>
+                            <option value="security">ðŸ›¡ï¸ 08. AI Security & Business OS</option>
                         </select>
                     </div>
 
@@ -7767,19 +7768,19 @@ window.initAuthenticPartnerConsole = function() {
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <input type="text" id="generated-partner-link" value="${masterLink}" readonly style="flex:1; min-width:280px; background:rgba(0,0,0,0.6); border:1px solid var(--accent-cyan); border-radius:8px; padding:10px 14px; color:#67e8f9; font-family:'Fira Code',monospace; font-size:0.88rem; outline:none;">
                     <button onclick="copyToolkitAsset('generated-partner-link', 'Custom tracking link copied!')" class="btn btn-primary" style="padding:10px 22px; font-weight:bold; cursor:pointer;">
-                        📋 Copy Tracking Link
+                        ðŸ“‹ Copy Tracking Link
                     </button>
                 </div>
                 <!-- QR CODE & MOBILE TRACKING CARD -->
                 <div style="display:flex; align-items:center; gap:16px; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap;">
                     <div id="partner-qr-code-box"></div>
                     <div style="flex:1;">
-                        <strong style="color:#fff; font-size:0.9rem; display:block;">📱 Mobile QR Code & Offline B2B Sharing</strong>
+                        <strong style="color:#fff; font-size:0.9rem; display:block;">ðŸ“± Mobile QR Code & Offline B2B Sharing</strong>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:4px 0 8px 0; line-height:1.4;">
                             Scan with any smartphone camera to test or share on print materials, business cards, and slide decks. Automatically attaches your 60-day tracking cookie.
                         </p>
                         <button onclick="renderAffiliateQrCode(document.getElementById('generated-partner-link')?.value || 'https://inshatech.pages.dev/?ref=partner10', 'partner-qr-code-box')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">
-                            🔄 Refresh QR Code
+                            ðŸ”„ Refresh QR Code
                         </button>
                     </div>
                 </div>
@@ -7790,7 +7791,7 @@ window.initAuthenticPartnerConsole = function() {
             <div style="background:rgba(15,23,42,0.85); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; margin-bottom:32px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <strong style="font-size:1.05rem; color:#fff;">🚦 10-Stage Customer Lifecycle & Deal Tracker</strong>
+                        <strong style="font-size:1.05rem; color:#fff;">ðŸš¦ 10-Stage Customer Lifecycle & Deal Tracker</strong>
                         <div style="font-size:0.8rem; color:var(--text-muted);">Full visibility from initial link click to final commission payout approval.</div>
                     </div>
                     <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono);">Live CRM + Delivery Mesh Sync</span>
@@ -7802,10 +7803,10 @@ window.initAuthenticPartnerConsole = function() {
                             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
                                 <div style="flex: 1; min-width: 250px;">
                                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:6px;">
-                                        <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold;">${deal.id} • ${deal.date}</span>
-                                        <button onclick="openDealLifecycleModal('${deal.id}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:3px 10px; color:var(--accent-cyan); border-color:rgba(6,182,212,0.4); cursor:pointer;">🔍 Inspect 12-Stage Journey →</button>
+                                        <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold;">${deal.id} â€¢ ${deal.date}</span>
+                                        <button onclick="openDealLifecycleModal('${deal.id}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:3px 10px; color:var(--accent-cyan); border-color:rgba(6,182,212,0.4); cursor:pointer;">ðŸ” Inspect 12-Stage Journey â†’</button>
                                     </div>
-                                    <h4 style="margin:0; color:#fff; font-size:1rem;">${deal.clientName} — <span style="color:#cbd5e1; font-weight:normal;">${deal.service}</span></h4>
+                                    <h4 style="margin:0; color:#fff; font-size:1rem;">${deal.clientName} â€” <span style="color:#cbd5e1; font-weight:normal;">${deal.service}</span></h4>
                                 </div>
                                 <div style="text-align:right;">
                                     <strong style="color:#34d399; font-size:0.95rem; font-family:var(--font-mono);">${deal.commission}</strong>
@@ -7837,7 +7838,7 @@ window.initAuthenticPartnerConsole = function() {
             <div style="background:rgba(15,23,42,0.85); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; margin-bottom:32px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <strong style="font-size:1.05rem; color:#fff;">🛒 High-Yield Affiliate Offers Catalog (08 Domains)</strong>
+                        <strong style="font-size:1.05rem; color:#fff;">ðŸ›’ High-Yield Affiliate Offers Catalog (08 Domains)</strong>
                         <div style="font-size:0.8rem; color:var(--text-muted);">Select any high-converting offer to get an instant tailored promotional deep link.</div>
                     </div>
                     <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:bold;">20% Upfront + 20% Recurring Default</span>
@@ -7865,7 +7866,7 @@ window.initAuthenticPartnerConsole = function() {
                                     <td><span class="badge-epc">${off.epc}</span></td>
                                     <td>
                                         <button onclick="getOfferDeepLink('${off.id}', '${off.name.replace(/'/g, "\'")}')" class="btn btn-primary-sm" style="padding:4px 10px; font-size:0.75rem; cursor:pointer;">
-                                            🔗 Promote Offer
+                                            ðŸ”— Promote Offer
                                         </button>
                                     </td>
                                 </tr>
@@ -7878,7 +7879,7 @@ window.initAuthenticPartnerConsole = function() {
             <!-- SECTION: AI AFFILIATE MARKETING COPILOT -->
             <div style="background:linear-gradient(135deg, rgba(30,27,75,0.8), rgba(15,23,42,0.95)); border:1px solid #8b5cf6; border-radius:16px; padding:24px; margin-bottom:32px;">
                 <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-                    <div style="font-size:1.6rem;">🤖</div>
+                    <div style="font-size:1.6rem;">ðŸ¤–</div>
                     <div>
                         <strong style="font-size:1.1rem; color:#fff;">AI Affiliate Marketing Copilot</strong>
                         <div style="font-size:0.8rem; color:#cbd5e1;">Ask the AI to generate high-converting promotional pitches, audience angles, or cold email copy.</div>
@@ -7888,7 +7889,7 @@ window.initAuthenticPartnerConsole = function() {
                 <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
                     <input type="text" id="ai-affiliate-copilot-input" placeholder="e.g. Write a LinkedIn pitch for SaaS Founders about the AI SDR Swarm" style="flex:1; min-width:280px; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.88rem; outline:none;">
                     <button onclick="askAiAffiliateCopilot()" class="btn btn-primary" style="background:linear-gradient(135deg, #8b5cf6, #3b82f6); padding:10px 20px; font-weight:bold; cursor:pointer;">
-                        ⚡ Generate Pitch
+                        âš¡ Generate Pitch
                     </button>
                 </div>
 
@@ -7899,7 +7900,7 @@ window.initAuthenticPartnerConsole = function() {
             <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <strong style="font-size:1.05rem; color:#fff;">💳 Payout Withdrawal History & Methods</strong>
+                        <strong style="font-size:1.05rem; color:#fff;">ðŸ’³ Payout Withdrawal History & Methods</strong>
                         <div style="font-size:0.8rem; color:var(--text-muted);">Direct disbursements via bKash, Nagad, Wise Bank Wire & USDT.</div>
                     </div>
                     <button onclick="openPartnerWithdrawalModal()" class="btn btn-glass-sm" style="padding:6px 14px; font-size:0.8rem; cursor:pointer;">+ New Withdrawal</button>
@@ -7978,23 +7979,23 @@ window.askAiAffiliateCopilot = function() {
     const refLink = `${window.location.origin || 'https://inshatech.pages.dev'}/?ref=${partner.customRefCode}`;
 
     resBox.style.display = 'block';
-    resBox.innerHTML = `<div style="color:#06b6d4; font-family:'Fira Code',monospace;">⚡ Claude 3.7 Sonnet & GPT-4.5 Copilot drafting high-converting pitch...</div>`;
+    resBox.innerHTML = `<div style="color:#06b6d4; font-family:'Fira Code',monospace;">âš¡ Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) & GPT-4.5 Copilot drafting high-converting pitch...</div>`;
 
     setTimeout(() => {
-        const copyText = `🚀 Scaling operations shouldn't mean hiring 10 extra people or paying $1,000/mo in Zapier task bills.
+        const copyText = `ðŸš€ Scaling operations shouldn't mean hiring 10 extra people or paying $1,000/mo in Zapier task bills.
 
 Our engineering partner IINSHA builds autonomous AI Operating Systems:
-• 13-Agent Autonomous Swarms (AI SDR + Closer + Support)
-• Self-Hosted n8n Docker Clusters (Zero task quotas)
-• Gemini 3.0 Pro Vision Invoice OCR (99.8% precision)
+â€¢ 13-Agent Autonomous Swarms (AI SDR + Closer + Support)
+â€¢ Self-Hosted n8n Docker Clusters (Zero task quotas)
+â€¢ Gemini 3.0 Pro Vision Invoice OCR (99.8% precision)
 
 Claim a 100% Free 24-hr AI Video Teardown of your workflow bottlenecks here:
 ${refLink}`;
 
         resBox.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <span style="color:#34d399; font-weight:bold; font-size:0.8rem; font-family:'Fira Code',monospace;">✅ AI PROMOTIONAL ASSET GENERATED:</span>
-                <button onclick="copyToolkitAsset('ai-generated-pitch-box', 'AI pitch copied!')" class="btn btn-primary-sm" style="padding:4px 10px; font-size:0.75rem;">📋 Copy Asset</button>
+                <span style="color:#34d399; font-weight:bold; font-size:0.8rem; font-family:'Fira Code',monospace;">âœ… AI PROMOTIONAL ASSET GENERATED:</span>
+                <button onclick="copyToolkitAsset('ai-generated-pitch-box', 'AI pitch copied!')" class="btn btn-primary-sm" style="padding:4px 10px; font-size:0.75rem;">ðŸ“‹ Copy Asset</button>
             </div>
             <textarea id="ai-generated-pitch-box" rows="7" readonly style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#cbd5e1; font-size:0.8rem; font-family:'Fira Code',monospace; outline:none; resize:none; box-sizing:border-box;">${copyText}</textarea>
         `;
@@ -8016,15 +8017,15 @@ window.openPartnerWithdrawalModal = function() {
 
     modal.innerHTML = `
         <div class="glass-card glowing-border" style="background:#090d16; max-width:520px; width:100%; border:1px solid var(--accent-emerald); border-radius:16px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.9);">
-            <button onclick="document.getElementById('iinsha-withdrawal-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-withdrawal-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">âœ•</button>
             
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
                 <div style="width:44px; height:44px; border-radius:10px; background:rgba(16,185,129,0.2); border:1px solid #10b981; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
-                    💳
+                    ðŸ’³
                 </div>
                 <div>
                     <h3 style="font-size:1.25rem; margin:0; color:#fff;">Request Affiliate Payout</h3>
-                    <span style="font-size:0.75rem; color:var(--accent-emerald); font-family:var(--font-mono);">Available Balance: $${unpaid.toFixed(2)} USD (৳${Math.round(unpaid * 122.5).toLocaleString()} BDT)</span>
+                    <span style="font-size:0.75rem; color:var(--accent-emerald); font-family:var(--font-mono);">Available Balance: $${unpaid.toFixed(2)} USD (à§³${Math.round(unpaid * 122.5).toLocaleString()} BDT)</span>
                 </div>
             </div>
 
@@ -8037,11 +8038,11 @@ window.openPartnerWithdrawalModal = function() {
                 <div>
                     <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:4px;">Select Payout Method:</label>
                     <select id="withdraw-method-select" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:10px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
-                        <option value="bKash (Merchant)">🇧🇩 bKash (Personal / Merchant)</option>
-                        <option value="Nagad">🇧🇩 Nagad</option>
-                        <option value="Wise Bank Wire">🌐 Wise (USD / EUR / GBP)</option>
-                        <option value="Direct Bank Wire">🏦 Direct Bank Wire (Bangladesh / Global)</option>
-                        <option value="USDT (TRC20)">💎 Crypto USDT (TRC20 / BEP20)</option>
+                        <option value="bKash (Merchant)">ðŸ‡§ðŸ‡© bKash (Personal / Merchant)</option>
+                        <option value="Nagad">ðŸ‡§ðŸ‡© Nagad</option>
+                        <option value="Wise Bank Wire">ðŸŒ Wise (USD / EUR / GBP)</option>
+                        <option value="Direct Bank Wire">ðŸ¦ Direct Bank Wire (Bangladesh / Global)</option>
+                        <option value="USDT (TRC20)">ðŸ’Ž Crypto USDT (TRC20 / BEP20)</option>
                     </select>
                 </div>
 
@@ -8051,11 +8052,11 @@ window.openPartnerWithdrawalModal = function() {
                 </div>
 
                 <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); padding:10px 14px; border-radius:8px; font-size:0.75rem; color:#a7f3d0;">
-                    ⚡ <strong>SLA Guarantee:</strong> Processed within 12 - 24 hours. Zero processing deductions.
+                    âš¡ <strong>SLA Guarantee:</strong> Processed within 12 - 24 hours. Zero processing deductions.
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="padding:12px; font-size:0.95rem; font-weight:bold; margin-top:6px; cursor:pointer;">
-                    🚀 Confirm & Submit Payout Request
+                    ðŸš€ Confirm & Submit Payout Request
                 </button>
             </form>
         </div>
@@ -8064,9 +8065,9 @@ window.openPartnerWithdrawalModal = function() {
 
 window.submitPartnerWithdrawal = function(e) {
     e.preventDefault();
-    const amount = parseFloat(((document.getElementById('withdraw-amount-input') ? document.getElementById('withdraw-amount-input')?.value || '') : ""));
-    const method = ((document.getElementById('withdraw-method-select') ? document.getElementById('withdraw-method-select')?.value || '') : "");
-    const account = ((document.getElementById('withdraw-account-input') ? document.getElementById('withdraw-account-input')?.value || '') : "");
+    const amount = document.getElementById('withdraw-amount-input') ? (document.getElementById('withdraw-amount-input').value || '') : '';
+    const method = document.getElementById('withdraw-method-select') ? (document.getElementById('withdraw-method-select').value || '') : '';
+    const account = document.getElementById('withdraw-account-input') ? (document.getElementById('withdraw-account-input').value || '') : '';
 
     let partner = window.getIinshaPartnerData();
     partner.metrics.unpaidCommission = Math.max(0, partner.metrics.unpaidCommission - amount);
@@ -8079,7 +8080,7 @@ window.submitPartnerWithdrawal = function(e) {
         date: new Date().toISOString().split('T')[0],
         method: `${method} (${account})`,
         amount: `$${amount.toFixed(2)} USD`,
-        bdt: `৳${Math.round(amount * 122.5).toLocaleString()} BDT`,
+        bdt: `à§³${Math.round(amount * 122.5).toLocaleString()} BDT`,
         status: 'Processing (< 24h)',
         txId: newTxId
     });
@@ -8090,10 +8091,10 @@ window.submitPartnerWithdrawal = function(e) {
     if (modal) {
         modal.innerHTML = `
             <div class="glass-card glowing-border" style="background:#090d16; max-width:460px; width:100%; border:1px solid var(--accent-emerald); border-radius:16px; padding:28px; color:#fff; text-align:center;">
-                <div style="font-size:3.2rem; margin-bottom:12px;">🎉</div>
+                <div style="font-size:3.2rem; margin-bottom:12px;">ðŸŽ‰</div>
                 <h3 style="color:#34d399; margin:0 0 8px 0;">Payout Request Recorded!</h3>
                 <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:16px; line-height:1.5;">
-                    Your request for <strong>$${amount.toFixed(2)} USD</strong> (৳${Math.round(amount*122.5).toLocaleString()} BDT) via <strong>${method}</strong> has been logged to the IINSHA accounting queue.
+                    Your request for <strong>$${amount.toFixed(2)} USD</strong> (à§³${Math.round(amount*122.5).toLocaleString()} BDT) via <strong>${method}</strong> has been logged to the IINSHA accounting queue.
                 </p>
                 <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; margin-bottom:18px; color:#67e8f9;">
                     Tracking Ref: ${newTxId}
@@ -8118,7 +8119,7 @@ window.openPartnerAuthModal = function() {
 
     modal.innerHTML = `
         <div class="glass-card glowing-border" style="background:#090d16; max-width:480px; width:100%; border:1px solid var(--accent-cyan); border-radius:16px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.9);">
-            <button onclick="document.getElementById('iinsha-partner-auth-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-partner-auth-modal').remove()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">âœ•</button>
 
             <h3 style="font-size:1.3rem; margin:0 0 6px 0; color:#fff;">Join IINSHA Partner Network</h3>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:18px;">Create your affiliate account or login to access your custom tracking links & payouts.</p>
@@ -8148,7 +8149,7 @@ window.openPartnerAuthModal = function() {
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="padding:12px; font-weight:bold; margin-top:8px; cursor:pointer;">
-                    🚀 Create Partner Account & Generate Links
+                    ðŸš€ Create Partner Account & Generate Links
                 </button>
             </form>
         </div>
@@ -8157,10 +8158,10 @@ window.openPartnerAuthModal = function() {
 
 window.submitPartnerAuth = function(e) {
     e.preventDefault();
-    const name = ((document.getElementById('partner-reg-name') ? document.getElementById('partner-reg-name')?.value || '') : "");
-    const email = ((document.getElementById('partner-reg-email') ? document.getElementById('partner-reg-email')?.value || '') : "");
-    const slug = ((document.getElementById('partner-reg-slug') ? document.getElementById('partner-reg-slug')?.value || '') : "").trim().replace(/[^a-zA-Z0-9-_]/g, '') || 'partner';
-    const payout = ((document.getElementById('partner-reg-payout') ? document.getElementById('partner-reg-payout')?.value || '') : "");
+    const name = document.getElementById('partner-reg-name') ? (document.getElementById('partner-reg-name').value || '') : '';
+    const email = document.getElementById('partner-reg-email') ? (document.getElementById('partner-reg-email').value || '') : '';
+    const slug = document.getElementById('partner-reg-slug') ? (document.getElementById('partner-reg-slug').value || '') : '';
+    const payout = document.getElementById('partner-reg-payout') ? (document.getElementById('partner-reg-payout').value || '') : '';
 
     const newPartner = {
         id: `AFF-${Math.floor(1000 + Math.random()*9000)}`,
@@ -8233,7 +8234,7 @@ window.openDealLifecycleModal = function(dealId) {
 
     modal.innerHTML = `
         <div class="glass-card glowing-border" style="background:#090d16; max-width:680px; width:100%; max-height:90vh; overflow-y:auto; border:1px solid var(--accent-cyan); border-radius:18px; padding:28px; color:#fff; position:relative; box-shadow:0 25px 65px rgba(0,0,0,0.9);">
-            <button onclick="document.getElementById('iinsha-deal-lifecycle-modal').remove()" style="position:absolute; top:18px; right:18px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('iinsha-deal-lifecycle-modal').remove()" style="position:absolute; top:18px; right:18px; background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">âœ•</button>
 
             <div style="border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
@@ -8245,13 +8246,13 @@ window.openDealLifecycleModal = function(dealId) {
                 <div style="font-size:0.85rem; color:var(--accent-emerald); font-weight:bold; margin-top:4px;">Commission: ${deal.commission} (Deal Size: ${deal.dealSize})</div>
             </div>
 
-            <h4 style="font-size:1rem; color:#fff; margin-bottom:16px;">🚦 Complete 12-Stage Lifecycle Audit Trail</h4>
+            <h4 style="font-size:1rem; color:#fff; margin-bottom:16px;">ðŸš¦ Complete 12-Stage Lifecycle Audit Trail</h4>
 
             <div style="display:flex; flex-direction:column; gap:12px;">
                 ${stages.map(s => `
                     <div style="display:flex; gap:14px; align-items:flex-start; background:${s.done ? 'rgba(16,185,129,0.06)' : 'rgba(255,255,255,0.02)'}; border:1px solid ${s.done ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.05)'}; border-radius:10px; padding:12px 14px;">
                         <div style="width:28px; height:28px; border-radius:50%; background:${s.done ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.1)'}; color:${s.done ? '#030712' : '#94a3b8'}; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.75rem; flex-shrink:0;">
-                            ${s.done ? '✓' : s.num}
+                            ${s.done ? 'âœ“' : s.num}
                         </div>
                         <div style="flex:1;">
                             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
@@ -8305,7 +8306,7 @@ window.simulateLiveAffiliateLead = function() {
 
     localStorage.setItem('iinsha_active_partner', JSON.stringify(partner));
     initAuthenticPartnerConsole();
-    showAffiliateToast(`🎉 New Lead Captured for ${pick.name}! Lifecycle stage 3 initiated.`);
+    showAffiliateToast(`ðŸŽ‰ New Lead Captured for ${pick.name}! Lifecycle stage 3 initiated.`);
 };
 
 
@@ -8323,7 +8324,7 @@ window.renderAffiliateQrCode = function(url, containerId) {
     container.innerHTML = `
         <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:12px; display:inline-flex; flex-direction:column; align-items:center; gap:8px;">
             <img src="${qrUrl}" alt="Affiliate QR Code" width="130" height="130" style="border-radius:8px;" onerror="this.onerror=null; this.src='https://chart.googleapis.com/chart?cht=qr&chs=130x130&chl=${encodeURIComponent(url)}&chld=M|0';">
-            <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">📱 Scan to Track</span>
+            <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">ðŸ“± Scan to Track</span>
         </div>
     `;
 };
@@ -8331,9 +8332,9 @@ window.renderAffiliateQrCode = function(url, containerId) {
 // --- GAMIFIED PARTNER MILESTONE CHALLENGES ---
 window.getPartnerChallenges = function() {
     return [
-        { id: 'ch-1', title: '🚀 First Flight (0/3 Sales)', desc: 'Close your first 3 enterprise AI clients to unlock VIP Silver tier.', progress: 100, current: 3, target: 3, completed: true, reward: '+$100 Cash Bonus' },
-        { id: 'ch-2', title: '👑 Revenue Accelerator ($10k Milestone)', desc: 'Drive $10,000+ cumulative pipeline revenue to unlock 25% Elite Gold status.', progress: 100, current: 14250, target: 10000, completed: true, reward: 'Elite Gold Tier (25%)' },
-        { id: 'ch-3', title: '💎 Master Swarm Closer (5 AI Workforce Swarms)', desc: 'Close 5 Autonomous Multi-Agent Swarms ($3,000+ deals).', progress: 60, current: 3, target: 5, completed: false, reward: 'Dedicated AM + 30% RevShare' }
+        { id: 'ch-1', title: 'ðŸš€ First Flight (0/3 Sales)', desc: 'Close your first 3 enterprise AI clients to unlock VIP Silver tier.', progress: 100, current: 3, target: 3, completed: true, reward: '+$100 Cash Bonus' },
+        { id: 'ch-2', title: 'ðŸ‘‘ Revenue Accelerator ($10k Milestone)', desc: 'Drive $10,000+ cumulative pipeline revenue to unlock 25% Elite Gold status.', progress: 100, current: 14250, target: 10000, completed: true, reward: 'Elite Gold Tier (25%)' },
+        { id: 'ch-3', title: 'ðŸ’Ž Master Swarm Closer (5 AI Workforce Swarms)', desc: 'Close 5 Autonomous Multi-Agent Swarms ($3,000+ deals).', progress: 60, current: 3, target: 5, completed: false, reward: 'Dedicated AM + 30% RevShare' }
     ];
 };
 
@@ -8361,13 +8362,13 @@ window.renderAdminAffiliateCommandCenter = function(container) {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.3rem; display:flex; align-items:center; gap:8px;">
-                        <span>🤝 IINSHA AFFILIATE COMMAND CENTER</span>
+                        <span>ðŸ¤ IINSHA AFFILIATE COMMAND CENTER</span>
                         <span class="badge-gold" style="font-size:0.7rem; padding:2px 8px;">PARTNERSTACK GRADE</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Real-time governance of partners, attribution ledgers, fraud alerts, and multi-channel payouts.</p>
                 </div>
                 <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, #10b981, #059669); font-weight:bold;">
-                    ⚡ Batch Approve All Payouts
+                    âš¡ Batch Approve All Payouts
                 </button>
             </div>
 
@@ -8397,7 +8398,7 @@ window.renderAdminAffiliateCommandCenter = function(container) {
 
             <!-- PARTNER DIRECTORY TABLE -->
             <div style="margin-bottom:28px;">
-                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">👥 Partner Roster & Commission Overrides</h4>
+                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">ðŸ‘¥ Partner Roster & Commission Overrides</h4>
                 <div class="table-wrapper" style="overflow-x:auto;">
                     <table class="orders-table" style="width:100%; font-size:0.8rem;">
                         <thead>
@@ -8434,7 +8435,7 @@ window.renderAdminAffiliateCommandCenter = function(container) {
 
             <!-- FRAUD SHIELD & ANOMALY LOGS -->
             <div>
-                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">🛡️ Fraud Shield & Bot Detection Audit</h4>
+                <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">ðŸ›¡ï¸ Fraud Shield & Bot Detection Audit</h4>
                 <div class="table-wrapper" style="overflow-x:auto;">
                     <table class="orders-table" style="width:100%; font-size:0.8rem;">
                         <thead>
@@ -8468,16 +8469,16 @@ window.renderAdminAffiliateCommandCenter = function(container) {
 };
 
 window.adminApprovePartnerPayout = function(id, name) {
-    showAffiliateToast(`⚡ Payout for ${name} (${id}) approved & scheduled for automated disbursement!`);
+    showAffiliateToast(`âš¡ Payout for ${name} (${id}) approved & scheduled for automated disbursement!`);
 };
 
 window.adminTriggerBatchPayout = function() {
-    showAffiliateToast('🎉 Batch payout for 3 active partners ($2,450.00 USD) processed successfully via Stripe & bKash!');
+    showAffiliateToast('ðŸŽ‰ Batch payout for 3 active partners ($2,450.00 USD) processed successfully via Stripe & bKash!');
 };
 
 
 // ==============================================================================
-// 🛒 MASTER ENTERPRISE ORDER ENGINE, WHATSAPP DISPATCHER & CONTROL PANEL SYNC
+// ðŸ›’ MASTER ENTERPRISE ORDER ENGINE, WHATSAPP DISPATCHER & CONTROL PANEL SYNC
 // ==============================================================================
 
 window.USD_TO_BDT_RATE = 122.50;
@@ -8495,16 +8496,16 @@ window.openCheckoutModal = function(packageName, setupPrice, retainerPrice) {
 
     const priceNum = typeof setupPrice === 'number' ? setupPrice : parseFloat((setupPrice || '300').toString().replace(/[^0-9.]/g, '')) || 300;
     const bdtNum = Math.round(priceNum * window.USD_TO_BDT_RATE);
-    const bdtFormatted = '৳' + bdtNum.toLocaleString('en-BD');
+    const bdtFormatted = 'à§³' + bdtNum.toLocaleString('en-BD');
     const affRef = (typeof window.getActiveAffiliateRef === 'function') ? (window.getActiveAffiliateRef() || 'Direct Traffic') : 'Direct Traffic';
 
     modal.innerHTML = `
         <div class="checkout-modal-box" style="background:#090d16; border:1px solid var(--accent-cyan); border-radius:18px; width:100%; max-width:540px; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 30px 80px rgba(0,0,0,0.95); color:#fff; position:relative; animation:fadeIn 0.25s ease;">
             
-            <button onclick="closeCheckoutModal()" style="position:absolute; top:18px; right:18px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; width:34px; height:34px; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='var(--accent-rose)';" onmouseout="this.style.color='#94a3b8';">✕</button>
+            <button onclick="closeCheckoutModal()" style="position:absolute; top:18px; right:18px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#94a3b8; width:34px; height:34px; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='var(--accent-rose)';" onmouseout="this.style.color='#94a3b8';">âœ•</button>
 
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-                <span class="status-badge completed" style="font-size:0.75rem; padding:3px 10px;">⚡ SECURE ORDER GATEWAY</span>
+                <span class="status-badge completed" style="font-size:0.75rem; padding:3px 10px;">âš¡ SECURE ORDER GATEWAY</span>
                 <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono);">Ref: ${affRef}</span>
             </div>
 
@@ -8517,7 +8518,7 @@ window.openCheckoutModal = function(packageName, setupPrice, retainerPrice) {
                     <div style="font-size:1.5rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-mono);">$${priceNum.toLocaleString()} USD</div>
                 </div>
                 <div style="text-align:right;">
-                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-family:var(--font-mono);">BDT Equivalent (৳)</span>
+                    <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-family:var(--font-mono);">BDT Equivalent (à§³)</span>
                     <div style="font-size:1.3rem; font-weight:700; color:var(--accent-cyan); font-family:var(--font-mono);">${bdtFormatted}</div>
                 </div>
             </div>
@@ -8548,12 +8549,12 @@ window.openCheckoutModal = function(packageName, setupPrice, retainerPrice) {
                 </div>
 
                 <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:10px 14px; font-size:0.76rem; color:#a7f3d0; margin-bottom:18px; line-height:1.4;">
-                    🛡️ <strong>Zero-Risk SLA:</strong> Deployed in Docker containers on Hostinger VPS within 48 hours. 100% source code handover with 14-day bug-free warranty.
+                    ðŸ›¡ï¸ <strong>Zero-Risk SLA:</strong> Deployed in Docker containers on Hostinger VPS within 48 hours. 100% source code handover with 14-day bug-free warranty.
                 </div>
 
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <button type="submit" class="btn btn-primary" style="flex:1; padding:14px; font-weight:700; font-size:0.95rem; cursor:pointer; background:linear-gradient(135deg, #06b6d4, #3b82f6); border-radius:10px; box-shadow:0 0 20px rgba(6,182,212,0.4);">
-                        🚀 Place Order & Launch WhatsApp AI
+                        ðŸš€ Place Order & Launch WhatsApp AI
                     </button>
                 </div>
 
@@ -8583,7 +8584,7 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
     let serverPrice = priceUsd;
     let serverBdt = priceBdt;
 
-    // 0. LIVE EDGE API CALL TO /api/payments/checkout — THIS IS THE SOURCE OF TRUTH
+    // 0. LIVE EDGE API CALL TO /api/payments/checkout â€” THIS IS THE SOURCE OF TRUTH
     try {
         const serviceSlug = packageName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'b2b-lead-swarm';
         const response = await fetch('/api/payments/checkout', {
@@ -8604,22 +8605,22 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
                 orderId = data.order.order_id;
                 signedOrderToken = data.order_token;
                 serverPrice = data.order.total_usd || priceUsd;
-                serverBdt = data.order.total_bdt ? `৳${data.order.total_bdt.toLocaleString('en-BD')}` : priceBdt;
+                serverBdt = data.order.total_bdt ? `à§³${data.order.total_bdt.toLocaleString('en-BD')}` : priceBdt;
             }
         } else {
-            // API rejected the order — do NOT proceed with local fallback
+            // API rejected the order â€” do NOT proceed with local fallback
             const errData = await response.json().catch(() => ({}));
             if (typeof showAffiliateToast === 'function') {
-                showAffiliateToast(`⚠️ Order could not be placed: ${errData.error || 'Server unavailable. Please try again.'}`);
+                showAffiliateToast(`âš ï¸ Order could not be placed: ${errData.error || 'Server unavailable. Please try again.'}`);
             }
-            return; // BLOCK — no fake local order
+            return; // BLOCK â€” no fake local order
         }
     } catch(e) {
-        // Network error — do NOT create a fake order
+        // Network error â€” do NOT create a fake order
         if (typeof showAffiliateToast === 'function') {
-            showAffiliateToast('⚠️ Network error. Please check your connection and try again.');
+            showAffiliateToast('âš ï¸ Network error. Please check your connection and try again.');
         }
-        return; // BLOCK — no fake local order
+        return; // BLOCK â€” no fake local order
     }
 
     // 1. SAVE TO LOCALSTORAGE AS UI CACHE ONLY (backend is source of truth)
@@ -8648,26 +8649,26 @@ window.submitIinshaOrder = async function(packageName, priceUsd, priceBdt) {
 
     // 2. SHOW NOTIFICATION TOAST
     if (typeof showAffiliateToast === 'function') {
-        showAffiliateToast(`🎉 Order ${orderId} successfully placed! Server-verified and synced.`);
+        showAffiliateToast(`ðŸŽ‰ Order ${orderId} successfully placed! Server-verified and synced.`);
     }
 
     closeCheckoutModal();
 
     // 4. FORMAT STRUCTURED WHATSAPP NOTIFICATION FOR OWNER
     const waText = 
-`🔔 *NEW IINSHA AI ORDER DISPATCHED*
-━━━━━━━━━━━━━━━━━━━━
-📋 *Order ID:* ${orderId}
-👤 *Client Name:* ${name}
-📧 *Email:* ${email}
-📱 *Phone / WA:* ${phone}
-🎯 *Service Package:* ${packageName}
-💰 *Price:* $${priceUsd.toLocaleString()} USD (${priceBdt})
-🤖 *AI SDR Score:* 98/100 (Enterprise Verified)
-🤝 *Affiliate Ref:* ${affRef}
-📝 *Project Notes:* ${notes}
-━━━━━━━━━━━━━━━━━━━━
-⚡ *Action:* Logged into Control Panel (inshatech.pages.dev/admin)`;
+`ðŸ”” *NEW IINSHA AI ORDER DISPATCHED*
+â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+ðŸ“‹ *Order ID:* ${orderId}
+ðŸ‘¤ *Client Name:* ${name}
+ðŸ“§ *Email:* ${email}
+ðŸ“± *Phone / WA:* ${phone}
+ðŸŽ¯ *Service Package:* ${packageName}
+ðŸ’° *Price:* $${priceUsd.toLocaleString()} USD (${priceBdt})
+ðŸ¤– *AI SDR Score:* 98/100 (Enterprise Verified)
+ðŸ¤ *Affiliate Ref:* ${affRef}
+ðŸ“ *Project Notes:* ${notes}
+â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+âš¡ *Action:* Logged into Control Panel (inshatech.pages.dev/admin)`;
 
     const waUrl = `https://wa.me/${window.OWNER_WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
     
@@ -8836,3 +8837,4 @@ if (document.readyState === 'loading') {
 }
 window.addEventListener('load', initUniversalButtonBindings);
 window.initUniversalButtonBindings = initUniversalButtonBindings;
+

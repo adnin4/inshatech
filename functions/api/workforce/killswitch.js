@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/workforce/killswitch
  * Emergency Control Plane: Pause / Resume Swarm & Individual Departments
  */
@@ -64,3 +64,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

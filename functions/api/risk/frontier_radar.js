@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/risk/frontier_radar
  * Executive Risk Radar, Business Continuity Planner & Anti-Hallucination Claim Verifier
  */
@@ -40,3 +40,4 @@ export async function onRequestGet(context) {
         frontier_risk_radar: frontierRiskRadar
     }), { headers, status: 200 });
 }
+

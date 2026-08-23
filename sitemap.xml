@@ -7,55 +7,55 @@
     <!-- Homepage: IINSHA AI-BOS Autonomous Operating System -->
     <url>
         <loc>https://inshatech.pages.dev/</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
 
-    <!-- Turnkey Store: Production-Ready AI Workflows & Digital Assets -->
+    <!-- Turnkey Store -->
     <url>
-        <loc>https://inshatech.pages.dev/store</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/store.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
 
-    <!-- Verified AI Agents & n8n Marketplace -->
+    <!-- AI Marketplace -->
     <url>
-        <loc>https://inshatech.pages.dev/marketplace</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/marketplace.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.90</priority>
     </url>
 
-    <!-- Compare: Self-Hosted n8n vs Zapier & Make Enterprise Analysis -->
+    <!-- Compare n8n vs Zapier -->
     <url>
-        <loc>https://inshatech.pages.dev/compare</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/compare.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
 
-    <!-- 28-Pillar Affiliate & Growth Partner Network -->
+    <!-- Affiliate Network -->
     <url>
-        <loc>https://inshatech.pages.dev/affiliate</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/affiliate.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
 
-    <!-- Enterprise Client Portal & Project Tracker -->
+    <!-- Client Portal -->
     <url>
-        <loc>https://inshatech.pages.dev/portal</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/portal.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
 
-    <!-- Technical AI Insights & Architectural Whitepapers -->
+    <!-- Blog & Whitepapers -->
     <url>
-        <loc>https://inshatech.pages.dev/blog</loc>
-        <lastmod>2026-08-17T20:00:00+00:00</lastmod>
+        <loc>https://inshatech.pages.dev/blog.html</loc>
+        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>

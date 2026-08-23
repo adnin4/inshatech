@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/control/emergency
  * Emergency Command Center API (1-Click Action Dispatcher)
  */
@@ -54,3 +54,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/bi
  * Natural Language Business Intelligence & CEO Command Metric Engine
  */
@@ -43,3 +43,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

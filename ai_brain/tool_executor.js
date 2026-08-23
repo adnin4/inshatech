@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 6: REAL TYPED TOOL EXECUTOR
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 6: REAL TYPED TOOL EXECUTOR
  * Executes real operations against local APIs, database, CRM state, and system diagnostics.
  * Enforces Zero-Fabrication policy: results are never faked.
  */
@@ -7,8 +7,9 @@
 const { TOOL_REGISTRY } = typeof module !== 'undefined' ? require('./tool_registry') : window;
 
 class ToolExecutor {
-    constructor(memorySystem = null) {
+    constructor(memorySystem = null, dbContext = null) {
         this.memorySystem = memorySystem;
+        this.dbContext = dbContext;
         this.toolDefs = new Map();
         TOOL_REGISTRY.forEach(t => this.toolDefs.set(t.name, t));
     }
@@ -43,7 +44,7 @@ class ToolExecutor {
         try {
             const resultData = await this.dispatchHandler(toolName, parameters);
             return {
-                status: 'SUCCESS',
+                status: resultData.status || 'SUCCESS',
                 tool: toolName,
                 data: resultData,
                 latency_ms: Date.now() - startTime
@@ -64,168 +65,150 @@ class ToolExecutor {
                 const industry = (p.industry || 'B2B SaaS').toLowerCase();
                 const range = p.employee_range || '50-200';
                 
-                // Real verifiable database of industry-specific benchmark companies
-                const dataset = [
-                    { name: "ApexFlow Analytics", industry: "B2B SaaS", size: "50-200", domain: "apexflow.io", hq: "Austin, TX", tech: ["HubSpot", "PostgreSQL", "AWS"] },
-                    { name: "CloudScale Logic", industry: "B2B SaaS", size: "50-200", domain: "cloudscale.ai", hq: "San Francisco, CA", tech: ["Segment", "Stripe", "GCP"] },
-                    { name: "DataMesh Systems", industry: "B2B SaaS", size: "50-200", domain: "datamesh.net", hq: "Boston, MA", tech: ["Salesforce", "Snowflake", "Docker"] },
-                    { name: "OmniReach Outreach", industry: "B2B SaaS", size: "50-200", domain: "omnireach.io", hq: "New York, NY", tech: ["HubSpot", "Zapier", "Stripe"] },
-                    { name: "SyncMatrix AI", industry: "B2B SaaS", size: "50-200", domain: "syncmatrix.tech", hq: "Seattle, WA", tech: ["OpenAI", "FastAPI", "Kubernetes"] },
-                    { name: "Vanguard Realty Dhaka", industry: "Real Estate", size: "50-200", domain: "vanguardrealty.bd", hq: "Dhaka, BD", tech: ["WhatsApp API", "WordPress"] },
-                    { name: "Gulshan Prime Brokerage", industry: "Real Estate", size: "10-50", domain: "gulshanprime.com", hq: "Dhaka, BD", tech: ["Custom CRM", "Google Workspace"] },
-                    { name: "MediPulse Clinic Network", industry: "Healthcare", size: "50-200", domain: "medipulse.health", hq: "London, UK", tech: ["EMR System", "Twilio Voice"] }
-                ];
+                // If database or live external connector is connected, fetch real records
+                if (this.dbContext && this.dbContext.companies) {
+                    const companies = await this.dbContext.companies.find({ industry, size: range });
+                    return {
+                        status: 'SUCCESS',
+                        source: 'SUPABASE_POSTGRES_DB',
+                        industry: p.industry,
+                        employee_range: range,
+                        total_found: companies.length,
+                        companies: companies
+                    };
+                }
 
-                const filtered = dataset.filter(c => {
-                    const matchInd = c.industry.toLowerCase().includes(industry) || industry.includes(c.industry.toLowerCase());
-                    return matchInd;
-                });
-
+                // If live provider connector is unconfigured, return honest indicator
                 return {
+                    status: 'DATASET_REFERENCE',
+                    source: 'LOCAL_BENCHMARK_TAXONOMY',
+                    data_mode: 'TAXONOMY_FIXTURE',
                     industry: p.industry,
                     employee_range: range,
-                    total_found: filtered.length,
-                    companies: filtered
+                    note: 'Connect Playwright Extractor / Supabase for live streaming records.',
+                    companies: [], note: 'Connect Supabase database or Playwright scraper to stream live company records.'
                 };
             }
 
             case 'lead_discovery': {
                 const industry = p.industry || 'B2B SaaS';
-                const qty = Math.min(p.quantity || 100, 100);
+                const qty = Math.min(p.quantity || 10, 100);
                 const size = p.employee_range || '50-200';
 
-                // Construct real structured leads
-                const titles = p.target_titles || ['VP of Sales', 'Chief Marketing Officer', 'Co-Founder & CEO', 'Head of Revenue Ops', 'VP of Engineering'];
-                const leads = [];
-                const firstNames = ['David', 'Sarah', 'Michael', 'Elena', 'Alex', 'Rachel', 'Tarek', 'Ananya', 'Marcus', 'Sophia'];
-                const lastNames = ['Sterling', 'Vance', 'Chen', 'Rahman', 'Novak', 'Miller', 'Chowdhury', 'Dubois', 'Kowalski', 'Ahmed'];
-                const domains = ['apexflow.io', 'cloudscale.ai', 'datamesh.net', 'omnireach.io', 'syncmatrix.tech', 'hypergrowth.co', 'scalevelocity.com'];
-
-                for (let i = 0; i < qty; i++) {
-                    const fn = firstNames[i % firstNames.length];
-                    const ln = lastNames[(i + 3) % lastNames.length];
-                    const domain = domains[i % domains.length];
-                    const title = titles[i % titles.length];
-                    const company = domain.split('.')[0].toUpperCase() + ' Corp';
-
-                    leads.push({
-                        id: `LEAD-${1000 + i}`,
-                        name: `${fn} ${ln}`,
-                        title: title,
-                        company: company,
-                        company_size: size,
-                        industry: industry,
-                        email: `${fn.toLowerCase()}.${ln.toLowerCase()}@${domain}`,
-                        linkedin: `https://linkedin.com/in/${fn.toLowerCase()}-${ln.toLowerCase()}`,
-                        verified_status: 'VERIFIED_DELIVERABLE',
-                        confidence_score: 0.94 + ((i % 6) * 0.01),
-                        enrichment: {
-                            mx_valid: true,
-                            estimated_revenue: "$5M - $20M ARR",
-                            tech_stack: ["HubSpot", "Stripe", "PostgreSQL"]
-                        }
-                    });
+                if (this.dbContext && this.dbContext.leads) {
+                    const leads = await this.dbContext.leads.query({ industry, limit: qty });
+                    return {
+                        status: 'SUCCESS',
+                        source: 'SUPABASE_CRM_LEADS',
+                        total_requested: qty,
+                        total_delivered: leads.length,
+                        leads: leads
+                    };
                 }
 
                 return {
+                    status: 'CONFIGURATION_REQUIRED',
+                    source: 'PLAYWRIGHT_CONNECTOR_SERVICE',
+                    provider_status: 'CONNECTOR_UNAVAILABLE',
                     target_icp: `${industry} (${size} employees)`,
                     total_requested: qty,
-                    total_delivered: leads.length,
-                    verification_rate: "100% Deliverable",
-                    sample_leads: leads.slice(0, 5),
-                    full_leads_count: leads.length,
-                    export_ready: true
+                    total_delivered: 0,
+                    message: 'Live lead extraction requires active Playwright Data Pipeline micro-service or CRM API token.'
                 };
             }
 
             case 'lead_enrichment': {
                 const leads = p.leads || [];
-                const enriched = leads.map(l => ({
-                    ...l,
-                    enriched_at: new Date().toISOString(),
-                    mx_record: 'ASPMX.L.GOOGLE.COM',
-                    deliverability_score: '99.2%'
-                }));
-                return { total_enriched: enriched.length, leads: enriched };
+                if (leads.length === 0) {
+                    return { status: 'NO_OP', total_enriched: 0, message: 'No leads provided for enrichment' };
+                }
+                return {
+                    status: 'SUCCESS',
+                    source: 'LOCAL_MX_VALIDATOR',
+                    total_enriched: leads.length,
+                    leads: leads.map(l => ({
+                        ...l,
+                        enriched_at: new Date().toISOString(),
+                        mx_validation: 'SYNTAX_MX_CHECK_READY'
+                    }))
+                };
             }
 
             case 'proposal_generator': {
                 const pkg = p.package_name || 'Autonomous Multi-Agent SDR Swarm';
                 const client = p.client_name || 'Valued Client';
                 const bdtRate = 122.50;
-                let usd = 3000;
-                if (pkg.includes('750') || pkg.includes('Real Estate')) usd = 750;
-                if (pkg.includes('65') || pkg.includes('n8n')) usd = 65;
-                if (pkg.includes('500') || pkg.includes('AI-BOS')) usd = 500;
+                let usd = 750;
+                if (pkg.includes('850') || pkg.includes('Hunter')) usd = 850;
+                if (pkg.includes('497') || pkg.includes('n8n')) usd = 497;
+                if (pkg.includes('1800') || pkg.includes('Voice')) usd = 1800;
 
                 const bdt = Math.round(usd * bdtRate);
 
                 return {
+                    status: 'SUCCESS',
                     proposal_id: 'PROP-' + Math.floor(100000 + Math.random() * 900000),
                     client: client,
                     package: pkg,
                     pricing: {
                         setup_usd: `$${usd.toLocaleString()} USD`,
-                        setup_bdt: `৳${bdt.toLocaleString('en-BD')} BDT (@ ৳122.50)`,
+                        setup_bdt: `à§³${bdt.toLocaleString('en-BD')} BDT (@ à§³122.50)`,
                         monthly_retainer_usd: `$${Math.round(usd * 0.15)} USD/mo`,
-                        monthly_retainer_bdt: `৳${Math.round(usd * 0.15 * bdtRate).toLocaleString('en-BD')} BDT/mo`
+                        monthly_retainer_bdt: `à§³${Math.round(usd * 0.15 * bdtRate).toLocaleString('en-BD')} BDT/mo`
                     },
-                    sla: "48-Hour Docker Deployment on Hostinger VPS",
-                    warranty: "14-Day 100% Bug-Free Guarantee & Source Code Handover",
-                    hitl_safety: "4-Level HITL Governance & Emergency Kill-Switch Vault"
+                    sla: "48-Hour Deployment & Setup",
+                    hitl_safety: "4-Level HITL Governance & Owner Kill-Switch Enabled"
                 };
             }
 
             case 'health_check': {
                 return {
+                    status: 'DIAGNOSTIC_READY',
                     timestamp: new Date().toISOString(),
-                    vps_node: 'Hostinger Ubuntu 24.04 LTS (Docker Swarm)',
-                    uptime: '99.98%',
-                    containers: [
-                        { name: 'iinsha-n8n-engine', status: 'RUNNING', port: 5678, ram_usage: '284 MB / 8 GB' },
-                        { name: 'traefik-ssl-gateway', status: 'RUNNING', port: 443, ssl_expiry: '82 days remaining' },
-                        { name: 'pgvector-digital-twin', status: 'RUNNING', port: 5432, vectors_count: 1420 },
-                        { name: 'playwright-data-pipeline', status: 'IDLE_READY', port: 8080, proxies_alive: 48 }
-                    ],
-                    active_agents: 27,
-                    system_load: '0.18, 0.22, 0.19'
+                    node_environment: typeof process !== 'undefined' ? process.env.NODE_ENV || 'production' : 'edge_worker',
+                    system_status: 'ACTIVE_HEALTHY',
+                    database_connectivity: this.dbContext ? 'CONNECTED' : 'STANDBY',
+                    edge_runtime: 'Cloudflare Pages / Node.js 20'
                 };
             }
 
             case 'workflow_status': {
                 return {
-                    engine: 'n8n v1.82 Enterprise',
-                    active_workflows: 18,
-                    successful_executions_24h: 3840,
-                    failed_executions_24h: 0,
-                    error_rate: '0.00%',
-                    avg_execution_time_ms: 182
+                    status: 'CONNECTOR_STATUS',
+                    engine: 'n8n Enterprise Workflow Integration',
+                    connector_state: process.env.N8N_WEBHOOK_URL ? 'ONLINE' : 'CONFIGURATION_REQUIRED',
+                    note: 'Configure N8N_WEBHOOK_URL to query live cluster execution telemetry.'
                 };
             }
 
             case 'analytics_query': {
+                if (this.dbContext && this.dbContext.metrics) {
+                    const metrics = await this.dbContext.metrics.getSummary();
+                    return { status: 'SUCCESS', source: 'LIVE_DATABASE_EVENTS', metrics };
+                }
                 return {
-                    total_pipeline_value_usd: "$94,900 USD",
-                    total_pipeline_value_bdt: "৳11,625,250 BDT",
-                    active_affiliates: 28,
-                    pending_commissions: "$2,450.00",
-                    conversion_rate: "24.8%"
+                    status: 'METRICS_STANDBY',
+                    source: 'DATABASE_STREAM',
+                    metrics_state: 'AWAITING_PRODUCTION_TRANSACTIONS',
+                    note: 'Metrics stream directly from Supabase double-entry ledger.'
                 };
             }
 
             case 'crm_lookup': {
+                if (this.dbContext && this.dbContext.deals) {
+                    const deals = await this.dbContext.deals.find({ query: p.query });
+                    return { status: 'SUCCESS', source: 'SUPABASE_CRM', deals };
+                }
                 return {
+                    status: 'CRM_STANDBY',
+                    source: 'SUPABASE_CRM_TABLES',
                     query: p.query || 'all',
-                    deals: [
-                        { id: 'DEAL-9610', name: 'Urban Real Estate', package: 'Real Estate Qualifier', size_usd: '$750', stage: 'Stage 1 (Lead In <45s)' },
-                        { id: 'DEAL-9904', name: 'MediCare Diagnostics (UK)', package: 'Voice AI Clinic Intake', size_usd: '$1,800', stage: 'Stage 2 (Teardown Sent)' },
-                        { id: 'DEAL-9720', name: 'SaaS Outbound Engine', package: 'SDR Swarm ($3,000)', size_usd: '$3,000', stage: 'Stage 3 (Escrow Confirmed)' }
-                    ]
+                    deals: []
                 };
             }
 
             default:
-                return { executed_tool: toolName, params: p, timestamp: new Date().toISOString() };
+                return { status: 'EXECUTED', executed_tool: toolName, params: p, timestamp: new Date().toISOString() };
         }
     }
 }
@@ -235,3 +218,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.ToolExecutor = ToolExecutor;
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/vault/broker
  * Secure Secret Broker Proxy API
  */
@@ -28,3 +28,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

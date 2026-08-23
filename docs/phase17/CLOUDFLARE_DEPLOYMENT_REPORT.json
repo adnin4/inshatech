@@ -1,0 +1,16 @@
+{
+  "project_name": "inshatech",
+  "production_url": "https://inshatech.pages.dev/",
+  "deployment_sha": "ab3023391a4f0d8d44c1c45df2ae2cd5989f0d36",
+  "environment_variables_configured": [
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "GEMINI_API_KEY"
+  ],
+  "environment_variables_unconfigured_external": [
+    "META_WHATSAPP_ACCESS_TOKEN",
+    "TWILIO_ACCOUNT_SID",
+    "RESEND_API_KEY"
+  ],
+  "status": "VERIFIED"
+}

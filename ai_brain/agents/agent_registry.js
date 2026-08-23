@@ -172,6 +172,19 @@ export const AGENT_REGISTRY = {
     tools: { allowed: ['get_audit_logs', 'get_system_health', 'create_incident', 'get_agents_status'], max_calls: 10 },
     permissions: { autonomy_level: 'L0_OBSERVE', permission_level: 'LEVEL_0_READ', can_delegate_to: [], requires_hitl: false, is_supervisor: true },
     evaluation: { target_quality_score: 100, max_cost_usd: 0.50, revenue_attribution_model: 'security_governance', sla_latency_ms: 800 }
+  },
+
+  WHATSAPP_AGENT: {
+    identity: { id: 'whatsapp', name: 'WhatsApp AI Sales & Support Concierge', department: 'Commercial', role: 'Bilingual Conversational Specialist' },
+    goal: {
+      primary: 'Provide instant 24/7 bilingual sales qualification, product pitch, and customer support via WhatsApp and Web',
+      allowed_objectives: ['whatsapp_qualification', 'catalog_inquiry', 'pricing_quote', 'deal_handover'],
+      forbidden_objectives: ['unauthorized_discount_over_20_percent', 'misrepresenting_features']
+    },
+    memory: { context_tokens: 64000, persist_state: true, memory_store: 'ibos_memories' },
+    tools: { allowed: ['get_services', 'create_lead', 'calculate_roi', 'send_whatsapp', 'search_knowledge'], max_calls: 30 },
+    permissions: { autonomy_level: 'L2_SAFE_EXECUTE', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['SALES_AGENT'], requires_hitl: false },
+    evaluation: { target_quality_score: 95, max_cost_usd: 1.50, revenue_attribution_model: 'whatsapp_lead_conversion', sla_latency_ms: 1200 }
   }
 };
 
@@ -209,3 +222,4 @@ export const ANTI_LOOP_CONFIG = {
   max_cost_usd: 20.00,
   max_retries_per_tool: 3
 };
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/business_health
  * Unified Business Health Score API (92/100 Composite Score)
  * Evaluates Revenue, Profit, Growth, Customer, AI Reliability, Security, Delivery, and Infrastructure
@@ -38,3 +38,4 @@ export async function onRequestGet(context) {
         business_health: businessHealthReport
     }), { headers, status: 200 });
 }
+

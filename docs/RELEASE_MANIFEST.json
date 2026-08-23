@@ -1,0 +1,12 @@
+{
+  "schema_version": "2026.08.23-PROD-V1",
+  "project": "IINSHA AI-BOS",
+  "git_commit_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "ci_build_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "cloudflare_deployment_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "live_production_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "release_parity": "STRICT_100_PERCENT_MATCH",
+  "environment": "production",
+  "timestamp": "2026-08-23T02:44:15Z",
+  "status": "SEALED_PRODUCTION_MANIFEST"
+}

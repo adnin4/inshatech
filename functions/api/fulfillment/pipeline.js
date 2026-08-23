@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/fulfillment/pipeline
  * Post-Sale Fulfillment Pipeline & Project Delivery Controller
  */
@@ -31,3 +31,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

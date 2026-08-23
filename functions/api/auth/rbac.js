@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/auth/rbac
  * Enterprise 14-Role RBAC & Granular Permission Evaluation Engine
  */
@@ -72,3 +72,4 @@ export async function onRequestPost(context) {
         });
     }
 }
+

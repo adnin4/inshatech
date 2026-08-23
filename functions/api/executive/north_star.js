@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/north_star
  * IINSHA AI-BOS Complete Master Roadmap API: North Star 6-Department Grid & 181 Capabilities
  */
@@ -47,3 +47,4 @@ export async function onRequestGet(context) {
         north_star: northStarGrid
     }), { headers, status: 200 });
 }
+

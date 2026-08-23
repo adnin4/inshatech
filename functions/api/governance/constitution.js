@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/governance/constitution
  * IINSHA AI Constitutional Layer & Goal Integrity Monitor API
  * Enforces immutable, machine-enforceable rules that cannot be bypassed by prompts.
@@ -38,3 +38,4 @@ export async function onRequestGet(context) {
         constitution: constitution
     }), { headers, status: 200 });
 }
+

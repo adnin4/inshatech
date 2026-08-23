@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/alerts/fabric
  * IINSHA Alert Fabric Multi-Channel Router (Telegram, WhatsApp, Email, SMS)
  */
@@ -44,3 +44,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/cost/tower
  * AI Cost Control Tower & Real-Time Budget Guardrail Manager
  */
@@ -38,3 +38,4 @@ export async function onRequestGet(context) {
         departmental_breakdown: departmentalSpend
     }), { headers, status: 200 });
 }
+

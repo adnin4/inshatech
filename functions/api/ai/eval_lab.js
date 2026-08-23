@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/ai/eval_lab
  * AI Evaluation Lab & Golden Dataset Regression Testing Engine
  */
@@ -37,3 +37,4 @@ export async function onRequestGet(context) {
         evaluation_report: evaluationBenchmarkReport
     }), { headers, status: 200 });
 }
+

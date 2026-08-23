@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/memory/institutional
  * Institutional Business Learnings & Winning Patterns API
  */
@@ -33,3 +33,4 @@ export async function onRequestGet(context) {
         institutional_memory: INSTITUTIONAL_PATTERNS
     }), { headers, status: 200 });
 }
+

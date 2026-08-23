@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/memory/layers
  * 8-Layer Long-Term Business Memory Manager (L0 to L7)
  */
@@ -54,3 +54,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

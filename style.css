@@ -12,6 +12,14 @@
     --bg-card: rgba(12, 14, 20, 0.7);
     --bg-card-hover: rgba(18, 22, 32, 0.85);
 
+    /* WCAG 2.2 AA Keyboard Focus Indicator */
+}
+:focus-visible {
+    outline: 2px solid #00F2FE !important;
+    outline-offset: 2px !important;
+}
+:root {
+
     /* Glass — 10% */
     --glass: rgba(255, 255, 255, 0.03);
     --glass-elevated: rgba(255, 255, 255, 0.05);

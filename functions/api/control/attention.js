@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/control/attention
  * Actionable Triage Queue (Needs Your Attention items)
  */
@@ -50,3 +50,4 @@ export async function onRequestGet(context) {
         items: ATTENTION_ITEMS
     }), { headers, status: 200 });
 }
+

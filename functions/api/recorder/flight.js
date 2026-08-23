@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/recorder/flight
  * Agent Black Box Mission Flight Recorder API
  */
@@ -41,3 +41,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

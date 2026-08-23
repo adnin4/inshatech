@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/daily_briefing
  * Generates Daily Owner Intelligence Briefing
  */
@@ -33,7 +33,7 @@ export async function onRequestGet(context) {
         },
         highlights: {
             top_performing_service: '24/7 AI Voice Receptionist ($1,800 @ 84% margin)',
-            top_affiliate_partner: 'Partner #182 (Adnin Growth Swarm — $1,240 Attributed)',
+            top_affiliate_partner: 'Partner #182 (Adnin Growth Swarm â€” $1,240 Attributed)',
             bottlenecks_detected: [
                 '2 automated n8n scraper tasks retried due to target rate-limiting (Recovered via fallback)',
                 '1 suspicious high-velocity referral click burst flagged by Fraud Guardian (Isolated)'
@@ -63,3 +63,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

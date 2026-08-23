@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/marketplace/frontier_engine
  * Ecosystem Marketplace Governance, Recommendation Engine & Cross-Sell Graph API
  */
@@ -44,3 +44,4 @@ export async function onRequestGet(context) {
         frontier_marketplace: frontierMarketplaceState
     }), { headers, status: 200 });
 }
+

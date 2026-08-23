@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/r_and_d/product_discovery
  * AI Product Discovery & Service-to-SaaS Engine: "AI Builds the Next Business"
  * Evaluates recurring demand clusters and synthesizes new product candidates.
@@ -45,3 +45,4 @@ export async function onRequestGet(context) {
         product_discovery: productDiscoveryEngine
     }), { headers, status: 200 });
 }
+

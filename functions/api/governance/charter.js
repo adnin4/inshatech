@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/governance/charter
  * Antigravity Supreme Execution Charter & Reality Attestation API
  */
@@ -33,3 +33,4 @@ export async function onRequestGet(context) {
         charter: supremeCharter
     }), { headers, status: 200 });
 }
+

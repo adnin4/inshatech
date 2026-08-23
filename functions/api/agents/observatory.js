@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/agents/observatory
  * Agent Observability Center: Live Runs, Traces, Telemetry, Recovery Logs & Performance Metrics
  */
@@ -46,3 +46,4 @@ export async function onRequestGet(context) {
         data: telemetry
     }), { headers, status: 200 });
 }
+

@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 7: VERIFIER ENGINE (FIRST-CLASS GUARDIAN)
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 7: VERIFIER ENGINE (FIRST-CLASS GUARDIAN)
  * Audits every agent output against 7 mandatory verification checks:
  * 1. FACT_CHECK
  * 2. SCHEMA_CHECK
@@ -58,8 +58,8 @@ class VerifierEngine {
         // 4. COMPLETENESS_CHECK
         const userRequest = (context.current_user_request || '').toLowerCase();
         if (userRequest.includes('price') || userRequest.includes('cost') || userRequest.includes('dam')) {
-            if (!text.includes('$') && !text.includes('৳') && !text.includes('BDT') && !text.includes('USD')) {
-                issues.push(`User asked for pricing, but dual currency breakdown ($ USD / ৳ BDT) was omitted.`);
+            if (!text.includes('$') && !text.includes('à§³') && !text.includes('BDT') && !text.includes('USD')) {
+                issues.push(`User asked for pricing, but dual currency breakdown ($ USD / à§³ BDT) was omitted.`);
             }
         }
 
@@ -98,3 +98,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.VerifierEngine = VerifierEngine;
 }
+

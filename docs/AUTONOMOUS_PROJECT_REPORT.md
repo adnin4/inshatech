@@ -1,0 +1,2 @@
+# 📋 AUTONOMOUS_PROJECT_REPORT.md — Autonomous Project Management
+- State Machine: `PAID -> PLANNING -> IN_PROGRESS -> QA -> CLIENT_REVIEW -> APPROVED -> DELIVERED -> MAINTENANCE`.

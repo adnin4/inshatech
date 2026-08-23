@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/morning_brief
  * Automated Executive Intelligence Feed & Morning Briefing API
  * Delivers daily executive metrics, opportunity alerts, and swarm health directly to Owner.
@@ -60,3 +60,4 @@ export async function onRequestGet(context) {
         morning_brief: morningBriefPayload
     }), { headers, status: 200 });
 }
+

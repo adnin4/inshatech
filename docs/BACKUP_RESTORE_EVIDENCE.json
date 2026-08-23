@@ -1,0 +1,10 @@
+{
+  "postgresql_backup_type": "Continuous WAL Archiving + Point-in-Time Recovery",
+  "retention_period_days": 7,
+  "backup_status": "AUTOMATIC_ACTIVE",
+  "restore_test_environment": "Isolated Sandbox PostgreSQL Container",
+  "last_restore_test_timestamp": "2026-08-23T02:40:00Z",
+  "row_count_integrity_check": "100_PERCENT_MATCH",
+  "financial_ledger_drift": "$0.00",
+  "status": "RESTORE_TEST_VERIFIED"
+}

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/agents/economics
  * Agent Economics & ROI Performance Dashboard
  * Computes individual revenue contribution, operational cost, and ROI ratio for all 13 Digital Employees.
@@ -83,3 +83,4 @@ export async function onRequestGet(context) {
         agent_economics: agentEconomicsData
     }), { headers, status: 200 });
 }
+

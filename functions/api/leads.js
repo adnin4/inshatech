@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/leads
  * Serverless Lead Qualification, Quote Submissions & CRM Handoff API
  */
@@ -70,3 +70,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

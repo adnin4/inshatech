@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/missions/marketplace
  * Customer & Admin Goal-to-Mission Plan Generator
  * "Give IINSHA a business goal. We execute it."
@@ -78,3 +78,4 @@ export async function onRequestOptions() {
         status: 204
     });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/affiliate/portal
  * Affiliate Portal & Payout Ledger API
  */
@@ -26,3 +26,4 @@ export async function onRequestGet(context) {
         affiliate_portal: affiliatePortalData
     }), { headers, status: 200 });
 }
+

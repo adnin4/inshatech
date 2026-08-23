@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/orders/state_machine
  * Sovereign Order State Machine: Rejects Arbitrary or Invalid Status Mutations
  */
@@ -68,3 +68,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

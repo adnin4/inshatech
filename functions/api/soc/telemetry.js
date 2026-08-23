@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/soc/telemetry
  * Security Operations Center (SOC) Real-Time Threat Intelligence & OpenTelemetry SOC API
  */
@@ -65,3 +65,4 @@ export async function onRequestOptions(context) {
         status: 204
     });
 }
+

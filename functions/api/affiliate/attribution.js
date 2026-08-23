@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/affiliate/attribution
  * Multi-Touch Attribution Engine supporting First-Touch, Last-Touch, Linear, Time-Decay, and Position-Based models
  */
@@ -109,3 +109,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

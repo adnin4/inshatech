@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/brief
  * Daily Morning AI Executive Briefing Dispatcher
  */
@@ -36,3 +36,4 @@ export async function onRequestGet(context) {
         brief: executiveBrief
     }), { headers, status: 200 });
 }
+

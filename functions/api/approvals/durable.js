@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/approvals/durable
  * Durable HITL Pause & Resume Checkpoint Manager
  */
@@ -44,3 +44,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

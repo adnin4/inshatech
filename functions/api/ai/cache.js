@@ -1,12 +1,12 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/ai/cache
  * AI Semantic Cache Engine: Instant Sub-100ms Responses for High-Frequency Questions
  */
 
 const SEMANTIC_CACHE_STORE = new Map([
-    ["services", { en: "We offer 5 core enterprise autonomous automation services: 1. B2B SaaS 5-Agent Hunter Swarm ($850), 2. 24/7 E-Commerce WhatsApp Bot ($750), 3. AI Voice Receptionist ($1,800), 4. Self-Hosted n8n Enterprise Cluster ($497), and 5. Autonomous Invoice OCR Pipeline ($249).", bn: "আমাদের ৫টি প্রধান অটোনোমাস সার্ভিস রয়েছে: B2B Lead Swarm ($850), E-Commerce WhatsApp Bot ($750), Voice AI ($1800), n8n Cluster ($497), এবং Invoice OCR ($249)।" }],
-    ["pricing", { en: "Our services start at $249 (৳30,502 BDT) up to $1,800 (৳220,500 BDT) with zero Zapier task fees and guaranteed positive ROI within 30 days.", bn: "আমাদের প্রাইসিং শুরু $249 (৳30,502) থেকে $1,800 (৳220,500) পর্যন্ত, যেখানে কোনো Zapier মান্থলি ফি নেই।" }],
-    ["n8n", { en: "Self-hosted n8n runs on your own $5.99/mo Hostinger VPS with unlimited workflows, saving over $1,200/year compared to Zapier.", bn: "Self-hosted n8n মাত্র $5.99/mo VPS-এ আনলিমিটেড ওয়ার্কফ্লো চালায় এবং Zapier-এর তুলনায় বছরে $1,200+ সাশ্রয় করে।" }]
+    ["services", { en: "We offer 5 core enterprise autonomous automation services: 1. B2B SaaS 5-Agent Hunter Swarm ($850), 2. 24/7 E-Commerce WhatsApp Bot ($750), 3. AI Voice Receptionist ($1,800), 4. Self-Hosted n8n Enterprise Cluster ($497), and 5. Autonomous Invoice OCR Pipeline ($249).", bn: "à¦†à¦®à¦¾à¦¦à§‡à¦° à§«à¦Ÿà¦¿ à¦ªà§à¦°à¦§à¦¾à¦¨ à¦…à¦Ÿà§‹à¦¨à§‹à¦®à¦¾à¦¸ à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸ à¦°à§Ÿà§‡à¦›à§‡: B2B Lead Swarm ($850), E-Commerce WhatsApp Bot ($750), Voice AI ($1800), n8n Cluster ($497), à¦à¦¬à¦‚ Invoice OCR ($249)à¥¤" }],
+    ["pricing", { en: "Our services start at $249 (à§³30,502 BDT) up to $1,800 (à§³220,500 BDT) with zero Zapier task fees and guaranteed positive ROI within 30 days.", bn: "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ à¦¶à§à¦°à§ $249 (à§³30,502) à¦¥à§‡à¦•à§‡ $1,800 (à§³220,500) à¦ªà¦°à§à¦¯à¦¨à§à¦¤, à¦¯à§‡à¦–à¦¾à¦¨à§‡ à¦•à§‹à¦¨à§‹ Zapier à¦®à¦¾à¦¨à§à¦¥à¦²à¦¿ à¦«à¦¿ à¦¨à§‡à¦‡à¥¤" }],
+    ["n8n", { en: "Self-hosted n8n runs on your own $5.99/mo Hostinger VPS with unlimited workflows, saving over $1,200/year compared to Zapier.", bn: "Self-hosted n8n à¦®à¦¾à¦¤à§à¦° $5.99/mo VPS-à¦ à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦“à§Ÿà¦¾à¦°à§à¦•à¦«à§à¦²à§‹ à¦šà¦¾à¦²à¦¾à§Ÿ à¦à¦¬à¦‚ Zapier-à¦à¦° à¦¤à§à¦²à¦¨à¦¾à§Ÿ à¦¬à¦›à¦°à§‡ $1,200+ à¦¸à¦¾à¦¶à§à¦°à§Ÿ à¦•à¦°à§‡à¥¤" }]
 ]);
 
 export async function onRequestPost(context) {
@@ -43,3 +43,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

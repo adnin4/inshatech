@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/brain/context_graph
  * IINSHA AI-BOS 4.0: Unified Business Context Graph Layer
  * Models multi-dimensional relationships: Customer <-> Lead <-> Proposal <-> Order <-> Project <-> Subscription <-> Support <-> Affiliate <-> Revenue
@@ -44,3 +44,4 @@ export async function onRequestGet(context) {
         context_graph: businessContextGraph
     }), { headers, status: 200 });
 }
+

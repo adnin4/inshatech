@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/system/status
  * Production Live System Health & OpenTelemetry Metric Aggregator
  * Exposes live runtime health, trace IDs, active agent counts, DB RLS latency, and SLA verification.
@@ -73,3 +73,4 @@ export async function onRequestOptions(context) {
         status: 204
     });
 }
+

@@ -1,0 +1,22 @@
+{
+  "canonical_repository": "adnin4/inshatech",
+  "default_branch": "main",
+  "tracking_branch": "master",
+  "branches": {
+    "main": {
+      "sha": "ab3023391a4f0d8d44c1c45df2ae2cd5989f0d36",
+      "status": "SYNCED"
+    },
+    "master": {
+      "sha": "ab3023391a4f0d8d44c1c45df2ae2cd5989f0d36",
+      "status": "SYNCED"
+    },
+    "gh-pages": {
+      "sha": "ab3023391a4f0d8d44c1c45df2ae2cd5989f0d36",
+      "status": "SYNCED"
+    }
+  },
+  "diff_status": "ZERO_DIVERGENCE_PARITY_MATCH",
+  "mismatch_detected": false,
+  "parity_rule": "PASS"
+}

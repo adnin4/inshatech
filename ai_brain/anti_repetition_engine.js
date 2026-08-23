@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 3: ANTI-REPETITION ENGINE
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 3: ANTI-REPETITION ENGINE
  * Intercepts every candidate question before output.
  * Audits known_facts, answered_questions, conversation_summary, and memories.
  * Blocks duplicate questions and enforces safe assumption-based execution.
@@ -127,3 +127,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.AntiRepetitionEngine = AntiRepetitionEngine;
 }
+

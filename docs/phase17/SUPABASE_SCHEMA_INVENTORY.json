@@ -1,0 +1,31 @@
+{
+  "postgresql_version": "17.6.1",
+  "migration_files_count": 21,
+  "migrations": [
+    "20260809000000_init_iinsha_os.sql",
+    "20260818000001_autonomous_company_os.sql",
+    "20260818000002_master_spec_additions.sql",
+    "20260818000003_ultimate_revenue_os.sql",
+    "20260818000004_agent_missions_hitl.sql",
+    "20260818000005_nextgen_runtime_observability.sql",
+    "20260818000006_workforce_control_plane.sql",
+    "20260818000007_control_plane_autonomy.sql",
+    "20260818000008_agent_contracts_memory.sql",
+    "20260818000009_digital_workforce_masterplan.sql",
+    "20260818000010_production_control_plane.sql",
+    "20260818000011_ai_bos_final_masterplan.sql",
+    "20260818000012_iinsha_ai_os_2_final_backbone.sql",
+    "20260818000013_enterprise_multi_tenancy_rls.sql",
+    "20260818000014_financial_ledger_and_state_machine.sql",
+    "20260819000001_security_hardening.sql",
+    "20260820000001_enterprise_profiles_and_leads_rls.sql",
+    "20260820000001_rls_policy_normalization.sql",
+    "20260820000002_enterprise_architecture_leads_and_transactions.sql",
+    "20260820000003_deterministic_rls_and_bkash_orders.sql",
+    "20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql"
+  ],
+  "tables_count": 28,
+  "rls_enabled_count": 28,
+  "rls_disabled_count": 0,
+  "status": "VERIFIED"
+}

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/ai/compressor
  * Prompt Context Compressor: Reduces Token Usage by 60% with Rolling Summaries
  */
@@ -37,3 +37,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

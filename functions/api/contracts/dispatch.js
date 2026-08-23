@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/contracts/dispatch
  * Inter-Agent Structured Contract Protocol & Task Dispatcher
  */
@@ -42,3 +42,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

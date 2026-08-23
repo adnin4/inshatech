@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/finance/leakage_detector
  * Revenue & Margin Leakage Detection Engine API
  */
@@ -29,3 +29,4 @@ export async function onRequestGet(context) {
         leakage_report: leakageReport
     }), { headers, status: 200 });
 }
+

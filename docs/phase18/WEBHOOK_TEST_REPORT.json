@@ -1,0 +1,24 @@
+{
+  "stripe_webhook": {
+    "endpoint": "/api/stripe-webhook",
+    "signature_method": "Stripe-Signature HMAC-SHA256",
+    "timestamp_tolerance_seconds": 300,
+    "duplicate_event_rejection": "PASS (200 DUPLICATE_IGNORED)",
+    "idempotency_tested": true
+  },
+  "bkash_sns_ipn_webhook": {
+    "endpoint": "/api/webhook/bkash-sns-ipn",
+    "signature_method": "AWS SNS x509 Public Key Certificate",
+    "subscription_handshake": "PASS",
+    "duplicate_event_rejection": "PASS (200 DUPLICATE_IGNORED)",
+    "idempotency_tested": true
+  },
+  "financial_double_entry_invariant": {
+    "gross_order_usd": 850,
+    "fee_usd": 24.65,
+    "affiliate_usd": 170,
+    "margin_usd": 655.35,
+    "balance_drift_usd": 0,
+    "status": "VERIFIED_ZERO_MISMATCH"
+  }
+}

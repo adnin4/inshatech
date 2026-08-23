@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/risk/predictive_engine
  * Predictive Risk & 4-Horizon Scenario Planning Engine
  * Simulates Conservative, Base, Aggressive, and Stress Scenarios
@@ -63,3 +63,4 @@ export async function onRequestGet(context) {
         predictive_risk_report: riskAndScenarios
     }), { headers, status: 200 });
 }
+

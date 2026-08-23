@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/performance/observatory
  * Performance Observatory & Real-Time Core Web Vitals Command Center API
  * Tracks LCP, INP, CLS, API p95, DB Latency, AI TTFT, and Edge Cache Hit Rates
@@ -68,3 +68,4 @@ export async function onRequestGet(context) {
         performance_observatory: performanceReport
     }), { headers, status: 200 });
 }
+

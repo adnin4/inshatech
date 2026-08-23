@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/services
  * Canonical Serverless API for IINSHA AI Services & Package Registry
  */
@@ -10,7 +10,7 @@ export const CANONICAL_SERVICES = [
         name: 'B2B SaaS 5-Agent Hunter Swarm',
         category: 'Lead Generation',
         priceUSD: 850,
-        badge: '🔥 Top Seller',
+        badge: 'ðŸ”¥ Top Seller',
         description: '5-Agent residential stealth scraper extracting 100+ verified decision-makers with corporate MX validation.',
         deliveryDays: 3,
         features: [
@@ -31,7 +31,7 @@ export const CANONICAL_SERVICES = [
         name: '24/7 E-Commerce WhatsApp & Messenger Sales Agent',
         category: 'E-Commerce Bot',
         priceUSD: 750,
-        badge: '⚡ 20-Min Setup',
+        badge: 'âš¡ 20-Min Setup',
         description: 'Auto-ingests your website catalog, answers customer queries, calculates delivery, and confirms orders in chat.',
         deliveryDays: 2,
         features: [
@@ -52,7 +52,7 @@ export const CANONICAL_SERVICES = [
         name: 'AI Voice Receptionist (Twilio + Gemini WebRTC)',
         category: 'Voice AI',
         priceUSD: 1800,
-        badge: '🎙️ Zero Latency',
+        badge: 'ðŸŽ™ï¸ Zero Latency',
         description: 'Conversational voice bot answering 100+ inbound calls, booking appointments, and qualifying buyers in <45s.',
         deliveryDays: 5,
         features: [
@@ -73,7 +73,7 @@ export const CANONICAL_SERVICES = [
         name: 'Self-Hosted n8n Enterprise Cluster Deployment',
         category: 'Infrastructure',
         priceUSD: 497,
-        badge: '💰 90% Cost Saving',
+        badge: 'ðŸ’° 90% Cost Saving',
         description: 'Dockerized n8n on Hostinger/Hetzner VPS ($5.99/mo) with unlimited workflows, PostgreSQL, and zero Zapier fees.',
         deliveryDays: 1,
         features: [
@@ -94,7 +94,7 @@ export const CANONICAL_SERVICES = [
         name: 'Autonomous Invoice & Document OCR Pipeline',
         category: 'Document Automation',
         priceUSD: 249,
-        badge: '⚡ Turnkey',
+        badge: 'âš¡ Turnkey',
         description: 'Gemini Vision + Google Sheets + QuickBooks pipeline extracting tabular financial data in under 3 seconds.',
         deliveryDays: 1,
         features: [
@@ -144,3 +144,4 @@ export async function onRequestGet(context) {
         }
     });
 }
+

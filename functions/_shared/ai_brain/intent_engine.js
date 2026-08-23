@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — PHASE 4: INTENT CLASSIFIER & CAPABILITY ROUTER
+﻿/**
+ * IINSHA AI-BOS â€” PHASE 4: INTENT CLASSIFIER & CAPABILITY ROUTER
  * Parses user input into a strict structured intent schema.
  * Identifies required capabilities, agents, typed tools, and risk tiers (Level 0 - Level 3).
  */
@@ -98,3 +98,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.IntentEngine = IntentEngine;
 }
+

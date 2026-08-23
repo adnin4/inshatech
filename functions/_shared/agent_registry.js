@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared Internal Agent Registry for Cloudflare Pages Functions
  * 6-Layer Agent Architecture & 5-Tier HITL Safety Matrix
  */
@@ -26,3 +26,4 @@ export const FIVE_TIER_HITL_LEVELS = {
   L3_APPROVAL: { level: 3, autoApprove: false, label: 'Owner Approval Required' },
   L4_PROHIBITED: { level: 4, autoApprove: false, label: 'Prohibited', blocked: true }
 };
+

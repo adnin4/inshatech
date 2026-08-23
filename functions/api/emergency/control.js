@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/emergency/control
  * Granular Kill Switch & Emergency Freeze Controller
  */
@@ -40,3 +40,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA Margin Guardian & Deal Protection Engine
  * Verifies Deal Value, Delivery Cost, AI Compute Cost, Affiliate Commission,
  * and Support Reserve before permitting client quotes or contracts.
@@ -60,3 +60,4 @@ export class MarginGuardian {
         };
     }
 }
+

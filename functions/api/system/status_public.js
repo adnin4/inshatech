@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/system/status_public
  * Public System Status Page API for status.iinsha...
  */
@@ -32,3 +32,4 @@ export async function onRequestGet(context) {
 
     return new Response(JSON.stringify(statusPayload), { headers, status: 200 });
 }
+

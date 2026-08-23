@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/executive/meta_intelligence
  * IINSHA Meta Intelligence & Multi-Objective Uncertainty Engine API
  * Synthesizes cross-department priorities: Strategy, Revenue, Delivery, Finance, Security, and Marketplace.
@@ -38,3 +38,4 @@ export async function onRequestGet(context) {
         meta_intelligence: metaIntelligenceState
     }), { headers, status: 200 });
 }
+

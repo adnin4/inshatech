@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/tools/registry
  * Tool Registry Schema Catalog & Access Controller
  */
@@ -61,3 +61,4 @@ export async function onRequestGet(context) {
         tools: SYSTEM_TOOL_CATALOG
     }), { headers, status: 200 });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/governance/policy_as_code
  * Machine-Enforceable Policy-as-Code Engine: Zero-Trust Agent Rules
  * Enforces:
@@ -68,3 +68,4 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ error: err.message }), { headers, status: 500 });
     }
 }
+

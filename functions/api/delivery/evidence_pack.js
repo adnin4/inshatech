@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/delivery/evidence_pack
  * Project Acceptance Criteria, Scope Guard & Delivery Evidence Pack API
  */
@@ -29,3 +29,4 @@ export async function onRequestGet(context) {
         delivery_evidence: deliveryEvidenceState
     }), { headers, status: 200 });
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/workforce/margin
  * Margin Guardian & Deal Profitability Audit API
  */
@@ -31,3 +31,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cloudflare Pages Function: /api/missions/state
  * Checkpointed Mission State Manager & Lifecycle Controller
  * Supports DRAFT -> PLANNING -> RUNNING -> WAITING_APPROVAL -> EXECUTING -> COMPLETED
@@ -74,3 +74,4 @@ export async function onRequestPost(context) {
         }), { headers, status: 500 });
     }
 }
+
