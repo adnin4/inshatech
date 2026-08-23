@@ -1,0 +1,19 @@
+name: Security & Trust Content Gate
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+      - feature/autonomous-company-wave1-v2
+
+jobs:
+  security-content-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run source credential/content gate
+        run: node scratch/security_content_gate.js
