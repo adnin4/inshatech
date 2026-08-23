@@ -15,11 +15,12 @@ test('real-world lifecycle is fail-closed and ordered', () => {
   assert.equal(proposal.status, 'READY_TO_SEND');
 
   const accepted = os.acceptProposal({ proposal, actor: { userId: 'customer_1' } });
+  assert.equal(accepted.status, 'ACCEPTED');
   const payment = os.recordPaymentEvent({ idempotencyKey: 'pay_1', status: 'PAID', orderId: 'order_1' });
   const settlement = os.reconcilePayment({ previousEventIds: [], event: payment });
   assert.equal(settlement.status, 'SETTLED');
 
-  const project = os.createProjectFromSettlement({ settlement, proposal });
+  const project = os.createProjectFromSettlement({ settlement, proposal: accepted });
   const planned = os.startPlanning(project, { plan: ['build', 'test'], assignedAgents: ['architect', 'engineer'] });
   const running = os.startExecution(planned);
   const qa = os.recordQA(running, { passed: true, confidence: 0.99, evidence: ['qa-evidence-1'] });
