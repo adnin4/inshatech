@@ -5,6 +5,9 @@ on:
     branches:
       - "staging/activation-v1"
       - "staging/activation-v1-fix2"
+  pull_request:
+    branches:
+      - "staging/activation-v1"
   workflow_dispatch:
 
 permissions:
