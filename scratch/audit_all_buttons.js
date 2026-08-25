@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = process.env.GITHUB_WORKSPACE || path.resolve(__dirname, '..');
@@ -62,7 +62,7 @@ htmlFiles.forEach(file => {
                 if (exists) {
                     isHandled = true;
                 } else {
-                    console.log(`  ❌ [${file}] Button "${text}": Handler function "${fnName}" missing!`);
+                    console.log(`  âŒ [${file}] Button "${text}": Handler function "${fnName}" missing!`);
                     fileIssues++;
                 }
             } else {
@@ -96,7 +96,7 @@ htmlFiles.forEach(file => {
         }
         
         if (!isHandled) {
-            console.log(`  🚨 [${file}] Unhandled button "${text}": (Attrs: ${attrs.trim()})`);
+            console.log(`  ðŸš¨ [${file}] Unhandled button "${text}": (Attrs: ${attrs.trim()})`);
             fileIssues++;
         }
     }
@@ -108,3 +108,4 @@ htmlFiles.forEach(file => {
 console.log(`\n========================================`);
 console.log(`AUDIT COMPLETE: ${grandTotalButtons} Buttons Evaluated | ${grandTotalIssues} Issues Found`);
 console.log(`========================================`);
+

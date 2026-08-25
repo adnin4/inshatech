@@ -1,0 +1,45 @@
+name: Enterprise Staging & Production Verification Pipeline
+
+on:
+  push:
+    branches: [main, master, staging/activation-v1, staging/activation-v1-fix2, 'staging/**', 'activation/**']
+  pull_request:
+    branches: [main, master, staging/activation-v1, 'staging/**', 'activation/**']
+  workflow_dispatch:
+
+jobs:
+  security-audit:
+    name: Zero-Trust Security & Leak Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for Hardcoded Secrets (TruffleHog)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+        continue-on-error: true
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci || npm install --no-audit
+
+      - name: Master Regression Firewall & Security Certification
+        run: npm test
+
+      - name: Master Authoritative E2E & Persona Verification
+        run: npm run e2e
+
+      - name: Execute PR #7 Ordered Staging Preview & Parity Gate
+        run: node scripts/verify-preview-deployment.mjs
+        env:
+          LIVE_URL: https://staging-activation-v1.inshatech.pages.dev
+          EXPECTED_SHA: ${{ github.sha }}

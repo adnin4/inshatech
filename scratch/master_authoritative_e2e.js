@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — Master Authoritative E2E & Runtime Security Suite
+﻿/**
+ * IINSHA AI-BOS â€” Master Authoritative E2E & Runtime Security Suite
  * Unified Test Oracle combining:
  * 1. 26-Point Edge Runtime, Headers, CSRF & OWASP Prompt Firewall Verification
  * 2. Server-Authoritative Pricing & Supabase Catalog Lock (Client amount override)
@@ -14,7 +14,7 @@ const path = require('path');
 const fs = require('fs');
 
 console.log('================================================================================');
-console.log('👑 EXECUTING UNIFIED MASTER AUTHORITATIVE E2E & SECURITY SUITE');
+console.log('ðŸ‘‘ EXECUTING UNIFIED MASTER AUTHORITATIVE E2E & SECURITY SUITE');
 console.log('================================================================================');
 
 // SECTION 1: Authoritative Catalog Pricing & Price Tampering Rejection
@@ -42,7 +42,7 @@ const order1 = resolveAuthoritativeOrder('b2b-lead-swarm', 1.00); // Attacker tr
 assert.strictEqual(order1.authorizedPriceUSD, 850, 'Price must be locked to 850 USD');
 assert.strictEqual(order1.clientPriceTamperingDetected, true, 'Tampering must be flagged');
 assert.throws(() => resolveAuthoritativeOrder('invalid-package', 500), /UNKNOWN_SERVICE_400/, 'Unknown service must throw 400');
-console.log('   ✅ PASS: Server-authoritative catalog strictly overrides client-side price tampering.');
+console.log('   âœ… PASS: Server-authoritative catalog strictly overrides client-side price tampering.');
 
 // SECTION 2: Signed Webhook HMAC & Event Deduplication
 console.log('\n[STAGE 2] Signed Webhook HMAC & Event Deduplication (Idempotency)...');
@@ -66,7 +66,7 @@ assert.strictEqual(webhookRes1.code, 200);
 
 const webhookRes2 = processSignedWebhook(webhookPayload);
 assert.strictEqual(webhookRes2.status, 'DUPLICATE_IGNORED', 'Duplicate replay must be safely ignored');
-console.log('   ✅ PASS: Webhook processed once with timing-safe HMAC; duplicate replay safely deduplicated.');
+console.log('   âœ… PASS: Webhook processed once with timing-safe HMAC; duplicate replay safely deduplicated.');
 
 // SECTION 3: Multi-Tenant RLS Adversarial Attack Suite
 console.log('\n[STAGE 3] Multi-Tenant RLS Adversarial Attack Suite (4/4 Attacks Denied)...');
@@ -99,7 +99,7 @@ assert.throws(() => executeTenantQuery('tenant_alpha', 'projects', 'PRJ-BETA-02'
 assert.throws(() => executeTenantQuery('tenant_alpha', 'orders', 'ORD-BETA-202', 'DELETE'), /RLS_403_ACCESS_DENIED/);
 // Attack 4: Tenant Alpha retrieves Tenant Beta AI Memory
 assert.throws(() => executeTenantQuery('tenant_alpha', 'memories', 'MEM-BETA-88', 'SELECT'), /RLS_403_ACCESS_DENIED/);
-console.log('   ✅ PASS: 4/4 Cross-Tenant Adversarial Attacks strictly DENIED with RLS 403.');
+console.log('   âœ… PASS: 4/4 Cross-Tenant Adversarial Attacks strictly DENIED with RLS 403.');
 
 // SECTION 4: Double-Entry Financial Ledger Invariant
 console.log('\n[STAGE 4] Double-Entry Financial Ledger Invariant...');
@@ -116,7 +116,7 @@ assert.strictEqual(ledgerBal.fee, 24.65);
 assert.strictEqual(ledgerBal.affiliate, 170.00);
 assert.strictEqual(ledgerBal.net, 655.35);
 assert.strictEqual(Math.round((ledgerBal.fee + ledgerBal.affiliate + ledgerBal.net) * 100) / 100, ledgerBal.gross);
-console.log(`   ✅ PASS: Double-Entry Invariant Verified: $${ledgerBal.gross} = $${ledgerBal.fee} (Fee) + $${ledgerBal.affiliate} (Affiliate) + $${ledgerBal.net} (Net Margin).`);
+console.log(`   âœ… PASS: Double-Entry Invariant Verified: $${ledgerBal.gross} = $${ledgerBal.fee} (Fee) + $${ledgerBal.affiliate} (Affiliate) + $${ledgerBal.net} (Net Margin).`);
 
 // SECTION 5: OWASP AI Prompt Firewall & PII Redactor
 console.log('\n[STAGE 5] OWASP AI Prompt Firewall & PII Redactor...');
@@ -144,10 +144,10 @@ assert.strictEqual(attackRes.reason, 'PROMPT_INJECTION_BLOCKED');
 const piiRes = sanitizePromptInput('My card number is 4532 1234 5678 9012 for the checkout');
 assert.strictEqual(piiRes.blocked, false);
 assert.strictEqual(piiRes.scrubbedText.includes('[REDACTED_CARD]'), true);
-console.log('   ✅ PASS: OWASP AI Prompt Firewall intercepts jailbreaks and scrubs PII/cards.');
+console.log('   âœ… PASS: OWASP AI Prompt Firewall intercepts jailbreaks and scrubs PII/cards.');
 
 console.log('\n================================================================================');
-console.log('🏆 100% UNIFIED MASTER AUTHORITATIVE E2E & SECURITY CHECKS PASSED!');
+console.log('ðŸ† 100% UNIFIED MASTER AUTHORITATIVE E2E & SECURITY CHECKS PASSED!');
 console.log('================================================================================');
 
 // Persist evidence
@@ -167,3 +167,4 @@ const evidence = {
     ]
 };
 fs.writeFileSync(path.join(outDir, 'MASTER_AUTHORITATIVE_E2E_EVIDENCE.json'), JSON.stringify(evidence, null, 2));
+

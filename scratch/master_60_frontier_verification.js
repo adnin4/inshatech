@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS 60-FRONTIER ADVANCED MATURITY RUNTIME EXECUTION & EVIDENCE ENGINE
  * WAVE 0-17 COMPLIANT: 100% Executable tests, zero hardcoded placeholders.
  */
@@ -8,7 +8,7 @@ const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('================================================================================');
-console.log('👑 IINSHA AI-BOS — 60-FRONTIER RUNTIME EXECUTION & REAL EVIDENCE ENGINE (WAVE 0-17)');
+console.log('ðŸ‘‘ IINSHA AI-BOS â€” 60-FRONTIER RUNTIME EXECUTION & REAL EVIDENCE ENGINE (WAVE 0-17)');
 console.log('================================================================================\n');
 
 let passCount = 0;
@@ -37,13 +37,13 @@ function recordExecutableTest(id, name, testFn) {
     if (passed) {
         passCount++;
         status = 'VERIFIED';
-        console.log(`✅ [FRONTIER ${id.toString().padStart(2, '0')}] ${name} [${status}]`);
-        console.log(`   📂 Evidence: ${evidence}`);
+        console.log(`âœ… [FRONTIER ${id.toString().padStart(2, '0')}] ${name} [${status}]`);
+        console.log(`   ðŸ“‚ Evidence: ${evidence}`);
     } else {
         failCount++;
         status = 'FAILED';
-        console.log(`❌ [FRONTIER ${id.toString().padStart(2, '0')}] ${name} [${status}]`);
-        console.log(`   ⚠️ Detail: ${evidence}`);
+        console.log(`âŒ [FRONTIER ${id.toString().padStart(2, '0')}] ${name} [${status}]`);
+        console.log(`   âš ï¸ Detail: ${evidence}`);
     }
 
     results.push({ id, name, status, evidence });
@@ -466,7 +466,7 @@ recordExecutableTest(57, 'Interactive Developer Sandbox', () => {
 recordExecutableTest(58, 'Dual Currency (USD/BDT) Engine', () => {
     const p = path.join(BASE_DIR, 'app.js');
     const content = fs.readFileSync(p, 'utf8');
-    const hasBdt = content.includes('৳') && content.includes('BDT');
+    const hasBdt = content.includes('à§³') && content.includes('BDT');
     return { passed: hasBdt, evidence: 'USD and BDT localization engine in app.js' };
 });
 
@@ -491,12 +491,13 @@ recordExecutableTest(60, 'Supreme Autonomous Company Loop', () => {
 });
 
 console.log('\n================================================================================');
-console.log(`🏆 60-FRONTIER RUNTIME CERTIFICATION RESULT: ${passCount} / 60 PASSED (${failCount} FAILED)`);
+console.log(`ðŸ† 60-FRONTIER RUNTIME CERTIFICATION RESULT: ${passCount} / 60 PASSED (${failCount} FAILED)`);
 console.log('================================================================================');
 
 if (failCount === 0) {
-    console.log('👑 100% PRODUCTION VERIFIED: ZERO PLACEHOLDERS, 100% REAL RUNTIME & FILESYSTEM EVIDENCE! 🚀');
+    console.log('ðŸ‘‘ 100% PRODUCTION VERIFIED: ZERO PLACEHOLDERS, 100% REAL RUNTIME & FILESYSTEM EVIDENCE! ðŸš€');
     process.exit(0);
 } else {
     process.exit(1);
 }
+

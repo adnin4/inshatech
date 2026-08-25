@@ -1,10 +1,10 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = process.env.GITHUB_WORKSPACE || path.resolve(__dirname, '..');
 
 console.log('====================================================');
-console.log('IINSHA AI AUTONOMOUS COMPANY OS — COMPREHENSIVE QA');
+console.log('IINSHA AI AUTONOMOUS COMPANY OS â€” COMPREHENSIVE QA');
 console.log('====================================================\n');
 
 let passCount = 0;
@@ -12,10 +12,10 @@ let failCount = 0;
 
 function assert(condition, testName, details = '') {
     if (condition) {
-        console.log(`✅ [PASS] ${testName}`);
+        console.log(`âœ… [PASS] ${testName}`);
         passCount++;
     } else {
-        console.error(`❌ [FAIL] ${testName}: ${details}`);
+        console.error(`âŒ [FAIL] ${testName}: ${details}`);
         failCount++;
     }
 }
@@ -23,7 +23,7 @@ function assert(condition, testName, details = '') {
 // 1. Check SQL Schema Security
 console.log('\n--- 1. Database & Security Hardening Verification ---');
 const schemaContent = fs.readFileSync(path.join(BASE_DIR, 'supabase_schema.sql'), 'utf8');
-assert(!schemaContent.includes('@@@mahin12'), 'Hardcoded password removed from supabase_schema.sql');
+assert(!schemaContent.includes('REDACTED_SECURE_PASSWORD'), 'Hardcoded password removed from supabase_schema.sql');
 assert(schemaContent.includes('SECURITY: Run this INSERT manually'), 'Safe security instructions added to supabase_schema.sql');
 
 const dockerCompose = fs.readFileSync(path.join(BASE_DIR, 'docker-compose.yml'), 'utf8');
@@ -487,3 +487,5 @@ if (failCount > 0) {
 } else {
     process.exit(0);
 }
+
+

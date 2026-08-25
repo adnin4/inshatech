@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — Production Contract & Payment Integrity E2E Test Suite
+﻿/**
+ * IINSHA AI-BOS â€” Production Contract & Payment Integrity E2E Test Suite
  * Validates:
  * 1. Server-authoritative checkout (client tampered amount rejected/overridden)
  * 2. Supabase DB service catalog integration
@@ -15,7 +15,7 @@ const path = require('path');
 const fs = require('fs');
 
 console.log('================================================================================');
-console.log('💳 EXECUTING AUTHORITATIVE PRODUCTION CONTRACT & PAYMENT E2E SUITE');
+console.log('ðŸ’³ EXECUTING AUTHORITATIVE PRODUCTION CONTRACT & PAYMENT E2E SUITE');
 console.log('================================================================================');
 
 // 1. Authoritative Pricing Verification
@@ -36,7 +36,7 @@ function calculateAuthoritativeAmount(serviceId, clientSuppliedAmount) {
 
 assert.strictEqual(calculateAuthoritativeAmount('b2b-lead-swarm', 1.00), 850, 'Price tampering must be overridden');
 assert.throws(() => calculateAuthoritativeAmount('malicious-service', 100), /UNKNOWN_SERVICE_400/, 'Unknown service must throw 400');
-console.log('   ✅ PASS: Client price tampering strictly overridden with authoritative catalog price.');
+console.log('   âœ… PASS: Client price tampering strictly overridden with authoritative catalog price.');
 
 // 2. Webhook HMAC & Idempotency Test
 console.log('\n[TEST 2] Signed Webhook & Event Deduplication...');
@@ -60,7 +60,7 @@ assert.strictEqual(res1.code, 200);
 
 const res1Duplicate = processWebhook(event1);
 assert.strictEqual(res1Duplicate.status, 'DUPLICATE_IGNORED', 'Duplicate webhook must be ignored');
-console.log('   ✅ PASS: Webhook processed once, duplicate replay safely ignored.');
+console.log('   âœ… PASS: Webhook processed once, duplicate replay safely ignored.');
 
 // 3. Double-Entry Ledger Invariant Verification
 console.log('\n[TEST 3] Double-Entry Ledger Invariant (Gross - Fee - Affiliate = Net)...');
@@ -77,7 +77,7 @@ assert.strictEqual(ledger.gatewayFee, 24.65);
 assert.strictEqual(ledger.affiliateCommission, 170.00);
 assert.strictEqual(ledger.netProfit, 655.35);
 assert.strictEqual(Math.round((ledger.gross - ledger.gatewayFee - ledger.affiliateCommission) * 100) / 100, ledger.netProfit);
-console.log(`   ✅ PASS: Ledger Invariant Verified: $${ledger.gross} Gross = $${ledger.gatewayFee} (Fee) + $${ledger.affiliateCommission} (Affiliate) + $${ledger.netProfit} (Net Profit)`);
+console.log(`   âœ… PASS: Ledger Invariant Verified: $${ledger.gross} Gross = $${ledger.gatewayFee} (Fee) + $${ledger.affiliateCommission} (Affiliate) + $${ledger.netProfit} (Net Profit)`);
 
 // 4. Tenant Isolation Assertion
 console.log('\n[TEST 4] Tenant Isolation Assertion (Cross-Tenant Access Denied)...');
@@ -96,10 +96,10 @@ function readOrder(requestingTenant, targetOrderId) {
 
 assert.strictEqual(readOrder('tenant_a', 'ORD-A1').status, 'AUTHORIZED');
 assert.throws(() => readOrder('tenant_a', 'ORD-B1'), /RLS_ACCESS_DENIED_403/, 'Tenant A reading Tenant B must be denied');
-console.log('   ✅ PASS: Cross-tenant unauthorized access strictly denied (RLS 403).');
+console.log('   âœ… PASS: Cross-tenant unauthorized access strictly denied (RLS 403).');
 
 console.log('\n================================================================================');
-console.log('🏆 100% PRODUCTION CONTRACT & PAYMENT INTEGRITY E2E TESTS PASSED!');
+console.log('ðŸ† 100% PRODUCTION CONTRACT & PAYMENT INTEGRITY E2E TESTS PASSED!');
 console.log('================================================================================');
 
 // Persist evidence
@@ -118,3 +118,4 @@ const evidence = {
     ]
 };
 fs.writeFileSync(path.join(outDir, 'PAYMENT_CONTRACT_E2E_EVIDENCE.json'), JSON.stringify(evidence, null, 2));
+

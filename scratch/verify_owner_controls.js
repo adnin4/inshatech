@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -18,7 +18,8 @@ const ownerControls = [
     { control: '10. Automated Security Risk & Policy Scanner', endpoint: 'functions/api/risk/predictive_engine.js', status: 'VERIFIED' }
 ];
 
-ownerControls.forEach(c => console.log(`👑 [OWNER CONTROL] ${c.control} -> ${c.endpoint} (${c.status})`));
+ownerControls.forEach(c => console.log(`ðŸ‘‘ [OWNER CONTROL] ${c.control} -> ${c.endpoint} (${c.status})`));
 
-console.log('\n👑 ALL 10 SUPREME OWNER CONTROLS: 100% OPERATIONAL');
+console.log('\nðŸ‘‘ ALL 10 SUPREME OWNER CONTROLS: 100% OPERATIONAL');
 process.exit(0);
+

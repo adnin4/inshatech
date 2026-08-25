@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -15,8 +15,9 @@ const ceoCycle = [
 ];
 
 ceoCycle.forEach(c => {
-    console.log(`🧠 [AI CEO CYCLE] ${c.phase} -> Executed by ${c.agent} [PASS]`);
+    console.log(`ðŸ§  [AI CEO CYCLE] ${c.phase} -> Executed by ${c.agent} [PASS]`);
 });
 
-console.log('\n🧠 AI CEO EXECUTIVE ENGINE: FULLY VERIFIED & AUTONOMOUS');
+console.log('\nðŸ§  AI CEO EXECUTIVE ENGINE: FULLY VERIFIED & AUTONOMOUS');
 process.exit(0);
+

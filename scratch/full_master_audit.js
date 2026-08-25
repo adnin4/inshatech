@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -124,9 +124,9 @@ console.log(`LOW (P3):      ${auditResults.low.length}`, auditResults.low);
 console.log(`PASSED:        ${auditResults.passed.length}`);
 
 // Write Master Audit Report
-const reportContent = `# 🛡️ IINSHA AI-BOS: Master Repository Audit & P0 Remediation Report
+const reportContent = `# ðŸ›¡ï¸ IINSHA AI-BOS: Master Repository Audit & P0 Remediation Report
 
-**Audit Date**: August 18, 2026 | **Assessment Status**: 🟢 ALL P0/P1 ITEMS SECURED & VERIFIED
+**Audit Date**: August 18, 2026 | **Assessment Status**: ðŸŸ¢ ALL P0/P1 ITEMS SECURED & VERIFIED
 
 ---
 
@@ -137,22 +137,22 @@ A comprehensive security, architecture, and code-level audit was conducted acros
 
 ## 2. Audit Breakdown by Severity
 
-### 🔴 Critical (P0) Items Evaluated:
-- **Admin Authentication**: ✅ Gated with session validation and brute-force mitigation.
-- **Role-Based Access Control (RBAC)**: ✅ 14-Role permission engine verified (\`ENTERPRISE_ROLES\`).
-- **Tenant Isolation & RLS**: ✅ Enforced via Supabase Row-Level Security migration (\`20260818000013_enterprise_multi_tenancy_rls.sql\`).
-- **Secret Hardening**: ✅ Zero hardcoded secrets in docker-compose or client files.
-- **Payment Validation & Idempotency**: ✅ Idempotency keys generated per order; positive amount range enforced ($1 - $50,000).
-- **Server-Side Webhook Verification**: ✅ Webhook verification active; frontend payments never trusted without server confirmation.
-- **Tool Permission Matrix**: ✅ Level 3 human approval gate and Level 4 absolute restrictions active.
+### ðŸ”´ Critical (P0) Items Evaluated:
+- **Admin Authentication**: âœ… Gated with session validation and brute-force mitigation.
+- **Role-Based Access Control (RBAC)**: âœ… 14-Role permission engine verified (\`ENTERPRISE_ROLES\`).
+- **Tenant Isolation & RLS**: âœ… Enforced via Supabase Row-Level Security migration (\`20260818000013_enterprise_multi_tenancy_rls.sql\`).
+- **Secret Hardening**: âœ… Zero hardcoded secrets in docker-compose or client files.
+- **Payment Validation & Idempotency**: âœ… Idempotency keys generated per order; positive amount range enforced ($1 - $50,000).
+- **Server-Side Webhook Verification**: âœ… Webhook verification active; frontend payments never trusted without server confirmation.
+- **Tool Permission Matrix**: âœ… Level 3 human approval gate and Level 4 absolute restrictions active.
 
-### 🟡 High (P1) Items Evaluated:
-- **Prompt Injection Defense & PII Redactor**: ✅ Active in \`functions/api/ai/firewall.js\` and \`universal_ai_copilot.js\`.
-- **Double-Entry Ledger & Financial Leakage**: ✅ Active in \`functions/api/finance/ledger.js\`.
-- **Dead-Letter Queue (DLQ)**: ✅ Active in \`functions/api/queue/dlq.js\`.
+### ðŸŸ¡ High (P1) Items Evaluated:
+- **Prompt Injection Defense & PII Redactor**: âœ… Active in \`functions/api/ai/firewall.js\` and \`universal_ai_copilot.js\`.
+- **Double-Entry Ledger & Financial Leakage**: âœ… Active in \`functions/api/finance/ledger.js\`.
+- **Dead-Letter Queue (DLQ)**: âœ… Active in \`functions/api/queue/dlq.js\`.
 
-### 🟢 Passed Checks (${auditResults.passed.length} Items):
-${auditResults.passed.map(p => `- ✅ ${p}`).join('\n')}
+### ðŸŸ¢ Passed Checks (${auditResults.passed.length} Items):
+${auditResults.passed.map(p => `- âœ… ${p}`).join('\n')}
 
 ---
 
@@ -161,10 +161,11 @@ The repository is cleared of blocking vulnerabilities and satisfies all requirem
 `;
 
 fs.writeFileSync(path.join(BASE_DIR, 'docs', 'MASTER_AUDIT_REPORT.md'), reportContent, 'utf8');
-console.log('✅ Generated docs/MASTER_AUDIT_REPORT.md');
+console.log('âœ… Generated docs/MASTER_AUDIT_REPORT.md');
 
 if (auditResults.critical.length > 0) {
     process.exit(1);
 } else {
     process.exit(0);
 }
+

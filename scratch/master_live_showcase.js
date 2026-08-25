@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ====================================================================
- * IINSHA AI-BOS 2.0 — MASTER PRODUCTION LIVE DEMONSTRATION
+ * IINSHA AI-BOS 2.0 â€” MASTER PRODUCTION LIVE DEMONSTRATION
  * Demonstrating the 7 Backbones & 12 Database Layers executed in the last 5 hours.
  * ====================================================================
  */
@@ -24,7 +24,7 @@ import { FulfillmentEngine } from '../ai_brain/fulfillment_engine.js';
 import { SecretBroker } from '../ai_brain/secret_broker.js';
 
 console.log('====================================================================');
-console.log('👑 IINSHA AI-BOS 2.0: MASTER LIVE DEMONSTRATION & SYSTEM WALKTHROUGH');
+console.log('ðŸ‘‘ IINSHA AI-BOS 2.0: MASTER LIVE DEMONSTRATION & SYSTEM WALKTHROUGH');
 console.log('====================================================================\n');
 
 // 1. Digital Employees & Governance Registry
@@ -33,7 +33,7 @@ const agentKeys = Object.keys(AGENT_REGISTRY);
 console.log(`Total Digital Employees Registered: ${agentKeys.length}`);
 agentKeys.slice(0, 4).forEach(k => {
     const a = AGENT_REGISTRY[k];
-    console.log(`  • [${a.id.toUpperCase()}] ${a.name} | Perm: ${a.permission_level} | Daily Budget: $${a.budget_limit_usd}`);
+    console.log(`  â€¢ [${a.id.toUpperCase()}] ${a.name} | Perm: ${a.permission_level} | Daily Budget: $${a.budget_limit_usd}`);
 });
 console.log(`  ... and 9 other specialized digital employees active.\n`);
 
@@ -42,7 +42,7 @@ console.log('--- 2. Planner Engine & Dynamic Agent Graph ---');
 const planner = new PlannerEngine();
 const plan = planner.synthesizePlan("Automate 24/7 customer sales on WhatsApp with n8n and CRM");
 console.log(`Goal Ingested: "${plan.goal_title}"`);
-console.log(`Dynamic Agent Graph Selected: [ ${plan.dynamic_agent_graph.join(' ➔ ')} ]`);
+console.log(`Dynamic Agent Graph Selected: [ ${plan.dynamic_agent_graph.join(' âž” ')} ]`);
 console.log(`Cost & Latency Optimization: Saved ${plan.savings_vs_full_swarm_percent} compute vs full 13-agent swarm`);
 console.log(`Sub-Tasks Decomposed: ${plan.sub_tasks.length} structured steps (Total Est: $${plan.total_estimated_compute_cost_usd})\n`);
 
@@ -89,7 +89,7 @@ const project = fulfillment.initiateFulfillment({
     customer_email: "founder@brand.com"
 });
 console.log(`Project Initialized: [${project.project_code}] ${project.service_name}`);
-console.log(`Delivery Phase: ${project.current_phase} (Phases: ${project.all_phases.join(' ➔ ')})`);
+console.log(`Delivery Phase: ${project.current_phase} (Phases: ${project.all_phases.join(' âž” ')})`);
 console.log(`Assigned Swarm: Architect: ${project.assigned_team.lead_architect} | Dev: ${project.assigned_team.lead_developer} | QA: ${project.assigned_team.lead_qa}`);
 console.log(`Estimated Delivery: ${project.estimated_delivery_date} | QA Status: ${project.qa_validation.status}\n`);
 
@@ -102,9 +102,9 @@ const simulation = twin.simulateScenario({
     priceChangePercent: 5
 });
 console.log(`3-Tier Simulation Scenarios:`);
-console.log(`  • Conservative: $${simulation.forecast_tiers.conservative.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.conservative.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.conservative.projectedMarginPercent}%)`);
-console.log(`  • Base Case:    $${simulation.forecast_tiers.base.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.base.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.base.projectedMarginPercent}%)`);
-console.log(`  • Aggressive:   $${simulation.forecast_tiers.aggressive.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.aggressive.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.aggressive.projectedMarginPercent}%)`);
+console.log(`  â€¢ Conservative: $${simulation.forecast_tiers.conservative.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.conservative.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.conservative.projectedMarginPercent}%)`);
+console.log(`  â€¢ Base Case:    $${simulation.forecast_tiers.base.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.base.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.base.projectedMarginPercent}%)`);
+console.log(`  â€¢ Aggressive:   $${simulation.forecast_tiers.aggressive.projectedMonthlyRevenueUSD} revenue | Gross Profit: $${simulation.forecast_tiers.aggressive.projectedGrossProfitUSD} (Margin: ${simulation.forecast_tiers.aggressive.projectedMarginPercent}%)`);
 console.log(`Recommendation: ${simulation.executiveRecommendation}\n`);
 
 // 8. Summary of All Database Layers & APIs
@@ -115,5 +115,6 @@ console.log(`Total Database Migrations (PostgreSQL + RLS): ${migrations.length} 
 migrations.forEach((m, idx) => console.log(`  [M${idx+1}] ${m}`));
 
 console.log('\n====================================================================');
-console.log('✅ MASTER LIVE DEMO COMPLETE: ALL SYSTEMS 100% OPERATIONAL & VERIFIED');
+console.log('âœ… MASTER LIVE DEMO COMPLETE: ALL SYSTEMS 100% OPERATIONAL & VERIFIED');
 console.log('====================================================================\n');
+

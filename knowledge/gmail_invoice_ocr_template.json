@@ -1,0 +1,69 @@
+{
+  "name": "Gmail PDF Invoice to PostgreSQL OCR",
+  "version": "1.0.0",
+  "author": "Insha Tech (Adnin Sadat Mahin)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "q": "has:attachment filename:pdf"
+        }
+      },
+      "name": "Gmail Trigger (New Invoice Attachment)",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "model": "gemini-1.5-flash",
+        "prompt": "Extract the vendor name, invoice date, total amount, currency, invoice number, and line items in JSON format."
+      },
+      "name": "Gemini 1.5 Vision OCR Parser",
+      "type": "n8n-nodes-base.googleGemini",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO invoices (invoice_number, vendor, amount, currency, invoice_date, raw_payload) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (invoice_number) DO UPDATE SET updated_at = NOW();"
+      },
+      "name": "PostgreSQL Insert",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [750, 300]
+    }
+  ],
+  "connections": {
+    "Gmail Trigger (New Invoice Attachment)": {
+      "main": [
+        [
+          {
+            "node": "Gemini 1.5 Vision OCR Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini 1.5 Vision OCR Parser": {
+      "main": [
+        [
+          {
+            "node": "PostgreSQL Insert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

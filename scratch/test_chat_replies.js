@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 
 // Test universal_ai_copilot.js structure and response generators
 console.log('Testing conversational response flows:');
@@ -14,3 +14,4 @@ const testCases = [
 ];
 
 console.log('All test cases defined successfully.');
+

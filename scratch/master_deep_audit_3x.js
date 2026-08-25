@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -17,7 +17,7 @@ const ALL_PAGES = [
 ];
 
 console.log('======================================================================');
-console.log('🔬 MASTER 3X DEEP AUDIT: LINKS, BUTTONS, MODALS, IMAGES, APIS & SEO');
+console.log('ðŸ”¬ MASTER 3X DEEP AUDIT: LINKS, BUTTONS, MODALS, IMAGES, APIS & SEO');
 console.log('======================================================================\n');
 
 let issuesFound = 0;
@@ -31,13 +31,13 @@ const affiliateJs = fs.existsSync(path.join(BASE_DIR, 'js', 'core', 'affiliate-p
 ALL_PAGES.forEach(page => {
     const filePath = path.join(BASE_DIR, page);
     if (!fs.existsSync(filePath)) {
-        console.log(`❌ Page missing on disk: ${page}`);
+        console.log(`âŒ Page missing on disk: ${page}`);
         issuesFound++;
         return;
     }
 
     const html = fs.readFileSync(filePath, 'utf8');
-    console.log(`\n📄 Auditing: ${page} (${(html.length / 1024).toFixed(1)} KB)`);
+    console.log(`\nðŸ“„ Auditing: ${page} (${(html.length / 1024).toFixed(1)} KB)`);
 
     // 1. Check SEO & Social Meta
     const hasTitle = /<title>([^<]+)<\/title>/i.test(html);
@@ -46,11 +46,11 @@ ALL_PAGES.forEach(page => {
     const hasCanonical = /<link\s+rel=["']canonical["']/i.test(html);
     const hasOgTitle = /<meta\s+property=["']og:title["']/i.test(html);
 
-    if (!hasTitle) { console.log(`   ⚠️ [SEO] Missing <title> tag in ${page}`); issuesFound++; }
-    if (!hasDesc) { console.log(`   ⚠️ [SEO] Missing description meta tag in ${page}`); issuesFound++; }
-    if (!hasViewport) { console.log(`   ⚠️ [SEO] Missing viewport meta tag in ${page}`); issuesFound++; }
-    if (!hasCanonical) { console.log(`   ⚠️ [SEO] Missing canonical link in ${page}`); issuesFound++; }
-    if (!hasOgTitle) { console.log(`   ⚠️ [SEO] Missing OpenGraph tags in ${page}`); issuesFound++; }
+    if (!hasTitle) { console.log(`   âš ï¸ [SEO] Missing <title> tag in ${page}`); issuesFound++; }
+    if (!hasDesc) { console.log(`   âš ï¸ [SEO] Missing description meta tag in ${page}`); issuesFound++; }
+    if (!hasViewport) { console.log(`   âš ï¸ [SEO] Missing viewport meta tag in ${page}`); issuesFound++; }
+    if (!hasCanonical) { console.log(`   âš ï¸ [SEO] Missing canonical link in ${page}`); issuesFound++; }
+    if (!hasOgTitle) { console.log(`   âš ï¸ [SEO] Missing OpenGraph tags in ${page}`); issuesFound++; }
 
     // 2. Check all Anchor Links
     const aTags = [...html.matchAll(/<a\s+[^>]*href=["']([^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi)];
@@ -63,14 +63,14 @@ ALL_PAGES.forEach(page => {
             if (!html.includes(`id="${targetId}"`) && !html.includes(`id='${targetId}'`)) {
                 // If it's a dynamic JS tab/modal, ignore; otherwise flag
                 if (!['tab-panel-', 'view-'].some(prefix => targetId.startsWith(prefix))) {
-                    console.log(`   ⚠️ [Anchor] Fragment '#${targetId}' not found in ${page}`);
+                    console.log(`   âš ï¸ [Anchor] Fragment '#${targetId}' not found in ${page}`);
                     issuesFound++;
                 }
             }
         } else if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('${')) {
             const targetFile = href.split('#')[0].split('?')[0];
             if (targetFile && !fs.existsSync(path.join(BASE_DIR, targetFile))) {
-                console.log(`   ⚠️ [Link] Local target '${targetFile}' linked in ${page} does not exist on disk!`);
+                console.log(`   âš ï¸ [Link] Local target '${targetFile}' linked in ${page} does not exist on disk!`);
                 issuesFound++;
             }
         }
@@ -82,7 +82,7 @@ ALL_PAGES.forEach(page => {
         const src = m[1].trim();
         if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('data:') && !src.startsWith('${')) {
             if (!fs.existsSync(path.join(BASE_DIR, src))) {
-                console.log(`   ⚠️ [Image] Local image '${src}' in ${page} does not exist on disk!`);
+                console.log(`   âš ï¸ [Image] Local image '${src}' in ${page} does not exist on disk!`);
                 issuesFound++;
             }
         }
@@ -94,7 +94,7 @@ ALL_PAGES.forEach(page => {
         const src = m[1].trim().split('?')[0];
         if (!src.startsWith('http://') && !src.startsWith('https://')) {
             if (!fs.existsSync(path.join(BASE_DIR, src))) {
-                console.log(`   ⚠️ [Script] Script '${src}' in ${page} not found on disk!`);
+                console.log(`   âš ï¸ [Script] Script '${src}' in ${page} not found on disk!`);
                 issuesFound++;
             }
         }
@@ -105,7 +105,7 @@ ALL_PAGES.forEach(page => {
         const href = m[1].trim().split('?')[0];
         if (!href.startsWith('http://') && !href.startsWith('https://')) {
             if (!fs.existsSync(path.join(BASE_DIR, href))) {
-                console.log(`   ⚠️ [CSS] Stylesheet '${href}' in ${page} not found on disk!`);
+                console.log(`   âš ï¸ [CSS] Stylesheet '${href}' in ${page} not found on disk!`);
                 issuesFound++;
             }
         }
@@ -127,7 +127,7 @@ ALL_PAGES.forEach(page => {
                 const fnRegex = new RegExp(`(?:function\\s+${fn}|(?:window\\.)?${fn}\\s*=\\s*(?:function|\\()|const\\s+${fn}\\s*=)`, 'i');
                 const isDef = fnRegex.test(html) || fnRegex.test(appJs) || fnRegex.test(copilotJs) || fnRegex.test(affiliateJs);
                 if (!isGlobal && !isDef) {
-                    console.log(`   ❌ [Button] Button "${text}" onclick="${fn}()" is undefined in ${page}!`);
+                    console.log(`   âŒ [Button] Button "${text}" onclick="${fn}()" is undefined in ${page}!`);
                     issuesFound++;
                 }
             }
@@ -136,7 +136,7 @@ ALL_PAGES.forEach(page => {
 });
 
 // 6. Check API Endpoints invoked in JS vs Existing Functions
-console.log('\n📡 Auditing Client-to-Edge API Endpoints...');
+console.log('\nðŸ“¡ Auditing Client-to-Edge API Endpoints...');
 const allCode = appJs + copilotJs + affiliateJs;
 const fetchMatches = [...allCode.matchAll(/fetch\s*\(\s*['"`](\/api\/[^'"`?]+)/g)];
 const checkedApis = new Set();
@@ -153,17 +153,18 @@ fetchMatches.forEach(m => {
 
     const exists = fs.existsSync(diskPath) || fs.existsSync(diskPathDirect) || fs.existsSync(diskPathFunctions);
     if (!exists) {
-        console.log(`   ⚠️ [API] Endpoint '${apiPath}' called in JS is missing edge handler file under functions/!`);
+        console.log(`   âš ï¸ [API] Endpoint '${apiPath}' called in JS is missing edge handler file under functions/!`);
         issuesFound++;
     } else {
-        console.log(`   ✅ [API] Endpoint '${apiPath}' -> Handler Verified 🟢`);
+        console.log(`   âœ… [API] Endpoint '${apiPath}' -> Handler Verified ðŸŸ¢`);
     }
 });
 
 console.log('\n======================================================================');
 if (issuesFound === 0) {
-    console.log('🎉 100% PERFECT AUDIT! 0 Issues Found Across All 10 Pages & Edge APIs!');
+    console.log('ðŸŽ‰ 100% PERFECT AUDIT! 0 Issues Found Across All 10 Pages & Edge APIs!');
 } else {
-    console.log(`⚠️ AUDIT COMPLETE: ${issuesFound} Potential Issues / Enhancements Isolated.`);
+    console.log(`âš ï¸ AUDIT COMPLETE: ${issuesFound} Potential Issues / Enhancements Isolated.`);
 }
 console.log('======================================================================\n');
+

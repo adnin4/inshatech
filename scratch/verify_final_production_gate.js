@@ -1,11 +1,11 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('================================================================');
-console.log('🏁 STEP 13: FINAL PRODUCTION GATE (12 CORE CRITICAL DOMAINS) 🏁');
+console.log('ðŸ STEP 13: FINAL PRODUCTION GATE (12 CORE CRITICAL DOMAINS) ðŸ');
 console.log('================================================================\n');
 
 const gates = [
@@ -26,10 +26,10 @@ gates.forEach(g => {
     try {
         console.log(`Checking Gate: ${g.name}...`);
         execSync(`node "${path.join(BASE_DIR, g.script)}"`, { stdio: 'pipe' });
-        console.log(`  ✅ [PASS] ${g.name}`);
+        console.log(`  âœ… [PASS] ${g.name}`);
         totalPassed++;
     } catch (err) {
-        console.error(`  ❌ [FAIL] ${g.name}`);
+        console.error(`  âŒ [FAIL] ${g.name}`);
     }
 });
 
@@ -38,10 +38,11 @@ console.log(`PRODUCTION GATES PASSED: ${totalPassed} / ${gates.length}`);
 console.log('================================================================');
 
 if (totalPassed === gates.length) {
-    console.log('\n🟢🟢🟢 OFFICIAL VERDICT: 100% PRODUCTION CANDIDATE CERTIFIED 🟢🟢🟢');
+    console.log('\nðŸŸ¢ðŸŸ¢ðŸŸ¢ OFFICIAL VERDICT: 100% PRODUCTION CANDIDATE CERTIFIED ðŸŸ¢ðŸŸ¢ðŸŸ¢');
     console.log('IINSHA AI-BOS IS CLEARED FOR PILOT ONBOARDING & FULL COMMERCIAL LAUNCH!\n');
     process.exit(0);
 } else {
-    console.error('\n🔴 VERDICT: PRODUCTION GATE FAILED');
+    console.error('\nðŸ”´ VERDICT: PRODUCTION GATE FAILED');
     process.exit(1);
 }
+

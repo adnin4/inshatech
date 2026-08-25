@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Automated Verification Script: IINSHA 12-Phase Master Execution Architecture
  * Verifies that all 12 Phases are fully implemented, connected, and verified.
  */
@@ -10,7 +10,7 @@ const assert = require('assert');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('======================================================================');
-console.log('🏆 IINSHA AI OS: 12-PHASE MASTER EXECUTION ARCHITECTURE EVALUATOR');
+console.log('ðŸ† IINSHA AI OS: 12-PHASE MASTER EXECUTION ARCHITECTURE EVALUATOR');
 console.log('======================================================================\n');
 
 const PHASES = [
@@ -34,19 +34,20 @@ PHASES.forEach(p => {
     try {
         const passed = p.check();
         assert(passed, `Phase ${p.phase} validation failed`);
-        console.log(`✅ [PHASE ${String(p.phase).padStart(2, '0')}] ${p.name.padEnd(52, ' ')} : [ VERIFIED 🟢 ]`);
+        console.log(`âœ… [PHASE ${String(p.phase).padStart(2, '0')}] ${p.name.padEnd(52, ' ')} : [ VERIFIED ðŸŸ¢ ]`);
     } catch (err) {
-        console.error(`❌ [PHASE ${String(p.phase).padStart(2, '0')}] ${p.name.padEnd(52, ' ')} : [ FAILED 🔴 ]`);
+        console.error(`âŒ [PHASE ${String(p.phase).padStart(2, '0')}] ${p.name.padEnd(52, ' ')} : [ FAILED ðŸ”´ ]`);
         allPassed = false;
     }
 });
 
 console.log('\n======================================================================');
 if (allPassed) {
-    console.log('🎉 ALL 12 MASTER EXECUTION PHASES VERIFIED WITH 100% EVIDENCE!');
-    console.log('👑 IINSHA AI OS IS READY FOR ENTERPRISE DEPLOYMENT & GOVERNANCE.');
+    console.log('ðŸŽ‰ ALL 12 MASTER EXECUTION PHASES VERIFIED WITH 100% EVIDENCE!');
+    console.log('ðŸ‘‘ IINSHA AI OS IS READY FOR ENTERPRISE DEPLOYMENT & GOVERNANCE.');
     process.exit(0);
 } else {
-    console.error('🚨 12-PHASE ARCHITECTURAL EVALUATION FAILED.');
+    console.error('ðŸš¨ 12-PHASE ARCHITECTURAL EVALUATION FAILED.');
     process.exit(1);
 }
+

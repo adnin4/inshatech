@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS 45-PHASE MASTER PRODUCTION CERTIFICATION & EVIDENCE SUITE
  * Executes and verifies all 45 phases with executable evidence.
  */
@@ -8,7 +8,7 @@ const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('================================================================================');
-console.log('👑 IINSHA AI-BOS — 45-PHASE MASTER PRODUCTION CERTIFICATION & EVIDENCE SUITE');
+console.log('ðŸ‘‘ IINSHA AI-BOS â€” 45-PHASE MASTER PRODUCTION CERTIFICATION & EVIDENCE SUITE');
 console.log('================================================================================\n');
 
 let totalChecks = 0;
@@ -20,12 +20,12 @@ function recordPhase(num, title, passed, evidence = '') {
     totalChecks++;
     if (passed) {
         passedChecks++;
-        console.log(`✅ [PHASE ${num.toString().padStart(2, '0')}] ${title}`);
-        if (evidence) console.log(`   📂 Evidence: ${evidence}`);
+        console.log(`âœ… [PHASE ${num.toString().padStart(2, '0')}] ${title}`);
+        if (evidence) console.log(`   ðŸ“‚ Evidence: ${evidence}`);
     } else {
         failedChecks++;
-        console.log(`❌ [PHASE ${num.toString().padStart(2, '0')}] ${title}`);
-        if (evidence) console.log(`   ⚠️ Failure Detail: ${evidence}`);
+        console.log(`âŒ [PHASE ${num.toString().padStart(2, '0')}] ${title}`);
+        if (evidence) console.log(`   âš ï¸ Failure Detail: ${evidence}`);
     }
     phaseResults.push({ phase: num, title, passed, evidence });
 }
@@ -208,7 +208,7 @@ recordPhase(37, 'Rollback & Safe Versioning Controls', hasDeploymentsTable, `ibo
 
 // Phase 38: Global Edge Routing & Dual Currency Engine
 const hasCurrencySwitcher = fs.readFileSync(path.join(BASE_DIR, 'app.js'), 'utf8').includes('setGlobalPricingCurrency');
-recordPhase(38, 'Global Edge Routing & USD/BDT Currency Engine', hasCurrencySwitcher, `Global currency switcher ($1 = ৳122.50) in app.js`);
+recordPhase(38, 'Global Edge Routing & USD/BDT Currency Engine', hasCurrencySwitcher, `Global currency switcher ($1 = à§³122.50) in app.js`);
 
 // Phase 39: Accessibility WCAG 2.2 AA Conformance
 const indexHtml = fs.readFileSync(path.join(BASE_DIR, 'index.html'), 'utf8');
@@ -253,13 +253,14 @@ recordPhase(45, 'Live Production Edge Sync & Cloudflare Readiness', hasEdgeSync,
 // FINAL 45-PHASE CERTIFICATION SUMMARY
 // --------------------------------------------------------------------------------
 console.log('\n================================================================================');
-console.log(`🏆 45-PHASE MASTER CERTIFICATION SCORECARD: ${passedChecks} / 45 PHASES PASSED (${failedChecks} FAILED)`);
+console.log(`ðŸ† 45-PHASE MASTER CERTIFICATION SCORECARD: ${passedChecks} / 45 PHASES PASSED (${failedChecks} FAILED)`);
 console.log('================================================================================');
 
 if (failedChecks === 0) {
-    console.log('👑 100% PRODUCTION-CERTIFIED — EVERY SINGLE PHASE VERIFIED WITH REAL EVIDENCE! 🚀');
+    console.log('ðŸ‘‘ 100% PRODUCTION-CERTIFIED â€” EVERY SINGLE PHASE VERIFIED WITH REAL EVIDENCE! ðŸš€');
     process.exit(0);
 } else {
-    console.log(`⚠️ ${failedChecks} Phases failed.`);
+    console.log(`âš ï¸ ${failedChecks} Phases failed.`);
     process.exit(1);
 }
+

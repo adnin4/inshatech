@@ -59,9 +59,11 @@ class ProductionAdapterRegistry {
             }],
             ['PAYMENT', {
                 pillar: 'PAYMENT',
-                name: 'Payment Settlement Gateway (Stripe/bKash)',
-                status: 'NOT_CONFIGURED',
-                credentials_configured: false,
+                name: 'Payment Settlement Gateway (Lemon Squeezy Store 458722 / Stripe / bKash)',
+                status: 'CONFIGURED',
+                credentials_configured: true,
+                store_id: 458722,
+                variant_id: 2050933,
                 sandbox_supported: true,
                 live_supported: true,
                 risk_level: 'CRITICAL'

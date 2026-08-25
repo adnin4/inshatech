@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const files = fs.readdirSync('.').filter(f => f.endsWith('.html') || f.endsWith('.js'));
@@ -31,3 +31,4 @@ files.forEach(f => {
     });
   });
 });
+

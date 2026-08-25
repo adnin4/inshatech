@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cloudflare Pages Function: /api/tools/execute
  * Enterprise Tool Policy Engine & Production External Connectors Gateway
  * Implements 7-Level Bounded Execution Spectrum (L0 to L6) with Real Business Connectors (n8n, WhatsApp Cloud API, Supabase CRM, Resend Email, Playwright Data Extractor).
@@ -102,10 +102,9 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             return {
                 connector: 'n8n_enterprise_adapter',
                 endpoint: webhookUrl,
-                status: 'CONNECTOR_READY',
-                workflow: args.workflow_name || 'B2B Lead Extraction Flow',
-                execution_receipt_id: `n8n_exec_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
-                note: 'Dispatched to self-hosted Dockerized n8n engine on VPS'
+                status: 'NOT_CONFIGURED',
+                missing_env: 'N8N_WEBHOOK_URL',
+                note: 'Set N8N_WEBHOOK_URL in environment to execute live n8n workflow.'
             };
         }
 
@@ -146,10 +145,10 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             return {
                 connector: 'whatsapp_cloud_gateway',
                 recipient_phone: recipient,
-                message_length: messageText.length,
-                status: 'DISPATCH_FORMATTED',
+                status: 'NOT_CONFIGURED',
+                missing_env: ['WHATSAPP_PHONE_NUMBER_ID', 'WHATSAPP_ACCESS_TOKEN'],
                 gateway_url: `https://wa.me/${recipient.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(messageText)}`,
-                note: 'Structured template ready for Meta Graph API or Owner Direct WA'
+                note: 'Meta WhatsApp Cloud API credentials missing. Direct WhatsApp link available.'
             };
         }
 
@@ -193,9 +192,10 @@ async function executeRealTool(toolName, args = {}, env = {}) {
 
             return {
                 connector: 'supabase_crm_adapter',
-                lead_id: `LEAD-${Date.now().toString(36).toUpperCase()}`,
                 lead_data: leadData,
-                status: 'QUALIFIED_IN_CRM_PIPELINE'
+                status: 'NOT_CONFIGURED',
+                missing_env: ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'],
+                note: 'Supabase credentials missing in edge environment.'
             };
         }
 
@@ -235,8 +235,9 @@ async function executeRealTool(toolName, args = {}, env = {}) {
                 connector: 'transactional_email_adapter',
                 recipient: to,
                 subject: subject,
-                status: 'DISPATCH_QUEUED',
-                provider: 'Resend / SMTP Relay'
+                status: 'NOT_CONFIGURED',
+                missing_env: 'RESEND_API_KEY',
+                note: 'RESEND_API_KEY missing. Transactional email not dispatched.'
             };
         }
 
@@ -326,8 +327,8 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             return {
                 executed_tool: toolName,
                 arguments: args,
-                execution_mode: 'POLICY_VERIFIED_INTERNAL',
-                status: 'COMPLETED',
+                status: 'NOT_CONFIGURED',
+                missing_dependency: `Provider adapter for tool '${toolName}' not configured`,
                 timestamp: new Date().toISOString()
             };
     }

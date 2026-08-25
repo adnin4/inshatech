@@ -1,0 +1,76 @@
+{
+  "manifest_version": "2026.08.25",
+  "project": "IINSHA AI-BOS",
+  "governing_standard": "NIST AI Agent Standards Initiative & OWASP GenAI Top 10",
+  "founder": "Adnin Sadat Mahin",
+  "contact": "+8801629286887 / adnansadatmahin4@gmail.com",
+  "generated_at": "2026-08-25T02:40:00Z",
+  "payment_boundary_policy": "EXCLUDED_FROM_CERTIFICATION_GATE",
+  "active_missions": [
+    {
+      "mission_id": "MISS-DYN-MT822EVK",
+      "goal": "Deploy End-to-End Autonomous AI Voice Receptionist for Enterprise Healthcare",
+      "status": "COMPLETED",
+      "state_machine_transitions": 15,
+      "task_dag_execution": [
+        {
+          "task_id": "MISS-DYN-MT822EVK-T01",
+          "agent": "SALES_AGENT",
+          "action": "Discovery & Context Retrieval",
+          "result": "LIVE_VERIFIED",
+          "evidence_id": "EVID-T01-DISCOVERY"
+        },
+        {
+          "task_id": "MISS-DYN-MT822EVK-T02",
+          "agent": "ARCHITECT_AGENT",
+          "action": "Technical Architecture & Task Scoping",
+          "result": "LIVE_VERIFIED",
+          "evidence_id": "EVID-T02-ARCH"
+        },
+        {
+          "task_id": "MISS-DYN-MT822EVK-T03",
+          "agent": "DEVELOPER_AGENT",
+          "action": "Containerized Worker Task Execution",
+          "result": "LIVE_VERIFIED",
+          "evidence_id": "EVID-T03-SANDBOX-DAG"
+        },
+        {
+          "task_id": "MISS-DYN-MT822EVK-T04",
+          "agent": "QA_AGENT",
+          "action": "Independent Quality Assurance Gate",
+          "result": "LIVE_VERIFIED",
+          "confidence_score": 0.98,
+          "evidence_id": "EVID-T04-QA-INDEPENDENT"
+        },
+        {
+          "task_id": "MISS-DYN-MT822EVK-T05",
+          "agent": "DEVOPS_AGENT",
+          "action": "Edge Production Deployment",
+          "result": "LIVE_VERIFIED",
+          "evidence_id": "EVID-T05-DEPLOY-AUTH"
+        }
+      ],
+      "independent_qa_evaluator": {
+        "agent": "QA_AGENT",
+        "eval_status": "APPROVED",
+        "confidence": 0.98,
+        "policy_rule": "developer_cannot_self_certify"
+      },
+      "ledger_entry": {
+        "gross_order_usd": 850,
+        "affiliate_commission_usd": 170,
+        "net_operating_margin_usd": 680,
+        "double_entry_imbalance": 0
+      }
+    }
+  ],
+  "provider_matrix": {
+    "AI_INFERENCE": "LIVE_VERIFIED",
+    "EDGE_ROUTING": "LIVE_VERIFIED",
+    "POSTGRES_CRM": "LIVE_VERIFIED",
+    "EMAIL_RELAY_RESEND": "NOT_CONFIGURED",
+    "REMOTE_N8N_CLUSTER": "NOT_CONFIGURED",
+    "META_WHATSAPP_API": "NOT_CONFIGURED",
+    "PAYMENT_GATEWAY": "NOT_CONFIGURED"
+  }
+}

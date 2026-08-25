@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — Master Production Evidence Pack Generator
+﻿/**
+ * IINSHA AI-BOS â€” Master Production Evidence Pack Generator
  * Generates the 10 Mandatory Final Release Artifacts adhering to strict evidence hierarchy:
  * L0 = CODE_PRESENT
  * L1 = STATIC_VERIFIED
@@ -43,31 +43,31 @@ const evidenceMatrix = {
 fs.writeFileSync(path.join(outDir, 'FINAL_EVIDENCE_MATRIX.json'), JSON.stringify(evidenceMatrix, null, 2));
 
 // 2. FINAL_EVIDENCE_MATRIX.md
-const matrixMd = `# 👑 IINSHA AI-BOS — Final Evidence Matrix (L0-L4 Hierarchy)
+const matrixMd = `# ðŸ‘‘ IINSHA AI-BOS â€” Final Evidence Matrix (L0-L4 Hierarchy)
 
 Generated: \`${timestamp}\`
 
 | Feature / Domain | L0 Code | L1 Static | L2 Runtime | L3 Integration | L4 Live Production | Status |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Supabase PostgreSQL & 82 RLS Tables** | ✅ | ✅ | ✅ | ✅ | ✅ | **LIVE_PRODUCTION_VERIFIED** |
-| **Server-Authoritative Checkout** | ✅ | ✅ | ✅ | ✅ | ⏳ | **RUNTIME_VERIFIED** |
-| **Durable Signed Webhook Ledger** | ✅ | ✅ | ✅ | ✅ | ⏳ | **RUNTIME_VERIFIED** |
-| **Multi-Tenant RLS Attack Defense** | ✅ | ✅ | ✅ | ✅ | ✅ | **LIVE_PRODUCTION_VERIFIED** |
-| **Fail-Closed Auth & TOTP MFA** | ✅ | ✅ | ✅ | ✅ | ✅ | **LIVE_PRODUCTION_VERIFIED** |
-| **Automated DR Edge Failover** | ✅ | ✅ | ✅ | ✅ | ✅ | **LIVE_PRODUCTION_VERIFIED** |
-| **14-Stage GitHub Actions CI** | ✅ | ✅ | ✅ | ✅ | ✅ | **LIVE_PRODUCTION_VERIFIED** |
-| **Stripe Live Payment Adapter** | ✅ | ✅ | ✅ | ⏳ | 🔴 | **NOT_CONFIGURED (Needs Secret)** |
-| **bKash Live Merchant Adapter** | ✅ | ✅ | ✅ | ⏳ | 🔴 | **NOT_CONFIGURED (Needs Secret)** |
-| **WhatsApp Cloud API Connector** | ✅ | ✅ | ✅ | ⏳ | 🔴 | **NOT_CONFIGURED (Needs Token)** |
-| **n8n Enterprise Webhook Adapter** | ✅ | ✅ | ✅ | ⏳ | 🔴 | **NOT_CONFIGURED (Needs URL)** |
-| **Resend Email API Connector** | ✅ | ✅ | ✅ | ⏳ | 🔴 | **NOT_CONFIGURED (Needs Key)** |
+| **Supabase PostgreSQL & 82 RLS Tables** | âœ… | âœ… | âœ… | âœ… | âœ… | **LIVE_PRODUCTION_VERIFIED** |
+| **Server-Authoritative Checkout** | âœ… | âœ… | âœ… | âœ… | â³ | **RUNTIME_VERIFIED** |
+| **Durable Signed Webhook Ledger** | âœ… | âœ… | âœ… | âœ… | â³ | **RUNTIME_VERIFIED** |
+| **Multi-Tenant RLS Attack Defense** | âœ… | âœ… | âœ… | âœ… | âœ… | **LIVE_PRODUCTION_VERIFIED** |
+| **Fail-Closed Auth & TOTP MFA** | âœ… | âœ… | âœ… | âœ… | âœ… | **LIVE_PRODUCTION_VERIFIED** |
+| **Automated DR Edge Failover** | âœ… | âœ… | âœ… | âœ… | âœ… | **LIVE_PRODUCTION_VERIFIED** |
+| **14-Stage GitHub Actions CI** | âœ… | âœ… | âœ… | âœ… | âœ… | **LIVE_PRODUCTION_VERIFIED** |
+| **Stripe Live Payment Adapter** | âœ… | âœ… | âœ… | â³ | ðŸ”´ | **NOT_CONFIGURED (Needs Secret)** |
+| **bKash Live Merchant Adapter** | âœ… | âœ… | âœ… | â³ | ðŸ”´ | **NOT_CONFIGURED (Needs Secret)** |
+| **WhatsApp Cloud API Connector** | âœ… | âœ… | âœ… | â³ | ðŸ”´ | **NOT_CONFIGURED (Needs Token)** |
+| **n8n Enterprise Webhook Adapter** | âœ… | âœ… | âœ… | â³ | ðŸ”´ | **NOT_CONFIGURED (Needs URL)** |
+| **Resend Email API Connector** | âœ… | âœ… | âœ… | â³ | ðŸ”´ | **NOT_CONFIGURED (Needs Key)** |
 
 > **Audit Rule**: Zero Fake Success. External connectors without live API keys are honestly labeled **NOT_CONFIGURED**.
 `;
 fs.writeFileSync(path.join(outDir, 'FINAL_EVIDENCE_MATRIX.md'), matrixMd);
 
 // 3. PRODUCTION_READINESS_REPORT.md
-const readinessMd = `# 🛡️ IINSHA AI-BOS — Production Readiness Report
+const readinessMd = `# ðŸ›¡ï¸ IINSHA AI-BOS â€” Production Readiness Report
 
 ## 1. Executive Summary
 - **Core Architecture Readiness**: **100% (Enterprise Hardened)**
@@ -85,22 +85,22 @@ const readinessMd = `# 🛡️ IINSHA AI-BOS — Production Readiness Report
 fs.writeFileSync(path.join(outDir, 'PRODUCTION_READINESS_REPORT.md'), readinessMd);
 
 // 4. LIVE_INTEGRATION_STATUS.md
-const liveIntegrationMd = `# 🌐 Live Integration Status & Secrets Checklist
+const liveIntegrationMd = `# ðŸŒ Live Integration Status & Secrets Checklist
 
 | Connector Service | Environment Variable | Current Runtime State | Action Required |
 | :--- | :--- | :---: | :--- |
-| **Supabase DB** | \`SUPABASE_URL\`, \`SUPABASE_SERVICE_ROLE_KEY\` | 🟢 **ACTIVE_HEALTHY** | Active in production |
-| **Stripe** | \`STRIPE_SECRET_KEY\`, \`STRIPE_WEBHOOK_SECRET\` | 🟡 **NOT_CONFIGURED** | Add Stripe Live/Test Secret |
-| **bKash** | \`BKASH_APP_KEY\`, \`BKASH_APP_SECRET\` | 🟡 **NOT_CONFIGURED** | Add bKash Merchant API Key |
-| **WhatsApp API** | \`WHATSAPP_ACCESS_TOKEN\`, \`PHONE_ID\` | 🟡 **NOT_CONFIGURED** | Add Meta Graph Access Token |
-| **n8n Cluster** | \`N8N_WEBHOOK_URL\`, \`N8N_API_KEY\` | 🟡 **NOT_CONFIGURED** | Add VPS n8n Webhook URL |
-| **Resend Email** | \`RESEND_API_KEY\` | 🟡 **NOT_CONFIGURED** | Add Resend API Token |
-| **Cloudflare Pages** | \`CLOUDFLARE_API_TOKEN\` | 🟡 **NOT_CONFIGURED** | Add GitHub Actions Deployment Secret |
+| **Supabase DB** | \`SUPABASE_URL\`, \`SUPABASE_SERVICE_ROLE_KEY\` | ðŸŸ¢ **ACTIVE_HEALTHY** | Active in production |
+| **Stripe** | \`STRIPE_SECRET_KEY\`, \`STRIPE_WEBHOOK_SECRET\` | ðŸŸ¡ **NOT_CONFIGURED** | Add Stripe Live/Test Secret |
+| **bKash** | \`BKASH_APP_KEY\`, \`BKASH_APP_SECRET\` | ðŸŸ¡ **NOT_CONFIGURED** | Add bKash Merchant API Key |
+| **WhatsApp API** | \`WHATSAPP_ACCESS_TOKEN\`, \`PHONE_ID\` | ðŸŸ¡ **NOT_CONFIGURED** | Add Meta Graph Access Token |
+| **n8n Cluster** | \`N8N_WEBHOOK_URL\`, \`N8N_API_KEY\` | ðŸŸ¡ **NOT_CONFIGURED** | Add VPS n8n Webhook URL |
+| **Resend Email** | \`RESEND_API_KEY\` | ðŸŸ¡ **NOT_CONFIGURED** | Add Resend API Token |
+| **Cloudflare Pages** | \`CLOUDFLARE_API_TOKEN\` | ðŸŸ¡ **NOT_CONFIGURED** | Add GitHub Actions Deployment Secret |
 `;
 fs.writeFileSync(path.join(outDir, 'LIVE_INTEGRATION_STATUS.md'), liveIntegrationMd);
 
 // 5. SECURITY_FINAL_REPORT.md
-const securityMd = `# 🔒 Security Final Audit Report
+const securityMd = `# ðŸ”’ Security Final Audit Report
 
 - **Fail-Closed Auth**: Zero fallback passwords, mandatory TOTP challenge for admin.
 - **RLS Multi-Tenant**: Tenant A blocked from reading/mutating Tenant B across all 82 tables.
@@ -110,7 +110,7 @@ const securityMd = `# 🔒 Security Final Audit Report
 fs.writeFileSync(path.join(outDir, 'SECURITY_FINAL_REPORT.md'), securityMd);
 
 // 6. PAYMENT_RECONCILIATION_REPORT.md
-const paymentMd = `# 💳 Payment Reconciliation & Financial Invariant Report
+const paymentMd = `# ðŸ’³ Payment Reconciliation & Financial Invariant Report
 
 \`\`\`text
 INVARIANT FORMULA:
@@ -123,18 +123,18 @@ Gross Revenue ($850.00) = Gateway Fee ($24.65) + Affiliate ($170.00) + Net Margi
 fs.writeFileSync(path.join(outDir, 'PAYMENT_RECONCILIATION_REPORT.md'), paymentMd);
 
 // 7. TENANT_ISOLATION_REPORT.md
-const tenantMd = `# 🏢 Tenant Isolation & Adversarial Attack Audit
+const tenantMd = `# ðŸ¢ Tenant Isolation & Adversarial Attack Audit
 
 - **Adversarial Test Suite**: \`scratch/rls_tenant_isolation_test.js\`
-- **Attack 1 (Cross-Tenant SELECT)**: ⛔ DENIED (403 RLS)
-- **Attack 2 (Cross-Tenant UPDATE)**: ⛔ DENIED (403 RLS)
-- **Attack 3 (Cross-Tenant DELETE)**: ⛔ DENIED (403 RLS)
-- **Attack 4 (Cross-Tenant Memory Retrieval)**: ⛔ DENIED (403 RLS)
+- **Attack 1 (Cross-Tenant SELECT)**: â›” DENIED (403 RLS)
+- **Attack 2 (Cross-Tenant UPDATE)**: â›” DENIED (403 RLS)
+- **Attack 3 (Cross-Tenant DELETE)**: â›” DENIED (403 RLS)
+- **Attack 4 (Cross-Tenant Memory Retrieval)**: â›” DENIED (403 RLS)
 `;
 fs.writeFileSync(path.join(outDir, 'TENANT_ISOLATION_REPORT.md'), tenantMd);
 
 // 8. DR_FINAL_REPORT.md
-const drMd = `# 🔄 Disaster Recovery Final Drill Report
+const drMd = `# ðŸ”„ Disaster Recovery Final Drill Report
 
 - **Drill Suite**: \`scratch/disaster_recovery_drill.js\`
 - **Edge Failover**: Automated Anycast edge routing active
@@ -145,7 +145,7 @@ const drMd = `# 🔄 Disaster Recovery Final Drill Report
 fs.writeFileSync(path.join(outDir, 'DR_FINAL_REPORT.md'), drMd);
 
 // 9. PERFORMANCE_FINAL_REPORT.md
-const perfMd = `# ⚡ Performance Final Report
+const perfMd = `# âš¡ Performance Final Report
 
 - **Database Foreign Keys**: 100% indexed (19 critical indexes active)
 - **Edge Static Delivery**: Sub-50ms TTFB across Cloudflare Global Edge
@@ -154,7 +154,7 @@ const perfMd = `# ⚡ Performance Final Report
 fs.writeFileSync(path.join(outDir, 'PERFORMANCE_FINAL_REPORT.md'), perfMd);
 
 // 10. FINAL_RELEASE_CERTIFICATE.md
-const certMd = `# 👑 IINSHA AI-BOS — Final Production Release Certificate
+const certMd = `# ðŸ‘‘ IINSHA AI-BOS â€” Final Production Release Certificate
 
 \`\`\`text
 ================================================================================
@@ -176,4 +176,5 @@ NEXT_REQUIRED_ACTIONS:
 `;
 fs.writeFileSync(path.join(outDir, 'FINAL_RELEASE_CERTIFICATE.md'), certMd);
 
-console.log('✅ ALL 10 MANDATORY FINAL EVIDENCE DOCUMENTS SUCCESSFULLY GENERATED IN scratch/evidence/');
+console.log('âœ… ALL 10 MANDATORY FINAL EVIDENCE DOCUMENTS SUCCESSFULLY GENERATED IN scratch/evidence/');
+

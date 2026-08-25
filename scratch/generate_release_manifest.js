@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — Branch Diff Matrix & Release Manifest Generator
+﻿/**
+ * IINSHA AI-BOS â€” Branch Diff Matrix & Release Manifest Generator
  */
 
 const fs = require('fs');
@@ -81,4 +81,5 @@ const releaseManifest = {
 };
 fs.writeFileSync(path.join(outDir, 'RELEASE_MANIFEST.json'), JSON.stringify(releaseManifest, null, 2));
 
-console.log('✅ Generated BRANCH_DIFF_MATRIX.json & RELEASE_MANIFEST.json in scratch/evidence/');
+console.log('âœ… Generated BRANCH_DIFF_MATRIX.json & RELEASE_MANIFEST.json in scratch/evidence/');
+

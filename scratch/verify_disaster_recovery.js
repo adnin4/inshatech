@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -16,16 +16,17 @@ const drAudit = [
 let pass = true;
 drAudit.forEach(item => {
     if (item.verified) {
-        console.log(`✅ [PASS] DR Component: ${item.component} | SLA: ${item.metric}`);
+        console.log(`âœ… [PASS] DR Component: ${item.component} | SLA: ${item.metric}`);
     } else {
-        console.error(`❌ [FAIL] DR Component: ${item.component}`);
+        console.error(`âŒ [FAIL] DR Component: ${item.component}`);
         pass = false;
     }
 });
 
 if (pass) {
-    console.log('\n🔄 DISASTER RECOVERY CERTIFICATION: PASSED (RPO < 5m, RTO < 2m)');
+    console.log('\nðŸ”„ DISASTER RECOVERY CERTIFICATION: PASSED (RPO < 5m, RTO < 2m)');
     process.exit(0);
 } else {
     process.exit(1);
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS End-to-End Edge Runtime Verification Suite
  * Executes live simulated HTTP requests directly against Edge function handlers to verify security boundaries,
  * pricing authority, database persistence contracts, durable webhook deduplication, external tool connectors,
@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 console.log('================================================================================');
-console.log('🚀 IINSHA AI-BOS — END-TO-END EDGE RUNTIME VERIFICATION SUITE');
+console.log('ðŸš€ IINSHA AI-BOS â€” END-TO-END EDGE RUNTIME VERIFICATION SUITE');
 console.log('================================================================================\n');
 
 let passedTests = 0;
@@ -18,12 +18,12 @@ let failedTests = 0;
 function assertTest(name, condition, detail = '') {
     if (condition) {
         passedTests++;
-        console.log(`✅ [PASS] ${name}`);
-        if (detail) console.log(`   📂 Evidence: ${detail}`);
+        console.log(`âœ… [PASS] ${name}`);
+        if (detail) console.log(`   ðŸ“‚ Evidence: ${detail}`);
     } else {
         failedTests++;
-        console.log(`❌ [FAIL] ${name}`);
-        if (detail) console.log(`   ⚠️ Error: ${detail}`);
+        console.log(`âŒ [FAIL] ${name}`);
+        if (detail) console.log(`   âš ï¸ Error: ${detail}`);
     }
 }
 
@@ -158,7 +158,7 @@ async function runE2ESuite() {
         assertTest(
             'Checkout: Server-Authoritative Pricing Overrides Client Tampering',
             (resCheckout.status === 200 || resCheckout.status === 201) && dataCheckout.order?.amount_usd === 850,
-            `Client sent $1 -> Server computed authoritative $850 USD (৳${dataCheckout.order?.amount_bdt?.toLocaleString()} BDT)`
+            `Client sent $1 -> Server computed authoritative $850 USD (à§³${dataCheckout.order?.amount_bdt?.toLocaleString()} BDT)`
         );
 
         assertTest(
@@ -524,16 +524,17 @@ async function runE2ESuite() {
     }
 
     console.log('\n================================================================================');
-    console.log(`🏆 E2E RUNTIME VERIFICATION SCORE: ${passedTests} PASSED / ${failedTests} FAILED`);
+    console.log(`ðŸ† E2E RUNTIME VERIFICATION SCORE: ${passedTests} PASSED / ${failedTests} FAILED`);
     console.log('================================================================================');
 
     if (failedTests === 0) {
-        console.log('👑 100% PRODUCTION-HARDENED, CONNECTED & RUNTIME VERIFIED (10/10 PASS)! 🚀\n');
+        console.log('ðŸ‘‘ 100% PRODUCTION-HARDENED, CONNECTED & RUNTIME VERIFIED (10/10 PASS)! ðŸš€\n');
         process.exit(0);
     } else {
-        console.error(`⚠️ ${failedTests} E2E Runtime tests failed.\n`);
+        console.error(`âš ï¸ ${failedTests} E2E Runtime tests failed.\n`);
         process.exit(1);
     }
 }
 
 runE2ESuite();
+

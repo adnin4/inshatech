@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS 2.0 — Unified Autonomous Company Operating System Client Engine
+﻿/**
+ * IINSHA AI-BOS 2.0 â€” Unified Autonomous Company Operating System Client Engine
  * Orchestrates Visitor Journey: Visit -> Chat -> Price Authority -> Checkout -> Fulfillment -> Retention
  */
 
@@ -46,7 +46,7 @@
                 window.UniversalAiCopilotInstance.toggleWindow(true);
                 window.UniversalAiCopilotInstance.addAssistantMessage(
                     `Would you like to deploy **${packageName || serviceId}** ($${priceUSD})? I can connect you directly to server-verified checkout or founder WhatsApp support.`,
-                    `আপনি কি **${packageName || serviceId}** ($${priceUSD}) ডিপ্লয় করতে চান? আমি সরাসরি সিকিউর চেকআউট নিশ্চিত করতে পারি।`
+                    `à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ **${packageName || serviceId}** ($${priceUSD}) à¦¡à¦¿à¦ªà§à¦²à¦¯à¦¼ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨? à¦†à¦®à¦¿ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¸à¦¿à¦•à¦¿à¦‰à¦° à¦šà§‡à¦•à¦†à¦‰à¦Ÿ à¦¨à¦¿à¦¶à§à¦šà¦¿à¦¤ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿à¥¤`
                 );
             }
         }
@@ -60,3 +60,4 @@
         window.IinshaAutonomousCompanyOS.init();
     }
 })();
+

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IINSHA AI-BOS â€” PHASE 6: REAL TYPED TOOL EXECUTOR
  * Executes real operations against local APIs, database, CRM state, and system diagnostics.
  * Enforces Zero-Fabrication policy: results are never faked.
@@ -208,7 +208,13 @@ class ToolExecutor {
             }
 
             default:
-                return { status: 'EXECUTED', executed_tool: toolName, params: p, timestamp: new Date().toISOString() };
+                return { 
+                    status: 'NOT_CONFIGURED', 
+                    executed_tool: toolName, 
+                    params: p, 
+                    missing_dependency: `Provider executor for tool '${toolName}' not configured`,
+                    timestamp: new Date().toISOString() 
+                };
         }
     }
 }

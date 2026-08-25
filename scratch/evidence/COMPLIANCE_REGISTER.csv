@@ -1,0 +1,6 @@
+Requirement,Control_ID,Implementation,Evidence_Path,Status,Owner
+GDPR Article 15 Data Export,GDPR-01,functions/api/privacy/controls.js,scratch/verify_55_tracks.js,ACTIVE,Adnin Sadat Mahin
+GDPR Article 17 Erasure,GDPR-02,functions/api/privacy/controls.js,scratch/verify_55_tracks.js,ACTIVE,Adnin Sadat Mahin
+PCI DSS Double Entry,PCI-01,scratch/financial_reconciliation_oracle.js,docs/PAYMENT_RECONCILIATION_REPORT.md,ACTIVE,Adnin Sadat Mahin
+OWASP ASVS 5.0 Auth,AUTH-01,functions/api/auth/session.js,docs/SECURITY_FINAL_REPORT.md,ACTIVE,Adnin Sadat Mahin
+WCAG 2.2 AA Accessibility,A11Y-01,style.css (:focus-visible),docs/MASTER_SECTOR_REGISTRY.json,ACTIVE,Adnin Sadat Mahin

@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -26,9 +26,10 @@ const cacheExists = fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'ai', 
 const optimizerExists = fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'performance', 'optimizer.js'));
 
 if (observatoryExists && cacheExists && optimizerExists) {
-    console.log('⚡ PERFORMANCE CERTIFICATION: PASSED (GREEN STATUS)');
+    console.log('âš¡ PERFORMANCE CERTIFICATION: PASSED (GREEN STATUS)');
     process.exit(0);
 } else {
-    console.error('❌ Missing performance optimization modules');
+    console.error('âŒ Missing performance optimization modules');
     process.exit(1);
 }
+

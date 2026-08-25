@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Automated Verification Script: IINSHA Production Certification Gate (14 Domains)
  * Executes assertions across all 7 waves and 58 capabilities.
  */
@@ -10,7 +10,7 @@ const assert = require('assert');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('======================================================================');
-console.log('🏆 IINSHA AI-BOS: 14-DOMAIN PRODUCTION CERTIFICATION GATE EVALUATOR');
+console.log('ðŸ† IINSHA AI-BOS: 14-DOMAIN PRODUCTION CERTIFICATION GATE EVALUATOR');
 console.log('======================================================================\n');
 
 const CERTIFICATION_DOMAINS = [
@@ -36,19 +36,20 @@ CERTIFICATION_DOMAINS.forEach(dom => {
     try {
         const passed = dom.check();
         assert(passed, `Domain ${dom.id} validation failed`);
-        console.log(`✅ [DOMAIN ${String(dom.id).padStart(2, '0')}] ${dom.name.padEnd(46, ' ')} : [ PASS 🟢 ]`);
+        console.log(`âœ… [DOMAIN ${String(dom.id).padStart(2, '0')}] ${dom.name.padEnd(46, ' ')} : [ PASS ðŸŸ¢ ]`);
     } catch (err) {
-        console.error(`❌ [DOMAIN ${String(dom.id).padStart(2, '0')}] ${dom.name.padEnd(46, ' ')} : [ FAIL 🔴 ]`);
+        console.error(`âŒ [DOMAIN ${String(dom.id).padStart(2, '0')}] ${dom.name.padEnd(46, ' ')} : [ FAIL ðŸ”´ ]`);
         allPassed = false;
     }
 });
 
 console.log('\n======================================================================');
 if (allPassed) {
-    console.log('🎉 ALL 14 PRODUCTION CERTIFICATION DOMAINS PASSED WITH ZERO DEFECTS!');
-    console.log('👑 IINSHA AI-BOS IS FULLY CERTIFIED FOR COMMERCIAL SCALE AND PRODUCTION.');
+    console.log('ðŸŽ‰ ALL 14 PRODUCTION CERTIFICATION DOMAINS PASSED WITH ZERO DEFECTS!');
+    console.log('ðŸ‘‘ IINSHA AI-BOS IS FULLY CERTIFIED FOR COMMERCIAL SCALE AND PRODUCTION.');
     process.exit(0);
 } else {
-    console.error('🚨 PRODUCTION CERTIFICATION GATE FAILED. BLOCKING RELEASE.');
+    console.error('ðŸš¨ PRODUCTION CERTIFICATION GATE FAILED. BLOCKING RELEASE.');
     process.exit(1);
 }
+

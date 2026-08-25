@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -22,22 +22,23 @@ let passCount = 0;
 securityChecks.forEach(check => {
     const fullPath = path.join(BASE_DIR, check.file);
     if (!fs.existsSync(fullPath)) {
-        console.error(`❌ [FAIL] Security Check: ${check.name} (${check.file} does not exist)`);
+        console.error(`âŒ [FAIL] Security Check: ${check.name} (${check.file} does not exist)`);
     } else {
         const content = fs.readFileSync(fullPath, 'utf8');
         if (content.toLowerCase().includes(check.pattern.toLowerCase())) {
-            console.log(`✅ [PASS] Security Check: ${check.name}`);
+            console.log(`âœ… [PASS] Security Check: ${check.name}`);
             passCount++;
         } else {
-            console.error(`❌ [FAIL] Security Check: ${check.name} (Pattern "${check.pattern}" missing)`);
+            console.error(`âŒ [FAIL] Security Check: ${check.name} (Pattern "${check.pattern}" missing)`);
         }
     }
 });
 
 console.log(`\nSecurity Certification Status: ${passCount}/${securityChecks.length} Passed`);
 if (passCount === securityChecks.length) {
-    console.log('🛡️ SECURITY CERTIFICATION: PASSED (GREEN STATUS)');
+    console.log('ðŸ›¡ï¸ SECURITY CERTIFICATION: PASSED (GREEN STATUS)');
     process.exit(0);
 } else {
     process.exit(1);
 }
+

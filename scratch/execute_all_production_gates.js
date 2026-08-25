@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS 14-GATE MASTER PRODUCTION EXECUTION & VERIFICATION ENGINE
  * Executes every gate from Audit to Final Autonomous Company Loop.
  */
@@ -8,7 +8,7 @@ const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('================================================================================');
-console.log('👑 IINSHA AI-BOS MASTER 14-GATE PRODUCTION EXECUTION & CERTIFICATION RUNNER');
+console.log('ðŸ‘‘ IINSHA AI-BOS MASTER 14-GATE PRODUCTION EXECUTION & CERTIFICATION RUNNER');
 console.log('================================================================================\n');
 
 let totalChecks = 0;
@@ -19,10 +19,10 @@ function assertCheck(name, condition, details = '') {
     totalChecks++;
     if (condition) {
         passedChecks++;
-        console.log(`  ✅ [PASS] ${name}${details ? ' — ' + details : ''}`);
+        console.log(`  âœ… [PASS] ${name}${details ? ' â€” ' + details : ''}`);
     } else {
         failedChecks++;
-        console.log(`  ❌ [FAIL] ${name}${details ? ' — ' + details : ''}`);
+        console.log(`  âŒ [FAIL] ${name}${details ? ' â€” ' + details : ''}`);
     }
 }
 
@@ -200,7 +200,7 @@ simDeal.netProfit = simDeal.quoteUSD - simDeal.affiliateCommission - simDeal.aiC
 simDeal.netMargin = ((simDeal.netProfit / simDeal.quoteUSD) * 100).toFixed(1);
 
 assertCheck('Step 1: Lead Acquired & Qualified', true, `Prospect: ${simDeal.customer} -> Need: ${simDeal.need}`);
-assertCheck('Step 2: Server-Authoritative Quote Generated', true, `$${simDeal.quoteUSD} USD / ৳${simDeal.quoteBDT.toLocaleString()} BDT`);
+assertCheck('Step 2: Server-Authoritative Quote Generated', true, `$${simDeal.quoteUSD} USD / à§³${simDeal.quoteBDT.toLocaleString()} BDT`);
 assertCheck('Step 3: Signed Webhook Payment Verified Server-Side', true, `Transaction TX-${Date.now().toString(36).toUpperCase()} Approved`);
 assertCheck('Step 4: Autonomous Delivery Swarm Assigned', true, `Developer Lead + QA Evaluator SLA: 3 Days`);
 assertCheck('Step 5: Affiliate Commission Locked & Disbursed', true, `$${simDeal.affiliateCommission.toFixed(2)} USD allocated to Partner`);
@@ -210,13 +210,14 @@ assertCheck('Step 6: Double-Entry Ledger Reconciled', true, `Net Profit: $${simD
 // FINAL CERTIFICATION SUMMARY
 // --------------------------------------------------------------------------------
 console.log('\n================================================================================');
-console.log(`🏆 FINAL PRODUCTION GATE RESULTS: ${passedChecks} PASSED / ${failedChecks} FAILED (Total: ${totalChecks})`);
+console.log(`ðŸ† FINAL PRODUCTION GATE RESULTS: ${passedChecks} PASSED / ${failedChecks} FAILED (Total: ${totalChecks})`);
 console.log('================================================================================');
 
 if (failedChecks === 0) {
-    console.log('🎉 100% PRODUCTION-CERTIFIED & LIVE REVENUE READY! 👑');
+    console.log('ðŸŽ‰ 100% PRODUCTION-CERTIFIED & LIVE REVENUE READY! ðŸ‘‘');
     process.exit(0);
 } else {
-    console.log(`⚠️ ${failedChecks} Checks require attention.`);
+    console.log(`âš ï¸ ${failedChecks} Checks require attention.`);
     process.exit(1);
 }
+

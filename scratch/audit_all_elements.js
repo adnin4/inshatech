@@ -1,11 +1,11 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 const pages = ['index.html', 'admin.html', 'affiliate.html', 'affiliate-login.html', 'affiliate-dashboard.html', 'marketplace.html', 'portal.html', 'store.html', 'compare.html', 'blog.html'];
 
 console.log('======================================================');
-console.log('🔍 THOROUGH AUDIT: BUTTONS, NAV, TABS, SECTIONS & LINKS');
+console.log('ðŸ” THOROUGH AUDIT: BUTTONS, NAV, TABS, SECTIONS & LINKS');
 console.log('======================================================\n');
 
 pages.forEach(p => {
@@ -16,7 +16,7 @@ pages.forEach(p => {
     
     // 1. Audit Navigation Links
     const aTags = [...html.matchAll(/<a\s+[^>]*href=["']([^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi)];
-    console.log(`📌 Found ${aTags.length} Anchor Links`);
+    console.log(`ðŸ“Œ Found ${aTags.length} Anchor Links`);
     const brokenAnchors = [];
     aTags.forEach(m => {
         const href = m[1].trim();
@@ -36,15 +36,15 @@ pages.forEach(p => {
         }
     });
     if (brokenAnchors.length > 0) {
-        console.log(`   ⚠️ Broken/Missing Anchor Targets (${brokenAnchors.length}):`);
+        console.log(`   âš ï¸ Broken/Missing Anchor Targets (${brokenAnchors.length}):`);
         brokenAnchors.forEach(b => console.log(`      - href="${b.href}" (Text: "${b.text}") -> ${b.reason}`));
     } else {
-        console.log(`   ✅ All ${aTags.length} anchor links point to valid targets/IDs!`);
+        console.log(`   âœ… All ${aTags.length} anchor links point to valid targets/IDs!`);
     }
 
     // 2. Audit Buttons & Action Handlers
     const buttonTags = [...html.matchAll(/<button\s+([^>]*)>([\s\S]*?)<\/button>/gi)];
-    console.log(`📌 Found ${buttonTags.length} Buttons`);
+    console.log(`ðŸ“Œ Found ${buttonTags.length} Buttons`);
     const unhandledButtons = [];
     buttonTags.forEach((m, idx) => {
         const attrs = m[1];
@@ -74,29 +74,30 @@ pages.forEach(p => {
     });
 
     if (unhandledButtons.length > 0) {
-        console.log(`   ⚠️ Potential Unhandled/Undefined Button Actions (${unhandledButtons.length}):`);
+        console.log(`   âš ï¸ Potential Unhandled/Undefined Button Actions (${unhandledButtons.length}):`);
         unhandledButtons.forEach(u => console.log(`      - Button #${u.idx} ("${u.text}"): ${u.attrs} -> ${u.reason}`));
     } else {
-        console.log(`   ✅ All ${buttonTags.length} buttons have handlers or identifiers!`);
+        console.log(`   âœ… All ${buttonTags.length} buttons have handlers or identifiers!`);
     }
 
     // 3. Audit Tab Switching Panels (if admin.html or has tabs)
     if (p === 'admin.html') {
-        console.log(`📌 Auditing Admin Cockpit Tabs...`);
+        console.log(`ðŸ“Œ Auditing Admin Cockpit Tabs...`);
         const tabTriggers = [...html.matchAll(/switchAdminCockpitTab\(['"]([^'"]+)['"]\)/g)].map(m => m[1]);
         const uniqueTabs = [...new Set(tabTriggers)];
         console.log(`   Found ${uniqueTabs.length} Unique Tabs: ${uniqueTabs.join(', ')}`);
         uniqueTabs.forEach(tab => {
             const panelExists = new RegExp(`id=["']view-${tab}["']`, 'i').test(html);
             const btnExists = new RegExp(`id=["']nav-btn-${tab}["']`, 'i').test(html);
-            if (!panelExists) console.log(`   ❌ Missing View Panel: #view-${tab}`);
-            if (!btnExists) console.log(`   ⚠️ Missing Nav Button: #nav-btn-${tab}`);
+            if (!panelExists) console.log(`   âŒ Missing View Panel: #view-${tab}`);
+            if (!btnExists) console.log(`   âš ï¸ Missing Nav Button: #nav-btn-${tab}`);
         });
     }
 
     // 4. Audit Modals
     const modals = [...html.matchAll(/id=["']([a-zA-Z0-9_-]*modal[a-zA-Z0-9_-]*)["']/gi)].map(m => m[1]);
     if (modals.length > 0) {
-        console.log(`📌 Found ${modals.length} Modals: ${modals.join(', ')}`);
+        console.log(`ðŸ“Œ Found ${modals.length} Modals: ${modals.join(', ')}`);
     }
 });
+

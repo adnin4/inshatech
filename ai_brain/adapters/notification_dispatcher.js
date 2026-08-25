@@ -6,11 +6,11 @@
 
 class MultiChannelNotificationDispatcher {
     constructor(config = {}) {
-        this.telegramBotToken = config.telegramBotToken || '8611787833:AAEJs5HHXH3LhTjMIudc8PuVYUNRbUgfZuI';
-        this.ownerChatId = config.ownerChatId || '8611787833';
-        this.resendApiKey = config.resendApiKey || 're_dNBRLMzk_4Mh7oTWmgzorM95XEMvvvRys';
-        this.ownerEmail = config.ownerEmail || 'adnansadatmahin4@gmail.com';
-        this.ownerPhone = config.ownerPhone || '8801629286887';
+        this.telegramBotToken = config.telegramBotToken || (typeof process !== 'undefined' && process.env?.TELEGRAM_BOT_TOKEN) || null;
+        this.ownerChatId = config.ownerChatId || (typeof process !== 'undefined' && process.env?.TELEGRAM_OWNER_CHAT_ID) || null;
+        this.resendApiKey = config.resendApiKey || (typeof process !== 'undefined' && process.env?.RESEND_API_KEY) || null;
+        this.ownerEmail = config.ownerEmail || (typeof process !== 'undefined' && process.env?.OWNER_EMAIL) || 'adnansadatmahin4@gmail.com';
+        this.ownerPhone = config.ownerPhone || (typeof process !== 'undefined' && process.env?.OWNER_PHONE) || '+8801629286887';
         this.dispatchedLogs = [];
     }
 

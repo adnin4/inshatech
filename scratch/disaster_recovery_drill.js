@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS Disaster Recovery Drill & State Reconciliation Runner
  * Executes simulated Edge region outage, Dead Letter Queue (DLQ) re-drive, Database snapshot validation, and state recovery.
  */
@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 console.log('================================================================================');
-console.log('🚨 IINSHA AI-BOS — AUTOMATED DISASTER RECOVERY DRILL & FAILOVER SIMULATOR');
+console.log('ðŸš¨ IINSHA AI-BOS â€” AUTOMATED DISASTER RECOVERY DRILL & FAILOVER SIMULATOR');
 console.log('================================================================================\n');
 
 let passedAssertions = 0;
@@ -17,13 +17,13 @@ const drillLog = [];
 function assertDrill(name, condition, detail) {
     if (condition) {
         passedAssertions++;
-        console.log(`✅ [DR PASS] ${name}`);
-        console.log(`   📂 Evidence: ${detail}`);
+        console.log(`âœ… [DR PASS] ${name}`);
+        console.log(`   ðŸ“‚ Evidence: ${detail}`);
         drillLog.push({ drill: name, status: 'PASS', detail, timestamp: new Date().toISOString() });
     } else {
         failedAssertions++;
-        console.log(`❌ [DR FAIL] ${name}`);
-        console.log(`   ⚠️ Detail: ${detail}`);
+        console.log(`âŒ [DR FAIL] ${name}`);
+        console.log(`   âš ï¸ Detail: ${detail}`);
         drillLog.push({ drill: name, status: 'FAIL', detail, timestamp: new Date().toISOString() });
     }
 }
@@ -92,10 +92,11 @@ async function runDisasterRecoveryDrill() {
     }, null, 2));
 
     console.log('\n================================================================================');
-    console.log(`🏆 DISASTER RECOVERY DRILL SCORE: ${passedAssertions} PASSED / ${failedAssertions} FAILED`);
+    console.log(`ðŸ† DISASTER RECOVERY DRILL SCORE: ${passedAssertions} PASSED / ${failedAssertions} FAILED`);
     console.log('================================================================================\n');
 
     if (failedAssertions > 0) process.exit(1);
 }
 
 runDisasterRecoveryDrill();
+

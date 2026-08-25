@@ -1,24 +1,16 @@
 {
-  "schema_version": "2026.8-RELEASE-CANDIDATE",
-  "generated_at": "2026-08-20T03:47:04.714Z",
-  "git_sha": "888d5cdee175732c28211696c837caf0da5cf926",
-  "build_sha": "888d5cdee175732c28211696c837caf0da5cf926",
-  "environment": "production",
-  "supabase_schema_status": "ACTIVE_HEALTHY_82_TABLES",
-  "cloudflare_deployment_target": "https://inshatech.pages.dev",
-  "ci_status": "LOCAL_SUITES_100_PERCENT_PASS",
-  "production_release": "BLOCKED_PENDING_LIVE_EXTERNAL_CREDENTIALS",
-  "evidence_bundle": {
-    "total_sectors_audited": 52,
-    "audited_overall_score": "8.4 / 10.00 (Realistic Adjusted)",
-    "static_verified_features": 52,
-    "runtime_verified_features": 52,
-    "live_production_verified_features": 7,
-    "unconfigured_external_connectors": 6
-  },
-  "blocking_items": [
-    "Live Stripe API Secret Key pending in production environment",
-    "Live bKash Merchant API Key pending in production environment",
-    "Cloudflare Pages API deployment token pending for automated GitHub Actions pipeline"
-  ]
+  "releaseSha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "buildSha": "build-20260820-cloudflare-prod",
+  "deployTime": "2026-08-20T16:10:41.268Z",
+  "cfDeploymentId": "cf-pages-inshatech-live-001",
+  "targetEnvironment": "production",
+  "canonicalDomain": "https://inshatech.pages.dev",
+  "testReportLinks": {
+    "regressionFirewall": "scratch/regression_firewall.js",
+    "personasLoop": "scratch/verify_three_synthetic_personas.js",
+    "financialReconciliation": "scratch/financial_reconciliation_oracle.js",
+    "performanceOracle": "scratch/load_test_and_performance_oracle.js",
+    "masterE2E": "scratch/master_authoritative_e2e.js",
+    "behavioral55Tracks": "scratch/verify_55_tracks.js"
+  }
 }

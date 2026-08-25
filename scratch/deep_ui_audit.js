@@ -1,17 +1,17 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 const pages = ['index.html', 'admin.html', 'affiliate.html', 'marketplace.html', 'portal.html', 'store.html', 'compare.html', 'blog.html'];
 
 console.log('==============================================');
-console.log('🔍 DEEP AUDIT OF HTML STRUCTURE & ASSETS');
+console.log('ðŸ” DEEP AUDIT OF HTML STRUCTURE & ASSETS');
 console.log('==============================================\n');
 
 pages.forEach(p => {
     const filePath = path.join(BASE_DIR, p);
     if (!fs.existsSync(filePath)) {
-        console.log(`❌ Page ${p} NOT FOUND`);
+        console.log(`âŒ Page ${p} NOT FOUND`);
         return;
     }
     const html = fs.readFileSync(filePath, 'utf8');
@@ -38,8 +38,8 @@ pages.forEach(p => {
         return hrefMatch ? hrefMatch[1] : '';
     });
     
-    console.log(`📄 ${p} (${Math.round(html.length / 1024)} KB)`);
-    console.log(`   DOCTYPE: ${hasDoctype ? '✅' : '❌'}, HEAD: ${hasHead ? '✅' : '❌'}, BODY: ${hasBody ? '✅' : '❌'}`);
+    console.log(`ðŸ“„ ${p} (${Math.round(html.length / 1024)} KB)`);
+    console.log(`   DOCTYPE: ${hasDoctype ? 'âœ…' : 'âŒ'}, HEAD: ${hasHead ? 'âœ…' : 'âŒ'}, BODY: ${hasBody ? 'âœ…' : 'âŒ'}`);
     console.log(`   CSS Links (${linkMatches.length}): ${linkMatches.map(l => {
         const h = l.match(/href=["']([^"']+)["']/i);
         return h ? h[1] : l;
@@ -50,6 +50,7 @@ pages.forEach(p => {
     }).join(', ')}`);
     console.log(`   Inline Styles: ${inlineStyles}, Inline Scripts: ${inlineScripts}`);
     console.log(`   Buttons (${buttonMatches.length} total, ${onclickButtons} with onclick)`);
-    console.log(`   Nav Present: ${hasNav ? '✅' : '❌'}, Unique Links: ${[...new Set(navLinks)].length}`);
+    console.log(`   Nav Present: ${hasNav ? 'âœ…' : 'âŒ'}, Unique Links: ${[...new Set(navLinks)].length}`);
     console.log('----------------------------------------------');
 });
+

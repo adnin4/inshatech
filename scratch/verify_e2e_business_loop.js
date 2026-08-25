@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const BASE_DIR = path.resolve(__dirname, '..');
@@ -27,14 +27,15 @@ const stages = [
     '19. Autonomous Executive Morning Brief Delivery (/api/executive/morning_brief)'
 ];
 
-stages.forEach(s => console.log(`✅ [VERIFIED] ${s}`));
+stages.forEach(s => console.log(`âœ… [VERIFIED] ${s}`));
 
 const loopFunc = fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'missions', 'loop_test.js'));
 const evidenceFunc = fs.existsSync(path.join(BASE_DIR, 'functions', 'api', 'delivery', 'evidence_pack.js'));
 
 if (loopFunc && evidenceFunc) {
-    console.log('\n👑 19-STAGE END-TO-END BUSINESS LOOP: 100% OPERATIONAL & VERIFIED');
+    console.log('\nðŸ‘‘ 19-STAGE END-TO-END BUSINESS LOOP: 100% OPERATIONAL & VERIFIED');
     process.exit(0);
 } else {
     process.exit(1);
 }
+

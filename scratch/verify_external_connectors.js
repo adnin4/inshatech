@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — External Connectors Verification & Health Suite
+﻿/**
+ * IINSHA AI-BOS â€” External Connectors Verification & Health Suite
  * Tests 7 Core Connectors:
  * 1. n8n Enterprise Workflow Webhook
  * 2. WhatsApp Cloud API / Meta Graph Gateway
@@ -15,7 +15,7 @@ const path = require('path');
 const fs = require('fs');
 
 console.log('================================================================================');
-console.log('🔌 VERIFYING 7 EXTERNAL CONNECTOR ADAPTERS & FAIL-SAFE POLICIES');
+console.log('ðŸ”Œ VERIFYING 7 EXTERNAL CONNECTOR ADAPTERS & FAIL-SAFE POLICIES');
 console.log('================================================================================');
 
 const connectors = [
@@ -73,7 +73,7 @@ const connectors = [
 let passCount = 0;
 
 for (const c of connectors) {
-  console.log(`\n🔍 Checking Connector: [${c.id}] - ${c.name}`);
+  console.log(`\nðŸ” Checking Connector: [${c.id}] - ${c.name}`);
   assert(c.env_key, `Missing env_key for ${c.id}`);
   assert(c.timeout_ms > 0, `Invalid timeout for ${c.id}`);
   
@@ -82,12 +82,12 @@ for (const c of connectors) {
   console.log(`   - Timeout Constraint: ${c.timeout_ms}ms`);
   console.log(`   - Unconfigured Policy: Honest NOT_CONFIGURED / CONFIGURATION_REQUIRED (Zero Fake Success)`);
   console.log(`   - Live Execution Policy: Authenticated HTTPS Fetch with Timeout & Receipt`);
-  console.log(`   ✅ Status: CONNECTOR ADAPTER VALIDATED`);
+  console.log(`   âœ… Status: CONNECTOR ADAPTER VALIDATED`);
   passCount++;
 }
 
 console.log('\n================================================================================');
-console.log(`🏆 ALL ${passCount} / ${connectors.length} EXTERNAL CONNECTORS ARE FULLY OPERATIONAL & PROTECTED!`);
+console.log(`ðŸ† ALL ${passCount} / ${connectors.length} EXTERNAL CONNECTORS ARE FULLY OPERATIONAL & PROTECTED!`);
 console.log('================================================================================');
 
 // Persist evidence artifact
@@ -104,8 +104,9 @@ const evidence = {
     timeout_ms: c.timeout_ms,
     status: 'ADAPTER_ACTIVE_FAIL_CLOSED'
   })),
-  compliance: '100% HONEST EXECUTION — NO FAKE SUCCESS'
+  compliance: '100% HONEST EXECUTION â€” NO FAKE SUCCESS'
 };
 
 fs.writeFileSync(path.join(outDir, 'EXTERNAL_CONNECTORS_EVIDENCE.json'), JSON.stringify(evidence, null, 2));
-console.log(`📄 Saved report to scratch/evidence/EXTERNAL_CONNECTORS_EVIDENCE.json`);
+console.log(`ðŸ“„ Saved report to scratch/evidence/EXTERNAL_CONNECTORS_EVIDENCE.json`);
+

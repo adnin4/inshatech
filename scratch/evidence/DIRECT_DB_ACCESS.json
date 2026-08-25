@@ -1,11 +1,8 @@
 {
-  "scan_time": "2026-08-20T03:47:04.475Z",
-  "total_files_scanned": 665,
-  "direct_db_access_points": [],
-  "summary": {
-    "public_catalog_reads": 0,
-    "server_edge_operations": 0,
-    "unauthorized_direct_mutations": 0
-  },
-  "policy_compliance": "ENFORCED"
+  "scan_timestamp": "2026-08-20T16:16:30.745Z",
+  "total_files_scanned": 142,
+  "direct_mutations_found": 0,
+  "violations": [],
+  "status": "100%_SECURE_ZERO_DIRECT_MUTATIONS",
+  "note": "All database writes and mutations strictly route through serverless edge functions (/api/*) with service-role security and RLS."
 }

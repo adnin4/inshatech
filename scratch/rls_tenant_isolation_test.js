@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS Multi-Tenant RLS Security & Boundary Isolation Verifier
  * Executes simulated adversarial cross-tenant access attacks to prove Tenant A CANNOT read or mutate Tenant B records.
  */
@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 console.log('================================================================================');
-console.log('🛡️ IINSHA AI-BOS — MULTI-TENANT RLS ISOLATION & ADVERSARIAL SECURITY SUITE');
+console.log('ðŸ›¡ï¸ IINSHA AI-BOS â€” MULTI-TENANT RLS ISOLATION & ADVERSARIAL SECURITY SUITE');
 console.log('================================================================================\n');
 
 let passedAssertions = 0;
@@ -17,13 +17,13 @@ const evidenceLog = [];
 function assertSecurity(name, condition, evidence) {
     if (condition) {
         passedAssertions++;
-        console.log(`✅ [RLS PASS] ${name}`);
-        console.log(`   📂 Evidence: ${evidence}`);
+        console.log(`âœ… [RLS PASS] ${name}`);
+        console.log(`   ðŸ“‚ Evidence: ${evidence}`);
         evidenceLog.push({ test: name, status: 'PASS', evidence, timestamp: new Date().toISOString() });
     } else {
         failedAssertions++;
-        console.log(`❌ [RLS FAIL] ${name}`);
-        console.log(`   ⚠️ Evidence: ${evidence}`);
+        console.log(`âŒ [RLS FAIL] ${name}`);
+        console.log(`   âš ï¸ Evidence: ${evidence}`);
         evidenceLog.push({ test: name, status: 'FAIL', evidence, timestamp: new Date().toISOString() });
     }
 }
@@ -94,10 +94,11 @@ async function runTenantIsolationSuite() {
     }, null, 2));
 
     console.log('\n================================================================================');
-    console.log(`🏆 RLS ISOLATION SCORE: ${passedAssertions} PASSED / ${failedAssertions} FAILED`);
+    console.log(`ðŸ† RLS ISOLATION SCORE: ${passedAssertions} PASSED / ${failedAssertions} FAILED`);
     console.log('================================================================================\n');
 
     if (failedAssertions > 0) process.exit(1);
 }
 
 runTenantIsolationSuite();
+

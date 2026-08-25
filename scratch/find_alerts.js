@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 
 function inspectAlerts(file) {
     const lines = fs.readFileSync(file, 'utf8').split('\n');
@@ -11,3 +11,4 @@ function inspectAlerts(file) {
 
 inspectAlerts('index.html');
 inspectAlerts('marketplace.html');
+

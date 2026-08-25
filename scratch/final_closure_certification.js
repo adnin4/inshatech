@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS FINAL CLOSURE ROADMAP (45 PILLARS) EXECUTION & VERIFICATION ENGINE
  */
 
@@ -7,7 +7,7 @@ const path = require('path');
 const BASE_DIR = path.resolve(__dirname, '..');
 
 console.log('================================================================================');
-console.log('👑 IINSHA AI-BOS — FINAL CLOSURE ROADMAP (45 PILLARS) CERTIFICATION ENGINE');
+console.log('ðŸ‘‘ IINSHA AI-BOS â€” FINAL CLOSURE ROADMAP (45 PILLARS) CERTIFICATION ENGINE');
 console.log('================================================================================\n');
 
 let passCount = 0;
@@ -16,12 +16,12 @@ let failCount = 0;
 function verifyPillar(id, title, condition, evidence) {
     if (condition) {
         passCount++;
-        console.log(`✅ [PILLAR ${id.toString().padStart(2, '0')}] ${title}`);
-        console.log(`   📂 Evidence: ${evidence}`);
+        console.log(`âœ… [PILLAR ${id.toString().padStart(2, '0')}] ${title}`);
+        console.log(`   ðŸ“‚ Evidence: ${evidence}`);
     } else {
         failCount++;
-        console.log(`❌ [PILLAR ${id.toString().padStart(2, '0')}] ${title}`);
-        console.log(`   ⚠️ Failed Condition: ${evidence}`);
+        console.log(`âŒ [PILLAR ${id.toString().padStart(2, '0')}] ${title}`);
+        console.log(`   âš ï¸ Failed Condition: ${evidence}`);
     }
 }
 
@@ -196,17 +196,18 @@ verifyPillar(44, 'Final Production Scorecard & Proof', true, '308/308 Tests Pass
 
 // 45. Release Labels
 console.log('\n--------------------------------------------------------------------------------');
-console.log('🏷️ FINAL PRODUCTION RELEASE CERTIFICATION:');
-console.log('  🟡 Production Candidate    : ✅ VERIFIED');
-console.log('  🟢 Production Verified     : ✅ VERIFIED');
-console.log('  🔵 Autonomous Business OS  : ✅ VERIFIED');
+console.log('ðŸ·ï¸ FINAL PRODUCTION RELEASE CERTIFICATION:');
+console.log('  ðŸŸ¡ Production Candidate    : âœ… VERIFIED');
+console.log('  ðŸŸ¢ Production Verified     : âœ… VERIFIED');
+console.log('  ðŸ”µ Autonomous Business OS  : âœ… VERIFIED');
 console.log('--------------------------------------------------------------------------------');
 
-console.log(`\n🏆 FINAL SCORE: ${passCount} / 45 PILLARS PASSED (${failCount} FAILED)`);
+console.log(`\nðŸ† FINAL SCORE: ${passCount} / 45 PILLARS PASSED (${failCount} FAILED)`);
 
 if (failCount === 0) {
-    console.log('👑 100% PRODUCTION-CERTIFIED & FULLY VERIFIED! 🚀');
+    console.log('ðŸ‘‘ 100% PRODUCTION-CERTIFIED & FULLY VERIFIED! ðŸš€');
     process.exit(0);
 } else {
     process.exit(1);
 }
+

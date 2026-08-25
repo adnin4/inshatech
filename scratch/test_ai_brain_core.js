@@ -1,8 +1,8 @@
-const { Commander } = require('../ai_brain/commander');
+﻿const { Commander } = require('../ai_brain/commander');
 
 async function runTest() {
     console.log("================================================================================");
-    console.log(" 🧠 TESTING IINSHA AI-BOS PRODUCTION BRAIN ENGINE (PHASE 1-14)");
+    console.log(" ðŸ§  TESTING IINSHA AI-BOS PRODUCTION BRAIN ENGINE (PHASE 1-14)");
     console.log("================================================================================\n");
 
     const commander = new Commander();
@@ -41,18 +41,19 @@ async function runTest() {
                               turn4.response.toLowerCase().includes("how many employees");
     console.log("Anti-Repetition Check (Must be FALSE):", repeatedQuestions);
     if (!repeatedQuestions) {
-        console.log("✅ Anti-Repetition Guard: PASSED! (0 repeated questions)");
+        console.log("âœ… Anti-Repetition Guard: PASSED! (0 repeated questions)");
     } else {
-        console.error("❌ Failed: Repeated question detected!");
+        console.error("âŒ Failed: Repeated question detected!");
     }
 
     // Check Tool Results Count
     const leadTool = turn4.tool_results.find(t => t.tool === 'lead_discovery');
-    console.log("✅ Real Tool Execution: PASSED! Total Delivered =", leadTool?.data?.total_delivered);
+    console.log("âœ… Real Tool Execution: PASSED! Total Delivered =", leadTool?.data?.total_delivered);
 
     console.log("\n================================================================================");
-    console.log(" 🎉 BRAIN ENGINE CORE MODULE TEST COMPLETED SUCCESSFULLY!");
+    console.log(" ðŸŽ‰ BRAIN ENGINE CORE MODULE TEST COMPLETED SUCCESSFULLY!");
     console.log("================================================================================");
 }
 
 runTest().catch(console.error);
+

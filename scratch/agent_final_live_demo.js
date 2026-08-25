@@ -1,5 +1,5 @@
-/**
- * IINSHA AI OS — FINAL LIVE AGENT & COPILOT WORKFORCE DEMO
+﻿/**
+ * IINSHA AI OS â€” FINAL LIVE AGENT & COPILOT WORKFORCE DEMO
  * Demonstrates how the AI Agents, Universal Copilot 3.0, Digital Twin,
  * and 4-Level HITL Security Engine work right now in real-time.
  */
@@ -14,46 +14,46 @@ const catalogPath = path.resolve('knowledge/services.json');
 const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 
 console.log('================================================================================');
-console.log('🤖 IINSHA AI OS — FINAL VERSION REAL-TIME AGENT WORKFORCE LIVE DEMO');
+console.log('ðŸ¤– IINSHA AI OS â€” FINAL VERSION REAL-TIME AGENT WORKFORCE LIVE DEMO');
 console.log('================================================================================\n');
 
 // 1. DEMO: Universal AI Copilot 3.0 Real-time Conversational Flow
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-console.log('🎯 LIVE DEMO 1: Universal AI Copilot 3.0 — Affiliate & Partner Guidance');
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
+console.log('ðŸŽ¯ LIVE DEMO 1: Universal AI Copilot 3.0 â€” Affiliate & Partner Guidance');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
 
 const userQuery1 = "affiliate marketing account kivabe create korbo? website e ki affiliate system ache?";
-console.log(`👤 Customer / Partner Input: "${userQuery1}"`);
+console.log(`ðŸ‘¤ Customer / Partner Input: "${userQuery1}"`);
 
-console.log('\n🧠 [Perception & Intent Classification]:');
-console.log('   ├── Detected Intent: 🎯 [affiliate_inquiry]');
-console.log('   ├── Mode Switched: 🤝 [AFFILIATE_AGENT] (Active Badge updated in Header)');
-console.log('   └── Anti-Repetition Guard: ACTIVE (Zero canned robotic template)');
+console.log('\nðŸ§  [Perception & Intent Classification]:');
+console.log('   â”œâ”€â”€ Detected Intent: ðŸŽ¯ [affiliate_inquiry]');
+console.log('   â”œâ”€â”€ Mode Switched: ðŸ¤ [AFFILIATE_AGENT] (Active Badge updated in Header)');
+console.log('   â””â”€â”€ Anti-Repetition Guard: ACTIVE (Zero canned robotic template)');
 
-console.log('\n💬 [Copilot Real-time Response in Chat Window]:');
+console.log('\nðŸ’¬ [Copilot Real-time Response in Chat Window]:');
 console.log(`
-"হ্যাঁ! IINSHA প্ল্যাটফর্মে আমাদের পূর্ণাঙ্গ **28-Pillar Affiliate & Growth Partner OS** রয়েছে 🚀
+"à¦¹à§à¦¯à¦¾à¦! IINSHA à¦ªà§à¦²à§à¦¯à¦¾à¦Ÿà¦«à¦°à§à¦®à§‡ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦ªà§‚à¦°à§à¦£à¦¾à¦™à§à¦— **28-Pillar Affiliate & Growth Partner OS** à¦°à§Ÿà§‡à¦›à§‡ ðŸš€
 
-আপনি আমাদের হাই-কনভার্টিং AI সলিউশন ও অটোমেশন সার্ভিস রেফার করে **১৫% আপফ্রন্ট + ২০% থেকে ৩০% আজীবন রিকারিং কমিশন** উপার্জন করতে পারেন ($১৫০ থেকে $৩,০০০+ পর্যন্ত প্রতি ক্লায়েন্টে)।
+à¦†à¦ªà¦¨à¦¿ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¹à¦¾à¦‡-à¦•à¦¨à¦­à¦¾à¦°à§à¦Ÿà¦¿à¦‚ AI à¦¸à¦²à¦¿à¦‰à¦¶à¦¨ à¦“ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸ à¦°à§‡à¦«à¦¾à¦° à¦•à¦°à§‡ **à§§à§«% à¦†à¦ªà¦«à§à¦°à¦¨à§à¦Ÿ + à§¨à§¦% à¦¥à§‡à¦•à§‡ à§©à§¦% à¦†à¦œà§€à¦¬à¦¨ à¦°à¦¿à¦•à¦¾à¦°à¦¿à¦‚ à¦•à¦®à¦¿à¦¶à¦¨** à¦‰à¦ªà¦¾à¦°à§à¦œà¦¨ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¦¨ ($à§§à§«à§¦ à¦¥à§‡à¦•à§‡ $à§©,à§¦à§¦à§¦+ à¦ªà¦°à§à¦¯à¦¨à§à¦¤ à¦ªà§à¦°à¦¤à¦¿ à¦•à§à¦²à¦¾à¦¯à¦¼à§‡à¦¨à§à¦Ÿà§‡)à¥¤
 
-📝 **অ্যাকাউন্ট খোলার ৪টি সহজ ধাপ:**
-1️⃣ **রেজিস্ট্রেশন:** নিচের লিংকে গিয়ে আপনার নাম, ইমেইল এবং পেমেন্ট মেথড সিলেক্ট করুন।
-2️⃣ **ট্র্যাকিং লিংক:** সাথে সাথে আপনার ইউনিক ৬০-দিনের ট্র্যাকিং লিংক পেয়ে যাবেন।
-3️⃣ **প্রোমোশন ও মেটেরিয়ালস:** আমাদের ১-ক্লিক মার্কেটিং অ্যাসেট সেন্টার থেকে সোশাল পোস্ট ও ইমেইল সোয়াইপ কপি ব্যবহার করুন।
-4️⃣ **ইনস্ট্যান্ট উইথড্রয়াল:** বিকাশ (bKash), নগদ (Nagad), Wise বা লোকাল ব্যাংকে ২৪ ঘণ্টার মধ্যে পেমেন্ট গ্রহণ করুন।
+ðŸ“ **à¦…à§à¦¯à¦¾à¦•à¦¾à¦‰à¦¨à§à¦Ÿ à¦–à§‹à¦²à¦¾à¦° à§ªà¦Ÿà¦¿ à¦¸à¦¹à¦œ à¦§à¦¾à¦ª:**
+1ï¸âƒ£ **à¦°à§‡à¦œà¦¿à¦¸à§à¦Ÿà§à¦°à§‡à¦¶à¦¨:** à¦¨à¦¿à¦šà§‡à¦° à¦²à¦¿à¦‚à¦•à§‡ à¦—à¦¿à§Ÿà§‡ à¦†à¦ªà¦¨à¦¾à¦° à¦¨à¦¾à¦®, à¦‡à¦®à§‡à¦‡à¦² à¦à¦¬à¦‚ à¦ªà§‡à¦®à§‡à¦¨à§à¦Ÿ à¦®à§‡à¦¥à¦¡ à¦¸à¦¿à¦²à§‡à¦•à§à¦Ÿ à¦•à¦°à§à¦¨à¥¤
+2ï¸âƒ£ **à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¿à¦‚ à¦²à¦¿à¦‚à¦•:** à¦¸à¦¾à¦¥à§‡ à¦¸à¦¾à¦¥à§‡ à¦†à¦ªà¦¨à¦¾à¦° à¦‡à¦‰à¦¨à¦¿à¦• à§¬à§¦-à¦¦à¦¿à¦¨à§‡à¦° à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¿à¦‚ à¦²à¦¿à¦‚à¦• à¦ªà§‡à§Ÿà§‡ à¦¯à¦¾à¦¬à§‡à¦¨à¥¤
+3ï¸âƒ£ **à¦ªà§à¦°à§‹à¦®à§‹à¦¶à¦¨ à¦“ à¦®à§‡à¦Ÿà§‡à¦°à¦¿à§Ÿà¦¾à¦²à¦¸:** à¦†à¦®à¦¾à¦¦à§‡à¦° à§§-à¦•à§à¦²à¦¿à¦• à¦®à¦¾à¦°à§à¦•à§‡à¦Ÿà¦¿à¦‚ à¦…à§à¦¯à¦¾à¦¸à§‡à¦Ÿ à¦¸à§‡à¦¨à§à¦Ÿà¦¾à¦° à¦¥à§‡à¦•à§‡ à¦¸à§‹à¦¶à¦¾à¦² à¦ªà§‹à¦¸à§à¦Ÿ à¦“ à¦‡à¦®à§‡à¦‡à¦² à¦¸à§‹à§Ÿà¦¾à¦‡à¦ª à¦•à¦ªà¦¿ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§à¦¨à¥¤
+4ï¸âƒ£ **à¦‡à¦¨à¦¸à§à¦Ÿà§à¦¯à¦¾à¦¨à§à¦Ÿ à¦‰à¦‡à¦¥à¦¡à§à¦°à¦¯à¦¼à¦¾à¦²:** à¦¬à¦¿à¦•à¦¾à¦¶ (bKash), à¦¨à¦—à¦¦ (Nagad), Wise à¦¬à¦¾ à¦²à§‹à¦•à¦¾à¦² à¦¬à§à¦¯à¦¾à¦‚à¦•à§‡ à§¨à§ª à¦˜à¦£à§à¦Ÿà¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦ªà§‡à¦®à§‡à¦¨à§à¦Ÿ à¦—à§à¦°à¦¹à¦£ à¦•à¦°à§à¦¨à¥¤
 
-👇 **ইনস্ট্যান্ট অ্যাকশন নিন:**"
+ðŸ‘‡ **à¦‡à¦¨à¦¸à§à¦Ÿà§à¦¯à¦¾à¦¨à§à¦Ÿ à¦…à§à¦¯à¦¾à¦•à¦¶à¦¨ à¦¨à¦¿à¦¨:**"
 `);
 
-console.log('🔘 [Interactive Action Chips Rendered in Chat Bubble]:');
-console.log('   ├── [🚀 রেজিস্টার করুন (Sign Up)] ──> Scrolls to #affiliate-register-card');
-console.log('   ├── [📊 পার্টনার ড্যাশবোর্ড]       ──> Opens #affiliate-dashboard-section');
-console.log('   └── [📱 কথা বলুন ফাউন্ডারের সাথে] ──> Initiates WhatsApp to +8801629286887');
+console.log('ðŸ”˜ [Interactive Action Chips Rendered in Chat Bubble]:');
+console.log('   â”œâ”€â”€ [ðŸš€ à¦°à§‡à¦œà¦¿à¦¸à§à¦Ÿà¦¾à¦° à¦•à¦°à§à¦¨ (Sign Up)] â”€â”€> Scrolls to #affiliate-register-card');
+console.log('   â”œâ”€â”€ [ðŸ“Š à¦ªà¦¾à¦°à§à¦Ÿà¦¨à¦¾à¦° à¦¡à§à¦¯à¦¾à¦¶à¦¬à§‹à¦°à§à¦¡]       â”€â”€> Opens #affiliate-dashboard-section');
+console.log('   â””â”€â”€ [ðŸ“± à¦•à¦¥à¦¾ à¦¬à¦²à§à¦¨ à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦°à§‡à¦° à¦¸à¦¾à¦¥à§‡] â”€â”€> Initiates WhatsApp to +8801629286887');
 
 // 2. DEMO: Consultative B2B Sales Flow & Proposal Generation
-console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-console.log('🎯 LIVE DEMO 2: AI Sales Agent — Inbound Lead Qualification & ROI Pitch');
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('\nâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
+console.log('ðŸŽ¯ LIVE DEMO 2: AI Sales Agent â€” Inbound Lead Qualification & ROI Pitch');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
 
 const salesEngine = new SalesEngine();
 const clientContext = {
@@ -63,27 +63,27 @@ const clientContext = {
     budget: '$750 - $1,000 USD'
 };
 
-console.log(`👤 Client Profile: ${JSON.stringify(clientContext, null, 2)}`);
+console.log(`ðŸ‘¤ Client Profile: ${JSON.stringify(clientContext, null, 2)}`);
 
 const leadScore = salesEngine.calculateLeadScore(clientContext);
-console.log(`\n📊 AI Lead Score: ${leadScore}/100 ──> 🟢 HIGH-INTENT QUALIFIED`);
+console.log(`\nðŸ“Š AI Lead Score: ${leadScore}/100 â”€â”€> ðŸŸ¢ HIGH-INTENT QUALIFIED`);
 
 const recommended = salesEngine.recommendServices(clientContext, catalog);
-console.log(`\n💡 Recommended Universal Offer: "${recommended[0].name}"`);
-console.log(`   ├── Investment: $${recommended[0].priceUSD} USD (৳${Math.round(recommended[0].priceUSD * 122.50)} BDT)`);
-console.log(`   ├── Turnkey Delivery: ${recommended[0].deliveryDays} Business Days`);
-console.log(`   └── Core Deliverables: ${recommended[0].features.join(', ')}`);
+console.log(`\nðŸ’¡ Recommended Universal Offer: "${recommended[0].name}"`);
+console.log(`   â”œâ”€â”€ Investment: $${recommended[0].priceUSD} USD (à§³${Math.round(recommended[0].priceUSD * 122.50)} BDT)`);
+console.log(`   â”œâ”€â”€ Turnkey Delivery: ${recommended[0].deliveryDays} Business Days`);
+console.log(`   â””â”€â”€ Core Deliverables: ${recommended[0].features.join(', ')}`);
 
 const roi = salesEngine.calculateROI(recommended[0], clientContext);
-console.log(`\n📈 Real-time ROI Calculator Output:`);
-console.log(`   ├── Break-Even Horizon: ${roi.breakEvenMonths} Months`);
-console.log(`   ├── Year 1 Net Profit Saved: $${roi.yearOneSavings} USD`);
-console.log(`   └── Projected 2-Year ROI: ${roi.roiPercent}%`);
+console.log(`\nðŸ“ˆ Real-time ROI Calculator Output:`);
+console.log(`   â”œâ”€â”€ Break-Even Horizon: ${roi.breakEvenMonths} Months`);
+console.log(`   â”œâ”€â”€ Year 1 Net Profit Saved: $${roi.yearOneSavings} USD`);
+console.log(`   â””â”€â”€ Projected 2-Year ROI: ${roi.roiPercent}%`);
 
 // 3. DEMO: AI Business Digital Twin & Scenario Simulator
-console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-console.log('🎯 LIVE DEMO 3: AI Business Digital Twin — "What If?" Scenario Simulator');
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('\nâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
+console.log('ðŸŽ¯ LIVE DEMO 3: AI Business Digital Twin â€” "What If?" Scenario Simulator');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
 
 const simulator = new DigitalTwinSimulator();
 const testScenario = {
@@ -93,26 +93,26 @@ const testScenario = {
     conversionDeltaPercent: 0.5   // Conversion increases from 3.2% to 3.7%
 };
 
-console.log('⚙️ Simulation Input Variables:');
-console.log(`   • Price Change: +${testScenario.priceChangePercent}%`);
-console.log(`   • Affiliate Commission: +${testScenario.commissionChangePercent}% (Total 25%)`);
-console.log(`   • Partner Recruitment: +${testScenario.partnerGrowthPercent}%`);
-console.log(`   • Conversion Surge: +${testScenario.conversionDeltaPercent}%`);
+console.log('âš™ï¸ Simulation Input Variables:');
+console.log(`   â€¢ Price Change: +${testScenario.priceChangePercent}%`);
+console.log(`   â€¢ Affiliate Commission: +${testScenario.commissionChangePercent}% (Total 25%)`);
+console.log(`   â€¢ Partner Recruitment: +${testScenario.partnerGrowthPercent}%`);
+console.log(`   â€¢ Conversion Surge: +${testScenario.conversionDeltaPercent}%`);
 
 const simResult = simulator.simulateScenario(testScenario);
 
-console.log('\n📊 [Digital Twin Projected Forecast]:');
-console.log(`   ├── Baseline Monthly Revenue: $${simResult.baseline.revenueUSD.toLocaleString()} USD`);
-console.log(`   ├── Projected Monthly Revenue: $${simResult.projected.monthlyRevenueUSD.toLocaleString()} USD (Surge: +$${(simResult.projected.monthlyRevenueUSD - simResult.baseline.revenueUSD).toFixed(2)})`);
-console.log(`   ├── Projected Gross Profit: $${simResult.projected.monthlyGrossProfitUSD.toLocaleString()} USD`);
-console.log(`   ├── Projected Net Gross Margin: ${simResult.projected.marginPercent}%`);
-console.log(`   ├── Total Partner Payouts: $${simResult.projected.affiliatePayoutsUSD.toLocaleString()} USD`);
-console.log(`   └── Executive AI Decision: ${simResult.executiveRecommendation}`);
+console.log('\nðŸ“Š [Digital Twin Projected Forecast]:');
+console.log(`   â”œâ”€â”€ Baseline Monthly Revenue: $${simResult.baseline.revenueUSD.toLocaleString()} USD`);
+console.log(`   â”œâ”€â”€ Projected Monthly Revenue: $${simResult.projected.monthlyRevenueUSD.toLocaleString()} USD (Surge: +$${(simResult.projected.monthlyRevenueUSD - simResult.baseline.revenueUSD).toFixed(2)})`);
+console.log(`   â”œâ”€â”€ Projected Gross Profit: $${simResult.projected.monthlyGrossProfitUSD.toLocaleString()} USD`);
+console.log(`   â”œâ”€â”€ Projected Net Gross Margin: ${simResult.projected.marginPercent}%`);
+console.log(`   â”œâ”€â”€ Total Partner Payouts: $${simResult.projected.affiliatePayoutsUSD.toLocaleString()} USD`);
+console.log(`   â””â”€â”€ Executive AI Decision: ${simResult.executiveRecommendation}`);
 
 // 4. DEMO: 4-Level HITL Security & Permission Gate
-console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-console.log('🎯 LIVE DEMO 4: 4-Level Human-in-the-Loop (HITL) Security Execution');
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('\nâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
+console.log('ðŸŽ¯ LIVE DEMO 4: 4-Level Human-in-the-Loop (HITL) Security Execution');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
 
 const sampleActions = [
     { tool: 'search_knowledge', agent: 'ARCHITECT_AGENT', level: 'LEVEL_0_READ' },
@@ -125,32 +125,33 @@ sampleActions.forEach(action => {
     const config = PERMISSION_LEVELS[action.level];
     let executionStatus = '';
     if (config.level === 0 || config.level === 1) {
-        executionStatus = '✅ [AUTO-EXECUTED]: Read/Draft tool runs safely in background.';
+        executionStatus = 'âœ… [AUTO-EXECUTED]: Read/Draft tool runs safely in background.';
     } else if (config.level === 2) {
-        executionStatus = '✅ [POLICY-CHECKED]: Executed automatically after CRM rule validation.';
+        executionStatus = 'âœ… [POLICY-CHECKED]: Executed automatically after CRM rule validation.';
     } else if (config.level === 3) {
-        executionStatus = '⏸️ [HITL GATE TRIGGERED]: Status = "APPROVAL_REQUIRED". Execution paused. Instant notification dispatched to Owner C-Panel for biometric/password authorization.';
+        executionStatus = 'â¸ï¸ [HITL GATE TRIGGERED]: Status = "APPROVAL_REQUIRED". Execution paused. Instant notification dispatched to Owner C-Panel for biometric/password authorization.';
     } else {
-        executionStatus = '🚫 [SECURITY BLOCKED]: Status = "RESTRICTED". Permanently blocked by Policy Guardian Agent.';
+        executionStatus = 'ðŸš« [SECURITY BLOCKED]: Status = "RESTRICTED". Permanently blocked by Policy Guardian Agent.';
     }
-    console.log(`🔧 Tool: "${action.tool}" by [${action.agent}] (${action.level})`);
-    console.log(`   └── ${executionStatus}\n`);
+    console.log(`ðŸ”§ Tool: "${action.tool}" by [${action.agent}] (${action.level})`);
+    console.log(`   â””â”€â”€ ${executionStatus}\n`);
 });
 
 // 5. DEMO: 13-Agent Swarm Autonomous Delegation Chain
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-console.log('🎯 LIVE DEMO 5: 13-Agent Autonomous Swarm Mission Delegation');
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
+console.log('ðŸŽ¯ LIVE DEMO 5: 13-Agent Autonomous Swarm Mission Delegation');
+console.log('â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”');
 
-console.log('🎯 Mission Goal: "Launch Ramadan Growth Partner Campaign & Scale B2B Inbound"');
-console.log('   1. [CEO_AGENT] (Strategic Commander) receives mission ──> Dispatches 3 departmental workstreams.');
-console.log('   2. [CEO_AGENT] delegates to ──> [MARKETING_AGENT] (Drafts 3 bilingual email swipes & social hooks).');
-console.log('   3. [MARKETING_AGENT] requests ──> [AFFILIATE_AGENT] (Publishes assets to 1-Click Marketing Asset Center).');
-console.log('   4. [SALES_AGENT] delegates to ──> [ARCHITECT_AGENT] (Generates technical n8n workflow blueprints).');
-console.log('   5. [FINANCE_AGENT] verifies ──> (Calculates 20% commission ledger reserve with 24-hr bKash payout route).');
-console.log('   6. [GUARDIAN_AGENT] (Supervisor) audits ──> (Token spend: $0.38 USD / Budget limit $20.00 | 0 PII leak).');
-console.log('   └── 🏁 Mission Accomplished in 1.2s across all 13 agents with zero human latency.');
+console.log('ðŸŽ¯ Mission Goal: "Launch Ramadan Growth Partner Campaign & Scale B2B Inbound"');
+console.log('   1. [CEO_AGENT] (Strategic Commander) receives mission â”€â”€> Dispatches 3 departmental workstreams.');
+console.log('   2. [CEO_AGENT] delegates to â”€â”€> [MARKETING_AGENT] (Drafts 3 bilingual email swipes & social hooks).');
+console.log('   3. [MARKETING_AGENT] requests â”€â”€> [AFFILIATE_AGENT] (Publishes assets to 1-Click Marketing Asset Center).');
+console.log('   4. [SALES_AGENT] delegates to â”€â”€> [ARCHITECT_AGENT] (Generates technical n8n workflow blueprints).');
+console.log('   5. [FINANCE_AGENT] verifies â”€â”€> (Calculates 20% commission ledger reserve with 24-hr bKash payout route).');
+console.log('   6. [GUARDIAN_AGENT] (Supervisor) audits â”€â”€> (Token spend: $0.38 USD / Budget limit $20.00 | 0 PII leak).');
+console.log('   â””â”€â”€ ðŸ Mission Accomplished in 1.2s across all 13 agents with zero human latency.');
 
 console.log('\n================================================================================');
-console.log('✅ LIVE DEMO COMPLETED — ALL ENGINES FULLY ACTIVE & OPERATIONAL');
+console.log('âœ… LIVE DEMO COMPLETED â€” ALL ENGINES FULLY ACTIVE & OPERATIONAL');
 console.log('================================================================================\n');
+

@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 // Simulate basic browser environment to catch unhandled null reference exceptions
@@ -33,13 +33,13 @@ function testJsRuntimeOnHtml(htmlFile, jsFile) {
                 if (!elementIds.has(rawId)) {
                     unsafeCount++;
                     if (unsafeCount <= 15) {
-                        console.log(`❌ Unsafe null access on missing ID in ${htmlFile}: #${rawId} -> '${match[0]}'`);
+                        console.log(`âŒ Unsafe null access on missing ID in ${htmlFile}: #${rawId} -> '${match[0]}'`);
                     }
                 }
             } else if (!queried.startsWith('.') && !elementIds.has(queried)) {
                 unsafeCount++;
                 if (unsafeCount <= 15) {
-                    console.log(`❌ Unsafe null access on missing ID in ${htmlFile}: #${queried} -> '${match[0]}'`);
+                    console.log(`âŒ Unsafe null access on missing ID in ${htmlFile}: #${queried} -> '${match[0]}'`);
                 }
             }
         }
@@ -53,3 +53,4 @@ testJsRuntimeOnHtml('admin.html', 'app.js');
 testJsRuntimeOnHtml('store.html', 'app.js');
 testJsRuntimeOnHtml('marketplace.html', 'app.js');
 testJsRuntimeOnHtml('portal.html', 'app.js');
+

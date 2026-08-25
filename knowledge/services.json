@@ -6,8 +6,8 @@
     "priceUSD": 850,
     "priceBDT": 104125,
     "deliveryDays": 3,
-    "description": "5-Agent residential stealth scraper extracting 100+ verified decision-makers with corporate MX validation.",
-    "features": ["5 Stealth Scraping Agents", "LinkedIn & Apollo Extraction", "Corporate MX Email Validation", "Auto-Sync to CRM & Google Sheets"],
+    "description": "5-Agent residential resilient extraction agent extracting 100+ verified decision-makers with corporate MX validation.",
+    "features": ["5 resilient web extraction Agents", "LinkedIn & Apollo Extraction", "Corporate MX Email Validation", "Auto-Sync to CRM & Google Sheets"],
     "idealFor": ["B2B Companies", "Agencies", "SaaS Founders"],
     "technologies": ["n8n", "Playwright", "Python", "Gemini Pro", "PostgreSQL"]
   },

@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const testQueries = [
@@ -37,5 +37,6 @@ testQueries.forEach(q => {
             break;
         }
     }
-    console.log(`💬 User: "${q}" ──> Intent: 🎯 [${matched}]`);
+    console.log(`ðŸ’¬ User: "${q}" â”€â”€> Intent: ðŸŽ¯ [${matched}]`);
 });
+

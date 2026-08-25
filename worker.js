@@ -1,5 +1,5 @@
-/**
- * IINSHA TECH OS v1000 — Cloudflare Workers Headless API & Static Asset Gateway
+﻿/**
+ * IINSHA TECH OS v1000 â€” Cloudflare Workers Headless API & Static Asset Gateway
  * Zero Hardcoding Architecture. Everything comes from Supabase Database.
  */
 
@@ -37,7 +37,7 @@ export default {
             HERO_SUBTITLE: "Production-grade AI agents, Playwright Enterprise Pipeline web scrapers, and Hostinger Docker VPS infrastructure.",
             HERO_CTA_TEXT: "Explore AI Agency Solutions",
             NAVBAR_BRAND: "IINSHA TECH OS v1000",
-            FOOTER_TEXT: "© 2026 IINSHA TECH OS. All Rights Reserved. Powered by Cloudflare Pages & Supabase.",
+            FOOTER_TEXT: "Â© 2026 IINSHA TECH OS. All Rights Reserved. Powered by Cloudflare Pages & Supabase.",
             WHATSAPP_NUMBER: "+8801629286887",
             BDT_EXCHANGE_RATE: 120
           },
@@ -169,3 +169,4 @@ export default {
     }
   }
 };
+

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IINSHA AI-BOS: Unified Agent Runtime Engine
  * Central orchestrator managing Control Plane vs Data Plane separation,
  * Dynamic Risk Engine, Zero-Trust Token Scoping, and Mission Lifecycles.
@@ -6,11 +6,14 @@
 
 import { AGENT_REGISTRY, PERMISSION_LEVELS, ANTI_LOOP_CONFIG } from './agents/agent_registry.js';
 
+import { ToolExecutionGateway } from './tool_execution_gateway.js';
+
 export class AgentRuntime {
     constructor() {
         this.activeMissions = new Map();
         this.eventListeners = [];
         this.systemState = 'ONLINE'; // ONLINE, PAUSED, EMERGENCY_STOP
+        this.toolGateway = new ToolExecutionGateway();
     }
 
     /**
@@ -105,12 +108,33 @@ export class AgentRuntime {
             amount_usd: toolArgs.amount || 0
         });
 
+        if (riskEvaluation.requires_human_approval && !toolArgs.owner_approved) {
+            return {
+                status: 'APPROVAL_REQUIRED',
+                mission_id: missionId,
+                agent_id: agentId,
+                tool_name: toolName,
+                risk_evaluation: riskEvaluation,
+                timestamp: new Date().toISOString()
+            };
+        }
+
+        // Real Tool Execution through Tool Gateway
+        const executionResult = await this.toolGateway.execute({
+            agent_id: agentId,
+            tool_id: toolName,
+            arguments_payload: toolArgs
+        });
+
         return {
-            status: riskEvaluation.requires_human_approval ? 'APPROVAL_REQUIRED' : 'EXECUTED',
+            status: executionResult.status === 'SUCCESS' ? 'EXECUTED' : executionResult.status,
             mission_id: missionId,
             agent_id: agentId,
             tool_name: toolName,
+            execution_id: executionResult.execution_id,
+            evidence: executionResult.evidence_id || executionResult,
             risk_evaluation: riskEvaluation,
+            result: executionResult,
             timestamp: new Date().toISOString()
         };
     }

@@ -6460,84 +6460,129 @@ const OUTCOME_DEFINITIONS = {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
                 <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">âš¡ Autonomous SDR Engine</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li>Apollo + LinkedIn profile scraper & firmographic filter</li>
-                        <li>Gemini 3.0 Pro & Flash dynamic prospect research & icebreaker generator</li>
-                        <li>Level 1 Human Review or Autonomous Email Dispatch</li>
-                        <li>Automatic webhook sync to HubSpot / Supabase PGVector</li>
-                    </ul>
+                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: function openCheckoutModal(packageName, setupPrice, retainerPrice) {
+    let modal = document.getElementById('iinsha-checkout-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'iinsha-checkout-modal';
+        modal.className = 'modal-overlay';
+        modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(2,6,23,0.96); backdrop-filter:blur(16px); z-index:10030; align-items:center; justify-content:center; padding:20px;';
+        modal.innerHTML = `
+            <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary); border-radius:16px; background:#0f172a; border:1px solid #38bdf8;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+                    <div>
+                        <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:#10b981; font-weight:800; padding:4px 10px; border-radius:6px;">🚀 LIVE INSTANT CHECKOUT</span>
+                        <h3 id="checkout-pkg-title" style="color:#fff; font-size:1.4rem; margin-top:8px;">Package Checkout</h3>
+                    </div>
+                    <button onclick="(function(){ const _el = document.getElementById('iinsha-checkout-modal'); if (_el) _el.style.display = 'none'; })()" style="background:transparent; border:none; color:#94a3b8; font-size:1.6rem; cursor:pointer;">✕</button>
                 </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(16, 185, 129, 0.3);">
-                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ“ˆ Proven Impact Metrics</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li><strong>Speed-to-Lead:</strong> < 45 seconds from form submit</li>
-                        <li><strong>Response Rate:</strong> 4.8x higher via hyper-personalization</li>
-                        <li><strong>Manual Labor Saved:</strong> 25+ SDR hours per week</li>
-                        <li><strong>Estimated ROI:</strong> 420% in first 90 days</li>
-                    </ul>
+                
+                <div style="background:rgba(0,0,0,0.5); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); margin-bottom:20px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#94a3b8; font-size:0.9rem;">Package Total (USD):</span>
+                        <strong id="checkout-setup-val" style="color:#38bdf8; font-family:monospace; font-size:1.2rem;">$100 USD</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span style="color:#94a3b8; font-size:0.9rem;">Equivalent in BDT:</span>
+                        <strong id="checkout-bdt-val" style="color:#fbbf24; font-family:monospace; font-size:1.2rem;">৳12,250 BDT</strong>
+                    </div>
                 </div>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-cyan); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Self-hosted n8n instance + Gemini Flash qualification node + PostgreSQL lead queue.
-            </div>
-        `
-    },
-    2: {
-        badge: "âš™ï¸ OUTCOME 02 â€” MISSION CRITICAL PROCESS AUTOMATION",
-        title: "Automate: n8n Core Mesh & Document OCR Extraction",
-        subtitle: "Eliminate manual data entry, PDF invoice processing, and siloed CRM synchronization with 99.4% OCR accuracy.",
-        deliverables: `
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-                <div class="glass-card" style="padding: 16px; border-color: rgba(16, 185, 129, 0.3);">
-                    <strong style="color: var(--accent-emerald); font-size: 0.95rem; display: block; margin-bottom: 6px;">âš¡ Multi-Modal OCR & ETL</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li>PDF / Image invoice parser with Gemini Vision structured JSON</li>
-                        <li>Automatic reconciliation against QuickBooks / Xero</li>
-                        <li>Bi-directional webhook sync across Airtable & HubSpot</li>
-                        <li>Exception handling & Slack/Telegram approval pings</li>
-                    </ul>
-                </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(245, 158, 11, 0.3);">
-                    <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ“Š Operational Impact</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li><strong>Processing Time:</strong> 12 mins âž” 8 seconds per invoice</li>
-                        <li><strong>Error Rate:</strong> < 0.1% with Level 2 HITL validation</li>
-                        <li><strong>Monthly Savings:</strong> $3,200+ in administrative overhead</li>
-                        <li><strong>Execution Cost:</strong> $0 per task on self-hosted VPS</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-emerald); font-size: 0.82rem; color: #94a3b8;">
-                <strong>Architecture:</strong> Docker VPS container + Node.js worker threads + PostgreSQL event queue + 14-day SLA.
-            </div>
-        `
-    },
-    3: {
-        badge: "ðŸ¤– OUTCOME 03 â€” 24/7 AI DIGITAL WORKFORCE",
-        title: "Operate: Omnichannel Support & Executive AI Assistant",
-        subtitle: "Deploy autonomous customer support swarms across WhatsApp, Zendesk, and Web Chat with sub-30s triage times.",
-        deliverables: `
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-                <div class="glass-card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3);">
-                    <strong style="color: var(--accent-purple); font-size: 0.95rem; display: block; margin-bottom: 6px;">ðŸ’¬ Omnichannel Triage Swarm</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li>WhatsApp Cloud API + Zendesk + Intercom live integration</li>
-                        <li>Semantic vector search over company knowledge base</li>
-                        <li>Sentiment analysis & automated high-priority escalation</li>
-                        <li>Refund & order tracking tool execution via secure webhooks</li>
-                    </ul>
-                </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
-                    <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">♞ Verified Support Metrics</strong>
-                    <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
-                        <li><strong>First Response Time:</strong> < 25 seconds 24/7/365</li>
-                        <li><strong>Deflection Rate:</strong> 74% of tier-1 support tickets</li>
-                        <li><strong>CSAT Rating:</strong> 4.85 / 5.0 across 12,000 interactions</li>
-                        <li><strong>Cost Reduction:</strong> 65% lower vs offshore BPO</li>
-                    </ul>
+
+                <form onsubmit="handleCheckoutFormSubmit(event)" style="display:flex; flex-direction:column; gap:14px; margin-bottom:16px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR FULL NAME</label>
+                        <input type="text" id="chk-name" required placeholder="e.g. Adnin Sadat Mahin" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR WORK EMAIL</label>
+                        <input type="email" id="chk-email" required placeholder="name@company.com" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
+                        <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #38bdf8; color:#fff; border-radius:8px; font-weight:bold;">
+                            <option value="lemonsqueezy">💳 Lemon Squeezy (Global Visa / Mastercard / Apple Pay)</option>
+                            <option value="stripe">💳 Stripe Official Checkout (Global Credit/Debit Cards)</option>
+                            <option value="bkash">📱 bKash Merchant / Direct Transfer (Bangladesh)</option>
+                            <option value="nagad">📱 Nagad Direct Transfer (Bangladesh)</option>
+                            <option value="bank">🏛️ City Bank PLC Wire Transfer</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #0284c7, #0ea5e9); color:#fff; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
+                </form>
+
+                <div style="text-align:center; font-size:0.75rem; color:#94a3b8;">
+                    🔒 256-Bit SSL Encrypted • Lemon Squeezy MoR & Official Merchant Backed.
                 </div>
             </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    document.getElementById('checkout-pkg-title').textContent = packageName;
+    const numPrice = Number(setupPrice) || 100;
+    document.getElementById('checkout-setup-val').textContent = '$' + numPrice.toLocaleString() + ' USD';
+    document.getElementById('checkout-bdt-val').textContent = '৳' + Math.round(numPrice * 122.50).toLocaleString() + ' BDT';
+    
+    modal.style.display = 'flex';
+}
+
+async function handleCheckoutFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('chk-submit-btn');
+    if (btn) { btn.disabled = true; btn.innerText = '⏳ Initializing Secure Gateway...'; }
+
+    const name = document.getElementById('chk-name') ? (document.getElementById('chk-name').value || 'Valued Client') : 'Valued Client';
+    const email = document.getElementById('chk-email') ? (document.getElementById('chk-email').value || 'client@inshatech.com') : 'client@inshatech.com';
+    const method = document.getElementById('chk-method') ? document.getElementById('chk-method').value : 'lemonsqueezy';
+    const pkg = document.getElementById('checkout-pkg-title').textContent;
+    
+    const priceTxt = document.getElementById('checkout-setup-val').textContent || '100';
+    const numPrice = parseInt(priceTxt.replace(/[^0-9]/g, ''), 10) || 100;
+
+    try {
+        const res = await fetch('/api/payments/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                service_id: 'b2b-lead-swarm',
+                package_name: pkg,
+                amount: numPrice,
+                customer_name: name,
+                customer_email: email,
+                payment_provider: method
+            })
+        });
+
+        const data = await res.json();
+        if (data.redirect_url) {
+            window.location.href = data.redirect_url;
+            return;
+        } else if (data.gateway?.checkout_url) {
+            window.location.href = data.gateway.checkout_url;
+            return;
+        } else if (method === 'lemonsqueezy') {
+            // Direct Lemon Squeezy Store Checkout
+            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
+            return;
+        } else if (data.whatsapp_instant_order) {
+            window.location.href = data.whatsapp_instant_order;
+            return;
+        } else {
+            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I created order for ${pkg} ($${numPrice} USD via ${method}). Please confirm payment.`)}`;
+        }
+    } catch (err) {
+        // Fallback directly to Lemon Squeezy Store URL or WhatsApp
+        if (method === 'lemonsqueezy') {
+            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
+        } else {
+            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to order ${pkg} ($${numPrice} USD via ${method}).`)}`;
+        }
+    }
+}
+
+window.openOutcomeDetailModal = openOutcomeDetailModal;
+window.openCheckoutModal = openCheckoutModal;
+window.handleCheckoutFormSubmit = handleCheckoutFormSubmit;  <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 0.82rem; color: #94a3b8;">
                 <strong>Architecture:</strong> Pinecone Vector DB RAG + Flagship Multi-LLM Mesh (Gemini 2.0 / Claude 3.5) (Hybrid Thinking) / Gemini 3.0 Pro & Flash + Webhook Action Bridge.
             </div>
         `

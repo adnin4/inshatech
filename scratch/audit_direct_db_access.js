@@ -1,5 +1,5 @@
-/**
- * IINSHA AI-BOS — Direct DB Access Audit & Inventory Tool
+﻿/**
+ * IINSHA AI-BOS â€” Direct DB Access Audit & Inventory Tool
  * Generates scratch/evidence/DIRECT_DB_ACCESS.json
  */
 
@@ -78,3 +78,4 @@ console.log(`- Server Edge Operations: ${report.summary.server_edge_operations}`
 console.log(`- Public Catalog Reads: ${report.summary.public_catalog_reads}`);
 console.log(`- Unauthorized Direct Mutations: ${report.summary.unauthorized_direct_mutations} (Should be 0)`);
 console.log(`Saved report to scratch/evidence/DIRECT_DB_ACCESS.json`);
+

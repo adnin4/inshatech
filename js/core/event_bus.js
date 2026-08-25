@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS: Universal Event Bus & Unified Entity Identifier Engine
  * Provides immutable, typed event logging with zero-loss telemetry
  */
@@ -74,3 +74,4 @@ export const EventBusInstance = new UnifiedEventBus();
 if (typeof window !== 'undefined') {
     window.IinshaEventBus = EventBusInstance;
 }
+

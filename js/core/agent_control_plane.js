@@ -1,4 +1,4 @@
-/**
+﻿/**
  * IINSHA AI-BOS: Agent Control Plane & Governance Engine
  * Implements OWASP-aligned Agentic Security, 6-Level Execution,
  * Budget Governor, and 4-Layer Memory Partitioning.
@@ -56,3 +56,4 @@ export class AgentControlPlane {
         return { success: false, error: 'Approval item not found' };
     }
 }
+
