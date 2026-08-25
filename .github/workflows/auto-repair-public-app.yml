@@ -1,0 +1,39 @@
+name: Auto Repair Public App Syntax
+
+on:
+  push:
+    branches: [site-functionality-recovery]
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ !startsWith(github.event.head_commit.message, 'fix: auto-repair public app syntax') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply guarded repair
+        run: node scripts/repair_public_site_app.mjs
+
+      - name: Commit repaired app.js
+        run: |
+          if git diff --quiet -- app.js; then
+            echo 'No repair needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app.js
+          git commit -m 'fix: auto-repair public app syntax'
+          git push origin HEAD:site-functionality-recovery
