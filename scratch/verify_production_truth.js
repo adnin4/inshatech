@@ -4,6 +4,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const EXCLUDED = new Set(['.git', 'node_modules', '__pycache__', '.wrangler']);
 const TEXT_EXT = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.html', '.md', '.json', '.sql', '.yml', '.yaml']);
+const POLICY_DEFINITION_FILE = 'ai_brain/production_truth_policy.js';
 
 const forbiddenProductionPatterns = [
   /status\s*:\s*['"]EXECUTED['"]/g,
@@ -38,10 +39,8 @@ const violations = [];
 for (const file of files) {
   const rel = path.relative(ROOT, file).replaceAll('\\', '/');
   const text = fs.readFileSync(file, 'utf8');
-
-  // Test fixtures may contain forbidden strings intentionally, but they must be
-  // under scratch/tests and never in production/runtime directories.
   const isTest = rel.startsWith('scratch/') || rel.includes('/test/') || rel.endsWith('.test.js');
+
   if (!isTest) {
     for (const re of forbiddenProductionPatterns) {
       if (re.test(text)) violations.push(`${rel}: forbidden production-success pattern ${re}`);
@@ -49,12 +48,15 @@ for (const file of files) {
     }
   }
 
-  // These claims are only valid when produced from evidence, not hardcoded.
-  for (const re of deceptiveClaims) {
-    if (re.test(text) && !rel.startsWith('docs/')) {
-      violations.push(`${rel}: unverifiable production claim pattern ${re}`);
+  // The policy module is allowed to DEFINE the verification taxonomy; all other
+  // executable/config files must not hardcode an unbacked LIVE_VERIFIED claim.
+  if (rel !== POLICY_DEFINITION_FILE) {
+    for (const re of deceptiveClaims) {
+      if (re.test(text) && !rel.startsWith('docs/')) {
+        violations.push(`${rel}: unverifiable production claim pattern ${re}`);
+      }
+      re.lastIndex = 0;
     }
-    re.lastIndex = 0;
   }
 }
 
