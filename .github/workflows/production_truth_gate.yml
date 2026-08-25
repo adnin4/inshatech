@@ -1,0 +1,29 @@
+name: Production Truth Gate
+
+on:
+  push:
+    branches: [master, final-production-truth-gate]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  truth-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Production truth audit
+        run: node scratch/verify_production_truth.js
+
+      - name: Runtime truth unit gate
+        run: node scratch/test_production_truth_policy.js
