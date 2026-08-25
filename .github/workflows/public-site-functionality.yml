@@ -7,6 +7,10 @@ on:
     branches: [master]
   workflow_dispatch:
 
+concurrency:
+  group: public-site-functionality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -40,6 +44,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add app.js
           git commit -m 'fix: auto-repair public app syntax'
+          git fetch origin "${{ github.event.pull_request.head.ref || github.ref_name }}"
+          git rebase "origin/${{ github.event.pull_request.head.ref || github.ref_name }}"
           git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Repository JavaScript syntax gate
