@@ -1,7 +1,7 @@
 /**
  * IINSHA Planner & Dynamic Agent Graph Engine
- * Decomposes high-level business goals into lean, specialized agent sub-graphs
- * Dispatches structured Inter-Agent Contracts with budget and timeout guardrails.
+ * Decomposes high-level business goals into lean, specialized agent sub-graphs.
+ * Planning is not execution; task states remain explicit until a real tool receipt exists.
  */
 
 export class PlannerEngine {
@@ -14,33 +14,25 @@ export class PlannerEngine {
         };
     }
 
-    /**
-     * Synthesize a lean dynamic agent graph for a given business goal
-     * @param {string} goalText
-     * @param {Object} contextData
-     */
     synthesizePlan(goalText, contextData = {}) {
-        const goal = goalText.toLowerCase();
+        const goal = String(goalText || '').toLowerCase();
         let selectedGraphKey = 'LEAD_GEN';
 
-        if (goal.includes('workflow') || goal.includes('n8n') || goal.includes('cluster') || goal.includes('developer')) {
-            selectedGraphKey = 'WORKFLOW_DEV';
-        } else if (goal.includes('marketing') || goal.includes('affiliate') || goal.includes('campaign') || goal.includes('seo')) {
-            selectedGraphKey = 'MARKETING_LAUNCH';
-        } else if (goal.includes('support') || goal.includes('whatsapp') || goal.includes('bot') || goal.includes('receptionist')) {
-            selectedGraphKey = 'SUPPORT_AUTOMATION';
-        }
+        if (goal.includes('workflow') || goal.includes('n8n') || goal.includes('cluster') || goal.includes('developer')) selectedGraphKey = 'WORKFLOW_DEV';
+        else if (goal.includes('marketing') || goal.includes('affiliate') || goal.includes('campaign') || goal.includes('seo')) selectedGraphKey = 'MARKETING_LAUNCH';
+        else if (goal.includes('support') || goal.includes('whatsapp') || goal.includes('bot') || goal.includes('receptionist')) selectedGraphKey = 'SUPPORT_AUTOMATION';
 
         const requiredAgents = this.specialistAgents[selectedGraphKey];
         const missionId = 'mis_' + Date.now().toString().slice(-6);
+        const now = new Date().toISOString();
 
         const subTasks = [
             {
                 step: 1,
                 task_id: `tsk_${missionId}_01`,
-                assigned_agent: requiredAgents[0], // PLANNER
+                assigned_agent: requiredAgents[0],
                 objective: 'Deconstruct goal constraints, verify business memory & catalog',
-                status: 'COMPLETED',
+                status: 'PLANNED',
                 estimated_cost_usd: 0.002,
                 duration_ms: 120
             },
@@ -49,7 +41,7 @@ export class PlannerEngine {
                 task_id: `tsk_${missionId}_02`,
                 assigned_agent: requiredAgents[1],
                 objective: 'Perform target ICP discovery & technical requirements matching',
-                status: 'COMPLETED',
+                status: 'PLANNED',
                 estimated_cost_usd: 0.005,
                 duration_ms: 240
             },
@@ -58,16 +50,16 @@ export class PlannerEngine {
                 task_id: `tsk_${missionId}_03`,
                 assigned_agent: requiredAgents[2],
                 objective: 'Synthesize turnkey solution package with ROI and proposal draft',
-                status: 'IN_PROGRESS',
+                status: 'PLANNED',
                 estimated_cost_usd: 0.008,
                 duration_ms: 310
             },
             {
                 step: 4,
                 task_id: `tsk_${missionId}_04`,
-                assigned_agent: requiredAgents[requiredAgents.length - 1], // GUARDIAN
+                assigned_agent: requiredAgents[requiredAgents.length - 1],
                 objective: 'Execute 5-level security check & trigger HITL checkpoint if needed',
-                status: 'PENDING',
+                status: 'PLANNED',
                 estimated_cost_usd: 0.001,
                 duration_ms: 80
             }
@@ -83,8 +75,11 @@ export class PlannerEngine {
             active_agent_count: requiredAgents.length,
             savings_vs_full_swarm_percent: `${Math.round(((13 - requiredAgents.length) / 13) * 100)}%`,
             sub_tasks: subTasks,
-            total_estimated_compute_cost_usd: parseFloat(totalCostEstimate.toFixed(4)),
-            created_at: new Date().toISOString()
+            total_estimated_compute_cost_usd: Number(totalCostEstimate.toFixed(4)),
+            context: contextData,
+            created_at: now,
+            production_claim: false,
+            verification: 'PLANNING_ONLY'
         };
     }
 }
