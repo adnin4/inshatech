@@ -1,8 +1,7 @@
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 const file='app.js';
-const source=fs.readFileSync(file,'utf8');
-let s=source;
+let s=fs.readFileSync(file,'utf8');
 const fixes=[
 [/const company = \(\(document\.getElementById\('audit-company'\) \? document\.getElementById\('audit-company'\)\?\.value \|\| ''\) : \"\"\);/g,"const company = document.getElementById('audit-company')?.value || '';"],
 [/const industry = \(\(document\.getElementById\('audit-industry'\) \? document\.getElementById\('audit-industry'\)\?\.value \|\| ''\) : \"\"\);/g,"const industry = document.getElementById('audit-industry')?.value || '';"],
@@ -25,4 +24,3 @@ s=s.replace(/\nwidget\.style\.cssText = [\s\S]*?\n    `;\n}\n/g,'\n');
 fs.writeFileSync(file,s,'utf8');
 const c=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});
 if(c.status!==0){console.error(c.stderr||c.stdout);process.exit(1);}
-console.log('PUBLIC_SITE_HOTFIX: app.js syntax PASS');
