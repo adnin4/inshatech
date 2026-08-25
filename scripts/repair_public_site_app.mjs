@@ -34,17 +34,14 @@ while (true) {
   changed = true;
 }
 
-// Repair the known malformed ternary expressions in the public audit form.
-const malformedFields = [
-  ['const company = ((document.getElementById(\'audit-company\') ? document.getElementById(\'audit-company\')?.value || \'\') : "");', "const company = document.getElementById('audit-company')?.value || '';"],
-  ['const industry = ((document.getElementById(\'audit-industry\') ? document.getElementById(\'audit-industry\')?.value || \'\') : "");', "const industry = document.getElementById('audit-industry')?.value || '';"],
-  ['const bottleneck = ((document.getElementById(\'audit-bottleneck\') ? document.getElementById(\'audit-bottleneck\')?.value || \'\') : "");', "const bottleneck = document.getElementById('audit-bottleneck')?.value || '';"],
-];
-for (const [bad, good] of malformedFields) {
-  if (source.includes(bad)) {
-    source = source.replaceAll(bad, good);
-    changed = true;
-  }
+// Repair a known generator defect that emits invalid conditional expressions like:
+// const x = ((document.getElementById('field') ? document.getElementById('field')?.value || '') : "");
+// Only this exact shape is rewritten; other source is left untouched.
+const malformedTernary = /const\s+(\w+)\s*=\s*\(\(document\.getElementById\('([^']+)'\)\s*\?\s*document\.getElementById\('\2'\)\?\.value\s*\|\|\s*''\)\s*:\s*""\);/g;
+const repairedSource = source.replace(malformedTernary, "const $1 = document.getElementById('$2')?.value || '';" );
+if (repairedSource !== source) {
+  source = repairedSource;
+  changed = true;
 }
 
 if (!changed) {
