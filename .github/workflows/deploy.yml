@@ -53,11 +53,66 @@ jobs:
             fi
           done
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Wait for authoritative master CI checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          EXPECTED_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            'IINSHA AI-BOS Master Production CI'
+            'Zero-Regression & Cloudflare Pages Guard'
+            'Final Activation Gates'
+            'Autonomous Company Wave 1'
+          )
 
-      - name: Run repository regression suite
-        run: npm test
+          for attempt in $(seq 1 60); do
+            json=$(curl --fail --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H 'Accept: application/vnd.github+json' \
+              "https://api.github.com/repos/$REPOSITORY/commits/$EXPECTED_SHA/check-runs?per_page=100")
+
+            export CHECKS_JSON="$json"
+            ready=1
+            failed=0
+            node <<'NODE'
+            const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
+            const required = [
+              'IINSHA AI-BOS Master Production CI',
+              'Zero-Regression & Cloudflare Pages Guard',
+              'Final Activation Gates',
+              'Autonomous Company Wave 1'
+            ];
+            let ready = true;
+            let failed = false;
+            for (const name of required) {
+              const matches = checks.filter(c => c.name === name);
+              const latest = matches.sort((a,b) => new Date(b.completed_at || b.started_at || 0) - new Date(a.completed_at || a.started_at || 0))[0];
+              console.log(`${name}: ${latest ? `${latest.status}/${latest.conclusion}` : 'not yet reported'}`);
+              if (!latest || latest.status !== 'completed') ready = false;
+              if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
+            }
+            process.stdout.write(`__GATE__${ready ? 1 : 0}__FAILED__${failed ? 1 : 0}\n`);
+            NODE
+
+            gate=$(printf '%s\n' "$CHECKS_JSON" | node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync(0,'utf8')).check_runs||[]; const r=['IINSHA AI-BOS Master Production CI','Zero-Regression & Cloudflare Pages Guard','Final Activation Gates','Autonomous Company Wave 1']; let ready=r.every(n=>{const a=x.filter(c=>c.name===n).sort((p,q)=>new Date(q.completed_at||q.started_at||0)-new Date(p.completed_at||p.started_at||0))[0]; return a&&a.status==='completed'}); let failed=r.some(n=>{const a=x.filter(c=>c.name===n).sort((p,q)=>new Date(q.completed_at||q.started_at||0)-new Date(p.completed_at||p.started_at||0))[0]; return a&&a.status==='completed'&&a.conclusion!=='success'}); console.log(`${ready?'READY':'WAIT'} ${failed?'FAILED':'OK'}`)")
+
+            echo "Gate summary: $gate (attempt $attempt/60)"
+            if echo "$gate" | grep -q 'FAILED'; then
+              echo 'AUTHORITATIVE CI GATE FAIL'
+              exit 1
+            fi
+            if echo "$gate" | grep -q '^READY OK$'; then
+              echo 'AUTHORITATIVE CI GATE PASS'
+              exit 0
+            fi
+            sleep 10
+          done
+
+          echo 'AUTHORITATIVE CI GATE TIMEOUT'
+          exit 1
 
   release:
     needs: verify-build
@@ -116,6 +171,6 @@ jobs:
         env:
           SITE_BASE_URL: ${{ env.LIVE_URL }}
         run: |
-          npm install --no-save --no-package-lock playwright@1.55.0
+          npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
           node scripts/production_site_smoke.mjs
