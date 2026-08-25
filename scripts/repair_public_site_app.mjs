@@ -2,36 +2,45 @@ import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 const file = 'app.js';
-const syntax = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+let source = fs.readFileSync(file, 'utf8');
+
+function syntaxCheck() {
+  return spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+}
+
+let syntax = syntaxCheck();
 if (syntax.status === 0) {
   console.log('PUBLIC_APP_REPAIR: app.js syntax already clean; no repair required');
   process.exit(0);
 }
 
-const source = fs.readFileSync(file, 'utf8');
-const marker = 'window.openCopilot = window.openIinshaChatWindow;';
-const start = source.indexOf(marker);
-const widgetStart = source.indexOf('widget.style.cssText', start);
-const end = source.indexOf('function initMasterApp() {', widgetStart);
+let removed = 0;
+while (true) {
+  const marker = 'window.openCopilot = window.openIinshaChatWindow;';
+  const markerPos = source.indexOf(marker);
+  if (markerPos < 0) break;
 
-if (start < 0 || widgetStart < 0 || end < 0 || end <= widgetStart) {
+  const widgetStart = source.indexOf('widget.style.cssText', markerPos);
+  if (widgetStart < 0) break;
+
+  const templateClose = source.indexOf('\n    `;\n}', widgetStart);
+  if (templateClose < 0) break;
+
+  const end = templateClose + '\n    `;\n}'.length;
+  source = source.slice(0, widgetStart) + '\n' + source.slice(end);
+  removed += 1;
+}
+
+if (removed === 0) {
   console.error(syntax.stderr || syntax.stdout || 'Unknown JavaScript syntax failure');
-  throw new Error('PUBLIC_APP_REPAIR: syntax failure exists, but the known orphaned widget block could not be safely located');
+  throw new Error('PUBLIC_APP_REPAIR: syntax failure exists but no known orphan widget block could be safely located');
 }
 
-const stray = source.slice(widgetStart, end);
-if (!stray.includes('widget.innerHTML')) {
-  throw new Error('PUBLIC_APP_REPAIR: syntax failure found but expected widget body is not present; refusing to modify app.js');
+fs.writeFileSync(file, source, 'utf8');
+syntax = syntaxCheck();
+if (syntax.status !== 0) {
+  console.error(syntax.stderr || syntax.stdout || 'Unknown post-repair syntax failure');
+  throw new Error(`PUBLIC_APP_REPAIR: removed ${removed} orphan block(s) but app.js is still syntactically invalid`);
 }
 
-const repaired = source.slice(0, widgetStart) + '\n' + source.slice(end);
-fs.writeFileSync(file, repaired, 'utf8');
-
-const verify = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
-if (verify.status !== 0) {
-  fs.writeFileSync(file, source, 'utf8');
-  console.error(verify.stderr || verify.stdout || 'Unknown post-repair syntax failure');
-  throw new Error('PUBLIC_APP_REPAIR: repair did not produce syntactically valid app.js; original restored');
-}
-
-console.log('PUBLIC_APP_REPAIR: orphaned widget block removed and app.js syntax verified');
+console.log(`PUBLIC_APP_REPAIR: removed ${removed} orphan widget block(s); app.js syntax PASS`);
