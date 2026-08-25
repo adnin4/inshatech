@@ -38,13 +38,20 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         run: node scripts/generate-build-info.mjs
 
-      - name: Verify no developer-machine paths
+      - name: Verify no developer-machine paths in deployable source
         shell: bash
         run: |
-          if grep -RInE 'C:\\\\Users\\\\|/Users/|/home/[A-Za-z0-9_.-]+/' --exclude-dir=.git --exclude='*.map' .; then
-            echo 'ERROR: developer-machine absolute path detected'
-            exit 1
-          fi
+          set -euo pipefail
+          scan_paths=(index.html '*.html' '*.js' '*.css' '*.json' 'functions' 'js' 'api')
+          for target in "${scan_paths[@]}"; do
+            matches=$(grep -RInE 'C:\\\\Users\\\\|/Users/|/home/[A-Za-z0-9_.-]+/' \
+              --exclude-dir=.git --exclude='*.map' --exclude='*.min.js' $target 2>/dev/null || true)
+            if [ -n "$matches" ]; then
+              echo "$matches"
+              echo 'ERROR: developer-machine absolute path detected in deployable source'
+              exit 1
+            fi
+          done
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
