@@ -3137,20 +3137,8 @@ window.openIinshaChatWindow = function() {
     }
 };
 window.openCopilot = window.openIinshaChatWindow;
-widget.style.cssText = "position:fixed; bottom:96px; right:24px; z-index:9998; background:rgba(15,23,42,0.9); backdrop-filter:blur(10px); border:1px solid rgba(59,130,246,0.4); border-radius:30px; padding:6px 14px; font-size:0.75rem; color:#fff; cursor:pointer; box-shadow:0 8px 25px rgba(0,0,0,0.5); display:flex; align-items:center; gap:8px;"; widget.onclick = function() { if(window.toggleIinshaChatWindow) window.toggleIinshaChatWindow(); };;
-    widget.innerHTML = `
-        <div onclick="openAiOrderConsultationModal('IINSHA AI Support & Sales Assistant', 'Custom Package', 499)" class="glass-card glowing-border" style="background:rgba(15,23,42,0.95); border:1px solid var(--accent-cyan); padding:12px 18px; border-radius:30px; display:flex; align-items:center; gap:10px; box-shadow:0 0 25px rgba(6,182,212,0.3); transition:all 0.3s ease;">
-            <div style="position:relative; width:36px; height:36px; background:rgba(6,182,212,0.2); border:1px solid var(--accent-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
-                🤖
-                <span style="position:absolute; top:0; right:0; width:10px; height:10px; background:#10b981; border-radius:50%; border:2px solid #000; animation:pulse 1.2s infinite;"></span>
-            </div>
-            <div>
-                <span style="font-size:0.85rem; font-weight:bold; color:#fff; display:block;">Chat with IINSHA AI</span>
-                <span style="font-size:0.7rem; color:var(--accent-emerald);">● Online | Sales & Support</span>
-            </div>
-        </div>
-    `;
-}
+
+
 window.initFloatingAiAssistantWidget = initFloatingAiAssistantWidget;
 
 
@@ -5385,9 +5373,9 @@ function runPromptSanitizerTest() {
 
 function runIinshaAuditCalculation(e) {
     e.preventDefault();
-    const company = ((document.getElementById('audit-company') ? document.getElementById('audit-company')?.value || '') : "");
-    const industry = ((document.getElementById('audit-industry') ? document.getElementById('audit-industry')?.value || '') : "");
-    const bottleneck = ((document.getElementById('audit-bottleneck') ? document.getElementById('audit-bottleneck')?.value || '') : "");
+    const company = document.getElementById('audit-company')?.value || '';
+    const industry = document.getElementById('audit-industry')?.value || '';
+    const bottleneck = document.getElementById('audit-bottleneck')?.value || '';
 
     const resDiv = document.getElementById('iinsha-audit-results');
     if (!resDiv) return;
@@ -6674,9 +6662,9 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 
 function handleCheckoutFormSubmit(e) {
     e.preventDefault();
-    const name = ((document.getElementById('chk-name') ? document.getElementById('chk-name')?.value || '') : "");
-    const email = ((document.getElementById('chk-email') ? document.getElementById('chk-email')?.value || '') : "");
-    const method = ((document.getElementById('chk-method') ? document.getElementById('chk-method')?.value || '') : "");
+    const name = document.getElementById('chk-name')?.value || '';
+    const email = document.getElementById('chk-email')?.value || '';
+    const method = document.getElementById('chk-method')?.value || '';
     const pkg = document.getElementById('checkout-pkg-title').textContent;
     
     alert('Thank you ' + name + '! Your onboarding order for [' + pkg + '] has been recorded. Lead Automation Engineer Adnin Sadat Mahin will email you at ' + email + ' within 2 hours with your VPS deployment intake link.');
@@ -7008,8 +6996,8 @@ window.openAiSolutionFinderModal = function() {
 };
 
 window.calculateAiSolutionRecommendation = function() {
-    const industry = ((document.getElementById('finder-industry-select') ? document.getElementById('finder-industry-select')?.value || '') : "");
-    const bottleneck = ((document.getElementById('finder-bottleneck-select') ? document.getElementById('finder-bottleneck-select')?.value || '') : "");
+    const industry = document.getElementById('finder-industry-select')?.value || '';
+    const bottleneck = document.getElementById('finder-bottleneck-select')?.value || '';
     const box = document.getElementById('finder-result-box');
     if (!box) return;
 
@@ -8050,9 +8038,9 @@ window.openPartnerWithdrawalModal = function() {
 
 window.submitPartnerWithdrawal = function(e) {
     e.preventDefault();
-    const amount = parseFloat(((document.getElementById('withdraw-amount-input') ? document.getElementById('withdraw-amount-input')?.value || '') : ""));
-    const method = ((document.getElementById('withdraw-method-select') ? document.getElementById('withdraw-method-select')?.value || '') : "");
-    const account = ((document.getElementById('withdraw-account-input') ? document.getElementById('withdraw-account-input')?.value || '') : "");
+    const amount = parseFloat(document.getElementById('withdraw-amount-input')?.value || '');
+    const method = document.getElementById('withdraw-method-select')?.value || '';
+    const account = document.getElementById('withdraw-account-input')?.value || '';
 
     let partner = window.getIinshaPartnerData();
     partner.metrics.unpaidCommission = Math.max(0, partner.metrics.unpaidCommission - amount);
@@ -8143,10 +8131,10 @@ window.openPartnerAuthModal = function() {
 
 window.submitPartnerAuth = function(e) {
     e.preventDefault();
-    const name = ((document.getElementById('partner-reg-name') ? document.getElementById('partner-reg-name')?.value || '') : "");
-    const email = ((document.getElementById('partner-reg-email') ? document.getElementById('partner-reg-email')?.value || '') : "");
-    const slug = ((document.getElementById('partner-reg-slug') ? document.getElementById('partner-reg-slug')?.value || '') : "").trim().replace(/[^a-zA-Z0-9-_]/g, '') || 'partner';
-    const payout = ((document.getElementById('partner-reg-payout') ? document.getElementById('partner-reg-payout')?.value || '') : "");
+    const name = document.getElementById('partner-reg-name')?.value || '';
+    const email = document.getElementById('partner-reg-email')?.value || '';
+    const slug = document.getElementById('partner-reg-slug')?.value || ''.trim().replace(/[^a-zA-Z0-9-_]/g, '') || 'partner';
+    const payout = document.getElementById('partner-reg-payout')?.value || '';
 
     const newPartner = {
         id: `AFF-${Math.floor(1000 + Math.random()*9000)}`,
