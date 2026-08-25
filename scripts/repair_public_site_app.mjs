@@ -34,11 +34,12 @@ while (true) {
   changed = true;
 }
 
-// Repair a known generator defect that emits invalid conditional expressions like:
-// const x = ((document.getElementById('field') ? document.getElementById('field')?.value || '') : "");
-// Only this exact shape is rewritten; other source is left untouched.
-const malformedTernary = /const\s+(\w+)\s*=\s*\(\(document\.getElementById\('([^']+)'\)\s*\?\s*document\.getElementById\('\2'\)\?\.value\s*\|\|\s*''\)\s*:\s*""\);/g;
-const repairedSource = source.replace(malformedTernary, "const $1 = document.getElementById('$2')?.value || '';" );
+// Repair the generator's malformed DOM-value ternary in any wrapper context.
+// Example bad shape:
+// ((document.getElementById('field') ? document.getElementById('field')?.value || '') : "")
+// Replace only this exact duplicated-DOM-ID ternary pattern.
+const malformedTernary = /\(\(document\.getElementById\('([^']+)'\)\s*\?\s*document\.getElementById\('\1'\)\?\.value\s*\|\|\s*''\)\s*:\s*""\)/g;
+const repairedSource = source.replace(malformedTernary, "document.getElementById('$1')?.value || ''");
 if (repairedSource !== source) {
   source = repairedSource;
   changed = true;
