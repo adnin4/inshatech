@@ -1,7 +1,9 @@
 /**
  * Cloudflare Pages Function: /api/missions/state
- * Checkpointed Mission State Manager & Lifecycle Controller
- * Supports DRAFT -> PLANNING -> RUNNING -> WAITING_APPROVAL -> EXECUTING -> COMPLETED
+ * Checkpointed Mission State Manager & Lifecycle Controller.
+ *
+ * State changes describe requested/verified lifecycle transitions. No endpoint
+ * response is a claim that an external side effect happened without evidence.
  */
 
 export async function onRequestPost(context) {
@@ -15,10 +17,10 @@ export async function onRequestPost(context) {
 
     try {
         const body = await context.request.json().catch(() => ({}));
-        const action = body.action || 'create_mission'; // 'create_mission', 'update_trace', 'checkpoint_decision', 'get_state'
+        const action = body.action || 'create_mission';
 
         if (action === 'create_mission') {
-            const missionId = "mis_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
+            const missionId = `mis_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
             const title = body.title || "Custom AI Automation Mission";
             const goal = body.goal || "Scale Business Revenue";
             const contextData = body.context || {};
@@ -29,48 +31,55 @@ export async function onRequestPost(context) {
                 goal,
                 status: 'PLANNING',
                 state_machine_stage: 'Analysing requirements',
-                budget_allocated: 20.00,
-                budget_used: 0.0042,
-                agents_invoked: ['COMMANDER', 'SALES', 'ARCHITECT'],
-                tool_calls_count: 3,
+                budget_allocated: Number(body.budget_allocated || 20.00),
+                budget_used: 0,
+                agents_invoked: [],
+                tool_calls_count: 0,
                 trace_steps: [
-                    { name: 'Understanding goal', status: 'COMPLETED', agent: 'COMMANDER', timestamp: new Date().toISOString() },
-                    { name: 'Analysing requirements', status: 'COMPLETED', agent: 'SALES', timestamp: new Date().toISOString() },
-                    { name: 'Selecting architecture', status: 'IN_PROGRESS', agent: 'ARCHITECT', timestamp: new Date().toISOString() }
+                    { name: 'Understanding goal', status: 'PLANNED', agent: 'COMMANDER', timestamp: new Date().toISOString() },
+                    { name: 'Analysing requirements', status: 'PLANNED', agent: 'SALES', timestamp: new Date().toISOString() },
+                    { name: 'Selecting architecture', status: 'PLANNED', agent: 'ARCHITECT', timestamp: new Date().toISOString() }
                 ],
                 context: contextData,
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
+                production_claim: false,
+                verification: 'PLANNING_ONLY'
             };
 
-            return new Response(JSON.stringify({
-                status: "SUCCESS",
-                mission
-            }), { headers, status: 200 });
+            return new Response(JSON.stringify({ status: "OK", mission }), { headers, status: 200 });
         }
 
         if (action === 'checkpoint_decision') {
             const checkpointId = body.checkpoint_id;
-            const decision = body.decision; // 'APPROVED', 'EDITED', 'REJECTED'
+            const decision = body.decision;
             const editedPayload = body.edited_payload || null;
 
+            if (!['APPROVED', 'EDITED', 'REJECTED'].includes(decision)) {
+                return new Response(JSON.stringify({ status: 'ERROR', error: 'Invalid checkpoint decision' }), { headers, status: 400 });
+            }
+
             return new Response(JSON.stringify({
-                status: "SUCCESS",
+                status: "OK",
                 checkpoint_id: checkpointId,
                 decision,
                 edited_payload: editedPayload,
-                message: decision === 'APPROVED' ? 'Action approved. Resuming mission execution.' : (decision === 'EDITED' ? 'Action modified. Executing with updated arguments.' : 'Action rejected. Mission safely halted.')
+                execution_state: decision === 'REJECTED' ? 'HALTED' : 'APPROVAL_RECORDED',
+                production_claim: false,
+                message: decision === 'APPROVED'
+                    ? 'Approval recorded. A verified executor must still provide an execution receipt.'
+                    : decision === 'EDITED'
+                        ? 'Edited decision recorded. A verified executor must still provide an execution receipt.'
+                        : 'Action rejected. Mission remains safely halted.'
             }), { headers, status: 200 });
         }
 
         return new Response(JSON.stringify({
-            status: "SUCCESS",
-            message: "Mission State Operational"
+            status: "OK",
+            message: "Mission state service available",
+            production_claim: false
         }), { headers, status: 200 });
 
     } catch (err) {
-        return new Response(JSON.stringify({
-            status: "ERROR",
-            error: err.message
-        }), { headers, status: 500 });
+        return new Response(JSON.stringify({ status: "ERROR", error: err.message }), { headers, status: 500 });
     }
 }
