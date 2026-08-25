@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Repository JavaScript syntax gate
+        run: node scripts/javascript_syntax_gate.mjs
+
       - name: Install Playwright
         run: npm install --no-save --no-package-lock playwright@1.55.0
 
