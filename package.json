@@ -4,9 +4,10 @@
   "description": "IINSHA AI-BOS: Autonomous AI Company Operating System & Frontier Ecosystem Platform",
   "main": "app.js",
   "scripts": {
-    "test": "node scratch/comprehensive_test.js && node scratch/verify_55_tracks.js && node scratch/test_revenue_lifecycle.js && node scratch/test_autonomous_business.js && node scratch/test_autonomous_company_completion.js && node scratch/test_final_mission_completion.js",
-    "test:autonomous": "node scratch/test_revenue_lifecycle.js && node scratch/test_autonomous_business.js && node scratch/test_autonomous_company_completion.js && node scratch/test_final_mission_completion.js",
-    "test:mission": "node scratch/test_final_mission_completion.js",
+    "test": "node scratch/verify_production_truth.js && node scratch/comprehensive_test.js && node scratch/verify_55_tracks.js && node scratch/test_revenue_lifecycle.js && node scratch/test_autonomous_business.js && node scratch/test_autonomous_company_completion.js && node scratch/test_final_mission_completion.js",
+    "test:truth": "node scratch/verify_production_truth.js",
+    "test:autonomous": "node scratch/verify_production_truth.js && node scratch/test_revenue_lifecycle.js && node scratch/test_autonomous_business.js && node scratch/test_autonomous_company_completion.js && node scratch/test_final_mission_completion.js",
+    "test:mission": "node scratch/verify_production_truth.js && node scratch/test_final_mission_completion.js",
     "build": "python deploy_to_cloudflare_pages.py"
   },
   "keywords": [
