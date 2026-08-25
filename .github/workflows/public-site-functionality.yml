@@ -1,0 +1,32 @@
+name: Public Site Functionality Gate
+
+on:
+  push:
+    branches: [site-functionality-recovery]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  public-site-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        run: npm install --no-save --no-package-lock playwright@1.55.0
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run public site E2E
+        env:
+          SITE_BASE_URL: https://inshatech.pages.dev
+        run: node scripts/public_site_e2e.mjs
