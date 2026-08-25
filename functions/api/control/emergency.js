@@ -1,6 +1,9 @@
 /**
  * Cloudflare Pages Function: /api/control/emergency
- * Emergency Command Center API (1-Click Action Dispatcher)
+ * Emergency Command Center API.
+ *
+ * This endpoint only authorizes an emergency action. It never claims that a
+ * side effect occurred unless an independently verified executor receipt exists.
  */
 
 export async function onRequestPost(context) {
@@ -17,14 +20,14 @@ export async function onRequestPost(context) {
         const { action, target_id, reason = 'Owner Emergency Intervention' } = body;
 
         const EMERGENCY_ACTIONS = {
-            'pause_all_ai': 'All 13 AI Agent Swarms and active Mission DAGs immediately paused.',
-            'resume_all_ai': 'AI Swarms and execution pipelines resumed.',
-            'kill_agent': `Agent ${target_id || 'SPECIFIED'} terminated immediately and active runs aborted.`,
-            'disable_tool': `Tool ${target_id || 'SPECIFIED'} disabled across all permission levels.`,
-            'freeze_payments': 'Payment processing and checkout endpoints locked into maintenance mode.',
-            'freeze_affiliates': 'Affiliate commission releases and payout requests frozen.',
-            'lock_admin': 'Admin session authentication locked. Emergency break-glass required.',
-            'rotate_secrets': 'All Secret Broker keys queued for immediate cryptographic rotation.'
+            pause_all_ai: true,
+            resume_all_ai: true,
+            kill_agent: true,
+            disable_tool: true,
+            freeze_payments: true,
+            freeze_affiliates: true,
+            lock_admin: true,
+            rotate_secrets: true
         };
 
         if (!action || !EMERGENCY_ACTIONS[action]) {
@@ -34,18 +37,24 @@ export async function onRequestPost(context) {
             }), { headers, status: 400 });
         }
 
-        const incidentId = "inc_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
+        // This API currently has no bound side-effect executor. Do not claim
+        // EXECUTED merely because the owner requested the action.
+        const incidentId = `inc_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
         return new Response(JSON.stringify({
-            status: 'EXECUTED',
+            status: 'BLOCKED',
+            reason: 'EMERGENCY_EXECUTOR_NOT_CONFIGURED',
+            production_claim: false,
+            verified: false,
+            test_double: false,
             incident_id: incidentId,
             action,
             target_id: target_id || null,
-            reason,
-            message: EMERGENCY_ACTIONS[action],
-            dispatched_by: 'Owner (Level 1)',
+            owner_request: true,
+            requested_reason: reason,
+            message: 'Emergency action recorded but no verified side-effect executor is bound. No production side effect is claimed.',
             timestamp: new Date().toISOString()
-        }), { headers, status: 200 });
+        }), { headers, status: 202 });
 
     } catch (err) {
         return new Response(JSON.stringify({
