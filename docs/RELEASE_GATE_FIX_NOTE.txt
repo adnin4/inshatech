@@ -1,0 +1,1 @@
+Production release gate parsing fix: the exact-SHA check step previously used a malformed shell heredoc indentation and failed before deployment. The current branch aligns the heredoc terminator and command-substitution delimiter. No application, database, payment, provider, or Cloudflare behavior changes are included.
