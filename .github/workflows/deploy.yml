@@ -77,24 +77,24 @@ jobs:
             export CHECKS_JSON="$json"
 
             gate=$(node <<'NODE'
-            const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
-            const required = [
-              'IINSHA AI-BOS Master Production CI',
-              'Zero-Regression & Cloudflare Pages Guard',
-              'Final Activation Gates',
-              'Autonomous Company Wave 1'
-            ];
-            let ready = true;
-            let failed = false;
-            for (const name of required) {
-              const matches = checks.filter(c => c.name === name);
-              const latest = matches.sort((a,b) => new Date(b.completed_at || b.started_at || 0) - new Date(a.completed_at || a.started_at || 0))[0];
-              console.log(`${name}: ${latest ? `${latest.status}/${latest.conclusion}` : 'not yet reported'}`);
-              if (!latest || latest.status !== 'completed') ready = false;
-              if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
-            }
-            process.stdout.write(`${ready ? 'READY' : 'WAIT'} ${failed ? 'FAILED' : 'OK'}\n`);
-            NODE
+const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
+const required = [
+  'IINSHA AI-BOS Master Production CI',
+  'Zero-Regression & Cloudflare Pages Guard',
+  'Final Activation Gates',
+  'Autonomous Company Wave 1'
+];
+let ready = true;
+let failed = false;
+for (const name of required) {
+  const matches = checks.filter(c => c.name === name);
+  const latest = matches.sort((a, b) => new Date(b.completed_at || b.started_at || 0) - new Date(a.completed_at || a.started_at || 0))[0];
+  console.log(`${name}: ${latest ? `${latest.status}/${latest.conclusion}` : 'not yet reported'}`);
+  if (!latest || latest.status !== 'completed') ready = false;
+  if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
+}
+process.stdout.write(`${ready ? 'READY' : 'WAIT'} ${failed ? 'FAILED' : 'OK'}\n`);
+NODE
             )
 
             echo "Gate summary: $gate (attempt $attempt/60)"
