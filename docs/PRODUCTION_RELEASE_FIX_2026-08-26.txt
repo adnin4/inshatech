@@ -1,0 +1,1 @@
+Release gate root-cause note: the production workflow had a malformed shell heredoc indentation in the exact-SHA check polling step. The fix aligns the heredoc terminator and command-substitution delimiter. No application, database, payment, provider, or Cloudflare behavior changes.
