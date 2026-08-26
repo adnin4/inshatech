@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  checks: read
 
 concurrency:
   group: "production-release-verification"
@@ -73,11 +74,9 @@ jobs:
               -H "Authorization: Bearer $GH_TOKEN" \
               -H 'Accept: application/vnd.github+json' \
               "https://api.github.com/repos/$REPOSITORY/commits/$EXPECTED_SHA/check-runs?per_page=100")
-
             export CHECKS_JSON="$json"
-            ready=1
-            failed=0
-            node <<'NODE'
+
+            gate=$(node <<'NODE'
             const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
             const required = [
               'IINSHA AI-BOS Master Production CI',
@@ -94,17 +93,16 @@ jobs:
               if (!latest || latest.status !== 'completed') ready = false;
               if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
             }
-            process.stdout.write(`__GATE__${ready ? 1 : 0}__FAILED__${failed ? 1 : 0}\n`);
+            process.stdout.write(`${ready ? 'READY' : 'WAIT'} ${failed ? 'FAILED' : 'OK'}\n`);
             NODE
-
-            gate=$(printf '%s\n' "$CHECKS_JSON" | node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync(0,'utf8')).check_runs||[]; const r=['IINSHA AI-BOS Master Production CI','Zero-Regression & Cloudflare Pages Guard','Final Activation Gates','Autonomous Company Wave 1']; let ready=r.every(n=>{const a=x.filter(c=>c.name===n).sort((p,q)=>new Date(q.completed_at||q.started_at||0)-new Date(p.completed_at||p.started_at||0))[0]; return a&&a.status==='completed'}); let failed=r.some(n=>{const a=x.filter(c=>c.name===n).sort((p,q)=>new Date(q.completed_at||q.started_at||0)-new Date(p.completed_at||p.started_at||0))[0]; return a&&a.status==='completed'&&a.conclusion!=='success'}); console.log(`${ready?'READY':'WAIT'} ${failed?'FAILED':'OK'}`)")
+            )
 
             echo "Gate summary: $gate (attempt $attempt/60)"
             if echo "$gate" | grep -q 'FAILED'; then
               echo 'AUTHORITATIVE CI GATE FAIL'
               exit 1
             fi
-            if echo "$gate" | grep -q '^READY OK$'; then
+            if echo "$gate" | tail -n 1 | grep -q '^READY OK$'; then
               echo 'AUTHORITATIVE CI GATE PASS'
               exit 0
             fi
