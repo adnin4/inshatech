@@ -1,0 +1,1 @@
+Production release gate root cause: malformed Bash heredoc indentation in exact-SHA check polling. The release branch fixes only workflow parsing; production application behavior is unchanged. Post-merge evidence still requires authoritative CI, exact live SHA parity, and browser/surface smoke.
