@@ -1,0 +1,1 @@
+Production release gate root cause: malformed Bash heredoc indentation in exact-SHA check polling. This branch contains only the workflow parsing correction. No application, database, payment, provider, or Cloudflare application behavior changes are intended.
