@@ -1,0 +1,1 @@
+The production release workflow failed before deployment due to malformed Bash heredoc indentation in the exact-SHA gate. The isolated release branch fixes only the workflow parsing. Post-merge proof required: authoritative CI green, production deployment, exact live SHA parity, and browser/surface smoke.
