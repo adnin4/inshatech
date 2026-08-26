@@ -61,14 +61,7 @@ jobs:
           EXPECTED_SHA: ${{ github.sha }}
         shell: bash
         run: |
-          set -euo pipefail
-          required=(
-            'IINSHA AI-BOS Master Production CI'
-            'Zero-Regression & Cloudflare Pages Guard'
-            'Final Activation Gates'
-            'Autonomous Company Wave 1'
-          )
-
+          set -u
           for attempt in $(seq 1 60); do
             json=$(curl --fail --silent --show-error \
               -H "Authorization: Bearer $GH_TOKEN" \
@@ -76,36 +69,43 @@ jobs:
               "https://api.github.com/repos/$REPOSITORY/commits/$EXPECTED_SHA/check-runs?per_page=100")
             export CHECKS_JSON="$json"
 
-            gate=$(node <<'NODE'
-            const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
-            const required = [
-              'IINSHA AI-BOS Master Production CI',
-              'Zero-Regression & Cloudflare Pages Guard',
-              'Final Activation Gates',
-              'Autonomous Company Wave 1'
-            ];
-            let ready = true;
-            let failed = false;
-            for (const name of required) {
-              const matches = checks.filter(c => c.name === name);
-              const latest = matches.sort((a,b) => new Date(b.completed_at || b.started_at || 0) - new Date(a.completed_at || a.started_at || 0))[0];
-              console.log(`${name}: ${latest ? `${latest.status}/${latest.conclusion}` : 'not yet reported'}`);
-              if (!latest || latest.status !== 'completed') ready = false;
-              if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
-            }
-            process.stdout.write(`${ready ? 'READY' : 'WAIT'} ${failed ? 'FAILED' : 'OK'}\n`);
-            NODE
-            )
+            set +e
+            node > /tmp/gate-summary.txt <<'NODE'
+const checks = JSON.parse(process.env.CHECKS_JSON).check_runs || [];
+const required = [
+  'IINSHA AI-BOS Master Production CI',
+  'Zero-Regression & Cloudflare Pages Guard',
+  'Final Activation Gates',
+  'Autonomous Company Wave 1'
+];
+let ready = true;
+let failed = false;
+for (const name of required) {
+  const matches = checks.filter(c => c.name === name);
+  const latest = matches.sort((a, b) =>
+    new Date(b.completed_at || b.started_at || 0) - new Date(a.completed_at || a.started_at || 0)
+  )[0];
+  console.log(`${name}: ${latest ? `${latest.status}/${latest.conclusion}` : 'not yet reported'}`);
+  if (!latest || latest.status !== 'completed') ready = false;
+  if (latest && latest.status === 'completed' && latest.conclusion !== 'success') failed = true;
+}
+if (failed) process.exit(2);
+if (!ready) process.exit(1);
+process.exit(0);
+NODE
+            rc=$?
+            set -e
 
-            echo "Gate summary: $gate (attempt $attempt/60)"
-            if echo "$gate" | grep -q 'FAILED'; then
+            cat /tmp/gate-summary.txt
+            if [ "$rc" -eq 2 ]; then
               echo 'AUTHORITATIVE CI GATE FAIL'
               exit 1
             fi
-            if echo "$gate" | tail -n 1 | grep -q '^READY OK$'; then
+            if [ "$rc" -eq 0 ]; then
               echo 'AUTHORITATIVE CI GATE PASS'
               exit 0
             fi
+            echo "AUTHORITATIVE CI GATE WAIT (attempt $attempt/60)"
             sleep 10
           done
 
