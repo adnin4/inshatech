@@ -182,7 +182,7 @@
 
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 14px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
-                        <input type="checkbox" checked style="accent-color: var(--accent-cyan);"> Remember Me
+                        <input type="checkbox" id="signin-remember" name="remember_me" aria-label="Remember Me" checked style="accent-color: var(--accent-cyan);"> Remember Me
                     </label>
                     <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I%20need%20help%20with%20my%20IINSHA%20affiliate%20password" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">Forgot Password?</a>
                 </div>
@@ -221,7 +221,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Preferred Payout Method *</label>
-                    <select id="reg-payout-method" class="form-input" style="background: rgba(15,23,42,0.95);">
+                    <select id="reg-payout-method" name="payout_method" aria-label="Preferred Payout Method" class="form-input" style="background: rgba(15,23,42,0.95);">
                         <option value="bKash (Personal / Merchant)">📱 bKash (Personal / Merchant)</option>
                         <option value="Nagad">📱 Nagad</option>
                         <option value="Wise Bank Wire (USD/GBP)">Å’ Wise Bank Wire (USD/GBP/EUR)</option>
