@@ -17,7 +17,7 @@
             category: 'Lead Generation',
             priceUSD: 850,
             badge: '🔥 Top Seller',
-            desc: '5-Agent residential stealth scraper extracting 100+ verified decision-makers with corporate MX validation.',
+            desc: '5-Agent automated web extraction pipeline extracting 100+ verified decision-makers with corporate MX validation.',
             n8nReady: true
         },
         {
