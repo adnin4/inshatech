@@ -920,7 +920,7 @@ function initFomoToasts() {
         "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
         "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
         "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
-        "🚀 Hostinger VPS Docker Container #04 deployed successfully"
+        "🚀 Self-Hosted Linux VPS Docker Container #04 deployed successfully"
     ];
 
     let toastContainer = document.getElementById('toastContainer');
@@ -1518,7 +1518,7 @@ function initInteractiveAiAgentBuilder() {
                         <button onclick="navigator.clipboard.writeText(this.getAttribute('data-json')); alert('n8n Workflow JSON copied to clipboard!');" data-json="${encodeURIComponent(n8nWorkflowJSON)}" class="btn btn-glass-sm" style="flex:1;">
                             📋 Copy n8n Workflow JSON
                         </button>
-                        <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I built an AI Agent blueprint on your website using ' + model + ' and n8n. Please deploy this to Hostinger VPS Docker for me.')}" target="_blank" class="btn btn-primary-sm" style="flex:1; text-align:center; font-weight:bold;">
+                        <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I built an AI Agent blueprint on your website using ' + model + ' and n8n. Please deploy this to Self-Hosted Linux VPS Docker for me.')}" target="_blank" class="btn btn-primary-sm" style="flex:1; text-align:center; font-weight:bold;">
                             💬 Deploy This Agent via WhatsApp →
                         </a>
                     </div>
@@ -1656,7 +1656,7 @@ function initAiVoiceSimulator() {
 
                     <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e2e8f0; background:#000; padding:10px; border-radius:8px;">
                         <p style="margin:0 0 6px 0; color:#94a3b8;"><strong>[CLIENT]:</strong> "Hi, I need an automated AI customer support agent for my e-commerce store."</p>
-                        <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 3.0 Pro support bot on your Hostinger VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
+                        <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 3.0 Pro support bot on your Self-Hosted Linux VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
                     </div>
                 </div>
             `;
@@ -1711,7 +1711,7 @@ const IinshaBackendAdapter = {
             try { return JSON.parse(stored); } catch(e){}
         }
         return [
-            { id: 'svc_1', name: 'n8n Workflow Automation', category: 'AI & Automation', price: 499, commission: 20, status: 'Published', deliveryTime: '24 Hours', desc: 'Custom n8n AI workflow pipeline on Hostinger VPS Docker.' },
+            { id: 'svc_1', name: 'n8n Workflow Automation', category: 'AI & Automation', price: 499, commission: 20, status: 'Published', deliveryTime: '24 Hours', desc: 'Custom n8n AI workflow pipeline on Self-Hosted Linux VPS Docker.' },
             { id: 'svc_2', name: 'Playwright Pipeline Resilient Scraper', category: 'Data & Scraping', price: 699, commission: 25, status: 'Published', deliveryTime: '48 Hours', desc: 'Anti-bot resilient data scraper with proxy rotation & Telegram alerts.' },
             { id: 'svc_3', name: 'Gemini 3.0 Pro RAG Chatbot', category: 'AI Agents', price: 899, commission: 30, status: 'Published', deliveryTime: '3 Days', desc: 'Pinecone Vector DB RAG chatbot for WhatsApp & Web Chat.' },
             { id: 'svc_4', name: 'Full AI-BOS SaaS Setup', category: 'Enterprise OS', price: 1499, commission: 35, status: 'Published', deliveryTime: '5 Days', desc: 'Complete HubSpot + Shopify + n8n AI Business Operating System.' }
@@ -1911,7 +1911,7 @@ function initGoogleAiN8nPortfolio() {
                         <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Playwright Pipeline B2B Lead Scraper</h4>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Self-Hosted Linux VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
                     <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">
                         <code>Stack: Playwright Pipeline → n8n → Gemini 3.0 Pro → Telegram Bot</code>
                     </div>
@@ -2015,10 +2015,10 @@ function initUltraStrongPortfolio() {
                             <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#8b5cf6; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
                             <span style="font-size:0.85rem; color:#c4b5fd; font-weight:bold; font-family:var(--font-mono);">99.999% Uptime</span>
                         </div>
-                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Hostinger VPS Docker Swarm</h3>
+                        <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Self-Hosted Linux VPS Docker Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated CI/CD failover and container recovery system ensuring continuous deployment with zero downtime during traffic spikes.</p>
                         <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8b5cf6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
-                            <code>Stack: Docker Compose ➔ Hostinger VPS ➔ Telegram Bot</code>
+                            <code>Stack: Docker Compose ➔ Self-Hosted Linux VPS ➔ Telegram Bot</code>
                         </div>
                     </div>
                     <button onclick="alert('📊 Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
@@ -2283,7 +2283,7 @@ function sendUserMessageToAiOrderAgent() {
     renderAiOrderModalContent();
 
     setTimeout(() => {
-        let aiReply = `Understood! I have analyzed your requirement. For **${currentAiOrderState.serviceName}**, our **${currentAiOrderState.packageTier}** ($${currentAiOrderState.price}) includes 24-48h setup on Hostinger VPS Docker with full source code.\n\nWith your **10% Launch Discount**, the final price is **$${currentAiOrderState.discountedPrice}**. Please fill in your Name and WhatsApp phone number below and click Confirm!`;
+        let aiReply = `Understood! I have analyzed your requirement. For **${currentAiOrderState.serviceName}**, our **${currentAiOrderState.packageTier}** ($${currentAiOrderState.price}) includes 24-48h setup on Self-Hosted Linux VPS Docker with full source code.\n\nWith your **10% Launch Discount**, the final price is **$${currentAiOrderState.discountedPrice}**. Please fill in your Name and WhatsApp phone number below and click Confirm!`;
 
         if (userText.toLowerCase().includes('price') || userText.toLowerCase().includes('discount') || userText.toLowerCase().includes('cost')) {
             aiReply = `Great question! The standard price for **${currentAiOrderState.serviceName}** is **$${currentAiOrderState.price}**, but with your automatic 10% discount, it is reduced to **$${currentAiOrderState.discountedPrice}**! This includes full deployment and 30 days priority support.`;
@@ -2635,7 +2635,7 @@ window.sendQuickChipToAi = sendQuickChipToAi;
     renderAiOrderModalContent();
 
     setTimeout(() => {
-        let aiReply = `Understood! I have analyzed your requirement. For **${currentAiOrderState.serviceName}**, our **${currentAiOrderState.packageTier}** ($${currentAiOrderState.price}) includes 24-48h setup on Hostinger VPS Docker with full source code.\n\nWith your **10% Launch Discount**, the final price is **$${currentAiOrderState.discountedPrice}**. Please fill in your Name and WhatsApp phone number below and click Confirm!`;
+        let aiReply = `Understood! I have analyzed your requirement. For **${currentAiOrderState.serviceName}**, our **${currentAiOrderState.packageTier}** ($${currentAiOrderState.price}) includes 24-48h setup on Self-Hosted Linux VPS Docker with full source code.\n\nWith your **10% Launch Discount**, the final price is **$${currentAiOrderState.discountedPrice}**. Please fill in your Name and WhatsApp phone number below and click Confirm!`;
 
         if (userText.toLowerCase().includes('price') || userText.toLowerCase().includes('discount') || userText.toLowerCase().includes('cost')) {
             aiReply = `Great question! The standard price for **${currentAiOrderState.serviceName}** is **$${currentAiOrderState.price}**, but with your automatic 10% discount, it is reduced to **$${currentAiOrderState.discountedPrice}**! This includes full deployment and 30 days priority support.`;
@@ -2734,7 +2734,7 @@ function initAiInteractivePlayground() {
                 </div>
 
                 <button onclick="openAiOrderConsultationModal('Custom Playground Solution', 'Enterprise Tier', 499)" class="btn btn-emerald-sm" style="width:100%; text-align:center; font-weight:bold;">
-                    🚀 Deploy This Playground Pipeline to Hostinger VPS Docker →
+                    🚀 Deploy This Playground Pipeline to Self-Hosted Linux VPS Docker →
                 </button>
             </div>
         `;
@@ -3563,7 +3563,7 @@ var iinsha13SwarmRoster = [
     { id: 'agent-2', name: 'HUNTER Agent', role: 'B2B Client Discovery & Intent Scraper', status: 'ACTIVE', confidence: '99.4%' },
     { id: 'agent-3', name: 'SEDUCER Agent', role: 'AI Sales Closing & SoW Contract Generator', status: 'ACTIVE', confidence: '99.7%' },
     { id: 'agent-4', name: 'CREATOR Agent', role: 'Omnichannel B2B Content & SEO Copywriter', status: 'ACTIVE', confidence: '97.9%' },
-    { id: 'agent-5', name: 'BUILDER Agent', role: 'Auto-Coding & Hostinger VPS n8n Deployer', status: 'ACTIVE', confidence: '99.1%' },
+    { id: 'agent-5', name: 'BUILDER Agent', role: 'Auto-Coding & Self-Hosted Linux VPS n8n Deployer', status: 'ACTIVE', confidence: '99.1%' },
     { id: 'agent-6', name: 'KEEPER Agent', role: 'Proactive Client Retention & NPS Monitor', status: 'ACTIVE', confidence: '98.5%' },
     { id: 'agent-7', name: 'COMMANDER Agent', role: 'Affiliate Army & 2-Tier Network Manager', status: 'ACTIVE', confidence: '98.9%' },
     { id: 'agent-8', name: 'TREASURER Agent', role: 'Automated Finance, P&L & Invoice Engine', status: 'ACTIVE', confidence: '99.6%' },

@@ -191,7 +191,7 @@
                 </h2>
 
                 <div style="background: rgba(0,0,0,0.4); padding: 16px; border-radius: 8px; border-left: 3px solid var(--accent-emerald); font-size: 0.9rem; color: #e2e8f0; margin-bottom: 20px; line-height: 1.6;">
-                    <strong>GEO Summary / Key Takeaway:</strong> Involuntary churn from failed credit card charges in SaaS can be recovered automatically by connecting Stripe webhooks to self-hosted n8n on a Hostinger VPS. Triggering single-use recovery links via SMS recovers 35% of lapsed subscriptions within 24 hours.
+                    <strong>GEO Summary / Key Takeaway:</strong> Involuntary churn from failed credit card charges in SaaS can be recovered automatically by connecting Stripe webhooks to self-hosted n8n on a Self-Hosted Linux VPS. Triggering single-use recovery links via SMS recovers 35% of lapsed subscriptions within 24 hours.
                 </div>
 
                 <div style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">
@@ -213,7 +213,7 @@
   "name": "Stripe Churn Recovery",
   "trigger": "Stripe Webhook (invoice.payment_failed)",
   "nodes": ["Stripe Trigger", "Postgres Audit", "Twilio SMS", "Slack Alert"],
-  "environment": "Hostinger VPS Docker Container"
+  "environment": "Self-Hosted Linux VPS Docker Container"
 }</code></pre>
                 </div>
 

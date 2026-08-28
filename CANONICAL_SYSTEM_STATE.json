@@ -1,19 +1,19 @@
 {
-  "repository_head": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "default_branch": "master",
   "production_url": "https://inshatech.pages.dev",
   "deployment_provider": "cloudflare_pages",
   "database_project": "uulqaslcfjrvkvyegmvo",
+  "supabase_url": "https://uulqaslcfjrvkvyegmvo.supabase.co",
   "api_authority": "https://inshatech.pages.dev/api",
   "canonical_frontend_root": "portfolio-showcase",
   "git_status": "CLEAN",
-  "commit_message": "fix: make Cloudflare Pages the authoritative production deployment",
   "parity_state": {
-    "git_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "build_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "deploy_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "live_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "status": "EXACT_PARITY_MATCH"
+    "git_sha": "4b9f3a4b7f8c05763b65ef8c13038dcda50cbe44",
+    "build_sha": "PENDING_LIVE_VERIFICATION",
+    "deploy_sha": "PENDING_LIVE_VERIFICATION",
+    "live_sha": "PENDING_LIVE_VERIFICATION",
+    "status": "PENDING_LIVE_VERIFICATION"
   },
-  "status": "VERIFIED"
+  "status": "PENDING_LIVE_VERIFICATION"
 }
