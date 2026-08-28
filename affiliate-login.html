@@ -140,11 +140,11 @@
             </a>
             
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">°Å¸  Home</a>
-                <a href="affiliate.html" class="nav-link">°Å¸¤ Program Overview</a>
-                <a href="affiliate-dashboard.html" class="nav-link">°Å¸  Partner Dashboard</a>
-                <a href="store.html" class="nav-link">°Å¸€™ Store</a>
-                <a href="marketplace.html" class="nav-link">°Å¸¬ Marketplace</a>
+                <a href="index.html" class="nav-link">  Home</a>
+                <a href="affiliate.html" class="nav-link">¤ Program Overview</a>
+                <a href="affiliate-dashboard.html" class="nav-link">  Partner Dashboard</a>
+                <a href="store.html" class="nav-link">€™ Store</a>
+                <a href="marketplace.html" class="nav-link">¬ Marketplace</a>
             </nav>
 
             <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
@@ -157,27 +157,27 @@
     <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0;">
         <div class="auth-container">
             <div style="text-align: center; margin-bottom: 24px;">
-                <div style="font-size: 2.2rem; margin-bottom: 6px;">°Å¸€˜</div>
+                <div style="font-size: 2.2rem; margin-bottom: 6px;">€˜</div>
                 <h1 style="color: #fff; font-size: 1.6rem; margin: 0 0 6px 0;">Growth Partner Portal</h1>
                 <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;">Sign in to your affiliate dashboard or create a new partner account to earn 15% to 30% recurring commissions.</p>
             </div>
 
             <!-- MODE SWITCH TABS -->
             <div style="display: flex; gap: 10px; margin-bottom: 24px;">
-                <button type="button" onclick="setAuthMode('signin')" id="tab-btn-signin" class="auth-tab-btn active">°Å¸€˜ Partner Sign In</button>
-                <button type="button" onclick="setAuthMode('register')" id="tab-btn-register" class="auth-tab-btn">°Å¸Å¡ Register Account</button>
+                <button type="button" onclick="setAuthMode('signin')" id="tab-btn-signin" class="auth-tab-btn active">€˜ Partner Sign In</button>
+                <button type="button" onclick="setAuthMode('register')" id="tab-btn-register" class="auth-tab-btn">Å¡ Register Account</button>
             </div>
 
             <!-- 1. SIGN IN FORM -->
             <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
                 <div class="form-group">
                     <label class="form-label">Email Address or Referral Code *</label>
-                    <input type="text" id="signin-identifier" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" class="form-input">
+                    <input type="text" name="signin_identifier" id="signin-identifier" aria-label="Email Address or Referral Code" autocomplete="username" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Password / Access PIN *</label>
-                    <input type="password" id="signin-password" required  placeholder="”¢”¢”¢”¢”¢”¢”¢”¢" class="form-input">
+                    <input type="password" name="signin_password" id="signin-password" aria-label="Password or Access PIN" autocomplete="current-password" required placeholder="••••••••" class="form-input">
                 </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 14px;">
@@ -188,7 +188,7 @@
                 </div>
 
                 <button type="submit" class="btn-submit">
-                    °Å¸€˜ Sign In & Open Dashboard ¢ 
+                    🚀 Sign In & Open Dashboard →
                 </button>
 
                 <!-- SECURE ENTERPRISE AUTHENTICATION -->
@@ -201,47 +201,47 @@
             <form id="form-register" onsubmit="handleRegisterSubmit(event)" style="display: none;">
                 <div class="form-group">
                     <label class="form-label">Full Name / Agency Name *</label>
-                    <input type="text" id="reg-name" required placeholder="e.g. Tanvir Ahmed" class="form-input">
+                    <input type="text" name="full_name" id="reg-name" aria-label="Full Name or Agency Name" autocomplete="name" required placeholder="e.g. Tanvir Ahmed" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Email Address *</label>
-                    <input type="email" id="reg-email" required placeholder="tanvir@agency.com" class="form-input">
+                    <input type="email" name="email" id="reg-email" aria-label="Email Address" autocomplete="email" required placeholder="tanvir@agency.com" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">WhatsApp / Phone Number *</label>
-                    <input type="tel" id="reg-phone" required placeholder="+8801700000000" class="form-input">
+                    <input type="tel" name="phone" id="reg-phone" aria-label="WhatsApp / Phone Number" autocomplete="tel" required placeholder="+8801700000000" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Create Password *</label>
-                    <input type="password" id="reg-password" required placeholder="Create a secure password" class="form-input">
+                    <input type="password" name="password" id="reg-password" aria-label="Create Password" autocomplete="new-password" required placeholder="Create a secure password" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Preferred Payout Method *</label>
                     <select id="reg-payout-method" class="form-input" style="background: rgba(15,23,42,0.95);">
-                        <option value="bKash (Personal / Merchant)">°Å¸§°Å¸© bKash (Personal / Merchant)</option>
-                        <option value="Nagad">°Å¸§°Å¸© Nagad</option>
-                        <option value="Wise Bank Wire (USD/GBP)">°Å¸Å’ Wise Bank Wire (USD/GBP/EUR)</option>
-                        <option value="Local Bank Transfer">°Å¸¦ Local Bank Transfer</option>
-                        <option value="USDT Crypto (TRC20)">¢Å¡¡ USDT Crypto (TRC20 / BEP20)</option>
+                        <option value="bKash (Personal / Merchant)">📱 bKash (Personal / Merchant)</option>
+                        <option value="Nagad">📱 Nagad</option>
+                        <option value="Wise Bank Wire (USD/GBP)">Å’ Wise Bank Wire (USD/GBP/EUR)</option>
+                        <option value="Local Bank Transfer">¦ Local Bank Transfer</option>
+                        <option value="USDT Crypto (TRC20)">⚡ USDT Crypto (TRC20 / BEP20)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Payout Account / Wallet Number *</label>
-                    <input type="text" id="reg-payout-acc" required placeholder="e.g. 017xxxxxxxx or IBAN" class="form-input">
+                    <input type="text" name="payout_account" id="reg-payout-acc" aria-label="Payout Account or Wallet Number" required placeholder="e.g. 017xxxxxxxx or IBAN" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Custom Referral Code / Slug *</label>
-                    <input type="text" id="reg-ref-code" required placeholder="e.g. tanvir10" style="color: var(--accent-cyan); font-weight: bold; font-family: var(--font-mono);" class="form-input">
+                    <input type="text" name="referral_code" id="reg-ref-code" aria-label="Custom Referral Code" required placeholder="e.g. tanvir10" style="color: var(--accent-cyan); font-weight: bold; font-family: var(--font-mono);" class="form-input">
                 </div>
 
                 <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
-                    °Å¸Å¡ Create Account & Launch Dashboard ¢ 
+                    ✨ Create Account & Launch Dashboard →
                 </button>
             </form>
 
@@ -366,7 +366,7 @@
                     payoutMethod: 'bKash (Personal / Merchant)',
                     payoutAccount: '01629286887',
                     refCode: foundKey,
-                    tier: '°Å¸Å’± Starter Bronze (15%)',
+                    tier: 'Å’± Starter Bronze (15%)',
                     tierLevel: 1,
                     unpaid: 0.00,
                     pending: 0.00,
@@ -411,7 +411,7 @@
                 payoutMethod,
                 payoutAccount,
                 refCode: key,
-                tier: '°Å¸Å’± Starter Bronze (15%)',
+                tier: 'Å’± Starter Bronze (15%)',
                 tierLevel: 1,
                 unpaid: 0.00,
                 pending: 0.00,

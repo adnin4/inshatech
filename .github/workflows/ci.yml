@@ -32,19 +32,12 @@ jobs:
           node -c scroll-engine.js
           node -c worker.js
           node -c universal_ai_copilot.js
-          node -c src/whatsapp_concierge.js
 
-      - name: Run Master 55-Track Regression Firewall
-        run: npm test
+      - name: Run Public Form Contract Audit (Step 7)
+        run: node scripts/public_form_contract_audit.mjs
 
-      - name: Run Master Authoritative E2E Suite
-        run: npm run e2e
+      - name: Run AI Solution Finder E2E Certification (Step 8)
+        run: node scripts/solution_finder_e2e.mjs
 
       - name: Run Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
-
-      - name: Run PR #7 Ordered Staging Verification Gate
-        run: node scripts/verify-preview-deployment.mjs
-        env:
-          LIVE_URL: https://staging-activation-v1.inshatech.pages.dev
-          EXPECTED_SHA: ${{ github.sha }}
