@@ -32,17 +32,20 @@ jobs:
           node -c worker.js
           node -c universal_ai_copilot.js
 
-      - name: Gate 0 — UI/UX Visual Baseline Firewall
+      - name: Gate 0 - UI/UX Visual Baseline Firewall
         run: node scripts/visual_regression_baseline.mjs
 
-      - name: Step 7 — Form Contract Root-Cause Repair Audit
+      - name: Step 7 - Form Contract Root-Cause Repair Audit
         run: node scripts/form_contract_audit.mjs
 
-      - name: Step 8 — AI Solution Finder E2E Certification
+      - name: Step 8 - AI Solution Finder E2E Certification
         run: node scripts/solution_finder_e2e.mjs
 
-      - name: Step 9 — Universal AI Copilot E2E Certification
+      - name: Step 9 - Universal AI Copilot E2E Certification
         run: node scripts/copilot_e2e.mjs
+
+      - name: Step 10 - Agentic Workforce Reliability Certification
+        run: node scripts/agentic_workforce_reliability.mjs
 
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
