@@ -2898,3 +2898,39 @@ form input[type="tel"]:focus {
     overflow: hidden !important;
     backdrop-filter: blur(20px) !important;
 }
+
+
+/* ========================================================
+   AI ORDER & CHECKOUT CONSULTATION MODAL OVERLAY
+   ======================================================== */
+#ai-order-consultation-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    z-index: 9999999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+#ai-order-consultation-modal.active {
+    display: flex !important;
+}
+
+#ai-order-consultation-modal > div {
+    background: #0f172a !important;
+    border: 1px solid rgba(0, 242, 254, 0.35) !important;
+    border-radius: 20px !important;
+    width: 100% !important;
+    max-width: 640px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 242, 254, 0.2) !important;
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}

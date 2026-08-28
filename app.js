@@ -2354,21 +2354,56 @@ function bindAllPackageOrderButtons() {
         const btn = e.target.closest('a, button, .btn');
         if (!btn) return;
 
+        const href = btn.getAttribute('href') || '';
+        const text = (btn.innerText || '').trim();
+
+        // Allow regular page navigation
+        if (href.endsWith('.html') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+            return;
+        }
+
+        // Handle anchor navigation with smooth scrolling
+        if (href.startsWith('#') && href.length > 1) {
+            const targetEl = document.querySelector(href);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+        }
+
+        // Handle order and consultation buttons
         if (
             btn.classList.contains('open-checkout-btn') ||
             btn.classList.contains('template-buy-btn') ||
             btn.classList.contains('order-service-btn') ||
-            btn.hasAttribute('data-order-btn')
+            btn.classList.contains('order-btn') ||
+            btn.classList.contains('store-buy-btn') ||
+            btn.hasAttribute('data-order-btn') ||
+            text.includes('Order Service') ||
+            text.includes('Book Swarm') ||
+            text.includes('Inquire High-Ticket') ||
+            text.includes('Launch AI SaaS') ||
+            text.includes('Get Blueprint') ||
+            text.includes('Buy Pack') ||
+            text.includes('Buy Kit') ||
+            text.includes('Download JSON') ||
+            text.includes('Subscribe ($') ||
+            text.includes('Get This System')
         ) {
             e.preventDefault();
             e.stopPropagation();
 
-            const card = btn.closest('.glass-card, .card, div');
+            const card = btn.closest('.glass-card, .pkg-card, .blueprint-card, .tmpl-card, .premium-card, .card, div');
             const cardTitle = btn.getAttribute('data-service') || (card ? (card.querySelector('h3, h4, h2')?.innerText || 'AI Automation Solution') : 'AI Automation Solution');
-            const priceAttr = btn.getAttribute('data-price') || '499';
+            const priceAttr = btn.getAttribute('data-price') || text || '499';
             let extractedPrice = parseInt(priceAttr.replace(/[^0-9]/g, '')) || 499;
 
-            openAiOrderConsultationModal(cardTitle, 'Professional Tier', extractedPrice);
+            if (typeof openAiOrderConsultationModal === 'function') {
+                openAiOrderConsultationModal(cardTitle, 'Professional Tier', extractedPrice);
+            } else {
+                window.open(`https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin! I would like to order ${cardTitle} ($${extractedPrice}).`)}`, '_blank');
+            }
         }
     });
 }
