@@ -1,0 +1,57 @@
+{
+  "manifest_name": "IINSHA AI-BOS Production Evidence Manifest",
+  "generated_at": "2026-08-28T17:07:00Z",
+  "canonical_repository": "https://github.com/adnin4/inshatech.git",
+  "production_branch": "master",
+  "production_domain": "https://inshatech.pages.dev",
+  "evidence_records": [
+    {
+      "category": "SECURITY",
+      "suite": "P0 Security & Content Leak Audit",
+      "result": "PASS",
+      "files_audited": 344,
+      "violations": 0
+    },
+    {
+      "category": "VISUAL_BASELINE",
+      "suite": "Gate 0 UI/UX Baseline Firewall",
+      "result": "PASS",
+      "invariants_locked": 8,
+      "total_invariants": 8
+    },
+    {
+      "category": "FORM_CONTRACTS",
+      "suite": "Step 7 Form Contract Root-Cause Repair",
+      "result": "PASS",
+      "forms_passed": 6,
+      "fields_audited": 18
+    },
+    {
+      "category": "SOLUTION_FINDER",
+      "suite": "Step 8 AI Solution Finder E2E",
+      "result": "PASS",
+      "tests_passed": 15,
+      "total_tests": 15
+    },
+    {
+      "category": "COPILOT_ENGINE",
+      "suite": "Step 9 Universal AI Copilot E2E",
+      "result": "PASS",
+      "tests_passed": 10,
+      "total_tests": 10
+    },
+    {
+      "category": "SURFACE_SMOKE",
+      "suite": "Live Surface & Button Parity Scanner",
+      "result": "PASS",
+      "checks_passed": 30,
+      "total_checks": 30
+    }
+  ],
+  "runtime_state_summary": {
+    "cloudflare_pages_edge": "LIVE_VERIFIED",
+    "agentic_gateway_v2": "LIVE_VERIFIED",
+    "supabase_database": "MISMATCH_UNVERIFIED",
+    "payment_gateways": "NOT_CONFIGURED"
+  }
+}
