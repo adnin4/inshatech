@@ -1,19 +1,18 @@
 {
-  "repository_head": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "repository_head": "049161c7915cc888c53d1a2e6c4bbf7be05975c5",
   "default_branch": "master",
   "production_url": "https://inshatech.pages.dev",
   "deployment_provider": "cloudflare_pages",
   "database_project": "uulqaslcfjrvkvyegmvo",
   "api_authority": "https://inshatech.pages.dev/api",
-  "canonical_frontend_root": "portfolio-showcase",
+  "canonical_frontend_root": "master",
   "git_status": "CLEAN",
-  "commit_message": "fix: make Cloudflare Pages the authoritative production deployment",
   "parity_state": {
-    "git_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "build_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "deploy_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "live_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "status": "EXACT_PARITY_MATCH"
+    "git_sha": "049161c7915cc888c53d1a2e6c4bbf7be05975c5",
+    "build_sha": null,
+    "deploy_sha": null,
+    "live_sha": null,
+    "status": "PENDING_LIVE_VERIFICATION"
   },
-  "status": "VERIFIED"
+  "status": "SOURCE_CANONICAL__LIVE_PENDING"
 }
