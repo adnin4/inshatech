@@ -1,19 +1,23 @@
 {
-  "canonical_repository": "https://github.com/adnin4/inshatech.git",
-  "default_branch": "master",
-  "production_url": "https://inshatech.pages.dev",
-  "deployment_provider": "cloudflare_pages",
-  "database_project": "uulqaslcfjrvkvyegmvo",
-  "supabase_url": "https://uulqaslcfjrvkvyegmvo.supabase.co",
-  "api_authority": "https://inshatech.pages.dev/api",
-  "canonical_frontend_root": "portfolio-showcase",
-  "git_status": "CLEAN",
-  "parity_state": {
-    "git_sha": "4b9f3a4b7f8c05763b65ef8c13038dcda50cbe44",
-    "build_sha": "PENDING_LIVE_VERIFICATION",
-    "deploy_sha": "PENDING_LIVE_VERIFICATION",
-    "live_sha": "PENDING_LIVE_VERIFICATION",
-    "status": "PENDING_LIVE_VERIFICATION"
+  "release_id": "IINSHA-REL-0119e73f-20260828103251",
+  "git_commit_sha": "0119e73ffbeaa3744e9ab4732e85b6875643a42c",
+  "short_sha": "0119e73",
+  "source_repository": "https://github.com/adnin4/inshatech.git",
+  "source_branch": "main",
+  "production_branch": "master",
+  "build_sha": "0119e73ffbeaa3744e9ab4732e85b6875643a42c",
+  "deployment_sha": "PENDING_CLOUDFLARE_PULL",
+  "live_sha": "PENDING_LIVE_VERIFICATION",
+  "environment": "production",
+  "build_timestamp": "2026-08-28T10:32:51.297911+00:00",
+  "schema_version": "2026.8.28-autonomous-v1",
+  "platform": "IINSHA AI-BOS Autonomous Company Operating System",
+  "database_identity": {
+    "canonical_db_ref": "uulqaslcfjrvkvyegmvo",
+    "accessible_runtime_db_ref": "kitwadizsvjmuxkfewxj",
+    "db_parity": "MISMATCH_UNVERIFIED",
+    "note": "Canonical repo references uulqaslcfjrvkvyegmvo while connector accesses kitwadizsvjmuxkfewxj. Production DB access remains fail-closed."
   },
-  "status": "PENDING_LIVE_VERIFICATION"
+  "parity_status": "PENDING_LIVE_VERIFICATION",
+  "evidence_chain": "MASTER_COMMIT_0119e73f"
 }

@@ -1,7 +1,7 @@
 /**
  * Cloudflare Pages Function: /api/version
- * Cryptographic Release Parity & Version Endpoint
- * Dynamically resolves git_sha from Cloudflare runtime environment
+ * Cryptographic Release Parity & Dynamic Version Manifest Endpoint
+ * Dynamically resolves live Cloudflare runtime environment with truthful fallback.
  */
 
 export async function onRequestGet(context) {
@@ -16,20 +16,30 @@ export async function onRequestGet(context) {
         "Cache-Control": "no-cache, no-store, must-revalidate"
     };
 
-    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || '485c271e18d613e5fc4664a75aa32a53bbd5fc1d';
-    const isLive = Boolean(env.CF_PAGES_COMMIT_SHA);
+    const sourceSha = "0119e73ffbeaa3744e9ab4732e85b6875643a42c";
+    const liveSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
+    const isLiveVerified = Boolean(liveSha && liveSha.toLowerCase() === sourceSha.toLowerCase());
 
-    return new Response(JSON.stringify({
-        status: isLive ? 'LIVE_VERIFIED' : 'PENDING_LIVE_VERIFICATION',
-        platform: 'IINSHA AI-BOS',
-        git_commit_sha: gitSha,
-        short_sha: gitSha.length >= 7 ? gitSha.slice(0, 7) : gitSha,
-        branch: env.CF_PAGES_BRANCH || 'master',
-        canonical_repository: 'https://github.com/adnin4/inshatech.git',
-        environment: env.ENVIRONMENT || 'production',
-        database_project: 'uulqaslcfjrvkvyegmvo',
+    const payload = {
+        status: isLiveVerified ? "LIVE_VERIFIED" : "UNVERIFIED",
+        platform: "IINSHA AI-BOS",
+        source_sha: sourceSha,
+        build_sha: sourceSha,
+        deploy_sha: liveSha || "PENDING_CLOUDFLARE_DEPLOYMENT",
+        live_sha: liveSha || "UNAVAILABLE_RUNNING_LOCAL_PREVIEW",
+        parity: isLiveVerified,
+        branch: env.CF_PAGES_BRANCH || "main",
+        canonical_repository: "https://github.com/adnin4/inshatech.git",
+        environment: env.ENVIRONMENT || "production",
+        database_identity: {
+            canonical_db: "uulqaslcfjrvkvyegmvo",
+            runtime_db: "kitwadizsvjmuxkfewxj",
+            db_parity: "MISMATCH_UNVERIFIED"
+        },
         timestamp: new Date().toISOString()
-    }), { headers: corsHeaders });
+    };
+
+    return new Response(JSON.stringify(payload, null, 2), { headers: corsHeaders });
 }
 
 export async function onRequestOptions(context) {
