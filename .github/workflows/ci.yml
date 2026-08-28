@@ -33,11 +33,14 @@ jobs:
           node -c worker.js
           node -c universal_ai_copilot.js
 
-      - name: Run Public Form Contract Audit (Step 7)
+      - name: Gate 0 — UI/UX Visual Baseline Firewall
+        run: node scripts/visual_regression_baseline.mjs
+
+      - name: Step 7 — Public Form Contract Audit
         run: node scripts/public_form_contract_audit.mjs
 
-      - name: Run AI Solution Finder E2E Certification (Step 8)
+      - name: Step 8 — AI Solution Finder E2E Certification
         run: node scripts/solution_finder_e2e.mjs
 
-      - name: Run Live Surface & Button Parity Scanner
+      - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
