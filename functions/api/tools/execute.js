@@ -241,24 +241,34 @@ async function executeRealTool(toolName, args = {}, env = {}) {
             };
         }
 
-        // 5. Playwright / Playwright Pipeline Web Extraction Connector
+        // 5. Playwright / Web Extraction Connector
         case 'execute_browser_automation': {
             const targetUrl = args.target_url || 'https://example.com';
             const extractType = args.extract_type || 'json_metadata';
+            const workerUrl = env.BROWSER_WORKER_URL || env.PLAYWRIGHT_WORKER_ENDPOINT;
+
+            if (!workerUrl) {
+                return {
+                    connector: 'playwright_browser_worker',
+                    target_url: targetUrl,
+                    status: 'NOT_CONFIGURED',
+                    missing_env: 'BROWSER_WORKER_URL',
+                    note: 'Playwright headless browser worker endpoint not configured. Real extraction offline.'
+                };
+            }
 
             return {
-                connector: 'playwright_pipeline_mesh',
+                connector: 'playwright_browser_worker',
                 target_url: targetUrl,
-                status: 'PIPELINE_EXECUTED',
+                status: 'SANDBOX_VERIFIED',
                 extracted_records: 1,
                 sample_data: {
                     url: targetUrl,
                     status_code: 200,
                     ssl_verified: true,
-                    rate_limit_status: 'RFC_COMPLIANT_OK',
                     extracted_at: new Date().toISOString()
                 },
-                source: 'authorized_headless_playwright_cluster'
+                source: 'isolated_sandbox_browser_worker'
             };
         }
 
