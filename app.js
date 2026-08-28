@@ -1346,7 +1346,7 @@ function initGlobalCurrencyConverter() {
         USD: { symbol: '$', rate: 1 },
         BDT: { symbol: '৳', rate: 120 },
         EUR: { symbol: '', rate: 0.92 },
-        GBP: { symbol: 'Â£', rate: 0.78 },
+        GBP: { symbol: '£', rate: 0.78 },
         AED: { symbol: 'Ø¯.Ø¥', rate: 3.67 }
     };
 
@@ -3148,7 +3148,7 @@ var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
     BDT: { symbol: '৳', rate: 121.5 },
     EUR: { symbol: '', rate: 0.92 },
-    GBP: { symbol: 'Â£', rate: 0.79 },
+    GBP: { symbol: '£', rate: 0.79 },
     AUD: { symbol: 'A$', rate: 1.52 }
 };
 
@@ -4459,7 +4459,7 @@ var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
     BDT: { symbol: '৳', rate: 122.0 },
     EUR: { symbol: '', rate: 0.92 },
-    GBP: { symbol: 'Â£', rate: 0.78 },
+    GBP: { symbol: '£', rate: 0.78 },
     AED: { symbol: 'AED ', rate: 3.67 }
 };
 
