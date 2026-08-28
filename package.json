@@ -3,6 +3,9 @@
   "version": "10.0.0",
   "description": "IINSHA AI-BOS: Autonomous AI Company Operating System & Frontier Ecosystem Platform",
   "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
   "scripts": {
     "verify:claims": "node scripts/verify_all_system_claims.mjs",
     "verify:reality": "node scripts/run_final_activation_mission.mjs",
