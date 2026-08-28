@@ -6413,18 +6413,38 @@ function initUniversalButtonBindings() {
                 const card = btn.closest('.premium-card') || btn.closest('.service-card') || btn.parentElement;
                 const titleEl = card ? (card.querySelector('h3') || card.querySelector('h4') || card.querySelector('.card-title')) : null;
                 const title = titleEl ? titleEl.textContent.trim() : 'AI Architecture Consultation';
-                
-                // Open checkout/intake modal
                 if (typeof openCheckoutModal === 'function') {
                     openCheckoutModal(title, 750, 199);
-                } else {
-                    const intakeSection = document.getElementById('ai-intake') || document.getElementById('pricing') || document.querySelector('.services-grid');
-                    if (intakeSection) intakeSection.scrollIntoView({ behavior: 'smooth' });
+                } else if (typeof openAiOrderConsultationModal === 'function') {
+                    openAiOrderConsultationModal(title, 'Enterprise Tier', 750);
                 }
             });
         }
     });
 
+    // 1b. Universal Bind for all checkout, template, order, deploy, buy buttons
+    document.querySelectorAll('.open-checkout-btn, .template-buy-btn, .order-btn, .order-service-btn, .store-buy-btn, [data-order-btn]').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const card = btn.closest('.glass-card, .pkg-card, .blueprint-card, .tmpl-card, .premium-card, .service-card, .card, div');
+                const titleEl = card ? (card.querySelector('h3, h4, h2, .card-title')) : null;
+                const title = btn.getAttribute('data-service') || (titleEl ? titleEl.innerText.trim() : 'AI Automation Solution');
+                const text = btn.innerText || '';
+                const priceAttr = btn.getAttribute('data-price') || text;
+                const extractedPrice = parseInt(priceAttr.replace(/[^0-9]/g, ''), 10) || 499;
+                if (typeof openCheckoutModal === 'function') {
+                    openCheckoutModal(title, extractedPrice, Math.round(extractedPrice * 0.25));
+                } else if (typeof openAiOrderConsultationModal === 'function') {
+                    openAiOrderConsultationModal(title, 'Professional Tier', extractedPrice);
+                } else {
+                    window.open(`https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to order ${title} ($${extractedPrice}).`)}`, '_blank');
+                }
+            });
+        }
+    });
     // 2. Bind all .open-pkg-modal-btn & .package-order-btn
     document.querySelectorAll('.open-pkg-modal-btn, .package-order-btn').forEach(btn => {
         if (!btn.dataset.bound) {
