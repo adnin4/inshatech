@@ -918,7 +918,7 @@
 
             // Try Cloudflare Pages /api/ai/chat endpoint first (Gemini Cloud Edge)
             try {
-                const apiPromise = fetch('/api/ai/chat', {
+                const apiPromise = fetch('/api/v1/agent/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
