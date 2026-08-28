@@ -1,5 +1,5 @@
 ﻿/**
- * IINSHA AI LAB â€” 3D Intelligence Core
+ * IINSHA AI LAB — 3D Intelligence Core
  * Three.js WebGL cinematic hero visualization
  * 
  * Features:

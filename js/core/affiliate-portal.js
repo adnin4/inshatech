@@ -162,7 +162,7 @@
             channel: 'Ã°Å¸â€™Â¬ WhatsApp / Messenger Pitch (Bangla)',
             title: 'F-Commerce & E-Commerce Store Pitch (Bangla)',
             category: 'messaging',
-            text: `Ã Â¦â€ Ã Â¦Â¸Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¾Ã Â¦Â®Ã Â§Â Ã Â¦â€ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦â€¢Ã Â§ÂÃ Â¦Â® {{Name}} Ã Â¦Â­Ã Â¦Â¾Ã Â¦â€¡,\n\nÃ Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¦Ã Â¦Â¨Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Â¨ Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â§â€¹Ã Â¦Â°Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Â¬Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¸ Ã Â¦Â°Ã Â¦Â¿Ã Â¦ÂªÃ Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦â€¡, Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â²Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å“ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â²Ã Â¦â€¢Ã Â§ÂÃ Â¦Â²Ã Â§â€¡Ã Â¦Â¶Ã Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¢Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦â€¢Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¿ Ã Â¦Â°Ã Â¦Â¾Ã Â¦Â¤Ã Â§â€¡Ã Â¦â€œ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â· Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦Â°Ã Â¦Â¾Ã Â¦â€“Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¹Ã Â¦Å¡Ã Â§ÂÃ Â¦â€ºÃ Â§â€¡?\n\nIINSHA-Ã Â¦ÂÃ Â¦Â° 24/7 AI WhatsApp & Messenger Sales Bot Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€œÃ Â§Å¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Å¸Ã Â§â€¡Ã Â¦Â° Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â§â€¹ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Å¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦â€” Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¤Ã Â§ÂÃ Â¦Â° Ã Â§Â¨Ã Â§Â¦ Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¸Ã Â§â€¡ Ã Â¦ÂªÃ Â§Å“Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â¥Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¾, Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶ Ã Â¦â€œ Ã Â¦â€¡Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¥Ã Â¦Â¾ Ã Â¦Â¬Ã Â¦Â²Ã Â§â€¡ Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¬Ã Â§Å¸Ã Â¦â€šÃ Â¦â€¢Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â§Å¸Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â¬Ã Â§â€¡ Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¢Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦â€¢Ã Â¦Â°Ã Â§â€¡Ã Â¥Â¤\n\nÃ Â¦Â¬Ã Â¦Â¿Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿Ã Â¦Â¤ Ã Â¦Â¦Ã Â§â€¡Ã Â¦â€“Ã Â§ÂÃ Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â¬Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â° Ã Â¦Å“Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯ Ã Â¦Â«Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿ Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â®Ã Â§â€¹ Ã Â¦Â¬Ã Â§ÂÃ Â¦â€¢ Ã Â¦â€¢Ã Â¦Â°Ã Â§ÂÃ Â¦Â¨:\n{{REF_LINK}}`
+            text: `Ã Â¦â€ Ã Â¦Â¸Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¾Ã Â¦Â®Ã Â§Â Ã Â¦â€ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦•Ã Â§ÂÃ Â¦Â® {{Name}} Ã Â¦Â­Ã Â¦Â¾Ã Â¦â€¡,\n\nÃ Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¦Ã Â¦Â¨Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Â¨ Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â§â€¹Ã Â¦Â°Ã Â§â€¡ Ã Â¦•Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Â¬Ã Â¦•Ã Â§ÂÃ Â¦Â¸ Ã Â¦Â°Ã Â¦Â¿Ã Â¦ÂªÃ Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦â€¡, Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â²Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å“ Ã Â¦•Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â²Ã Â¦•Ã Â§ÂÃ Â¦Â²Ã Â§â€¡Ã Â¦Â¶Ã Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦•Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦•Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦•Ã Â¦Â¿ Ã Â¦Â°Ã Â¦Â¾Ã Â¦Â¤Ã Â§â€¡Ã Â¦â€œ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â· Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦Â°Ã Â¦Â¾Ã Â¦–Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¹Ã Â¦Å¡Ã Â§ÂÃ Â¦â€ºÃ Â§â€¡?\n\nIINSHA-Ã Â¦ÂÃ Â¦Â° 24/7 AI WhatsApp & Messenger Sales Bot Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€œÃ Â§Å¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Å¸Ã Â§â€¡Ã Â¦Â° Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â§â€¹ Ã Â¦•Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Å¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦— Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¤Ã Â§ÂÃ Â¦Â° Ã Â§Â¨Ã Â§Â¦ Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¸Ã Â§â€¡ Ã Â¦ÂªÃ Â§Å“Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦•Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â¥Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¾, Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶ Ã Â¦â€œ Ã Â¦â€¡Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡ Ã Â¦•Ã Â¦Â¥Ã Â¦Â¾ Ã Â¦Â¬Ã Â¦Â²Ã Â§â€¡ Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¬Ã Â§Å¸Ã Â¦â€šÃ Â¦•Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â§Å¸Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â¬Ã Â§â€¡ Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦•Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦•Ã Â¦Â°Ã Â§â€¡Ã Â¥Â¤\n\nÃ Â¦Â¬Ã Â¦Â¿Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿Ã Â¦Â¤ Ã Â¦Â¦Ã Â§â€¡Ã Â¦–Ã Â§ÂÃ Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â¬Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â° Ã Â¦Å“Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯ Ã Â¦Â«Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿ Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â®Ã Â§â€¹ Ã Â¦Â¬Ã Â§ÂÃ Â¦• Ã Â¦•Ã Â¦Â°Ã Â§ÂÃ Â¦Â¨:\n{{REF_LINK}}`
         },
         {
             id: 'mv-wa-en-01',
@@ -173,7 +173,7 @@
         },
         {
             id: 'mv-badge-01',
-            channel: 'Ã°Å¸â€“Â¼Ã¯Â¸Â Embeddable HTML Glass Badge',
+            channel: 'Ã°Å¸–Â¼Ã¯Â¸Â Embeddable HTML Glass Badge',
             title: 'Dark Space Floating HTML Badge',
             category: 'embed',
             text: `<a href="{{REF_LINK}}" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:rgba(15,23,42,0.92); border:1px solid #00f2fe; padding:10px 18px; border-radius:12px; color:#fff; text-decoration:none; font-family:sans-serif; font-size:14px; box-shadow:0 8px 25px rgba(0,242,254,0.25);">\n  <span>Ã¢Å¡Â¡ Automated by <strong>IINSHA AI OS</strong></span>\n  <span style="background:#00f2fe; color:#030712; padding:2px 8px; border-radius:6px; font-weight:800; font-size:11px;">GET 20% OFF</span>\n</a>`
@@ -210,7 +210,7 @@
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <h2 style="color:#fff; font-size:1.35rem; margin:0;">${partner.name}</h2>
                                     <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--accent-gold); border:1px solid var(--accent-gold); font-size:0.75rem; font-weight:800; padding:2px 10px; border-radius:20px;">${partner.tier}</span>
-                                    <span style="font-size:0.75rem; color:#34d399;">Ã¢â€”Â Signed In</span>
+                                    <span style="font-size:0.75rem; color:#34d399;">Ã¢—Â Signed In</span>
                                 </div>
                                 <div style="font-size:0.8rem; color:#94a3b8; margin-top:3px;">
                                     Ref Slug: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${partner.refCode}</strong> | Account: <strong style="color:#cbd5e1;">${partner.email}</strong> | Payout: <strong style="color:#34d399;">${partner.payoutMethod} (${partner.payoutAccount})</strong>
@@ -267,7 +267,7 @@
                     <button onclick="window.switchAffiliateTab('dashboard')" class="lab-tab active" id="tab-btn-dashboard" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸â€œÅ  Live Cockpit</button>
                     <button onclick="window.switchAffiliateTab('workspace')" class="lab-tab" id="tab-btn-workspace" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent; color:var(--accent-cyan);">Ã¢Å¡Â¡ Marketing Workstation</button>
                     <button onclick="window.switchAffiliateTab('crm')" class="lab-tab" id="tab-btn-crm" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸Å½Â¯ Outreach CRM</button>
-                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸â€â€” Link & SubID Studio</button>
+                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸â€— Link & SubID Studio</button>
                     <button onclick="window.switchAffiliateTab('vault')" class="lab-tab" id="tab-btn-vault" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸Å½Â¨ 28-Asset Swipe Vault</button>
                     <button onclick="window.switchAffiliateTab('coach')" class="lab-tab" id="tab-btn-coach" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸Â§Â  AI Strategy Assistant</button>
                     <button onclick="window.switchAffiliateTab('milestones')" class="lab-tab" id="tab-btn-milestones" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">Ã°Å¸Ââ€  Tiers & Rewards</button>
@@ -324,7 +324,7 @@
                                     Ã°Å¸â€™Â¼ LinkedIn
                                 </button>
                                 <button onclick="window.shareToTwitter('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(255,255,255,0.08); border-color:#cbd5e1; color:#fff; font-size:0.78rem; font-weight:700;">
-                                    Ã¢Å“â€“Ã¯Â¸Â Twitter / X
+                                    Ã¢Å“–Ã¯Â¸Â Twitter / X
                                 </button>
                             </div>
                         </div>
@@ -438,7 +438,7 @@
                 <!-- ================= TAB 4: LINK & SUBID STUDIO ================= -->
                 <div id="tab-panel-links" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px;">
-                        <h3 style="color:#fff; font-size:1.2rem; margin-bottom:6px;">Ã°Å¸â€â€” Advanced Custom Link & SubID Generator</h3>
+                        <h3 style="color:#fff; font-size:1.2rem; margin-bottom:6px;">Ã°Å¸â€— Advanced Custom Link & SubID Generator</h3>
                         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:20px;">Create unique tracking links for Facebook Ads, YouTube Descriptions, Cold Emails, and WhatsApp.</p>
 
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-bottom:18px;">
@@ -547,7 +547,7 @@
 
                             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:14px;">
                                 <strong style="color:var(--accent-gold); font-size:0.88rem; display:block; margin-bottom:4px;">3. Automatic Escrow Attribution</strong>
-                                <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.5; margin:0;">When the client orders via your link, 20%Ã¢â‚¬â€œ25% commission is instantly locked in escrow and paid out via bKash/Wise.</p>
+                                <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.5; margin:0;">When the client orders via your link, 20%—œ25% commission is instantly locked in escrow and paid out via bKash/Wise.</p>
                             </div>
                         </div>
 
@@ -667,7 +667,7 @@
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0; padding:20px;">
                             <span style="font-size:1.8rem;">Ã¢Å¡â„¢Ã¯Â¸Â</span>
                             <h4 style="color:#fff; font-size:1.05rem; margin:6px 0;">Module 3: Self-Hosted n8n vs Zapier Angle</h4>
-                            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">How to pitch $497 one-time n8n deployment to companies burning $500Ã¢â‚¬â€œ$2,000/mo on Zapier tasks.</p>
+                            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">How to pitch $497 one-time n8n deployment to companies burning $500—œ$2,000/mo on Zapier tasks.</p>
                             <button onclick="alert('Ã°Å¸â€œËœ Module 3 Guide:\n\n1. Highlight 90% cost savings.\n2. Emphasize self-hosted data privacy & PostgreSQL backups on $5.99/mo VPS.')" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook Ã¢â€ â€™</button>
                         </div>
 
@@ -711,13 +711,13 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #00f2fe, #0284c7); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center; margin-top:6px;">
-                            Sign In & Open Partner Dashboard â†’
+                            Sign In & Open Partner Dashboard →
                         </button>
                     </form>
 
                     <!-- Secure Notice -->
                     <div style="margin-top:28px; border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; text-align:center;">
-                        <span style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono); text-transform:uppercase;">ðŸ”’ Secured via Supabase Zero-Trust Auth & RLS</span>
+                        <span style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono); text-transform:uppercase;">🔒 Secured via Supabase Zero-Trust Auth & RLS</span>
                     </div>
                 </div>
 
@@ -928,7 +928,7 @@
 
         let text = '';
         if (format === 'wa_bn') {
-            text = `Ã Â¦â€ Ã Â¦Â¸Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¾Ã Â¦Â®Ã Â§Â Ã Â¦â€ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦â€¢Ã Â§ÂÃ Â¦Â® ${name} Ã Â¦Â­Ã Â¦Â¾Ã Â¦â€¡,\n\n${company}-Ã Â¦ÂÃ Â¦Â° Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Â¬Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¸ Ã Â¦Â°Ã Â¦Â¿Ã Â¦ÂªÃ Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦â€¡, Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â²Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å“ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â²Ã Â¦â€¢Ã Â§ÂÃ Â¦Â²Ã Â§â€¡Ã Â¦Â¶Ã Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¢Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦â€¢Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¿ Ã Â¦Â°Ã Â¦Â¾Ã Â¦Â¤Ã Â§â€¡Ã Â¦â€œ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â· Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦Â°Ã Â¦Â¾Ã Â¦â€“Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¹Ã Â¦Å¡Ã Â§ÂÃ Â¦â€ºÃ Â§â€¡?\n\nIINSHA-Ã Â¦ÂÃ Â¦Â° 24/7 AI WhatsApp & Messenger Sales Bot Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€œÃ Â§Å¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Å¸Ã Â§â€¡Ã Â¦Â° Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â§â€¹ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Å¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦â€” Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¤Ã Â§ÂÃ Â¦Â° Ã Â§Â¨Ã Â§Â¦ Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¸Ã Â§â€¡ Ã Â¦ÂªÃ Â§Å“Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â¥Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¾, Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶ Ã Â¦â€œ Ã Â¦â€¡Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡ Ã Â¦â€¢Ã Â¦Â¥Ã Â¦Â¾ Ã Â¦Â¬Ã Â¦Â²Ã Â§â€¡ Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¬Ã Â§Å¸Ã Â¦â€šÃ Â¦â€¢Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â§Å¸Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â¬Ã Â§â€¡ Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¢Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦â€¢Ã Â¦Â°Ã Â§â€¡Ã Â¥Â¤\n\nÃ Â¦Â«Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿ Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â®Ã Â§â€¹ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â§Â¨Ã Â§Âª Ã Â¦ËœÃ Â¦Â£Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â­Ã Â¦Â¿Ã Â¦Â¡Ã Â¦Â¿Ã Â¦â€œ Ã Â¦â€¦Ã Â¦Â¡Ã Â¦Â¿Ã Â¦Å¸ Ã Â¦Â¦Ã Â§â€¡Ã Â¦â€“Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¡Ã Â§â€¡Ã Â¦Â° Ã Â¦Â²Ã Â¦Â¿Ã Â¦â€šÃ Â¦â€¢Ã Â§â€¡ Ã Â¦Â¯Ã Â¦Â¾Ã Â¦Â¨:\n${partnerRefLink}&subid=wa_pitch`;
+            text = `Ã Â¦â€ Ã Â¦Â¸Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¾Ã Â¦Â®Ã Â§Â Ã Â¦â€ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦•Ã Â§ÂÃ Â¦Â® ${name} Ã Â¦Â­Ã Â¦Â¾Ã Â¦â€¡,\n\n${company}-Ã Â¦ÂÃ Â¦Â° Ã Â¦•Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Â¬Ã Â¦•Ã Â§ÂÃ Â¦Â¸ Ã Â¦Â°Ã Â¦Â¿Ã Â¦ÂªÃ Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦â€¡, Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â²Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å“ Ã Â¦•Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â²Ã Â¦•Ã Â§ÂÃ Â¦Â²Ã Â§â€¡Ã Â¦Â¶Ã Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦•Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦•Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦•Ã Â¦Â¿ Ã Â¦Â°Ã Â¦Â¾Ã Â¦Â¤Ã Â§â€¡Ã Â¦â€œ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â· Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦Â°Ã Â¦Â¾Ã Â¦–Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¹Ã Â¦Å¡Ã Â§ÂÃ Â¦â€ºÃ Â§â€¡?\n\nIINSHA-Ã Â¦ÂÃ Â¦Â° 24/7 AI WhatsApp & Messenger Sales Bot Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€œÃ Â§Å¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¸Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Å¸Ã Â§â€¡Ã Â¦Â° Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â§â€¹ Ã Â¦•Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Å¸Ã Â¦Â¾Ã Â¦Â²Ã Â¦— Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¤Ã Â§ÂÃ Â¦Â° Ã Â§Â¨Ã Â§Â¦ Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¸Ã Â§â€¡ Ã Â¦ÂªÃ Â§Å“Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â§Å¸Ã Â§â€¡ Ã Â¦•Ã Â¦Â¾Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â°Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â¥Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¾, Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶ Ã Â¦â€œ Ã Â¦â€¡Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡ Ã Â¦•Ã Â¦Â¥Ã Â¦Â¾ Ã Â¦Â¬Ã Â¦Â²Ã Â§â€¡ Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¬Ã Â§Å¸Ã Â¦â€šÃ Â¦•Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â§Å¸Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â¬Ã Â§â€¡ Ã Â¦â€¦Ã Â¦Â°Ã Â§ÂÃ Â¦Â¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦•Ã Â¦Â¨Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦•Ã Â¦Â°Ã Â§â€¡Ã Â¥Â¤\n\nÃ Â¦Â«Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿ Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â®Ã Â§â€¹ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â§Â¨Ã Â§Âª Ã Â¦ËœÃ Â¦Â£Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â­Ã Â¦Â¿Ã Â¦Â¡Ã Â¦Â¿Ã Â¦â€œ Ã Â¦â€¦Ã Â¦Â¡Ã Â¦Â¿Ã Â¦Å¸ Ã Â¦Â¦Ã Â§â€¡Ã Â¦–Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Å¡Ã Â§â€¡Ã Â¦Â° Ã Â¦Â²Ã Â¦Â¿Ã Â¦â€šÃ Â¦•Ã Â§â€¡ Ã Â¦Â¯Ã Â¦Â¾Ã Â¦Â¨:\n${partnerRefLink}&subid=wa_pitch`;
         } else if (format === 'wa_en') {
             text = `Hey ${name}, saw your work at ${company}. If your team is spending hours on manual lead qualification or repetitive WhatsApp replies, IINSHA's autonomous AI swarms can automate 85% of it on a self-hosted VPS ($5.99/mo) with zero Zapier fees.\n\nClaim a free 24-hr system audit here:\n${partnerRefLink}&subid=wa_direct`;
         } else if (format === 'li_post') {
@@ -952,7 +952,7 @@
 
     // 1-Click Social Sharing
     window.shareToWhatsApp = function(link) {
-        const text = encodeURIComponent(`Ã¢Å¡Â¡ Check out IINSHA AI OS Ã¢â‚¬â€ Autonomous multi-agent swarms, self-hosted n8n, and 24/7 AI WhatsApp Bots: ${link}`);
+        const text = encodeURIComponent(`Ã¢Å¡Â¡ Check out IINSHA AI OS — Autonomous multi-agent swarms, self-hosted n8n, and 24/7 AI WhatsApp Bots: ${link}`);
         window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     };
 
@@ -1135,7 +1135,7 @@
         const phone = prompt('Ã°Å¸â€œÂ± Enter WhatsApp / Phone Number:', partner.phone);
         const payoutMethod = prompt('Ã°Å¸â€™Â³ Enter Payout Method (bKash / Nagad / Wise / Bank / USDT):', partner.payoutMethod);
         const payoutAccount = prompt('Ã°Å¸ÂÂ¦ Enter Payout Account / Wallet Number:', partner.payoutAccount);
-        const refCode = prompt('Ã°Å¸â€â€” Enter Custom Referral Slug / Code:', partner.refCode);
+        const refCode = prompt('Ã°Å¸â€— Enter Custom Referral Slug / Code:', partner.refCode);
 
         partner.name = name || partner.name;
         partner.phone = phone || partner.phone;

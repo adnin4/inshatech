@@ -1,5 +1,5 @@
 ﻿/**
- * IINSHA TECH OS v1000 â€” Cloudflare Workers Headless API & Static Asset Gateway
+ * IINSHA TECH OS v1000 — Cloudflare Workers Headless API & Static Asset Gateway
  * Zero Hardcoding Architecture. Everything comes from Supabase Database.
  */
 

@@ -1,5 +1,5 @@
 ﻿/**
- * IINSHA AI-BOS 2.0 â€” Unified Autonomous Company Operating System Client Engine
+ * IINSHA AI-BOS 2.0 — Unified Autonomous Company Operating System Client Engine
  * Orchestrates Visitor Journey: Visit -> Chat -> Price Authority -> Checkout -> Fulfillment -> Retention
  */
 

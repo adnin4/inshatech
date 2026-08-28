@@ -1,5 +1,5 @@
 ﻿/**
- * IINSHA AI LAB â€” Scroll Animation Engine v2 (Stable)
+ * IINSHA AI LAB — Scroll Animation Engine v2 (Stable)
  * 
  * CRITICAL FIX: Never hide content with opacity: 0.
  * All animations use ONLY transforms (translateY, translateX, scale).
@@ -19,7 +19,7 @@
 
         // Check if GSAP is available
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-            console.warn('[IINSHA] GSAP/ScrollTrigger not loaded â€” content visible, animations skipped.');
+            console.warn('[IINSHA] GSAP/ScrollTrigger not loaded — content visible, animations skipped.');
             return;
         }
 
@@ -45,7 +45,7 @@
             });
         }
 
-        // === REVEAL UP â€” gentle slide up, NO opacity change ===
+        // === REVEAL UP — gentle slide up, NO opacity change ===
         gsap.utils.toArray('.reveal-up').forEach(el => {
             gsap.fromTo(el,
                 { y: 20 },
@@ -62,8 +62,8 @@
             );
         });
 
-        // === REVEAL FADE â€” no animation, already visible ===
-        // (intentionally empty â€” content is shown by CSS)
+        // === REVEAL FADE — no animation, already visible ===
+        // (intentionally empty — content is shown by CSS)
 
         // === REVEAL LEFT ===
         gsap.utils.toArray('.reveal-left').forEach(el => {
@@ -116,7 +116,7 @@
             );
         });
 
-        // === STAGGER CHILDREN â€” subtle slide, NO opacity ===
+        // === STAGGER CHILDREN — subtle slide, NO opacity ===
         gsap.utils.toArray('.stagger-children').forEach(parent => {
             const children = parent.children;
             gsap.fromTo(children,
@@ -149,7 +149,7 @@
             });
         });
 
-        // === HERO ENTRANCE â€” page load animation ===
+        // === HERO ENTRANCE — page load animation ===
         const heroTimeline = gsap.timeline({ delay: 0.2 });
         
         const heroEyebrow = document.querySelector('.hero-eyebrow');
@@ -158,7 +158,7 @@
         const heroActions = document.querySelector('.hero-actions');
         const heroStatus = document.querySelector('.hero-status');
 
-        // Hero elements are already visible â€” just add a subtle entrance
+        // Hero elements are already visible — just add a subtle entrance
         if (heroEyebrow) heroTimeline.from(heroEyebrow, { y: 15, duration: 0.4, ease: 'power2.out' });
         if (heroTitle) heroTimeline.from(heroTitle, { y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.2');
         if (heroSubtitle) heroTimeline.from(heroSubtitle, { y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.2');

@@ -1,5 +1,5 @@
 ﻿/**
- * IINSHA AI-BOS â€” Unified Supabase Client & Local Mock Fallback
+ * IINSHA AI-BOS — Unified Supabase Client & Local Mock Fallback
  * Provides consistent data access with Row-Level Security awareness.
  */
 

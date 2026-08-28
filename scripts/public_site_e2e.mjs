@@ -37,6 +37,8 @@ const PUBLIC_PAGES = [
     'portal.html',
     'admin.html',
     'affiliate.html',
+    'affiliate-login.html',
+    'affiliate-dashboard.html',
     'blog.html',
     'compare.html',
     'privacy.html',

@@ -502,7 +502,7 @@
 
         <div class="header-actions">
             <button onclick="switchAdminCockpitTab('truth')" class="btn btn-glass-sm" style="font-size: 0.75rem; border-color: rgba(6,182,212,0.4); color: var(--accent-cyan);">
-                ðŸ“Š System Truth Center
+                📊 System Truth Center
             </button>
 
             <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
@@ -511,7 +511,7 @@
             </div>
 
             <button onclick="pauseAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-gold); border-color: rgba(245,158,11,0.4); font-size: 0.75rem;" aria-label="Pause All Agents">
-                â¸ï¸ Pause All
+                â¸ Pause All
             </button>
 
             <button onclick="triggerEmergencyHaltModal()" class="btn btn-glass-sm" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.4); font-size: 0.75rem;" aria-label="Emergency Master Kill Switch">
@@ -519,15 +519,15 @@
             </button>
 
             <button onclick="resumeAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-emerald); border-color: rgba(52,211,153,0.4); font-size: 0.75rem;" aria-label="Resume All Agents">
-                â–¶ï¸ Resume
+                â–¶ Resume
             </button>
 
             <button onclick="openDailyBriefingModal()" class="btn btn-glass-sm" style="color: var(--accent-cyan); border-color: rgba(0,242,254,0.4); font-size: 0.75rem;" aria-label="Owner Daily Briefing">
-                ðŸ“‹ Daily Briefing
+                📋 Daily Briefing
             </button>
 
             <a href="/" class="btn btn-primary-sm" style="font-size: 0.75rem; text-decoration: none;">
-                ðŸŒ Public Site â†’
+                ðŸŒ Public Site →
             </a>
         </div>
     </header>
@@ -548,13 +548,13 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('approvals')" id="nav-btn-approvals" aria-label="Owner Approval Inbox">
-                                <span>ðŸŽ¯</span> <span>Owner Approval Inbox</span>
+                                <span>🎯</span> <span>Owner Approval Inbox</span>
                                 <span class="nav-badge-pill" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.4);">3 Pending</span>
                             </button>
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('permissions')" id="nav-btn-permissions" aria-label="Agent Permission Matrix">
-                                <span>ðŸ›¡ï¸</span> <span>Permission Matrix</span>
+                                <span>🛡️</span> <span>Permission Matrix</span>
                                 <span class="nav-badge-pill">6-Level</span>
                             </button>
                         </li>
@@ -566,13 +566,13 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('truth')" id="nav-btn-truth" aria-label="System Truth Center">
-                                <span>ðŸ“Š</span> <span>System Truth Center</span>
+                                <span>📊</span> <span>System Truth Center</span>
                                 <span class="nav-badge-pill" style="color: #34d399;">100% Real</span>
                             </button>
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('activity')" id="nav-btn-activity" aria-label="Live Agent Activity Wall">
-                                <span>âš¡</span> <span>Agent Activity Wall</span>
+                                <span>⚡</span> <span>Agent Activity Wall</span>
                                 <span class="nav-badge-pill">Live Stream</span>
                             </button>
                         </li>
@@ -584,7 +584,7 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('swarms')" id="nav-btn-swarms" aria-label="AI Workforce Swarms">
-                                <span>ðŸ¤–</span> <span>13-Agent Swarms</span>
+                                <span>🤖</span> <span>13-Agent Swarms</span>
                                 <span class="nav-badge-pill">6-Layer</span>
                             </button>
                         </li>
@@ -596,7 +596,7 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('crm')" id="nav-btn-crm" aria-label="CRM Deal Pipeline">
-                                <span>ðŸŽ¯</span> <span>CRM & Deals</span>
+                                <span>🎯</span> <span>CRM & Deals</span>
                                 <span class="nav-badge-pill" style="color: var(--accent-gold);">$94.9k</span>
                             </button>
                         </li>
@@ -608,17 +608,17 @@
                     <ul class="nav-list">
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('catalog')" id="nav-btn-catalog" aria-label="Dynamic Service Catalog">
-                                <span>ðŸ›’</span> <span>Services Studio</span>
+                                <span>🛒</span> <span>Services Studio</span>
                             </button>
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('telemetry')" id="nav-btn-telemetry" aria-label="Hostinger VPS & n8n Telemetry">
-                                <span>âš¡</span> <span>VPS & n8n Engine</span>
+                                <span>⚡</span> <span>VPS & n8n Engine</span>
                             </button>
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('inbox')" id="nav-btn-inbox" aria-label="Omnichannel Inbox & Live Chat">
-                                <span>ðŸ’¬</span> <span>Unified Inbox</span>
+                                <span>💬</span> <span>Unified Inbox</span>
                             </button>
                         </li>
                         <li>
@@ -651,7 +651,7 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('security')" id="nav-btn-security" aria-label="HITL Security & Governance">
-                                <span>ðŸ›¡ï¸</span> <span>HITL Governance</span>
+                                <span>🛡️</span> <span>HITL Governance</span>
                             </button>
                         </li>
                     </ul>
@@ -683,7 +683,7 @@
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time governance over autonomous swarms, active client revenue pipelines, and affiliate growth.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
-                        <button onclick="runAutonomousAuditScan()" class="btn btn-primary-sm" style="font-weight: bold;">âš¡ Run System Telemetry Audit</button>
+                        <button onclick="runAutonomousAuditScan()" class="btn btn-primary-sm" style="font-weight: bold;">⚡ Run System Telemetry Audit</button>
                     </div>
                 </div>
 
@@ -702,12 +702,12 @@
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Affiliate Partner Network</span>
                         <div class="kpi-value" style="color: var(--accent-gold);">$14,250</div>
-                        <span class="kpi-sub">9 Deals â€¢ 18.4% CVR â€¢ 28 Pillars</span>
+                        <span class="kpi-sub">9 Deals • 18.4% CVR • 28 Pillars</span>
                     </div>
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Hostinger VPS & n8n Uptime</span>
                         <div class="kpi-value" style="color: #67e8f9;">99.98%</div>
-                        <span class="kpi-sub">Docker Cluster â€¢ Zero Task Fees</span>
+                        <span class="kpi-sub">Docker Cluster • Zero Task Fees</span>
                     </div>
                 </div>
 
@@ -718,7 +718,7 @@
                     <div class="glass-card glowing-border" style="padding: 20px; background: var(--bg-card);">
                         <h3 style="font-size: 1.05rem; margin-bottom: 12px; display: flex; justify-content: space-between;">
                             <span>ðŸš¦ Active 12-Stage Client Pipeline</span>
-                            <a href="javascript:switchAdminCockpitTab('crm')" style="color: var(--accent-cyan); font-size: 0.75rem; text-decoration: none;">View CRM Kanban â†’</a>
+                            <a href="javascript:switchAdminCockpitTab('crm')" style="color: var(--accent-cyan); font-size: 0.75rem; text-decoration: none;">View CRM Kanban →</a>
                         </h3>
                         <div id="overview-deals-list" style="display: flex; flex-direction: column; gap: 10px;">
                             <!-- Injected by JS -->
@@ -728,7 +728,7 @@
                     <!-- AI AUTONOMOUS TELEMETRY LOG -->
                     <div class="glass-card glowing-border" style="padding: 20px; background: var(--bg-card);">
                         <h3 style="font-size: 1.05rem; margin-bottom: 12px; display: flex; justify-content: space-between;">
-                            <span>âš¡ Live Telemetry Event Stream</span>
+                            <span>⚡ Live Telemetry Event Stream</span>
                             <span class="badge-gold" style="font-size: 0.65rem; padding: 2px 6px;">WebSockets Realtime</span>
                         </h3>
                         <div id="live-telemetry-feed" style="font-family: var(--font-mono); font-size: 0.75rem; background: #000; border-radius: 8px; padding: 12px; height: 260px; overflow-y: auto; color: #a7f3d0; line-height: 1.6;">
@@ -743,7 +743,7 @@
             <div class="admin-view-panel" id="view-swarms">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ¤– Autonomous Multi-Agent Swarm Orchestrator</h1>
+                        <h1 class="workspace-title">🤖 Autonomous Multi-Agent Swarm Orchestrator</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Inspect passports, adjust autonomy limits, and run multi-LLM boardroom strategy debates.</p>
                     </div>
                     <button onclick="openSwarmComposerModal()" class="btn btn-primary-sm">âž• Compose Dynamic Swarm</button>
@@ -759,10 +759,10 @@
                 <div class="workspace-header">
                     <div>
                         <h1 class="workspace-title">ðŸ¤ 28-Pillar Affiliate & Partner Command Center</h1>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Approve payouts, manage tiers (Bronze âž” Gold âž” Legend), and audit fraud alerts.</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Approve payouts, manage tiers (Bronze ➔ Gold ➔ Legend), and audit fraud alerts.</p>
                     </div>
                     <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, #10b981, #059669);">
-                        âš¡ Batch Disburse Payouts ($2,450.00)
+                        ⚡ Batch Disburse Payouts ($2,450.00)
                     </button>
                 </div>
 
@@ -775,7 +775,7 @@
             <div class="admin-view-panel" id="view-crm">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸŽ¯ 12-Stage Mission Control & Deal Pipeline</h1>
+                        <h1 class="workspace-title">🎯 12-Stage Mission Control & Deal Pipeline</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Drag and drop client deals across stages to trigger automated webhook updates & partner commissions.</p>
                     </div>
                     <button onclick="createNewClientDealModal()" class="btn btn-primary-sm">+ New Client Mission</button>
@@ -790,7 +790,7 @@
             <div class="admin-view-panel" id="view-catalog">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ›’ Dynamic Service Catalog & Marketplace Studio</h1>
+                        <h1 class="workspace-title">🛒 Dynamic Service Catalog & Marketplace Studio</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Zero-code instant editing for all 8 Domains, 10 Playbooks, and Multi-Currency Pricing (USD / BDT).</p>
                     </div>
                     <button onclick="addNewServiceModal()" class="btn btn-primary-sm">+ Add Turnkey Service</button>
@@ -805,10 +805,10 @@
             <div class="admin-view-panel" id="view-telemetry">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">âš¡ Hostinger VPS & Docker Engine Telemetry</h1>
+                        <h1 class="workspace-title">⚡ Hostinger VPS & Docker Engine Telemetry</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Inspect memory, Docker containers, n8n webhook nodes, and trigger 1-click error retry.</p>
                     </div>
-                    <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color: var(--accent-cyan);">ðŸ”„ Restart Webhook Container</button>
+                    <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color: var(--accent-cyan);">🔄 Restart Webhook Container</button>
                 </div>
 
                 <div id="admin-vps-telemetry-root">
@@ -820,7 +820,7 @@
             <div class="admin-view-panel" id="view-inbox">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ’¬ Omnichannel Unified Inbox & Live Chat</h1>
+                        <h1 class="workspace-title">💬 Omnichannel Unified Inbox & Live Chat</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Live web visitor chat, WhatsApp deals, and voice transcription in one unified feed with AI Whisper.</p>
                     </div>
                 </div>
@@ -837,7 +837,7 @@
                         <h1 class="workspace-title">ðŸ“ Autonomous SEO & Blog Content Studio</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Generate fact-checked AI automation case studies and GEO direct answer summaries in 1-click.</p>
                     </div>
-                    <button onclick="generateNewAiArticleModal()" class="btn btn-primary-sm">âš¡ Generate New Case Study</button>
+                    <button onclick="generateNewAiArticleModal()" class="btn btn-primary-sm">⚡ Generate New Case Study</button>
                 </div>
 
                 <div id="admin-seo-articles-root">
@@ -849,7 +849,7 @@
             <div class="admin-view-panel" id="view-security">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ›¡ï¸ 4-Level HITL Governance & Emergency Protocol</h1>
+                        <h1 class="workspace-title">🛡️ 4-Level HITL Governance & Emergency Protocol</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Set daily API budget caps, permission boundaries, and enforce cryptographic audit trail.</p>
                     </div>
                 </div>
@@ -863,7 +863,7 @@
                         <h1 class="workspace-title">ðŸ”¬ AI Agent Observatory & Telemetry HUD</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time multi-turn context retention, anti-repetition audit, verifier score, and token telemetry.</p>
                     </div>
-                    <button onclick="runObservatoryLiveEval()" class="btn btn-primary-sm">âš¡ Run 100-Turn Evaluation Benchmark</button>
+                    <button onclick="runObservatoryLiveEval()" class="btn btn-primary-sm">⚡ Run 100-Turn Evaluation Benchmark</button>
                 </div>
 
                 <div class="admin-kpi-grid">
@@ -896,11 +896,11 @@
             <div class="admin-view-panel" id="view-truth">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ“Š System Truth Center & Capability Registry</h1>
+                        <h1 class="workspace-title">📊 System Truth Center & Capability Registry</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Authoritative classification of every feature. No fabricated claims. 100% executable evidence.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
-                        <button onclick="refreshSystemTruthGrid()" class="btn btn-primary-sm">âš¡ Re-verify Registry</button>
+                        <button onclick="refreshSystemTruthGrid()" class="btn btn-primary-sm">⚡ Re-verify Registry</button>
                     </div>
                 </div>
 
@@ -953,7 +953,7 @@
             <div class="admin-view-panel" id="view-activity">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">âš¡ Live Agent Activity Wall & Flight Recorder</h1>
+                        <h1 class="workspace-title">⚡ Live Agent Activity Wall & Flight Recorder</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time agent stream. Click any event to inspect full causal trace & economics.</p>
                     </div>
                     <button onclick="injectLiveSimulatedEvent()" class="btn btn-primary-sm">âž• Emit Test Event</button>
@@ -962,7 +962,7 @@
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
                         <h3 style="font-size:1rem; color:#fff; display:flex; align-items:center; gap:8px;">
-                            <span>ðŸ›°ï¸</span> Live Immutable Event Stream
+                            <span>ðŸ›°</span> Live Immutable Event Stream
                         </h3>
                         <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.75rem;">ZERO-LOSS EVENT BUS ACTIVE</span>
                     </div>
@@ -980,7 +980,7 @@
                         <h1 class="workspace-title">ðŸ’° Agent Economics & Revenue Attribution</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Precise AI inference costs, human labor equivalents, and verified revenue contribution.</p>
                     </div>
-                    <button onclick="recalculateAgentEconomics()" class="btn btn-primary-sm">âš¡ Audit Ledger Sync</button>
+                    <button onclick="recalculateAgentEconomics()" class="btn btn-primary-sm">⚡ Audit Ledger Sync</button>
                 </div>
 
                 <div class="admin-kpi-grid">
@@ -1031,10 +1031,10 @@
             <div class="admin-view-panel" id="view-approvals">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸŽ¯ Owner Supreme Approval Inbox</h1>
+                        <h1 class="workspace-title">🎯 Owner Supreme Approval Inbox</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Centralized single-click Human-in-the-Loop authorization for financial transactions, payouts, and edge releases.</p>
                     </div>
-                    <button onclick="approveAllPendingItems()" class="btn btn-primary-sm">âš¡ Approve All Safe Batch</button>
+                    <button onclick="approveAllPendingItems()" class="btn btn-primary-sm">⚡ Approve All Safe Batch</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
@@ -1048,7 +1048,7 @@
             <div class="admin-view-panel" id="view-permissions">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ›¡ï¸ Agent Authority & Permission Matrix</h1>
+                        <h1 class="workspace-title">🛡️ Agent Authority & Permission Matrix</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Granular read, write, external communication, financial custody, and destructive operation policy gates.</p>
                     </div>
                     <button onclick="saveAgentPermissionMatrix()" class="btn btn-primary-sm">ðŸ’¾ Save Policy Manifest</button>
@@ -1082,13 +1082,13 @@
                         <h1 class="workspace-title">ðŸŽ¥ Watch Agent Work (Live Pipeline Visualizer)</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time multi-agent execution pipeline showing state handoffs from intake to fulfillment.</p>
                     </div>
-                    <button onclick="triggerLiveMissionSimulation()" class="btn btn-primary-sm">ðŸš€ Launch Demo Mission Flow</button>
+                    <button onclick="triggerLiveMissionSimulation()" class="btn btn-primary-sm">🚀 Launch Demo Mission Flow</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:24px; border-radius:16px; border:1px solid var(--border-card);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                         <h3 style="font-size:1.05rem; color:#fff; display:flex; align-items:center; gap:8px;">
-                            <span>ðŸ›°ï¸</span> Active Pipeline: <span style="color:var(--accent-cyan);" id="live-mission-title">MSN-8821 (Enterprise Voice Receptionist)</span>
+                            <span>ðŸ›°</span> Active Pipeline: <span style="color:var(--accent-cyan);" id="live-mission-title">MSN-8821 (Enterprise Voice Receptionist)</span>
                         </h3>
                         <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.75rem;">LIVE EXECUTION</span>
                     </div>
@@ -1120,7 +1120,7 @@
                         <h1 class="workspace-title">ðŸ” Zero-Trust Secret & Credential Vault</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Cryptographic key broker isolating API secrets so autonomous agents operate with tokenized least-privilege.</p>
                     </div>
-                    <button onclick="triggerKeyRotationModal()" class="btn btn-primary-sm">ðŸ”„ Rotate Credentials</button>
+                    <button onclick="triggerKeyRotationModal()" class="btn btn-primary-sm">🔄 Rotate Credentials</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
@@ -1151,7 +1151,7 @@
                         <h1 class="workspace-title">ðŸ’µ Financial Double-Entry Reconciliation Ledger</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Single canonical source of truth matching orders, payments, escrow, refunds, commissions, and net profit.</p>
                     </div>
-                    <button onclick="recalculateFinancialReconciliation()" class="btn btn-primary-sm">âš¡ Audit Reconcile</button>
+                    <button onclick="recalculateFinancialReconciliation()" class="btn btn-primary-sm">⚡ Audit Reconcile</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
@@ -1206,10 +1206,10 @@
                 <span style="font-size: 0.7rem; color: var(--accent-cyan); font-family: var(--font-mono); text-transform: uppercase; font-weight: bold;">Inspector Target</span>
                 <h4 id="inspector-target-title" style="color: #fff; font-size: 1.05rem; margin: 4px 0 8px 0;">MediCare Diagnostics (UK)</h4>
                 <div id="inspector-target-body" style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5;">
-                    â€¢ Service: 04. Voice Receptionist<br>
-                    â€¢ Deal Size: $1,800 + $399/mo<br>
-                    â€¢ Stage: Stage 8 / 12 (UAT Sandbox)<br>
-                    â€¢ Partner: Adnin Growth Partner
+                    • Service: 04. Voice Receptionist<br>
+                    • Deal Size: $1,800 + $399/mo<br>
+                    • Stage: Stage 8 / 12 (UAT Sandbox)<br>
+                    • Partner: Adnin Growth Partner
                 </div>
                 <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
                     <button onclick="openDealLifecycleModal('DEAL-9904')" class="btn btn-primary-sm" style="width: 100%; font-size: 0.75rem;">ðŸ” Full 12-Stage Audit</button>
@@ -1346,7 +1346,7 @@
         const AGENT_ACTIVITY_STREAM = [
             { id: 'EVT-1001', time: '17:59:04', agent: 'SALES_AGENT', icon: 'ðŸŸ¢', title: 'Qualified New B2B SaaS Lead', trace: { who: 'Sales Closer Agent', why: 'Client requested lead scraping for 100 decision makers', input: 'Industry: Fintech, Budget: $850, Channel: WhatsApp', memory: 'Loaded service catalog item: b2b-lead-swarm', tool: 'create_lead + calculate_roi', policy: 'L2_SAFE_EXECUTE (PASS)', approval: 'Auto-Approved under $1,000 threshold', result: 'Lead LEAD-8819 qualified with score 94/100', cost: '$0.0042', rev: '+$850.00 USD' } },
             { id: 'EVT-1002', time: '17:59:07', agent: 'ARCHITECT_AGENT', icon: 'ðŸ”µ', title: 'Synthesized n8n Workflow Blueprint', trace: { who: 'Solution Architect Agent', why: 'Generated technical specification for client review', input: 'Generate zero-Zapier-fee self-hosted architecture', memory: 'Retrieved Docker VPS cluster blueprint & Playwright scraper config', tool: 'draft_proposal', policy: 'L1_DRAFT (PASS)', approval: 'Autonomous Drafting Permitted', result: 'Proposal HTML generated with 3-day turnaround SLA', cost: '$0.0084', rev: '+$497.00 USD' } },
-            { id: 'EVT-1003', time: '17:59:12', agent: 'FINANCE_AGENT', icon: 'ðŸŸ¡', title: 'Escrow Commission Ledger Entry Recorded', trace: { who: 'AI CFO & Finance Agent', why: 'Order ORD-185853 confirmed via bKash', input: 'Order amount à§³91,875 BDT ($750 USD), Affiliate AFF-ADNIN', memory: 'Retrieved partner commission rate: 20% ($150.00 USD)', tool: 'record_double_entry_ledger', policy: 'L0_OBSERVE (PASS)', approval: 'Escrow Locked awaiting 14-day clearance', result: 'Journal entry JRN-9921 written to Supabase migration 14 ledger', cost: '$0.0012', rev: '+$150.00 Escrow' } },
+            { id: 'EVT-1003', time: '17:59:12', agent: 'FINANCE_AGENT', icon: 'ðŸŸ¡', title: 'Escrow Commission Ledger Entry Recorded', trace: { who: 'AI CFO & Finance Agent', why: 'Order ORD-185853 confirmed via bKash', input: 'Order amount ৳91,875 BDT ($750 USD), Affiliate AFF-ADNIN', memory: 'Retrieved partner commission rate: 20% ($150.00 USD)', tool: 'record_double_entry_ledger', policy: 'L0_OBSERVE (PASS)', approval: 'Escrow Locked awaiting 14-day clearance', result: 'Journal entry JRN-9921 written to Supabase migration 14 ledger', cost: '$0.0012', rev: '+$150.00 Escrow' } },
             { id: 'EVT-1004', time: '17:59:18', agent: 'GUARDIAN_AGENT', icon: 'ðŸ”´', title: 'Blocked Unauthorized Level 4 Tool Attempt', trace: { who: 'Chief Security Officer Guardian', why: 'Prevented destructive action without root credentials', input: 'Tool call attempt: delete_production_database', memory: 'Matched forbidden objective in AI Constitution', tool: 'execute_tool (LEVEL_4_RESTRICTED)', policy: 'L4_PROHIBITED (BLOCKED)', approval: 'PERMANENTLY BLOCKED', result: 'Attempt intercepted and logged to security incidents table', cost: '$0.0005', rev: '$0.00' } }
         ];
 
@@ -1368,7 +1368,7 @@
                         </div>
                     </div>
                     <div style="font-size:0.78rem; color:#94a3b8; font-family:var(--font-mono);">
-                        â€¢ Trigger: ${e.trace.why} | Policy: <span style="color:var(--accent-gold);">${e.trace.policy}</span> | Cost: ${e.trace.cost} | Impact: <strong style="color:var(--accent-emerald);">${e.trace.rev}</strong>
+                        • Trigger: ${e.trace.why} | Policy: <span style="color:var(--accent-gold);">${e.trace.policy}</span> | Cost: ${e.trace.cost} | Impact: <strong style="color:var(--accent-emerald);">${e.trace.rev}</strong>
                     </div>
                 </div>
             `).join('');
@@ -1383,9 +1383,9 @@
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:650px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
                         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                             <h3 style="margin:0; font-size:1.15rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;">
-                                <span>âœˆï¸</span> Agent Flight Recorder & Causal Trace (${event.id})
+                                <span>âœˆ</span> Agent Flight Recorder & Causal Trace (${event.id})
                             </h3>
-                            <button onclick="document.getElementById('flight-recorder-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">âœ•</button>
+                            <button onclick="document.getElementById('flight-recorder-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
                         </div>
                         
                         <div style="display:flex; flex-direction:column; gap:10px; font-size:0.82rem; line-height:1.5;">
@@ -1411,7 +1411,7 @@
         }
 
         function injectLiveSimulatedEvent() {
-            showAffiliateToast('âš¡ Dispatched Live Agent Mission: SALES_AGENT closed deal with UK Client!');
+            showAffiliateToast('⚡ Dispatched Live Agent Mission: SALES_AGENT closed deal with UK Client!');
             renderAgentActivityWall();
         }
 
@@ -1470,14 +1470,14 @@
                             <strong style="color:#fff; font-size:0.92rem;">${a.title}</strong>
                         </div>
                         <div style="font-size:0.78rem; color:#94a3b8; font-family:var(--font-mono);">
-                            â€¢ Ref: ${a.id} | Target: ${a.client || a.partner || a.author} | Amount: <strong style="color:var(--accent-emerald);">${a.amount || a.env}</strong> | ${a.time}
+                            • Ref: ${a.id} | Target: ${a.client || a.partner || a.author} | Amount: <strong style="color:var(--accent-emerald);">${a.amount || a.env}</strong> | ${a.time}
                         </div>
                     </div>
                     <div style="display:flex; gap:8px;">
                         ${a.status === 'APPROVED' 
                             ? `<span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); padding:6px 14px;">âœ… AUTHORIZED</span>`
                             : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background:linear-gradient(135deg, #10b981, #059669); color:#000; font-weight:700;">âœ… 1-Click Approve</button>
-                               <button onclick="rejectInboxItem('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">âœ• Hold / Reject</button>`
+                               <button onclick="rejectInboxItem('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">✕ Hold / Reject</button>`
                         }
                     </div>
                 </div>
@@ -1505,7 +1505,7 @@
         function approveAllPendingItems() {
             PENDING_APPROVALS.forEach(a => a.status = 'APPROVED');
             renderApprovalInbox();
-            showAffiliateToast('âš¡ All pending financial and deployment actions AUTHORIZED batch-wise!');
+            showAffiliateToast('⚡ All pending financial and deployment actions AUTHORIZED batch-wise!');
         }
 
         // 5. Agent Permission Matrix Renderer
@@ -1516,7 +1516,7 @@
             { agent: 'Affiliate Partner Lead', read: 'âœ… L0', write: 'âœ… L2', ext: 'ðŸŸ¢ L3 (Limited)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' },
             { agent: 'AI CFO & Finance Controller', read: 'âœ… L0', write: 'âœ… L2', ext: 'ðŸŸ¡ L3 (Approval)', fin: 'ðŸŸ¡ L4 (Approval)', dest: 'ðŸ”´ L5 (Blocked)' },
             { agent: 'DevOps & SRE Guardian', read: 'âœ… L0', write: 'âœ… L2', ext: 'ðŸŸ¡ L3 (Approval)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸŸ¡ L5 (Approval)' },
-            { agent: 'Security & Policy Guardian', read: 'âœ… L0', write: 'ðŸ›¡ï¸ Policy', ext: 'ðŸ”´ L3 (Blocked)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' }
+            { agent: 'Security & Policy Guardian', read: 'âœ… L0', write: '🛡️ Policy', ext: 'ðŸ”´ L3 (Blocked)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' }
         ];
 
         function renderAgentPermissionMatrix() {
@@ -1541,12 +1541,12 @@
 
         // 6. Watch Agent Work Live Pipeline Renderer
         const PIPELINE_NODES = [
-            { step: 1, name: 'CEO Strategy', icon: 'ðŸ§ ', status: 'COMPLETE', badge: 'âœ“ Done (24ms)' },
+            { step: 1, name: 'CEO Strategy', icon: '🧠', status: 'COMPLETE', badge: 'âœ“ Done (24ms)' },
             { step: 2, name: 'Researcher / SDR', icon: 'ðŸ”', status: 'COMPLETE', badge: 'âœ“ 100 Leads (48ms)' },
             { step: 3, name: 'Sales Closer', icon: 'ðŸ’¼', status: 'WORKING', badge: 'ðŸŸ¢ Negotiating ROI' },
             { step: 4, name: 'Solution Architect', icon: 'ðŸ“', status: 'WAITING', badge: 'ðŸ”µ SOW Ready' },
             { step: 5, name: 'AI CFO & Finance', icon: 'ðŸ’°', status: 'APPROVAL', badge: 'ðŸŸ¡ Escrow Locked' },
-            { step: 6, name: 'Security Guardian', icon: 'ðŸ›¡ï¸', status: 'MONITORING', badge: 'ðŸŸ¢ 0 Policy Leaks' }
+            { step: 6, name: 'Security Guardian', icon: '🛡️', status: 'MONITORING', badge: 'ðŸŸ¢ 0 Policy Leaks' }
         ];
 
         function renderWatchAgentWorkFlow() {
@@ -1570,7 +1570,7 @@
             PIPELINE_NODES[3].status = 'WORKING';
             PIPELINE_NODES[3].badge = 'ðŸŸ¢ Generating Architecture';
             renderWatchAgentWorkFlow();
-            showAffiliateToast('ðŸš€ Live Mission Advanced: Sales Closer closed deal âž” Handoff to Solution Architect!');
+            showAffiliateToast('🚀 Live Mission Advanced: Sales Closer closed deal ➔ Handoff to Solution Architect!');
         // 7. Incident Response System Renderer
         const INCIDENTS_DATA = [
             { id: 'INC-2048', agent: 'SALES_AGENT', title: 'CRM API Rate-Limit (429) Auto-Buffered', severity: 'MEDIUM', status: 'RESOLVED', impact: '27 leads queued during burst', action: 'Activated exponential backoff retry & SQLite local buffer' },
@@ -1644,7 +1644,7 @@
         }
 
         function triggerKeyRotationModal() {
-            showAffiliateToast('ðŸ”„ Cryptographic key rotation cycle initiated across all edge secrets. Zero downtime.');
+            showAffiliateToast('🔄 Cryptographic key rotation cycle initiated across all edge secrets. Zero downtime.');
         }
 
         // 9. Financial Double-Entry Reconciliation Renderer
@@ -1653,15 +1653,15 @@
         }
 
         function recalculateFinancialReconciliation() {
-            showAffiliateToast('âš¡ Canonical financial ledger audited: 34 Orders = $8,420.00 Gross = 100% MATCHED with zero discrepancy!');
+            showAffiliateToast('⚡ Canonical financial ledger audited: 34 Orders = $8,420.00 Gross = 100% MATCHED with zero discrepancy!');
         }
 
         // 10. Business Goal Engine Modal
         function openBusinessGoalEngineModal() {
-            const goal = prompt('ðŸŽ¯ Enter Business Target (e.g., "Increase revenue by 30% this month"):', 'Increase monthly revenue by 30%');
+            const goal = prompt('🎯 Enter Business Target (e.g., "Increase revenue by 30% this month"):', 'Increase monthly revenue by 30%');
             if (goal) {
                 alert(
-                    `ðŸŽ¯ IINSHA BUSINESS GOAL ENGINE\n` +
+                    `🎯 IINSHA BUSINESS GOAL ENGINE\n` +
                     `Goal: "${goal}"\n` +
                     `--------------------------------------------------\n` +
                     `AI Execution Plan Generated:\n` +
@@ -1671,10 +1671,10 @@
                     `4. Launch retargeting sequence to 182 qualified leads\n` +
                     `5. Follow up stalled proposals via Voice Receptionist bot\n` +
                     `6. Dynamic pricing adjustments for enterprise packages\n\n` +
-                    `â€¢ Projected Result: +22% to +35% Gross Revenue\n` +
-                    `â€¢ Allocated AI Budget: $45.00 USD\n` +
-                    `â€¢ Estimated Timeline: 30 Days\n\n` +
-                    `[Plan Approved âž” Dispatched to CEO Strategic Commander]`
+                    `• Projected Result: +22% to +35% Gross Revenue\n` +
+                    `• Allocated AI Budget: $45.00 USD\n` +
+                    `• Estimated Timeline: 30 Days\n\n` +
+                    `[Plan Approved ➔ Dispatched to CEO Strategic Commander]`
                 );
             }
         }
@@ -1686,7 +1686,7 @@
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
                         <h3 style="font-size:1rem; color:#fff; display:flex; align-items:center; gap:8px;">
-                            <span>âš¡</span> Live Multi-Turn Brain Telemetry Stream (Commander + 15 Typed Tools)
+                            <span>⚡</span> Live Multi-Turn Brain Telemetry Stream (Commander + 15 Typed Tools)
                         </h3>
                         <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.75rem;">STATEFUL CONVERSATION V5 ACTIVE</span>
                     </div>
@@ -1718,9 +1718,9 @@
                                 <span style="color:var(--accent-emerald);">STATUS: 100 VERIFIED LEADS DELIVERED</span>
                             </div>
                             <div style="color:#cbd5e1; font-size:0.75rem;">
-                                â€¢ Intent: LEAD_GENERATION | Agents: COMMANDER + HUNTER + ANALYST<br>
-                                â€¢ State Memory: { Goal: "B2B SaaS Lead Gen", Target: "50-200 employees", Quantity: 100 }<br>
-                                â€¢ Tools Executed: [company_search (8ms), lead_discovery (14ms)] | Verifier: 0.98 Score (PASS)
+                                • Intent: LEAD_GENERATION | Agents: COMMANDER + HUNTER + ANALYST<br>
+                                • State Memory: { Goal: "B2B SaaS Lead Gen", Target: "50-200 employees", Quantity: 100 }<br>
+                                • Tools Executed: [company_search (8ms), lead_discovery (14ms)] | Verifier: 0.98 Score (PASS)
                             </div>
                         </div>
                         <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
@@ -1729,8 +1729,8 @@
                                 <span style="color:var(--accent-emerald);">STATUS: SOW & CRM DISPATCHED</span>
                             </div>
                             <div style="color:#cbd5e1; font-size:0.75rem;">
-                                â€¢ Pricing Calc: $750 USD (à§³91,875 BDT @ à§³122.50) | Order: ORD-185853<br>
-                                â€¢ WhatsApp Dispatcher: Dispatched to +8801629286887 with AI SDR Score 96/100
+                                • Pricing Calc: $750 USD (৳91,875 BDT @ ৳122.50) | Order: ORD-185853<br>
+                                • WhatsApp Dispatcher: Dispatched to +8801629286887 with AI SDR Score 96/100
                             </div>
                         </div>
                     </div>
@@ -1739,7 +1739,7 @@
         }
 
         function runObservatoryLiveEval() {
-            alert("ðŸš€ Running 100-Turn Automated Evaluation Benchmark...\nAll 100 Turns passed: Context Retention >99%, Repeated Questions = 0%, Tool Execution = 100%!");
+            alert("🚀 Running 100-Turn Automated Evaluation Benchmark...\nAll 100 Turns passed: Context Retention >99%, Repeated Questions = 0%, Tool Execution = 100%!");
         }
 
         // Affiliate Command Center Renderer
@@ -1753,7 +1753,7 @@
                             <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">ðŸ¤ 28-Pillar Affiliate Operating System</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Partner tracking, commission calculations, and batch payout approvals.</p>
                         </div>
-                        <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">ðŸ’³ Batch Payout ($2,450.00)</button>
+                        <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">💳 Batch Payout ($2,450.00)</button>
                     </div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:18px;">
                         <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
@@ -1785,7 +1785,7 @@
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
-                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">ðŸ›’ Dynamic Turnkey Services Studio</h3>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🛒 Dynamic Turnkey Services Studio</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Manage and publish AI services, catalog pricing, and SLA delivery terms.</p>
                         </div>
                         <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">âž• Add New Service</button>
@@ -1793,18 +1793,18 @@
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
                         <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
                             <strong style="color:#fff; font-size:1rem; display:block;">B2B SaaS 5-Agent Hunter Swarm</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$850 USD (à§³104,125 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">3-Day Delivery â€¢ 5 Playwright Agents â€¢ MX Verification</p>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$850 USD (৳104,125 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">3-Day Delivery • 5 Playwright Agents • MX Verification</p>
                         </div>
                         <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
                             <strong style="color:#fff; font-size:1rem; display:block;">24/7 AI Voice Receptionist</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$1,800 USD (à§³220,500 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">5-Day Delivery â€¢ Twilio & Gemini WebRTC â€¢ Inbound Booking</p>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$1,800 USD (৳220,500 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">5-Day Delivery • Twilio & Gemini WebRTC • Inbound Booking</p>
                         </div>
                         <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
                             <strong style="color:#fff; font-size:1rem; display:block;">Self-Hosted n8n Enterprise Cluster</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$497 USD (à§³60,882 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">1-Day Delivery â€¢ Docker on Hostinger VPS â€¢ Unlimited Workflows</p>
+                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$497 USD (৳60,882 BDT)</span>
+                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">1-Day Delivery • Docker on Hostinger VPS • Unlimited Workflows</p>
                         </div>
                     </div>
                 </div>
@@ -1819,10 +1819,10 @@
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
-                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-gold);">âš¡ Hostinger VPS & Docker Infrastructure</h3>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-gold);">⚡ Hostinger VPS & Docker Infrastructure</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Real-time server telemetry, container health, and workflow execution throughput.</p>
                         </div>
-                        <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">ðŸ”„ Restart n8n Container</button>
+                        <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">🔄 Restart n8n Container</button>
                     </div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
                         <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
@@ -1852,7 +1852,7 @@
             if (!root) return;
             root.innerHTML = `
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
-                    <h3 style="margin:0 0 12px; font-size:1.2rem; color:var(--accent-cyan);">ðŸ’¬ Unified Omnichannel Live Inbox</h3>
+                    <h3 style="margin:0 0 12px; font-size:1.2rem; color:var(--accent-cyan);">💬 Unified Omnichannel Live Inbox</h3>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">WhatsApp Cloud API, Website Copilot, and Lead Qualification messages in one feed.</p>
                     <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
                         <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
@@ -1894,22 +1894,22 @@
 
         const cmdActions = [
             { title: 'ðŸ‘‘ Jump to Executive Overview', cat: 'Navigation', action: () => switchAdminCockpitTab('overview') },
-            { title: 'ðŸ“Š System Truth Center: 20/20 Production Real Audit', cat: 'Truth Center', action: () => switchAdminCockpitTab('truth') },
-            { title: 'âš¡ Live Agent Activity Wall & Flight Recorder Replay', cat: 'Activity', action: () => switchAdminCockpitTab('activity') },
+            { title: '📊 System Truth Center: 20/20 Production Real Audit', cat: 'Truth Center', action: () => switchAdminCockpitTab('truth') },
+            { title: '⚡ Live Agent Activity Wall & Flight Recorder Replay', cat: 'Activity', action: () => switchAdminCockpitTab('activity') },
             { title: 'ðŸ’° Agent Economics: Net Margin & Revenue Attribution', cat: 'Finance', action: () => switchAdminCockpitTab('economics') },
-            { title: 'ðŸ¤– Inspect 13-Agent Digital Workforce Swarms', cat: 'Workforce', action: () => switchAdminCockpitTab('swarms') },
+            { title: '🤖 Inspect 13-Agent Digital Workforce Swarms', cat: 'Workforce', action: () => switchAdminCockpitTab('swarms') },
             { title: 'ðŸ¤ Open 28-Pillar Affiliate Command Center', cat: 'Affiliate', action: () => switchAdminCockpitTab('partners') },
-            { title: 'ðŸŽ¯ Open 12-Stage CRM Kanban Board', cat: 'CRM', action: () => switchAdminCockpitTab('crm') },
-            { title: 'ðŸ›’ Edit Turnkey Services & Pricing (USD/BDT)', cat: 'Catalog', action: () => switchAdminCockpitTab('catalog') },
-            { title: 'âš¡ Inspect Hostinger VPS & Docker Telemetry', cat: 'SRE', action: () => switchAdminCockpitTab('telemetry') },
-            { title: 'ðŸ’¬ Open Unified Omnichannel Live Inbox', cat: 'Inbox', action: () => switchAdminCockpitTab('inbox') },
-            { title: 'ðŸ’¸ Command: Show today\'s affiliate revenue ($1,842.00)', cat: 'Command IINSHA', action: () => { showAffiliateToast('ðŸ“Š Today\'s Affiliate Revenue: $1,842.00 USD (à§³2,25,645 BDT) | Top Partner: Adnin Growth (Gold)'); switchAdminCockpitTab('partners'); } },
-            { title: 'ðŸš¨ Command: Show all high-risk Level 3 & Level 4 actions', cat: 'Command IINSHA', action: () => { showAffiliateToast('ðŸ›¡ï¸ Security Scanner: 1 Blocked L4 action, 0 Unapproved L3 actions in last 24h.'); switchAdminCockpitTab('activity'); } },
+            { title: '🎯 Open 12-Stage CRM Kanban Board', cat: 'CRM', action: () => switchAdminCockpitTab('crm') },
+            { title: '🛒 Edit Turnkey Services & Pricing (USD/BDT)', cat: 'Catalog', action: () => switchAdminCockpitTab('catalog') },
+            { title: '⚡ Inspect Hostinger VPS & Docker Telemetry', cat: 'SRE', action: () => switchAdminCockpitTab('telemetry') },
+            { title: '💬 Open Unified Omnichannel Live Inbox', cat: 'Inbox', action: () => switchAdminCockpitTab('inbox') },
+            { title: 'ðŸ’¸ Command: Show today\'s affiliate revenue ($1,842.00)', cat: 'Command IINSHA', action: () => { showAffiliateToast('📊 Today\'s Affiliate Revenue: $1,842.00 USD (৳2,25,645 BDT) | Top Partner: Adnin Growth (Gold)'); switchAdminCockpitTab('partners'); } },
+            { title: 'ðŸš¨ Command: Show all high-risk Level 3 & Level 4 actions', cat: 'Command IINSHA', action: () => { showAffiliateToast('🛡️ Security Scanner: 1 Blocked L4 action, 0 Unapproved L3 actions in last 24h.'); switchAdminCockpitTab('activity'); } },
             { title: 'ðŸ“ˆ Command: Which service is most profitable?', cat: 'Command IINSHA', action: () => { showAffiliateToast('ðŸ† Most Profitable: AI Voice Receptionist ($1,800 USD, 84.6% Net Margin, 5 Deployments)'); switchAdminCockpitTab('catalog'); } },
             { title: 'ðŸ“ Command: Show Marketing Agent SEO & Blog drafts', cat: 'Command IINSHA', action: () => { showAffiliateToast('ðŸ“ Marketing Agent: 3 Case Studies published, 1 Draft pending approval.'); switchAdminCockpitTab('seo'); } },
             { title: 'ðŸ”´ Trigger Emergency Master Stop (Global Freeze)', cat: 'Safety', action: () => triggerEmergencyHaltModal() },
-            { title: 'ðŸ’³ Batch Approve Pending Partner Payouts', cat: 'Finance', action: () => adminTriggerBatchPayout() },
-            { title: 'âš¡ Run Live Telemetry Audit Scan', cat: 'Diagnostics', action: () => runAutonomousAuditScan() }
+            { title: '💳 Batch Approve Pending Partner Payouts', cat: 'Finance', action: () => adminTriggerBatchPayout() },
+            { title: '⚡ Run Live Telemetry Audit Scan', cat: 'Diagnostics', action: () => runAutonomousAuditScan() }
         ];
 
         function filterCmdResults() {
@@ -1939,10 +1939,10 @@
             if (!root) return;
 
             const agents = [
-                { id: 'AGNT-0001', name: 'ðŸ§  AI CEO Orchestrator', role: 'Business Orchestration & Planning', aut: 'Level 4 (Policy Bound)', budget: '$20/day', audit: '4,280 tasks | 99.8% Green' },
+                { id: 'AGNT-0001', name: '🧠 AI CEO Orchestrator', role: 'Business Orchestration & Planning', aut: 'Level 4 (Policy Bound)', budget: '$20/day', audit: '4,280 tasks | 99.8% Green' },
                 { id: 'AGNT-1042', name: 'ðŸ” Market Intel & resilient extraction agent', role: 'Niche Intelligence & Lead Scraping', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '1,420 niches scanned' },
-                { id: 'AGNT-2019', name: 'ðŸŽ¯ Outbound Sales SDR Swarm', role: 'Speed-to-Lead <45s Outreach', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '540 leads engaged' },
-                { id: 'AGNT-3088', name: 'ðŸ“ž 24/7 Voice AI Receptionist', role: 'Sub-250ms Audio Appointment Closer', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '310 calls handled' },
+                { id: 'AGNT-2019', name: '🎯 Outbound Sales SDR Swarm', role: 'Speed-to-Lead <45s Outreach', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '540 leads engaged' },
+                { id: 'AGNT-3088', name: '📞 24/7 Voice AI Receptionist', role: 'Sub-250ms Audio Appointment Closer', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '310 calls handled' },
                 { id: 'AGNT-4019', name: 'ðŸ§ª Independent QA Evaluator', role: 'Playwright E2E Code Inspector', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '100% test pass rate' }
             ];
 
@@ -1958,11 +1958,11 @@
                             <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">${a.role}</p>
                             <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:8px; font-size:0.72rem; display:flex; flex-direction:column; gap:4px;">
                                 <span style="color:#cbd5e1;">Autonomy: <strong style="color:var(--accent-gold);">${a.aut}</strong></span>
-                                <span style="color:#94a3b8;">Budget: ${a.budget} â€¢ ${a.audit}</span>
+                                <span style="color:#94a3b8;">Budget: ${a.budget} • ${a.audit}</span>
                             </div>
                             <div style="margin-top:12px; display:flex; gap:8px;">
                                 <button onclick="inspectAgentPassport('${a.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem;">ðŸ†” Passport</button>
-                                <button onclick="triggerAiBoardroomDebate()" class="btn btn-primary-sm" style="font-size:0.72rem;">ðŸ’¬ Debate</button>
+                                <button onclick="triggerAiBoardroomDebate()" class="btn btn-primary-sm" style="font-size:0.72rem;">💬 Debate</button>
                             </div>
                         </div>
                     `).join('')}
@@ -1982,7 +1982,7 @@
                 name: o.clientName,
                 size: `$${o.priceUsd.toLocaleString()} (${o.priceBdt})`,
                 comm: `+$${Math.round(o.priceUsd * 0.20)}.00`,
-                status: 'âš¡ ' + (o.aiSdrScore || 'AI SDR Qualified')
+                status: '⚡ ' + (o.aiSdrScore || 'AI SDR Qualified')
             }));
 
             const defaultCol1Deals = [
@@ -2030,7 +2030,7 @@
                                 <strong style="font-size:0.88rem; color:#fff;">${o.clientName}</strong>
                                 <span class="badge-gold" style="font-size:0.65rem; padding:1px 6px;">${o.orderId}</span>
                             </div>
-                            <span style="font-size:0.72rem; color:var(--text-muted);">${o.service} â€¢ ${o.clientPhone}</span>
+                            <span style="font-size:0.72rem; color:var(--text-muted);">${o.service} • ${o.clientPhone}</span>
                         </div>
                         <div style="text-align:right;">
                             <strong style="color:var(--accent-emerald); font-size:0.88rem; font-family:var(--font-mono);">$${o.priceUsd.toLocaleString()} USD</strong>
@@ -2053,10 +2053,10 @@
                         </div>
                         <strong style="color:#fff; font-size:0.88rem; display:block;">${o.clientName}</strong>
                         <div style="font-size:0.75rem; color:var(--accent-cyan); margin:2px 0;">${o.service}</div>
-                        <div style="font-size:0.7rem; color:var(--text-muted);">${o.clientEmail} â€¢ ${o.clientPhone}</div>
+                        <div style="font-size:0.7rem; color:var(--text-muted);">${o.clientEmail} • ${o.clientPhone}</div>
                         <div style="display:flex; justify-content:space-between; margin-top:8px; align-items:center;">
                             <span style="font-size:0.82rem; font-weight:700; color:var(--accent-emerald); font-family:var(--font-mono);">$${o.priceUsd.toLocaleString()}</span>
-                            <a href="https://wa.me/${o.clientPhone ? o.clientPhone.replace(/[^0-9]/g,'') : '8801629286887'}?text=Hi%20${encodeURIComponent(o.clientName)},%20IINSHA%20AI%20has%20received%20your%20order%20${o.orderId}" target="_blank" style="font-size:0.7rem; color:var(--accent-cyan); text-decoration:underline;">ðŸ’¬ Contact Client</a>
+                            <a href="https://wa.me/${o.clientPhone ? o.clientPhone.replace(/[^0-9]/g,'') : '8801629286887'}?text=Hi%20${encodeURIComponent(o.clientName)},%20IINSHA%20AI%20has%20received%20your%20order%20${o.orderId}" target="_blank" style="font-size:0.7rem; color:var(--accent-cyan); text-decoration:underline;">💬 Contact Client</a>
                         </div>
                     </div>
                 `).join('');
@@ -2068,12 +2068,12 @@
         }
 
         function runAutonomousAuditScan() {
-            showAffiliateToast('âš¡ Comprehensive Telemetry Scan: 27 Swarm Agents, n8n Docker Cluster, and 28-Pillar Network are 100% OPERATIONAL!');
+            showAffiliateToast('⚡ Comprehensive Telemetry Scan: 27 Swarm Agents, n8n Docker Cluster, and 28-Pillar Network are 100% OPERATIONAL!');
         }
 
         // 1. Emergency Kill-Switch Modal
         function triggerEmergencyHaltModal() {
-            const confirmed = confirm('âš ï¸ EMERGENCY MASTER KILL-SWITCH ACTIVATION\n\nAre you sure you want to pause all outbound autonomous agent swarms and put the system into SAFE READ-ONLY mode?');
+            const confirmed = confirm('âš  EMERGENCY MASTER KILL-SWITCH ACTIVATION\n\nAre you sure you want to pause all outbound autonomous agent swarms and put the system into SAFE READ-ONLY mode?');
             if (confirmed) {
                 sessionStorage.setItem('iinsha_emergency_halt', 'true');
                 showAffiliateToast('ðŸ›‘ EMERGENCY KILL-SWITCH ACTIVATED: All active swarms halted safely.');
@@ -2084,7 +2084,7 @@
         function openSwarmComposerModal() {
             const swarmName = prompt('âž• Compose New Dynamic Swarm\nEnter Swarm Name (e.g., "Fintech B2B Hunter Swarm"):', 'Custom B2B Outreach Swarm');
             if (swarmName) {
-                showAffiliateToast(`ðŸ¤– Swarm "${swarmName}" composed with 5 agent worker nodes and saved to mesh!`);
+                showAffiliateToast(`🤖 Swarm "${swarmName}" composed with 5 agent worker nodes and saved to mesh!`);
                 switchAdminCockpitTab('swarms');
             }
         }
@@ -2100,7 +2100,7 @@
                 clientName: clientName,
                 service: 'Autonomous Enterprise Retainer',
                 priceUsd: parseInt(amount, 10) || 1500,
-                priceBdt: 'à§³' + (parseInt(amount, 10) * 122.50).toLocaleString(),
+                priceBdt: '৳' + (parseInt(amount, 10) * 122.50).toLocaleString(),
                 clientEmail: 'contact@' + clientName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com',
                 clientPhone: '+8801629286887',
                 date: new Date().toISOString()
@@ -2114,7 +2114,7 @@
 
         // Batch Payout Trigger
         window.adminTriggerBatchPayout = function() {
-            const confirmed = confirm('âš¡ AUTHORIZE BATCH AFFILIATE PAYOUTS ($2,450.00 USD)\n\nâ€¢ 4 Verified Gold/Legend Partners\nâ€¢ Canonical Ledger Balance Verified\nâ€¢ Zero Fraud Alerts\n\nExecute batch payout dispatch via Connected Stripe / Bank / Mobile Ledger?');
+            const confirmed = confirm('⚡ AUTHORIZE BATCH AFFILIATE PAYOUTS ($2,450.00 USD)\n\n• 4 Verified Gold/Legend Partners\n• Canonical Ledger Balance Verified\n• Zero Fraud Alerts\n\nExecute batch payout dispatch via Connected Stripe / Bank / Mobile Ledger?');
             if (confirmed) {
                 showAffiliateToast('âœ… Batch Payout Disbursed: $2,450.00 USD processed and recorded in immutable ledger!');
             }
@@ -2123,12 +2123,12 @@
         // 12-Stage Deal Lifecycle Modal
         window.openDealLifecycleModal = function(dealId) {
             const deals = {
-                'DEAL-9610': { name: 'Urban Real Estate', size: '$750 Setup', client: 'Karim Chowdhury', service: 'Real Estate <60s Lead Responder', stage: 'Stage 1 â€” Inbound Lead Captured (<45s)', agent: 'SDR Hunter', nextAction: 'Send automated WhatsApp qualification prompt' },
-                'DEAL-9904': { name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', client: 'Dr. Alistair Finch', service: '24/7 AI Voice Receptionist', stage: 'Stage 2 â€” Video Teardown & Architecture SOW', agent: 'Solution Architect', nextAction: 'Owner approve escrow contract' },
-                'DEAL-9720': { name: 'SaaS Outbound Engine', size: '$3,000 Setup', client: 'Alex Rivera', service: 'B2B SaaS 5-Agent Swarm', stage: 'Stage 3 â€” Escrow Confirmed & Paid', agent: 'AI CFO', nextAction: 'Trigger n8n Docker Swarm Provisioning' },
-                'DEAL-9841': { name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', client: 'David Henderson', service: 'Freight Manifest OCR Engine', stage: 'Stage 4 â€” Live In Production', agent: 'DevOps Guardian', nextAction: 'Continuous SLA & uptime monitoring' }
+                'DEAL-9610': { name: 'Urban Real Estate', size: '$750 Setup', client: 'Karim Chowdhury', service: 'Real Estate <60s Lead Responder', stage: 'Stage 1 — Inbound Lead Captured (<45s)', agent: 'SDR Hunter', nextAction: 'Send automated WhatsApp qualification prompt' },
+                'DEAL-9904': { name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', client: 'Dr. Alistair Finch', service: '24/7 AI Voice Receptionist', stage: 'Stage 2 — Video Teardown & Architecture SOW', agent: 'Solution Architect', nextAction: 'Owner approve escrow contract' },
+                'DEAL-9720': { name: 'SaaS Outbound Engine', size: '$3,000 Setup', client: 'Alex Rivera', service: 'B2B SaaS 5-Agent Swarm', stage: 'Stage 3 — Escrow Confirmed & Paid', agent: 'AI CFO', nextAction: 'Trigger n8n Docker Swarm Provisioning' },
+                'DEAL-9841': { name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', client: 'David Henderson', service: 'Freight Manifest OCR Engine', stage: 'Stage 4 — Live In Production', agent: 'DevOps Guardian', nextAction: 'Continuous SLA & uptime monitoring' }
             };
-            const d = deals[dealId] || { name: 'Client Deal ' + dealId, size: '$1,500 Setup', client: 'Enterprise Client', service: 'Autonomous AI-BOS Deployment', stage: 'Stage 2 â€” Active Pipeline', agent: 'Sales Closer', nextAction: 'Awaiting client contract signature' };
+            const d = deals[dealId] || { name: 'Client Deal ' + dealId, size: '$1,500 Setup', client: 'Enterprise Client', service: 'Autonomous AI-BOS Deployment', stage: 'Stage 2 — Active Pipeline', agent: 'Sales Closer', nextAction: 'Awaiting client contract signature' };
 
             const modalHtml = `
                 <div id="deal-lifecycle-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
@@ -2138,24 +2138,18 @@
                                 <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">12-STAGE CRM LIFECYCLE AUDIT</span>
                                 <h3 style="margin:4px 0 0 0; font-size:1.2rem; color:#fff;">${d.name} (${dealId})</h3>
                             </div>
-                            <button onclick="document.getElementById('deal-lifecycle-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">âœ•</button>
+                            <button onclick="document.getElementById('deal-lifecycle-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
                         </div>
                         
                         <div style="display:flex; flex-direction:column; gap:10px; font-size:0.84rem; line-height:1.5;">
-                            <div><strong style="color:#94a3b8;">â€¢ Client Contact:</strong> <span style="color:#fff;">${d.client}</span></div>
-                            <div><strong style="color:#94a3b8;">â€¢ Service Package:</strong> <span style="color:var(--accent-cyan); font-weight:600;">${d.service}</span></div>
-                            <div><strong style="color:#94a3b8;">â€¢ Deal Valuation:</strong> <span style="color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">${d.size}</span></div>
-                            <div><strong style="color:#94a3b8;">â€¢ Current Stage:</strong> <span style="color:var(--accent-gold); font-weight:600;">${d.stage}</span></div>
-                            <div><strong style="color:#94a3b8;">â€¢ Assigned Swarm Agent:</strong> <span style="color:#38bdf8;">${d.agent}</span></div>
-                            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; margin-top:6px;">
-                                <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">âš¡ Autonomous Next Action:</strong>
+                            <div><strong style="color:#94a3b8;">• Client Contact:</strong> <span style="color:#fff;">${d.clien                                <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">⚡ Autonomous Next Action:</strong>
                                 <span style="color:#cbd5e1;">${d.nextAction}</span>
                             </div>
                         </div>
 
                         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
                             <button onclick="document.getElementById('deal-lifecycle-modal').remove()" class="btn btn-glass-sm">Close</button>
-                            <button onclick="showAffiliateToast('âš¡ Stage advanced & automated client webhook fired!'); document.getElementById('deal-lifecycle-modal').remove();" class="btn btn-primary-sm">âš¡ Advance Stage â†’</button>
+                            <button onclick="showAffiliateToast('⚡ Stage advanced & automated client webhook fired!'); document.getElementById('deal-lifecycle-modal').remove();" class="btn btn-primary-sm">⚡ Advance Stage →</button>
                         </div>
                     </div>
                 </div>
@@ -2167,9 +2161,9 @@
 
         // 4. Add New Turnkey Service Modal
         function addNewServiceModal() {
-            const title = prompt('âž• Enter Service Title:', 'Custom AI Voice Receptionist Suite');
+            const title = prompt('➕ Enter Service Title:', 'Custom AI Voice Receptionist Suite');
             if (!title) return;
-            const price = prompt('ðŸ’µ Enter Price in USD ($):', '750');
+            const price = prompt('💰 Enter Price in USD ($):', '750');
             const services = JSON.parse(localStorage.getItem('iinsha_services_registry') || '[]');
             services.push({
                 id: 'custom_' + Date.now(),
@@ -2180,27 +2174,40 @@
                 commission_rate: 20
             });
             localStorage.setItem('iinsha_services_registry', JSON.stringify(services));
-            showAffiliateToast(`âœ… Service "${title}" ($${price}) published to catalog & marketplace!`);
+            showAffiliateToast(`✅ Service "${title}" ($${price}) published to catalog & marketplace!`);
             switchAdminCockpitTab('catalog');
         }
 
         // 5. Restart Docker Cluster
         function restartDockerCluster() {
-            showAffiliateToast('â³ Sending SIGTERM to n8n Docker container...');
+            showAffiliateToast('⏳ Sending SIGTERM to n8n Docker container...');
             setTimeout(() => {
-                showAffiliateToast('âœ… Docker n8n Webhook Container restarted successfully. Status: 100% HEALTHY (Port 5678).');
+                showAffiliateToast('✅ Docker n8n Webhook Container restarted successfully. Status: 100% HEALTHY (Port 5678).');
             }, 1200);
         }
 
         // 6. Generate New AI Case Study
         function generateNewAiArticleModal() {
-            const topic = prompt('âš¡ Enter Topic for Autonomous Case Study / Article:', 'How Autonomous AI Swarms Save 90% Costs Over Human SDRs');
+            const topic = prompt('⚡ Enter Topic for Autonomous Case Study / Article:', 'How Autonomous AI Swarms Save 90% Costs Over Human SDRs');
             if (topic) {
-                showAffiliateToast(`ðŸ“ AI Content Engine is generating case study for "${topic}"...`);
+                showAffiliateToast(`📄 AI Content Engine is generating case study for "${topic}"...`);
                 setTimeout(() => {
-                    showAffiliateToast(`ðŸŽ‰ Published new case study to blog.html!`);
+                    showAffiliateToast(`🎉 Published new case study to blog.html!`);
                 }, 1500);
             }
+        }
+
+        function showAffiliateToast(msg) {
+            let toast = document.getElementById('admin-toast-el');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'admin-toast-el';
+                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:rgba(15,23,42,0.95); border:1px solid #00F2FE; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none;';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
         }
 
         // 7. Operational Pause & Kill-Switch Handlers
@@ -2213,7 +2220,7 @@
                 ind.style.borderColor = 'rgba(245,158,11,0.4)';
                 txt.textContent = 'SYSTEM PAUSED (13 AGENTS ON HOLD)';
             }
-            showAffiliateToast('â¸ï¸ ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
+            showAffiliateToast('â¸ ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
         }
 
         function resumeAllAgents() {
@@ -2225,7 +2232,7 @@
                 ind.style.borderColor = 'rgba(16,185,129,0.3)';
                 txt.textContent = 'SYSTEM ONLINE (13 AGENTS)';
             }
-            showAffiliateToast('â–¶ï¸ SYSTEM RESUMED. All 13 agents active and listening.');
+            showAffiliateToast('â–¶ SYSTEM RESUMED. All 13 agents active and listening.');
         }
 
         // 8. Owner Daily Briefing Modal
@@ -2236,37 +2243,37 @@
                     const b = data.briefing || {};
                     const f = b.financial_summary || {};
                     alert(
-                        `ðŸ“‹ IINSHA OWNER DAILY BRIEFING (${b.date})\n` +
+                        `📋 IINSHA OWNER DAILY BRIEFING (${b.date})\n` +
                         `--------------------------------------------------\n` +
-                        `â€¢ Yesterday Revenue: $${f.yesterday_revenue_usd?.toLocaleString()} USD (à§³${f.yesterday_revenue_bdt?.toLocaleString()} BDT)\n` +
-                        `â€¢ Orders Processed: ${f.orders_processed} | New Leads: ${f.new_leads_acquired}\n` +
-                        `â€¢ Affiliate Commission: $${f.affiliate_commission_accrued?.toLocaleString()} USD\n` +
-                        `â€¢ AI Inference Cost: $${f.ai_inference_cost_usd} USD (Net Margin: ${f.net_operating_profit_margin})\n` +
-                        `â€¢ Agents Online: ${b.workforce_summary?.agents_online} | Active Missions: ${b.workforce_summary?.active_missions}\n` +
-                        `â€¢ Top Service: ${b.highlights?.top_performing_service}\n` +
-                        `â€¢ Pending Approvals: ${b.pending_owner_actions?.length} items\n\n` +
-                        `ðŸ’¡ AI CEO Recommendation:\n"${b.ai_ceo_recommendation}"`
+                        `• Yesterday Revenue: $${f.yesterday_revenue_usd?.toLocaleString()} USD (৳${f.yesterday_revenue_bdt?.toLocaleString()} BDT)\n` +
+                        `• Orders Processed: ${f.orders_processed} | New Leads: ${f.new_leads_acquired}\n` +
+                        `• Affiliate Commission: $${f.affiliate_commission_accrued?.toLocaleString()} USD\n` +
+                        `• AI Inference Cost: $${f.ai_inference_cost_usd} USD (Net Margin: ${f.net_operating_profit_margin})\n` +
+                        `• Agents Online: ${b.workforce_summary?.agents_online} | Active Missions: ${b.workforce_summary?.active_missions}\n` +
+                        `• Top Service: ${b.highlights?.top_performing_service}\n` +
+                        `• Pending Approvals: ${b.pending_owner_actions?.length} items\n\n` +
+                        `💡 AI CEO Recommendation:\n"${b.ai_ceo_recommendation}"`
                     );
                 })
                 .catch(() => {
-                    alert('ðŸ“‹ IINSHA OWNER DAILY BRIEFING\nRevenue: $8,420 USD | Orders: 34 | Leads: 182 | Margin: 81.4%\nTop Service: 24/7 AI Voice Receptionist ($1,800 @ 84% margin)\nPending: 3 Approvals awaiting single-click authorization.');
+                    alert('📋 IINSHA OWNER DAILY BRIEFING\nRevenue: $8,420 USD | Orders: 34 | Leads: 182 | Margin: 81.4%\nTop Service: 24/7 AI Voice Receptionist ($1,800 @ 84% margin)\nPending: 3 Approvals awaiting single-click authorization.');
                 });
         }
 
         // 9. Digital Twin Executive Simulator
         function openExecutiveSimulatorModal() {
-            const scenario = prompt('ðŸ§  Enter Scenario to Simulate (e.g., "Increase Affiliate Commission from 20% to 25%"):', 'Increase Affiliate Commission from 20% to 25%');
+            const scenario = prompt('🧠 Enter Scenario to Simulate (e.g., "Increase Affiliate Commission from 20% to 25%"):', 'Increase Affiliate Commission from 20% to 25%');
             if (scenario) {
                 alert(
                     `ðŸ”® EXECUTIVE SIMULATOR (DIGITAL TWIN)\n` +
                     `Scenario: "${scenario}"\n` +
                     `--------------------------------------------------\n` +
-                    `â€¢ Projected Revenue Impact: +18.4% ($9,970/day)\n` +
-                    `â€¢ Partner Recruitment Velocity: +24% new affiliates/week\n` +
-                    `â€¢ Commission Expense: +31.2% ($4,093)\n` +
-                    `â€¢ Net Operating Margin: -7.1% (Stabilizes at 74.3%)\n` +
-                    `â€¢ Overall Risk Level: MEDIUM\n\n` +
-                    `ðŸ’¡ Strategic Recommendation:\n` +
+                    `• Projected Revenue Impact: +18.4% ($9,970/day)\n` +
+                    `• Partner Recruitment Velocity: +24% new affiliates/week\n` +
+                    `• Commission Expense: +31.2% ($4,093)\n` +
+                    `• Net Operating Margin: -7.1% (Stabilizes at 74.3%)\n` +
+                    `• Overall Risk Level: MEDIUM\n\n` +
+                    `💡 Strategic Recommendation:\n` +
                     `"Adopt 25% introductory commission exclusively for the first 90 days for top-tier affiliates, preserving standard 20% for self-serve signups."`
                 );
             }
