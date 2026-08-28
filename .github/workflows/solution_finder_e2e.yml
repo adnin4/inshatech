@@ -1,0 +1,24 @@
+name: Step 8 - AI Solution Finder E2E Certification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  certify-solution-finder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run AI Solution Finder E2E Certification Test Suite
+        run: node scripts/solution_finder_e2e.mjs

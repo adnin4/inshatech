@@ -3144,3 +3144,19 @@ form input[type="tel"]:focus {
         font-size: 1.5rem !important;
     }
 }
+
+
+/* ========================================================
+   GLOWING BORDER CYBERPUNK ACCENT
+   ======================================================== */
+.glowing-border {
+    position: relative;
+    border: 1px solid rgba(0, 242, 254, 0.35) !important;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15) !important;
+    transition: all 0.3s ease !important;
+}
+
+.glowing-border:hover {
+    border-color: rgba(0, 242, 254, 0.7) !important;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.3) !important;
+}
