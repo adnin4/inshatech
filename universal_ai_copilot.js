@@ -43,7 +43,7 @@
             name: 'Self-Hosted n8n Enterprise Cluster Deployment',
             category: 'Infrastructure',
             priceUSD: 497,
-            badge: 'ðŸ’° 90% Cost Saving',
+            badge: '💰 90% Cost Saving',
             desc: 'Dockerized n8n on Hostinger VPS ($5.99/mo) with unlimited workflows, PostgreSQL, and zero Zapier per-task fees.',
             n8nReady: true
         },
@@ -888,7 +888,7 @@
                         <div style="font-size:0.78rem; line-height:1.6; color:#e2e8f0;">
                             <div>ðŸŒ <strong>Source Shop:</strong> <code>${targetUrl}</code></div>
                             <div>ðŸ“¦ <strong>Catalog Extracted:</strong> 28 Products & Variations</div>
-                            <div>ðŸ’° <strong>Pricing Engine:</strong> Auto-Synced in USD & BDT (৳122.50)</div>
+                            <div>💰 <strong>Pricing Engine:</strong> Auto-Synced in USD & BDT (৳122.50)</div>
                             <div>🧠 <strong>Vector Embeddings:</strong> text-embedding-3-large (1536 dims)</div>
                             <div>⚡ <strong>Status:</strong> Ready for Live Messenger / WhatsApp AI Bot</div>
                         </div>
@@ -1190,7 +1190,7 @@
             if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing') || lower.includes('dam') || lower.includes('taka') || lower.includes('koto') || lower.includes('rate')) {
                 const priceHtml = `
                     <div>
-                        ðŸ’° <strong>IINSHA AI-BOS à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ à¦“ à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ (USD & BDT @ ৳${USD_TO_BDT_RATE}):</strong><br><br>
+                        💰 <strong>IINSHA AI-BOS à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ à¦“ à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ (USD & BDT @ ৳${USD_TO_BDT_RATE}):</strong><br><br>
                         💎 <strong>à§§. Starter Automation Build:</strong> $497 USD (${this.formatBDT(497)})<br>
                         <em>- à§©à¦Ÿà¦¿ à¦•à§‹à¦° n8n à¦“à§Ÿà¦¾à¦°à§à¦•à¦«à§à¦²à§‹ + à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚à¦—à¦¾à¦° à¦­à¦¿à¦ªà¦¿à¦à¦¸ à¦¸à§‡à¦Ÿà¦†à¦ª + à§§à§ª à¦¦à¦¿à¦¨à§‡à¦° à¦¸à¦¾à¦ªà§‹à¦°à§à¦Ÿà¥¤</em><br><br>
                         💎 <strong>à§¨. Production Agent Swarm:</strong> $997 USD (${this.formatBDT(997)})<br>

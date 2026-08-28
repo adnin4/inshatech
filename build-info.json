@@ -1,6 +1,6 @@
 {
-  "git_sha": "c0c1a2ffe039dfaba328a6d6a217102d5875fbbd",
-  "build_time": "2026-08-28T06:09:53.455541+00:00",
+  "git_sha": "148affdd809a3f2e5c5e046fab25cd8c561a9a28",
+  "build_time": "2026-08-28T06:48:02.479740+00:00",
   "environment": "production",
   "schema_version": "2026.8.19",
   "api_version": "v1",

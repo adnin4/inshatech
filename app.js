@@ -177,16 +177,16 @@ function renderAdminModalCmsStudio(container) {
                 <button onclick="ibosSwitchTab('pricing')" class="btn btn-glass-sm ${ibosActiveTab === 'pricing' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'pricing' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ’² Pricing Engine</button>
                 <button onclick="ibosSwitchTab('affiliate')" class="btn btn-glass-sm ${ibosActiveTab === 'affiliate' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'affiliate' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸ¤ Affiliate BOS 5.0</button>
                 <button onclick="ibosSwitchTab('ai')" class="btn btn-glass-sm ${ibosActiveTab === 'ai' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'ai' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🤖 AI Swarms</button>
-                <button onclick="ibosSwitchTab('crm')" class="btn btn-glass-sm ${ibosActiveTab === 'crm' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'crm' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ‘¥ Client CRM</button>
+                <button onclick="ibosSwitchTab('crm')" class="btn btn-glass-sm ${ibosActiveTab === 'crm' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'crm' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">👥 Client CRM</button>
                 <button onclick="ibosSwitchTab('projects')" class="btn btn-glass-sm ${ibosActiveTab === 'projects' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'projects' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ“‚ Projects</button>
-                <button onclick="ibosSwitchTab('blog')" class="btn btn-glass-sm ${ibosActiveTab === 'blog' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'blog' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ“ Blog CMS</button>
+                <button onclick="ibosSwitchTab('blog')" class="btn btn-glass-sm ${ibosActiveTab === 'blog' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'blog' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">📝 Blog CMS</button>
                 <button onclick="ibosSwitchTab('media')" class="btn btn-glass-sm ${ibosActiveTab === 'media' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'media' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ–¼ Media Library</button>
-                <button onclick="ibosSwitchTab('analytics')" class="btn btn-glass-sm ${ibosActiveTab === 'analytics' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'analytics' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“ˆ Analytics 360</button>
+                <button onclick="ibosSwitchTab('analytics')" class="btn btn-glass-sm ${ibosActiveTab === 'analytics' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'analytics' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📈 Analytics 360</button>
                 <button onclick="ibosSwitchTab('automation')" class="btn btn-glass-sm ${ibosActiveTab === 'automation' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'automation' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">⚡ Automations</button>
                 <button onclick="ibosSwitchTab('flags')" class="btn btn-glass-sm ${ibosActiveTab === 'flags' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'flags' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸš© Feature Flags</button>
                 <button onclick="ibosSwitchTab('audit')" class="btn btn-glass-sm ${ibosActiveTab === 'audit' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'audit' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“œ Audit Sourcing</button>
                 <button onclick="ibosSwitchTab('rbac')" class="btn btn-glass-sm ${ibosActiveTab === 'rbac' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'rbac' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">🛡️ RBAC Credentials</button>
-                <button onclick="ibosSwitchTab('settings')" class="btn btn-glass-sm ${ibosActiveTab === 'settings' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'settings' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">âš™ System Settings</button>
+                <button onclick="ibosSwitchTab('settings')" class="btn btn-glass-sm ${ibosActiveTab === 'settings' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'settings' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">⚙️ System Settings</button>
             </div>
 
             <!-- IBOS MODULE TAB CONTENT PANEL -->
@@ -246,10 +246,10 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                 <div class="ipc-card">
                     <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">⚡ Quick Command Shortcuts</h4>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">âž• Add New Service</button>
+                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">➕ Add New Service</button>
                         <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);">âœ Publish Blog Article</button>
                         <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">ðŸ¤ Approve Partner Sale</button>
-                        <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">ðŸ‘¥ Admin Credentials CMS</button>
+                        <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">👥 Admin Credentials CMS</button>
                     </div>
                 </div>
             </div>
@@ -265,7 +265,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;">ðŸ› Marketplace Domain CMS (${services.length} Services Active)</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Single Source of Truth Service Registry Catalog.</p>
                     </div>
-                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">âž• Add New Service</button>
+                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">➕ Add New Service</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -304,7 +304,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                             <label style="font-size:0.75rem; color:var(--text-muted); display:block;">USD to BDT Rate:</label>
                             <input type="number" id="ibos-bdt-rate-input" class="dash-select" value="${siteWords.bdtRate}" style="width:140px;">
                         </div>
-                        <button id="ibos-btn-update-rate" class="btn btn-primary-sm" style="background:var(--accent-gold); color:#000; font-weight:800;">ðŸ’¾ Save Currency Rate</button>
+                        <button id="ibos-btn-update-rate" class="btn btn-primary-sm" style="background:var(--accent-gold); color:#000; font-weight:800;">💾 Save Currency Rate</button>
                     </div>
                 </div>
             </div>
@@ -358,7 +358,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                 <span class="badge-pro" style="margin-left:8px; font-size:0.7rem;">${sanitize(agent.model)}</span>
                                 <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">Domain: ${sanitize(agent.domain)}</div>
                             </div>
-                            <button class="btn btn-glass-sm" onclick="alert('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">âš™ Config Prompt & RAG</button>
+                            <button class="btn btn-glass-sm" onclick="alert('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">⚙️ Config Prompt & RAG</button>
                         </div>
                     `).join('')}
                 </div>
@@ -375,7 +375,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <h3 style="color:var(--accent-gold); font-size:1.15rem; margin:0;">🛡️ Identity Domain & RBAC Credential CMS</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Manage Admin User ID & Passwords anytime.</p>
                     </div>
-                    <button id="ibos-btn-add-admin" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">âž• Add Admin User</button>
+                    <button id="ibos-btn-add-admin" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">➕ Add Admin User</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -400,7 +400,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
     return `
         <!-- PLATFORM DOMAIN & SETTINGS -->
         <div>
-            <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin-bottom:12px;">âš™ Platform Domain Settings & Branding</h3>
+            <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin-bottom:12px;">⚙️ Platform Domain Settings & Branding</h3>
             <div class="ipc-card">
                 <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px;">Global Headline Words</h4>
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -412,7 +412,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <label style="font-size:0.75rem; color:var(--text-muted); display:block;">Hero Subtitle:</label>
                         <input type="text" id="ibos-hero-sub" class="dash-select" style="width:100%;" value="${sanitize(siteWords.heroSub)}">
                     </div>
-                    <button id="ibos-btn-save-words" class="btn btn-primary-sm" style="background:var(--accent-cyan); color:#000; font-weight:800;">ðŸ’¾ Save Headlines</button>
+                    <button id="ibos-btn-save-words" class="btn btn-primary-sm" style="background:var(--accent-cyan); color:#000; font-weight:800;">💾 Save Headlines</button>
                 </div>
             </div>
         </div>
@@ -452,7 +452,7 @@ function bindIBOSModuleListeners() {
             if (heroTitleEl && heroTitle) heroTitleEl.innerHTML = sanitize(heroTitle);
             if (heroSubEl && heroSub) heroSubEl.innerHTML = sanitize(heroSub);
 
-            alert('âœ… Global CMS Headlines & Words saved successfully!');
+            alert('✅ Global CMS Headlines & Words saved successfully!');
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -473,7 +473,7 @@ function bindIBOSModuleListeners() {
             // Update currency elements across page
             document.querySelectorAll('.currency-toggle-btn.active').forEach(b => b.click());
 
-            alert(`âœ… Exchange Rate saved! 1 USD = ৳${inputRate} BDT across all services.`);
+            alert(`✅ Exchange Rate saved! 1 USD = ৳${inputRate} BDT across all services.`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -507,7 +507,7 @@ function bindIBOSModuleListeners() {
             });
 
             saveServiceRegistry(registry);
-            alert(`ðŸŽ‰ New Service "${title}" ($${price}) added to Single Source Registry!`);
+            alert(`🎉 New Service "${title}" ($${price}) added to Single Source Registry!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -530,7 +530,7 @@ function bindIBOSModuleListeners() {
             svc.commission_rate = !isNaN(newComm) ? newComm : svc.commission_rate;
 
             saveServiceRegistry(registry);
-            alert(`âœ… Service "${svc.title}" updated successfully!`);
+            alert(`✅ Service "${svc.title}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -586,7 +586,7 @@ function bindIBOSModuleListeners() {
             adm.password = newPass || adm.password;
 
             saveAdminUsers(admins);
-            alert(`âœ… Admin Credentials for "${adm.email}" updated successfully!`);
+            alert(`✅ Admin Credentials for "${adm.email}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -774,7 +774,7 @@ function initComparePageHandlers() {
             const code = btn.getAttribute('data-code') || 'IINSHA20';
             navigator.clipboard.writeText(code).then(() => {
                 const orig = btn.textContent;
-                btn.textContent = 'âœ… Copied!';
+                btn.textContent = '✅ Copied!';
                 btn.style.background = 'var(--accent-emerald)';
                 setTimeout(() => {
                     btn.textContent = orig;
@@ -857,7 +857,7 @@ function initMarketplaceHandlers() {
             const code = btn.getAttribute('data-code') || 'IINSHA20';
             navigator.clipboard.writeText(code).then(() => {
                 const orig = btn.textContent;
-                btn.textContent = 'âœ… Copied!';
+                btn.textContent = '✅ Copied!';
                 setTimeout(() => { btn.textContent = orig; }, 2000);
             });
         });
@@ -1322,7 +1322,7 @@ function initTerminalTelemetry() {
     if (runScraperBtn) {
         runScraperBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] â–¶ Executing Playwright Enterprise Pipeline Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ▶️ Executing Playwright Enterprise Pipeline Playwright Scraper...\n[${new Date().toLocaleTimeString()}] ✔ Bypassed Cloudflare Bot Detection (Stealth Mode Active)\n[${new Date().toLocaleTimeString()}] 📊 Extracted 120 Competitor Price Datapoints in 1.14s\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1412,7 +1412,7 @@ function initInteractiveDiagramVisualizer() {
                 <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
 
                 <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
-                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸ•· Playwright Pipeline Resilient Scraper</text>
+                <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ Playwright Pipeline Resilient Scraper</text>
 
                 <line x1="500" y1="100" x2="600" y2="100" stroke="#10b981" stroke-width="3"/>
 
@@ -1566,7 +1566,7 @@ function initAiAgentCommandSwarm() {
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’¼ Sales Agent</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Sales Agent</span>
                         <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">â— 12 LEADS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Auto-Quoting Dubai & USA Clients</p>
@@ -1574,7 +1574,7 @@ function initAiAgentCommandSwarm() {
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ“¢ Lead Hunter AI</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Lead Hunter AI</span>
                         <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">â— 45 DRAFTS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Playwright Pipeline Scraped B2B Contacts</p>
@@ -1590,7 +1590,7 @@ function initAiAgentCommandSwarm() {
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(236,72,153,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ”§ Delivery Agent</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🔧 Delivery Agent</span>
                         <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">â— 3 ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Generating n8n Workflows & Docker Compose</p>
@@ -1598,7 +1598,7 @@ function initAiAgentCommandSwarm() {
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’° Finance AI</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💰 Finance AI</span>
                         <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">â— RECONCILED</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Stripe / bKash / PayPal Invoices Synced</p>
@@ -1793,7 +1793,7 @@ function renderFullCrudServiceManager() {
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Create, Edit, Update, and Delete Services, Prices, and Descriptions in Real-Time</p>
                 </div>
                 <button onclick="openAddNewServiceModal()" class="btn btn-primary-sm" style="font-weight:bold;">
-                    âž• Add New Service
+                    ➕ Add New Service
                 </button>
             </div>
 
@@ -1835,7 +1835,7 @@ function openAddNewServiceModal() {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("âœ… New Service Added and Synced to Live Site!");
+    alert("✅ New Service Added and Synced to Live Site!");
 }
 
 function editServiceInline(id) {
@@ -1857,7 +1857,7 @@ function editServiceInline(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("âœ… Service Updated Successfully!");
+    alert("✅ Service Updated Successfully!");
 }
 
 function deleteServiceAction(id) {
@@ -2088,7 +2088,7 @@ function initSecurityAuditTerminal() {
                 <p style="margin:0 0 4px 0;">[07:24:02] 🔒 Checking Supabase PostgreSQL Row-Level Security (RLS)... PASSED</p>
                 <p style="margin:0 0 4px 0;">[07:24:03] 🔑 Verifying JWT Auth Token Expiration & Anti-CSRF Guard... PASSED</p>
                 <p style="margin:0 0 4px 0;">[07:24:04] ðŸŒ Edge TLS 1.3 Encryption & HSTS Headers Validated... PASSED</p>
-                <p style="margin:0; color:var(--accent-cyan);">[07:24:05] âœ… ZERO VULNERABILITIES DETECTED — PLATFORM 100% SECURE</p>
+                <p style="margin:0; color:var(--accent-cyan);">[07:24:05] ✅ ZERO VULNERABILITIES DETECTED — PLATFORM 100% SECURE</p>
             </div>
         </div>
     `;
@@ -2234,7 +2234,7 @@ function renderAiOrderModalContent() {
             <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
                 <button onclick="sendQuickChipToAi('🚀 Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🚀 Customer Support Bot</button>
                 <button onclick="sendQuickChipToAi('⚡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">⚡ n8n Workflow VPS</button>
-                <button onclick="sendQuickChipToAi('ðŸ•· Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ•· Web Scraper</button>
+                <button onclick="sendQuickChipToAi('🕷️ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🕷️ Web Scraper</button>
                 <button onclick="sendQuickChipToAi('📊 Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">📊 AI SaaS MVP</button>
             </div>
 
@@ -2255,7 +2255,7 @@ function renderAiOrderModalContent() {
             </div>
 
             <button onclick="confirmOrderAndSyncToWhatsApp()" class="btn btn-emerald-sm" style="width:100%; padding:14px; font-weight:bold; font-size:0.95rem; text-align:center; box-shadow:0 0 20px rgba(16,185,129,0.4); border-radius:10px;">
-                âœ… Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
+                ✅ Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
             </button>
         </div>
     `;
@@ -2329,7 +2329,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
     summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
-    summary += `ðŸ’µ Package: ${currentAiOrderState.packageTier}\n`;
+    summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
     summary += `ðŸ· Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
     summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
     summary += `• Name: ${name}\n`;
@@ -2345,7 +2345,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     closeAiOrderConsultationModal();
 
-    alert(`ðŸŽ‰ Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
     window.open(whatsappUrl, '_blank');
 }
 
@@ -2550,7 +2550,7 @@ window.closeAiOrderConsultationModal = closeAiOrderConsultationModal;
             <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
                 <button onclick="sendQuickChipToAi('🚀 Need Customer Support Bot')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🚀 Customer Support Bot</button>
                 <button onclick="sendQuickChipToAi('⚡ Need n8n Workflow VPS')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">⚡ n8n Workflow VPS</button>
-                <button onclick="sendQuickChipToAi('ðŸ•· Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">ðŸ•· Web Scraper</button>
+                <button onclick="sendQuickChipToAi('🕷️ Need Stealth Web Scraper')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">🕷️ Web Scraper</button>
                 <button onclick="sendQuickChipToAi('📊 Need Full AI SaaS MVP')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">📊 AI SaaS MVP</button>
             </div>
 
@@ -2571,7 +2571,7 @@ window.closeAiOrderConsultationModal = closeAiOrderConsultationModal;
             </div>
 
             <button onclick="confirmOrderAndSyncToWhatsApp()" class="btn btn-emerald-sm" style="width:100%; padding:14px; font-weight:bold; font-size:0.95rem; text-align:center; box-shadow:0 0 20px rgba(16,185,129,0.4); border-radius:10px;">
-                âœ… Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
+                ✅ Confirm Order & Send Full Transcript to Admin WhatsApp (+8801629286887) →
             </button>
         </div>
     `;
@@ -2647,7 +2647,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
 
     let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
     summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
-    summary += `ðŸ’µ Package: ${currentAiOrderState.packageTier}\n`;
+    summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
     summary += `ðŸ· Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
     summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
     summary += `• Name: ${name}\n`;
@@ -2663,7 +2663,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
 
     closeAiOrderConsultationModal();
 
-    alert(`ðŸŽ‰ Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
     window.open(whatsappUrl, '_blank');
 }
 window.confirmOrderAndSyncToWhatsApp = confirmOrderAndSyncToWhatsApp;
@@ -2694,7 +2694,7 @@ function initAiInteractivePlayground() {
 
                 <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; max-height:180px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px;">
                     <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] 🧠 Gemini 3.0 Pro Reasoning Engine Initialized...</p>
-                    <p style="margin:0 0 4px 0;">[PIPELINE] ðŸ”— Webhook Listener ➔ Gemini 3.0 Pro RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
+                    <p style="margin:0 0 4px 0;">[PIPELINE] 🔗 Webhook Listener ➔ Gemini 3.0 Pro RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
                     <p style="margin:0; color:#f59e0b;">[OUTPUT] Generated n8n Workflow JSON (Node Count: 4 | Memory: 12MB)</p>
                 </div>
 
@@ -2835,7 +2835,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
             <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                 <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ“¦ Client Order Tracker</button>
                 <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ¤ B2B Affiliate Dashboard</button>
-                <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ“š Marketing Asset Vault</button>
+                <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📚 Marketing Asset Vault</button>
             </div>
 
             <!-- TAB CONTENT CONTAINER -->
@@ -2880,7 +2880,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                         </div>
 
                         <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); padding:14px; border-radius:12px; margin-bottom:14px;">
-                            <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">ðŸ”— Your Unique 20%-50% Referral Link:</div>
+                            <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">🔗 Your Unique 20%-50% Referral Link:</div>
                             <div style="display:flex; gap:8px;">
                                 <input type="text" readonly value="${refLink}" style="flex:1; background:#000; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 12px; border-radius:6px; font-size:0.8rem;" />
                                 <button onclick="navigator.clipboard.writeText('${refLink}'); alert('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">📋 Copy</button>
@@ -2893,7 +2893,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                                 <input type="text" id="affiliate-payout-method" placeholder="Payment Method (e.g. Payoneer Email or bKash No)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                                 <input type="number" id="affiliate-payout-amount" placeholder="Amount ($)" value="1347" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                             </div>
-                            <button onclick="alert('ðŸŽ‰ Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
+                            <button onclick="alert('🎉 Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
                                 🚀 Submit Payout Request to Admin →
                             </button>
                         </div>
@@ -2961,7 +2961,7 @@ function renderGlobalMarketplaceAffiliateMatrix() {
 
                 <!-- CARD 3: GLOBAL REMOTE BOARDS -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:#f59e0b; font-weight:bold; margin-bottom:6px;">ðŸŒ GLOBAL REMOTE JOB BOARDS</div>
+                    <div style="font-size:0.8rem; color:#f59e0b; font-weight:bold; margin-bottom:6px;">🌐 GLOBAL REMOTE JOB BOARDS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">Remotive, FlexJobs & Wellfound</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Scrape hiring signals and auto-deliver customized AI engineering proposals directly to CTOs.</p>
                     <button onclick="openAiOrderConsultationModal('Scout Lead Automation Pipeline', 'Growth Tier', 1349)" class="btn btn-glass-sm" style="width:100%; font-weight:bold; border-color:#f59e0b; color:#f59e0b;">⚡ Launch Scout Automation →</button>
@@ -3075,11 +3075,11 @@ function executeAdminCopilotApproval(action, cmdText) {
         const timeStr = new Date().toLocaleTimeString();
         const logEntry = document.createElement('div');
         logEntry.style.cssText = 'font-size:0.8rem; font-family:var(--font-mono); color:var(--accent-emerald); padding:4px 0; border-bottom:1px dashed rgba(255,255,255,0.1);';
-        logEntry.innerHTML = `[${timeStr}] âœ… [APPROVED & EXECUTED] ${action}: "${cmdText}" (Synced to Supabase & WhatsApp)`;
+        logEntry.innerHTML = `[${timeStr}] ✅ [APPROVED & EXECUTED] ${action}: "${cmdText}" (Synced to Supabase & WhatsApp)`;
         logContainer.prepend(logEntry);
     }
 
-    alert(`ðŸŽ‰ Command Executed: ${cmdText}
+    alert(`🎉 Command Executed: ${cmdText}
 System state updated & Admin WhatsApp (+8801629286887) notified!`);
 }
 window.executeAdminCopilotApproval = executeAdminCopilotApproval;
@@ -3197,7 +3197,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 1 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>ðŸ‘¥ Team Size:</span>
+                        <span>👥 Team Size:</span>
                         <span id="roi-team-val" style="color:var(--accent-cyan);">10 Staff</span>
                     </label>
                     <input type="range" id="roi-team-slider" min="1" max="100" value="10" style="width:100%; accent-color:var(--accent-cyan);" oninput="updateRoiCalculation()" />
@@ -3215,7 +3215,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 3 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>ðŸ’° Average Hourly Rate ($):</span>
+                        <span>💰 Average Hourly Rate ($):</span>
                         <span id="roi-rate-val" style="color:#f59e0b;">$35 / hr</span>
                     </label>
                     <input type="range" id="roi-rate-slider" min="15" max="150" value="35" style="width:100%; accent-color:#f59e0b;" oninput="updateRoiCalculation()" />
@@ -3313,12 +3313,12 @@ function renderUltimateAdminControlFeatures() {
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:14px;">
                     <div>
                         <h4 style="margin:0; color:#fff; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
-                            <span>ðŸ›° Live Telemetry, Token Cost & Emergency Controls</span>
+                            <span>🛰️ Live Telemetry, Token Cost & Emergency Controls</span>
                             <span style="font-size:0.65rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:2px 8px; border-radius:10px; font-weight:bold;">GEMINI 2.5 PRO ACTIVE</span>
                         </h4>
                     </div>
                     <button onclick="toggleAgentKillSwitch('all')" class="btn" style="background:#ef4444; color:#fff; font-weight:bold; font-size:0.75rem; padding:6px 14px; border-radius:8px;">
-                        ðŸš¨ ${iinshaTelemetryData.killSwitchActive ? 'â–¶ RESUME ALL AGENTS' : 'ðŸ›‘ EMERGENCY KILL SWITCH'}
+                        ðŸš¨ ${iinshaTelemetryData.killSwitchActive ? '▶️ RESUME ALL AGENTS' : 'ðŸ›‘ EMERGENCY KILL SWITCH'}
                     </button>
                 </div>
 
@@ -3462,7 +3462,7 @@ function retrainExtremeAgentPrompt(agentId) {
     if (newPrompt && newPrompt.trim()) {
         agent.prompt = newPrompt.trim();
         agent.confidence = (98.5 + Math.random() * 1.4).toFixed(1) + '%';
-        alert(`âœ… [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
+        alert(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
         renderExtremeAgentStudio();
     try { renderDominationTelemetryStudio();
     try { renderGodModeControlStudio(); } catch(e){} } catch(e){}
@@ -3592,7 +3592,7 @@ function renderDominationTelemetryStudio() {
 
             <!-- 11 REVENUE STREAMS BAR -->
             <div style="margin-bottom:16px;">
-                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px;">ðŸ’° 11 Diversified Revenue Streams Engine:</div>
+                <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px;">💰 11 Diversified Revenue Streams Engine:</div>
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:8px;">
                     ${iinsha11RevenueStreams.map(r => `
                         <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:8px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
@@ -3710,7 +3710,7 @@ function renderGodModeControlStudio() {
                 </div>
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
-                        <span>ðŸ’° Profit Margin</span>
+                        <span>💰 Profit Margin</span>
                         <span id="profit-slider-val" style="color:var(--accent-emerald);">${iinshaGodModeState.profitSlider}%</span>
                     </div>
                     <input type="range" min="10" max="100" value="${iinshaGodModeState.profitSlider}" oninput="updateRealitySlider('profit', this.value)" style="width:100%; accent-color:var(--accent-emerald);">
@@ -3726,7 +3726,7 @@ function renderGodModeControlStudio() {
 
             <!-- LIVE TIMELINE SIMULATION PREDICTION -->
             <div style="background:rgba(0,0,0,0.6); border:1px solid rgba(139,92,246,0.4); padding:14px; border-radius:10px; text-align:center;">
-                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">ðŸ”® REAL-TIME TIMELINE SIMULATION PREDICTION</div>
+                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">🔮 REAL-TIME TIMELINE SIMULATION PREDICTION</div>
                 <div id="god-simulation-prediction" style="font-size:0.9rem; font-weight:bold; color:#fff; font-family:var(--font-mono);">${iinshaGodModeState.simulatedOutcome}</div>
             </div>
         </div>
@@ -3810,7 +3810,7 @@ function addNewEnterpriseService() {
     };
 
     iinshaServiceCatalogData.push(newSvc);
-    alert(`âœ… New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
+    alert(`✅ New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
     renderDynamicServiceCMSStudio();
 }
 window.addNewEnterpriseService = addNewEnterpriseService;
@@ -3869,7 +3869,7 @@ function renderDynamicServiceCMSStudio() {
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage B2B SaaS, Web Platforms, ERP/CRM & RAG Knowledge Systems without touching code.</p>
                 </div>
                 <button onclick="addNewEnterpriseService()" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.8rem;">
-                    âž• Add New Service
+                    ➕ Add New Service
                 </button>
             </div>
 
@@ -3936,7 +3936,7 @@ function editServiceInStudio(svcId) {
     if (newPricing) svc.pricing = newPricing.trim();
     if (newValueProp) svc.valueProp = newValueProp.trim();
 
-    alert(`âœ… Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
+    alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
     renderCompleteEnterpriseStudioCMS();
     try { render2026OutcomeServicesStudio();
     try { renderOmnichannelNotificationStudio();
@@ -4069,7 +4069,7 @@ function render2026OutcomeServicesStudio() {
                         </div>
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
-                        <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">ðŸ’° ${s.pricing}</div>
+                        <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
                         <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
                             📄 Generate 2026 Outcome SoW
@@ -4227,7 +4227,7 @@ function renderCatalogV4Studio() {
                         </div>
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
-                        <div style="font-size:0.75rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">ðŸ’° ${s.pricing}</div>
+                        <div style="font-size:0.75rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
                         <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#a78bfa; border-color:#8b5cf6;">
                             📄 Generate v4.0 SoW Contract
@@ -4306,7 +4306,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 1: SALES & CLIENT CONVINCER -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ’¼ Autonomous Sales Engine</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Autonomous Sales Engine</span>
                         <span id="salesAutoPilot-status-badge" onclick="toggleAutonomousSubsystem('salesAutoPilot')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">Auto-captures leads, generates SoW proposals & dispatches WhatsApp proposals to +8801629286887.</p>
@@ -4318,7 +4318,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 2: MARKETING & SOCIAL OUTREACH -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ“¢ Marketing & Social Swarm</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Marketing & Social Swarm</span>
                         <span id="marketingAutoPilot-status-badge" onclick="toggleAutonomousSubsystem('marketingAutoPilot')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">SEDUCER & SCOUT Agents generate LinkedIn posts, Facebook campaigns & B2B cold emails.</p>
@@ -4580,7 +4580,7 @@ function openAiRevenueSystemModal() {
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
             <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM A</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">ðŸ“ˆ AI Revenue System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">📈 AI Revenue System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Automate inbound lead qualification, proposal generation, and multi-channel outreach without human drop-off.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
                 <div style="font-weight:bold; color:#60a5fa; margin-bottom:8px;">⚡ Included Capabilities:</div>
@@ -4607,7 +4607,7 @@ function openAiOpsSystemModal() {
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(6,78,59,0.95)); border:1px solid #10b981; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(16,185,129,0.4); color:#fff; position:relative;">
             <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             <span style="background:rgba(16,185,129,0.2); color:#34d399; border:1px solid #10b981; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM B</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">âš™ AI Operations System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">⚙️ AI Operations System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Eliminate repetitive manual back-office tasks, invoice entry, and report compilation.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
                 <div style="font-weight:bold; color:#34d399; margin-bottom:8px;">⚡ Included Capabilities:</div>
@@ -4634,7 +4634,7 @@ function openAiSupportSystemModal() {
         <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(88,28,135,0.95)); border:1px solid #a855f7; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(168,85,247,0.4); color:#fff; position:relative;">
             <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             <span style="background:rgba(168,85,247,0.2); color:#c084fc; border:1px solid #a855f7; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM C</span>
-            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">ðŸŽ§ AI Support System Blueprint</h3>
+            <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">🎧 AI Support System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Provide 24/7 intelligent customer triage with instant vector database document lookup.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
                 <div style="font-weight:bold; color:#c084fc; margin-bottom:8px;">⚡ Included Capabilities:</div>
@@ -4794,8 +4794,8 @@ function triggerFlywheelSimulation() {
         "🎯 Step 3: Sales AI qualified lead & generated $1,250 project proposal",
         "ðŸ‘” Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
         "ðŸ§ª Step 5: Independent QA Agent performed automated test pass (100% Green)",
-        "ðŸŽ§ Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
-        "ðŸ“ˆ Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
+        "🎧 Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
+        "📈 Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
         "💳 Step 8: Invoice matched & $1,250 deposited to Supreme Financial Vault!"
     ];
 
@@ -4871,10 +4871,10 @@ function triggerAiBoardroomDebate() {
             <strong style="color:#60a5fa;">🧠 AI CEO Perspective:</strong> Strategic growth alignment is 100%. Enterprise retainer model increases LTV by 240%.
         </div>
         <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
-            <strong style="color:#fbbf24;">ðŸ’° AI CFO Perspective:</strong> Requires allocating $150/month in Pinecone vector storage capacity. Net profit margin projected at 88.5%.
+            <strong style="color:#fbbf24;">💰 AI CFO Perspective:</strong> Requires allocating $150/month in Pinecone vector storage capacity. Net profit margin projected at 88.5%.
         </div>
         <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
-            <strong style="color:#34d399;">âš™ AI COO Perspective:</strong> 8 Project Delivery Agents stand ready; zero bandwidth bottlenecks detected.
+            <strong style="color:#34d399;">⚙️ AI COO Perspective:</strong> 8 Project Delivery Agents stand ready; zero bandwidth bottlenecks detected.
         </div>
         <div style="background:rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 10px; border-radius: 4px;">
             <strong style="color:#f87171;">🛡️ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
@@ -4893,7 +4893,7 @@ function triggerAiBoardroomDebate() {
     showFomoToast(`ðŸ—£ Executive Strategy Debate Completed for: "${topic}"`, 'warning');
 }
 
-/* ðŸ”® LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
+/* 🔮 LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
 function runDigitalTwinSimulation() {
     const input = document.getElementById('simulator-scenario-input');
     const container = document.getElementById('simulator-output-container');
@@ -4996,7 +4996,7 @@ function runPromptSanitizerTest() {
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="color:#c084fc; font-weight:bold;">4. Policy Gateway Action:</span>
-                <span style="color:#34d399; font-weight:bold;">âœ… BLOCKED & LOGGED TO AUDIT TRAIL</span>
+                <span style="color:#34d399; font-weight:bold;">✅ BLOCKED & LOGGED TO AUDIT TRAIL</span>
             </div>
         </div>
     `;
@@ -5776,7 +5776,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================================
-   ðŸ”® HIGH-PERFORMANCE 3D INTERACTIVE AI BRAIN CANVAS ENGINE
+   🔮 HIGH-PERFORMANCE 3D INTERACTIVE AI BRAIN CANVAS ENGINE
    ============================================================ */
 function init3dParticleCanvasEngine() {
     const canvas = document.getElementById('particleCanvas');
@@ -6405,15 +6405,36 @@ function initUniversalButtonBindings() {
         }
     });
 
-    // 3. Bind .blueprint-filter-btn & .service-tab-btn
-    document.querySelectorAll('.blueprint-filter-btn, .service-tab-btn').forEach(btn => {
+    // 3. Bind .service-tab-btn & .blueprint-filter-btn
+    document.querySelectorAll('.service-tab-btn').forEach(btn => {
         if (!btn.dataset.bound) {
             btn.dataset.bound = 'true';
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const parent = btn.parentElement;
                 if (parent) {
-                    parent.querySelectorAll('.blueprint-filter-btn, .service-tab-btn').forEach(b => b.classList.remove('active'));
+                    parent.querySelectorAll('.service-tab-btn').forEach(b => b.classList.remove('active'));
+                }
+                btn.classList.add('active');
+
+                const targetId = btn.getAttribute('data-target');
+                if (targetId) {
+                    document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+                    const targetPanel = document.getElementById(targetId);
+                    if (targetPanel) targetPanel.classList.add('active');
+                }
+            });
+        }
+    });
+
+    document.querySelectorAll('.blueprint-filter-btn').forEach(btn => {
+        if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parent = btn.parentElement;
+                if (parent) {
+                    parent.querySelectorAll('.blueprint-filter-btn').forEach(b => b.classList.remove('active'));
                 }
                 btn.classList.add('active');
 
