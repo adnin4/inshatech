@@ -2544,3 +2544,157 @@ form input[type="tel"]:focus {
     border-color: #00f2fe !important;
     box-shadow: 0 0 12px rgba(0, 242, 254, 0.2) !important;
 }
+
+
+/* ========================================================
+   ENGINEERING SERVICES & BLUEPRINT PRICING GRID
+   ======================================================== */
+.packages-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 24px !important;
+    margin-top: 36px !important;
+    margin-bottom: 48px !important;
+}
+
+.pkg-card {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 18px !important;
+    padding: 28px !important;
+    backdrop-filter: blur(16px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+}
+
+.pkg-card:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 242, 254, 0.15) !important;
+}
+
+.pkg-card h3 {
+    font-family: var(--font-heading, 'Outfit', sans-serif) !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 6px !important;
+}
+
+.pkg-price {
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: var(--accent-cyan, #00f2fe) !important;
+    margin: 12px 0 !important;
+}
+
+.pkg-features-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 16px 0 24px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    flex-grow: 1 !important;
+}
+
+.pkg-features-list li {
+    font-size: 0.88rem !important;
+    color: #94a3b8 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.pkg-card .order-btn,
+.pkg-card .btn {
+    margin-top: auto !important;
+    width: 100% !important;
+    padding: 12px 18px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+
+/* ========================================================
+   DIGITAL ASSET ECOSYSTEM - AUTOMATION MARKETPLACE GRID
+   ======================================================== */
+.marketplace-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 22px !important;
+    margin-top: 32px !important;
+    margin-bottom: 48px !important;
+}
+
+.tmpl-card {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    backdrop-filter: blur(16px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: all 0.3s ease !important;
+}
+
+.tmpl-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(168, 85, 247, 0.4) !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(168, 85, 247, 0.2) !important;
+}
+
+.tmpl-tag {
+    background: rgba(168, 85, 247, 0.15) !important;
+    border: 1px solid rgba(168, 85, 247, 0.3) !important;
+    color: #c084fc !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    display: inline-block !important;
+}
+
+/* ========================================================
+   AI BUSINESS CONSULTANT FLOATING CHAT WIDGET
+   ======================================================== */
+.floating-chat-widget,
+#floating-ai-consultant-widget {
+    display: none !important;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 24px !important;
+    width: 360px !important;
+    max-width: 90vw !important;
+    background: #0f172a !important;
+    border: 1px solid rgba(0, 242, 254, 0.3) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 242, 254, 0.15) !important;
+    z-index: 99999 !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+.floating-chat-widget.active,
+#floating-ai-consultant-widget.active {
+    display: flex !important;
+}
+
+.chat-widget-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 14px 18px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(30, 41, 59, 0.6) !important;
+}
+
+.chat-widget-body {
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
