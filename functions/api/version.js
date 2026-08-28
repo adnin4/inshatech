@@ -1,11 +1,11 @@
 /**
  * Cloudflare Pages Function: /api/version
  * Cryptographic Release Parity & Version Endpoint
- * Validates git_sha, release_version, environment, and build signature
+ * Dynamically resolves git_sha from Cloudflare runtime environment
  */
 
 export async function onRequestGet(context) {
-    const { request, env } = context;
+    const { request, env = {} } = context;
     const origin = request.headers.get("Origin") || "*";
 
     const corsHeaders = {
@@ -16,20 +16,31 @@ export async function onRequestGet(context) {
         "Cache-Control": "no-cache, no-store, must-revalidate"
     };
 
-    const gitSha = env?.CF_PAGES_COMMIT_SHA || '525f5cdc3b76c0d28a1d9d7b607d264e191206d3';
-    const buildTimestamp = '2026-08-23T10:30:00.000Z';
-    const releaseVersion = 'v10.0.0-PROD';
+    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || '485c271e18d613e5fc4664a75aa32a53bbd5fc1d';
+    const isLive = Boolean(env.CF_PAGES_COMMIT_SHA);
 
     return new Response(JSON.stringify({
-        status: 'LIVE_VERIFIED',
-        release_version: releaseVersion,
-        git_sha: gitSha,
-        build_timestamp: buildTimestamp,
-        environment: env?.ENVIRONMENT || 'PRODUCTION',
-        edge_provider: 'Cloudflare Pages Anycast',
-        parity_verified: true,
-        master_commit_verified: true,
-        security_profile: 'ASVS_L2_CERTIFIED',
-        evidence_chain: 'PR_5_MERGED_525F5CDC'
+        status: isLive ? 'LIVE_VERIFIED' : 'PENDING_LIVE_VERIFICATION',
+        platform: 'IINSHA AI-BOS',
+        git_commit_sha: gitSha,
+        short_sha: gitSha.length >= 7 ? gitSha.slice(0, 7) : gitSha,
+        branch: env.CF_PAGES_BRANCH || 'master',
+        canonical_repository: 'https://github.com/adnin4/inshatech.git',
+        environment: env.ENVIRONMENT || 'production',
+        database_project: 'uulqaslcfjrvkvyegmvo',
+        timestamp: new Date().toISOString()
     }), { headers: corsHeaders });
+}
+
+export async function onRequestOptions(context) {
+    const { request } = context;
+    const origin = request.headers.get("Origin") || "*";
+    return new Response(null, {
+        headers: {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        },
+        status: 204
+    });
 }
