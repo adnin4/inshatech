@@ -2,10 +2,10 @@
  * IINSHA AI-BOS: System Truth Center & Master Capability Registry
  * Authoritative capability readiness engine classifying every feature
  * Status definitions:
- *  - REAL (ðŸŸ¢): 100% Backed by Server API, Database, or Neural Model Execution
- *  - PARTIAL (ðŸŸ¡): Working with Hybrid Mock/Real Fallback Handlers
- *  - MOCK (ðŸ”´): Simulated in-memory or static state
- *  - UI_ONLY (ðŸ”µ): Presentation interface awaiting full backend trigger
+ *  - REAL ( 100% Backed by Server API, Database, or Neural Model Execution
+ *  - PARTIAL ( Working with Hybrid Mock/Real Fallback Handlers
+ *  - MOCK (🔍´): Simulated in-memory or static state
+ *  - UI_ONLY (🔍µ): Presentation interface awaiting full backend trigger
  */
 
 export const SYSTEM_CAPABILITIES = [

@@ -8,14 +8,14 @@
     'use strict';
 
     const TRUTH_LABELS = {
-        VERIFIED: { color: '#10b981', icon: 'â—', text: 'VERIFIED' },
-        CASE_STUDY: { color: '#6366f1', icon: 'â—', text: 'CASE STUDY' },
-        LIVE_TELEMETRY: { color: '#00f2fe', icon: 'â—', text: 'LIVE' },
-        TARGET: { color: '#f59e0b', icon: 'â—', text: 'TARGET' },
-        ESTIMATE: { color: '#f59e0b', icon: 'â—', text: 'ESTIMATE' },
-        DEMO: { color: '#ef4444', icon: 'â—', text: 'DEMO' },
-        SIMULATED: { color: '#ef4444', icon: 'â—', text: 'SIMULATED' },
-        CONFIGURATION_REQUIRED: { color: '#94a3b8', icon: 'â—‹', text: 'CONFIG REQUIRED' }
+        VERIFIED: { color: '#10b981', icon: '●', text: 'VERIFIED' },
+        CASE_STUDY: { color: '#6366f1', icon: '●', text: 'CASE STUDY' },
+        LIVE_TELEMETRY: { color: '#00f2fe', icon: '●', text: 'LIVE' },
+        TARGET: { color: '#f59e0b', icon: '●', text: 'TARGET' },
+        ESTIMATE: { color: '#f59e0b', icon: '●', text: 'ESTIMATE' },
+        DEMO: { color: '#ef4444', icon: '●', text: 'DEMO' },
+        SIMULATED: { color: '#ef4444', icon: '●', text: 'SIMULATED' },
+        CONFIGURATION_REQUIRED: { color: '#94a3b8', icon: '●‹', text: 'CONFIG REQUIRED' }
     };
 
     function createBadge(type) {

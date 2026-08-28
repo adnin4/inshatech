@@ -15,7 +15,7 @@
     <meta property="og:description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta property="og:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260828_v20_supreme">
+    <link rel="stylesheet" href="style.css?v=20260828_v25_ultimate">
     <style>
         :root {
             --bg-cockpit: #040812;
@@ -441,7 +441,7 @@
             
             if (btn) {
                 btn.disabled = true;
-                btn.textContent = 'â³ Authenticating with Edge Session Guardian...';
+                btn.textContent = ' Authenticating with Edge Session Guardian...';
             }
             if (errEl) errEl.style.display = 'none';
 
@@ -469,7 +469,7 @@
                     document.getElementById('admin-auth-overlay').style.display = 'none';
                 } else {
                     if (errEl) {
-                        errEl.textContent = 'âŒ ' + (err.message || 'Invalid password');
+                        errEl.textContent = ' ' + (err.message || 'Invalid password');
                         errEl.style.display = 'block';
                     }
                 }
@@ -495,7 +495,7 @@
         </div>
 
         <div class="header-search" onclick="openCmdPalette()" role="search" tabindex="0" aria-label="Global Command Palette (Press Ctrl+K)">
-            <span style="margin-right: 8px;">âŒ˜</span>
+            <span style="margin-right: 8px;"></span>
             <span id="header-search-label">Command IINSHA (e.g. "Today's profit", "High-risk agents", "Top affiliates")...</span>
             <kbd style="margin-left: auto; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 6px; font-size: 0.7rem; font-family: var(--font-mono);">Ctrl + K</kbd>
         </div>
@@ -511,11 +511,11 @@
             </div>
 
             <button onclick="pauseAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-gold); border-color: rgba(245,158,11,0.4); font-size: 0.75rem;" aria-label="Pause All Agents">
-                â¸ Pause All
+                 Pause All
             </button>
 
             <button onclick="triggerEmergencyHaltModal()" class="btn btn-glass-sm" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.4); font-size: 0.75rem;" aria-label="Emergency Master Kill Switch">
-                ðŸ›‘ Kill Switch
+                 Kill Switch
             </button>
 
             <button onclick="resumeAllAgents()" class="btn btn-glass-sm" style="color: var(--accent-emerald); border-color: rgba(52,211,153,0.4); font-size: 0.75rem;" aria-label="Resume All Agents">
@@ -527,7 +527,7 @@
             </button>
 
             <a href="/" class="btn btn-primary-sm" style="font-size: 0.75rem; text-decoration: none;">
-                ðŸŒ Public Site →
+                🌐 Public Site →
             </a>
         </div>
     </header>
@@ -543,7 +543,7 @@
                     <ul class="nav-list">
                         <li>
                             <button class="nav-item-btn active" onclick="switchAdminCockpitTab('overview')" id="nav-btn-overview" aria-label="Executive Overview">
-                                <span>ðŸ‘‘</span> <span>Executive Overview</span>
+                                <span>🏛️‘</span> <span>Executive Overview</span>
                             </button>
                         </li>
                         <li>
@@ -590,7 +590,7 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('partners')" id="nav-btn-partners" aria-label="Affiliate & Partner Network">
-                                <span>ðŸ¤</span> <span>Affiliate Network</span>
+                                <span>🤝</span> <span>Affiliate Network</span>
                                 <span class="nav-badge-pill" style="color: var(--accent-emerald);">28-P</span>
                             </button>
                         </li>
@@ -633,13 +633,13 @@
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('incidents')" id="nav-btn-incidents" aria-label="Agent Incident Response">
-                                <span>ðŸ§¯</span> <span>Incident Center</span>
+                                <span></span> <span>Incident Center</span>
                                 <span class="nav-badge-pill" style="color:var(--accent-emerald);">0 Open</span>
                             </button>
                         </li>
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('vault')" id="nav-btn-vault" aria-label="Secret & Credential Vault">
-                                <span>ðŸ”</span> <span>Credential Vault</span>
+                                <span>🔍</span> <span>Credential Vault</span>
                                 <span class="nav-badge-pill">Zero-Trust</span>
                             </button>
                         </li>
@@ -679,7 +679,7 @@
             <div class="admin-view-panel active" id="view-overview">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ‘‘ Supreme Executive Command Overview</h1>
+                        <h1 class="workspace-title">🏛️‘ Supreme Executive Command Overview</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time governance over autonomous swarms, active client revenue pipelines, and affiliate growth.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
@@ -717,7 +717,7 @@
                     <!-- LIVE ACTION RADAR -->
                     <div class="glass-card glowing-border" style="padding: 20px; background: var(--bg-card);">
                         <h3 style="font-size: 1.05rem; margin-bottom: 12px; display: flex; justify-content: space-between;">
-                            <span>ðŸš¦ Active 12-Stage Client Pipeline</span>
+                            <span> Active 12-Stage Client Pipeline</span>
                             <a href="javascript:switchAdminCockpitTab('crm')" style="color: var(--accent-cyan); font-size: 0.75rem; text-decoration: none;">View CRM Kanban →</a>
                         </h3>
                         <div id="overview-deals-list" style="display: flex; flex-direction: column; gap: 10px;">
@@ -758,7 +758,7 @@
             <div class="admin-view-panel" id="view-partners">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ¤ 28-Pillar Affiliate & Partner Command Center</h1>
+                        <h1 class="workspace-title">🤝 28-Pillar Affiliate & Partner Command Center</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Approve payouts, manage tiers (Bronze ➔ Gold ➔ Legend), and audit fraud alerts.</p>
                     </div>
                     <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, #10b981, #059669);">
@@ -906,22 +906,22 @@
 
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card" style="border-color: rgba(52,211,153,0.4);">
-                        <span class="kpi-title">ðŸŸ¢ Production Real</span>
+                        <span class="kpi-title"> Production Real</span>
                         <div class="kpi-value" style="color: #34d399;" id="truth-real-count">20</div>
                         <span class="kpi-sub">API / DB / Server Model Backed</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">ðŸŸ¡ Hybrid Partial</span>
+                        <span class="kpi-title"> Hybrid Partial</span>
                         <div class="kpi-value" style="color: var(--accent-gold);" id="truth-partial-count">0</div>
                         <span class="kpi-sub">Hybrid Fallback Handlers</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">ðŸ”´ Prototype / Mock</span>
+                        <span class="kpi-title">🔍´ Prototype / Mock</span>
                         <div class="kpi-value" style="color: var(--accent-rose);" id="truth-mock-count">0</div>
                         <span class="kpi-sub">Simulated Offline</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">ðŸ”µ UI Only</span>
+                        <span class="kpi-title">🔍µ UI Only</span>
                         <div class="kpi-value" style="color: #38bdf8;" id="truth-uionly-count">0</div>
                         <span class="kpi-sub">Visual Wireframe</span>
                     </div>
@@ -1100,10 +1100,10 @@
             <div class="admin-view-panel" id="view-incidents">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ§¯ Agent Incident Response & Auto-Remediation</h1>
+                        <h1 class="workspace-title"> Agent Incident Response & Auto-Remediation</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time incident detection, automated circuit breakers, fallback switching, and root-cause post-mortems.</p>
                     </div>
-                    <button onclick="recordNewIncidentModal()" class="btn btn-glass-sm" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">ðŸš¨ Report Anomaly</button>
+                    <button onclick="recordNewIncidentModal()" class="btn btn-glass-sm" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.4);"> Report Anomaly</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
@@ -1117,7 +1117,7 @@
             <div class="admin-view-panel" id="view-vault">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">ðŸ” Zero-Trust Secret & Credential Vault</h1>
+                        <h1 class="workspace-title">🔍 Zero-Trust Secret & Credential Vault</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Cryptographic key broker isolating API secrets so autonomous agents operate with tokenized least-privilege.</p>
                     </div>
                     <button onclick="triggerKeyRotationModal()" class="btn btn-primary-sm">🔄 Rotate Credentials</button>
@@ -1170,7 +1170,7 @@
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(52,211,153,0.3);">
                             <span style="font-size:0.75rem; color:#94a3b8;">Reconciliation Status:</span>
-                            <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">âœ“ 100% MATCHED</strong>
+                            <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;"> 100% MATCHED</strong>
                         </div>
                     </div>
                 </div>
@@ -1212,8 +1212,8 @@
                     • Partner: Adnin Growth Partner
                 </div>
                 <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-                    <button onclick="openDealLifecycleModal('DEAL-9904')" class="btn btn-primary-sm" style="width: 100%; font-size: 0.75rem;">ðŸ” Full 12-Stage Audit</button>
-                    <button onclick="showAffiliateToast('Dispatched WhatsApp update to client & partner!')" class="btn btn-glass-sm" style="width: 100%; font-size: 0.75rem;">ðŸ“² Dispatch Status Alert</button>
+                    <button onclick="openDealLifecycleModal('DEAL-9904')" class="btn btn-primary-sm" style="width: 100%; font-size: 0.75rem;">🔍 Full 12-Stage Audit</button>
+                    <button onclick="showAffiliateToast('Dispatched WhatsApp update to client & partner!')" class="btn btn-glass-sm" style="width: 100%; font-size: 0.75rem;"> Dispatch Status Alert</button>
                 </div>
             </div>
         </aside>
@@ -1230,7 +1230,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=20260828_v20_supreme"></script>
+    <script src="app.js?v=20260828_v25_ultimate"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -1329,7 +1329,7 @@
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.name}</td>
                     <td style="padding:10px; color:#94a3b8;">${c.module}</td>
                     <td style="padding:10px;">
-                        <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-size:0.7rem;">ðŸŸ¢ REAL</span>
+                        <span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-size:0.7rem;"> REAL</span>
                     </td>
                     <td style="padding:10px; color:#cbd5e1;">${c.backend}</td>
                     <td style="padding:10px; color:var(--accent-gold); font-size:0.75rem;">${c.auth}</td>
@@ -1344,10 +1344,10 @@
 
         // 2. Live Agent Activity Wall & Flight Recorder Replay
         const AGENT_ACTIVITY_STREAM = [
-            { id: 'EVT-1001', time: '17:59:04', agent: 'SALES_AGENT', icon: 'ðŸŸ¢', title: 'Qualified New B2B SaaS Lead', trace: { who: 'Sales Closer Agent', why: 'Client requested lead scraping for 100 decision makers', input: 'Industry: Fintech, Budget: $850, Channel: WhatsApp', memory: 'Loaded service catalog item: b2b-lead-swarm', tool: 'create_lead + calculate_roi', policy: 'L2_SAFE_EXECUTE (PASS)', approval: 'Auto-Approved under $1,000 threshold', result: 'Lead LEAD-8819 qualified with score 94/100', cost: '$0.0042', rev: '+$850.00 USD' } },
-            { id: 'EVT-1002', time: '17:59:07', agent: 'ARCHITECT_AGENT', icon: 'ðŸ”µ', title: 'Synthesized n8n Workflow Blueprint', trace: { who: 'Solution Architect Agent', why: 'Generated technical specification for client review', input: 'Generate zero-Zapier-fee self-hosted architecture', memory: 'Retrieved Docker VPS cluster blueprint & Playwright scraper config', tool: 'draft_proposal', policy: 'L1_DRAFT (PASS)', approval: 'Autonomous Drafting Permitted', result: 'Proposal HTML generated with 3-day turnaround SLA', cost: '$0.0084', rev: '+$497.00 USD' } },
-            { id: 'EVT-1003', time: '17:59:12', agent: 'FINANCE_AGENT', icon: 'ðŸŸ¡', title: 'Escrow Commission Ledger Entry Recorded', trace: { who: 'AI CFO & Finance Agent', why: 'Order ORD-185853 confirmed via bKash', input: 'Order amount ৳91,875 BDT ($750 USD), Affiliate AFF-ADNIN', memory: 'Retrieved partner commission rate: 20% ($150.00 USD)', tool: 'record_double_entry_ledger', policy: 'L0_OBSERVE (PASS)', approval: 'Escrow Locked awaiting 14-day clearance', result: 'Journal entry JRN-9921 written to Supabase migration 14 ledger', cost: '$0.0012', rev: '+$150.00 Escrow' } },
-            { id: 'EVT-1004', time: '17:59:18', agent: 'GUARDIAN_AGENT', icon: 'ðŸ”´', title: 'Blocked Unauthorized Level 4 Tool Attempt', trace: { who: 'Chief Security Officer Guardian', why: 'Prevented destructive action without root credentials', input: 'Tool call attempt: delete_production_database', memory: 'Matched forbidden objective in AI Constitution', tool: 'execute_tool (LEVEL_4_RESTRICTED)', policy: 'L4_PROHIBITED (BLOCKED)', approval: 'PERMANENTLY BLOCKED', result: 'Attempt intercepted and logged to security incidents table', cost: '$0.0005', rev: '$0.00' } }
+            { id: 'EVT-1001', time: '17:59:04', agent: 'SALES_AGENT', icon: '', title: 'Qualified New B2B SaaS Lead', trace: { who: 'Sales Closer Agent', why: 'Client requested lead scraping for 100 decision makers', input: 'Industry: Fintech, Budget: $850, Channel: WhatsApp', memory: 'Loaded service catalog item: b2b-lead-swarm', tool: 'create_lead + calculate_roi', policy: 'L2_SAFE_EXECUTE (PASS)', approval: 'Auto-Approved under $1,000 threshold', result: 'Lead LEAD-8819 qualified with score 94/100', cost: '$0.0042', rev: '+$850.00 USD' } },
+            { id: 'EVT-1002', time: '17:59:07', agent: 'ARCHITECT_AGENT', icon: '🔍µ', title: 'Synthesized n8n Workflow Blueprint', trace: { who: 'Solution Architect Agent', why: 'Generated technical specification for client review', input: 'Generate zero-Zapier-fee self-hosted architecture', memory: 'Retrieved Docker VPS cluster blueprint & Playwright scraper config', tool: 'draft_proposal', policy: 'L1_DRAFT (PASS)', approval: 'Autonomous Drafting Permitted', result: 'Proposal HTML generated with 3-day turnaround SLA', cost: '$0.0084', rev: '+$497.00 USD' } },
+            { id: 'EVT-1003', time: '17:59:12', agent: 'FINANCE_AGENT', icon: '', title: 'Escrow Commission Ledger Entry Recorded', trace: { who: 'AI CFO & Finance Agent', why: 'Order ORD-185853 confirmed via bKash', input: 'Order amount ৳91,875 BDT ($750 USD), Affiliate AFF-ADNIN', memory: 'Retrieved partner commission rate: 20% ($150.00 USD)', tool: 'record_double_entry_ledger', policy: 'L0_OBSERVE (PASS)', approval: 'Escrow Locked awaiting 14-day clearance', result: 'Journal entry JRN-9921 written to Supabase migration 14 ledger', cost: '$0.0012', rev: '+$150.00 Escrow' } },
+            { id: 'EVT-1004', time: '17:59:18', agent: 'GUARDIAN_AGENT', icon: '🔍´', title: 'Blocked Unauthorized Level 4 Tool Attempt', trace: { who: 'Chief Security Officer Guardian', why: 'Prevented destructive action without root credentials', input: 'Tool call attempt: delete_production_database', memory: 'Matched forbidden objective in AI Constitution', tool: 'execute_tool (LEVEL_4_RESTRICTED)', policy: 'L4_PROHIBITED (BLOCKED)', approval: 'PERMANENTLY BLOCKED', result: 'Attempt intercepted and logged to security incidents table', cost: '$0.0005', rev: '$0.00' } }
         ];
 
         function renderAgentActivityWall() {
@@ -1364,7 +1364,7 @@
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <span style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono);">${e.time}</span>
-                            <span style="font-size:0.75rem; color:var(--accent-cyan); text-decoration:underline;">ðŸ” Replay Flight Recorder</span>
+                            <span style="font-size:0.75rem; color:var(--accent-cyan); text-decoration:underline;">🔍 Replay Flight Recorder</span>
                         </div>
                     </div>
                     <div style="font-size:0.78rem; color:#94a3b8; font-family:var(--font-mono);">
@@ -1383,7 +1383,7 @@
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:650px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
                         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                             <h3 style="margin:0; font-size:1.15rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;">
-                                <span>âœˆ</span> Agent Flight Recorder & Causal Trace (${event.id})
+                                <span></span> Agent Flight Recorder & Causal Trace (${event.id})
                             </h3>
                             <button onclick="document.getElementById('flight-recorder-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
                         </div>
@@ -1498,7 +1498,7 @@
             if (item) {
                 item.status = 'REJECTED';
                 renderApprovalInbox();
-                showAffiliateToast(`ðŸ›‘ ${item.title} put on administrative hold.`);
+                showAffiliateToast(` ${item.title} put on administrative hold.`);
             }
         }
 
@@ -1510,13 +1510,13 @@
 
         // 5. Agent Permission Matrix Renderer
         const PERMISSION_MATRIX_DATA = [
-            { agent: 'CEO Strategic Commander', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¡ L3 (Approval)', fin: 'ðŸŸ¡ L4 (Approval)', dest: 'ðŸ”´ L5 (Blocked)' },
-            { agent: 'Sales & Revenue Agent', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¢ L3 (Limited)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' },
-            { agent: 'Marketing & Growth Agent', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¢ L3 (Limited)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' },
-            { agent: 'Affiliate Partner Lead', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¢ L3 (Limited)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' },
-            { agent: 'AI CFO & Finance Controller', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¡ L3 (Approval)', fin: 'ðŸŸ¡ L4 (Approval)', dest: 'ðŸ”´ L5 (Blocked)' },
-            { agent: 'DevOps & SRE Guardian', read: '✅ L0', write: '✅ L2', ext: 'ðŸŸ¡ L3 (Approval)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸŸ¡ L5 (Approval)' },
-            { agent: 'Security & Policy Guardian', read: '✅ L0', write: '🛡️ Policy', ext: 'ðŸ”´ L3 (Blocked)', fin: 'ðŸ”´ L4 (Blocked)', dest: 'ðŸ”´ L5 (Blocked)' }
+            { agent: 'CEO Strategic Commander', read: '✅ L0', write: '✅ L2', ext: ' L3 (Approval)', fin: ' L4 (Approval)', dest: '🔍´ L5 (Blocked)' },
+            { agent: 'Sales & Revenue Agent', read: '✅ L0', write: '✅ L2', ext: ' L3 (Limited)', fin: '🔍´ L4 (Blocked)', dest: '🔍´ L5 (Blocked)' },
+            { agent: 'Marketing & Growth Agent', read: '✅ L0', write: '✅ L2', ext: ' L3 (Limited)', fin: '🔍´ L4 (Blocked)', dest: '🔍´ L5 (Blocked)' },
+            { agent: 'Affiliate Partner Lead', read: '✅ L0', write: '✅ L2', ext: ' L3 (Limited)', fin: '🔍´ L4 (Blocked)', dest: '🔍´ L5 (Blocked)' },
+            { agent: 'AI CFO & Finance Controller', read: '✅ L0', write: '✅ L2', ext: ' L3 (Approval)', fin: ' L4 (Approval)', dest: '🔍´ L5 (Blocked)' },
+            { agent: 'DevOps & SRE Guardian', read: '✅ L0', write: '✅ L2', ext: ' L3 (Approval)', fin: '🔍´ L4 (Blocked)', dest: ' L5 (Approval)' },
+            { agent: 'Security & Policy Guardian', read: '✅ L0', write: '🛡️ Policy', ext: '🔍´ L3 (Blocked)', fin: '🔍´ L4 (Blocked)', dest: '🔍´ L5 (Blocked)' }
         ];
 
         function renderAgentPermissionMatrix() {
@@ -1541,12 +1541,12 @@
 
         // 6. Watch Agent Work Live Pipeline Renderer
         const PIPELINE_NODES = [
-            { step: 1, name: 'CEO Strategy', icon: '🧠', status: 'COMPLETE', badge: 'âœ“ Done (24ms)' },
-            { step: 2, name: 'Researcher / SDR', icon: 'ðŸ”', status: 'COMPLETE', badge: 'âœ“ 100 Leads (48ms)' },
-            { step: 3, name: 'Sales Closer', icon: '💼', status: 'WORKING', badge: 'ðŸŸ¢ Negotiating ROI' },
-            { step: 4, name: 'Solution Architect', icon: 'ðŸ“', status: 'WAITING', badge: 'ðŸ”µ SOW Ready' },
-            { step: 5, name: 'AI CFO & Finance', icon: '💰', status: 'APPROVAL', badge: 'ðŸŸ¡ Escrow Locked' },
-            { step: 6, name: 'Security Guardian', icon: '🛡️', status: 'MONITORING', badge: 'ðŸŸ¢ 0 Policy Leaks' }
+            { step: 1, name: 'CEO Strategy', icon: '🧠', status: 'COMPLETE', badge: ' Done (24ms)' },
+            { step: 2, name: 'Researcher / SDR', icon: '🔍', status: 'COMPLETE', badge: ' 100 Leads (48ms)' },
+            { step: 3, name: 'Sales Closer', icon: '💼', status: 'WORKING', badge: ' Negotiating ROI' },
+            { step: 4, name: 'Solution Architect', icon: '', status: 'WAITING', badge: '🔍µ SOW Ready' },
+            { step: 5, name: 'AI CFO & Finance', icon: '💰', status: 'APPROVAL', badge: ' Escrow Locked' },
+            { step: 6, name: 'Security Guardian', icon: '🛡️', status: 'MONITORING', badge: ' 0 Policy Leaks' }
         ];
 
         function renderWatchAgentWorkFlow() {
@@ -1566,9 +1566,9 @@
 
         function triggerLiveMissionSimulation() {
             PIPELINE_NODES[2].status = 'COMPLETE';
-            PIPELINE_NODES[2].badge = 'âœ“ Deal Closed ($1,800)';
+            PIPELINE_NODES[2].badge = ' Deal Closed ($1,800)';
             PIPELINE_NODES[3].status = 'WORKING';
-            PIPELINE_NODES[3].badge = 'ðŸŸ¢ Generating Architecture';
+            PIPELINE_NODES[3].badge = ' Generating Architecture';
             renderWatchAgentWorkFlow();
             showAffiliateToast('🚀 Live Mission Advanced: Sales Closer closed deal ➔ Handoff to Solution Architect!');
         // 7. Incident Response System Renderer
@@ -1586,7 +1586,7 @@
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
                         <div>
                             <div style="display:flex; align-items:center; gap:8px;">
-                                <span class="badge" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;">âœ“ ${inc.status}</span>
+                                <span class="badge" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;"> ${inc.status}</span>
                                 <strong style="color:#fff; font-size:0.92rem;">${inc.id}: ${inc.title}</strong>
                             </div>
                             <div style="font-size:0.78rem; color:#94a3b8; margin-top:4px;">
@@ -1603,7 +1603,7 @@
         }
 
         function recordNewIncidentModal() {
-            const title = prompt('ðŸš¨ Report Anomaly / Incident Description:', 'Unusual memory consumption during batch vector indexing');
+            const title = prompt(' Report Anomaly / Incident Description:', 'Unusual memory consumption during batch vector indexing');
             if (title) {
                 INCIDENTS_DATA.unshift({
                     id: 'INC-' + Math.floor(2050 + Math.random() * 50),
@@ -1615,7 +1615,7 @@
                     action: 'Circuit breaker tripped, memory reclaimed & logged'
                 });
                 renderIncidentsView();
-                showAffiliateToast('ðŸš¨ Incident logged and automated circuit-breaker remediation activated.');
+                showAffiliateToast(' Incident logged and automated circuit-breaker remediation activated.');
             }
         }
 
@@ -1635,7 +1635,7 @@
                 <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.service}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${c.alias}</td>
-                    <td style="padding:10px; color:var(--accent-emerald);">â— ${c.status}</td>
+                    <td style="padding:10px; color:var(--accent-emerald);">● ${c.status}</td>
                     <td style="padding:10px; color:#94a3b8;">${c.masked}</td>
                     <td style="padding:10px; color:var(--accent-gold);">${c.rotated}</td>
                     <td style="padding:10px; color:#cbd5e1; font-family:'Inter',sans-serif; font-size:0.78rem;">${c.users}</td>
@@ -1750,7 +1750,7 @@
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
-                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">ðŸ¤ 28-Pillar Affiliate Operating System</h3>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">🤝 28-Pillar Affiliate Operating System</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Partner tracking, commission calculations, and batch payout approvals.</p>
                         </div>
                         <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">💳 Batch Payout ($2,450.00)</button>
@@ -1893,21 +1893,21 @@
         });
 
         const cmdActions = [
-            { title: 'ðŸ‘‘ Jump to Executive Overview', cat: 'Navigation', action: () => switchAdminCockpitTab('overview') },
+            { title: '🏛️‘ Jump to Executive Overview', cat: 'Navigation', action: () => switchAdminCockpitTab('overview') },
             { title: '📊 System Truth Center: 20/20 Production Real Audit', cat: 'Truth Center', action: () => switchAdminCockpitTab('truth') },
             { title: '⚡ Live Agent Activity Wall & Flight Recorder Replay', cat: 'Activity', action: () => switchAdminCockpitTab('activity') },
             { title: '💰 Agent Economics: Net Margin & Revenue Attribution', cat: 'Finance', action: () => switchAdminCockpitTab('economics') },
             { title: '🤖 Inspect 13-Agent Digital Workforce Swarms', cat: 'Workforce', action: () => switchAdminCockpitTab('swarms') },
-            { title: 'ðŸ¤ Open 28-Pillar Affiliate Command Center', cat: 'Affiliate', action: () => switchAdminCockpitTab('partners') },
+            { title: '🤝 Open 28-Pillar Affiliate Command Center', cat: 'Affiliate', action: () => switchAdminCockpitTab('partners') },
             { title: '🎯 Open 12-Stage CRM Kanban Board', cat: 'CRM', action: () => switchAdminCockpitTab('crm') },
             { title: '🛒 Edit Turnkey Services & Pricing (USD/BDT)', cat: 'Catalog', action: () => switchAdminCockpitTab('catalog') },
             { title: '⚡ Inspect Hostinger VPS & Docker Telemetry', cat: 'SRE', action: () => switchAdminCockpitTab('telemetry') },
             { title: '💬 Open Unified Omnichannel Live Inbox', cat: 'Inbox', action: () => switchAdminCockpitTab('inbox') },
-            { title: 'ðŸ’¸ Command: Show today\'s affiliate revenue ($1,842.00)', cat: 'Command IINSHA', action: () => { showAffiliateToast('📊 Today\'s Affiliate Revenue: $1,842.00 USD (৳2,25,645 BDT) | Top Partner: Adnin Growth (Gold)'); switchAdminCockpitTab('partners'); } },
-            { title: 'ðŸš¨ Command: Show all high-risk Level 3 & Level 4 actions', cat: 'Command IINSHA', action: () => { showAffiliateToast('🛡️ Security Scanner: 1 Blocked L4 action, 0 Unapproved L3 actions in last 24h.'); switchAdminCockpitTab('activity'); } },
-            { title: '📈 Command: Which service is most profitable?', cat: 'Command IINSHA', action: () => { showAffiliateToast('ðŸ† Most Profitable: AI Voice Receptionist ($1,800 USD, 84.6% Net Margin, 5 Deployments)'); switchAdminCockpitTab('catalog'); } },
+            { title: '🏭¸ Command: Show today\'s affiliate revenue ($1,842.00)', cat: 'Command IINSHA', action: () => { showAffiliateToast('📊 Today\'s Affiliate Revenue: $1,842.00 USD (৳2,25,645 BDT) | Top Partner: Adnin Growth (Gold)'); switchAdminCockpitTab('partners'); } },
+            { title: ' Command: Show all high-risk Level 3 & Level 4 actions', cat: 'Command IINSHA', action: () => { showAffiliateToast('🛡️ Security Scanner: 1 Blocked L4 action, 0 Unapproved L3 actions in last 24h.'); switchAdminCockpitTab('activity'); } },
+            { title: '📈 Command: Which service is most profitable?', cat: 'Command IINSHA', action: () => { showAffiliateToast(' Most Profitable: AI Voice Receptionist ($1,800 USD, 84.6% Net Margin, 5 Deployments)'); switchAdminCockpitTab('catalog'); } },
             { title: '📝 Command: Show Marketing Agent SEO & Blog drafts', cat: 'Command IINSHA', action: () => { showAffiliateToast('📝 Marketing Agent: 3 Case Studies published, 1 Draft pending approval.'); switchAdminCockpitTab('seo'); } },
-            { title: 'ðŸ”´ Trigger Emergency Master Stop (Global Freeze)', cat: 'Safety', action: () => triggerEmergencyHaltModal() },
+            { title: '🔍´ Trigger Emergency Master Stop (Global Freeze)', cat: 'Safety', action: () => triggerEmergencyHaltModal() },
             { title: '💳 Batch Approve Pending Partner Payouts', cat: 'Finance', action: () => adminTriggerBatchPayout() },
             { title: '⚡ Run Live Telemetry Audit Scan', cat: 'Diagnostics', action: () => runAutonomousAuditScan() }
         ];
@@ -1940,10 +1940,10 @@
 
             const agents = [
                 { id: 'AGNT-0001', name: '🧠 AI CEO Orchestrator', role: 'Business Orchestration & Planning', aut: 'Level 4 (Policy Bound)', budget: '$20/day', audit: '4,280 tasks | 99.8% Green' },
-                { id: 'AGNT-1042', name: 'ðŸ” Market Intel & resilient extraction agent', role: 'Niche Intelligence & Lead Scraping', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '1,420 niches scanned' },
+                { id: 'AGNT-1042', name: '🔍 Market Intel & resilient extraction agent', role: 'Niche Intelligence & Lead Scraping', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '1,420 niches scanned' },
                 { id: 'AGNT-2019', name: '🎯 Outbound Sales SDR Swarm', role: 'Speed-to-Lead <45s Outreach', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '540 leads engaged' },
                 { id: 'AGNT-3088', name: '📞 24/7 Voice AI Receptionist', role: 'Sub-250ms Audio Appointment Closer', aut: 'Level 4 (Policy Bound)', budget: '$10/day', audit: '310 calls handled' },
-                { id: 'AGNT-4019', name: 'ðŸ§ª Independent QA Evaluator', role: 'Playwright E2E Code Inspector', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '100% test pass rate' }
+                { id: 'AGNT-4019', name: '🧪 Independent QA Evaluator', role: 'Playwright E2E Code Inspector', aut: 'Level 3 (Rule-Bounded)', budget: '$5/day', audit: '100% test pass rate' }
             ];
 
             root.innerHTML = `
@@ -1961,7 +1961,7 @@
                                 <span style="color:#94a3b8;">Budget: ${a.budget} • ${a.audit}</span>
                             </div>
                             <div style="margin-top:12px; display:flex; gap:8px;">
-                                <button onclick="inspectAgentPassport('${a.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem;">ðŸ†” Passport</button>
+                                <button onclick="inspectAgentPassport('${a.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem;"> Passport</button>
                                 <button onclick="triggerAiBoardroomDebate()" class="btn btn-primary-sm" style="font-size:0.72rem;">💬 Debate</button>
                             </div>
                         </div>
@@ -2073,10 +2073,10 @@
 
         // 1. Emergency Kill-Switch Modal
         function triggerEmergencyHaltModal() {
-            const confirmed = confirm('âš  EMERGENCY MASTER KILL-SWITCH ACTIVATION\n\nAre you sure you want to pause all outbound autonomous agent swarms and put the system into SAFE READ-ONLY mode?');
+            const confirmed = confirm('  EMERGENCY MASTER KILL-SWITCH ACTIVATION\n\nAre you sure you want to pause all outbound autonomous agent swarms and put the system into SAFE READ-ONLY mode?');
             if (confirmed) {
                 sessionStorage.setItem('iinsha_emergency_halt', 'true');
-                showAffiliateToast('ðŸ›‘ EMERGENCY KILL-SWITCH ACTIVATED: All active swarms halted safely.');
+                showAffiliateToast(' EMERGENCY KILL-SWITCH ACTIVATED: All active swarms halted safely.');
             }
         }
 
@@ -2220,7 +2220,7 @@
                 ind.style.borderColor = 'rgba(245,158,11,0.4)';
                 txt.textContent = 'SYSTEM PAUSED (13 AGENTS ON HOLD)';
             }
-            showAffiliateToast('â¸ ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
+            showAffiliateToast(' ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
         }
 
         function resumeAllAgents() {

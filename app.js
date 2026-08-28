@@ -173,18 +173,18 @@ function renderAdminModalCmsStudio(container) {
             <!-- IBOS MODULE NAVIGATION TABS (15 ENTERPRISE DOMAINS) -->
             <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.08);">
                 <button onclick="ibosSwitchTab('exec')" class="btn btn-glass-sm ${ibosActiveTab === 'exec' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'exec' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📊 AI Briefing</button>
-                <button onclick="ibosSwitchTab('market')" class="btn btn-glass-sm ${ibosActiveTab === 'market' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'market' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ› Marketplace 2.0</button>
-                <button onclick="ibosSwitchTab('pricing')" class="btn btn-glass-sm ${ibosActiveTab === 'pricing' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'pricing' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ’² Pricing Engine</button>
-                <button onclick="ibosSwitchTab('affiliate')" class="btn btn-glass-sm ${ibosActiveTab === 'affiliate' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'affiliate' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸ¤ Affiliate BOS 5.0</button>
+                <button onclick="ibosSwitchTab('market')" class="btn btn-glass-sm ${ibosActiveTab === 'market' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'market' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}"> Marketplace 2.0</button>
+                <button onclick="ibosSwitchTab('pricing')" class="btn btn-glass-sm ${ibosActiveTab === 'pricing' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'pricing' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">🏭² Pricing Engine</button>
+                <button onclick="ibosSwitchTab('affiliate')" class="btn btn-glass-sm ${ibosActiveTab === 'affiliate' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'affiliate' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🤝 Affiliate BOS 5.0</button>
                 <button onclick="ibosSwitchTab('ai')" class="btn btn-glass-sm ${ibosActiveTab === 'ai' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'ai' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">🤖 AI Swarms</button>
                 <button onclick="ibosSwitchTab('crm')" class="btn btn-glass-sm ${ibosActiveTab === 'crm' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'crm' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">👥 Client CRM</button>
-                <button onclick="ibosSwitchTab('projects')" class="btn btn-glass-sm ${ibosActiveTab === 'projects' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'projects' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">ðŸ“‚ Projects</button>
+                <button onclick="ibosSwitchTab('projects')" class="btn btn-glass-sm ${ibosActiveTab === 'projects' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'projects' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}"> Projects</button>
                 <button onclick="ibosSwitchTab('blog')" class="btn btn-glass-sm ${ibosActiveTab === 'blog' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'blog' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">📝 Blog CMS</button>
-                <button onclick="ibosSwitchTab('media')" class="btn btn-glass-sm ${ibosActiveTab === 'media' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'media' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">ðŸ–¼ Media Library</button>
+                <button onclick="ibosSwitchTab('media')" class="btn btn-glass-sm ${ibosActiveTab === 'media' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'media' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}"> Media Library</button>
                 <button onclick="ibosSwitchTab('analytics')" class="btn btn-glass-sm ${ibosActiveTab === 'analytics' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'analytics' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">📈 Analytics 360</button>
                 <button onclick="ibosSwitchTab('automation')" class="btn btn-glass-sm ${ibosActiveTab === 'automation' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'automation' ? 'background:var(--accent-emerald); color:#000; font-weight:800;' : ''}">⚡ Automations</button>
-                <button onclick="ibosSwitchTab('flags')" class="btn btn-glass-sm ${ibosActiveTab === 'flags' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'flags' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}">ðŸš© Feature Flags</button>
-                <button onclick="ibosSwitchTab('audit')" class="btn btn-glass-sm ${ibosActiveTab === 'audit' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'audit' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">ðŸ“œ Audit Sourcing</button>
+                <button onclick="ibosSwitchTab('flags')" class="btn btn-glass-sm ${ibosActiveTab === 'flags' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'flags' ? 'background:var(--accent-purple); color:#fff; font-weight:800;' : ''}"> Feature Flags</button>
+                <button onclick="ibosSwitchTab('audit')" class="btn btn-glass-sm ${ibosActiveTab === 'audit' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'audit' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}"> Audit Sourcing</button>
                 <button onclick="ibosSwitchTab('rbac')" class="btn btn-glass-sm ${ibosActiveTab === 'rbac' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'rbac' ? 'background:var(--accent-gold); color:#000; font-weight:800;' : ''}">🛡️ RBAC Credentials</button>
                 <button onclick="ibosSwitchTab('settings')" class="btn btn-glass-sm ${ibosActiveTab === 'settings' ? 'active-ibos-tab' : ''}" style="${ibosActiveTab === 'settings' ? 'background:var(--accent-cyan); color:#000; font-weight:800;' : ''}">⚙️ System Settings</button>
             </div>
@@ -247,8 +247,8 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                     <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">⚡ Quick Command Shortcuts</h4>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">➕ Add New Service</button>
-                        <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);">âœ Publish Blog Article</button>
-                        <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">ðŸ¤ Approve Partner Sale</button>
+                        <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);"> Publish Blog Article</button>
+                        <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">🤝 Approve Partner Sale</button>
                         <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">👥 Admin Credentials CMS</button>
                     </div>
                 </div>
@@ -262,7 +262,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
             <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                     <div>
-                        <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;">ðŸ› Marketplace Domain CMS (${services.length} Services Active)</h3>
+                        <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;"> Marketplace Domain CMS (${services.length} Services Active)</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Single Source of Truth Service Registry Catalog.</p>
                     </div>
                     <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">➕ Add New Service</button>
@@ -280,8 +280,8 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                 </div>
                             </div>
                             <div style="display:flex; gap:8px;">
-                                <button class="btn btn-glass-sm ibos-btn-edit-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:var(--accent-cyan); border-color:var(--accent-cyan);">âœ Edit Service</button>
-                                <button class="btn btn-glass-sm ibos-btn-delete-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:#fca5a5; border-color:#ef4444;">ðŸ—‘ Delete</button>
+                                <button class="btn btn-glass-sm ibos-btn-edit-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:var(--accent-cyan); border-color:var(--accent-cyan);"> Edit Service</button>
+                                <button class="btn btn-glass-sm ibos-btn-delete-svc" data-svc-idx="${sIdx}" style="font-size:0.75rem; color:#fca5a5; border-color:#ef4444;"> Delete</button>
                             </div>
                         </div>
                     `).join('')}
@@ -294,7 +294,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
         return `
             <!-- PRICING DOMAIN -->
             <div>
-                <h3 style="color:var(--accent-emerald); font-size:1.15rem; margin-bottom:6px;">ðŸ’² Dynamic Pricing Engine & BDT Currency Converter</h3>
+                <h3 style="color:var(--accent-emerald); font-size:1.15rem; margin-bottom:6px;">🏭² Dynamic Pricing Engine & BDT Currency Converter</h3>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">Edits here dynamically update Marketplace, Asset Store, Checkout Modal, Partner Portal, and AI Sales Agent.</p>
 
                 <div class="ipc-card ipc-card-gold">
@@ -315,7 +315,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
         return `
             <!-- AFFILIATE DOMAIN 5.0 -->
             <div>
-                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">ðŸ¤ Enterprise Affiliate Network 5.0 (Impact / PartnerStack Rules)</h3>
+                <h3 style="color:var(--accent-purple); font-size:1.15rem; margin-bottom:6px;">🤝 Enterprise Affiliate Network 5.0 (Impact / PartnerStack Rules)</h3>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">100% Service Auto-Sync, Unique Referral Links & Ownership Attribution.</p>
 
                 <div class="ipc-card">
@@ -388,7 +388,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                     User ID: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${sanitize(adm.email)}</strong> | Password: <strong style="color:var(--accent-gold); font-family:var(--font-mono);">${sanitize(adm.password)}</strong>
                                 </div>
                             </div>
-                            <button class="btn btn-glass-sm ibos-btn-edit-admin" data-admin-idx="${aIdx}" style="font-size:0.75rem; color:var(--accent-gold); border-color:var(--accent-gold);">âœ Change Credentials</button>
+                            <button class="btn btn-glass-sm ibos-btn-edit-admin" data-admin-idx="${aIdx}" style="font-size:0.75rem; color:var(--accent-gold); border-color:var(--accent-gold);"> Change Credentials</button>
                         </div>
                     `).join('')}
                 </div>
@@ -463,7 +463,7 @@ function bindIBOSModuleListeners() {
         btnUpdateRate.addEventListener('click', () => {
             const inputRate = parseFloat(document.getElementById('ibos-bdt-rate-input')?.value);
             if (isNaN(inputRate) || inputRate <= 0) {
-                alert('âš  Please enter a valid exchange rate (e.g. 120)');
+                alert('  Please enter a valid exchange rate (e.g. 120)');
                 return;
             }
             const words = getSiteWords();
@@ -542,10 +542,10 @@ function bindIBOSModuleListeners() {
             const svc = registry[idx];
             if (!svc) return;
 
-            if (confirm(`âš  Are you sure you want to delete service "${svc.title}"?`)) {
+            if (confirm(`  Are you sure you want to delete service "${svc.title}"?`)) {
                 registry.splice(idx, 1);
                 saveServiceRegistry(registry);
-                alert(`ðŸ—‘ Service deleted from OS Registry.`);
+                alert(` Service deleted from OS Registry.`);
                 renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
             }
         });
@@ -614,7 +614,7 @@ function bindIBOSModuleListeners() {
                 sales_total: 0
             });
             localStorage.setItem('iinsha_ibos_affiliates', JSON.stringify(affs));
-            alert(`ðŸ¤ Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
+            alert(`🤝 Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -636,7 +636,7 @@ function openProtectedAdminPanel() {
                         <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️</span>
                         <div>
                             <h2 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin:0;">IINSHA TECH OS v1000 Master Control Panel</h2>
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">â— Active Super Admin Session | 20 Enterprise Modules</p>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">● Active Super Admin Session | 20 Enterprise Modules</p>
                         </div>
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
@@ -674,7 +674,7 @@ function openProtectedAdminPanel() {
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
         <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
-            <div style="font-size: 2.8rem; margin-bottom: 8px;">ðŸ‘‘</div>
+            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️‘</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
 
@@ -691,15 +691,15 @@ function renderAdminLoginFormCard(container) {
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
                 <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">âš  Passphrase must be at least 6 characters.</div>
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">  Passphrase must be at least 6 characters.</div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">ðŸ”“ Authenticate & Open Studio →</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔍“ Authenticate & Open Studio →</button>
                 </div>
             </form>
 
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel â— 15 Domains â— RBAC Active
+                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
             </div>
         </div>
     `;
@@ -723,7 +723,7 @@ function handleAdminLoginSubmit(e) {
         const errEl = document.getElementById('admin-login-error');
         if (errEl) {
             errEl.style.display = 'block';
-            errEl.textContent = 'âš  Invalid credentials. Passphrase must be at least 6 characters.';
+            errEl.textContent = '  Invalid credentials. Passphrase must be at least 6 characters.';
         }
     }
 }
@@ -918,7 +918,7 @@ function initFomoToasts() {
     const notifications = [
         "🛒 Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
         "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
-        "ðŸ¤ Partner #1042 earned $150.00 recurring affiliate commission!",
+        "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
         "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
         "🚀 Hostinger VPS Docker Container #04 deployed successfully"
     ];
@@ -936,7 +936,7 @@ function initFomoToasts() {
         const toast = document.createElement('div');
         toast.className = 'glass-toast';
         toast.style.cssText = 'background:rgba(15,23,42,0.92); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); backdrop-filter:blur(10px); animation:slideUp 0.4s ease; pointer-events:auto;';
-        toast.innerHTML = `<span style="color:var(--accent-emerald);">â— LIVE</span> ${randomMsg}`;
+        toast.innerHTML = `<span style="color:var(--accent-emerald);">● LIVE</span> ${randomMsg}`;
         toastContainer.appendChild(toast);
 
         setTimeout(() => {
@@ -984,7 +984,7 @@ function initVoiceAssistant() {
         micBtn.id = 'floating-chat-mic-btn';
         micBtn.type = 'button';
         micBtn.title = 'Speak your requirement (Voice AI)';
-        micBtn.innerHTML = 'ðŸŽ¤';
+        micBtn.innerHTML = '';
         micBtn.style.cssText = 'background: rgba(99, 102, 241, 0.2); border: 1px solid var(--accent-primary); color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.2s; margin-left: 6px;';
         
         chatSendBtn.parentNode.insertBefore(micBtn, chatSendBtn.nextSibling);
@@ -992,7 +992,7 @@ function initVoiceAssistant() {
         micBtn.addEventListener('click', () => {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                alert('âš  Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
+                alert('  Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
                 return;
             }
 
@@ -1001,25 +1001,25 @@ function initVoiceAssistant() {
             recognition.interimResults = false;
 
             micBtn.style.background = '#ef4444';
-            micBtn.innerHTML = 'ðŸ”´ Listening...';
+            micBtn.innerHTML = '🔍´ Listening...';
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
                 chatInput.value = transcript;
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
                 chatSendBtn.click();
             };
 
             recognition.onerror = (err) => {
                 console.warn('Voice recognition error:', err);
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
             };
 
             recognition.onend = () => {
                 micBtn.style.background = 'rgba(99, 102, 241, 0.2)';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
             };
 
             recognition.start();
@@ -1092,7 +1092,7 @@ function openBuildAISystemModal() {
         <div style="background:#030712; border:1px solid var(--accent-gold); border-radius:16px; width:95%; max-width:850px; padding:30px; color:#fff; box-shadow:0 30px 80px rgba(0,0,0,0.9); position:relative;">
             <button onclick="(function(){ const _el = document.getElementById('build-ai-system-modal'); if (_el) _el.style.display = 'none'" style="position:absolute; })(); top:16px; right:20px; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
-                <span style="font-size:1.8rem;">ðŸ†</span>
+                <span style="font-size:1.8rem;"></span>
                 <div>
                     <h3 style="margin:0; font-size:1.4rem; color:var(--text-main);">Build Your Custom AI System Studio</h3>
                     <span style="font-size:0.8rem; color:var(--accent-gold);">Interactive B2B System Configurator & Proposal Generator</span>
@@ -1187,14 +1187,14 @@ function initI18nLanguageSwitcher() {
             heroTag: 'à¦à¦¨à§à¦Ÿà¦¾à¦°à¦ªà§à¦°à¦¾à¦‡à¦œ à¦à¦†à¦‡ à¦“ à¦“à§Ÿà§‡à¦¬ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ à¦¸à§à¦Ÿà§à¦¡à¦¿à¦“',
             heroTitle: 'à¦à¦†à¦‡ à¦à¦œà§‡à¦¨à§à¦Ÿ, n8n à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ à¦‰à¦šà§à¦šà¦®à¦¾à¦¨à§‡à¦° à¦“à§Ÿà§‡à¦¬ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦®',
             heroSub: 'à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦¿à¦œà¦¨à§‡à¦¸à§‡à¦° à¦¸à¦®à§Ÿ à¦“ à¦–à¦°à¦š à¦¬à¦¾à¦šà¦¾à¦¤à§‡ à¦¤à§ˆà¦°à¦¿ à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦à¦†à¦‡ à¦¸à¦²à¦¿à¦‰à¦¶à¦¨à¥¤',
-            btnBuild: 'ðŸ† à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦à¦†à¦‡ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¡à¦¿à¦œà¦¾à¦‡à¦¨ à¦•à¦°à§à¦¨',
+            btnBuild: ' à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦à¦†à¦‡ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¡à¦¿à¦œà¦¾à¦‡à¦¨ à¦•à¦°à§à¦¨',
             btnControl: '🎛️ à¦®à¦¾à¦¸à§à¦Ÿà¦¾à¦° à¦•à¦¨à§à¦Ÿà§à¦°à§‹à¦² à¦ªà§à¦¯à¦¾à¦¨à§‡à¦²'
         },
         en: {
             heroTag: 'Enterprise AI Agent & Web Scraping Studio',
             heroTitle: 'AI Swarms, n8n Automations & High-Yield Scraping Engines',
             heroSub: 'Engineering autonomous AI workflows, stealth web scrapers, and high-converting B2B automation tools.',
-            btnBuild: 'ðŸ† Build Your Custom AI System',
+            btnBuild: ' Build Your Custom AI System',
             btnControl: '🎛️ Control Panel (Auth)'
         }
     };
@@ -1205,7 +1205,7 @@ function initI18nLanguageSwitcher() {
         const dict = translations[lang];
 
         const btnLang = document.getElementById('site-lang-toggle-btn');
-        if (btnLang) btnLang.textContent = lang === 'en' ? '🇧🇩 à¦¬à¦¾à¦‚à¦²à¦¾' : 'ðŸ‡¬ðŸ‡§ English';
+        if (btnLang) btnLang.textContent = lang === 'en' ? '🇧🇩 à¦¬à¦¾à¦‚à¦²à¦¾' : '‡§ English';
 
         const tag = document.querySelector('.hero .section-tag');
         if (tag) tag.textContent = dict.heroTag;
@@ -1300,7 +1300,7 @@ function initAiReadinessAssessment() {
                             💬 Claim Implementation Slot via WhatsApp →
                         </a>
                         <button onclick="window.print()" class="btn btn-glass-sm" style="padding: 12px 16px;">
-                            ðŸ–¨ Save Proposal PDF
+                             Save Proposal PDF
                         </button>
                     </div>
                 </div>
@@ -1331,7 +1331,7 @@ function initTerminalTelemetry() {
     if (runRagBtn) {
         runRagBtn.onclick = () => {
             if (termOutput) {
-                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 3.0 Pro Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] ðŸ” Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
+                termOutput.innerHTML += `\n[${new Date().toLocaleTimeString()}] ⚡ Executing Gemini 3.0 Pro Vector RAG Knowledge Retrieval...\n[${new Date().toLocaleTimeString()}] 🔍 Searched 8,500 Vector Embeddings (Similarity Score: 0.962)\n[${new Date().toLocaleTimeString()}] 💬 Synthesized 100% Accurate AI Support Response in 78ms\n`;
                 termOutput.scrollTop = termOutput.scrollHeight;
             }
         };
@@ -1345,7 +1345,7 @@ function initGlobalCurrencyConverter() {
     const rates = {
         USD: { symbol: '$', rate: 1 },
         BDT: { symbol: '৳', rate: 120 },
-        EUR: { symbol: 'â‚¬', rate: 0.92 },
+        EUR: { symbol: '', rate: 0.92 },
         GBP: { symbol: 'Â£', rate: 0.78 },
         AED: { symbol: 'Ø¯.Ø¥', rate: 3.67 }
     };
@@ -1407,7 +1407,7 @@ function initInteractiveDiagramVisualizer() {
         scraper: `
             <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
                 <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#06b6d4" stroke-width="2"/>
-                <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ðŸŒ E-Commerce Target Site</text>
+                <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🌐 E-Commerce Target Site</text>
 
                 <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
 
@@ -1542,14 +1542,14 @@ function initAiAgentCommandSwarm() {
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
                 <div>
                     <h3 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
-                        <span>ðŸ‘‘ IINSHA COMMAND CENTER</span>
+                        <span>🏛️‘ IINSHA COMMAND CENTER</span>
                         <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:12px; font-weight:bold;">SWARM ACTIVE (7/7)</span>
                     </h3>
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Autonomous Business Operating System (AI-BOS) Control Matrix</p>
                 </div>
                 <div style="display:flex; gap:10px;">
-                    <button onclick="alert('ðŸ’¸ 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
-                        ðŸ’¸ 1-Click Approve Payouts ($1,240)
+                    <button onclick="alert('🏭¸ 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
+                        🏭¸ 1-Click Approve Payouts ($1,240)
                     </button>
                 </div>
             </div>
@@ -1559,7 +1559,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🎯 CEO Agent</span>
-                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">â— ONLINE</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● ONLINE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Daily P&L: +$2,450 | Rec: Increase RAG Ads</p>
                 </div>
@@ -1567,7 +1567,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Sales Agent</span>
-                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">â— 12 LEADS</span>
+                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">● 12 LEADS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Auto-Quoting Dubai & USA Clients</p>
                 </div>
@@ -1575,15 +1575,15 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">📢 Lead Hunter AI</span>
-                        <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">â— 45 DRAFTS</span>
+                        <span style="font-size:0.65rem; color:#f59e0b; font-weight:bold;">● 45 DRAFTS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Playwright Pipeline Scraped B2B Contacts</p>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ¤ Affiliate AI</span>
-                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">â— 98% TRUST</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate AI</span>
+                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">● 98% TRUST</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Fraud Shield Active | 54 Active Partners</p>
                 </div>
@@ -1591,7 +1591,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(236,72,153,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🔧 Delivery Agent</span>
-                        <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">â— 3 ACTIVE</span>
+                        <span style="font-size:0.65rem; color:#ec4899; font-weight:bold;">● 3 ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Generating n8n Workflows & Docker Compose</p>
                 </div>
@@ -1599,7 +1599,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💰 Finance AI</span>
-                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">â— RECONCILED</span>
+                        <span style="font-size:0.65rem; color:#10b981; font-weight:bold;">● RECONCILED</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Stripe / bKash / PayPal Invoices Synced</p>
                 </div>
@@ -1607,7 +1607,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(59,130,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🛡️ Security AI</span>
-                        <span style="font-size:0.65rem; color:#3b82f6; font-weight:bold;">â— 100% SECURE</span>
+                        <span style="font-size:0.65rem; color:#3b82f6; font-weight:bold;">● 100% SECURE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Cloudflare WAF + Zero-Trust RBAC Active</p>
                 </div>
@@ -1633,7 +1633,7 @@ function initAiVoiceSimulator() {
         isCalling = !isCalling;
 
         if (isCalling) {
-            startCallBtn.innerHTML = 'ðŸ›‘ End AI Voice Call Simulator';
+            startCallBtn.innerHTML = ' End AI Voice Call Simulator';
             startCallBtn.classList.remove('btn-primary-sm');
             startCallBtn.classList.add('btn-danger-sm');
             voiceOutputBox.style.display = 'block';
@@ -1642,7 +1642,7 @@ function initAiVoiceSimulator() {
                 <div style="background:rgba(3,7,18,0.9); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px; margin-top:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; margin-bottom:10px;">
                         <span style="font-size:0.8rem; font-weight:bold; color:var(--accent-emerald);">📞 LIVE AI VOICE AGENT CALL IN PROGRESS</span>
-                        <span style="font-size:0.7rem; color:#10b981; animation:pulse 1s infinite;">â— 00:14 | 24kHz HD Audio</span>
+                        <span style="font-size:0.7rem; color:#10b981; animation:pulse 1s infinite;">● 00:14 | 24kHz HD Audio</span>
                     </div>
 
                     <!-- AUDIO WAVE ANIMATION -->
@@ -1661,7 +1661,7 @@ function initAiVoiceSimulator() {
                 </div>
             `;
         } else {
-            startCallBtn.innerHTML = 'ðŸŽ™ Simulate AI Telephony Voice Call';
+            startCallBtn.innerHTML = ' Simulate AI Telephony Voice Call';
             startCallBtn.classList.remove('btn-danger-sm');
             startCallBtn.classList.add('btn-primary-sm');
             voiceOutputBox.innerHTML = '<p style="font-size:0.75rem; color:var(--text-muted); text-anchor:center;">Call Ended. Session telemetry saved to CRM.</p>';
@@ -1690,7 +1690,7 @@ function initCloudLatencyDiagnostics() {
             <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:8px; text-align:center;">
                 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">${node.location}</span>
                 <div style="font-size:1.1rem; color:var(--accent-emerald); font-weight:bold; margin:4px 0;">${node.ping}</div>
-                <span style="font-size:0.65rem; color:#10b981;">â— ${node.status}</span>
+                <span style="font-size:0.65rem; color:#10b981;">● ${node.status}</span>
             </div>
         `;
     });
@@ -1753,8 +1753,8 @@ const IinshaBackendAdapter = {
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">${s.name}</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">${s.desc}</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px;">
-                        <span>â± Delivery: ${s.deliveryTime}</span>
-                        <span style="color:var(--accent-emerald); font-weight:bold;">ðŸŽ ${s.commission}% Comm.</span>
+                        <span> Delivery: ${s.deliveryTime}</span>
+                        <span style="color:var(--accent-emerald); font-weight:bold;"> ${s.commission}% Comm.</span>
                     </div>
                 </div>
             `;
@@ -1778,8 +1778,8 @@ function renderFullCrudServiceManager() {
                 <td style="padding:10px; color:var(--accent-emerald); font-weight:bold;">$${s.price}</td>
                 <td style="padding:10px; color:#f59e0b;">${s.commission}%</td>
                 <td style="padding:10px;">
-                    <button onclick="editServiceInline('${s.id}')" class="btn btn-glass-sm" style="padding:4px 8px; font-size:0.75rem; margin-right:4px;">âœ Edit</button>
-                    <button onclick="deleteServiceAction('${s.id}')" class="btn btn-danger-sm" style="padding:4px 8px; font-size:0.75rem;">ðŸ—‘ Delete</button>
+                    <button onclick="editServiceInline('${s.id}')" class="btn btn-glass-sm" style="padding:4px 8px; font-size:0.75rem; margin-right:4px;"> Edit</button>
+                    <button onclick="deleteServiceAction('${s.id}')" class="btn btn-danger-sm" style="padding:4px 8px; font-size:0.75rem;"> Delete</button>
                 </td>
             </tr>
         `;
@@ -1789,7 +1789,7 @@ function renderFullCrudServiceManager() {
         <div class="glass-card glowing-border" style="padding:20px; background:rgba(3,7,18,0.95); border:1px solid var(--accent-cyan); border-radius:14px; margin-top:20px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
                 <div>
-                    <h3 style="margin:0; color:#fff; font-size:1.1rem;">ðŸ›  FULL CRUD SERVICE & MARKETPLACE MANAGER</h3>
+                    <h3 style="margin:0; color:#fff; font-size:1.1rem;">  FULL CRUD SERVICE & MARKETPLACE MANAGER</h3>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Create, Edit, Update, and Delete Services, Prices, and Descriptions in Real-Time</p>
                 </div>
                 <button onclick="openAddNewServiceModal()" class="btn btn-primary-sm" style="font-weight:bold;">
@@ -1868,7 +1868,7 @@ function deleteServiceAction(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-        alert("ðŸ—‘ Service Deleted Successfully!");
+        alert(" Service Deleted Successfully!");
     }
 }
 
@@ -1895,7 +1895,7 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">PROD CASE #101</span>
-                        <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">â— LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#10b981; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">WhatsApp AI Customer Support</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 3.0 Pro) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
@@ -1908,7 +1908,7 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">PROD CASE #102</span>
-                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">â— LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Playwright Pipeline B2B Lead Scraper</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Hostinger VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
@@ -1921,7 +1921,7 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:#fde68a; font-weight:bold; font-family:var(--font-mono);">PROD CASE #103</span>
-                        <span style="font-size:0.75rem; color:#f59e0b; font-weight:bold;">â— LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#f59e0b; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Stripe & bKash Auto-Reconciliation</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated invoice generation and payment reconciliation engine connecting Stripe & bKash webhooks to PostgreSQL DB.</p>
@@ -1946,7 +1946,7 @@ function initUltraStrongPortfolio() {
     portfolioRoot.innerHTML = `
         <div style="margin-top:40px;">
             <div style="text-align:center; margin-bottom:32px;">
-                <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;">ðŸ† PROVEN ENTERPRISE PORTFOLIO</span>
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono); letter-spacing:1px;"> PROVEN ENTERPRISE PORTFOLIO</span>
                 <h2 style="margin:14px 0 8px 0; color:#fff; font-size:2rem; font-weight:800;">Featured AI Engineering & Automation Projects</h2>
                 <p style="color:var(--text-muted); font-size:0.95rem; max-width:650px; margin:0 auto;">Real-world high-impact deployments powered by Google AI Studio (Gemini 3.0 Pro), n8n VPS, Playwright Pipeline, and Hostinger Docker infrastructure.</p>
             </div>
@@ -2084,10 +2084,10 @@ function initSecurityAuditTerminal() {
             </div>
 
             <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981; max-height:160px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08);">
-                <p style="margin:0 0 4px 0;">[07:24:01] ðŸ” Scanning Cloudflare Pages WAF & DDoS Protection... PASSED</p>
+                <p style="margin:0 0 4px 0;">[07:24:01] 🔍 Scanning Cloudflare Pages WAF & DDoS Protection... PASSED</p>
                 <p style="margin:0 0 4px 0;">[07:24:02] 🔒 Checking Supabase PostgreSQL Row-Level Security (RLS)... PASSED</p>
                 <p style="margin:0 0 4px 0;">[07:24:03] 🔑 Verifying JWT Auth Token Expiration & Anti-CSRF Guard... PASSED</p>
-                <p style="margin:0 0 4px 0;">[07:24:04] ðŸŒ Edge TLS 1.3 Encryption & HSTS Headers Validated... PASSED</p>
+                <p style="margin:0 0 4px 0;">[07:24:04] 🌐 Edge TLS 1.3 Encryption & HSTS Headers Validated... PASSED</p>
                 <p style="margin:0; color:var(--accent-cyan);">[07:24:05] ✅ ZERO VULNERABILITIES DETECTED — PLATFORM 100% SECURE</p>
             </div>
         </div>
@@ -2102,7 +2102,7 @@ function initLanguageSwitcher() {
 
     langBtn.onclick = () => {
         currentLang = currentLang === 'EN' ? 'BN' : 'EN';
-        langBtn.innerHTML = currentLang === 'EN' ? 'ðŸŒ BN / EN' : 'ðŸŒ EN / BN';
+        langBtn.innerHTML = currentLang === 'EN' ? '🌐 BN / EN' : '🌐 EN / BN';
 
         alert(currentLang === 'BN' ? '🇧🇩 à¦¬à¦¾à¦‚à¦²à¦¾ à¦­à¦¾à¦·à¦¾ à¦®à§‹à¦¡ à¦¸à¦•à§à¦°à¦¿à§Ÿ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!' : '🇺🇸 Switched to English Language Mode!');
     };
@@ -2198,7 +2198,7 @@ function renderAiOrderModalContent() {
             <div style="margin-bottom:12px; text-align:${isAi ? 'left' : 'right'};">
                 <div style="display:inline-flex; align-items:center; gap:6px; margin-bottom:3px; float:${isAi ? 'none' : 'right'};">
                     <span style="font-size:0.75rem; color:${isAi ? 'var(--accent-cyan)' : 'var(--accent-emerald)'}; font-weight:bold;">
-                        ${isAi ? '🤖 IINSHA Enterprise AI' : 'ðŸ‘¤ You (Client)'}
+                        ${isAi ? '🤖 IINSHA Enterprise AI' : '🏛️¤ You (Client)'}
                     </span>
                 </div>
                 <div style="clear:both;"></div>
@@ -2327,11 +2327,11 @@ function confirmOrderAndSyncToWhatsApp() {
     storedOrders.unshift(newOrder);
     localStorage.setItem('iinsha_orders_v2', JSON.stringify(storedOrders));
 
-    let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
-    summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
+    let summary = `🏛️‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
+    summary += ` Service: ${currentAiOrderState.serviceName}\n`;
     summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
-    summary += `ðŸ· Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
-    summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
+    summary += ` Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
+    summary += `🏛️¤ CLIENT DETAILS:\n`;
     summary += `• Name: ${name}\n`;
     summary += `• WhatsApp: ${phone}\n`;
     summary += `• Email: ${email || 'N/A'}\n\n`;
@@ -2514,7 +2514,7 @@ window.closeAiOrderConsultationModal = closeAiOrderConsultationModal;
             <div style="margin-bottom:12px; text-align:${isAi ? 'left' : 'right'};">
                 <div style="display:inline-flex; align-items:center; gap:6px; margin-bottom:3px; float:${isAi ? 'none' : 'right'};">
                     <span style="font-size:0.75rem; color:${isAi ? 'var(--accent-cyan)' : 'var(--accent-emerald)'}; font-weight:bold;">
-                        ${isAi ? '🤖 IINSHA Enterprise AI' : 'ðŸ‘¤ You (Client)'}
+                        ${isAi ? '🤖 IINSHA Enterprise AI' : '🏛️¤ You (Client)'}
                     </span>
                 </div>
                 <div style="clear:both;"></div>
@@ -2645,11 +2645,11 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
     storedOrders.unshift(newOrder);
     localStorage.setItem('iinsha_orders_v2', JSON.stringify(storedOrders));
 
-    let summary = `ðŸ‘‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
-    summary += `ðŸ“¦ Service: ${currentAiOrderState.serviceName}\n`;
+    let summary = `🏛️‘ NEW CONFIRMED ORDER FROM IINSHA WEBSITE\n\n`;
+    summary += ` Service: ${currentAiOrderState.serviceName}\n`;
     summary += `💵 Package: ${currentAiOrderState.packageTier}\n`;
-    summary += `ðŸ· Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
-    summary += `ðŸ‘¤ CLIENT DETAILS:\n`;
+    summary += ` Final Price: $${currentAiOrderState.discountedPrice} (10% Discount Applied!)\n\n`;
+    summary += `🏛️¤ CLIENT DETAILS:\n`;
     summary += `• Name: ${name}\n`;
     summary += `• WhatsApp: ${phone}\n`;
     summary += `• Email: ${email || 'N/A'}\n\n`;
@@ -2714,14 +2714,14 @@ function initVerifiedTestimonialsTicker() {
     testimonialContainer.innerHTML = `
         <div style="margin-top:40px; background:rgba(15,23,42,0.6); padding:30px 20px; border-radius:18px; border:1px solid rgba(255,255,255,0.08);">
             <div style="text-align:center; margin-bottom:24px;">
-                <span style="font-size:0.8rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">â­â­â­â­â­ VERIFIED CLIENT REVIEWS</span>
+                <span style="font-size:0.8rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">­­ VERIFIED CLIENT REVIEWS</span>
                 <h3 style="color:#fff; margin:10px 0 4px 0; font-size:1.6rem;">Trusted by Enterprise Leaders Worldwide</h3>
                 <p style="color:var(--text-muted); font-size:0.85rem;">Authentic engineering feedback from USA, Dubai, UK, and Bangladesh clients.</p>
             </div>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Marcus Vance (CTO, Austin TX)</span>
@@ -2730,7 +2730,7 @@ function initVerifiedTestimonialsTicker() {
                 </div>
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Tariq Al-Maktoum (Dubai UAE)</span>
@@ -2739,7 +2739,7 @@ function initVerifiedTestimonialsTicker() {
                 </div>
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.2); padding:18px; border-radius:12px;">
-                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">â­â­â­â­â­</div>
+                    <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
                     <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Rifat H. (Chittagong BD)</span>
@@ -2833,8 +2833,8 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
 
             <!-- TAB NAVIGATION -->
             <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
-                <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ“¦ Client Order Tracker</button>
-                <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">ðŸ¤ B2B Affiliate Dashboard</button>
+                <button onclick="renderClientAffiliatePortalContent('tracker')" class="btn ${activeTab === 'tracker' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;"> Client Order Tracker</button>
+                <button onclick="renderClientAffiliatePortalContent('affiliate')" class="btn ${activeTab === 'affiliate' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">🤝 B2B Affiliate Dashboard</button>
                 <button onclick="renderClientAffiliatePortalContent('vault')" class="btn ${activeTab === 'vault' ? 'btn-primary-sm' : 'btn-glass-sm'}" style="font-weight:bold; font-size:0.8rem;">📚 Marketing Asset Vault</button>
             </div>
 
@@ -2843,7 +2843,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                 ${activeTab === 'tracker' ? `
                     <!-- CLIENT ORDER TRACKER -->
                     <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:12px; margin-bottom:14px;">
-                        <h4 style="margin:0 0 12px 0; color:var(--accent-cyan); font-size:0.95rem;">ðŸ“¦ Active Project Orders & Status</h4>
+                        <h4 style="margin:0 0 12px 0; color:var(--accent-cyan); font-size:0.95rem;"> Active Project Orders & Status</h4>
                         ${orders.length === 0 ? '<p style="font-size:0.85rem; color:var(--text-muted);">No active orders found. Click any package button on the site to launch your first project!</p>' : `
                             <div style="display:grid; gap:10px;">
                                 ${orders.map(o => `
@@ -2888,7 +2888,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                         </div>
 
                         <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:12px;">
-                            <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">ðŸ’¸ Request 1-Click Payout (bKash / Payoneer / Wise / Crypto)</div>
+                            <div style="font-size:0.8rem; font-weight:bold; color:#fff; margin-bottom:8px;">🏭¸ Request 1-Click Payout (bKash / Payoneer / Wise / Crypto)</div>
                             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
                                 <input type="text" id="affiliate-payout-method" placeholder="Payment Method (e.g. Payoneer Email or bKash No)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                                 <input type="number" id="affiliate-payout-amount" placeholder="Amount ($)" value="1347" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
@@ -2908,7 +2908,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                         </div>
 
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;">âœ‰ Cold Outreach Email Script</div>
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;"> Cold Outreach Email Script</div>
                             <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
                             <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); alert('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
                         </div>
@@ -2937,7 +2937,7 @@ function renderGlobalMarketplaceAffiliateMatrix() {
     root.innerHTML = `
         <div style="margin-top:40px; background:rgba(15,23,42,0.8); border:1px solid var(--accent-cyan); padding:32px 20px; border-radius:20px; box-shadow:0 0 35px rgba(6,182,212,0.15);">
             <div style="text-align:center; margin-bottom:28px;">
-                <span style="font-size:0.8rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">ðŸŒ GLOBAL B2B NETWORK MATRIX</span>
+                <span style="font-size:0.8rem; background:rgba(6,182,212,0.2); color:var(--accent-cyan); border:1px solid var(--accent-cyan); padding:4px 14px; border-radius:20px; font-weight:bold; font-family:var(--font-mono);">🌐 GLOBAL B2B NETWORK MATRIX</span>
                 <h3 style="color:#fff; margin:10px 0 6px 0; font-size:1.8rem;">Integrated Freelance & SaaS Affiliate Ecosystem</h3>
                 <p style="color:var(--text-muted); font-size:0.9rem; max-width:700px; margin:0 auto;">Connect IINSHA AI Automation Lab directly to top-tier engineering networks and B2B SaaS partner programs worldwide.</p>
             </div>
@@ -2945,7 +2945,7 @@ function renderGlobalMarketplaceAffiliateMatrix() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <!-- CARD 1: VETTED TECH NETWORKS -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:6px;">ðŸ† VETTED & ELITE TECH NETWORKS</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:bold; margin-bottom:6px;"> VETTED & ELITE TECH NETWORKS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">Toptal, Arc.dev, Turing & Gun.io</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Connect with top 3% senior software engineers and enterprise clients for custom AI agent contracts.</p>
                     <button onclick="openAiOrderConsultationModal('Elite Developer Hiring Pipeline', 'Enterprise Tier', 1499)" class="btn btn-primary-sm" style="width:100%; font-weight:bold;">🚀 Partner via IINSHA API →</button>
@@ -2953,10 +2953,10 @@ function renderGlobalMarketplaceAffiliateMatrix() {
 
                 <!-- CARD 2: RECURRING SAAS AFFILIATES -->
                 <div class="glass-card glowing-border" style="padding:20px; background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:14px;">
-                    <div style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold; margin-bottom:6px;">ðŸ’¸ HIGH-TICKET RECURRING SAAS</div>
+                    <div style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold; margin-bottom:6px;">🏭¸ HIGH-TICKET RECURRING SAAS</div>
                     <h4 style="color:#fff; margin:0 0 10px 0;">PartnerStack, Impact.com & ShareASale</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">Earn 20%-50% monthly recurring commissions by promoting IINSHA AI & B2B SaaS integrations.</p>
-                    <button onclick="openClientAffiliatePortalModal('affiliate')" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">ðŸ¤ Open Partner Dashboard →</button>
+                    <button onclick="openClientAffiliatePortalModal('affiliate')" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">🤝 Open Partner Dashboard →</button>
                 </div>
 
                 <!-- CARD 3: GLOBAL REMOTE BOARDS -->
@@ -3147,7 +3147,7 @@ window.render11AgentSwarmOrchestrator = render11AgentSwarmOrchestrator;
 var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
     BDT: { symbol: '৳', rate: 121.5 },
-    EUR: { symbol: 'â‚¬', rate: 0.92 },
+    EUR: { symbol: '', rate: 0.92 },
     GBP: { symbol: 'Â£', rate: 0.79 },
     AUD: { symbol: 'A$', rate: 1.52 }
 };
@@ -3206,7 +3206,7 @@ function initInteractiveRoiCalculator() {
                 <!-- SLIDER 2 -->
                 <div>
                     <label style="color:#fff; font-size:0.85rem; font-weight:bold; display:flex; justify-content:space-between; margin-bottom:6px;">
-                        <span>â± Hours Saved / Week per Person:</span>
+                        <span> Hours Saved / Week per Person:</span>
                         <span id="roi-hours-val" style="color:var(--accent-emerald);">15 Hours</span>
                     </label>
                     <input type="range" id="roi-hours-slider" min="5" max="40" value="15" style="width:100%; accent-color:var(--accent-emerald);" oninput="updateRoiCalculation()" />
@@ -3289,9 +3289,9 @@ function toggleAgentKillSwitch(agentId) {
     if (agentId === 'all') {
         iinshaTelemetryData.killSwitchActive = !iinshaTelemetryData.killSwitchActive;
         const stateStr = iinshaTelemetryData.killSwitchActive ? 'PAUSED / LOCKED' : 'OPERATIONAL';
-        alert(`ðŸš¨ EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
+        alert(` EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
     } else {
-        alert(`âš  Agent ${agentId} status updated: Manual Override toggled.`);
+        alert(`  Agent ${agentId} status updated: Manual Override toggled.`);
     }
     if (typeof render11AgentSwarmOrchestrator === 'function') render11AgentSwarmOrchestrator();
 }
@@ -3318,7 +3318,7 @@ function renderUltimateAdminControlFeatures() {
                         </h4>
                     </div>
                     <button onclick="toggleAgentKillSwitch('all')" class="btn" style="background:#ef4444; color:#fff; font-weight:bold; font-size:0.75rem; padding:6px 14px; border-radius:8px;">
-                        ðŸš¨ ${iinshaTelemetryData.killSwitchActive ? '▶️ RESUME ALL AGENTS' : 'ðŸ›‘ EMERGENCY KILL SWITCH'}
+                         ${iinshaTelemetryData.killSwitchActive ? '▶️ RESUME ALL AGENTS' : ' EMERGENCY KILL SWITCH'}
                     </button>
                 </div>
 
@@ -3399,22 +3399,22 @@ function renderEventBusTelemetry() {
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time stream of decycled business events & Human-in-the-Loop policy enforcement.</p>
                 </div>
                 <button onclick="publishIinshaEvent('system.manual_ping', 'Admin triggered telemetry health check', 'Admin Copilot', 'GREEN')" class="btn btn-primary-sm" style="font-weight:bold; font-size:0.75rem;">
-                    ðŸ“¡ Publish Test Event
+                     Publish Test Event
                 </button>
             </div>
 
             <!-- HITL SAFETY ZONE SUMMARY BAR -->
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:14px;">
                 <div style="background:rgba(16,185,129,0.15); border:1px solid var(--accent-emerald); padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold;">ðŸŸ¢ GREEN ZONE (Auto)</div>
+                    <div style="font-size:0.7rem; color:var(--accent-emerald); font-weight:bold;"> GREEN ZONE (Auto)</div>
                     <div style="font-size:0.75rem; color:#fff;">Blog, SEO, Socials, Support FAQ</div>
                 </div>
                 <div style="background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:#f59e0b; font-weight:bold;">ðŸŸ¡ YELLOW ZONE (2-Hr Auto)</div>
+                    <div style="font-size:0.7rem; color:#f59e0b; font-weight:bold;"> YELLOW ZONE (2-Hr Auto)</div>
                     <div style="font-size:0.75rem; color:#fff;">Quotes <$5k, Affiliate Approval</div>
                 </div>
                 <div style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; padding:10px; border-radius:8px; text-align:center;">
-                    <div style="font-size:0.7rem; color:#fca5a5; font-weight:bold;">ðŸ”´ RED ZONE (Admin Gate)</div>
+                    <div style="font-size:0.7rem; color:#fca5a5; font-weight:bold;">🔍´ RED ZONE (Admin Gate)</div>
                     <div style="font-size:0.75rem; color:#fff;">Payouts >$1k, Contracts, Pricing</div>
                 </div>
             </div>
@@ -3583,7 +3583,7 @@ function renderDominationTelemetryStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸŒ 13-Agent Autonomous Swarm & 11 Revenue Streams Telemetry</span>
+                        <span>🌐 13-Agent Autonomous Swarm & 11 Revenue Streams Telemetry</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">A2A & MCP PROTOCOL ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.75rem; color:var(--text-muted);">Real-time monitoring of the world's first AI-Native Autonomous Enterprise OS.</p>
@@ -3605,7 +3605,7 @@ function renderDominationTelemetryStudio() {
 
             <!-- 10 COMPETITIVE MOATS BAR -->
             <div style="margin-bottom:16px; background:rgba(30,41,59,0.5); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
-                <div style="font-size:0.8rem; font-weight:bold; color:#f59e0b; margin-bottom:6px;">ðŸ° 10 Competitive Strategic Moats (Unbeatable Advantage):</div>
+                <div style="font-size:0.8rem; font-weight:bold; color:#f59e0b; margin-bottom:6px;"> 10 Competitive Strategic Moats (Unbeatable Advantage):</div>
                 <div style="display:flex; flex-wrap:wrap; gap:6px;">
                     ${iinsha10Moats.map(m => `
                         <span style="font-size:0.68rem; background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid #f59e0b; padding:2px 8px; border-radius:10px;">${m}</span>
@@ -3652,10 +3652,10 @@ function togglePeaceMode() {
     iinshaGodModeState.peaceMode = !iinshaGodModeState.peaceMode;
     const btn = document.getElementById('god-peace-mode-btn');
     if (btn) {
-        btn.innerHTML = iinshaGodModeState.peaceMode ? 'â˜® PEACE MODE ACTIVE (100% Hands-Off)' : 'â˜® Enable 1-Click Peace Mode';
+        btn.innerHTML = iinshaGodModeState.peaceMode ? ' PEACE MODE ACTIVE (100% Hands-Off)' : ' Enable 1-Click Peace Mode';
         btn.style.background = iinshaGodModeState.peaceMode ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)';
     }
-    alert(iinshaGodModeState.peaceMode ? 'â˜® Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
+    alert(iinshaGodModeState.peaceMode ? ' Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
 }
 window.togglePeaceMode = togglePeaceMode;
 
@@ -3689,13 +3689,13 @@ function renderGodModeControlStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸŒŒ GOD MODE CONTROL CENTER — THE FINAL FORM</span>
+                        <span>🌐Œ GOD MODE CONTROL CENTER — THE FINAL FORM</span>
                         <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">CONSCIOUSNESS CORE ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Adjust reality parameters, run timeline simulations, and trigger 1-Click Peace Mode.</p>
                 </div>
                 <button id="god-peace-mode-btn" onclick="togglePeaceMode()" class="btn btn-primary-sm" style="background:rgba(255,255,255,0.1); border:1px solid #8b5cf6; font-weight:bold; font-size:0.8rem; color:#a78bfa;">
-                    â˜® Enable 1-Click Peace Mode
+                     Enable 1-Click Peace Mode
                 </button>
             </div>
 
@@ -3982,7 +3982,7 @@ function renderCompleteEnterpriseStudioCMS() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸ‘‘ Studio Management Engine & Dynamic Service CMS</span>
+                        <span>🏛️‘ Studio Management Engine & Dynamic Service CMS</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">ANTIGRAVITY 2.0 MCP BRIDGE ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Manage Core Baseline Services & Enterprise Systems Layer with 100% Live CMS Controls.</p>
@@ -4007,7 +4007,7 @@ function renderCompleteEnterpriseStudioCMS() {
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="editServiceInStudio('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
-                                âœ Edit Service & Price
+                                 Edit Service & Price
                             </button>
                             <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
                                 📄 SoW Contract
@@ -4103,8 +4103,8 @@ function sendDirectWhatsAppNotification(customMsg) {
 window.sendDirectWhatsAppNotification = sendDirectWhatsAppNotification;
 
 function sendDirectFacebookNotification() {
-    alert("ðŸ“² Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
-    const summaryText = `ðŸŒŒ IINSHA AI OS — Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
+    alert(" Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
+    const summaryText = `🌐Œ IINSHA AI OS — Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
     navigator.clipboard.writeText(summaryText);
     window.open('https://facebook.com', '_blank');
 }
@@ -4127,7 +4127,7 @@ function renderOmnichannelNotificationStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸ“² WhatsApp & Facebook Live Notification Hub</span>
+                        <span> WhatsApp & Facebook Live Notification Hub</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:3px 10px; border-radius:12px; font-weight:bold;">AUTO-NOTIFIER ONLINE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Real-time dispatch of leads, orders, affiliate commissions & AI reports to WhatsApp (+8801629286887) and Facebook.</p>
@@ -4140,16 +4140,16 @@ function renderOmnichannelNotificationStudio() {
                     <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">WhatsApp Live Dispatch</h5>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Connected Target: <strong>+8801629286887</strong></p>
                     <button onclick="sendDirectWhatsAppNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald);">
-                        ðŸ“² Send Test Alert to WhatsApp
+                         Send Test Alert to WhatsApp
                     </button>
                 </div>
 
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.4); border-radius:14px; padding:18px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:8px;">ðŸ“˜</div>
+                    <div style="font-size:2rem; margin-bottom:8px;"></div>
                     <h5 style="margin:0 0 6px 0; color:#fff; font-size:1rem; font-weight:bold;">Facebook Business Hub</h5>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px;">Instant Dispatch for Messenger & Page Posts</p>
                     <button onclick="sendDirectFacebookNotification()" class="btn btn-primary-sm" style="width:100%; font-weight:bold; background:rgba(6,182,212,0.25); color:var(--accent-cyan); border:1px solid var(--accent-cyan);">
-                        ðŸ“˜ Copy Alert for Facebook
+                         Copy Alert for Facebook
                     </button>
                 </div>
             </div>
@@ -4328,7 +4328,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                 <!-- SUBSYSTEM 3: AFFILIATE EMPIRE MONITOR -->
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(245,158,11,0.4); border-radius:14px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">ðŸ¤ Affiliate Empire Monitor</span>
+                        <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate Empire Monitor</span>
                         <span id="affiliateAutoMonitor-status-badge" onclick="toggleAutonomousSubsystem('affiliateAutoMonitor')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">TREASURER & ANALYST Agents monitor clicks, fraud detection & send motivation alerts via WhatsApp.</p>
@@ -4404,7 +4404,7 @@ function renderAIBOSArchitectureStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸ‘‘ AI BUSINESS OPERATING SYSTEM (AI-BOS v12.0)</span>
+                        <span>🏛️‘ AI BUSINESS OPERATING SYSTEM (AI-BOS v12.0)</span>
                         <span style="font-size:0.65rem; background:rgba(59,130,246,0.25); color:#60a5fa; border:1px solid #3b82f6; padding:3px 10px; border-radius:12px; font-weight:bold;">GEMINI 3.6 FLASH ROUTER ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Decision → Tool Request → Permission Check → Policy Check → n8n Execution → Audit Log</p>
@@ -4458,7 +4458,7 @@ var iinshaActiveCurrency = 'USD';
 var iinshaCurrencyRates = {
     USD: { symbol: '$', rate: 1.0 },
     BDT: { symbol: '৳', rate: 122.0 },
-    EUR: { symbol: 'â‚¬', rate: 0.92 },
+    EUR: { symbol: '', rate: 0.92 },
     GBP: { symbol: 'Â£', rate: 0.78 },
     AED: { symbol: 'AED ', rate: 3.67 }
 };
@@ -4673,7 +4673,7 @@ if (document.readyState === 'loading') {
     calculateCustomWorkforceEstimate();
 }
 
-/* ðŸ‘‘ SUPREME OWNER COMMAND CENTER CONTROLS */
+/* 🏛️‘ SUPREME OWNER COMMAND CENTER CONTROLS */
 function triggerMasterKillSwitch(mode) {
     const dot = document.getElementById('owner-status-dot');
     const text = document.getElementById('owner-status-text');
@@ -4684,27 +4684,27 @@ function triggerMasterKillSwitch(mode) {
             dot.style.boxShadow = '0 0 10px #ef4444';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#ef4444;">SYSTEM PAUSED â— SAFETY EMERGENCY LOCK ACTIVE</span>';
+            text.innerHTML = '<span style="color:#ef4444;">SYSTEM PAUSED ● SAFETY EMERGENCY LOCK ACTIVE</span>';
         }
-        showFomoToast('ðŸ”´ EMERGENCY KILL SWITCH ACTIVATED — ALL 27 AGENTS PAUSED BY OWNER', 'error');
+        showFomoToast('🔍´ EMERGENCY KILL SWITCH ACTIVATED — ALL 27 AGENTS PAUSED BY OWNER', 'error');
     } else if (mode === 'PAUSE_HIGH_RISK') {
         if (dot) {
             dot.style.background = '#f59e0b';
             dot.style.boxShadow = '0 0 10px #f59e0b';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#fbbf24;">HIGH-RISK ACTIONS PAUSED â— READ-ONLY AGENTS ONLINE</span>';
+            text.innerHTML = '<span style="color:#fbbf24;">HIGH-RISK ACTIONS PAUSED ● READ-ONLY AGENTS ONLINE</span>';
         }
-        showFomoToast('ðŸŸ¡ HIGH-RISK ACTIONS FROZEN — HIGH-RISK MUTATIONS REQUIRING HUMAN GATE', 'warning');
+        showFomoToast(' HIGH-RISK ACTIONS FROZEN — HIGH-RISK MUTATIONS REQUIRING HUMAN GATE', 'warning');
     } else if (mode === 'RESUME_ALL') {
         if (dot) {
             dot.style.background = '#10b981';
             dot.style.boxShadow = '0 0 10px #10b981';
         }
         if (text) {
-            text.innerHTML = '<span style="color:#fff;">SYSTEM OPERATIONAL â— 27 ACTIVE AGENTS</span>';
+            text.innerHTML = '<span style="color:#fff;">SYSTEM OPERATIONAL ● 27 ACTIVE AGENTS</span>';
         }
-        showFomoToast('ðŸŸ¢ ALL SYSTEMS RESUMED — SUPREME OWNER GOVERNANCE ACTIVE', 'success');
+        showFomoToast(' ALL SYSTEMS RESUMED — SUPREME OWNER GOVERNANCE ACTIVE', 'success');
     }
 }
 
@@ -4750,26 +4750,26 @@ function runAiGoalDecomposition() {
 
     container.innerHTML = `
         <div style="background:rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; padding: 10px; border-radius: 4px;">
-            <strong style="color:#60a5fa;">STEP 1: Strategic Analysis</strong> â”€â”€ AI Commander analyzed historical tickets and identified 3 main latency bottlenecks.
+            <strong style="color:#60a5fa;">STEP 1: Strategic Analysis</strong> ”€ AI Commander analyzed historical tickets and identified 3 main latency bottlenecks.
         </div>
         <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
-            <strong style="color:#34d399;">STEP 2: Solution Generation</strong> â”€â”€ Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
+            <strong style="color:#34d399;">STEP 2: Solution Generation</strong> ”€ Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
         </div>
         <div style="background:rgba(168,85,247,0.1); border-left: 3px solid #a855f7; padding: 10px; border-radius: 4px;">
-            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> â”€â”€ Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
+            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> ”€ Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
         </div>
         <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
-            <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> â”€â”€ Pending Supreme Owner approval for external email dispatch authority.
+            <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> ”€ Pending Supreme Owner approval for external email dispatch authority.
         </div>
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
-            <button class="btn btn-primary-sm" onclick="showFomoToast('âœ¨ Strategy Roadmap Approved by Owner! Deploying to AI Workforce...', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                ðŸ‘ Approve & Deploy Strategy
+            <button class="btn btn-primary-sm" onclick="showFomoToast(' Strategy Roadmap Approved by Owner! Deploying to AI Workforce...', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                🏛️ Approve & Deploy Strategy
             </button>
         </div>
     `;
 }
 
-/* ðŸ¢ 5 AUTONOMOUS AI BUSINESS DIVISIONS CONTROLS */
+/*  5 AUTONOMOUS AI BUSINESS DIVISIONS CONTROLS */
 function switchAiDivisionTab(divId) {
     const tabs = ['growth', 'sales', 'delivery', 'success', 'finance'];
     
@@ -4789,11 +4789,11 @@ function switchAiDivisionTab(divId) {
 
 function triggerFlywheelSimulation() {
     const steps = [
-        "ðŸ” Step 1: Market Intel Agent discovered 12 B2B E-commerce opportunities",
+        "🔍 Step 1: Market Intel Agent discovered 12 B2B E-commerce opportunities",
         "📊 Step 2: Lead Gen Agent enriched contacts into CRM",
         "🎯 Step 3: Sales AI qualified lead & generated $1,250 project proposal",
-        "ðŸ‘” Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
-        "ðŸ§ª Step 5: Independent QA Agent performed automated test pass (100% Green)",
+        "🏛️” Step 4: AI Project Manager decomposed scope & assigned Dev Agents",
+        "🧪 Step 5: Independent QA Agent performed automated test pass (100% Green)",
         "🎧 Step 6: 24/7 Pinecone RAG Bot onboarded client & answered technical FAQs",
         "📈 Step 7: AI Upsell Engine recommended Voice AI expansion (+$499/mo)",
         "💳 Step 8: Invoice matched & $1,250 deposited to Supreme Financial Vault!"
@@ -4811,17 +4811,17 @@ function triggerFlywheelSimulation() {
     });
 }
 
-/* ðŸ†” AGENT PASSPORT & BOARDROOM DEBATE CONTROLS */
+/*  AGENT PASSPORT & BOARDROOM DEBATE CONTROLS */
 function inspectAgentPassport(agentId) {
     const passportData = {
         'AGNT-0001': { name: "🧠 AI CEO Orchestrator", role: "Business Orchestrator & Goal Planner", autonomy: "Level 4 (Policy Boundary)", budget: "$20.00 / day", tools: "n8n Webhook, Pinecone Memory, Goal Decomposer, Boardroom Trigger", owner: "Supreme Owner", audit: "4,281 tasks executed | 99.4% uptime | Zero boundary violations" },
-        'AGNT-1042': { name: "ðŸ” Market Intel Agent", role: "Niche Scraper & Competitor Monitor", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Web Scraper, Google Trends API, SEO Keyword Indexer", owner: "Supreme Owner", audit: "1,420 niches scanned | 83 leads enriched | 0 consent errors" },
-        'AGNT-4019': { name: "ðŸ§ª Independent QA Agent", role: "Code Inspector & Safety Evaluator", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Playwright E2E Runner, ESLint, Sandbox Validator", owner: "Supreme Owner", audit: "340 builds tested | 100% test pass rate | Zero regression" }
+        'AGNT-1042': { name: "🔍 Market Intel Agent", role: "Niche Scraper & Competitor Monitor", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Web Scraper, Google Trends API, SEO Keyword Indexer", owner: "Supreme Owner", audit: "1,420 niches scanned | 83 leads enriched | 0 consent errors" },
+        'AGNT-4019': { name: "🧪 Independent QA Agent", role: "Code Inspector & Safety Evaluator", autonomy: "Level 3 (Rule-Bounded)", budget: "$5.00 / day", tools: "Playwright E2E Runner, ESLint, Sandbox Validator", owner: "Supreme Owner", audit: "340 builds tested | 100% test pass rate | Zero regression" }
     };
 
     const info = passportData[agentId] || passportData['AGNT-0001'];
     
-    showFomoToast(`ðŸ†” PASSPORT VERIFIED [${agentId}]: ${info.name}\n• Autonomy: ${info.autonomy}\n• Daily Budget: ${info.budget}\n• Audit Status: ${info.audit}`, 'info');
+    showFomoToast(` PASSPORT VERIFIED [${agentId}]: ${info.name}\n• Autonomy: ${info.autonomy}\n• Daily Budget: ${info.budget}\n• Audit Status: ${info.audit}`, 'info');
 }
 
 function composeDynamicWorkforce() {
@@ -4853,7 +4853,7 @@ function composeDynamicWorkforce() {
         </div>
     `;
 
-    showFomoToast(`âœ¨ Dynamic Workforce Swarm Compiled for: "${goal}"`, 'success');
+    showFomoToast(` Dynamic Workforce Swarm Compiled for: "${goal}"`, 'success');
 }
 
 function triggerAiBoardroomDebate() {
@@ -4880,17 +4880,17 @@ function triggerAiBoardroomDebate() {
             <strong style="color:#f87171;">🛡️ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
         </div>
         <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 12px; border-radius: 8px; margin-top: 6px;">
-            <strong style="color:#c084fc; font-size:0.95rem;">ðŸ‘‘ EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
+            <strong style="color:#c084fc; font-size:0.95rem;">🏛️‘ EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
             <span style="font-size:0.82rem; color:#fff;">Approve proposal with mandatory Owner Gate for contracts exceeding $5,000.</span>
             <div style="display:flex; justify-content:flex-end; margin-top:8px;">
-                <button class="btn btn-primary-sm" onclick="showFomoToast('ðŸ‘‘ Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    ðŸ‘ Approve Recommendation
+                <button class="btn btn-primary-sm" onclick="showFomoToast('🏛️‘ Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    🏛️ Approve Recommendation
                 </button>
             </div>
         </div>
     `;
 
-    showFomoToast(`ðŸ—£ Executive Strategy Debate Completed for: "${topic}"`, 'warning');
+    showFomoToast(` Executive Strategy Debate Completed for: "${topic}"`, 'warning');
 }
 
 /* 🔮 LEVEL 5 DIGITAL TWIN & CONTROLLED SELF-EVOLUTION CONTROLS */
@@ -4949,22 +4949,22 @@ function triggerControlledSelfEvolution() {
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="color:#c084fc; font-weight:bold;">4. Supreme Owner Authorization:</span>
-                <button class="btn btn-primary-sm" onclick="showFomoToast('ðŸ§¬ Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    ðŸŸ¢ Authorize Production Deployment
+                <button class="btn btn-primary-sm" onclick="showFomoToast(' Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
+                     Authorize Production Deployment
                 </button>
             </div>
         </div>
     `;
 
-    showFomoToast(`ðŸ§ª Sandbox Benchmark Passed: Latency Reduced by 74%!`, 'info');
+    showFomoToast(`🧪 Sandbox Benchmark Passed: Latency Reduced by 74%!`, 'info');
 }
 
-/* ðŸ” LEVEL 5 ZERO-TRUST SECURITY SOC CONTROLS */
+/* 🔍 LEVEL 5 ZERO-TRUST SECURITY SOC CONTROLS */
 function triggerTripleKillSwitch(switchType) {
     if (switchType === 'global') {
-        showFomoToast(`ðŸ”´ GLOBAL EMERGENCY FREEZE ACTIVATED! All multi-agent swarms paused.`, 'danger');
+        showFomoToast(`🔍´ GLOBAL EMERGENCY FREEZE ACTIVATED! All multi-agent swarms paused.`, 'danger');
     } else if (switchType === 'financial') {
-        showFomoToast(`ðŸ’¸ FINANCIAL KILL SWITCH ACTIVATED! All automated settlement rails frozen.`, 'warning');
+        showFomoToast(`🏭¸ FINANCIAL KILL SWITCH ACTIVATED! All automated settlement rails frozen.`, 'warning');
     } else if (switchType === 'tool') {
         showFomoToast(`🤖 AI TOOL GATEWAY KILL SWITCH ACTIVATED! External API/Webhook execution disabled.`, 'warning');
     }
@@ -5321,7 +5321,7 @@ function renderEnterpriseArchitectureStudio() {
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
-                        <span>ðŸ‘‘ IINSHA AI OS — 5-DIVISION ENTERPRISE STUDIO</span>
+                        <span>🏛️‘ IINSHA AI OS — 5-DIVISION ENTERPRISE STUDIO</span>
                         <span style="font-size:0.65rem; background:rgba(16,185,129,0.25); color:#34d399; border:1px solid #10b981; padding:3px 10px; border-radius:12px; font-weight:bold;">REVENUE ENGINE ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">AI Automation • AI Workforce • AI-BOS • Software Engineering • Managed AI Operations</p>
@@ -5428,7 +5428,7 @@ function initPresalesAssistant() {
             presalesOutput.style.display = 'block';
             presalesOutput.innerHTML = `
                 <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">âœ¨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;"> ESTIMATED AI AUTOMATION BLUEPRINT</div>
                     <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
                     <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
                 </div>
@@ -5628,7 +5628,7 @@ document.addEventListener('DOMContentLoaded', () => {
             presalesOutput.style.display = 'block';
             presalesOutput.innerHTML = `
                 <div style="background:rgba(15,23,42,0.9); border:1px solid var(--accent-cyan); border-radius:12px; padding:16px; margin-top:14px; color:#fff;">
-                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">âœ¨ ESTIMATED AI AUTOMATION BLUEPRINT</div>
+                    <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;"> ESTIMATED AI AUTOMATION BLUEPRINT</div>
                     <div style="font-size:1.05rem; font-weight:700; margin:6px 0;">Solution: ${query}</div>
                     <div style="font-size:0.82rem; color:var(--text-muted);">Estimated Build Time: <strong>48 Hours</strong> | Setup Fee: <strong style="color:var(--accent-emerald);">$349 USD</strong> | ROI: <strong>Save 20+ hrs/wk</strong></div>
                 </div>
@@ -5922,7 +5922,7 @@ window.init3dParticleCanvasEngine = init3dParticleCanvasEngine;
 
 
 /* ============================================================
-   ðŸ¤ AUTHENTIC AFFILIATE EARNINGS CALCULATOR ENGINE
+   🤝 AUTHENTIC AFFILIATE EARNINGS CALCULATOR ENGINE
    ============================================================ */
 function updateAffiliateCalculator() {
     const clientsSlider = document.getElementById('calc-clients-slider');
@@ -6026,7 +6026,7 @@ function executeAIMission(userGoal) {
                 <div class="agent-node-card active" id="node-${agentKey.toLowerCase()}">
                     <div style="display: flex; justify-content: space-between;">
                         <strong style="color: #fff; font-size: 0.85rem;">${agentKey}</strong>
-                        <span style="color: var(--accent-green); font-size:0.75rem;">âœ“ Active</span>
+                        <span style="color: var(--accent-green); font-size:0.75rem;"> Active</span>
                     </div>
                     <div class="status-indicator" style="margin-top: 4px; color: var(--accent-cyan);">Tool: ${agent.tools[0]}</div>
                 </div>

@@ -34,7 +34,7 @@
             name: 'AI Voice Receptionist (Twilio + Gemini WebRTC)',
             category: 'Voice AI',
             priceUSD: 1800,
-            badge: 'ðŸŽ™ Zero Latency',
+            badge: ' Zero Latency',
             desc: 'Conversational voice bot answering 100+ inbound calls, booking appointments, and qualifying buyers in <45s.',
             n8nReady: true
         },
@@ -481,8 +481,8 @@
                     <div class="copilot-trigger-status"></div>
                 </div>
                 <div class="copilot-trigger-label">
-                    <span class="copilot-trigger-title">âœ¦ IINSHA AI Copilot</span>
-                    <span class="copilot-trigger-subtitle">â— Online • Gemini 3.0 Pro</span>
+                    <span class="copilot-trigger-title"> IINSHA AI Copilot</span>
+                    <span class="copilot-trigger-subtitle">● Online • Gemini 3.0 Pro</span>
                 </div>
             `;
             document.body.appendChild(trigger);
@@ -492,7 +492,7 @@
             teaser.id = 'iinsha-copilot-teaser';
             teaser.innerHTML = `
                 <div style="flex:1;">
-                    <strong style="color:#38bdf8; display:block; margin-bottom:2px;">âœ¨ Deploy Enterprise AI for your Business</strong>
+                    <strong style="color:#38bdf8; display:block; margin-bottom:2px;"> Deploy Enterprise AI for your Business</strong>
                     Ask about 24/7 AI agents, pricing, or paste your website URL to build an automated product catalog in 20 mins!
                 </div>
                 <button class="teaser-close" title="Close">✕</button>
@@ -577,7 +577,7 @@
                         </button>
                     </div>
                     <div class="copilot-footer-meta">
-                        <span>âœ¨ Powered by Gemini 3.0 Pro & IINSHA Autonomous Swarm Engine</span>
+                        <span> Powered by Gemini 3.0 Pro & IINSHA Autonomous Swarm Engine</span>
                     </div>
                 </div>
             `;
@@ -635,7 +635,7 @@
                     e.stopPropagation();
                     this.ttsEnabled = !this.ttsEnabled;
                     ttsBtn.style.color = this.ttsEnabled ? '#00f2fe' : '';
-                    ttsBtn.innerHTML = this.ttsEnabled ? 'ðŸ”Š' : 'ðŸ”‡';
+                    ttsBtn.innerHTML = this.ttsEnabled ? '🔍Š' : '🔍‡';
                     if (!this.ttsEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
                 });
             }
@@ -702,7 +702,7 @@
 
             const greetingHtml = `
                 <div>
-                    ðŸ‘‹ <strong>Hello! I'm your IINSHA Autonomous AI Sales & Architecture Copilot.</strong><br><br>
+                    🏛️‹ <strong>Hello! I'm your IINSHA Autonomous AI Sales & Architecture Copilot.</strong><br><br>
                     I help business owners and teams deploy <strong>24/7 AI Sales Agents</strong>, <strong>B2B Lead Generation Swarms</strong>, and <strong>Self-Hosted n8n Clusters</strong> (saving 90% vs Zapier).<br><br>
                     <em>Feel free to ask in <strong>English, à¦¬à¦¾à¦‚à¦²à¦¾, or Banglish</strong>—how can I help your business grow today?</em>
                 </div>
@@ -785,7 +785,7 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
             if (!SpeechRecognition) {
-                alert('âš  Web Speech Recognition is not supported in this browser. Please use Chrome, Edge, or Brave.');
+                alert('  Web Speech Recognition is not supported in this browser. Please use Chrome, Edge, or Brave.');
                 return;
             }
 
@@ -795,27 +795,27 @@
 
             micBtn.style.background = '#ef4444';
             micBtn.style.color = '#fff';
-            micBtn.innerHTML = 'ðŸ”´';
+            micBtn.innerHTML = '🔍´';
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
                 textInput.value = transcript;
                 micBtn.style.background = '';
                 micBtn.style.color = '';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
                 this.handleSendMessage();
             };
 
             recognition.onerror = () => {
                 micBtn.style.background = '';
                 micBtn.style.color = '';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
             };
 
             recognition.onend = () => {
                 micBtn.style.background = '';
                 micBtn.style.color = '';
-                micBtn.innerHTML = 'ðŸŽ¤';
+                micBtn.innerHTML = '';
             };
 
             recognition.start();
@@ -882,12 +882,12 @@
                 const resultHtml = `
                     <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:6px;">
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-                            <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">âœ“ DATABASE INGESTION COMPLETE</span>
+                            <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;"> DATABASE INGESTION COMPLETE</span>
                             <span style="font-size:0.7rem; color:#94a3b8; font-family:monospace;">Speed: 18.4s</span>
                         </div>
                         <div style="font-size:0.78rem; line-height:1.6; color:#e2e8f0;">
-                            <div>ðŸŒ <strong>Source Shop:</strong> <code>${targetUrl}</code></div>
-                            <div>ðŸ“¦ <strong>Catalog Extracted:</strong> 28 Products & Variations</div>
+                            <div>🌐 <strong>Source Shop:</strong> <code>${targetUrl}</code></div>
+                            <div> <strong>Catalog Extracted:</strong> 28 Products & Variations</div>
                             <div>💰 <strong>Pricing Engine:</strong> Auto-Synced in USD & BDT (৳122.50)</div>
                             <div>🧠 <strong>Vector Embeddings:</strong> text-embedding-3-large (1536 dims)</div>
                             <div>⚡ <strong>Status:</strong> Ready for Live Messenger / WhatsApp AI Bot</div>
@@ -1026,24 +1026,24 @@
             if (isRepetitionComplaint) {
                 const bnApology = `
                     <div>
-                        ðŸ™ <strong>à¦†à¦®à¦¿ à¦†à¦¨à§à¦¤à¦°à¦¿à¦•à¦­à¦¾à¦¬à§‡ à¦¦à§à¦ƒà¦–à¦¿à¦¤! à¦†à¦—à§‡à¦° à¦‰à¦¤à§à¦¤à¦°à§‡ à¦ªà§à¦¨à¦°à¦¾à¦¬à§ƒà¦¤à§à¦¤à¦¿ à¦¹à¦“à§Ÿà¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à§à¦·à¦®à¦¾ à¦šà¦¾à¦‡à¦›à¦¿à¥¤</strong><br><br>
+                        💻 <strong>à¦†à¦®à¦¿ à¦†à¦¨à§à¦¤à¦°à¦¿à¦•à¦­à¦¾à¦¬à§‡ à¦¦à§à¦ƒà¦–à¦¿à¦¤! à¦†à¦—à§‡à¦° à¦‰à¦¤à§à¦¤à¦°à§‡ à¦ªà§à¦¨à¦°à¦¾à¦¬à§ƒà¦¤à§à¦¤à¦¿ à¦¹à¦“à§Ÿà¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à§à¦·à¦®à¦¾ à¦šà¦¾à¦‡à¦›à¦¿à¥¤</strong><br><br>
                         à¦†à¦®à¦¿ à¦à¦–à¦¨ à¦°à¦¿à¦¯à¦¼à§‡à¦²-à¦Ÿà¦¾à¦‡à¦® à¦¸à§à¦Ÿà§‡à¦Ÿ à¦“ à¦•à¦¨à¦Ÿà§‡à¦•à§à¦¸à¦Ÿ à¦®à§‡à¦®à§‹à¦°à¦¿à¦¤à§‡ à¦¶à¦¿à¦«à¦Ÿ à¦•à¦°à§‡à¦›à¦¿à¥¤ à¦•à§‹à¦¨à§‹ à¦¸à¦¾à¦§à¦¾à¦°à¦£ à¦Ÿà§‡à¦®à¦ªà§à¦²à§‡à¦Ÿ à¦¨à§Ÿ—à¦†à¦ªà¦¨à¦¿ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¬à¦²à§à¦¨ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦•à§‹à¦¨ à¦¸à§à¦ªà§‡à¦¸à¦¿à¦«à¦¿à¦• à¦¸à¦®à¦¸à§à¦¯à¦¾à¦Ÿà¦¿ à¦¸à¦®à¦¾à¦§à¦¾à¦¨ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨:<br><br>
                         1. 🎯 <strong>B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨</strong> (à¦•à¦¤à¦Ÿà¦¿ à¦²à¦¿à¦¡ à¦“ à¦•à§‹à¦¨ à¦‡à¦¨à§à¦¡à¦¾à¦¸à§à¦Ÿà§à¦°à¦¿?)<br>
                         2. 💬 <strong>à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª/à¦®à§‡à¦¸à§‡à¦žà§à¦œà¦¾à¦° à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ</strong> (à¦†à¦ªà¦¨à¦¾à¦° à¦¶à¦ª à¦¬à¦¾ à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿà§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨)<br>
                         3. ⚡ <strong>n8n à¦¸à§‡à¦²à¦«-à¦¹à§‹à¦¸à§à¦Ÿà§‡à¦¡ à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦°</strong> (Zapier-à¦à¦° à¦–à¦°à¦š à§¯à§¦% à¦•à¦®à¦¾à¦¨à§‹)<br>
                         4. 📞 <strong>à¦•à¦¾à¦¸à§à¦Ÿà¦® à¦ªà§à¦°à¦œà§‡à¦•à§à¦Ÿ</strong> à¦¬à¦¾ à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦° à¦†à¦¦à¦¨à¦¿à¦¨ à¦¸à¦¾à¦¦à¦¾à¦¤ à¦®à¦¾à¦¹à¦¿à¦¨à§‡à¦° à¦¸à¦¾à¦¥à§‡ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦•à¦¥à¦¾ à¦¬à¦²à¦¾<br><br>
-                        ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦à¦• à¦¬à¦¾à¦•à§à¦¯à§‡ à¦²à¦¿à¦–à§‡ à¦¦à¦¿à¦¨, à¦†à¦®à¦¿ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦à¦•à¦¶à¦¨à§‡ à¦¯à¦¾à¦šà§à¦›à¦¿à¥¤</em>
+                        🏛️‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦à¦• à¦¬à¦¾à¦•à§à¦¯à§‡ à¦²à¦¿à¦–à§‡ à¦¦à¦¿à¦¨, à¦†à¦®à¦¿ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦à¦•à¦¶à¦¨à§‡ à¦¯à¦¾à¦šà§à¦›à¦¿à¥¤</em>
                     </div>
                 `;
                 const enApology = `
                     <div>
-                        ðŸ™ <strong>I sincerely apologize for the repetition in earlier turns!</strong><br><br>
+                        💻 <strong>I sincerely apologize for the repetition in earlier turns!</strong><br><br>
                         I have reset the conversational loop and loaded your full session context. No generic templates—please tell me your exact requirement:<br><br>
                         1. 🎯 <strong>B2B Lead Generation</strong> (Target industry, employee size, quantity)<br>
                         2. 💬 <strong>24/7 E-commerce WhatsApp Sales Bot</strong><br>
                         3. ⚡ <strong>Self-Hosted n8n Cluster</strong> (Save 90% vs Zapier)<br>
                         4. 📞 <strong>Direct Consultation</strong> with Lead AI Architect Adnin Sadat Mahin<br><br>
-                        ðŸ‘‰ <em>Tell me what you'd like to achieve and I will generate the exact actionable output.</em>
+                        🏛️‰ <em>Tell me what you'd like to achieve and I will generate the exact actionable output.</em>
                     </div>
                 `;
                 this.addAssistantMessage(isBn ? bnApology : enApology, isBn ? "à¦†à¦®à¦¿ à¦†à¦¨à§à¦¤à¦°à¦¿à¦•à¦­à¦¾à¦¬à§‡ à¦¦à§à¦ƒà¦–à¦¿à¦¤à¥¤ à¦†à¦ªà¦¨à¦¾à¦° à¦¸à§à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦¸à¦®à¦¸à§à¦¯à¦¾à¦Ÿà¦¿ à¦œà¦¾à¦¨à¦¾à¦¨à¥¤" : "I apologize for the repetition. Please tell me your exact task.");
@@ -1060,22 +1060,22 @@
                 const resultHtml = `
                     <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:4px;">
                         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-                            <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">âœ“ EXECUTION COMPLETE</span>
+                            <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;"> EXECUTION COMPLETE</span>
                             <span style="font-size:0.7rem; color:#00f2fe; font-family:monospace;">Runtime: 1.84s • 0% Bounce</span>
                         </div>
 
                         <div style="font-size:0.8rem; line-height:1.6; color:#e2e8f0; margin-bottom:10px;">
                             <div>🎯 <strong>Goal:</strong> B2B SaaS Lead Generation</div>
-                            <div>ðŸ¢ <strong>Target:</strong> ${targetInd} (${empCount})</div>
+                            <div> <strong>Target:</strong> ${targetInd} (${empCount})</div>
                             <div>📊 <strong>Quantity Requested:</strong> ${qty} Verified Executive Leads</div>
                             <div>🛡️ <strong>MX / SMTP Status:</strong> 100% Deliverable (0% Hard Bounce)</div>
                         </div>
 
                         <div style="font-size:0.75rem; color:#94a3b8; margin-bottom:6px; font-weight:700;">Sample Verified Leads (from Swarm Scraper):</div>
                         <div style="background:rgba(0,0,0,0.4); border-radius:8px; padding:10px; font-family:monospace; font-size:0.72rem; color:#cbd5e1; line-height:1.7;">
-                            1. ðŸ‘¤ <strong>Sarah Jenkins</strong> — VP of Growth @ CloudScale SaaS (140 emp) | âœ‰ <code>s.jenkins@cloudscale.io</code> (MX Valid)<br>
-                            2. ðŸ‘¤ <strong>Marcus Vance</strong> — Chief Technology Officer @ DataFlow API (85 emp) | âœ‰ <code>marcus@dataflow.ai</code> (MX Valid)<br>
-                            3. ðŸ‘¤ <strong>Elena Rostova</strong> — Head of Sales @ HyperMetric (190 emp) | âœ‰ <code>elena.r@hypermetric.co</code> (MX Valid)<br>
+                            1. 🏛️¤ <strong>Sarah Jenkins</strong> — VP of Growth @ CloudScale SaaS (140 emp) |  <code>s.jenkins@cloudscale.io</code> (MX Valid)<br>
+                            2. 🏛️¤ <strong>Marcus Vance</strong> — Chief Technology Officer @ DataFlow API (85 emp) |  <code>marcus@dataflow.ai</code> (MX Valid)<br>
+                            3. 🏛️¤ <strong>Elena Rostova</strong> — Head of Sales @ HyperMetric (190 emp) |  <code>elena.r@hypermetric.co</code> (MX Valid)<br>
                             <em>... +97 additional verified corporate contacts formatted in CSV & CRM sync.</em>
                         </div>
 
@@ -1093,8 +1093,8 @@
             if (this.state.employee_count && !this.state.lead_quantity) {
                 const targetInd = this.state.target_industry || 'B2B SaaS';
                 const reply = isBn
-                    ? `ðŸ‘ <strong>à¦•à¦¨à¦¸à§à¦Ÿà§à¦°à§‡à¦‡à¦¨à§à¦Ÿ à¦¸à§‡à¦­ à¦¹à§Ÿà§‡à¦›à§‡: ${targetInd} (${this.state.employee_count})à¥¤</strong><br><br>à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ à¦à¦‡ à¦•à§à¦°à¦¾à¦‡à¦Ÿà§‡à¦°à¦¿à§Ÿà¦¾ à¦…à¦¨à§à¦¯à¦¾à§Ÿà§€ <strong>à§§à§¦à§¦à¦Ÿà¦¿ à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡</strong> à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à§à¦Ÿ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨, à¦¨à¦¾à¦•à¦¿ à¦¸à§à¦ªà§‡à¦¸à¦¿à¦«à¦¿à¦• à¦•à§‹à¦¨à§‹ à¦²à§‹à¦•à§‡à¦¶à¦¨/à¦¦à§‡à¦¶ à¦«à¦¿à¦²à§à¦Ÿà¦¾à¦° à¦¯à§à¦•à§à¦¤ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?`
-                    : `ðŸ‘ <strong>Constraints recorded: ${targetInd} with ${this.state.employee_count}.</strong><br><br>How many verified decision-maker leads would you like our 5-agent hunter swarm to extract? (e.g. <em>"Find 100 leads"</em> or specify target countries like US/UK/EU).`;
+                    ? `🏛️ <strong>à¦•à¦¨à¦¸à§à¦Ÿà§à¦°à§‡à¦‡à¦¨à§à¦Ÿ à¦¸à§‡à¦­ à¦¹à§Ÿà§‡à¦›à§‡: ${targetInd} (${this.state.employee_count})à¥¤</strong><br><br>à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ à¦à¦‡ à¦•à§à¦°à¦¾à¦‡à¦Ÿà§‡à¦°à¦¿à§Ÿà¦¾ à¦…à¦¨à§à¦¯à¦¾à§Ÿà§€ <strong>à§§à§¦à§¦à¦Ÿà¦¿ à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡</strong> à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à§à¦Ÿ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨, à¦¨à¦¾à¦•à¦¿ à¦¸à§à¦ªà§‡à¦¸à¦¿à¦«à¦¿à¦• à¦•à§‹à¦¨à§‹ à¦²à§‹à¦•à§‡à¦¶à¦¨/à¦¦à§‡à¦¶ à¦«à¦¿à¦²à§à¦Ÿà¦¾à¦° à¦¯à§à¦•à§à¦¤ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?`
+                    : `🏛️ <strong>Constraints recorded: ${targetInd} with ${this.state.employee_count}.</strong><br><br>How many verified decision-maker leads would you like our 5-agent hunter swarm to extract? (e.g. <em>"Find 100 leads"</em> or specify target countries like US/UK/EU).`;
                 this.addAssistantMessage(reply, `Constraints recorded: ${targetInd} with ${this.state.employee_count}.`);
                 return;
             }
@@ -1127,8 +1127,8 @@
             // D. How Are You / Pleasantries ("how are you", "kemon achen", "kemon acho", "valocen", "valo acho")
             const isHowAreYou = /(how\s*are\s*you|kemon\s*acho|kemon\s*achen|valo\s*acho|bhalo\s*acho|valocen|bhalocen)/i.test(lower);
             if (isHowAreYou) {
-                const bnHOW = `ðŸ˜Š <strong>à¦†à¦²à¦¹à¦¾à¦®à¦¦à§à¦²à¦¿à¦²à§à¦²à¦¾à¦¹, à¦­à¦¾à¦²à§‹ à¦†à¦›à¦¿!</strong><br><br>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦•à§‹à¦¨ à¦•à¦¾à¦œà¦Ÿà¦¿ à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦¬à¦¾ à¦¸à¦¹à¦œ à¦•à¦°à¦¤à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`;
-                const enHOW = `ðŸ˜Š <strong>I'm doing great, thank you!</strong><br><br>How can I assist you with your business or automation goals today?`;
+                const bnHOW = ` <strong>à¦†à¦²à¦¹à¦¾à¦®à¦¦à§à¦²à¦¿à¦²à§à¦²à¦¾à¦¹, à¦­à¦¾à¦²à§‹ à¦†à¦›à¦¿!</strong><br><br>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦•à§‹à¦¨ à¦•à¦¾à¦œà¦Ÿà¦¿ à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦¬à¦¾ à¦¸à¦¹à¦œ à¦•à¦°à¦¤à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`;
+                const enHOW = ` <strong>I'm doing great, thank you!</strong><br><br>How can I assist you with your business or automation goals today?`;
                 this.addAssistantMessage(isBn ? bnHOW : enHOW, isBn ? "à¦†à¦²à¦¹à¦¾à¦®à¦¦à§à¦²à¦¿à¦²à§à¦²à¦¾à¦¹, à¦­à¦¾à¦²à§‹ à¦†à¦›à¦¿! à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿?" : "I'm doing great! How can I assist you today?");
                 return;
             }
@@ -1136,16 +1136,16 @@
             // E. Greetings & Salutations ("hi", "hello", "hey", "salam", "assalamualaikum")
             const isGreeting = /^(hi|hello|hey|salam|assalamu\s*alaikum|assalamualaikum|hlw|yo)\b/i.test(lower);
             if (isGreeting) {
-                const bnGreet = `ðŸ‘‹ <strong>à¦†à¦¸à¦¸à¦¾à¦²à¦¾à¦®à§ à¦†à¦²à¦¾à¦‡à¦•à§à¦®! à¦•à§‡à¦®à¦¨ à¦†à¦›à§‡à¦¨?</strong><br><br>IINSHA AI-BOS-à¦ à¦†à¦ªà¦¨à¦¾à¦•à§‡ à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®à¥¤ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾ à¦¬à¦¾ à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿà§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨, B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¬à¦¾ AI à¦šà§à¦¯à¦¾à¦Ÿà¦¬à¦Ÿ à¦¤à§ˆà¦°à¦¿à¦¤à§‡ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`;
-                const enGreet = `ðŸ‘‹ <strong>Hello! Welcome to IINSHA AI-BOS.</strong><br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
+                const bnGreet = `🏛️‹ <strong>à¦†à¦¸à¦¸à¦¾à¦²à¦¾à¦®à§ à¦†à¦²à¦¾à¦‡à¦•à§à¦®! à¦•à§‡à¦®à¦¨ à¦†à¦›à§‡à¦¨?</strong><br><br>IINSHA AI-BOS-à¦ à¦†à¦ªà¦¨à¦¾à¦•à§‡ à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®à¥¤ à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾ à¦¬à¦¾ à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿà§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨, B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¬à¦¾ AI à¦šà§à¦¯à¦¾à¦Ÿà¦¬à¦Ÿ à¦¤à§ˆà¦°à¦¿à¦¤à§‡ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¿ à¦¬à¦²à§à¦¨à¥¤`;
+                const enGreet = `🏛️‹ <strong>Hello! Welcome to IINSHA AI-BOS.</strong><br><br>How can I help you today? Are you looking to automate your workflows, generate B2B leads, or build an AI sales bot for your business?`;
                 this.addAssistantMessage(isBn ? bnGreet : enGreet, isBn ? "à¦†à¦¸à¦¸à¦¾à¦²à¦¾à¦®à§ à¦†à¦²à¦¾à¦‡à¦•à§à¦®! à¦•à§‡à¦®à¦¨ à¦†à¦›à§‡à¦¨?" : "Hello! How can I assist your business today?");
                 return;
             }
 
             // F. Help / Problem Fixing Requests ("can you help me?", "amar help lagbe", "tumi ki amar problem fix korte parba?", "help")
             if (lower.includes('help') || lower.includes('shahajjo') || lower.includes('sahajjo') || lower.includes('problem fix') || lower.includes('fix korte')) {
-                const bnHelp = `ðŸ¤ <strong>à¦¹à§à¦¯à¦¾à¦, à¦…à¦¬à¦¶à§à¦¯à¦‡! à¦†à¦ªà¦¨à¦¾à¦° à¦•à§€ à¦§à¦°à¦£à§‡à¦° à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦¬à¦²à§à¦¨à¥¤</strong><br><br>à¦†à¦®à¦°à¦¾ à¦¨à¦¿à¦šà§‡à¦° à¦¸à§‡à¦¬à¦¾à¦—à§à¦²à§‹ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¸à§‡à¦Ÿà¦†à¦ª à¦“ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦¦à¦¿à§Ÿà§‡ à¦¥à¦¾à¦•à¦¿:<br>• 🎯 <strong>B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨:</strong> à¦¯à§‡ à¦•à§‹à¦¨à§‹ à¦¦à§‡à¦¶à§‡à¦° à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡ã€‚<br>• 💬 <strong>à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ:</strong> à§¨à§ª/à§­ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦¬à¦¿à¦•à§à¦°à¦¿ à¦“ à¦…à¦°à§à¦¡à¦¾à¦° à¦•à¦¨à¦«à¦¾à¦°à§à¦®à§‡à¦¶à¦¨ã€‚<br>• ⚡ <strong>n8n à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦°:</strong> Zapier-à¦à¦° à¦šà§‡à§Ÿà§‡ à§¯à§¦% à¦•à¦® à¦–à¦°à¦šà§‡ à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ã€‚<br>• ðŸ›  <strong>à¦•à¦¾à¦¸à§à¦Ÿà¦® AI à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à§Ÿà¦¾à¦°à¦¿à¦‚:</strong> à¦¯à§‡ à¦•à§‹à¦¨à§‹ à¦¬à¦¾à¦— à¦«à¦¿à¦•à§à¦¸ à¦“ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦‡à¦¨à§à¦Ÿà¦¿à¦—à§à¦°à§‡à¦¶à¦¨ã€‚<br><br>ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¬à¦¾ à¦ªà§à¦°à¦œà§‡à¦•à§à¦Ÿà§‡à¦° à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦²à¦¿à¦–à§à¦¨, à¦†à¦®à¦¿ à¦à¦–à¦¨à¦‡ à¦¸à¦®à¦¾à¦§à¦¾à¦¨ à¦¦à¦¿à¦šà§à¦›à¦¿à¥¤</em>`;
-                const enHelp = `ðŸ¤ <strong>Yes, absolutely! Tell me what you need help with.</strong><br><br>Here is what we specialize in delivering:<br>• 🎯 <strong>B2B Lead Generation Swarms:</strong> Extract verified corporate decision-makers with 0% bounce rate.<br>• 💬 <strong>24/7 E-Commerce Sales Agents:</strong> WhatsApp/Messenger instant catalog & order closing.<br>• ⚡ <strong>Self-Hosted n8n Clusters:</strong> Unlimited workflows for $5.99/mo VPS (90% savings vs Zapier).<br>• ðŸ›  <strong>Custom AI Engineering:</strong> Web scraping, vector RAG, and bug fixing.<br><br>ðŸ‘‰ <em>Describe your project or current bottleneck and I will generate the solution!</em>`;
+                const bnHelp = `🤝 <strong>à¦¹à§à¦¯à¦¾à¦, à¦…à¦¬à¦¶à§à¦¯à¦‡! à¦†à¦ªà¦¨à¦¾à¦° à¦•à§€ à¦§à¦°à¦£à§‡à¦° à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦¬à¦²à§à¦¨à¥¤</strong><br><br>à¦†à¦®à¦°à¦¾ à¦¨à¦¿à¦šà§‡à¦° à¦¸à§‡à¦¬à¦¾à¦—à§à¦²à§‹ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¸à§‡à¦Ÿà¦†à¦ª à¦“ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦¦à¦¿à§Ÿà§‡ à¦¥à¦¾à¦•à¦¿:<br>• 🎯 <strong>B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨:</strong> à¦¯à§‡ à¦•à§‹à¦¨à§‹ à¦¦à§‡à¦¶à§‡à¦° à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡ã€‚<br>• 💬 <strong>à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ:</strong> à§¨à§ª/à§­ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦¬à¦¿à¦•à§à¦°à¦¿ à¦“ à¦…à¦°à§à¦¡à¦¾à¦° à¦•à¦¨à¦«à¦¾à¦°à§à¦®à§‡à¦¶à¦¨ã€‚<br>• ⚡ <strong>n8n à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦°:</strong> Zapier-à¦à¦° à¦šà§‡à§Ÿà§‡ à§¯à§¦% à¦•à¦® à¦–à¦°à¦šà§‡ à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ã€‚<br>•   <strong>à¦•à¦¾à¦¸à§à¦Ÿà¦® AI à¦‡à¦žà§à¦œà¦¿à¦¨à¦¿à§Ÿà¦¾à¦°à¦¿à¦‚:</strong> à¦¯à§‡ à¦•à§‹à¦¨à§‹ à¦¬à¦¾à¦— à¦«à¦¿à¦•à§à¦¸ à¦“ à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦‡à¦¨à§à¦Ÿà¦¿à¦—à§à¦°à§‡à¦¶à¦¨ã€‚<br><br>🏛️‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¬à¦¾ à¦ªà§à¦°à¦œà§‡à¦•à§à¦Ÿà§‡à¦° à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦²à¦¿à¦–à§à¦¨, à¦†à¦®à¦¿ à¦à¦–à¦¨à¦‡ à¦¸à¦®à¦¾à¦§à¦¾à¦¨ à¦¦à¦¿à¦šà§à¦›à¦¿à¥¤</em>`;
+                const enHelp = `🤝 <strong>Yes, absolutely! Tell me what you need help with.</strong><br><br>Here is what we specialize in delivering:<br>• 🎯 <strong>B2B Lead Generation Swarms:</strong> Extract verified corporate decision-makers with 0% bounce rate.<br>• 💬 <strong>24/7 E-Commerce Sales Agents:</strong> WhatsApp/Messenger instant catalog & order closing.<br>• ⚡ <strong>Self-Hosted n8n Clusters:</strong> Unlimited workflows for $5.99/mo VPS (90% savings vs Zapier).<br>•   <strong>Custom AI Engineering:</strong> Web scraping, vector RAG, and bug fixing.<br><br>🏛️‰ <em>Describe your project or current bottleneck and I will generate the solution!</em>`;
                 this.addAssistantMessage(isBn ? bnHelp : enHelp, isBn ? "à¦¹à§à¦¯à¦¾à¦ à¦…à¦¬à¦¶à§à¦¯à¦‡, à¦•à§€ à¦§à¦°à¦£à§‡à¦° à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨ à¦œà¦¾à¦¨à¦¾à¦¨à¥¤" : "Yes absolutely, tell me what you need help with.");
                 return;
             }
@@ -1158,9 +1158,9 @@
                         🎯 <strong>à§§. B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¸à§‹à§Ÿà¦¾à¦°à§à¦® ($850 / ৳à§§,à§¦à§ª,à§§à§¨à§«):</strong> à§§à§¦à§¦+ à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ã€‚<br>
                         💬 <strong>à§¨. à§¨à§ª/à§­ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ ($750 / ৳à§¯à§§,à§®à§­à§«):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦•à§à¦¯à¦¾à¦Ÿà¦¾à¦²à¦— à¦“ à¦…à¦°à§à¦¡à¦¾à¦° à¦•à¦¨à¦«à¦¾à¦°à§à¦®à§‡à¦¶à¦¨ã€‚<br>
                         ⚡ <strong>à§©. Self-Hosted n8n à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦° ($497 / ৳à§¬à§¦,à§®à§®à§¨):</strong> à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ ($à§«.à§¯à§¯/à¦®à¦¾à¦¸ à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚à§Ÿà§‡)à¥¤<br>
-                        ðŸŽ™ <strong>à§ª. AI à¦­à§Ÿà§‡à¦¸ à¦°à¦¿à¦¸à§‡à¦ªà¦¶à¦¨à¦¿à¦¸à§à¦Ÿ ($à§§,à§®à§¦à§¦ / ৳à§¨,à§¨à§¦,à§«à§¦à§¦):</strong> à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦«à§‹à¦¨ à¦•à¦²à§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦¹à§à¦¯à¦¾à¦¨à§à¦¡à¦²à¦¿à¦‚ã€‚<br>
-                        ðŸ“‘ <strong>à§«. à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦“ à¦¡à¦•à§à¦®à§‡à¦¨à§à¦Ÿ OCR ($à§¨à§ªà§¯ / ৳à§©à§¦,à§«à§¦à§¨):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦°à¦¸à¦¿à¦¦ à¦“ à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¶à¦¨ã€‚<br><br>
-                        ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à§‹à¦¨ à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸à¦Ÿà¦¿ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨? à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¦¨à¥¤</em>
+                         <strong>à§ª. AI à¦­à§Ÿà§‡à¦¸ à¦°à¦¿à¦¸à§‡à¦ªà¦¶à¦¨à¦¿à¦¸à§à¦Ÿ ($à§§,à§®à§¦à§¦ / ৳à§¨,à§¨à§¦,à§«à§¦à§¦):</strong> à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦«à§‹à¦¨ à¦•à¦²à§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦¹à§à¦¯à¦¾à¦¨à§à¦¡à¦²à¦¿à¦‚ã€‚<br>
+                         <strong>à§«. à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦“ à¦¡à¦•à§à¦®à§‡à¦¨à§à¦Ÿ OCR ($à§¨à§ªà§¯ / ৳à§©à§¦,à§«à§¦à§¨):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦°à¦¸à¦¿à¦¦ à¦“ à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¶à¦¨ã€‚<br><br>
+                        🏛️‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à§‹à¦¨ à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸à¦Ÿà¦¿ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨? à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¦¨à¥¤</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
                         <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 à¦¸à§à¦Ÿà§‹à¦°à§‡ à¦¦à§‡à¦–à§à¦¨</button>
@@ -1173,9 +1173,9 @@
                         🎯 <strong>1. B2B SaaS Lead Hunter Swarm ($850 / ৳104,125):</strong> 100+ verified corporate leads.<br>
                         💬 <strong>2. 24/7 WhatsApp Sales Agent ($750 / ৳91,875):</strong> Instant catalog ingestion & chat checkout.<br>
                         ⚡ <strong>3. Self-Hosted n8n Enterprise Cluster ($497 / ৳60,882):</strong> Unlimited workflows on $5.99 VPS.<br>
-                        ðŸŽ™ <strong>4. AI Voice Receptionist ($1,800 / ৳220,500):</strong> Inbound phone booking via Twilio.<br>
-                        ðŸ“‘ <strong>5. Autonomous Invoice OCR ($249 / ৳30,502):</strong> Instant financial data ingestion.<br><br>
-                        ðŸ‘‰ <em>Which service best fits your business goals?</em>
+                         <strong>4. AI Voice Receptionist ($1,800 / ৳220,500):</strong> Inbound phone booking via Twilio.<br>
+                         <strong>5. Autonomous Invoice OCR ($249 / ৳30,502):</strong> Instant financial data ingestion.<br><br>
+                        🏛️‰ <em>Which service best fits your business goals?</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
                         <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Store</button>
@@ -1231,7 +1231,7 @@
             if (lower.includes('adnin') || lower.includes('founder') || lower.includes('who are you') || lower.includes('location') || lower.includes('address') || lower.includes('tumi k')) {
                 const founderHtml = `
                     <div>
-                        ðŸ‘¤ <strong>IINSHA AI-BOS à¦“ à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦° à¦ªà¦°à¦¿à¦šà¦¿à¦¤à¦¿:</strong><br><br>
+                        🏛️¤ <strong>IINSHA AI-BOS à¦“ à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦° à¦ªà¦°à¦¿à¦šà¦¿à¦¤à¦¿:</strong><br><br>
                         • <strong>à¦²à¦¿à¦¡ à¦à¦†à¦‡ à¦†à¦°à§à¦•à¦¿à¦Ÿà§‡à¦•à§à¦Ÿ à¦“ à¦«à¦¾à¦‰à¦¨à§à¦¡à¦¾à¦°:</strong> à¦†à¦¦à¦¨à¦¿à¦¨ à¦¸à¦¾à¦¦à¦¾à¦¤ à¦®à¦¾à¦¹à¦¿à¦¨ (Adnin Sadat Mahin)<br>
                         • <strong>à¦¸à§à¦ªà§‡à¦¶à¦¾à¦²à¦¾à¦‡à¦œà§‡à¦¶à¦¨:</strong> à¦…à¦Ÿà§‹à¦¨à§‹à¦®à¦¾à¦¸ AI à¦¸à§‹à§Ÿà¦¾à¦°à§à¦®, n8n à¦à¦¨à§à¦Ÿà¦¾à¦°à¦ªà§à¦°à¦¾à¦‡à¦œ à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦°, à¦à¦¬à¦‚ Playwright à¦¸à§à¦Ÿà¦¿à¦²à¦¥ à¦¸à§à¦•à§à¦°à§à¦¯à¦¾à¦ªà¦¿à¦‚ã€‚<br>
                         • <strong>à¦¹à§‡à¦¡à¦•à§‹à¦¯à¦¼à¦¾à¦°à§à¦Ÿà¦¾à¦°:</strong> à¦®à¦¿à¦°à¦ªà§à¦° à¦¡à¦¿à¦“à¦à¦‡à¦šà¦à¦¸, à¦¢à¦¾à¦•à¦¾, à¦¬à¦¾à¦‚à¦²à¦¾à¦¦à§‡à¦¶ (à¦—à§à¦²à§‹à¦¬à¦¾à¦² à¦•à§à¦²à¦¾à¦¯à¦¼à§‡à¦¨à§à¦Ÿ: US, UK, EU, UAE, BD)à¥¤<br>
@@ -1249,7 +1249,7 @@
             const dynamicBn = `
                 <div>
                     💡 à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦¿à¦·à§Ÿà¦Ÿà¦¿ à¦¬à§à¦à¦¤à§‡ à¦ªà§‡à¦°à§‡à¦›à¦¿à¥¤ à¦à¦Ÿà¦¿ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ à¦“ AI à¦¸à¦¿à¦¸à§à¦Ÿà§‡à¦® à¦¦à¦¿à§Ÿà§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦‡à¦œà¦¡ à¦­à¦¾à¦¬à§‡ à¦¬à¦¾à¦¸à§à¦¤à¦¬à¦¾à§Ÿà¦¨ à¦•à¦°à¦¾ à¦¸à¦®à§à¦­à¦¬ã€‚<br><br>
-                    ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦¸à§‡à¦Ÿà¦†à¦ª à¦¬à¦¾ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡ à¦†à¦° à¦à¦•à¦Ÿà§ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¬à§‡à¦¨ à¦•à¦¿?</em>
+                    🏛️‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à¦°à§à¦¤à¦®à¦¾à¦¨ à¦¸à§‡à¦Ÿà¦†à¦ª à¦¬à¦¾ à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦°à¦¿à¦•à§‹à§Ÿà¦¾à¦°à¦®à§‡à¦¨à§à¦Ÿ à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡ à¦†à¦° à¦à¦•à¦Ÿà§ à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¬à§‡à¦¨ à¦•à¦¿?</em>
                 </div>
                 <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
                     <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 à¦¸à§à¦Ÿà§‹à¦° à¦¦à§‡à¦–à§à¦¨</button>
@@ -1259,7 +1259,7 @@
             const dynamicEn = `
                 <div>
                     💡 Understood! We can definitely design and automate this workflow for your business.<br><br>
-                    ðŸ‘‰ <em>Could you share a few more details about your current setup or requirements?</em>
+                    🏛️‰ <em>Could you share a few more details about your current setup or requirements?</em>
                 </div>
                 <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
                     <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.renderStoreCatalogInChat()">🛒 Browse Store</button>
