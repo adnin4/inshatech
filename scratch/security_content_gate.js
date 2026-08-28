@@ -1,20 +1,24 @@
 /**
  * IINSHA AI-BOS — Security & Content Hardening Gate
- * Scans all repository files to enforce ZERO P0 security leaks:
- * 1. No hardcoded admin passwords or JWT secrets
- * 2. No client-side admin bypasses ("1-Click Auto Unlock" / quickLoginAs)
- * 3. No raw card-number inputs (Stripe Elements / Checkout required)
- * 4. No unverified "Cloudflare Bypass" or "Anti-bot Bypass" wording
- * 5. No absolute ungrounded "100% Reliable Data Stream" marketing claims
+ * Scans deployable source files and fails on known high-risk security/content patterns.
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-const SCAN_EXTENSIONS = ['.html', '.js', '.mjs', '.json', '.sql'];
-const EXCLUDE_DIRS = ['node_modules', '.git', 'docs', 'Implementation_Reports_Markdown', 'scratch'];
+const SCAN_EXTENSIONS = new Set(['.html', '.js', '.mjs', '.json', '.sql']);
+const EXCLUDE_DIRS = new Set([
+    'node_modules',
+    '.git',
+    'docs',
+    'Implementation_Reports_Markdown',
+    'scratch'
+]);
 
 const FORBIDDEN_PATTERNS = [
     { name: 'Hardcoded Default DB Password', regex: /@@@mahin12/i, severity: 'P0_CRITICAL' },
@@ -25,36 +29,35 @@ const FORBIDDEN_PATTERNS = [
 ];
 
 console.log('================================================================================');
-console.log('🛡️ IINSHA AI-BOS: P0 SECURITY & CONTENT INTEGRITY SCANNER');
+console.log('IINSHA AI-BOS: P0 SECURITY & CONTENT INTEGRITY SCANNER');
 console.log('================================================================================\n');
 
 let totalFilesScanned = 0;
 let violationsFound = 0;
 
 function scanDirectory(dir) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-
-    for (const entry of entries) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const fullPath = path.join(dir, entry.name);
-        const relPath = path.relative(ROOT_DIR, fullPath);
+        const relativePath = path.relative(ROOT_DIR, fullPath);
 
         if (entry.isDirectory()) {
-            if (!EXCLUDE_DIRS.includes(entry.name)) {
-                scanDirectory(fullPath);
-            }
-        } else if (entry.isFile()) {
-            const ext = path.extname(entry.name);
-            if (SCAN_EXTENSIONS.includes(ext) && !entry.name.includes('live_index.html')) {
-                totalFilesScanned++;
-                const content = fs.readFileSync(fullPath, 'utf8');
+            if (!EXCLUDE_DIRS.has(entry.name)) scanDirectory(fullPath);
+            continue;
+        }
 
-                for (const pattern of FORBIDDEN_PATTERNS) {
-                    if (pattern.regex.test(content)) {
-                        console.error(`❌ [${pattern.severity}] ${pattern.name}`);
-                        console.error(`   File: ${relPath}`);
-                        violationsFound++;
-                    }
-                }
+        const extension = path.extname(entry.name);
+        if (!entry.isFile() || !SCAN_EXTENSIONS.has(extension) || entry.name === 'live_index.html') {
+            continue;
+        }
+
+        totalFilesScanned += 1;
+        const content = fs.readFileSync(fullPath, 'utf8');
+
+        for (const pattern of FORBIDDEN_PATTERNS) {
+            if (pattern.regex.test(content)) {
+                console.error(`FAIL [${pattern.severity}] ${pattern.name}`);
+                console.error(`     File: ${relativePath}`);
+                violationsFound += 1;
             }
         }
     }
@@ -63,14 +66,12 @@ function scanDirectory(dir) {
 scanDirectory(ROOT_DIR);
 
 console.log('================================================================================');
-console.log(`📊 SCAN COMPLETE: Scanned ${totalFilesScanned} files | Violations: ${violationsFound}`);
+console.log(`SCAN COMPLETE: ${totalFilesScanned} files | Violations: ${violationsFound}`);
 
 if (violationsFound > 0) {
-    console.error('❌ SECURITY GATE FAILED: Remediate all P0/P1 issues before production release.');
-    console.log('================================================================================\n');
+    console.error('SECURITY GATE FAILED: remediate every finding before production release.');
     process.exit(1);
-} else {
-    console.log('🎉 ZERO P0 LEAKS: All files comply with international security & content standards.');
-    console.log('================================================================================\n');
-    process.exit(0);
 }
+
+console.log('SECURITY GATE PASSED: no configured P0/P1 findings.');
+console.log('================================================================================\n');
