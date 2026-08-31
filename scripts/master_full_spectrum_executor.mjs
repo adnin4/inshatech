@@ -93,7 +93,7 @@ import('../ai_brain/sales_engine.js').then(async ({ SalesEngine }) => {
 
     console.log("================================================================================");
     console.log(`🏆 MASTER EXECUTION RESULTS: ${executedPasses}/${totalProbes} RUNTIME PROBES VERIFIED`);
-    console.log("Verdict: ALL EXECUTION STEPS FULLY OPERATIONAL & CERTIFIED WITHOUT GAPS");
+    console.log("Verdict: LOCAL_RUNTIME_VERIFIED (Local runtime contracts verified; external production deployment requires live Cloudflare proof)");
     console.log("================================================================================");
 }).catch(err => {
     console.error("Execution error:", err);

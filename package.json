@@ -26,5 +26,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "jsdom": "^30.0.1"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }
