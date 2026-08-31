@@ -1,15 +1,15 @@
 {
-  "release_id": "IINSHA-REL-6f78c6ce-20260831134133",
-  "git_commit_sha": "6f78c6cec636706f06ff094ca145ad426faac380",
-  "short_sha": "6f78c6c",
+  "release_id": "IINSHA-REL-a800e19a-20260831134256",
+  "git_commit_sha": "a800e19ab2c026f4cd969d7c5e3cf47dfef20239",
+  "short_sha": "a800e19",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "source_branch": "main",
   "production_branch": "master",
-  "build_sha": "6f78c6cec636706f06ff094ca145ad426faac380",
+  "build_sha": "a800e19ab2c026f4cd969d7c5e3cf47dfef20239",
   "deployment_sha": "PENDING_CLOUDFLARE_PULL",
   "live_sha": "PENDING_LIVE_VERIFICATION",
   "environment": "production",
-  "build_timestamp": "2026-08-31T13:41:33.564046+00:00",
+  "build_timestamp": "2026-08-31T13:42:56.643229+00:00",
   "schema_version": "2026.8.28-autonomous-v1",
   "platform": "IINSHA AI-BOS Autonomous Company Operating System",
   "database_identity": {
@@ -19,5 +19,5 @@
     "note": "Canonical repo references uulqaslcfjrvkvyegmvo while connector accesses kitwadizsvjmuxkfewxj. Production DB access remains fail-closed."
   },
   "parity_status": "PENDING_LIVE_VERIFICATION",
-  "evidence_chain": "MASTER_COMMIT_6f78c6ce"
+  "evidence_chain": "MASTER_COMMIT_a800e19a"
 }
