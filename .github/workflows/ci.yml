@@ -74,5 +74,8 @@ jobs:
       - name: Step 19 - Agent Quality, Evaluation & Distributed Observability Certification
         run: node scripts/agent_quality_observability_certification.mjs
 
+      - name: Step 20 - Production Chaos, Load & Data Integrity Certification
+        run: node scripts/chaos_resilience_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
