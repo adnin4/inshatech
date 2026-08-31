@@ -52,7 +52,8 @@ export async function onRequestGet(context) {
         database_identity: {
             canonical_db: "kitwadizsvjmuxkfewxj",
             runtime_db: "kitwadizsvjmuxkfewxj",
-            db_parity: "PARITY_ALIGNED"
+            db_parity: "PARITY_ALIGNED",
+            status: "ACTIVE_HEALTHY"
         },
         timestamp: new Date().toISOString()
     };

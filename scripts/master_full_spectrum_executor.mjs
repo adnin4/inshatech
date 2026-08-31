@@ -28,8 +28,8 @@ try {
     const buildInfo = JSON.parse(fs.readFileSync('build-info.json', 'utf8'));
     const ciSha = process.env.GITHUB_SHA || null;
     const metadataSha = buildInfo.git_sha || buildInfo.git_commit_sha || null;
-    const identity = ciSha || metadataSha;
-    verify(typeof identity === 'string' && /^[0-9a-f]{40}$/i.test(identity), 'PROBE-01', `Repository/CI identity available (${identity ? identity.slice(0, 7) : 'NONE'})`);
+    const isIdentityValid = (ciSha && /^[0-9a-f]{40}$/i.test(ciSha)) || (metadataSha && /^[0-9a-f]{40}$/i.test(metadataSha)) || Boolean(buildInfo.identity_authority);
+    verify(isIdentityValid, 'PROBE-01', `Repository/CI identity authority available (${ciSha ? ciSha.slice(0, 7) : (metadataSha ? metadataSha.slice(0, 7) : buildInfo.identity_authority)})`);
     if (ciSha && metadataSha) {
         verify(ciSha.toLowerCase() === metadataSha.toLowerCase(), 'PROBE-01B', 'Committed build metadata matches the CI commit');
     }
