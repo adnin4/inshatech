@@ -71,5 +71,8 @@ jobs:
       - name: Step 18 - Autonomous Workflow Kernel & Evidence Graph Certification
         run: node scripts/autonomous_kernel_certification.mjs
 
+      - name: Step 19 - Agent Quality, Evaluation & Distributed Observability Certification
+        run: node scripts/agent_quality_observability_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
