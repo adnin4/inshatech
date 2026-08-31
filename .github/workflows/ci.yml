@@ -77,5 +77,8 @@ jobs:
       - name: Step 20 - Production Chaos, Load & Data Integrity Certification
         run: node scripts/chaos_resilience_certification.mjs
 
+      - name: Step 21 - Golden E2E Master Closed-Loop Certification
+        run: node scripts/golden_e2e_master_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
