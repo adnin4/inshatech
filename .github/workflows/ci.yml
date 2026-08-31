@@ -65,5 +65,8 @@ jobs:
       - name: Step 16 - Autonomous Revenue & Customer Success Loop Certification
         run: node scripts/revenue_success_loop_certification.mjs
 
+      - name: Step 17 - Unified Multimodal AI Experience Layer Certification
+        run: node scripts/unified_ai_experience_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
