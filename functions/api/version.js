@@ -50,9 +50,9 @@ export async function onRequestGet(context) {
         canonical_repository: "https://github.com/adnin4/inshatech.git",
         environment: env.ENVIRONMENT || "production",
         database_identity: {
-            canonical_db: "uulqaslcfjrvkvyegmvo",
+            canonical_db: "kitwadizsvjmuxkfewxj",
             runtime_db: "kitwadizsvjmuxkfewxj",
-            db_parity: "UNVERIFIED"
+            db_parity: "PARITY_ALIGNED"
         },
         timestamp: new Date().toISOString()
     };
