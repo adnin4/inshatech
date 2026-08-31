@@ -80,5 +80,8 @@ jobs:
       - name: Step 21 - Golden E2E Master Closed-Loop Certification
         run: node scripts/golden_e2e_master_certification.mjs
 
+      - name: Step 22 - Master Full-Spectrum Runtime Execution Probe
+        run: node scripts/master_full_spectrum_executor.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
