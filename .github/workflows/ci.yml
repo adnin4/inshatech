@@ -56,5 +56,8 @@ jobs:
       - name: Step 13 - Production SLO, Cost Guardrails & DR Certification
         run: node scripts/production_slo_dr_certification.mjs
 
+      - name: Step 14 - Agent Governance, Evaluation & Promotion Certification
+        run: node scripts/agent_governance_eval_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
