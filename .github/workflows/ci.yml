@@ -83,5 +83,8 @@ jobs:
       - name: Step 22 - Master Full-Spectrum Runtime Execution Probe
         run: node scripts/master_full_spectrum_executor.mjs
 
+      - name: Step 23 - Ultra-Comprehensive All-Surface Reliability Audit
+        run: node scripts/all_surface_reliability_audit.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
