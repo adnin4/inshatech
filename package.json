@@ -13,7 +13,7 @@
     "e2e": "node scripts/public_site_e2e.mjs",
     "test:truth": "node scripts/verify_production_truth.js",
     "verify": "node scripts/verify_all_system_claims.mjs && node scripts/run_final_activation_mission.mjs",
-    "build": "python deploy_to_cloudflare_pages.py"
+    "build": "node scripts/build_pages.mjs"
   },
   "keywords": [
     "ai-bos",

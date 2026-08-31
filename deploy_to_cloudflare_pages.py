@@ -6,16 +6,22 @@ import datetime
 
 def get_git_sha():
     try:
-        git_exe = r'C:\Users\mahin khan\AppData\Local\GitHubDesktop\app-3.6.3\resources\app\git\cmd\git.exe'
+        res = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True)
+        if res.returncode == 0 and res.stdout.strip():
+            return res.stdout.strip()
+    except Exception:
+        pass
+    try:
+        git_exe = r'C:\Users\mahin khan\AppData\Local\GitHubDesktop\app-3.6.4\resources\app\git\cmd\git.exe'
         res = subprocess.run([git_exe, 'rev-parse', 'HEAD'], capture_output=True, text=True)
         if res.returncode == 0 and res.stdout.strip():
             return res.stdout.strip()
     except Exception:
         pass
-    return "62a8e545b2972d1af8f0181ee440985cfde2d01d"
+    return "2ee1066843fe916d6f7b607c8cef4bbf0d6b8234"
 
 def build_cloudflare_pages_zip():
-    source_dir = r"C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase"
+    source_dir = os.path.abspath(os.getcwd())
     output_zip = os.path.join(source_dir, "cloudflare_pages_dist.zip")
     git_sha = get_git_sha()
     build_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -43,11 +49,9 @@ def build_cloudflare_pages_zip():
     with open(os.path.join(source_dir, "build-info.json"), 'w', encoding='utf-8') as bf:
         json.dump(build_info, bf, indent=2)
 
-    # Extensions and files allowed for Cloudflare Pages static upload
     allowed_extensions = {'.html', '.css', '.js', '.jpg', '.jpeg', '.png', '.svg', '.gif', '.ico', '.txt', '.xml', '.json'}
     allowed_exact_files = {'_headers', 'robots.txt', 'sitemap.xml', 'version.json', 'build-info.json'}
     
-    # Disallowed files/extensions that cause Cloudflare Pages uploader warning or redirect loops
     ignored_exact_files = {'_redirects', 'wrangler.toml', 'docker-compose.yml', 'supabase_schema.sql', 'setup_vps_security_hardening.sh'}
     excluded_dirs = {'node_modules', '.git', 'cloudflare_pages_dist', 'scratch', 'dist', 'build', 'public', 'static_dist', 'netlify_bak', '__pycache__', '.netlify', '.github'}
     
