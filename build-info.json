@@ -1,8 +1,8 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company Operating System",
   "version": "2026.8.28-production",
-  "git_commit_sha": "6c0797e1c5bf8231342a943ecddeb0f147c991fe",
-  "build_timestamp": "2026-08-31T13:40:14.878349+00:00",
+  "git_commit_sha": "6f78c6cec636706f06ff094ca145ad426faac380",
+  "build_timestamp": "2026-08-31T13:41:33.564046+00:00",
   "build_environment": "production-hardened",
   "security_profile": "ASVS_L2_ZERO_TRUST",
   "database_ref": "uulqaslcfjrvkvyegmvo",

@@ -59,5 +59,8 @@ jobs:
       - name: Step 14 - Agent Governance, Evaluation & Promotion Certification
         run: node scripts/agent_governance_eval_certification.mjs
 
+      - name: Step 15 - Production Pilot & Preflight Release Certification
+        run: node scripts/production_pilot_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
