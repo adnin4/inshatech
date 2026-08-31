@@ -47,5 +47,8 @@ jobs:
       - name: Step 10 - Agentic Workforce Reliability Certification
         run: node scripts/agentic_workforce_reliability.mjs
 
+      - name: Step 11 - Production Browser & UI/UX Regression Certification
+        run: node scripts/production_browser_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs

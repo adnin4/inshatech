@@ -16,7 +16,7 @@ export async function onRequestGet(context) {
         "Cache-Control": "no-cache, no-store, must-revalidate"
     };
 
-    const sourceSha = "25bdcbc78fa10f5264a3156b4fa264056f0b5706";
+    const sourceSha = "7a7df7491e43ee76f6252905196771adc2e0e26a";
     const liveSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
     const isLiveVerified = Boolean(liveSha && liveSha.toLowerCase() === sourceSha.toLowerCase());
 
