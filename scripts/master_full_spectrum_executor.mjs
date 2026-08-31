@@ -1,101 +1,112 @@
 /**
- * IINSHA AI-BOS: Master Full-Spectrum Runtime Executor
- * Executes all live system contracts, end-to-end mission workflows, API schemas, DOM interactions,
- * security boundaries, and cryptographic verification evidence across the entire operating system.
+ * IINSHA AI-BOS: Master Full-Spectrum Runtime Verification
+ * Verifies repository-local contracts and controlled simulation invariants.
+ * This script MUST NOT claim production/live verification by itself.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-console.log("================================================================================");
-console.log("⚡ IINSHA AI-BOS: MASTER FULL-SPECTRUM RUNTIME EXECUTION HARNESS");
-console.log("================================================================================");
+console.log('='.repeat(80));
+console.log('IINSHA AI-BOS: MASTER FULL-SPECTRUM RUNTIME VERIFICATION');
+console.log('='.repeat(80));
 
-let executedPasses = 0;
-const totalProbes = 15;
+let passed = 0;
+const total = 15;
 
-function assert(condition, probeId, description) {
-    if (condition) {
-        console.log(`[🟢 EXECUTED & VERIFIED] ${probeId}: ${description}`);
-        executedPasses++;
-    } else {
-        console.error(`[🔴 EXECUTION DEFECT] ${probeId}: ${description}`);
-        process.exit(1);
+function verify(condition, id, description) {
+    if (!condition) {
+        console.error(`[FAIL] ${id}: ${description}`);
+        process.exitCode = 1;
+        throw new Error(`${id} failed`);
     }
+    console.log(`[PASS] ${id}: ${description}`);
+    passed += 1;
 }
 
 function sha256(data) {
     return crypto.createHash('sha256').update(data).digest('hex');
 }
 
-// 1. Core Source Truth & Git Checksum Parity
-const buildInfo = JSON.parse(fs.readFileSync('build-info.json', 'utf8'));
-assert(buildInfo.git_sha && buildInfo.status === 'VERIFIED_HEALTHY', 'PROBE-01', `Git SHA Parity Enforced (${buildInfo.git_sha.slice(0, 7)})`);
+try {
+    // 1. Source/build identity. In CI, the runner-provided GITHUB_SHA is authoritative.
+    const buildInfo = JSON.parse(fs.readFileSync('build-info.json', 'utf8'));
+    const expectedSha = process.env.GITHUB_SHA || buildInfo.git_commit_sha;
+    const embeddedSha = buildInfo.git_commit_sha;
+    verify(
+        typeof expectedSha === 'string' && /^[0-9a-f]{40}$/i.test(expectedSha),
+        'PROBE-01',
+        `Repository build identity is present (${expectedSha.slice(0, 7)})`
+    );
+    if (process.env.GITHUB_SHA) {
+        verify(
+            embeddedSha.toLowerCase() === process.env.GITHUB_SHA.toLowerCase(),
+            'PROBE-01B',
+            'Committed build-info SHA matches the current CI commit'
+        );
+    }
 
-// 2. Canonical Knowledge Catalog Integrity
-const services = JSON.parse(fs.readFileSync('knowledge/services.json', 'utf8'));
-assert(services.length >= 5 && services.every(s => s.id && s.priceUSD > 0), 'PROBE-02', `Canonical Service Catalog Ingested (${services.length} Services)`);
+    // 2. Canonical service catalog integrity.
+    const services = JSON.parse(fs.readFileSync('knowledge/services.json', 'utf8'));
+    verify(
+        Array.isArray(services) && services.length >= 5 && services.every(s => s?.id && Number(s.priceUSD) > 0),
+        'PROBE-02',
+        `Canonical service catalog is structurally valid (${services.length} entries)`
+    );
 
-// 3. Sales Engine Progressive Qualification Execution
-import('../ai_brain/sales_engine.js').then(async ({ SalesEngine }) => {
+    // 3-5. Sales calculations executed locally with deterministic fixture data.
+    const { SalesEngine } = await import('../ai_brain/sales_engine.js');
     const engine = new SalesEngine();
     const leadScore = engine.calculateLeadScore({ industry: 'SaaS', pain: 'manual leads', budget: '1000' });
     const recommended = engine.recommendServices({ pain: 'leads', industry: 'SaaS' }, services);
     const roi = engine.calculateROI(services[0], { industry: 'SaaS' });
+    verify(leadScore >= 65, 'PROBE-03', `Sales qualification fixture executed (${leadScore}/100)`);
+    verify(recommended.length > 0, 'PROBE-04', 'Service recommendation fixture executed');
+    verify(Number(roi.roiPercent) > 0, 'PROBE-05', 'Deterministic ROI fixture executed');
 
-    assert(leadScore >= 65, 'PROBE-03', `Sales Engine Qualification Executed (Score: ${leadScore}/100)`);
-    assert(recommended.length > 0, 'PROBE-04', `Service Recommendation Engine Executed (${recommended[0].name})`);
-    assert(roi.roiPercent > 0, 'PROBE-05', `Deterministic ROI Calculator Executed (${roi.roiPercent}% ROI)`);
+    // 6. Cryptographic checkpoint simulation; no external state mutation.
+    const missionCheckpoint = { mission_id: 'fixture', state: 'RUNNING', step: 1 };
+    const checkpointSig = sha256(JSON.stringify(missionCheckpoint));
+    verify(/^[0-9a-f]{64}$/.test(checkpointSig), 'PROBE-06', 'Mission checkpoint signature simulation verified');
 
-    // 4. Mission DAG State Machine Simulation
-    const missionId = `msn_exec_${Date.now()}`;
-    const initialCheck = { mission_id: missionId, state: 'RUNNING', step: 1 };
-    const checkpointSig = sha256(JSON.stringify(initialCheck));
-    assert(checkpointSig.length === 64, 'PROBE-06', `Stateful Mission DAG Initialized (Signature: ${checkpointSig.slice(0, 16)}...)`);
+    // 7. Tool gateway configuration presence; not external execution.
+    const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+    verify(packageJson.name === 'iinsha-ai-bos', 'PROBE-07', 'Agent runtime package contract present');
 
-    // 5. Tool Gateway Policy Execution
-    const toolPerms = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    assert(toolPerms.name === 'iinsha-ai-bos', 'PROBE-07', 'System Package Configuration & Scripts Active');
+    // 8. Public HTML surface presence.
+    const htmlFiles = [
+        'index.html', 'store.html', 'marketplace.html', 'portal.html',
+        'affiliate.html', 'compare.html', 'blog.html', 'admin.html'
+    ];
+    verify(htmlFiles.every(file => fs.existsSync(file)), 'PROBE-08', `All ${htmlFiles.length} public HTML surfaces exist`);
 
-    // 6. Universal HTML Action Triggers Scan
-    const htmlFiles = ['index.html', 'store.html', 'marketplace.html', 'portal.html', 'affiliate.html', 'compare.html', 'blog.html', 'admin.html'];
-    let allHtmlsExist = htmlFiles.every(f => fs.existsSync(f));
-    assert(allHtmlsExist, 'PROBE-08', `All ${htmlFiles.length} Universal HTML Surfaces Verified`);
-
-    // 7. Universal Checkout Modal Dynamic Integration
+    // 9. Checkout contract presence only; no payment is attempted.
     const appJs = fs.readFileSync('app.js', 'utf8');
-    assert(appJs.includes('openCheckoutModal') && appJs.includes('122.50'), 'PROBE-09', 'Universal Dynamic USD/BDT Checkout Modal Executed');
+    verify(appJs.includes('openCheckoutModal'), 'PROBE-09', 'Checkout UI contract is present (no payment executed)');
 
-    // 8. Control Tower Department Integration
-    const controlTowerApiPath = path.resolve('functions/api/v1/business/control-tower.js');
-    assert(fs.existsSync(controlTowerApiPath), 'PROBE-10', 'Business Control Tower Department Spine Executed');
+    // 10-15. Backend control-plane contract presence. These are NOT claimed as live execution.
+    const contracts = [
+        ['PROBE-10', 'functions/api/v1/business/control-tower.js', 'Business control tower contract present'],
+        ['PROBE-11', 'functions/api/v1/operations/slo-control.js', 'SLO/cost guardrail contract present'],
+        ['PROBE-12', 'functions/api/v1/governance/evaluate.js', 'Governed learning/evaluation contract present'],
+        ['PROBE-13', 'functions/api/v1/revenue/customer-success-loop.js', 'Revenue/customer-success contract present'],
+        ['PROBE-14', 'functions/api/v1/kernel/orchestrate.js', 'Workflow kernel/evidence contract present'],
+        ['PROBE-15', 'functions/api/v1/chaos/resilience-drill.js', 'Resilience-drill contract present']
+    ];
+    for (const [id, file, description] of contracts) {
+        verify(fs.existsSync(path.resolve(file)), id, description);
+    }
 
-    // 9. SLO & Cost Guardrails
-    const sloApiPath = path.resolve('functions/api/v1/operations/slo-control.js');
-    assert(fs.existsSync(sloApiPath), 'PROBE-11', 'SRE 99.9% SLO & $10 Cost Guardrails Active');
-
-    // 10. Governed Agent Learning & Evaluation
-    const govApiPath = path.resolve('functions/api/v1/governance/evaluate.js');
-    assert(fs.existsSync(govApiPath), 'PROBE-12', '9-Stage Agent Governed Learning & Promotion Gate Executed');
-
-    // 11. Autonomous Revenue & NBA Loop
-    const revApiPath = path.resolve('functions/api/v1/revenue/customer-success-loop.js');
-    assert(fs.existsSync(revApiPath), 'PROBE-13', 'Autonomous Revenue & Next-Best-Action Engine Executed');
-
-    // 12. Workflow Kernel & Evidence Graph
-    const kernelApiPath = path.resolve('functions/api/v1/kernel/orchestrate.js');
-    assert(fs.existsSync(kernelApiPath), 'PROBE-14', 'Unified Workflow Kernel & Directed Evidence Graph Executed');
-
-    // 13. Production Chaos & Concurrency Resilience
-    const chaosApiPath = path.resolve('functions/api/v1/chaos/resilience-drill.js');
-    assert(fs.existsSync(chaosApiPath), 'PROBE-15', 'Production Chaos, Load & Abuse Resilience Engine Executed');
-
-    console.log("================================================================================");
-    console.log(`🏆 MASTER EXECUTION RESULTS: ${executedPasses}/${totalProbes} RUNTIME PROBES VERIFIED`);
-    console.log("Verdict: ALL EXECUTION STEPS FULLY OPERATIONAL & CERTIFIED WITHOUT GAPS");
-    console.log("================================================================================");
-}).catch(err => {
-    console.error("Execution error:", err);
-    process.exit(1);
-});
+    console.log('='.repeat(80));
+    console.log(`LOCAL_RUNTIME_VERIFIED: ${passed}/${total} probes passed`);
+    console.log('LIVE_VERIFICATION: PENDING');
+    console.log('PRODUCTION_PAYMENT: NOT_TESTED');
+    console.log('REAL_CUSTOMER: NOT_TESTED');
+    console.log('REAL_PROVIDER_EXECUTION: NOT_TESTED');
+    console.log('NOTE: Passing this script is repository-local evidence, not production certification.');
+    console.log('='.repeat(80));
+} catch (error) {
+    console.error('Runtime verification failed:', error?.message || error);
+    process.exitCode = 1;
+}
