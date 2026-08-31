@@ -24,6 +24,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install --no-audit
 
+      - name: Verify JavaScript Code Base Integrity
+        run: |
+          node -c app.js
+          node -c hero3d.js
+          node -c scroll-engine.js
+          node -c worker.js
+          node -c universal_ai_copilot.js
+
       - name: Gate 0 — UI/UX Visual Baseline Firewall
         run: node scripts/visual_regression_baseline.mjs
 
@@ -32,6 +40,48 @@ jobs:
 
       - name: Step 8 — AI Solution Finder E2E Certification
         run: node scripts/solution_finder_e2e.mjs
+
+      - name: Step 9 — Universal AI Copilot E2E Certification
+        run: node scripts/copilot_e2e.mjs
+
+      - name: Step 10 — Agentic Workforce Reliability Certification
+        run: node scripts/agentic_workforce_reliability.mjs
+
+      - name: Step 11 — Production Browser & UI/UX Regression Certification
+        run: node scripts/production_browser_certification.mjs
+
+      - name: Step 12 — Agentic Business Control Tower Certification
+        run: node scripts/business_control_tower_certification.mjs
+
+      - name: Step 13 — Production SLO, Cost Guardrails & DR Certification
+        run: node scripts/production_slo_dr_certification.mjs
+
+      - name: Step 14 — Agent Governance, Evaluation & Promotion Certification
+        run: node scripts/agent_governance_eval_certification.mjs
+
+      - name: Step 15 — Production Pilot & Preflight Release Certification
+        run: node scripts/production_pilot_certification.mjs
+
+      - name: Step 16 — Autonomous Revenue & Customer Success Loop Certification
+        run: node scripts/revenue_success_loop_certification.mjs
+
+      - name: Step 17 — Unified Multimodal AI Experience Layer Certification
+        run: node scripts/unified_ai_experience_certification.mjs
+
+      - name: Step 18 — Autonomous Workflow Kernel & Evidence Graph Certification
+        run: node scripts/autonomous_kernel_certification.mjs
+
+      - name: Step 19 — Agent Quality, Evaluation & Distributed Observability Certification
+        run: node scripts/agent_quality_observability_certification.mjs
+
+      - name: Step 20 — Production Chaos, Load & Data Integrity Certification
+        run: node scripts/chaos_resilience_certification.mjs
+
+      - name: Step 21 — Golden E2E Master Closed-Loop Certification
+        run: node scripts/golden_e2e_master_certification.mjs
+
+      - name: Step 22 — Master Full-Spectrum Runtime Execution Probe
+        run: node scripts/master_full_spectrum_executor.mjs
 
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
