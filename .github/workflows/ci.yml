@@ -50,5 +50,8 @@ jobs:
       - name: Step 11 - Production Browser & UI/UX Regression Certification
         run: node scripts/production_browser_certification.mjs
 
+      - name: Step 12 - Agentic Business Control Tower Certification
+        run: node scripts/business_control_tower_certification.mjs
+
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
