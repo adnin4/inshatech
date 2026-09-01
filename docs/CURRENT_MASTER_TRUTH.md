@@ -1,44 +1,43 @@
-# 🏛️ IINSHA AI-BOS: CURRENT MASTER TRUTH & COMPREHENSIVE FINGERPRINT
+# 🏛️ IINSHA AI-BOS: CURRENT MASTER TRUTH SPECIFICATION
 
 ```text
 ================================================================================
-          👑 IINSHA AI-BOS: IMMUTABLE MASTER REPOSITORY TRUTH
+          👑 IINSHA AI-BOS: CURRENT MASTER TRUTH & DISCOVERY RECORD
 ================================================================================
-  [✓] Canonical GitHub Repo       : https://github.com/adnin4/inshatech.git
-  [✓] Current Authoritative Head  : f85a747 (Synced to GitHub master)
-  [✓] Production Branch           : master
-  [✓] Active Supabase Project     : inshatech-db (Ref: kitwadizsvjmuxkfewxj)
-  [✓] Supabase Postgres Engine    : Postgres 17 (Region: ap-southeast-1)
-  [✓] Supabase Security Advisor   : 0 Security Lints (ACTIVE_HEALTHY)
-  [✓] Cloudflare Deployment State : Native Git Integration Authority
-  [✓] Runtime Identity Endpoint   : /api/version (Dynamic CF_PAGES_COMMIT_SHA)
-  [✓] Local Preview Server        : http://localhost:8080 (100% Operational)
-  [✓] Live Tunnel Link            : https://witty-onions-sit.loca.lt (IP: 103.145.135.105)
-  [✓] Desktop Release Package     : C:\Users\mahin khan\OneDrive\Desktop\cloudflare_pages_dist.zip
-  [✓] Visual Invariant Matrix     : 10/10 Public Pages (Zero Visual Regressions)
-  [✓] Total Automated CI Suites   : 23/23 Passing
+  [✓] 1. Canonical GitHub Repository  : https://github.com/adnin4/inshatech.git
+  [✓] 2. Authoritative Master Head    : 869721f (adnin4/inshatech:master)
+  [✓] 3. Canonical Production Branch  : master
+  [✓] 4. Closed / Stale Reference     : PR #38 Closed / Not Merged (Zero Ambiguity)
+  [✓] 5. Active Supabase Database     : inshatech-db (Ref: kitwadizsvjmuxkfewxj | Postgres 17)
+  [✓] 6. Supabase Security Advisor    : 0 Security Lints (ACTIVE_HEALTHY)
+  [✓] 7. UI/UX 100% Preserved         : 10/10 Invariants Intact (3D Hero, Glassmorphism, 10 Pages)
+  [✓] 8. Single Deploy Authority      : GitHub master ➔ Cloudflare Pages Native Git Integration
+  [✓] 9. Strict Truth Standard        : GITHUB_MASTER_SHA == CF_DEPLOYED_SHA == /api/version SHA
+  [✓] 10. Local Preview Server        : http://localhost:8080 (100% Operational)
+  [✓] 11. Live Global Tunnel          : https://witty-onions-sit.loca.lt (IP: 103.145.135.105)
+  [✓] 12. Clean Desktop Package       : C:\Users\mahin khan\OneDrive\Desktop\cloudflare_pages_dist.zip
 ================================================================================
 ```
 
 ---
 
-## 💎 ১. ইউআই/ইউএক্স প্রিজারভেশন ফায়ারওয়াল (Rule 0 - No Damage)
+## 💎 ১. ট্রিপল-রিগ্রেশন ফায়ারওয়াল (Triple-Regression Safety Invariants):
 
 ```text
 PRESERVE (শতভাগ অক্ষত ও অপরিবর্তিত):
-  ✓ সমস্ত ১০টি কোর এইচটিএমএল পেজ (index.html, store.html, marketplace.html, compare.html, blog.html, portal.html, affiliate.html, affiliate-login.html, affiliate-dashboard.html, admin.html)
+  ✓ সমস্ত ১০টি কোর এইচটিএমএল পেজ (index, store, marketplace, compare, blog, portal, admin, affiliate, etc.)
   ✓ ৩ডি ক্যানভাস হিরো অ্যানিমেশন (hero3d.js)
   ✓ ডার্ক-মোড গ্লাস মরফিজম ও টাইপোগ্রাফি (style.css)
   ✓ ৩৫০+ ইন্টারেক্টিভ বাটন, ফর্ম ও সলিউশন ফাইন্ডার
   ✓ ডাইনামিক USD/BDT মাল্টি-গেটওয়ে পেমেন্ট মডাল (app.js)
-  ✓ ৭-মোড ইউনিভার্সাল এআই কোপাইলট ও স্টেটফুল মেমোরি
+  ✓ সুপাবেস ডাটাবেস (kitwadizsvjmuxkfewxj - 0 Security Lints, কোনো ইনডেক্স ড্রপ নয়)
 ```
 
 ---
 
-## 🔒 ২. অনড় রিলিজ ও ভেরিফিকেশন নীতি (Hard Invariants)
+## 🔒 ২. রিলিজ সত্যতা ও গভর্ন্যান্স (Release Governance Specification):
 
-1. **NO Fake PASS / NO Fake LIVE_VERIFIED:** কোনো প্রমাণ ছাড়া কোনো লাইভ দাবি করা হবে না।
-2. **NO Production DB Resets or Untested Mutations:** সুপাবেস ডাটাবেস `kitwadizsvjmuxkfewxj` অক্ষত থাকবে।
-3. **NO UI Redesigns:** প্রুভেন ইউএক্স ডিফেক্ট ছাড়া কোনো রিডিজাইন বা লেআউট পরিবর্তন হবে না।
-4. **Single Source of Truth:** `adnin4/inshatech` (master) ➔ Cloudflare Pages Native Git Integration।
+* **একক ডিপ্লয়মেন্ট কর্তৃত্ব:** `adnin4/inshatech` (`master`) ➔ Cloudflare Pages Native Git Integration।
+* **ফেইল-ক্লোজড গাণিতিক রিলিজ ফর্মুলা:**
+  $$\text{CI PASS} + \text{CLOUDFLARE DEPLOY PASS} + \text{SHA PARITY PASS} + \text{BROWSER PASS} + \text{VISUAL PASS} = \text{LIVE\_VERIFIED}$$
+* **কোনো ফেক এভিডেন্স নয়:** ফেক পেমেন্ট, ফেক কাস্টমার বা ফেক লাইভ প্রমাণ দাবি করা নিষিদ্ধ।
