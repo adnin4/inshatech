@@ -1,0 +1,71 @@
+name: IINSHA Live Runtime Certification
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: live-runtime-certification
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live-runtime:
+    name: Verify Cloudflare Live Runtime
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SITE_BASE_URL: https://inshatech.pages.dev
+    steps:
+      - name: Checkout exact master
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install browser test dependency
+        run: npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.55.0
+
+      - name: Wait for live SHA parity
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 60); do
+            code=$(curl -sS -o /tmp/version.json -w '%{http_code}' --max-time 15 "$SITE_BASE_URL/api/version") || code=000
+            if [[ "$code" == "200" ]]; then
+              actual=$(node - <<'NODE'
+const fs = require('node:fs');
+const payload = JSON.parse(fs.readFileSync('/tmp/version.json', 'utf8'));
+process.stdout.write(String(payload.git_sha || payload.commit_sha || payload.sha || ''));
+NODE
+)
+              echo "attempt=$attempt expected=$EXPECTED_SHA actual=$actual"
+              if [[ "$actual" == "$EXPECTED_SHA" ]]; then
+                echo "LIVE_SHA_PARITY_PASS"
+                exit 0
+              fi
+            else
+              echo "attempt=$attempt http=$code"
+            fi
+            sleep 10
+          done
+          echo "LIVE_SHA_PARITY_FAIL"
+          exit 1
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run production browser certification
+        run: node scripts/production_browser_certification.mjs
+
+      - name: Run live surface smoke
+        run: node scripts/live-surface-smoke.mjs
