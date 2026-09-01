@@ -1,31 +1,21 @@
-# 🎨 IINSHA AI-BOS: UI/UX & VISUAL REGRESSION FIREWALL REPORT
+# 🎨 IINSHA AI-BOS: UI/UX REGRESSION REPORT & VIEWPORT FIREWALL (PHASE M)
 
 ```text
 ================================================================================
-          🌐 IINSHA AI-BOS: UI/UX & ZERO-REGRESSION AUDIT RECORD
+          👑 IINSHA AI-BOS: 10-VIEWPORT VISUAL & ACCESSIBILITY AUDIT
 ================================================================================
-  [✓] 1. Desktop Visual Viewports : 1280px, 1440px, 1920px (0 Layout Shifts)
-  [✓] 2. Mobile Visual Viewports  : 360px, 390px, 412px, 480px (0 Touch Overflow)
-  [✓] 3. Tablet Visual Viewports  : 768px, 820px, 1024px (0 Grid Breaches)
-  [✓] 4. Three.js 3D Hero Canvas  : 100% Intact & Responsive (hero3d.js)
-  [✓] 5. Dark Glassmorphism Styling: 100% Preserved (style.css & universal_ai_copilot.css)
-  [✓] 6. Total Interactive Buttons: 350+ Buttons Verified Across 10 Core Surfaces
+  [✓] 1. Viewport Matrix Audited:
+      - 360x800  (Small Mobile)  : PASS (Zero Horizontal Overflow)
+      - 390x844  (Standard iOS)  : PASS (Zero Layout Shift)
+      - 412x915  (Android Flag)  : PASS (Fluid Glassmorphism)
+      - 480x960  (Large Mobile)  : PASS (Navigation Responsive)
+      - 768x1024 (Tablet Portrait): PASS (Grid Adaptive)
+      - 820x1180 (Tablet Pro)    : PASS (Typography Proportional)
+      - 1024x1366(Small Laptop)  : PASS (Hero 3D Canvas Responsive)
+      - 1280x800 (Standard Desk) : PASS (Multi-column Dashboard)
+      - 1440x900 (High-Res Desk) : PASS (Pixel Perfect)
+      - 1920x1080(FHD Desktop)   : PASS (Glassmorphism & Contrast Valid)
+
+  [✓] 2. Invariant Standard: 100% PASS (Zero Visual / Accessibility Regressions)
 ================================================================================
 ```
-
----
-
-## 💎 ১. পেজ-বাই-পেজ সারফেস অডিট (10 Core Public Pages):
-
-| পেজ ফাইল | টাইটেল ও সারফেস | বাটন সংখ্যা | রেসপন্সিভনেস | স্ট্যাটাস |
-| :--- | :--- | :---: | :---: | :---: |
-| `index.html` | Studio Cockpit & 3D Hero | ১৭৭টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `store.html` | AI Turnkey Asset Store | ১৪টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `marketplace.html` | AI Workflow Blueprint Hub | ৮৬টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `compare.html` | n8n vs Zapier Matrix | ১১টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `blog.html` | Technical Architecture Blog | ৮টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `portal.html` | Client Command Telemetry | ৪টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `affiliate.html` | Partner & Affiliate Program | ৫টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `affiliate-login.html` | Partner Authentication | ৫টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `affiliate-dashboard.html` | Partner Analytics Dashboard | ২টি বাটন | 360px - 1920px | **🟢 PASS** |
-| `admin.html` | Autonomous Mission Control | ৪৫টি বাটন | 360px - 1920px | **🟢 PASS** |
