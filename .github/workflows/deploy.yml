@@ -1,4 +1,4 @@
-name: Production Quality & Cloudflare Pages Deployment CI
+name: Production Quality & Cloudflare Release Authority CI
 
 on:
   push:
@@ -12,8 +12,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  audit-and-deploy:
-    name: Master CI Audit & Cloudflare Deployment
+  audit:
+    name: Full Spectrum CI & Certification Gate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Codebase
@@ -93,14 +93,5 @@ jobs:
       - name: Live Surface & Button Parity Scanner
         run: node scripts/live-surface-smoke.mjs
 
-      - name: Deploy to Cloudflare Pages (Automated Production Pipeline)
-        uses: cloudflare/pages-action@v1
-        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'inshatech'
-          directory: '.'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: P0 Security & Content Hardening Gate
+        run: node scratch/security_content_gate.js
