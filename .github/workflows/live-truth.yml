@@ -1,0 +1,57 @@
+name: IINSHA Live Truth Gate
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+concurrency:
+  group: live-truth-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  live-truth:
+    name: Production Live Truth Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout exact release SHA
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify live production truth
+        env:
+          LIVE_URL: https://inshatech.pages.dev
+          EXPECTED_SHA: ${{ github.sha }}
+          LIVE_ATTEMPTS: 30
+          LIVE_RETRY_DELAY_MS: 10000
+          LIVE_TIMEOUT_MS: 15000
+        run: node scripts/live_truth_gate.mjs
+
+      - name: Publish evidence
+        if: always()
+        run: |
+          mkdir -p artifacts
+          cat > artifacts/live-truth-metadata.json <<EOF
+          {
+            "expected_sha": "${GITHUB_SHA}",
+            "live_url": "https://inshatech.pages.dev",
+            "workflow_run": "${GITHUB_RUN_ID}"
+          }
+          EOF
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-truth-${{ github.sha }}
+          path: artifacts/live-truth-metadata.json
