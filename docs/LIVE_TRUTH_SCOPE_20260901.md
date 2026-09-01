@@ -1,0 +1,1 @@
+Scope: read-only deployment and runtime verification only. No product UI, CSS, HTML, Supabase schema/data, payment behavior, or AI-agent behavior is modified by this change set.
