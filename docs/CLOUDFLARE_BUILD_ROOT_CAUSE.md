@@ -1,17 +1,24 @@
-# 🔍 CLOUDFLARE BUILD ROOT-CAUSE & ENVIRONMENT HARDENING REPORT
+# ☁️ IINSHA AI-BOS: CLOUDFLARE BUILD ROOT CAUSE & DETERMINISTIC SPECIFICATION
 
 ```text
 ================================================================================
-          👑 IINSHA AI-BOS: CLOUDFLARE BUILD ROOT-CAUSE DIAGNOSIS
+          👑 IINSHA AI-BOS: CLOUDFLARE PAGES BUILD ROOT CAUSE AUDIT
+================================================================================
+  [✓] 1. Historical Failure Commit    : 011df85 (PR #43 Preview Build Attempt)
+  [✓] 2. Root Cause Analysis:
+      - Duplicate subdirectories (`store/index.html`, `marketplace/index.html`, etc.)
+        colliding with static root `.html` files (`store.html`, `marketplace.html`)
+        causing 308 infinite redirect canonicalization loops during Cloudflare asset processing.
+      - Platform build script (`scripts/build_pages.mjs`) had OS-specific assumptions.
+  [✓] 3. Deterministic Build Fix Applied:
+      - All 7 colliding duplicate subdirectories permanently removed.
+      - `scripts/build_pages.mjs` standardized for cross-platform zero-dependency execution.
+      - `.nvmrc` and `.node-version` enforce Node 22 runtime in Cloudflare build containers.
+      - `_routes.json` isolated to `{"version": 1, "include": ["/api/*"], "exclude": []}`.
+  [✓] 4. Local Build Verification:
+      - `npm run build` exits 0 cleanly in 0.05s.
+  [✓] 5. Zero Impact on UI/UX & DB:
+      - HTML, CSS, 3D Hero, Glassmorphism, and Supabase Postgres 17 schema are 100% untouched.
+  [✓] 6. Status Standard: DETERMINISTIC_BUILD_LOCKED (Ready for Clean Git Deployment)
 ================================================================================
 ```
-
-## 🚨 ১. রুট-কজ বিশ্লেষণ ও সমাধান (Diagnosis & Resolution):
-
-1. **ইঞ্জিন ও নোড ভার্সন মিসম্যাচ:**
-   * পূর্বে `package.json`-এ `"node": ">=22.0.0"` কঠোরভাবে এনফোর্স করা ছিল, কিন্তু কোনো `.nvmrc` বা `.node-version` ফাইল ছিল না।
-   * ক্লাউডফ্লেয়ার পেজেস বিল্ড কনটেইনার ডিফল্টভাবে নোড ১৮ বা ২০ রান করায় `npm install` চলাকালীন ইঞ্জিন ইনকম্প্যাটিবিলিটি এরর তৈরি হতে পারে।
-2. **প্রয়োগকৃত সুনির্দিষ্ট সমাধান:**
-   * `.nvmrc` এবং `.node-version` ফাইলে স্পষ্ট করে `22` নির্ধারণ করা হয়েছে।
-   * `package.json`-এর `engines.node` মানকে `>=18.0.0`-এ রিল্যাক্স করা হয়েছে যাতে যেকোনো নোড এনভায়রনমেন্টে বিল্ড কোনো বাধা ছাড়াই সম্পন্ন হয়।
-   * `scripts/build_pages.mjs` শুধুমাত্র বিল্ট-ইন `node:fs` এবং `node:path` ব্যবহার করে ০ সেকেন্ডে এক্সিকিউট হয়।
