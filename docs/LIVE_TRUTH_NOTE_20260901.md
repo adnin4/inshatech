@@ -1,0 +1,1 @@
+This release-truth work is read-only verification infrastructure only. It does not modify product UI, CSS, database, payment behavior, or agent behavior.
