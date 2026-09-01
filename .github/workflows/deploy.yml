@@ -95,3 +95,58 @@ jobs:
 
       - name: P0 Security & Content Hardening Gate
         run: node scratch/security_content_gate.js
+
+  live-production-certification:
+    name: Live Production Truth & Browser Certification
+    needs: audit
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact release SHA
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify live runtime SHA parity
+        env:
+          LIVE_URL: https://inshatech.pages.dev
+          EXPECTED_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 60); do
+            code=$(curl -sS -o /tmp/version.json -w '%{http_code}' --max-time 15 "$LIVE_URL/api/version") || code=000
+            if [[ "$code" == "200" ]]; then
+              actual=$(node -e "const fs=require('node:fs'); const p=JSON.parse(fs.readFileSync('/tmp/version.json','utf8')); process.stdout.write(p.git_sha || p.commit_sha || p.sha || '')")
+              echo "attempt=$attempt expected=$EXPECTED_SHA actual=$actual"
+              if [[ "$actual" == "$EXPECTED_SHA" ]]; then
+                echo "LIVE_SHA_PARITY_PASS"
+                exit 0
+              fi
+            else
+              echo "attempt=$attempt /api/version http=$code"
+            fi
+            sleep 10
+          done
+          echo "LIVE_SHA_PARITY_FAIL"
+          exit 1
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Real Chromium Production Certification
+        env:
+          SITE_BASE_URL: https://inshatech.pages.dev
+        run: node scripts/production_browser_certification.mjs
+
+      - name: Live Surface Smoke
+        env:
+          BASE_URL: https://inshatech.pages.dev
+        run: node scripts/live-surface-smoke.mjs
