@@ -6,27 +6,26 @@ This checklist is an evidence register, not a production certification.
 
 - Repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current reviewed master tip: `d6672d22fc6997c1741f98525d40ed75bae7330b`
-- `main` must be fast-forwarded to the same reviewed tip before deployment.
+- Current release state: `READY_FOR_STAGING`
 
-## Verified engineering controls
+## Enforced engineering controls
 
-| Gate | State | Evidence class |
-|---|---|---|
-| Business truth gates | PASS | STATIC / STRUCTURAL |
-| Webhook verification boundary | PASS | STRUCTURAL |
-| Idempotency requirement | PASS | STRUCTURAL |
-| Evidence-gated QA | PASS | STRUCTURAL |
-| Client approval gate | PASS | STRUCTURAL |
-| Restricted tool blocking | PASS | STATIC |
-| System claim classification | PASS | STATIC |
-| Homepage public truth guard | IMPLEMENTED | DEPLOYMENT-DEPENDENT |
-| Supabase control-plane baseline | PASS | CONTROL-PLANE |
-| UI/UX invariants | PASS | STATIC |
-| Autonomous business cycle | CONFORMANCE ONLY | SIMULATION |
-| Final activation mission | READINESS ONLY | CONFORMANCE |
+| Gate | State |
+|---|---|
+| Business truth | PASS — fail-closed |
+| Webhook verification | PASS — provider verifier required |
+| Idempotency | PASS — required for payment webhook path |
+| QA evidence | PASS — evidence-gated |
+| Client approval | PASS — explicit evidence required |
+| Restricted tool actions | PASS — blocked |
+| System claim verification | PASS — evidence classifications |
+| Homepage truth guard | IMPLEMENTED — deployment dependent |
+| Autonomous cycle | CONFORMANCE ONLY |
+| Final activation mission | READINESS ONLY |
+| Supabase control-plane | VERIFIED BASELINE |
+| UI/UX | FROZEN / STATIC INVARIANTS |
 
-## External production evidence
+## External evidence gates
 
 | Gate | State |
 |---|---|
@@ -36,22 +35,15 @@ This checklist is an evidence register, not a production certification.
 | Live `/api/sre/health` | EXTERNAL_PROOF_REQUIRED |
 | Runtime Supabase identity | EXTERNAL_PROOF_REQUIRED |
 | Production browser E2E | EXTERNAL_PROOF_REQUIRED |
-| Real AI provider execution | EXTERNAL_PROOF_REQUIRED |
-| Provider receipt | EXTERNAL_PROOF_REQUIRED |
+| Real AI provider execution + receipt | EXTERNAL_PROOF_REQUIRED |
 | Real payment transaction | NOT_CONFIGURED / EXTERNAL_PROOF_REQUIRED |
 | Signed webhook + replay | EXTERNAL_PROOF_REQUIRED |
 | Reconciliation/refund | EXTERNAL_PROOF_REQUIRED |
-| Notifications/provider delivery | EXTERNAL_PROOF_REQUIRED |
+| Provider notifications | EXTERNAL_PROOF_REQUIRED |
 | Backup/restore | EXTERNAL_PROOF_REQUIRED |
 | Rollback/recovery | EXTERNAL_PROOF_REQUIRED |
 | Branch protection | NOT_VERIFIED |
 
-## Release classification
+## Truth rule
 
-`READY_FOR_STAGING`
-
-Promotion to `READY_FOR_PILOT` or `PRODUCTION_READY` requires independent external evidence for the exact reviewed/deployed SHA.
-
-## Non-negotiable
-
-A generated ID, timestamp, hash, HTTP 200, internal DB row, local test result, preview URL, simulated provider result, or source-file presence is not by itself production evidence.
+Local tests, source inspection, generated IDs, hashes, timestamps, HTTP 200, preview deployments, internal DB rows and simulated provider output are not production evidence by themselves.
