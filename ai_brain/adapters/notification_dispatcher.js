@@ -1,9 +1,9 @@
 /**
  * IINSHA AI-BOS — Production Notification Dispatcher
- *
  * Every channel must prove provider acceptance before reporting success.
- * Missing credentials are represented as NOT_CONFIGURED, never DISPATCHED.
  */
+
+import crypto from 'crypto';
 
 export class MultiChannelNotificationDispatcher {
     constructor(config = {}) {
@@ -25,11 +25,7 @@ export class MultiChannelNotificationDispatcher {
             body: JSON.stringify({ chat_id: this.ownerChatId, text: message })
         });
         const body = await response.json().catch(() => null);
-        return {
-            status: response.ok && body?.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR',
-            channel: 'TELEGRAM',
-            provider_receipt: body
-        };
+        return { status: response.ok && body?.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR', channel: 'TELEGRAM', provider_receipt: body };
     }
 
     async _sendEmail(subject, message) {
@@ -38,23 +34,11 @@ export class MultiChannelNotificationDispatcher {
         }
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
-            headers: {
-                Authorization: `Bearer ${this.resendApiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                from: process.env.RESEND_FROM_EMAIL || 'IINSHA AI <support@inshatech.com>',
-                to: [this.ownerEmail],
-                subject,
-                text: message
-            })
+            headers: { Authorization: `Bearer ${this.resendApiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || 'IINSHA AI <support@inshatech.com>', to: [this.ownerEmail], subject, text: message })
         });
         const body = await response.json().catch(() => null);
-        return {
-            status: response.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR',
-            channel: 'EMAIL',
-            provider_receipt: body
-        };
+        return { status: response.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR', channel: 'EMAIL', provider_receipt: body };
     }
 
     async dispatchAlert(priority = 'P1', title = '', message = '') {
@@ -62,13 +46,9 @@ export class MultiChannelNotificationDispatcher {
         const results = [await this._sendTelegram(`${title}\n\n${message}`)];
         if (priority === 'P0' || priority === 'P1') results.push(await this._sendEmail(title, message));
 
+        const allAccepted = results.length > 0 && results.every(item => item.status === 'PROVIDER_ACCEPTED');
         const anyAccepted = results.some(item => item.status === 'PROVIDER_ACCEPTED');
-        const allConfigured = results.every(item => item.status !== 'NOT_CONFIGURED');
-        const status = allConfigured && results.every(item => item.status === 'PROVIDER_ACCEPTED')
-            ? 'DISPATCHED'
-            : anyAccepted
-                ? 'PARTIAL'
-                : 'NOT_CONFIGURED';
+        const status = allAccepted ? 'DISPATCHED' : anyAccepted ? 'PARTIAL' : 'NOT_CONFIGURED';
 
         const logEntry = {
             notification_id: notificationId,
@@ -88,5 +68,3 @@ export class MultiChannelNotificationDispatcher {
         return [...this.dispatchedLogs];
     }
 }
-
-import crypto from 'crypto';
