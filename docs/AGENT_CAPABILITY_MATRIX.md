@@ -1,30 +1,17 @@
-# 🤖 IINSHA AI-BOS: 13-AGENT WORKFORCE CAPABILITY & CONTROL MATRIX
+# 🤖 AGENT CAPABILITY MATRIX (13 DEPARTMENTS)
 
-```text
-================================================================================
-          🌐 IINSHA AI-BOS: AUTONOMOUS AGENT WORKFORCE CONTRACT
-================================================================================
-```
-
-| Agent ID | Agent Title | Primary Objective | Allowed Tools | Risk Level | Supervisor | Execution State |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `CEO_AGENT` | Strategic Commander | Strategy & Coordination | `get_analytics, get_revenue, delegate_task` | LEVEL_2 | Owner | **ACTIVE** |
-| `SALES_AGENT` | Revenue & Growth Agent | Discovery & Qualification | `get_services, create_lead, calculate_roi` | LEVEL_2 | CEO_AGENT | **ACTIVE** |
-| `SDR_AGENT` | Sales Development Rep | Prospecting & Outreach | `search_knowledge, get_leads, create_lead` | LEVEL_2 | SALES_AGENT | **ACTIVE** |
-| `ARCHITECT_AGENT` | Solution Architect | Technical Discovery | `search_knowledge, create_quote, draft_proposal` | LEVEL_1 | CEO_AGENT | **ACTIVE** |
-| `DEVELOPER_AGENT`| Sandbox Engineer Lead | Code Generation & Build | `create_project, create_task, run_tests` | LEVEL_3 | QA_AGENT | **ACTIVE** |
-| `QA_AGENT` | Quality Assurance Lead | Independent Verification | `run_tests, search_knowledge, get_health` | LEVEL_0 | GUARDIAN | **ACTIVE** |
-| `DEVOPS_AGENT` | SRE & Cloud Engineer | Monitoring & Incident Recovery | `get_health, create_incident, create_deployment` | LEVEL_2 | GUARDIAN | **ACTIVE** |
-| `MARKETING_AGENT`| Growth & SEO Agent | Content & Campaigns | `search_knowledge, draft_content, get_metrics` | LEVEL_1 | CEO_AGENT | **ACTIVE** |
-| `SUCCESS_AGENT` | Customer Success Agent | Support & Health Triage | `get_customer, get_projects, create_ticket` | LEVEL_2 | SUPPORT | **ACTIVE** |
-| `AFFILIATE_AGENT`| Partner Program Agent | Attribution & Commission | `get_affiliates, track_referral, calculate_comm` | LEVEL_2 | FINANCE | **ACTIVE** |
-| `FINANCE_AGENT` | AI CFO & Ledger Agent | Accounting & Cost Audit | `get_revenue, get_expenses, get_analytics` | LEVEL_0 | Owner | **ACTIVE** |
-| `INTEL_AGENT` | Market Intelligence | Research & Benchmarks | `search_knowledge, get_analytics` | LEVEL_0 | CEO_AGENT | **ACTIVE** |
-| `GUARDIAN_AGENT`| Security & Policy Guard | ASVS & OWASP Audit | `get_audit_logs, get_health, create_incident` | LEVEL_0 | Owner | **ACTIVE** |
-
----
-
-## 🔒 Policy Boundary Invariants
-1. **Autonomy != Authority**: No agent may execute Level 3+ financial transactions, destroy production data, or modify production policies autonomously.
-2. **Independent QA Constraint**: `DEVELOPER_AGENT` output is never approved by the developer itself; `QA_AGENT` must independently verify test and runtime evidence.
-3. **Fail-Closed Tool Execution**: All tool invocations pass through the Tool Execution Gateway with strict budget caps and input sanitization.
+| Agent ID | Role | Core Responsibility | Permission Level |
+| :--- | :--- | :--- | :---: |
+| **CEO_AGENT** | Strategic Commander | Orchestration, Strategy, Delegation | Level 2 (Execute) |
+| **SDR_AGENT** | Lead Hunter | Lead Ingestion & Qualification | Level 2 (Execute) |
+| **SALES_AGENT** | Revenue Closer | Progressive Discovery & Negotiation | Level 2 (Execute) |
+| **ARCHITECT_AGENT** | Solution Architect | Requirements Scoping & Proposal | Level 1 (Draft) |
+| **DEVELOPER_AGENT** | Lead Developer | Workflow Code & Docker Tasks | Level 2 (Sandboxed) |
+| **QA_AGENT** | Quality Assurance | Regression & Security Audit | Level 0 (Read) |
+| **DEVOPS_AGENT** | SRE & Deployer | Deployment & Incident Recovery | Level 3 (Approval) |
+| **MARKETING_AGENT** | Growth Lead | SEO, Copy, Social Distribution | Level 1 (Draft) |
+| **SUCCESS_AGENT** | Client Success | SLA Triage & Project Health | Level 2 (Execute) |
+| **AFFILIATE_AGENT** | Partner Manager | Link Generation & Fraud Radar | Level 2 (Execute) |
+| **FINANCE_AGENT** | AI CFO | Double-Entry Ledger & Payouts | Level 3 (Approval) |
+| **INTELLIGENCE_AGENT**| Market Intelligence | Competitor Scrape & Benchmarking | Level 0 (Read) |
+| **GUARDIAN_AGENT** | Policy Guardian | OWASP LLM01-LLM08 Enforcement | Level 4 (Supervisor) |
