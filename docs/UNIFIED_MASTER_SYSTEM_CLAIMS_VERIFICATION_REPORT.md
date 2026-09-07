@@ -1,26 +1,50 @@
-# 🏛️ IINSHA AI-BOS: UNIFIED MASTER SYSTEM CLAIMS VERIFICATION REPORT
+# IINSHA AI-BOS — UNIFIED SYSTEM CLAIMS VERIFICATION REPORT
 
-* **Verification Date:** 2026-09-07T11:37:12.650Z
-* **Total Architectural Claims Audited:** 10
-* **Verified Claims Passed:** 10 / 10 (100%)
-* **Governing Invariant:** All claims are backed by executable scripts, database schemas, and cryptographic assertions.
+**Verification date:** 2026-09-07
+**Canonical repository:** `adnin4/inshatech`
+**Canonical branch:** `master`
 
----
+## Scope
 
-## 📊 Summary Table of Verified Claims:
+This report verifies **repository-level architectural invariants** only. It is not independent proof of live Cloudflare deployment, live provider connectivity, successful customer transactions, or completed business-side effects.
 
-| # | Architectural Claim | Assertion Target | Status |
-| :-: | :--- | :--- | :---: |
-| **01** | Zero-Leak Security Invariant | `.env.example` only, 0 plaintext tokens in 330+ files | 🟢 **VERIFIED** |
-| **02** | Single Source of Truth Registry | `knowledge/services.json` (5 Canonical Services) | 🟢 **VERIFIED** |
-| **03** | 13-Agent Swarm & Tool Gateway | `ai_brain/agents/agent_registry.js` (Level 0-4 Governance) | 🟢 **VERIFIED** |
-| **04** | Copilot 2.0 Customer Memory | `universal_ai_copilot.js` (sessionStorage & 7 Modes) | 🟢 **VERIFIED** |
-| **05** | Progressive Sales & ROI Math | `ai_brain/sales_engine.js` (Deterministic Scoring) | 🟢 **VERIFIED** |
-| **06** | Affiliate 60-Day Attribution | `functions/api/affiliate/track.js` (Anti-Fraud) | 🟢 **VERIFIED** |
-| **07** | Lemon Squeezy Store 458722 | `functions/api/payments/checkout.js` (Multi-Rail) | 🟢 **VERIFIED** |
-| **08** | Cryptographic Webhook Settlement | HMAC-SHA256 Timing-Safe Verification & Double-Entry | 🟢 **VERIFIED** |
-| **09** | Autonomous Business Cycle | `scripts/run_live_autonomous_business_cycle.mjs` (9 Stages) | 🟢 **VERIFIED** |
-| **10** | UI/UX & DOM Hierarchy Guardian | `scripts/verify_ui_ux_invariants.mjs` (All 22 Sections & Modals) | 🟢 **VERIFIED** |
+The 10 structural claims below passed their executable/static assertions at the time of verification. A passing assertion means the corresponding source/schema/invariant exists and satisfies the test; it does not convert the claim into live-production evidence.
 
----
-**FINAL VERDICT: EVERY CLAIM IN IINSHA AI-BOS IS 100% EXECUTABLE AND CRYPTOGRAPHICALLY VERIFIABLE.**
+## Structural verification matrix
+
+| # | Architectural Claim | Assertion Target | Structural Status | Live Production Evidence |
+| :-: | :--- | :--- | :---: | :---: |
+| **01** | Zero-Leak Security Invariant | `.env.example` only; repository secret scanner assertions | **VERIFIED** | **SEPARATE RUNTIME CHECK REQUIRED** |
+| **02** | Single Source of Truth Registry | `knowledge/services.json` canonical service catalog | **VERIFIED** | **CATALOG/PRICING RUNTIME CHECK REQUIRED** |
+| **03** | Agent Swarm & Tool Gateway | agent registry + level governance + fail-closed gateway | **VERIFIED** | **PROVIDER/SANDBOX EXECUTION CHECK REQUIRED** |
+| **04** | Copilot Customer Memory Contract | Copilot session behavior and mode invariants | **VERIFIED** | **BROWSER RUNTIME CHECK REQUIRED** |
+| **05** | Progressive Sales & ROI Logic | deterministic sales engine assertions | **VERIFIED** | **BUSINESS OUTCOME CHECK REQUIRED** |
+| **06** | Affiliate Attribution Controls | affiliate tracking / anti-fraud assertions | **VERIFIED** | **REAL EVENT / PAYOUT CHECK REQUIRED** |
+| **07** | Payment Checkout Architecture | `functions/api/payments/checkout.js` provider boundary | **VERIFIED** | **REAL PROVIDER TRANSACTION REQUIRED** |
+| **08** | Webhook Settlement Security | HMAC timing-safe verification + ledger invariants | **VERIFIED** | **REAL SIGNED WEBHOOK + RECONCILIATION REQUIRED** |
+| **09** | Autonomous Business Cycle Structure | `scripts/run_live_autonomous_business_cycle.mjs` structural stages | **VERIFIED** | **REAL END-TO-END BUSINESS EXECUTION REQUIRED** |
+| **10** | UI/UX & DOM Hierarchy Guardian | `scripts/verify_ui_ux_invariants.mjs` | **VERIFIED** | **DEPLOYED BROWSER E2E REQUIRED** |
+
+## Important truth boundary
+
+The following labels must not be inferred from this report:
+
+- `LIVE_VERIFIED`
+- `ACTIVE_HEALTHY`
+- `PAID`
+- `DEPLOYED`
+- `EXECUTED`
+- `DELIVERED`
+- `PRODUCTION_READY`
+
+Those states require independent runtime/provider evidence.
+
+A generated UUID, timestamp, SHA-256 hash, internal database row, HTTP 200, mock response, or successful local test is not sufficient evidence of a real business side effect.
+
+## Current release posture
+
+As of the current audit, Supabase control-plane evidence is healthy, while Cloudflare live deployment/build/runtime parity remains a separate gate. The current production classification must therefore be maintained in `docs/IINSHA_CURRENT_RUNTIME_TRUTH.md` rather than inferred from this structural report.
+
+**Structural test result:** `10/10 PASS`
+
+**Production certification result:** `NOT ESTABLISHED BY THIS REPORT`
