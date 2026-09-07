@@ -1,122 +1,70 @@
 /**
- * IINSHA AI-BOS — Read-Only Browser Return Gateway
- * 
- * INVARIANT: This endpoint is strictly READ-ONLY.
- * It handles the customer's browser redirection after completing payment at a gateway.
- * 
- * RULES:
- * 1. Accepts GET and POST (for form-based POST redirects from SSLCommerz/AamarPay).
- * 2. Resolves order status from database if Supabase credentials exist.
- * 3. NEVER mutates order payment_status to 'paid'.
- * 4. Redirects to /portal.html?order_id=... with explanatory status indicators.
+ * Browser payment-return endpoint.
+ *
+ * Security invariant:
+ * A browser redirect can be forged, replayed, refreshed, or skipped. It MUST
+ * NOT change payment state. Only an authenticated/verified provider webhook or
+ * server-side provider verification may confirm payment.
  */
 
-const ORIGINS = new Set(['https://inshatech.pages.dev', 'https://inshatech.com', 'https://www.inshatech.com', 'https://admin.inshatech.com']);
-const cors = r => {
-    const o = r.headers.get('Origin') || '';
-    return {
-        'Access-Control-Allow-Origin': ORIGINS.has(o) ? o : 'https://inshatech.pages.dev',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
-    };
-};
+const PUBLIC_ORIGIN = 'https://inshatech.pages.dev';
+const PORTAL_PATH = '/portal.html';
+const ALLOWED_PROVIDERS = new Set(['sslcommerz', 'lemonsqueezy', 'bkash', 'stripe']);
+const ALLOWED_STATUSES = new Set(['success', 'failed', 'cancelled', 'canceled', 'pending', 'unknown']);
 
-export async function onRequestGet(context) {
-    return handleBrowserReturn(context);
+function safeOrderCode(value) {
+    const order = String(value || '').trim();
+    return /^ORD-[A-Z0-9]{8,32}$/.test(order) ? order : '';
 }
 
-export async function onRequestPost({ request }) {
-    const h = cors(request);
-    return new Response(JSON.stringify({
-        status: 'METHOD_NOT_ALLOWED',
-        error: 'Method Not Allowed',
-        message: 'Browser payment return endpoint is strictly GET-only and read-only.'
-    }), { status: 405, headers: h });
+function safeProvider(value) {
+    const provider = String(value || '').trim().toLowerCase();
+    return ALLOWED_PROVIDERS.has(provider) ? provider : '';
 }
 
-export function onRequestOptions({ request }) {
-    return new Response(null, { status: 204, headers: cors(request) });
-}
-
-async function handleBrowserReturn({ request, env = {} }) {
-    const h = cors(request);
+export async function onRequestGet({ request }) {
     const url = new URL(request.url);
+    const orderId = safeOrderCode(
+        url.searchParams.get('order_id') ||
+        url.searchParams.get('tran_id') ||
+        url.searchParams.get('merchantInvoiceNumber')
+    );
+    const provider = safeProvider(url.searchParams.get('provider'));
+    const requestedStatus = String(url.searchParams.get('status') || 'unknown').trim().toLowerCase();
+    const status = ALLOWED_STATUSES.has(requestedStatus) ? requestedStatus : 'unknown';
 
-    let orderId = url.searchParams.get('order_id') || url.searchParams.get('tran_id') || '';
-    let status = url.searchParams.get('status') || '';
-    let gateway = url.searchParams.get('gateway') || url.searchParams.get('provider') || 'generic';
-
-    // If POST (e.g. SSLCommerz form POST redirect)
-    if (request.method === 'POST') {
-        try {
-            const contentType = request.headers.get('Content-Type') || '';
-            if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
-                const formData = await request.formData();
-                orderId = orderId || formData.get('tran_id') || formData.get('order_id') || '';
-                status = status || formData.get('status') || '';
-                gateway = gateway || formData.get('card_issuer') || 'sslcommerz';
-            } else if (contentType.includes('application/json')) {
-                const body = await request.json().catch(() => ({}));
-                orderId = orderId || body.order_id || body.tran_id || '';
-                status = status || body.status || '';
-            }
-        } catch (parseErr) {
-            console.warn('Browser return form parse notice:', parseErr.message);
-        }
-    }
-
-    orderId = String(orderId || '').trim();
-
-    // Read-only state resolution
-    let currentPaymentStatus = 'awaiting_confirmation';
-    let serviceName = 'IINSHA Service';
-
-    if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY && orderId) {
-        try {
-            const base = `${env.SUPABASE_URL}/rest/v1`;
-            const key = env.SUPABASE_SERVICE_ROLE_KEY;
-            const auth = { apikey: key, Authorization: `Bearer ${key}` };
-
-            const checkRes = await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderId)}&select=payment_status,order_status,service_name`, {
-                headers: auth
-            });
-
-            if (checkRes.ok) {
-                const orders = await checkRes.json().catch(() => []);
-                if (Array.isArray(orders) && orders.length > 0) {
-                    currentPaymentStatus = orders[0].payment_status || 'awaiting_payment';
-                    serviceName = orders[0].service_name || serviceName;
-                }
-            }
-        } catch (dbErr) {
-            console.warn('Browser return read-only check notice:', dbErr.message);
-        }
-    }
-
-    const portalRedirectUrl = `https://inshatech.pages.dev/portal.html?order_id=${encodeURIComponent(orderId)}&status=${encodeURIComponent(status)}&payment_status=${encodeURIComponent(currentPaymentStatus)}`;
-
-    // If browser accepts HTML, redirect to customer portal
-    const acceptHeader = request.headers.get('Accept') || '';
-    if (acceptHeader.includes('text/html')) {
-        return new Response(null, {
-            status: 302,
+    if (!orderId) {
+        return new Response(JSON.stringify({
+            status: 'INVALID_RETURN',
+            message: 'A valid order_id is required.'
+        }), {
+            status: 400,
             headers: {
-                'Location': portalRedirectUrl,
+                'Content-Type': 'application/json',
                 'Cache-Control': 'no-store'
             }
         });
     }
 
-    // Otherwise return clean JSON status
+    const destination = new URL(PORTAL_PATH, PUBLIC_ORIGIN);
+    destination.searchParams.set('order_id', orderId);
+    destination.searchParams.set('payment_return', '1');
+    destination.searchParams.set('status', status);
+    if (provider) destination.searchParams.set('provider', provider);
+
+    return Response.redirect(destination.toString(), 303);
+}
+
+export async function onRequestPost() {
     return new Response(JSON.stringify({
-        status: 'BROWSER_RETURN_RECORDED',
-        order_id: orderId,
-        payment_status: currentPaymentStatus,
-        service_name: serviceName,
-        portal_url: portalRedirectUrl,
-        security_notice: 'Payment confirmation is authoritative only via signed server-to-server webhook/IPN.',
-        timestamp: new Date().toISOString()
-    }), { status: 200, headers: h });
+        status: 'METHOD_NOT_ALLOWED',
+        message: 'Browser payment return is GET-only. Payment confirmation is handled by verified provider webhook/IPN processing.'
+    }), {
+        status: 405,
+        headers: {
+            'Content-Type': 'application/json',
+            Allow: 'GET',
+            'Cache-Control': 'no-store'
+        }
+    });
 }
