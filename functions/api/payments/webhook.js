@@ -39,6 +39,30 @@ function json(status, payload) {
     return new Response(JSON.stringify(payload), { status, headers: headers() });
 }
 
+export async function onRequestGet({ request }) {
+    // Legacy gateway browser-return compatibility. This GET path only redirects;
+    // it never authenticates, records, or mutates payment state.
+    const url = new URL(request.url);
+    const orderId = String(
+        url.searchParams.get('order_id') ||
+        url.searchParams.get('tran_id') ||
+        url.searchParams.get('merchantInvoiceNumber') ||
+        ''
+    ).trim();
+    const provider = String(url.searchParams.get('provider') || '').trim().toLowerCase();
+    const status = String(url.searchParams.get('status') || 'unknown').trim().toLowerCase();
+
+    if (!/^ORD-[A-Z0-9]{8,32}$/.test(orderId)) {
+        return json(400, { status: 'INVALID_RETURN' });
+    }
+
+    const destination = new URL('https://inshatech.pages.dev/api/payments/return');
+    destination.searchParams.set('order_id', orderId);
+    destination.searchParams.set('status', status);
+    if (provider) destination.searchParams.set('provider', provider);
+    return Response.redirect(destination.toString(), 303);
+}
+
 export async function onRequestPost({ request, env = {} }) {
     try {
         const raw = await request.text();
@@ -149,6 +173,7 @@ export async function onRequestPost({ request, env = {} }) {
             });
         }
 
+        let resolvedOrder = null;
         if (isSuccess) {
             if (!orderCode) {
                 return json(400, {
@@ -159,7 +184,7 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             const orderRes = await fetch(
-                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency`,
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,payment_provider`,
                 { method: 'GET', headers: auth }
             );
             if (!orderRes.ok) {
@@ -169,9 +194,58 @@ export async function onRequestPost({ request, env = {} }) {
             if (!Array.isArray(orders) || orders.length !== 1) {
                 return json(409, { status: 'ORDER_NOT_UNIQUELY_RESOLVED', event_id: eventId, order_id: orderCode });
             }
+            resolvedOrder = orders[0];
+        }
 
-            const order = orders[0];
-            if (String(order.payment_status || '').toLowerCase() === 'paid') {
+        // Durable event registration happens BEFORE payment mutation. The
+        // unique event_id constraint becomes the replay/concurrency gate.
+        const now = new Date().toISOString();
+        const eventRes = await fetch(`${base}/ibos_webhook_events`, {
+            method: 'POST',
+            headers: { ...auth, Prefer: 'return=representation' },
+            body: JSON.stringify({
+                event_id: eventId,
+                provider,
+                event_type: type,
+                order_code: orderCode || null,
+                order_id: resolvedOrder?.id || null,
+                status: isSuccess ? 'authenticated' : 'received',
+                signature_verified: true,
+                payload: event,
+                received_at: now,
+                processed_at: null
+            })
+        });
+
+        if (eventRes.status === 409) {
+            return json(200, {
+                status: 'SUCCESS',
+                action: 'duplicate_ignored',
+                event_id: eventId,
+                order_id: orderCode || 'UNSPECIFIED',
+                provider
+            });
+        }
+        if (!eventRes.ok) {
+            return json(503, {
+                status: 'DURABLE_EVENT_WRITE_FAILED',
+                event_id: eventId,
+                order_id: orderCode || 'UNSPECIFIED',
+                provider
+            });
+        }
+
+        if (isSuccess) {
+            if (resolvedOrder && String(resolvedOrder.payment_status || '').toLowerCase() === 'paid') {
+                const alreadyPaidPatch = await fetch(
+                    `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+                    {
+                        method: 'PATCH',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({ status: 'processed', processed_at: now })
+                    }
+                );
+                if (!alreadyPaidPatch.ok) return json(503, { status: 'EVENT_FINALIZE_FAILED', event_id: eventId });
                 return json(200, {
                     status: 'SUCCESS',
                     action: 'already_paid',
@@ -182,7 +256,7 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             const patchRes = await fetch(
-                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}`,
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
                 {
                     method: 'PATCH',
                     headers: { ...auth, Prefer: 'return=representation' },
@@ -191,41 +265,33 @@ export async function onRequestPost({ request, env = {} }) {
                         order_status: 'confirmed',
                         payment_provider: provider,
                         payment_reference: event.payment_reference || event.transaction_id || event.tran_id || event.id || null,
-                        paid_at: new Date().toISOString()
+                        paid_at: now
                     })
                 }
             );
             if (!patchRes.ok) {
+                await fetch(
+                    `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+                    {
+                        method: 'PATCH',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({ status: 'failed', error_message: `ORDER_UPDATE_FAILED_${patchRes.status}` })
+                    }
+                );
                 return json(503, { status: 'ORDER_UPDATE_FAILED', event_id: eventId, order_id: orderCode });
             }
         }
 
-        // Durable evidence is written for every authenticated webhook event.
-        const eventRes = await fetch(`${base}/ibos_webhook_events`, {
-            method: 'POST',
-            headers: { ...auth, Prefer: 'return=minimal' },
-            body: JSON.stringify({
-                event_id: eventId,
-                provider,
-                event_type: type,
-                order_code: orderCode || null,
-                order_id: null,
-                status: isSuccess ? 'processed' : 'received',
-                signature_verified: true,
-                payload: event,
-                received_at: new Date().toISOString(),
-                processed_at: isSuccess ? new Date().toISOString() : null
-            })
-        });
-
-        if (!eventRes.ok) {
-            // Do not claim successful processing when the durable evidence write failed.
-            return json(503, {
-                status: 'DURABLE_EVENT_WRITE_FAILED',
-                event_id: eventId,
-                order_id: orderCode || 'UNSPECIFIED',
-                provider
-            });
+        const finalizeRes = await fetch(
+            `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+            {
+                method: 'PATCH',
+                headers: { ...auth, Prefer: 'return=minimal' },
+                body: JSON.stringify({ status: isSuccess ? 'processed' : 'received', processed_at: isSuccess ? now : null })
+            }
+        );
+        if (!finalizeRes.ok) {
+            return json(503, { status: 'EVENT_FINALIZE_FAILED', event_id: eventId, order_id: orderCode || 'UNSPECIFIED' });
         }
 
         return json(200, {
