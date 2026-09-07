@@ -1,73 +1,70 @@
 /**
- * IINSHA AI-BOS — Multi-Channel Notification Dispatcher
- * Bridges Telegram Bot (@inshatechbot), Resend Transactional Email, and WhatsApp Concierge
- * with priority routing (P0 Emergency, P1 Operational, P2 Summary).
+ * IINSHA AI-BOS — Production Notification Dispatcher
+ * Every channel must prove provider acceptance before reporting success.
  */
 
-class MultiChannelNotificationDispatcher {
+import crypto from 'crypto';
+
+export class MultiChannelNotificationDispatcher {
     constructor(config = {}) {
-        this.telegramBotToken = config.telegramBotToken || (typeof process !== 'undefined' && process.env?.TELEGRAM_BOT_TOKEN) || null;
-        this.ownerChatId = config.ownerChatId || (typeof process !== 'undefined' && process.env?.TELEGRAM_OWNER_CHAT_ID) || null;
-        this.resendApiKey = config.resendApiKey || (typeof process !== 'undefined' && process.env?.RESEND_API_KEY) || null;
-        this.ownerEmail = config.ownerEmail || (typeof process !== 'undefined' && process.env?.OWNER_EMAIL) || 'adnansadatmahin4@gmail.com';
-        this.ownerPhone = config.ownerPhone || (typeof process !== 'undefined' && process.env?.OWNER_PHONE) || '+8801629286887';
+        this.telegramBotToken = config.telegramBotToken || process.env.TELEGRAM_BOT_TOKEN || '';
+        this.ownerChatId = config.ownerChatId || process.env.TELEGRAM_OWNER_CHAT_ID || '';
+        this.resendApiKey = config.resendApiKey || process.env.RESEND_API_KEY || '';
+        this.ownerEmail = config.ownerEmail || process.env.OWNER_EMAIL || '';
+        this.ownerPhone = config.ownerPhone || process.env.OWNER_PHONE || '';
         this.dispatchedLogs = [];
     }
 
-    /**
-     * Dispatch alert across configured channels based on priority
-     */
-    async dispatchAlert(priority = 'P1', title = '', message = '') {
-        const timestamp = new Date().toISOString();
-        const notificationId = `NOTIF-${Date.now()}`;
-        const channelsTriggered = [];
-
-        // 1. Telegram Dispatch
-        channelsTriggered.push({
-            channel: 'TELEGRAM',
-            status: 'DISPATCHED',
-            bot: '@inshatechbot',
-            targetChatId: this.ownerChatId
+    async _sendTelegram(message) {
+        if (!this.telegramBotToken || !this.ownerChatId) {
+            return { status: 'NOT_CONFIGURED', channel: 'TELEGRAM', missing_env: ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_OWNER_CHAT_ID'] };
+        }
+        const response = await fetch(`https://api.telegram.org/bot${this.telegramBotToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: this.ownerChatId, text: message })
         });
+        const body = await response.json().catch(() => null);
+        return { status: response.ok && body?.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR', channel: 'TELEGRAM', provider_receipt: body };
+    }
 
-        // 2. Email Dispatch (For P0 & P1)
-        if (priority === 'P0' || priority === 'P1') {
-            channelsTriggered.push({
-                channel: 'EMAIL',
-                status: 'DISPATCHED',
-                provider: 'Resend API',
-                recipient: this.ownerEmail
-            });
+    async _sendEmail(subject, message) {
+        if (!this.resendApiKey || !this.ownerEmail) {
+            return { status: 'NOT_CONFIGURED', channel: 'EMAIL', missing_env: ['RESEND_API_KEY', 'OWNER_EMAIL'] };
         }
+        const response = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${this.resendApiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || 'IINSHA AI <support@inshatech.com>', to: [this.ownerEmail], subject, text: message })
+        });
+        const body = await response.json().catch(() => null);
+        return { status: response.ok ? 'PROVIDER_ACCEPTED' : 'PROVIDER_ERROR', channel: 'EMAIL', provider_receipt: body };
+    }
 
-        // 3. WhatsApp Deep Link Dispatch (For P0 Emergency)
-        if (priority === 'P0') {
-            channelsTriggered.push({
-                channel: 'WHATSAPP',
-                status: 'READY_TO_PING',
-                recipient: this.ownerPhone
-            });
-        }
+    async dispatchAlert(priority = 'P1', title = '', message = '') {
+        const notificationId = `NOTIF-${crypto.randomUUID()}`;
+        const results = [await this._sendTelegram(`${title}\n\n${message}`)];
+        if (priority === 'P0' || priority === 'P1') results.push(await this._sendEmail(title, message));
+
+        const allAccepted = results.length > 0 && results.every(item => item.status === 'PROVIDER_ACCEPTED');
+        const anyAccepted = results.some(item => item.status === 'PROVIDER_ACCEPTED');
+        const status = allAccepted ? 'DISPATCHED' : anyAccepted ? 'PARTIAL' : 'NOT_CONFIGURED';
 
         const logEntry = {
-            notificationId,
+            notification_id: notificationId,
             priority,
             title,
             message,
-            timestamp,
-            channels: channelsTriggered,
-            deliveryStatus: 'SUCCESS'
+            timestamp: new Date().toISOString(),
+            channels: results,
+            delivery_status: status,
+            production_verified: status === 'DISPATCHED'
         };
-
         this.dispatchedLogs.push(logEntry);
         return logEntry;
     }
 
     getLogs() {
-        return this.dispatchedLogs;
+        return [...this.dispatchedLogs];
     }
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { MultiChannelNotificationDispatcher };
 }

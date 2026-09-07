@@ -1,65 +1,90 @@
 /**
- * IINSHA AI-BOS — CRM & Customer Profile Adapter
- * Synchronizes Prospects, Leads, Opportunities, and Customer Profiles with Supabase RLS
+ * IINSHA AI-BOS — Production CRM Adapter
+ *
+ * Production rule: never fabricate a CRM success result.
+ * Live persistence requires explicit Supabase credentials and a successful
+ * provider response. Otherwise the adapter returns NOT_CONFIGURED/BLOCKED.
  */
 
-const crypto = require('crypto');
+import crypto from 'crypto';
 
-class CrmAdapter {
-    constructor() {
-        this.leadStore = new Map();
-        this.customerProfiles = new Map();
+export class CrmAdapter {
+    constructor(config = {}) {
+        this.supabaseUrl = config.supabaseUrl || process.env.SUPABASE_URL || '';
+        this.supabaseKey = config.supabaseServiceRoleKey || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+        this.table = config.table || process.env.SUPABASE_LEADS_TABLE || 'ibos_leads';
     }
 
-    /**
-     * Ingest and qualify lead in CRM
-     */
-    syncLead(leadData = {}) {
-        const leadId = `CRM-LEAD-${Date.now()}-${crypto.randomBytes(3).toString('hex')}`;
-        const record = {
-            id: leadId,
-            name: leadData.name || 'Anonymous Prospect',
-            email: leadData.email,
-            phone: leadData.phone,
-            company: leadData.company,
-            score: leadData.score || 70,
-            status: leadData.status || 'QUALIFIED',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-
-        this.leadStore.set(leadId, record);
-        return {
-            status: 'CRM_SYNC_SUCCESS',
-            lead: record
-        };
+    _validateConfig() {
+        const missing = [];
+        if (!this.supabaseUrl) missing.push('SUPABASE_URL');
+        if (!this.supabaseKey) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+        return missing;
     }
 
-    /**
-     * Promote lead to paying customer account
-     */
-    promoteToCustomer(leadId, orderData = {}) {
-        const lead = this.leadStore.get(leadId);
-        const customerId = `CUST-${Date.now()}`;
+    async syncLead(leadData = {}) {
+        const missing = this._validateConfig();
+        if (missing.length) {
+            return {
+                status: 'NOT_CONFIGURED',
+                connector: 'supabase_crm',
+                missing_env: missing,
+                production_verified: false
+            };
+        }
 
-        const profile = {
-            id: customerId,
-            leadId,
-            name: lead ? lead.name : orderData.customerName,
-            email: lead ? lead.email : orderData.customerEmail,
-            lifetimeValueUSD: orderData.amountUSD || 850,
-            status: 'ACTIVE_PAID',
-            onboardedAt: new Date().toISOString()
+        const correlationId = `CRM-${crypto.randomUUID()}`;
+        const payload = {
+            name: leadData.name || null,
+            email: leadData.email || null,
+            phone: leadData.phone || null,
+            company: leadData.company || null,
+            score: Number.isFinite(Number(leadData.score)) ? Number(leadData.score) : null,
+            status: leadData.status || 'qualified',
+            source: leadData.source || 'IINSHA_AI_BOS',
+            correlation_id: correlationId,
+            created_at: new Date().toISOString()
         };
 
-        this.customerProfiles.set(customerId, profile);
-        return {
-            status: 'CUSTOMER_CREATED',
-            customer: profile
-        };
+        try {
+            const response = await fetch(`${this.supabaseUrl.replace(/\/$/, '')}/rest/v1/${encodeURIComponent(this.table)}`, {
+                method: 'POST',
+                headers: {
+                    apikey: this.supabaseKey,
+                    Authorization: `Bearer ${this.supabaseKey}`,
+                    'Content-Type': 'application/json',
+                    Prefer: 'return=representation,resolution=error-if-duplicates'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const body = await response.json().catch(() => null);
+            if (!response.ok) {
+                return {
+                    status: 'PROVIDER_ERROR',
+                    connector: 'supabase_crm',
+                    http_code: response.status,
+                    correlation_id: correlationId,
+                    production_verified: false,
+                    error: body?.message || body?.hint || `Supabase returned HTTP ${response.status}`
+                };
+            }
+
+            return {
+                status: 'PERSISTED_TO_POSTGRES',
+                connector: 'supabase_crm',
+                correlation_id: correlationId,
+                production_verified: true,
+                provider_receipt: Array.isArray(body) ? body[0] : body
+            };
+        } catch (error) {
+            return {
+                status: 'PROVIDER_UNREACHABLE',
+                connector: 'supabase_crm',
+                correlation_id: correlationId,
+                production_verified: false,
+                error: error.message
+            };
+        }
     }
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { CrmAdapter };
 }
