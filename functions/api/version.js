@@ -1,6 +1,7 @@
 /**
  * Cloudflare Pages Function: /api/version
  * Cryptographic Release Parity & Dynamic Version Manifest Endpoint
+ * Production truth: never invent deployment or database state.
  */
 
 const ALLOWED_ORIGINS = [
@@ -16,61 +17,82 @@ const ALLOWED_ORIGINS = [
 
 function isOriginAllowed(origin) {
     if (!origin) return false;
-    return ALLOWED_ORIGINS.includes(origin) ||
-        origin.endsWith('.pages.dev') ||
-        origin.endsWith('.loca.lt');
+    if (ALLOWED_ORIGINS.includes(origin)) return true;
+    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
+}
+
+function databaseIdentity(env) {
+    const canonical = env.CANONICAL_SUPABASE_PROJECT_REF || env.SUPABASE_PROJECT_REF || null;
+    const runtime = env.SUPABASE_RUNTIME_PROJECT_REF || null;
+    const health = String(env.SUPABASE_RUNTIME_HEALTH || '').toUpperCase();
+    const parity = Boolean(canonical && runtime && canonical === runtime);
+
+    if (!canonical || !runtime) {
+        return {
+            canonical_db: canonical,
+            runtime_db: runtime,
+            db_parity: false,
+            status: 'UNVERIFIED'
+        };
+    }
+
+    return {
+        canonical_db: canonical,
+        runtime_db: runtime,
+        db_parity: parity,
+        status: parity && health === 'HEALTHY'
+            ? 'ACTIVE_HEALTHY'
+            : parity
+                ? 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
+                : 'MISMATCH'
+    };
 }
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
-    const origin = request.headers.get("Origin");
+    const origin = request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
 
-    const corsHeaders = {
-        "Access-Control-Allow-Origin": corsOrigin,
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate"
-    };
-
-    const deployedSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || "091332f";
-    const expectedSha = env.EXPECTED_RELEASE_SHA || deployedSha;
-    const isLiveVerified = Boolean(deployedSha && expectedSha && deployedSha.toLowerCase() === expectedSha.toLowerCase());
-    const isDbConnected = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
+    const deployedSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
+    const expectedSha = env.EXPECTED_RELEASE_SHA || null;
+    const parity = Boolean(deployedSha && expectedSha && deployedSha.toLowerCase() === expectedSha.toLowerCase());
+    const db = databaseIdentity(env);
 
     const payload = {
-        status: isLiveVerified ? "LIVE_VERIFIED" : "LOCAL_RUNTIME_VERIFIED",
-        platform: "IINSHA AI-BOS",
+        status: parity ? 'LIVE_VERIFIED' : (deployedSha ? 'DEPLOYMENT_SHA_UNVERIFIED' : 'UNVERIFIED'),
+        platform: 'IINSHA AI-BOS',
         deploy_sha: deployedSha,
         expected_release_sha: expectedSha,
-        parity: isLiveVerified,
-        branch: env.CF_PAGES_BRANCH || "master",
-        canonical_repository: "https://github.com/adnin4/inshatech.git",
-        environment: env.ENVIRONMENT || "production",
-        database_identity: {
-            canonical_db: "kitwadizsvjmuxkfewxj",
-            runtime_db: env.SUPABASE_PROJECT_REF || "kitwadizsvjmuxkfewxj",
-            db_parity: isDbConnected ? "CONNECTED" : "NOT_CONFIGURED",
-            status: isDbConnected ? "CONNECTED" : "NOT_CONFIGURED"
-        },
+        parity,
+        branch: env.CF_PAGES_BRANCH || null,
+        canonical_repository: 'https://github.com/adnin4/inshatech.git',
+        environment: env.ENVIRONMENT || 'unknown',
+        database_identity: db,
         timestamp: new Date().toISOString()
     };
 
-    return new Response(JSON.stringify(payload, null, 2), { headers: corsHeaders });
+    return new Response(JSON.stringify(payload, null, 2), {
+        status: 200,
+        headers: {
+            'Access-Control-Allow-Origin': corsOrigin,
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache, must-revalidate'
+        }
+    });
 }
 
 export async function onRequestOptions(context) {
-    const { request } = context;
-    const origin = request.headers.get("Origin");
+    const origin = context.request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
 
     return new Response(null, {
+        status: 204,
         headers: {
-            "Access-Control-Allow-Origin": corsOrigin,
-            "Access-Control-Allow-Methods": "GET, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization"
-        },
-        status: 204
+            'Access-Control-Allow-Origin': corsOrigin,
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }
     });
 }
