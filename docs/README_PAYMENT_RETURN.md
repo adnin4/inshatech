@@ -1,0 +1,1 @@
+See `functions/api/payments/return.js` for the read-only browser return boundary and `functions/api/payments/_middleware.js` for legacy GET isolation.
