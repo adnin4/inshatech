@@ -7,40 +7,26 @@
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
 - Current runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
-- Current documentation tip: `7b42ecb7fd4bc4aad6f92d6596ef94aaa8fea6bc`
-- Main and master currently point to the same repository revision.
+- Current documentation tip: `29da30bc7a4860fbbbcdcfeb40df96d2a58e3ddc`
+- Main and master must be SHA-checked before any production release.
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
-
-## Important corrections
-
-Historical automated reports used labels such as `100%`, `LIVE_VERIFIED`, `ACTIVE_HEALTHY`, `PAID`, and `PRODUCTION_READY` based partly on source-level or simulated execution. Those labels are not accepted as live-production evidence without independently verifiable external evidence.
-
-`CANONICAL_SYSTEM_STATE.json` is explicitly non-authoritative for live runtime identity. It records canonical/expected infrastructure separately from externally unverified runtime facts.
 
 ## Verified engineering improvements
 
-- Business webhook handling requires an injected signature verifier plus an idempotency key before payment state can transition.
-- Checkout requires a configured provider adapter and does not return a sample provider URL.
-- Project delivery requires verified payment, evidence-backed QA, and explicit client-approval evidence.
-- QA certification fails closed when mandatory evidence is missing and requires evidence references for a passing verdict.
-- Provider/business verification fields are separated from `production_verified`; the business engine no longer equates a verified operation with whole-production verification.
-- Regression coverage for these truth gates is wired into CI.
-- UI/UX remains unchanged by this hardening pass.
+- Webhook payment transitions require an injected verifier and idempotency key.
+- Checkout requires a configured provider adapter and does not return a sample checkout URL.
+- Delivery requires verified payment, evidence-backed QA, and explicit client approval evidence.
+- QA certification fails closed on missing evidence and requires evidence references for a pass.
+- Provider/business verification is separated from whole-production verification.
+- Static canonical state no longer asserts live runtime database parity.
+- Business truth regression coverage is wired into CI.
+- UI/UX was not redesigned by this hardening pass.
 
 ## External verification still required
 
 ### Cloudflare
 
-Must independently verify:
-
-- Pages project connection to the repository.
-- Intended production branch.
-- Production deployment SHA.
-- Live `/api/version` SHA.
-- Truthful `/api/health`.
-- Truthful `/api/sre/health`.
-
-Preview deployment success is not production deployment proof.
+Verify the production deployment SHA and compare it to the reviewed runtime/code head. Verify live `/api/version`, `/api/health`, and `/api/sre/health`.
 
 ### Supabase
 
@@ -55,11 +41,11 @@ Control-plane baseline:
 - 0 public tables without RLS
 - Security Advisor: 0 findings
 
-Runtime database identity still requires independent evidence.
+Runtime database identity remains unverified until the deployed application proves it.
 
 ### AI runtime
 
-Required evidence remains:
+Required evidence:
 
 `mission -> task -> agent -> tool -> provider -> execution -> artifact -> QA -> delivery`
 
@@ -71,7 +57,7 @@ Current state:
 
 `PAYMENT_NOT_CONFIGURED`
 
-No provider is LIVE_VERIFIED until a controlled real transaction, signed webhook verification, replay protection, durable persistence, and reconciliation are evidenced.
+No provider becomes `LIVE_VERIFIED` without a controlled real transaction, signed webhook verification, replay protection, durable persistence and reconciliation.
 
 ## Release classification
 
@@ -79,11 +65,14 @@ No provider is LIVE_VERIFIED until a controlled real transaction, signed webhook
 
 ## Production blockers
 
-- Issue #49: production runtime evidence.
-- Issue #51: live business-provider/evidence verification.
-- Branch governance.
-- Production browser E2E.
-- AI execution receipts.
-- Provider receipts.
-- Backup/restore.
-- Rollback/recovery.
+- live Cloudflare/runtime evidence
+- runtime Supabase identity and authorization evidence
+- production browser E2E
+- real AI execution receipts
+- provider receipts
+- payment transaction/reconciliation
+- live replay/idempotency evidence
+- notification evidence
+- backup/restore
+- rollback/recovery
+- branch governance
