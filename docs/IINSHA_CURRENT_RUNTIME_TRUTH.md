@@ -1,37 +1,57 @@
-# 🏛️ IINSHA AI-BOS: CURRENT RUNTIME TRUTH MANIFEST
+# IINSHA AI-BOS — CURRENT RUNTIME TRUTH MANIFEST
 
-* **Date:** 2026-09-07
-* **Canonical Repository:** `https://github.com/adnin4/inshatech.git`
-* **Canonical Branch:** `master`
-* **Current Master SHA:** `fd0db21`
+**Audit date:** 2026-09-07
 
----
+## Repository state
 
-## 📊 Component-by-Component Runtime State
+- Canonical repository: `adnin4/inshatech`
+- Canonical branch: `master`
+- Current master audit baseline: `4f9b7511a4f7b250cd9da6bf7ad76b78dd3317b9`
+- This document records evidence boundaries, not independent proof of the live Cloudflare deployment.
 
-```text
-[UI & UX LAYER]
-  ├── Visual Identity        : PRESERVED (Three.js 3D Hero, Glassmorphism, 22 Sections)
-  ├── DOM Hierarchy          : VERIFIED (All Modals outside body flow after Footer)
-  ├── UX Interactions        : ACTIVE (Escape/Ctrl+K, scroll-margin-top: 85px, showToast)
-  └── Automated Guardian     : ENFORCED (npm test Claim 10 + npm run build gate)
+## Verified boundaries
 
-[AI RUNTIME & CHAT]
-  ├── /api/v1/agent/chat     : TRUTHFUL (RESPONSE_GENERATED vs EXECUTION_STATE separation)
-  ├── Model Inference        : ACTIVE (Gemini 1.5 Flash live call with fallback)
-  └── Evidence Generation    : CRYPTOGRAPHIC (SHA-256 Input/Output/Signature hash)
+### UI / UX
 
-[ADAPTER & PROVIDER LAYER]
-  ├── Tool Execution Gateway : FAIL-CLOSED (No synthetic success)
-  ├── CRM Adapter            : REST SUPABASE (NOT_CONFIGURED without keys)
-  ├── Payments Router        : MULTI-RAIL (Lemon Squeezy Store 458722, Stripe, bKash)
-  └── Notifications          : FAIL-CLOSED (Telegram/Resend NOT_CONFIGURED without keys)
+The current hardening changes are limited to API truth semantics, tests and evidence documentation. No customer-facing UI redesign or page removal is included.
 
-[INFRASTRUCTURE & EDGE]
-  ├── Cloudflare Functions   : COMPILED & TESTED (0 Build Errors)
-  ├── /api/version           : DYNAMIC (Fail-closed on unverified SHA/DB)
-  └── /api/health            : LIVE SRE TELEMETRY (Latency < 30ms, SLO Verified)
-```
+### AI runtime
 
----
-**FINAL VERDICT: ALL ARCHITECTURAL, UI, UX, AND BACKEND TRUTH BOUNDARIES ARE 100% HARDENED.**
+- `/api/v1/agent/chat` is conversational and explicitly non-executing.
+- Model inference is configurable through `GEMINI_MODEL`; the hardening default is `gemini-3.8-flash`.
+- Deterministic fallback remains non-side-effecting.
+- SHA-256 hashes identify response inputs/outputs; they do not prove a business action occurred.
+
+### Edge runtime
+
+- `/api/version` must read deployment SHA from Cloudflare/Git runtime variables and require explicit expected-release parity before returning `LIVE_VERIFIED`.
+- `/api/health` reports edge/configuration facts only; latency, uptime and agent-count metrics require real telemetry.
+
+### Supabase
+
+Connected Supabase control-plane evidence on 2026-09-07:
+
+- Project `kitwadizsvjmuxkfewxj`: `ACTIVE_HEALTHY`
+- Security advisor: zero lints
+- Public tables audited: 110
+- RLS enabled: 110/110
+
+Control-plane health does not prove Cloudflare runtime connectivity; those are separate evidence domains.
+
+### Provider layer
+
+Payment, notification, CRM, deployment and customer-impacting execution must not be labeled production-successful without provider acceptance, durable reconciliation, and suitable verification evidence.
+
+## External evidence still required
+
+1. Cloudflare production branch/deployment and live SHA verification.
+2. Resolution of the earlier Cloudflare preview build failure reported on the hardening PR.
+3. Browser-level E2E against the deployed site.
+4. Provider-specific execution receipts for payments, notifications and any business side effects.
+5. Runtime secret/connectivity verification for enabled integrations without exposing secret values.
+
+## Release classification
+
+**READY_FOR_STAGING**
+
+Repository CI and database control-plane checks can support staging confidence; they do not alone establish production certification.
