@@ -6,8 +6,8 @@ This checklist is an operational evidence register. It does not itself constitut
 
 - Canonical branch: `master`
 - Current runtime/code hardening head: `09f7bf1` (`test(gates): assert webhook verification precedes payment state`)
-- Subsequent commits after this runtime/code head are documentation-only unless explicitly stated otherwise.
-- `62c242d` refreshed the production-truth document after the runtime hardening pass.
+- Current master documentation tip: `43e25c2` (this checklist revision)
+- The documentation commits after the runtime/code head do not modify application runtime behavior.
 - PR #50 is merged and contains CI false-green hardening.
 
 ## Evidence gates
@@ -15,7 +15,7 @@ This checklist is an operational evidence register. It does not itself constitut
 | Gate | Required evidence | Current state |
 |---|---|---|
 | Git release identity | Exact reviewed runtime/code SHA | VERIFIED: `09f7bf1` |
-| GitHub CI | Required workflow/check-run success for current code head | PENDING/RECHECK AFTER LATEST COMMITS |
+| GitHub CI | Required workflow/check-run success for current code head | RECHECK REQUIRED |
 | Cloudflare preview | Successful preview for reviewed SHA | VERIFIED for prior `99344cf` preview |
 | Cloudflare production | Production deployment record for current code head | UNVERIFIED |
 | Live `/api/version` | `deploy_sha` equals expected runtime/code SHA | UNVERIFIED |
@@ -25,7 +25,7 @@ This checklist is an operational evidence register. It does not itself constitut
 | Supabase security | RLS, grants, policies and privileged functions reviewed | CONTROL-PLANE VERIFIED; runtime authorization evidence pending |
 | Browser E2E | Critical journeys against deployed build | STATIC/PUBLIC TESTS VERIFIED; production browser evidence pending |
 | AI execution | Mission/task/tool/provider/execution evidence | UNVERIFIED |
-| Idempotency | Replay/duplicate side-effect tests | PARTIAL: code gates added; live/provider replay evidence pending |
+| Idempotency | Replay/duplicate side-effect tests | CODE GATES ADDED; LIVE/PROVIDER REPLAY EVIDENCE PENDING |
 | Provider receipts | External acceptance/receipt for consequential actions | UNVERIFIED |
 | Payments | Provider transaction + webhook + reconciliation | NOT CONFIGURED |
 | Notifications | Provider acceptance + durable record | UNVERIFIED |
