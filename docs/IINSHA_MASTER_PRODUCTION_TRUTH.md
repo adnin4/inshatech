@@ -6,8 +6,8 @@
 
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current runtime/code hardening head: `09f7bf187f4a91d6e3bd091f37c30392c214d657`
-- Subsequent commits after this runtime/code head are documentation-only unless explicitly stated otherwise.
+- Current runtime/code hardening head: `3244db15570669d3c775892ab45a85b4465ac1d0`
+- Subsequent commits after this runtime/code head are documentation/release-state changes unless explicitly stated otherwise.
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
 
 ## Release lineage
@@ -16,11 +16,14 @@
 - `eee895fe` refreshed the runtime truth and blocker register.
 - `2d2f134` merged CI hardening that removes false-green secret-scan and dependency-install fallbacks.
 - `44da3e8` aligned the production evidence checklist with the reviewed release head.
-- `09f7bf1` completed the current runtime truth-hardening pass: payment/webhook/delivery gates are fail-closed, QA certification requires explicit evidence, and regression coverage was added.
+- `09f7bf1` completed the initial runtime truth-hardening pass: payment/webhook/delivery gates are fail-closed, QA certification requires explicit evidence, and regression coverage was added.
+- `3244db1` corrected verification semantics so provider/business verification cannot be labeled as whole-production verification.
 
-## Important correction
+## Important corrections
 
 Historical automated reports in this repository used words such as `100%`, `LIVE_VERIFIED`, `ACTIVE_HEALTHY`, `PAID`, and `PRODUCTION_READY` based partly on source-level or simulated execution. Those labels are not accepted as live-production evidence unless an external provider/runtime receipt or independently verifiable production record exists.
+
+`CANONICAL_SYSTEM_STATE.json` is now explicitly non-authoritative for live runtime identity. It records the canonical/expected database project separately from the externally unverified runtime connection.
 
 ## Verified engineering improvements
 
@@ -31,11 +34,12 @@ Historical automated reports in this repository used words such as `100%`, `LIVE
 - `/api/version` and `/api/health` are hardened so missing runtime evidence cannot be converted into fabricated deployment or database claims.
 - The customer-facing chat endpoint uses a current Gemini model configuration and distinguishes conversational response generation from business-side-effect execution.
 - CI release gates no longer tolerate TruffleHog failure and no longer fall back from `npm ci` to `npm install`.
-- Business webhook handling now requires an injected signature verifier plus an idempotency key before any payment state transition.
-- Checkout now requires a configured provider adapter and no longer returns a sample provider URL.
-- Project delivery now requires verified payment, evidence-backed QA, and explicit durable client-approval evidence.
-- QA certification now fails closed when mandatory evidence is missing and requires evidence references for a passing verdict.
-- Regression coverage for these business truth gates is wired into the zero-regression workflow.
+- Business webhook handling requires an injected signature verifier plus an idempotency key before any payment state transition.
+- Checkout requires a configured provider adapter and does not return a sample provider URL.
+- Project delivery requires verified payment, evidence-backed QA, and explicit durable client-approval evidence.
+- QA certification fails closed when mandatory evidence is missing and requires evidence references for a passing verdict.
+- Provider/business verification fields are separated from `production_verified`; whole-production verification remains false until external runtime evidence exists.
+- Regression coverage for these business truth gates is wired into CI.
 
 ## External verification still required
 
@@ -44,8 +48,8 @@ Historical automated reports in this repository used words such as `100%`, `LIVE
 Must independently verify:
 
 - Pages project is connected to `adnin4/inshatech`.
-- Production branch is `master`.
-- Production deployment corresponds to the intended runtime/code release.
+- Production branch is the intended canonical branch.
+- Production deployment corresponds to the reviewed runtime/code release.
 - Live `/api/version` reports the actual deployed SHA.
 - Live `/api/health` reports runtime facts rather than synthetic metrics.
 - Live `/api/sre/health` is reachable and truthful.
@@ -103,7 +107,8 @@ No provider is LIVE_VERIFIED until a controlled real transaction, signed webhook
 
 This is the strongest truthful classification supported by the evidence currently available.
 
-## Production blocker
+## Production blockers
 
-GitHub issue #49 remains the production runtime evidence gate.
-GitHub issue #51 tracks business truth hardening and remains open until live provider/evidence requirements can be independently exercised.
+- GitHub issue #49 remains the production runtime evidence gate.
+- GitHub issue #51 tracks business truth hardening and remains open until live provider/evidence requirements can be independently exercised.
+- Branch governance remains unverified.
