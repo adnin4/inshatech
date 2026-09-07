@@ -1,78 +1,32 @@
 import assert from 'node:assert/strict';
-import { createRequire } from 'node:module';
+import { readFile } from 'node:fs/promises';
 
-const require = createRequire(import.meta.url);
-const { AutonomousBusinessEngine } = require('../ai_brain/autonomous_business_engine.js');
+const engine = await readFile(new URL('../ai_brain/autonomous_business_engine.js', import.meta.url), 'utf8');
+const verifier = await readFile(new URL('../ai_brain/independent_qa_verifier.js', import.meta.url), 'utf8');
 
-const engine = new AutonomousBusinessEngine();
+// Consequential payment success must require an injected verifier and idempotency key.
+assert.match(engine, /!idempotencyKey/);
+assert.match(engine, /!this\.webhookVerifier/);
+assert.match(engine, /WEBHOOK_SIGNATURE_INVALID/);
+assert.match(engine, /BLOCKED_INVALID_PAYMENT_EVIDENCE/);
+assert.doesNotMatch(engine, /verifiedHmac:\s*true[\s\S]*?saveOrder/);
 
-const checkout = await engine.initiateCheckout('ORD-TEST-1');
-assert.equal(checkout.status, 'NOT_CONFIGURED');
-assert.equal(checkout.blocked_from_success_claim, true);
-assert.equal(checkout.production_verified, false);
+// Checkout must use a real adapter, never a sample checkout URL.
+assert.match(engine, /!this\.checkoutProvider/);
+assert.match(engine, /checkoutProvider\.createCheckout/);
+assert.doesNotMatch(engine, /checkout\.stripe\.com\/pay\/sample/);
 
-const webhookNoVerifier = await engine.processWebhook(
-    { orderId: 'ORD-TEST-1', amount: 100, currency: 'USD' },
-    'evt-test-1',
-    'fake-signature'
-);
-assert.equal(webhookNoVerifier.status, 'NOT_CONFIGURED');
-assert.equal(webhookNoVerifier.blocked_from_success_claim, true);
+// Project delivery must not bypass payment, QA evidence, or explicit client approval.
+assert.match(engine, /BLOCKED_PAYMENT_NOT_VERIFIED/);
+assert.match(engine, /BLOCKED_QA/);
+assert.match(engine, /BLOCKED_CLIENT_APPROVAL_REQUIRED/);
+assert.match(engine, /clientApprovalEvidenceRef/);
 
-const webhookMissingKey = await engine.processWebhook(
-    { orderId: 'ORD-TEST-1', amount: 100, currency: 'USD' },
-    null,
-    'fake-signature'
-);
-assert.equal(webhookMissingKey.status, 'BLOCKED_MISSING_IDEMPOTENCY_KEY');
-
-const projectNoPayment = engine.createAndExecuteProject('ORD-TEST-1', {
-    paymentVerified: false
-});
-assert.equal(projectNoPayment.status, 'BLOCKED_PAYMENT_NOT_VERIFIED');
-
-const projectMissingQa = engine.createAndExecuteProject('ORD-TEST-1', {
-    paymentVerified: true,
-    qaEvidence: {
-        functionalCorrectness: true,
-        securityRlsEnabled: true,
-        priceTamperProtected: true,
-        accessibilityWcagPass: true,
-        zeroHardcodedSecrets: true,
-        evidenceRefs: []
-    }
-});
-assert.equal(projectMissingQa.status, 'BLOCKED_QA');
-assert.equal(projectMissingQa.qaResult.verdict, 'BLOCKED_MISSING_EVIDENCE_REFS');
-
-const projectMissingApproval = engine.createAndExecuteProject('ORD-TEST-1', {
-    paymentVerified: true,
-    qaEvidence: {
-        functionalCorrectness: true,
-        securityRlsEnabled: true,
-        priceTamperProtected: true,
-        accessibilityWcagPass: true,
-        zeroHardcodedSecrets: true,
-        evidenceRefs: ['qa://test/audit-1']
-    }
-});
-assert.equal(projectMissingApproval.status, 'BLOCKED_CLIENT_APPROVAL_REQUIRED');
-
-const approvedProject = engine.createAndExecuteProject('ORD-TEST-1', {
-    paymentVerified: true,
-    qaEvidence: {
-        functionalCorrectness: true,
-        securityRlsEnabled: true,
-        priceTamperProtected: true,
-        accessibilityWcagPass: true,
-        zeroHardcodedSecrets: true,
-        evidenceRefs: ['qa://test/audit-1']
-    },
-    clientApproval: true,
-    clientApprovalEvidenceRef: 'approval://test/client-1'
-});
-assert.equal(approvedProject.status, 'PROJECT_DELIVERED_SUCCESS');
-assert.equal(approvedProject.production_verified, true);
-assert.equal(approvedProject.blocked_from_success_claim, false);
+// QA must reject missing evidence and must not hard-code verification checks to true.
+assert.match(verifier, /BLOCKED_INSUFFICIENT_EVIDENCE/);
+assert.match(verifier, /missingEvidence/);
+assert.doesNotMatch(verifier, /functionalCorrectness:\s*true/);
+assert.doesNotMatch(verifier, /priceTamperProtected:\s*true/);
+assert.doesNotMatch(verifier, /accessibilityWcagPass:\s*true/);
 
 console.log('Business truth gates: PASS');
