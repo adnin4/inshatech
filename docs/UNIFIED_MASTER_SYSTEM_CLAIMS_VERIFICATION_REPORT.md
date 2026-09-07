@@ -1,26 +1,24 @@
-# 🏛️ IINSHA AI-BOS: UNIFIED MASTER SYSTEM CLAIMS VERIFICATION REPORT
+# IINSHA AI-BOS — System Claim Classification Report
 
-* **Verification Date:** 2026-09-07T13:42:33.727Z
-* **Total Architectural Claims Audited:** 10
-* **Verified Claims Passed:** 10 / 10 (100%)
-* **Governing Invariant:** All claims are backed by executable scripts, database schemas, and cryptographic assertions.
+Generated: 2026-09-07T13:50:22.844Z
 
----
+This report certifies static/structural invariants only. It is not production-runtime evidence.
 
-## 📊 Summary Table of Verified Claims:
+| # | Claim | Classification | Detail |
+|---:|---|---|---|
+| 1 | Zero-leak distribution invariant | VERIFIED_STATIC | .env.example present; no detected live-token pattern. |
+| 2 | Canonical service catalog structure | VERIFIED_STATIC | 5 catalog entries parsed. |
+| 3 | Agent registry structure | VERIFIED_STATIC | 14 agent definitions detected. |
+| 4 | Copilot memory structure | VERIFIED_STATIC | loadMemory/saveMemory detected. |
+| 5 | Sales scoring structure | VERIFIED_STATIC | lead scoring and ROI calculators detected. |
+| 6 | Affiliate tracking structure | VERIFIED_STATIC | affiliate tracking function exists. |
+| 7 | Payment adapter boundary | CONFIGURED_UNVERIFIED | payment code exists; provider activation is not certified here. |
+| 8 | Webhook verification boundary | STRUCTURAL_ONLY | webhook verifier and idempotency requirements detected. |
+| 9 | Autonomous cycle conformance runner | SIMULATION | cycle runner is explicitly simulation/conformance only. |
+| 10 | UI/UX structural invariants | VERIFIED_STATIC | All 22 sections, DOM hierarchy, modal isolation, and UX interactions verified with 0 defects. |
 
-| # | Architectural Claim | Assertion Target | Status |
-| :-: | :--- | :--- | :---: |
-| **01** | Zero-Leak Security Invariant | `.env.example` only, 0 plaintext tokens in 330+ files | 🟢 **VERIFIED** |
-| **02** | Single Source of Truth Registry | `knowledge/services.json` (5 Canonical Services) | 🟢 **VERIFIED** |
-| **03** | 13-Agent Swarm & Tool Gateway | `ai_brain/agents/agent_registry.js` (Level 0-4 Governance) | 🟢 **VERIFIED** |
-| **04** | Copilot 2.0 Customer Memory | `universal_ai_copilot.js` (sessionStorage & 7 Modes) | 🟢 **VERIFIED** |
-| **05** | Progressive Sales & ROI Math | `ai_brain/sales_engine.js` (Deterministic Scoring) | 🟢 **VERIFIED** |
-| **06** | Affiliate 60-Day Attribution | `functions/api/affiliate/track.js` (Anti-Fraud) | 🟢 **VERIFIED** |
-| **07** | Lemon Squeezy Store 458722 | `functions/api/payments/checkout.js` (Multi-Rail) | 🟢 **VERIFIED** |
-| **08** | Cryptographic Webhook Settlement | HMAC-SHA256 Timing-Safe Verification & Double-Entry | 🟢 **VERIFIED** |
-| **09** | Autonomous Business Cycle | `scripts/run_live_autonomous_business_cycle.mjs` (9 Stages) | 🟢 **VERIFIED** |
-| **10** | UI/UX & DOM Hierarchy Guardian | `scripts/verify_ui_ux_invariants.mjs` (All 22 Sections & Modals) | 🟢 **VERIFIED** |
+## Evidence boundary
 
----
-**FINAL VERDICT: EVERY CLAIM IN IINSHA AI-BOS IS 100% EXECUTABLE AND CRYPTOGRAPHICALLY VERIFIABLE.**
+No row in this report proves a real customer transaction, external provider settlement, provider delivery, production deployment, or live runtime health.
+
+Overall gate: PASS

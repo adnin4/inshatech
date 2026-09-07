@@ -1,8 +1,9 @@
-# 📊 REAL VS DEMO DATA AUDIT
+# IINSHA AI-BOS — Real vs Demo Data Boundary
 
-* **Three-Environment Standard:** DEMO, STAGING, PRODUCTION
-* **Policy Enforced:** No simulated or synthetic counters are represented as verified production metrics.
-* **Production Verified Metrics:**
-  * Lemon Squeezy Store ID: `458722`
-  * Service Catalog: 5 Official Verified Packages
-  * Security Audit: 333 Files Checked (0 Violations)
+Current policy: simulation and conformance outputs are explicitly non-production.
+
+- Real customer transaction: NOT_VERIFIED
+- External payment settlement: NOT_VERIFIED
+- Provider delivery receipt: NOT_VERIFIED
+- Production deployment evidence: EXTERNAL_PROOF_REQUIRED
+- Local conformance checks: AVAILABLE
