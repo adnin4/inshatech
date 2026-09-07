@@ -66,7 +66,7 @@ const successRun = async () => {
 
     // 6. QA Test Suite
     const r6 = await gateway.execute({ agent_id: 'QA_AGENT', tool_id: 'run_qa_test_suite' });
-    console.log(`  6. Independent QA & Scan       : 🟢 ${r6.status} (Confidence: ${r6.result.confidence})`);
+    console.log(`  6. Independent QA & Scan       : 🟢 ${r6.status} (Confidence: ${r6.result?.confidence ?? r6.execution?.confidence ?? 'N/A'})`);
 
     // 7. Production Deployment (Approved by Owner)
     const r7 = await gateway.execute({ agent_id: 'DEVOPS_AGENT', tool_id: 'deploy_production_release', owner_token: 'IINSHA_OWNER_AUTH_2026' });
