@@ -2,27 +2,28 @@
 
 This checklist is an operational evidence register. It does not constitute production certification.
 
-## Current release lineage
+## Current state
 
+- Repository: `adnin4/inshatech`
 - Canonical branch: `master`
 - Runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
-- Documentation-only revisions follow that runtime head.
-- Main and master must be SHA-checked before any production release.
+- Current master tip: documentation-only changes after the runtime head.
+- Main/master must be SHA-checked before production release.
 
-## Evidence gates
+## Evidence
 
-| Gate | Current state |
+| Gate | State |
 |---|---|
-| Exact reviewed runtime/code SHA | VERIFIED: `1b83d5c` |
-| Current-head GitHub CI | MUST RECHECK |
-| Cloudflare production deployment | UNVERIFIED |
-| Live `/api/version` | UNVERIFIED |
-| Live `/api/health` | UNVERIFIED |
-| Live `/api/sre/health` | UNVERIFIED |
+| Business truth gates | VERIFIED IN CODE |
+| Verification semantics | VERIFIED IN CODE |
+| Canonical static-state truthfulness | HARDENED |
+| Supabase control plane | VERIFIED baseline |
 | Runtime Supabase identity | UNVERIFIED |
-| Supabase control-plane security | VERIFIED baseline; runtime authorization pending |
+| Current-head CI | MUST RECHECK |
+| Cloudflare production deployment | UNVERIFIED |
+| Live API version/health/SRE health | UNVERIFIED |
 | Production browser E2E | UNVERIFIED |
-| Real AI execution chain | UNVERIFIED |
+| Real AI execution receipts | UNVERIFIED |
 | Live replay/idempotency evidence | UNVERIFIED |
 | Provider receipts | UNVERIFIED |
 | Payments | NOT_CONFIGURED |
@@ -30,21 +31,9 @@ This checklist is an operational evidence register. It does not constitute produ
 | Backup/restore | UNVERIFIED |
 | Rollback/recovery | UNVERIFIED |
 | Branch governance | NOT_VERIFIED |
-| Business truth gates | VERIFIED IN CODE |
-| Verification semantics | VERIFIED IN CODE |
-| Canonical system state truthfulness | HARDENED |
 
-## Release rule
+## Release classification
 
-Release remains `READY_FOR_STAGING` until the required production evidence is independently available.
+`READY_FOR_STAGING`
 
-Do not treat source tests, generated IDs, timestamps, hashes, HTTP 200 responses, preview URLs, static state files, or internal rows as sufficient production evidence.
-
-## Safety
-
-- No UI redesign is required for this hardening pass.
-- No destructive database cleanup.
-- No provider activation without credentials and external receipt evidence.
-- No payment activation without a real controlled transaction and reconciliation.
-- Never mark `LIVE_VERIFIED` without corresponding external evidence.
-- Never equate business/provider verification with `production_verified`.
+Do not promote to production until external runtime/provider evidence is independently verified.
