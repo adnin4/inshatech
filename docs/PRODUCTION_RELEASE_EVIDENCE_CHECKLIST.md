@@ -6,7 +6,8 @@ This checklist is an operational evidence register. It does not itself constitut
 
 - Canonical branch: `master`
 - Current runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
-- Current documentation tip: `72dd69e`
+- Current documentation tip: `e6b8585`
+- Main and master currently point to the same revision.
 - Business truth regression checks are wired into CI.
 
 ## Evidence gates
@@ -31,7 +32,7 @@ This checklist is an operational evidence register. It does not itself constitut
 | Backup/restore | Successful restore evidence | UNVERIFIED |
 | Rollback | Tested rollback/recovery evidence | UNVERIFIED |
 | Branch governance | Protected canonical branch + required checks | NOT VERIFIED |
-| Business truth gates | Synthetic payment/QA/delivery success prevented | VERIFIED IN CODE; CI RECHECK REQUIRED |
+| Business truth gates | Synthetic payment/QA/delivery success prevented | VERIFIED IN CODE; CURRENT-HEAD CI RECHECK REQUIRED |
 | Verification semantics | Operation/business verification cannot imply whole-production verification | VERIFIED IN CODE |
 | Canonical system state | Static state cannot impersonate live runtime evidence | HARDENED; RUNTIME STILL UNVERIFIED |
 
