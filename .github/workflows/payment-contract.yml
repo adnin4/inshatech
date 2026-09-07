@@ -21,3 +21,4 @@ jobs:
         run: |
           node scripts/payment_webhook_contract.mjs
           node scripts/test_payment_hardening_contract.mjs
+          node scripts/test_payment_adversarial_suite.mjs
