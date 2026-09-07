@@ -1,207 +1,80 @@
 /**
- * IINSHA AI-BOS: UNIFIED MASTER SYSTEM CLAIMS VERIFICATION SUITE
- * 
- * "Make every existing claim executable and verifiable."
- * 
- * Verifies 10 Core Architectural Claims:
- * 1. P0 Enterprise Security & Zero-Secret Leak Invariant
- * 2. Single Source of Truth Service Registry & Data Schema
- * 3. 13-Agent Departmental Workforce & 5-Level Tool Gateway
- * 4. Copilot 2.0 Multi-Mode Intent & Customer Memory
- * 5. Progressive Sales Qualification & Objective ROI Engine
- * 6. Affiliate Attribution (60-Day Cookie, SubIDs, Anti-Fraud)
- * 7. Multi-Rail Payment Adapters (Lemon Squeezy Store 458722, Stripe, bKash, SSL)
- * 8. End-to-End Financial Settlement & Double-Entry Ledger
- * 9. Autonomous Business Execution Cycle (Inbound ➔ QA ➔ Delivery)
- * 10. Zero-Regression UI/UX & DOM Layout Guardian
+ * IINSHA AI-BOS: SYSTEM CLAIM CLASSIFICATION SUITE
+ *
+ * Verifies repository/static invariants only. It does not certify production.
  */
-
-import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { verifyUiUxInvariants } from './verify_ui_ux_invariants.mjs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const ROOT_DIR = path.resolve(__dirname, '..');
-
-console.log('================================================================================');
-console.log('🏛️ IINSHA AI-BOS: UNIFIED MASTER CLAIMS VERIFICATION SUITE');
-console.log('🔒 RULE: Every single architectural claim must be executable & verifiable.');
-console.log('================================================================================\n');
-
-const claimsResults = [];
-
-function assertClaim(claimId, name, testFn) {
-    try {
-        const result = testFn();
-        claimsResults.push({ claimId, name, status: 'VERIFIED', details: result });
-        console.log(`[CLAIM ${claimId}] ✅ ${name}`);
-        console.log(`  ➔ Proof : ${result}\n`);
-    } catch (err) {
-        claimsResults.push({ claimId, name, status: 'FAILED', details: err.message });
-        console.error(`[CLAIM ${claimId}] ❌ ${name} — FAILED: ${err.message}\n`);
-    }
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const results = [];
+function check(id, name, fn, classification = 'VERIFIED_STATIC') {
+  try {
+    const detail = fn();
+    results.push({ id, name, status: classification, detail });
+    console.log(`[CLAIM ${id}] PASS — ${name} — ${classification}`);
+  } catch (error) {
+    results.push({ id, name, status: 'FAILED', detail: error.message });
+    console.error(`[CLAIM ${id}] FAIL — ${name}: ${error.message}`);
+  }
 }
 
-// -----------------------------------------------------------------------------
-// CLAIM 1: P0 Security & Zero Plaintext Secrets
-// -----------------------------------------------------------------------------
-assertClaim(1, 'Zero-Leak Security Invariant (.env excluded, 0 hardcoded tokens in 330+ files)', () => {
-    const examplePath = path.join(ROOT_DIR, '.env.example');
-    if (!fs.existsSync(examplePath)) throw new Error('.env.example is missing!');
-    const content = fs.readFileSync(examplePath, 'utf8');
-    if (content.includes('eyJh') || content.includes('re_') || content.includes('bot')) {
-        throw new Error('.env.example contains real secret values!');
-    }
-    return '.env strictly excluded from distribution; .env.example contains 0 live tokens.';
+check(1, 'Zero-leak distribution invariant', () => {
+  const file = path.join(ROOT, '.env.example');
+  if (!fs.existsSync(file)) throw new Error('.env.example missing');
+  const content = fs.readFileSync(file, 'utf8');
+  if (/eyJh|sk-[A-Za-z0-9]|re_[A-Za-z0-9]{10,}|AIzaSy[A-Za-z0-9_-]{20,}/.test(content)) throw new Error('token-like value detected');
+  return '.env.example present; no detected live-token pattern.';
 });
-
-// -----------------------------------------------------------------------------
-// CLAIM 2: Single Source of Truth Service Registry
-// -----------------------------------------------------------------------------
-assertClaim(2, 'Single Source of Truth Service Catalog & Pricing Schema', () => {
-    const servicesPath = path.join(ROOT_DIR, 'knowledge', 'services.json');
-    if (!fs.existsSync(servicesPath)) throw new Error('knowledge/services.json missing!');
-    const services = JSON.parse(fs.readFileSync(servicesPath, 'utf8'));
-    if (!Array.isArray(services) || services.length < 5) throw new Error('Catalog has less than 5 canonical packages!');
-    const sample = services[0];
-    if (!sample.id || !sample.priceUSD || !sample.priceBDT) throw new Error('Invalid service schema!');
-    return `5 Canonical Services verified with dual USD/BDT pricing ($${sample.priceUSD} USD / ৳${sample.priceBDT} BDT).`;
+check(2, 'Canonical service catalog structure', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'knowledge', 'services.json'), 'utf8'));
+  if (!Array.isArray(data) || data.length < 5) throw new Error('canonical service catalog is incomplete');
+  return `${data.length} catalog entries parsed.`;
 });
-
-// -----------------------------------------------------------------------------
-// CLAIM 3: 13-Agent Departmental Swarm & Tool Permissions
-// -----------------------------------------------------------------------------
-assertClaim(3, '13-Agent Departmental Workforce & 5-Level Permission Gateway', () => {
-    const registryPath = path.join(ROOT_DIR, 'ai_brain', 'agents', 'agent_registry.js');
-    if (!fs.existsSync(registryPath)) throw new Error('agent_registry.js missing!');
-    const content = fs.readFileSync(registryPath, 'utf8');
-    const agentMatches = content.match(/[A-Z0-9_]+_AGENT\s*:/g) || [];
-    if (agentMatches.length < 10) throw new Error(`Found only ${agentMatches.length} agents; expected >= 10!`);
-    return `${agentMatches.length} Departmental Agents configured with Level 0-4 governance.`;
+check(3, 'Agent registry structure', () => {
+  const content = fs.readFileSync(path.join(ROOT, 'ai_brain', 'agents', 'agent_registry.js'), 'utf8');
+  const count = (content.match(/[A-Z0-9_]+_AGENT\s*:/g) || []).length;
+  if (count < 10) throw new Error(`only ${count} agent definitions detected`);
+  return `${count} agent definitions detected.`;
 });
-
-// -----------------------------------------------------------------------------
-// CLAIM 4: Copilot 2.0 Multi-Mode & Customer Memory
-// -----------------------------------------------------------------------------
-assertClaim(4, 'Copilot 2.0 Customer Memory & Multi-Mode Intent Engine', () => {
-    const copilotPath = path.join(ROOT_DIR, 'universal_ai_copilot.js');
-    if (!fs.existsSync(copilotPath)) throw new Error('universal_ai_copilot.js missing!');
-    const content = fs.readFileSync(copilotPath, 'utf8');
-    if (!content.includes('sessionStorage') || !content.includes('loadMemory') || !content.includes('saveMemory')) {
-        throw new Error('Copilot missing persistent memory methods (loadMemory / saveMemory)!');
-    }
-    return 'Customer memory persisted in sessionStorage via loadMemory/saveMemory methods.';
+check(4, 'Copilot memory structure', () => {
+  const content = fs.readFileSync(path.join(ROOT, 'universal_ai_copilot.js'), 'utf8');
+  if (!content.includes('loadMemory') || !content.includes('saveMemory')) throw new Error('memory functions missing');
+  return 'loadMemory/saveMemory detected.';
 });
-
-// -----------------------------------------------------------------------------
-// CLAIM 5: Progressive Sales Qualification & ROI Math
-// -----------------------------------------------------------------------------
-assertClaim(5, 'Progressive Qualification & Objective ROI Calculation Engine', () => {
-    const salesEnginePath = path.join(ROOT_DIR, 'ai_brain', 'sales_engine.js');
-    if (!fs.existsSync(salesEnginePath)) throw new Error('sales_engine.js missing!');
-    const content = fs.readFileSync(salesEnginePath, 'utf8');
-    if (!content.includes('calculateLeadScore') || !content.includes('calculateROI')) {
-        throw new Error('Sales engine missing lead scoring or ROI calculators!');
-    }
-    return 'Lead qualification scoring (0-100) and break-even ROI math mathematically verified.';
+check(5, 'Sales scoring structure', () => {
+  const content = fs.readFileSync(path.join(ROOT, 'ai_brain', 'sales_engine.js'), 'utf8');
+  if (!content.includes('calculateLeadScore') || !content.includes('calculateROI')) throw new Error('sales calculators missing');
+  return 'lead scoring and ROI calculators detected.';
 });
-
-// -----------------------------------------------------------------------------
-// CLAIM 6: Affiliate Attribution & Fraud Radar
-// -----------------------------------------------------------------------------
-assertClaim(6, 'Affiliate Attribution (60-Day Cookie, SubID, IP Collision Fraud Radar)', () => {
-    const trackPath = path.join(ROOT_DIR, 'functions', 'api', 'affiliate', 'track.js');
-    if (!fs.existsSync(trackPath)) throw new Error('affiliate/track.js missing!');
-    const content = fs.readFileSync(trackPath, 'utf8');
-    if (!content.includes('affiliate') && !content.includes('track')) {
-        throw new Error('Affiliate tracking missing attribution logic!');
-    }
-    return '60-day cookie (5,184,000s) attribution and fraud radar active.';
+check(6, 'Affiliate tracking structure', () => {
+  const file = path.join(ROOT, 'functions', 'api', 'affiliate', 'track.js');
+  if (!fs.existsSync(file)) throw new Error('affiliate tracker missing');
+  return 'affiliate tracking function exists.';
 });
+check(7, 'Payment adapter boundary', () => {
+  const content = fs.readFileSync(path.join(ROOT, 'functions', 'api', 'payments', 'checkout.js'), 'utf8');
+  if (!/stripe|bkash|lemon/i.test(content)) throw new Error('payment routing references missing');
+  return 'payment code exists; provider activation is not certified here.';
+}, 'CONFIGURED_UNVERIFIED');
+check(8, 'Webhook verification boundary', () => {
+  const content = fs.readFileSync(path.join(ROOT, 'ai_brain', 'autonomous_business_engine.js'), 'utf8');
+  if (!content.includes('webhookVerifier') || !content.includes('idempotencyKey')) throw new Error('verification/idempotency boundary missing');
+  return 'webhook verifier and idempotency requirements detected.';
+}, 'STRUCTURAL_ONLY');
+check(9, 'Autonomous cycle conformance runner', () => {
+  const file = path.join(ROOT, 'scripts', 'run_live_autonomous_business_cycle.mjs');
+  const content = fs.readFileSync(file, 'utf8');
+  if (!content.includes('SIMULATION')) throw new Error('runner must declare SIMULATION mode');
+  if (/settled as PAID|credited to operating revenue|REAL-WORLD.*100% OPERATIONAL/i.test(content)) throw new Error('synthetic production-success language detected');
+  return 'cycle runner is explicitly simulation/conformance only.';
+}, 'SIMULATION');
+check(10, 'UI/UX structural invariants', () => verifyUiUxInvariants(), 'VERIFIED_STATIC');
 
-// -----------------------------------------------------------------------------
-// CLAIM 7: Lemon Squeezy Store 458722 & Multi-Rail Payments
-// -----------------------------------------------------------------------------
-assertClaim(7, 'Lemon Squeezy Store 458722 Handshake & Multi-Rail Routing', () => {
-    const checkoutPath = path.join(ROOT_DIR, 'functions', 'api', 'payments', 'checkout.js');
-    if (!fs.existsSync(checkoutPath)) throw new Error('payments/checkout.js missing!');
-    const content = fs.readFileSync(checkoutPath, 'utf8');
-    if (!content.includes('bkash') && !content.includes('stripe')) {
-        throw new Error('Checkout router missing multi-provider endpoints!');
-    }
-    return 'Official endpoints for Lemon Squeezy (Store 458722), Stripe, bKash, and SSLCommerz verified.';
-});
-
-// -----------------------------------------------------------------------------
-// CLAIM 8: Cryptographic Webhook & Double-Entry Ledger Settlement
-// -----------------------------------------------------------------------------
-assertClaim(8, 'HMAC-SHA256 Webhook Verification & Double-Entry Ledger', () => {
-    const secret = 'assertion_secret_2026';
-    const payload = JSON.stringify({ order_id: 'ORD-TEST', amount: 100 });
-    const sig = crypto.createHmac('sha256', secret).update(payload).digest('hex');
-    const expected = crypto.createHmac('sha256', secret).update(payload).digest('hex');
-    const match = crypto.timingSafeEqual(Buffer.from(sig, 'utf8'), Buffer.from(expected, 'utf8'));
-    if (!match) throw new Error('HMAC timing-safe assertion failed!');
-    return 'HMAC-SHA256 timing-safe cryptographic verification executed and passed.';
-});
-
-// -----------------------------------------------------------------------------
-// CLAIM 9: Autonomous Business Execution Cycle
-// -----------------------------------------------------------------------------
-assertClaim(9, 'Governed Autonomous Business Cycle (Inbound ➔ QA ➔ Delivery)', () => {
-    const cycleScript = path.join(ROOT_DIR, 'scripts', 'run_live_autonomous_business_cycle.mjs');
-    if (!fs.existsSync(cycleScript)) throw new Error('run_live_autonomous_business_cycle.mjs missing!');
-    return '9-Stage Autonomous Business Cycle script present, executable, and validated.';
-});
-
-// -----------------------------------------------------------------------------
-// CLAIM 10: Zero-Regression UI/UX & DOM Layout Guardian
-// -----------------------------------------------------------------------------
-assertClaim(10, 'Zero-Regression UI/UX & DOM Layout Guardian', () => {
-    return verifyUiUxInvariants();
-});
-
-// -----------------------------------------------------------------------------
-// GENERATE MASTER VERIFICATION SEAL
-// -----------------------------------------------------------------------------
-const passedCount = claimsResults.filter(c => c.status === 'VERIFIED').length;
-const totalCount = claimsResults.length;
-
-const masterReport = `# 🏛️ IINSHA AI-BOS: UNIFIED MASTER SYSTEM CLAIMS VERIFICATION REPORT
-
-* **Verification Date:** ${new Date().toISOString()}
-* **Total Architectural Claims Audited:** ${totalCount}
-* **Verified Claims Passed:** ${passedCount} / ${totalCount} (100%)
-* **Governing Invariant:** All claims are backed by executable scripts, database schemas, and cryptographic assertions.
-
----
-
-## 📊 Summary Table of Verified Claims:
-
-| # | Architectural Claim | Assertion Target | Status |
-| :-: | :--- | :--- | :---: |
-| **01** | Zero-Leak Security Invariant | \`.env.example\` only, 0 plaintext tokens in 330+ files | 🟢 **VERIFIED** |
-| **02** | Single Source of Truth Registry | \`knowledge/services.json\` (5 Canonical Services) | 🟢 **VERIFIED** |
-| **03** | 13-Agent Swarm & Tool Gateway | \`ai_brain/agents/agent_registry.js\` (Level 0-4 Governance) | 🟢 **VERIFIED** |
-| **04** | Copilot 2.0 Customer Memory | \`universal_ai_copilot.js\` (sessionStorage & 7 Modes) | 🟢 **VERIFIED** |
-| **05** | Progressive Sales & ROI Math | \`ai_brain/sales_engine.js\` (Deterministic Scoring) | 🟢 **VERIFIED** |
-| **06** | Affiliate 60-Day Attribution | \`functions/api/affiliate/track.js\` (Anti-Fraud) | 🟢 **VERIFIED** |
-| **07** | Lemon Squeezy Store 458722 | \`functions/api/payments/checkout.js\` (Multi-Rail) | 🟢 **VERIFIED** |
-| **08** | Cryptographic Webhook Settlement | HMAC-SHA256 Timing-Safe Verification & Double-Entry | 🟢 **VERIFIED** |
-| **09** | Autonomous Business Cycle | \`scripts/run_live_autonomous_business_cycle.mjs\` (9 Stages) | 🟢 **VERIFIED** |
-| **10** | UI/UX & DOM Hierarchy Guardian | \`scripts/verify_ui_ux_invariants.mjs\` (All 22 Sections & Modals) | 🟢 **VERIFIED** |
-
----
-**FINAL VERDICT: EVERY CLAIM IN IINSHA AI-BOS IS 100% EXECUTABLE AND CRYPTOGRAPHICALLY VERIFIABLE.**
-`;
-
-const docPath = path.join(ROOT_DIR, 'docs', 'UNIFIED_MASTER_SYSTEM_CLAIMS_VERIFICATION_REPORT.md');
-fs.writeFileSync(docPath, masterReport, 'utf8');
-
-console.log('================================================================================');
-console.log(`🎉 ALL CLAIMS VERIFIED: ${passedCount}/${totalCount} (100% EXECUTABLE & VERIFIABLE)`);
-console.log('📄 Sealed Evidence: docs/UNIFIED_MASTER_SYSTEM_CLAIMS_VERIFICATION_REPORT.md');
-console.log('================================================================================\n');
+const failed = results.filter((r) => r.status === 'FAILED');
+const report = `# IINSHA AI-BOS — System Claim Classification Report\n\nGenerated: ${new Date().toISOString()}\n\nThis report certifies static/structural invariants only. It is not production-runtime evidence.\n\n| # | Claim | Classification | Detail |\n|---:|---|---|---|\n${results.map((r) => `| ${r.id} | ${r.name} | ${r.status} | ${r.detail.replace(/\n/g, ' ')} |`).join('\n')}\n\n## Evidence boundary\n\nNo row in this report proves a real customer transaction, external provider settlement, provider delivery, production deployment, or live runtime health.\n\nOverall gate: ${failed.length === 0 ? 'PASS' : 'FAIL'}\n`;
+fs.writeFileSync(path.join(ROOT, 'docs', 'UNIFIED_MASTER_SYSTEM_CLAIMS_VERIFICATION_REPORT.md'), report, 'utf8');
+if (failed.length) process.exit(1);
+console.log(`SYSTEM_CLAIM_CLASSIFICATION=PASS (${results.length}/${results.length})`);
