@@ -4,75 +4,73 @@
 
 ## Repository
 
-- Canonical engineering repository: `adnin4/inshatech`
+- Canonical repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
-- Current documentation tip: `29da30bc7a4860fbbbcdcfeb40df96d2a58e3ddc`
-- Main and master must be SHA-checked before any production release.
-- This document is evidence-based and must not be treated as proof of live infrastructure by itself.
+- Runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
+- Main/master SHA must be checked again immediately before production release.
+- Documentation revisions after the runtime head do not change application runtime behavior.
 
-## Verified engineering improvements
+## Current truthful classification
 
-- Webhook payment transitions require an injected verifier and idempotency key.
-- Checkout requires a configured provider adapter and does not return a sample checkout URL.
+`READY_FOR_STAGING`
+
+## Verified code hardening
+
+- Webhook payment transitions require an injected signature verifier and an idempotency key.
+- Checkout requires a configured provider adapter and no sample checkout URL is returned.
 - Delivery requires verified payment, evidence-backed QA, and explicit client approval evidence.
-- QA certification fails closed on missing evidence and requires evidence references for a pass.
-- Provider/business verification is separated from whole-production verification.
-- Static canonical state no longer asserts live runtime database parity.
+- QA fails closed when mandatory evidence is absent and requires evidence references for a pass.
+- Provider/business verification fields are separate from `production_verified`.
+- Static canonical state no longer claims live runtime database parity.
 - Business truth regression coverage is wired into CI.
 - UI/UX was not redesigned by this hardening pass.
 
-## External verification still required
+## External production evidence still required
 
 ### Cloudflare
 
-Verify the production deployment SHA and compare it to the reviewed runtime/code head. Verify live `/api/version`, `/api/health`, and `/api/sre/health`.
+- Production deployment SHA.
+- Live `/api/version` SHA match.
+- Truthful `/api/health`.
+- Truthful `/api/sre/health`.
 
 ### Supabase
 
-Expected runtime project:
+Expected project:
 
 `kitwadizsvjmuxkfewxj`
 
 Control-plane baseline:
 
-- 110 public tables
-- 110/110 RLS enabled
-- 0 public tables without RLS
-- Security Advisor: 0 findings
+- 110 public tables.
+- 110/110 RLS enabled.
+- 0 public tables without RLS.
+- Security Advisor: 0 findings.
 
 Runtime database identity remains unverified until the deployed application proves it.
 
 ### AI runtime
 
-Required evidence:
+Required durable chain:
 
 `mission -> task -> agent -> tool -> provider -> execution -> artifact -> QA -> delivery`
 
-with durable receipts and correlation identifiers.
-
 ### Payments
-
-Current state:
 
 `PAYMENT_NOT_CONFIGURED`
 
-No provider becomes `LIVE_VERIFIED` without a controlled real transaction, signed webhook verification, replay protection, durable persistence and reconciliation.
+No payment provider is `LIVE_VERIFIED` without a controlled real transaction, signed webhook verification, replay protection, durable persistence, and reconciliation.
 
-## Release classification
+## Remaining blockers
 
-`READY_FOR_STAGING`
-
-## Production blockers
-
-- live Cloudflare/runtime evidence
-- runtime Supabase identity and authorization evidence
-- production browser E2E
-- real AI execution receipts
-- provider receipts
-- payment transaction/reconciliation
-- live replay/idempotency evidence
-- notification evidence
-- backup/restore
-- rollback/recovery
-- branch governance
+- Live Cloudflare/runtime evidence.
+- Runtime Supabase identity and authorization evidence.
+- Production browser E2E.
+- Real AI execution receipts.
+- Provider receipts.
+- Payment transaction/reconciliation.
+- Live replay/idempotency evidence.
+- Notification evidence.
+- Backup/restore.
+- Rollback/recovery.
+- Branch governance.
