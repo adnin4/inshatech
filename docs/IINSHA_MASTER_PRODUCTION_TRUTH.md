@@ -8,7 +8,7 @@
 - Canonical branch: `master`
 - Runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
 - Documentation-only revisions follow the runtime head.
-- Main/master SHA must be checked again immediately before production release.
+- Main/master SHA must be checked immediately before production release.
 
 ## Current truthful classification
 
@@ -27,7 +27,9 @@
 
 ## Current Supabase evidence
 
-Live control-plane/database connectivity was confirmed for project `kitwadizsvjmuxkfewxj` using PostgreSQL 17.6. Public business tables have RLS and denial/public-read policies were audited; intentionally public content tables are limited to read policies. No public or authenticated execution was found for the audited secret-management functions. Runtime application-to-database parity remains unverified because the deployed Cloudflare runtime has not independently exposed its database identity.
+Direct read-only database connectivity to `kitwadizsvjmuxkfewxj` was confirmed; PostgreSQL 17.6 is active. Public business tables are RLS-protected, with explicit denial policies on sensitive tables and limited public-read policies on intended content tables. Audited privileged secret-management functions are not executable by `anon` or `authenticated`.
+
+This database evidence does not prove that the deployed Cloudflare runtime is connected to this same project; runtime identity remains unverified.
 
 ## External production evidence still required
 
@@ -37,21 +39,6 @@ Live control-plane/database connectivity was confirmed for project `kitwadizsvjm
 - Live `/api/version` SHA match.
 - Truthful `/api/health`.
 - Truthful `/api/sre/health`.
-
-### Supabase
-
-Expected project:
-
-`kitwadizsvjmuxkfewxj`
-
-Control-plane baseline:
-
-- 110 public tables.
-- 110/110 RLS enabled.
-- 0 public tables without RLS.
-- Security Advisor baseline previously verified at 0 findings.
-
-Runtime identity and complete authorization behavior still require deployed-runtime evidence.
 
 ### AI runtime
 
@@ -65,16 +52,16 @@ Required durable chain:
 
 No payment provider is `LIVE_VERIFIED` without a controlled real transaction, signed webhook verification, replay protection, durable persistence, and reconciliation.
 
-## Remaining blockers
+### Operational recovery
 
-- Live Cloudflare/runtime evidence.
-- Runtime Supabase identity and full deployed authorization evidence.
-- Production browser E2E.
-- Real AI execution receipts.
-- Provider receipts.
-- Payment transaction/reconciliation.
-- Live replay/idempotency evidence.
-- Notification evidence.
-- Backup/restore.
-- Rollback/recovery.
-- Branch governance.
+- browser production E2E
+- provider receipts
+- live replay/idempotency evidence
+- notifications
+- backup/restore
+- rollback/recovery
+- branch governance
+
+## Release blockers
+
+The system is not certified `PRODUCTION_READY` because the external runtime/provider evidence gates above are not yet independently satisfied.
