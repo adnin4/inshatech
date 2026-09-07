@@ -5,32 +5,34 @@ This checklist is an operational evidence register. It does not itself constitut
 ## Current release lineage
 
 - Canonical branch: `master`
-- Current master release head at checklist update time: `44da3e8` (`docs(release): align evidence checklist with current master`)
-- Previous runtime/CI hardening lineage: `2d2f134`, `eee895fe`, `99344cf`, `bd96b1b`
+- Current runtime/code hardening head: `09f7bf1` (`test(gates): assert webhook verification precedes payment state`)
+- Subsequent commits after this runtime/code head are documentation-only unless explicitly stated otherwise.
+- `62c242d` refreshed the production-truth document after the runtime hardening pass.
 - PR #50 is merged and contains CI false-green hardening.
 
 ## Evidence gates
 
 | Gate | Required evidence | Current state |
 |---|---|---|
-| Git release identity | Exact reviewed master SHA | VERIFIED at update time: `44da3e8` |
-| GitHub CI | Required workflow/check-run success for current head | MUST RECHECK AFTER THIS DOC UPDATE |
+| Git release identity | Exact reviewed runtime/code SHA | VERIFIED: `09f7bf1` |
+| GitHub CI | Required workflow/check-run success for current code head | PENDING/RECHECK AFTER LATEST COMMITS |
 | Cloudflare preview | Successful preview for reviewed SHA | VERIFIED for prior `99344cf` preview |
-| Cloudflare production | Production deployment record for current SHA | UNVERIFIED |
-| Live `/api/version` | `deploy_sha` equals expected release SHA | UNVERIFIED |
+| Cloudflare production | Production deployment record for current code head | UNVERIFIED |
+| Live `/api/version` | `deploy_sha` equals expected runtime/code SHA | UNVERIFIED |
 | Live `/api/health` | Truthful runtime health | UNVERIFIED |
 | Live `/api/sre/health` | Truthful SRE/runtime health | UNVERIFIED |
 | Runtime DB identity | Runtime project equals canonical Supabase ref | UNVERIFIED |
 | Supabase security | RLS, grants, policies and privileged functions reviewed | CONTROL-PLANE VERIFIED; runtime authorization evidence pending |
 | Browser E2E | Critical journeys against deployed build | STATIC/PUBLIC TESTS VERIFIED; production browser evidence pending |
 | AI execution | Mission/task/tool/provider/execution evidence | UNVERIFIED |
-| Idempotency | Replay/duplicate side-effect tests | UNVERIFIED |
+| Idempotency | Replay/duplicate side-effect tests | PARTIAL: code gates added; live/provider replay evidence pending |
 | Provider receipts | External acceptance/receipt for consequential actions | UNVERIFIED |
 | Payments | Provider transaction + webhook + reconciliation | NOT CONFIGURED |
 | Notifications | Provider acceptance + durable record | UNVERIFIED |
 | Backup/restore | Successful restore evidence | UNVERIFIED |
 | Rollback | Tested rollback/recovery evidence | UNVERIFIED |
 | Branch governance | Protected master + required checks | NOT VERIFIED |
+| Business truth gates | Synthetic payment/QA/delivery success prevented | CODE HARDENED; CI RECHECK REQUIRED |
 
 ## Release rule
 
