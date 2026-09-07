@@ -1,0 +1,1 @@
+Payment return boundary is implemented on the payment-browser-return branch. Browser GET returns are read-only; verified provider webhook/IPN remains the authority for payment state changes.
