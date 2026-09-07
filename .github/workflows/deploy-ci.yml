@@ -17,11 +17,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Scan for Hardcoded Secrets (TruffleHog)
+      - name: Scan for Hardcoded Secrets (TruffleHog - Pull Request)
+        if: github.event_name == 'pull_request'
         uses: trufflesecurity/trufflehog@main
         with:
           base: ${{ github.event.repository.default_branch }}
           head: HEAD
+          extra_args: --only-verified
+
+      - name: Scan for Hardcoded Secrets (TruffleHog - Push)
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000' && github.event.before != ''
+        uses: trufflesecurity/trufflehog@main
+        with:
+          base: ${{ github.event.before }}
+          head: HEAD
+          extra_args: --only-verified
 
       - name: Setup Node.js 22.x
         uses: actions/setup-node@v4
@@ -40,5 +50,5 @@ jobs:
       - name: Execute PR #7 Ordered Staging Preview & Parity Gate
         run: node scripts/verify-preview-deployment.mjs
         env:
-          LIVE_URL: https://staging-activation-v1.inshatech.pages.dev
+          LIVE_URL: https://inshatech.pages.dev
           EXPECTED_SHA: ${{ github.sha }}
