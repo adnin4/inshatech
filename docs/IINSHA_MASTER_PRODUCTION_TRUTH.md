@@ -6,7 +6,7 @@
 
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current runtime/code hardening head: `3244db15570669d3c775892ab45a85b4465ac1d0`
+- Current runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
 - Subsequent commits after this runtime/code head are documentation/release-state changes unless explicitly stated otherwise.
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
 
@@ -18,12 +18,13 @@
 - `44da3e8` aligned the production evidence checklist with the reviewed release head.
 - `09f7bf1` completed the initial runtime truth-hardening pass: payment/webhook/delivery gates are fail-closed, QA certification requires explicit evidence, and regression coverage was added.
 - `3244db1` corrected verification semantics so provider/business verification cannot be labeled as whole-production verification.
+- `1b83d5c` expanded regression coverage for the fail-closed verification semantics.
 
 ## Important corrections
 
 Historical automated reports in this repository used words such as `100%`, `LIVE_VERIFIED`, `ACTIVE_HEALTHY`, `PAID`, and `PRODUCTION_READY` based partly on source-level or simulated execution. Those labels are not accepted as live-production evidence unless an external provider/runtime receipt or independently verifiable production record exists.
 
-`CANONICAL_SYSTEM_STATE.json` is now explicitly non-authoritative for live runtime identity. It records the canonical/expected database project separately from the externally unverified runtime connection.
+`CANONICAL_SYSTEM_STATE.json` is explicitly non-authoritative for live runtime identity. It records the canonical/expected database project separately from the externally unverified runtime connection.
 
 ## Verified engineering improvements
 
