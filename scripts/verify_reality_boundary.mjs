@@ -41,19 +41,45 @@ const checks = [
 const truthGuard = path.join(ROOT, 'functions', '_middleware.js');
 if (!fs.existsSync(truthGuard)) throw new Error('Homepage truth guard middleware is missing.');
 
-const requiredReplacements = new Map([
-  ['IINSHA AI-BOS Autonomous Company OS Operational', 'IINSHA AI-BOS — Evidence-Gated Staging'],
-  ['100% Reliable Data Stream', 'Evidence-backed data pipeline'],
-  ['99.8% Success', 'Measured success rate varies by target'],
-  ['Cloudflare Bypass', 'anti-bot resilient where permitted'],
-  ['We support bKash, Nagad, Stripe Credit/Debit cards', 'Payment options are offered only when a corresponding provider integration is configured and independently verified.']
-]);
+const requiredReplacements = [
+  {
+    source: 'IINSHA AI-BOS Autonomous Company OS Operational',
+    replacement: 'IINSHA AI-BOS — Evidence-Gated Staging'
+  },
+  {
+    source: '100% Reliable Data Stream',
+    replacement: 'Evidence-backed data pipeline'
+  },
+  {
+    source: '99.8% Success',
+    replacement: 'Measured success rate varies by target'
+  },
+  {
+    sourceFragment: 'Cloudflare Bypass',
+    replacement: 'anti-bot resilient where permitted'
+  },
+  {
+    source: 'We support bKash, Nagad, Stripe Credit/Debit cards',
+    replacement: 'Payment options are offered only when a corresponding provider integration is configured and independently verified.'
+  }
+];
 
-for (const [from, to] of requiredReplacements) {
-  const match = REPLACEMENTS.find(([source]) => source === from);
-  if (!match) throw new Error(`Truth guard replacement missing: ${from}`);
-  if (match[1] !== to && !String(match[1]).includes(to)) {
-    throw new Error(`Truth guard replacement unsafe for: ${from}`);
+for (const requirement of requiredReplacements) {
+  const match = REPLACEMENTS.find(([source, replacement]) => {
+    const sourceText = String(source);
+    return requirement.source
+      ? sourceText === requirement.source
+      : sourceText.includes(requirement.sourceFragment);
+  });
+
+  if (!match) {
+    const label = requirement.source ?? requirement.sourceFragment;
+    throw new Error(`Truth guard replacement missing: ${label}`);
+  }
+
+  if (!String(match[1]).includes(requirement.replacement)) {
+    const label = requirement.source ?? requirement.sourceFragment;
+    throw new Error(`Truth guard replacement unsafe for: ${label}`);
   }
 }
 
