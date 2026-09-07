@@ -62,9 +62,9 @@ async function generateEvidence() {
 
   // 6. production-deployment.json
   const deploymentPackage = {
-    release_id: 'REL-2026.09.08-b0b5e99',
+    release_id: 'REL-2026.09.08-a3e8564',
     git_sha: vJson.deploy_sha,
-    canonical_commit_head: 'b0b5e99e15e400e4af6d7ff8defb18cb22b4ce41',
+    canonical_commit_head: 'a3e8564aef53b3835e9ea4b7a8bbc045b7ae8934',
     branch: vJson.branch,
     build_timestamp: new Date().toISOString(),
     node_version: process.version,
@@ -75,7 +75,7 @@ async function generateEvidence() {
       api_version: vJson.status,
       api_health: hJson.status,
       sre_health: sJson.status,
-      sha_parity: vJson.deploy_sha === 'b0b5e99e15e400e4af6d7ff8defb18cb22b4ce41',
+      sha_parity: vJson.deploy_sha === 'a3e8564aef53b3835e9ea4b7a8bbc045b7ae8934',
       browser_smoke_pass_count: smokeResults.filter(s => s.ok).length
     },
     evidence_artifacts: [
