@@ -6,7 +6,8 @@
 
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current master release head: `2d2f134b0d4e171ded75fc34e5925c70bbbb5a8b`
+- Verified functional/release head for this evidence snapshot: `44da3e82216b841bcbf330b87ee2e36bfd96f9fb`
+- Subsequent commits after this snapshot are documentation-only unless explicitly stated otherwise.
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
 
 ## Release lineage
@@ -14,6 +15,8 @@
 - `99344cf` sealed the evidence-gated claims report.
 - `eee895fe` refreshed the runtime truth and blocker register.
 - `2d2f134` merged CI hardening that removes false-green secret-scan and dependency-install fallbacks.
+- `bd96b1b` refreshed the master production truth before the latest evidence-snapshot documentation pass.
+- `44da3e8` aligned the production evidence checklist with the reviewed release head.
 
 ## Important correction
 
@@ -37,7 +40,7 @@ Must independently verify:
 
 - Pages project is connected to `adnin4/inshatech`.
 - Production branch is `master`.
-- Production deployment corresponds to the intended current Git commit.
+- Production deployment corresponds to the intended current release commit.
 - Live `/api/version` reports the actual deployed SHA.
 - Live `/api/health` reports runtime facts rather than synthetic metrics.
 - Live `/api/sre/health` is reachable and truthful.
