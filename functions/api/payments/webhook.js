@@ -67,30 +67,59 @@ export async function onRequestPost({ request, env = {} }) {
     try {
         const raw = await request.text();
         const url = new URL(request.url);
-        const provider = String(
+        let provider = String(
             url.searchParams.get('provider') ||
             request.headers.get('X-Payment-Provider') ||
             ''
         ).toLowerCase().trim();
 
         if (!provider) {
-            return json(400, { status: 'PROVIDER_REQUIRED' });
+            if (request.headers.get('X-Signature') || env.LEMONSQUEEZY_WEBHOOK_SECRET) {
+                provider = 'lemonsqueezy';
+            } else if (request.headers.get('Stripe-Signature') || env.STRIPE_WEBHOOK_SECRET) {
+                provider = 'stripe';
+            } else {
+                provider = 'generic';
+            }
         }
-        if (!env.WEBHOOK_SECRET) {
-            return json(503, { status: 'WEBHOOK_NOT_CONFIGURED' });
+
+        let secret = env.WEBHOOK_SECRET;
+        if (provider === 'lemonsqueezy' && env.LEMONSQUEEZY_WEBHOOK_SECRET) {
+            secret = env.LEMONSQUEEZY_WEBHOOK_SECRET;
+        } else if (provider === 'stripe' && env.STRIPE_WEBHOOK_SECRET) {
+            secret = env.STRIPE_WEBHOOK_SECRET;
+        }
+
+        if (!secret) {
+            if (!env.WEBHOOK_SECRET) {
+                return json(503, { status: 'WEBHOOK_NOT_CONFIGURED' });
+            }
         }
 
         const signature = String(
             request.headers.get('X-Webhook-Signature') ||
             request.headers.get('X-Signature') ||
+            request.headers.get('Stripe-Signature') ||
             ''
         ).trim();
         if (!signature) {
             return json(401, { status: 'SIGNATURE_REQUIRED' });
         }
 
-        const expected = await hmac(raw, env.WEBHOOK_SECRET);
-        if (!timingSafe(signature.toLowerCase(), expected.toLowerCase())) {
+        let isValid = false;
+        if (provider === 'stripe' && signature.includes('t=') && signature.includes('v1=')) {
+            const sigMap = Object.fromEntries(signature.split(',').map(kv => kv.trim().split('=')));
+            if (sigMap.v1 && sigMap.t) {
+                const signedPayload = `${sigMap.t}.${raw}`;
+                const expected = await hmac(signedPayload, secret);
+                isValid = timingSafe(sigMap.v1.toLowerCase(), expected.toLowerCase());
+            }
+        } else {
+            const expected = await hmac(raw, secret);
+            isValid = timingSafe(signature.toLowerCase(), expected.toLowerCase());
+        }
+
+        if (!isValid) {
             return json(401, { status: 'UNAUTHORIZED' });
         }
 

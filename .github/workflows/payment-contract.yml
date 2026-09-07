@@ -2,9 +2,9 @@ name: Payment Webhook Security Contract
 
 on:
   pull_request:
-    branches: [master]
+    branches: [master, main]
   push:
-    branches: [master]
+    branches: [master, main]
   workflow_dispatch:
 
 jobs:
@@ -18,4 +18,6 @@ jobs:
           node-version: 22
 
       - name: Verify payment webhook contract
-        run: node scripts/payment_webhook_contract.mjs
+        run: |
+          node scripts/payment_webhook_contract.mjs
+          node scripts/test_payment_hardening_contract.mjs
