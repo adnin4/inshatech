@@ -6,8 +6,8 @@
 
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Verified functional/release head for this evidence snapshot: `44da3e82216b841bcbf330b87ee2e36bfd96f9fb`
-- Subsequent commits after this snapshot are documentation-only unless explicitly stated otherwise.
+- Current runtime/code hardening head: `09f7bf187f4a91d6e3bd091f37c30392c214d657`
+- Subsequent commits after this runtime/code head are documentation-only unless explicitly stated otherwise.
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
 
 ## Release lineage
@@ -15,8 +15,8 @@
 - `99344cf` sealed the evidence-gated claims report.
 - `eee895fe` refreshed the runtime truth and blocker register.
 - `2d2f134` merged CI hardening that removes false-green secret-scan and dependency-install fallbacks.
-- `bd96b1b` refreshed the master production truth before the latest evidence-snapshot documentation pass.
 - `44da3e8` aligned the production evidence checklist with the reviewed release head.
+- `09f7bf1` completed the current runtime truth-hardening pass: payment/webhook/delivery gates are fail-closed, QA certification requires explicit evidence, and regression coverage was added.
 
 ## Important correction
 
@@ -31,6 +31,11 @@ Historical automated reports in this repository used words such as `100%`, `LIVE
 - `/api/version` and `/api/health` are hardened so missing runtime evidence cannot be converted into fabricated deployment or database claims.
 - The customer-facing chat endpoint uses a current Gemini model configuration and distinguishes conversational response generation from business-side-effect execution.
 - CI release gates no longer tolerate TruffleHog failure and no longer fall back from `npm ci` to `npm install`.
+- Business webhook handling now requires an injected signature verifier plus an idempotency key before any payment state transition.
+- Checkout now requires a configured provider adapter and no longer returns a sample provider URL.
+- Project delivery now requires verified payment, evidence-backed QA, and explicit durable client-approval evidence.
+- QA certification now fails closed when mandatory evidence is missing and requires evidence references for a passing verdict.
+- Regression coverage for these business truth gates is wired into the zero-regression workflow.
 
 ## External verification still required
 
@@ -40,7 +45,7 @@ Must independently verify:
 
 - Pages project is connected to `adnin4/inshatech`.
 - Production branch is `master`.
-- Production deployment corresponds to the intended current release commit.
+- Production deployment corresponds to the intended runtime/code release.
 - Live `/api/version` reports the actual deployed SHA.
 - Live `/api/health` reports runtime facts rather than synthetic metrics.
 - Live `/api/sre/health` is reachable and truthful.
@@ -78,28 +83,27 @@ Required before production certification:
 
 A model response proves that a model generated text. It does not prove that a business mission executed.
 
-Conversational response status and side-effect execution status must remain separate.
+Required production evidence remains:
+
+`mission -> task -> agent -> tool -> provider -> execution -> artifact -> QA -> delivery`
+
+with durable receipts and correlation identifiers.
 
 ### Payments
 
-No gateway is `LIVE_VERIFIED` until provider-specific checkout creation, signed webhook verification, replay/idempotency controls, reconciliation and a real controlled transaction are evidenced.
+Current state remains:
 
-### Notifications / CRM / automation
+`PAYMENT_NOT_CONFIGURED`
 
-A function call or generated identifier is not enough. Require provider acceptance, durable persistence, or an independently verifiable execution receipt.
+No provider is LIVE_VERIFIED until a controlled real transaction, signed webhook verification, replay protection, durable persistence and reconciliation are independently evidenced.
 
-## Current readiness classification
+## Release classification
 
 `READY_FOR_STAGING`
 
-Not yet `READY_FOR_PILOT` and not yet `PRODUCTION_READY`.
+This is the strongest truthful classification supported by the evidence currently available.
 
-## Release rule
+## Production blocker
 
-A production release may proceed only after the changed code passes CI, the production deployment SHA is independently verified, live runtime endpoints are verified, runtime database identity is verified, and every production-facing capability label matches actual evidence.
-
-See also:
-
-`docs/RELEASE_CERTIFICATION_RULES.md`
-
-`docs/PRODUCTION_RELEASE_EVIDENCE_CHECKLIST.md`
+GitHub issue #49 remains the production runtime evidence gate.
+GitHub issue #51 tracks business truth hardening and remains open until live provider/evidence requirements can be independently exercised.
