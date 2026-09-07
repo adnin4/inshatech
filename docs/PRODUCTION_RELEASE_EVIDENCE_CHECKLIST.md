@@ -5,7 +5,7 @@ This checklist is an operational evidence register. It does not itself constitut
 ## Current release lineage
 
 - Canonical branch: `master`
-- Current runtime/code hardening head: `3244db1` (`fix(truth): separate operation verification from production verification`)
+- Current runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
 - Subsequent commits after this runtime/code head are documentation/release-state changes unless explicitly stated otherwise.
 - Business truth regression checks are wired into CI.
 
@@ -13,7 +13,7 @@ This checklist is an operational evidence register. It does not itself constitut
 
 | Gate | Required evidence | Current state |
 |---|---|---|
-| Git release identity | Exact reviewed runtime/code SHA | VERIFIED: `3244db1` |
+| Git release identity | Exact reviewed runtime/code SHA | VERIFIED: `1b83d5c` |
 | GitHub CI | Required workflow/check-run success for current code head | RECHECK REQUIRED AFTER LATEST CODE CHANGE |
 | Cloudflare preview | Successful preview for reviewed SHA | VERIFIED for prior preview releases |
 | Cloudflare production | Production deployment record for current code head | UNVERIFIED |
@@ -32,7 +32,7 @@ This checklist is an operational evidence register. It does not itself constitut
 | Rollback | Tested rollback/recovery evidence | UNVERIFIED |
 | Branch governance | Protected canonical branch + required checks | NOT VERIFIED |
 | Business truth gates | Synthetic payment/QA/delivery success prevented | VERIFIED IN CODE; CURRENT-HEAD CI RECHECK REQUIRED |
-| Verification semantics | Operation/business verification cannot imply whole-production verification | CODE HARDENED |
+| Verification semantics | Operation/business verification cannot imply whole-production verification | VERIFIED IN CODE |
 | Canonical system state | Static state cannot impersonate live runtime evidence | HARDENED; RUNTIME STILL UNVERIFIED |
 
 ## Release rule
