@@ -30,9 +30,9 @@ const checks = [
       'PRODUCTION INTEGRATION STATUS'
     ],
     required: [
-      'Mode: `CONFORMANCE / STAGING READINESS`',
-      'production_verified === true',
-      'REAL_VS_DEMO_DATA_AUDIT.md'
+      'production_verified: result?.production_verified === true',
+      'REAL_VS_DEMO_DATA_AUDIT.md',
+      'FINAL_READINESS_CONFORMANCE=PASS'
     ],
     message: 'Activation mission must remain a conformance/readiness exercise and must not seal synthetic evidence as production.'
   }
