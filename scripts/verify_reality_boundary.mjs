@@ -59,13 +59,13 @@ const requiredReplacements = [
     replacement: 'anti-bot resilient where permitted'
   },
   {
-    source: 'We support bKash, Nagad, Stripe Credit/Debit cards',
+    sourceFragment: 'We support bKash, Nagad, Stripe Credit/Debit cards',
     replacement: 'Payment options are offered only when a corresponding provider integration is configured and independently verified.'
   }
 ];
 
 for (const requirement of requiredReplacements) {
-  const match = REPLACEMENTS.find(([source, replacement]) => {
+  const match = REPLACEMENTS.find(([source]) => {
     const sourceText = String(source);
     return requirement.source
       ? sourceText === requirement.source
