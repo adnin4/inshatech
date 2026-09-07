@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { REPLACEMENTS } from '../functions/_middleware.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -39,15 +40,21 @@ const checks = [
 
 const truthGuard = path.join(ROOT, 'functions', '_middleware.js');
 if (!fs.existsSync(truthGuard)) throw new Error('Homepage truth guard middleware is missing.');
-const guard = fs.readFileSync(truthGuard, 'utf8');
-for (const phrase of [
-  'IINSHA AI-BOS Autonomous Company OS Operational',
-  '99.8% Success',
-  '100% Reliable Data Stream',
-  'Cloudflare Bypass',
-  'We support bKash, Nagad, Stripe Credit/Debit cards'
-]) {
-  if (!guard.includes(phrase)) throw new Error(`Truth guard does not neutralize: ${phrase}`);
+
+const requiredReplacements = new Map([
+  ['IINSHA AI-BOS Autonomous Company OS Operational', 'IINSHA AI-BOS — Evidence-Gated Staging'],
+  ['100% Reliable Data Stream', 'Evidence-backed data pipeline'],
+  ['99.8% Success', 'Measured success rate varies by target'],
+  ['Cloudflare Bypass', 'anti-bot resilient where permitted'],
+  ['We support bKash, Nagad, Stripe Credit/Debit cards', 'Payment options are offered only when a corresponding provider integration is configured and independently verified.']
+]);
+
+for (const [from, to] of requiredReplacements) {
+  const match = REPLACEMENTS.find(([source]) => source === from);
+  if (!match) throw new Error(`Truth guard replacement missing: ${from}`);
+  if (match[1] !== to && !String(match[1]).includes(to)) {
+    throw new Error(`Truth guard replacement unsafe for: ${from}`);
+  }
 }
 
 for (const check of checks) {
