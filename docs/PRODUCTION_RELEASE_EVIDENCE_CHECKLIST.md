@@ -6,21 +6,25 @@ This checklist is an evidence register, not a production certification.
 
 - Repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current code/reality-boundary work: evidence-gated and fail-closed
-- `main` and `master` must remain SHA-aligned for release parity
+- Current reviewed master tip: `d6672d22fc6997c1741f98525d40ed75bae7330b`
+- `main` must be fast-forwarded to the same reviewed tip before deployment.
 
 ## Verified engineering controls
 
-| Gate | State |
-|---|---|
-| Business truth gates | VERIFIED IN CODE |
-| Verification semantics | VERIFIED IN CODE |
-| Static claim classification | VERIFIED IN CODE |
-| Public homepage truth guard | IMPLEMENTED; DEPLOYMENT-DEPENDENT |
-| Supabase control-plane baseline | VERIFIED |
-| UI/UX invariants | VERIFIED STATIC |
-| Autonomous cycle | SIMULATION / CONFORMANCE ONLY |
-| Final activation mission | READINESS / CONFORMANCE ONLY |
+| Gate | State | Evidence class |
+|---|---|---|
+| Business truth gates | PASS | STATIC / STRUCTURAL |
+| Webhook verification boundary | PASS | STRUCTURAL |
+| Idempotency requirement | PASS | STRUCTURAL |
+| Evidence-gated QA | PASS | STRUCTURAL |
+| Client approval gate | PASS | STRUCTURAL |
+| Restricted tool blocking | PASS | STATIC |
+| System claim classification | PASS | STATIC |
+| Homepage public truth guard | IMPLEMENTED | DEPLOYMENT-DEPENDENT |
+| Supabase control-plane baseline | PASS | CONTROL-PLANE |
+| UI/UX invariants | PASS | STATIC |
+| Autonomous business cycle | CONFORMANCE ONLY | SIMULATION |
+| Final activation mission | READINESS ONLY | CONFORMANCE |
 
 ## External production evidence
 
