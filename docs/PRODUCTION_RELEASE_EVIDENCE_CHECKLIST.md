@@ -6,8 +6,8 @@ This checklist is an operational evidence register. It does not itself constitut
 
 - Canonical branch: `master`
 - Current runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
-- Current documentation tip: `e6b8585`
-- Main and master currently point to the same revision.
+- Current documentation tip: `9a34185`
+- Main and master currently point to the same repository revision.
 - Business truth regression checks are wired into CI.
 
 ## Evidence gates
