@@ -6,12 +6,18 @@
 
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Master at audit start: `4403b809738af7ea16a63f2a518314588a524b3b`
+- Current master release head: `2d2f134b0d4e171ded75fc34e5925c70bbbb5a8b`
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
+
+## Release lineage
+
+- `99344cf` sealed the evidence-gated claims report.
+- `eee895fe` refreshed the runtime truth and blocker register.
+- `2d2f134` merged CI hardening that removes false-green secret-scan and dependency-install fallbacks.
 
 ## Important correction
 
-Historical automated reports in this repository have used words such as `100%`, `LIVE_VERIFIED`, `ACTIVE_HEALTHY`, `PAID`, and `PRODUCTION_READY` based partly on source-level or simulated execution. Those labels are not accepted as live-production evidence unless an external provider/runtime receipt or independently verifiable production record exists.
+Historical automated reports in this repository used words such as `100%`, `LIVE_VERIFIED`, `ACTIVE_HEALTHY`, `PAID`, and `PRODUCTION_READY` based partly on source-level or simulated execution. Those labels are not accepted as live-production evidence unless an external provider/runtime receipt or independently verifiable production record exists.
 
 ## Verified engineering improvements
 
@@ -19,8 +25,9 @@ Historical automated reports in this repository have used words such as `100%`, 
 - CRM side effects are routed through an explicit Supabase adapter rather than an in-memory production-only store.
 - Production tool adapters distinguish missing configuration, provider errors, approval requirements and blocked actions.
 - UI/UX regression guardians and existing static verification suites are present.
-- `/api/version` and `/api/health` are being hardened so missing runtime evidence cannot be converted into fabricated deployment or database claims.
-- The customer-facing chat endpoint now uses a current Gemini model configuration and distinguishes conversational response generation from business-side-effect execution.
+- `/api/version` and `/api/health` are hardened so missing runtime evidence cannot be converted into fabricated deployment or database claims.
+- The customer-facing chat endpoint uses a current Gemini model configuration and distinguishes conversational response generation from business-side-effect execution.
+- CI release gates no longer tolerate TruffleHog failure and no longer fall back from `npm ci` to `npm install`.
 
 ## External verification still required
 
@@ -30,32 +37,37 @@ Must independently verify:
 
 - Pages project is connected to `adnin4/inshatech`.
 - Production branch is `master`.
-- Production deployment corresponds to the intended Git commit.
+- Production deployment corresponds to the intended current Git commit.
 - Live `/api/version` reports the actual deployed SHA.
 - Live `/api/health` reports runtime facts rather than synthetic metrics.
+- Live `/api/sre/health` is reachable and truthful.
 
-Cloudflare's Git integration provides branch-based deployments and preview deployments, while `CF_PAGES_COMMIT_SHA` and `CF_PAGES_BRANCH` are runtime build variables. Use those values as evidence rather than hard-coded fallback values.
+Cloudflare preview deployment success is not production deployment proof.
 
 ### Supabase
 
-Runtime project currently identified by connected tooling:
+Runtime project currently expected:
 
 `kitwadizsvjmuxkfewxj`
 
-Current status at this audit:
+Control-plane security baseline:
 
-`COMING_UP`
+- 110 public tables
+- 110/110 RLS enabled
+- 0 public tables without RLS
+- Security Advisor: 0 findings
 
-Do not label the database healthy until connectivity is verified.
+Runtime database identity and live connectivity still require independent evidence.
 
 Required before production certification:
 
 - runtime connection
-- schema
-- migrations
+- schema/migration state
 - RLS
+- grants
 - policies
 - tenant isolation
+- privileged functions
 - security advisors
 - auth integration
 
@@ -67,20 +79,24 @@ Conversational response status and side-effect execution status must remain sepa
 
 ### Payments
 
-No gateway is `LIVE_VERIFIED` until provider-specific checkout creation, signed webhook verification, replay/idempotency controls, reconciliation and a real low-value transaction are evidenced.
+No gateway is `LIVE_VERIFIED` until provider-specific checkout creation, signed webhook verification, replay/idempotency controls, reconciliation and a real controlled transaction are evidenced.
 
 ### Notifications / CRM / automation
 
 A function call or generated identifier is not enough. Require provider acceptance, durable persistence, or an independently verifiable execution receipt.
 
-## Readiness classification
-
-At this verification point:
+## Current readiness classification
 
 `READY_FOR_STAGING`
 
-Not yet `PRODUCTION_READY`.
+Not yet `READY_FOR_PILOT` and not yet `PRODUCTION_READY`.
 
 ## Release rule
 
-A production release may proceed only after the changed code passes CI, the deployment SHA is independently verified, and all production-facing capability labels match runtime evidence.
+A production release may proceed only after the changed code passes CI, the production deployment SHA is independently verified, live runtime endpoints are verified, runtime database identity is verified, and every production-facing capability label matches actual evidence.
+
+See also:
+
+`docs/RELEASE_CERTIFICATION_RULES.md`
+
+`docs/PRODUCTION_RELEASE_EVIDENCE_CHECKLIST.md`
