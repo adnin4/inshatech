@@ -41,18 +41,28 @@ const truthGuard = path.join(ROOT, 'functions', '_middleware.js');
 if (!fs.existsSync(truthGuard)) throw new Error('Homepage truth guard middleware is missing.');
 const guard = fs.readFileSync(truthGuard, 'utf8');
 
-const requiredReplacements = [
-  ['IINSHA AI-BOS Autonomous Company OS Operational', 'IINSHA AI-BOS — Evidence-Gated Staging'],
-  ['99.8% Success', 'Measured success rate varies by target'],
-  ['100% Reliable Data Stream', 'Evidence-backed data pipeline'],
-  ['Cloudflare Bypass', 'anti-bot resilient where permitted'],
-  ['We support bKash, Nagad, Stripe Credit/Debit cards, City Bank PLC Wire Transfers, and direct WhatsApp verification with dual-currency support ($ USD & ৳ BDT).', 'Payment options are offered only when a corresponding provider integration is configured and independently verified.']
+const forbiddenTruthClaims = [
+  'IINSHA AI-BOS Autonomous Company OS Operational',
+  '99.8% Success',
+  '100% Reliable Data Stream',
+  'Cloudflare Bypass',
+  'We support bKash, Nagad, Stripe Credit/Debit cards, City Bank PLC Wire Transfers, and direct WhatsApp verification with dual-currency support ($ USD & ৳ BDT).'
 ];
 
-for (const [from, to] of requiredReplacements) {
-  if (!guard.includes(from) || !guard.includes(to)) {
-    throw new Error(`Truth guard replacement missing: ${from}`);
-  }
+const requiredSafeTruthClaims = [
+  'IINSHA AI-BOS — Evidence-Gated Staging',
+  'Measured success rate varies by target',
+  'Evidence-backed data pipeline',
+  'anti-bot resilient where permitted',
+  'Payment options are offered only when a corresponding provider integration is configured and independently verified.'
+];
+
+for (const phrase of forbiddenTruthClaims) {
+  if (guard.includes(phrase)) throw new Error(`Truth guard did not neutralize: ${phrase}`);
+}
+
+for (const phrase of requiredSafeTruthClaims) {
+  if (!guard.includes(phrase)) throw new Error(`Truth guard safe replacement missing: ${phrase}`);
 }
 
 for (const check of checks) {
