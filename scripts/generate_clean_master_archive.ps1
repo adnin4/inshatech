@@ -1,22 +1,17 @@
 $ErrorActionPreference = "Stop"
 
 $sourceDir = "C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase"
-$targetDir = "C:\Users\mahin khan\OneDrive\Desktop\New folder"
+$tempBuild = "$env:TEMP\iinsha_pack_build"
+if (Test-Path $tempBuild) { Remove-Item -Path $tempBuild -Recurse -Force }
+New-Item -ItemType Directory -Path $tempBuild | Out-Null
+
 $folderName = "insha zip all documentes 1"
-$folderPath = Join-Path $targetDir $folderName
-$zipPath = "$folderPath.zip"
-
-Write-Output "================================================================================"
-Write-Output "IINSHA AI-BOS: HARDENED CLEAN MASTER ARCHIVE GENERATOR"
-Write-Output "SECURITY INVARIANT: .env EXCLUDED | ONLY .env.example INCLUDED"
-Write-Output "================================================================================"
-
-# 1. Ensure target folder exists and update Markdown Reports
+$folderPath = Join-Path $tempBuild $folderName
 $markdownDest = Join-Path $folderPath "Implementation_Reports_Markdown"
-if (-not (Test-Path $markdownDest)) { New-Item -ItemType Directory -Path $markdownDest | Out-Null }
+New-Item -ItemType Directory -Path $markdownDest -Force | Out-Null
 Copy-Item -Path "$sourceDir\docs\*" -Destination $markdownDest -Recurse -Force
 
-# 2. Stage clean files (STRICTLY NO .env)
+# Stage clean files (STRICTLY NO .env)
 $stagingDir = "$env:TEMP\iinsha_hardened_clean_staging"
 if (Test-Path $stagingDir) { Remove-Item -Path $stagingDir -Recurse -Force }
 New-Item -ItemType Directory -Path $stagingDir | Out-Null
@@ -35,25 +30,26 @@ foreach ($item in $itemsToCopy) {
     }
 }
 
-# Verify .env is NOT present in staging
+# Purge any accidental .env
 $leakedEnv = Join-Path $stagingDir ".env"
-if (Test-Path $leakedEnv) {
-    Remove-Item -Path $leakedEnv -Force
-    Write-Warning "CRITICAL: .env file was present and has been PURGED from staging!"
-}
+if (Test-Path $leakedEnv) { Remove-Item -Path $leakedEnv -Force }
 
-# 3. Create clean inner zip
+# Inner zip
 $masterZip = Join-Path $folderPath "IINSHA_COMPLETE_PRODUCTION_PLATFORM_V10.zip"
-if (Test-Path $masterZip) { Remove-Item -Path $masterZip -Force }
 Compress-Archive -Path "$stagingDir\*" -DestinationPath $masterZip -Force
 Remove-Item -Path $stagingDir -Recurse -Force
 
-# 4. Create clean outer zip
-if (Test-Path $zipPath) { Remove-Item -Path $zipPath -Force }
-Compress-Archive -Path "$folderPath\*" -DestinationPath $zipPath -Force
+# Outer zip
+$tempZip = "$folderPath.zip"
+Compress-Archive -Path "$folderPath\*" -DestinationPath $tempZip -Force
 
-# 5. Mirror copy to Desktop
-Copy-Item -Path $zipPath -Destination "C:\Users\mahin khan\OneDrive\Desktop\insha zip all documentes 1.zip" -Force
+# Deliver to Desktop
+$desktopDir = "C:\Users\mahin khan\OneDrive\Desktop"
+Copy-Item -Path $tempZip -Destination (Join-Path $desktopDir "insha zip all documentes 1.zip") -Force
+Copy-Item -Path $tempZip -Destination (Join-Path $desktopDir "cloudflare_pages_dist.zip") -Force
+
+# Clean temp
+Remove-Item -Path $tempBuild -Recurse -Force
 
 Write-Output "CLEAN MASTER ARCHIVE GENERATED SUCCESSFULLY (0 SECRETS INCLUDED):"
-Get-Item $zipPath | Select-Object Name, Length, LastWriteTime
+Get-Item (Join-Path $desktopDir "cloudflare_pages_dist.zip") | Select-Object Name, Length, LastWriteTime
