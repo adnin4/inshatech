@@ -13,6 +13,14 @@ assert.match(engine, /if \(verified !== true\)/);
 assert.match(engine, /if \(this\.store && !this\.store\.recordWebhook\(idempotencyKey\)\)/);
 assert.match(engine, /verifiedHmac:\s*true/);
 
+// Verification semantics must remain separated: provider/business verification is not production verification.
+assert.match(engine, /webhook_verified:\s*true/);
+assert.match(engine, /payment_verified:\s*true/);
+assert.match(engine, /client_approval_verified:\s*true/);
+assert.match(engine, /production_verified:\s*false/);
+assert.doesNotMatch(engine, /status:\s*'PAYMENT_VERIFIED_SUCCESS'[\s\S]{0,500}production_verified:\s*true/);
+assert.doesNotMatch(engine, /status:\s*'PROJECT_DELIVERED_SUCCESS'[\s\S]{0,500}production_verified:\s*true/);
+
 // Checkout must use a real adapter, never a sample checkout URL.
 assert.match(engine, /!this\.checkoutProvider/);
 assert.match(engine, /checkoutProvider\.createCheckout/);
