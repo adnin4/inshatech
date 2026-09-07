@@ -3760,3 +3760,93 @@ form input[type="tel"]:focus {
         gap: 24px !important;
     }
 }
+
+
+/* ==========================================================================
+   UX ENHANCEMENTS: SMOOTH SCROLL, FOCUS STATES, TOOLTIPS & TOAST NOTIFICATIONS
+   ========================================================================== */
+
+/* 1. Universal Smooth Scroll & Navbar Offset */
+html {
+    scroll-behavior: smooth !important;
+}
+
+section[id],
+div[id] {
+    scroll-margin-top: 85px !important;
+}
+
+/* 2. Accessible Focus Ring & Interactive Input Styling */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+    outline: none !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35) !important;
+}
+
+/* 3. Global Floating Toast Notification */
+#iinsha-ux-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #f8fafc;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 1000000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#iinsha-ux-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* 4. Tap Target & Button Hover Micro-interactions */
+.btn, button, .service-tab-btn, .ind-pill, .tmpl-card, .blueprint-card {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+/* 5. Tooltip Helper Styles */
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    color: #e2e8f0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
