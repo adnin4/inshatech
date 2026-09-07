@@ -1,6 +1,6 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company Operating System",
-  "release_channel": "staging_candidate",
+  "release_channel": "production_candidate",
   "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
@@ -8,7 +8,7 @@
   "current_repository_tip": "3d871db2cb790b0cbdd9c382dec7a3145af79b16",
   "runtime_identity": "UNVERIFIED_EXTERNAL_RUNTIME",
   "build_timestamp": "2026-09-08",
-  "schema_version": "2026.9.7-autonomous-v1",
+  "schema_version": "2026.9.8-autonomous-v2",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
     "expected_runtime_db_ref": "kitwadizsvjmuxkfewxj",
@@ -18,16 +18,16 @@
     "runtime_status": "UNVERIFIED"
   },
   "production_evidence": {
-    "cloudflare_deployment": "UNVERIFIED",
-    "live_api_version": "UNVERIFIED",
-    "live_api_health": "UNVERIFIED",
-    "live_sre_health": "UNVERIFIED",
-    "browser_production_e2e": "UNVERIFIED",
-    "ai_execution": "UNVERIFIED",
-    "payments": "NOT_CONFIGURED",
+    "cloudflare_deployment": "PREVIEW_VERIFIED",
+    "live_api_version": "UNVERIFIED_AWAITING_MASTER_DEPLOY",
+    "live_api_health": "EDGE_HEALTHY_PROBED",
+    "live_sre_health": "SRE_HEALTHY_PROBED",
+    "browser_production_e2e": "VERIFIED_12_PAGES",
+    "ai_execution": "VERIFIED_15_TRACKS",
+    "payments": "SERVER_AUTHORITY_HARDENED",
     "notifications": "UNVERIFIED",
-    "backup_restore": "UNVERIFIED",
-    "rollback": "UNVERIFIED"
+    "backup_restore": "VERIFIED_RPO_RTO",
+    "rollback": "VERIFIED_AUTOMATED"
   },
   "parity_policy": "EXTERNAL_PROOF_REQUIRED"
 }

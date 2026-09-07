@@ -41,14 +41,35 @@ export async function onRequestPost({ request, env = {} }) {
     const h = cors(request);
     try {
         const b = await request.json().catch(() => ({}));
-        const serviceId = String(b.service_id || 'b2b-lead-swarm');
-        const item = CATALOG[serviceId] || ['Custom Enterprise Automation Package', Number(b.amount) || 100, Number(b.amount) || 100, 3];
+        const serviceId = String(b.service_id || '').trim();
+
+        // Server-Side Catalog Authority: strictly reject unknown service IDs
+        if (!serviceId || !CATALOG[serviceId]) {
+            return new Response(JSON.stringify({
+                status: 'ERROR',
+                code: 'INVALID_SERVICE_ID',
+                message: `Service ID '${serviceId}' is not recognized by server catalog authority.`
+            }), { status: 400, headers: h });
+        }
+
+        const item = CATALOG[serviceId];
         
+        // Strict customer validation
+        const rawEmail = String(b.customer_email || '').trim().toLowerCase();
+        if (!rawEmail || !rawEmail.includes('@') || rawEmail.length < 5) {
+            return new Response(JSON.stringify({
+                status: 'ERROR',
+                code: 'INVALID_CUSTOMER_EMAIL',
+                message: 'A valid customer email address is required.'
+            }), { status: 400, headers: h });
+        }
+
         const customerName = String(b.customer_name || 'Valued Client').slice(0, 255);
-        const customerEmail = String(b.customer_email || 'client@inshatech.com').slice(0, 255);
+        const customerEmail = rawEmail.slice(0, 255);
         const customerPhone = String(b.customer_phone || '+8801629286887').slice(0, 50);
         const provider = String(b.payment_provider || 'sslcommerz').toLowerCase().trim();
 
+        // Server-Side Pricing Authority: client cannot override price
         let usdAmount = item[1];
         const coupon = String(b.coupon_code || '').toUpperCase().trim();
         if (coupon === 'EARLY2026' || coupon === 'FOUNDER10') usdAmount = Math.round(usdAmount * 0.90);
@@ -57,6 +78,51 @@ export async function onRequestPost({ request, env = {} }) {
 
         const bdtAmount = Math.round(usdAmount * BDT_RATE);
         const orderId = `ORD-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+        const idempotencyKey = String(b.idempotency_key || `idem_${orderId}`).slice(0, 128);
+
+        // Durable Order Persistence before returning checkout URL
+        if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
+            try {
+                const base = `${env.SUPABASE_URL}/rest/v1`;
+                const key = env.SUPABASE_SERVICE_ROLE_KEY;
+                const auth = { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
+
+                const dbRes = await fetch(`${base}/ibos_orders`, {
+                    method: 'POST',
+                    headers: { ...auth, Prefer: 'return=representation' },
+                    body: JSON.stringify({
+                        order_code: orderId,
+                        service_id: serviceId,
+                        service_name: item[0],
+                        amount_usd: usdAmount,
+                        amount_bdt: bdtAmount,
+                        customer_name: customerName,
+                        customer_email: customerEmail,
+                        customer_phone: customerPhone,
+                        payment_provider: provider,
+                        payment_status: 'awaiting_payment',
+                        order_status: 'pending',
+                        idempotency_key: idempotencyKey,
+                        created_at: new Date().toISOString()
+                    })
+                });
+
+                if (!dbRes.ok) {
+                    const errText = await dbRes.text().catch(() => 'DB error');
+                    return new Response(JSON.stringify({
+                        status: 'DATABASE_ERROR',
+                        message: 'Failed to persist durable order record before checkout.',
+                        detail: errText
+                    }), { status: 500, headers: h });
+                }
+            } catch (dbErr) {
+                return new Response(JSON.stringify({
+                    status: 'DATABASE_ERROR',
+                    message: 'Database persistence error before checkout.',
+                    error: dbErr.message
+                }), { status: 500, headers: h });
+            }
+        }
 
         let redirectUrl = null;
         let gatewayResponse = {};
@@ -75,9 +141,10 @@ export async function onRequestPost({ request, env = {} }) {
                     total_amount: bdtAmount.toString(),
                     currency: 'BDT',
                     tran_id: orderId,
-                    success_url: `https://inshatech.pages.dev/api/payments/webhook?status=success&order_id=${orderId}`,
-                    fail_url: `https://inshatech.pages.dev/api/payments/webhook?status=failed&order_id=${orderId}`,
-                    cancel_url: `https://inshatech.pages.dev/store.html?canceled=${orderId}`,
+                    success_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=success`,
+                    fail_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=failed`,
+                    cancel_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=canceled`,
+                    ipn_url: `https://inshatech.pages.dev/api/payments/webhook`,
                     cus_name: customerName,
                     cus_email: customerEmail,
                     cus_add1: 'Dhaka, Bangladesh',
@@ -202,7 +269,7 @@ export async function onRequestPost({ request, env = {} }) {
                         body: JSON.stringify({
                             mode: '0011',
                             payerReference: customerPhone,
-                            callbackURL: `https://inshatech.pages.dev/api/payments/webhook?provider=bkash&order_id=${orderId}`,
+                            callbackURL: `https://inshatech.pages.dev/portal.html?order_id=${orderId}&gateway=bkash`,
                             amount: bdtAmount.toString(),
                             currency: 'BDT',
                             intent: 'sale',

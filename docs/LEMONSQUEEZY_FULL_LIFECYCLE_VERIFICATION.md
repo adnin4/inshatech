@@ -4,7 +4,7 @@
 
 | Step | Lifecycle Stage | Execution Detail | Result |
 | :--- | :--- | :--- | :---: |
-| **01** | Internal Order Initialization | Order `ORD-MT6JNXOG-LIVE` registered with `awaiting_payment` | 🟢 **PASS** |
+| **01** | Internal Order Initialization | Order `ORD-MTRPYUDE-LIVE` registered with `awaiting_payment` | 🟢 **PASS** |
 | **02** | Lemon Squeezy Binding | Bound to Store `458722` and Variant `2050933` | 🟢 **PASS** |
 | **03** | HMAC Webhook Ingestion | Validated cryptographic HMAC-SHA256 signature | 🟢 **PASS** |
 | **04** | Supabase DB Order Mutation | Mutated `ibos_orders` to status `paid` & `confirmed` | 🟢 **PASS** |

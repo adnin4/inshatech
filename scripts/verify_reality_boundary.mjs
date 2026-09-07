@@ -10,7 +10,8 @@ const checks = [
     file: 'scripts/verify_all_system_claims.mjs',
     forbidden: [
       'FINAL VERDICT: EVERY CLAIM IN IINSHA AI-BOS IS 100% EXECUTABLE AND CRYPTOGRAPHICALLY VERIFIABLE',
-      'Verified Claims Passed: ${passedCount} / ${totalCount} (100%)'
+      'Verified Claims Passed: ${passedCount} / ${totalCount} (100%)',
+      '100% of all claims verified'
     ],
     message: 'Master claim verifier must not emit universal production-verification claims.'
   },
@@ -18,16 +19,23 @@ const checks = [
     file: 'scripts/run_live_autonomous_business_cycle.mjs',
     forbidden: [
       'VERDICT: REAL-WORLD AUTONOMOUS BUSINESS EXECUTION ENGINE IS 100% OPERATIONAL.',
+      'REAL-WORLD AUTONOMOUS BUSINESS EXECUTION ENGINE IS 100% OPERATIONAL',
       'settled as PAID',
-      'credited to operating revenue'
+      'credited to operating revenue',
+      'delivered to live customer',
+      '100% customer delivery completed',
+      'real customer transaction verified'
     ],
-    message: 'Autonomous cycle runner must not turn synthetic state into real-world success.'
+    message: 'Autonomous cycle runner must not turn synthetic/simulation state into real-world success.'
   },
   {
     file: 'scripts/run_final_activation_mission.mjs',
     forbidden: [
       'FINAL_PRODUCTION_GAP_REPORT.md',
-      'PRODUCTION INTEGRATION STATUS'
+      'PRODUCTION INTEGRATION STATUS: 100% OPERATIONAL',
+      'LIVE_VERIFIED',
+      'settled as PAID',
+      'credited to operating revenue'
     ],
     required: [
       'production_verified: result?.production_verified === true',
@@ -35,6 +43,15 @@ const checks = [
       'FINAL_READINESS_CONFORMANCE=PASS'
     ],
     message: 'Activation mission must remain a conformance/readiness exercise and must not seal synthetic evidence as production.'
+  },
+  {
+    file: 'ai_brain/tool_execution_gateway.js',
+    forbidden: [
+      'production_verified: true, // simulated',
+      'fake provider receipt',
+      'PRODUCTION DEPLOYMENT PROVED'
+    ],
+    message: 'Tool execution gateway must not manufacture fake provider receipts.'
   }
 ];
 

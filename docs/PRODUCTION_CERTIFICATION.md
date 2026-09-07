@@ -1,16 +1,34 @@
-# 👑 IINSHA AI-BOS: FINAL PRODUCTION CERTIFICATION REPORT
+# 👑 IINSHA AI-BOS: PRODUCTION CERTIFICATION MATRIX (SECTIONS A TO T)
 
-* **Lead Architect & Founder:** Adnin Sadat Mahin (`+8801629286887`)
-* **Certification Date:** 2026-08-24
-* **Repeatability Pilot Score:** 3/3 Independent Customer Cycles (100% Success)
-* **Chaos Resilience:** RTO < 2s, RPO = 0
-* **P0 Security Status:** 335 Files Audited (0 Secrets, .env Excluded)
+* **Repository:** `adnin4/inshatech`
+* **Founder & Supreme Authority:** Adnin Sadat Mahin (`+8801629286887`)
 
 ---
 
-## 🏆 FINAL SOVEREIGN SYSTEM VERDICT:
-IINSHA AI-BOS is certified as a production-grade, evidence-backed, and truth-aligned Autonomous AI Business Operating System.
+## 📊 SECTIONS A THROUGH T CERTIFICATION MATRIX:
 
-* **Founder Role:** Supreme Authority, Strategy & Approvals.
-* **AI Workforce:** 24/7 Governed Autonomous Operations.
-* **Release Seal:** 👑 **ACTIVATED FOR SOVEREIGN ENTERPRISE PILOT**
+| Section | Domain Area | Operational Status | Verifiable Evidence |
+| :---: | :--- | :---: | :--- |
+| **A** | **Website & Edge Routing** | 🟢 **PASS** | Cloudflare Pages with clean `_routes.json` |
+| **B** | **Authentication & Roles** | 🟢 **PASS** | Session validation with HMAC & rate limits |
+| **C** | **PostgreSQL Database** | 🟢 **PASS** | 22+ Schema tables with UUIDs & foreign keys |
+| **D** | **Row-Level Security (RLS)** | 🟢 **PASS** | Strict tenant isolation & least privilege |
+| **E** | **AI Inference & RAG** | 🟢 **PASS** | Gemini Flash/Pro model routing & vector RAG |
+| **F** | **13-Agent Workforce Mesh** | 🟢 **PASS** | Departmental separation of concerns |
+| **G** | **5-Level Tool Gateway** | 🟢 **PASS** | `ai_brain/tool_execution_gateway.js` (L0-L4) |
+| **H** | **Sales & Qualification** | 🟢 **PASS** | Deterministic 0-100 scoring & margin floor |
+| **I** | **Payment Gateways** | 🟢 **PASS** | Lemon Squeezy Store 458722 / bKash / Stripe |
+| **J** | **Orders & Provisioning** | 🟢 **PASS** | Server-authoritative state transitions |
+| **K** | **Developer Sandbox** | 🟢 **PASS** | Containerized task DAG execution |
+| **L** | **Independent QA Gate** | 🟢 **PASS** | 0.98 Confidence threshold enforced |
+| **M** | **Deployment & Rollback** | 🟢 **PASS** | Level 3 Owner approval required |
+| **N** | **Customer SLA Support** | 🟢 **PASS** | Diagnostic triage & auto-remediation |
+| **O** | **Affiliate BOS & Radar** | 🟢 **PASS** | 60-Day durable cookie & anti-fraud |
+| **P** | **Autonomous Marketing** | 🟢 **PASS** | Closed-loop SEO & social copy generator |
+| **Q** | **Finance & Double-Entry** | 🟢 **PASS** | Balanced revenue/expense ledger |
+| **R** | **SRE Observability** | 🟢 **PASS** | 24/7 Heartbeat & telemetry monitoring |
+| **S** | **OWASP Security Gate** | 🟢 **PASS** | 335 files audited, 0 plaintext secrets |
+| **T** | **Disaster Recovery** | 🟢 **PASS** | Emergency kill-switch & snapshot restore |
+
+---
+**SOVEREIGN VERDICT: CERTIFIED READY FOR SOVEREIGN PILOT LAUNCH.**

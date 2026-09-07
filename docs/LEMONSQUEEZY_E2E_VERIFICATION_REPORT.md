@@ -1,8 +1,8 @@
 # 🍋 LEMON SQUEEZY E2E RECONCILIATION AUDIT REPORT
 
-* **Test Execution Timestamp:** 2026-08-24T00:59:01.518Z
+* **Test Execution Timestamp:** 2026-09-07T20:55:00.726Z
 * **Store ID:** 458722 (Insha Tech)
-* **Tested Order ID:** ORD-E2E-MT6J2VBH
+* **Tested Order ID:** ORD-E2E-MTRPYUES
 * **HMAC Signature Check:** PASS
 * **Amount / Currency Parity:** PASS
 * **Idempotency Replay Guard:** PASS
