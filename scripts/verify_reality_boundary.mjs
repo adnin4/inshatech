@@ -26,10 +26,14 @@ const checks = [
     file: 'scripts/run_final_activation_mission.mjs',
     forbidden: [
       'FINAL_PRODUCTION_GAP_REPORT.md',
-      'REAL_VS_DEMO_DATA_AUDIT.md',
       'PRODUCTION INTEGRATION STATUS'
     ],
-    message: 'Activation mission must not seal generated reports as production evidence.'
+    required: [
+      'Mode: `CONFORMANCE / STAGING READINESS`',
+      'production_verified === true',
+      'REAL_VS_DEMO_DATA_AUDIT.md'
+    ],
+    message: 'Activation mission must remain a conformance/readiness exercise and must not seal synthetic evidence as production.'
   }
 ];
 
@@ -52,6 +56,9 @@ for (const check of checks) {
   const content = fs.readFileSync(filePath, 'utf8');
   for (const phrase of check.forbidden) {
     if (content.includes(phrase)) throw new Error(`${check.message} Found forbidden phrase in ${check.file}: ${phrase}`);
+  }
+  for (const phrase of check.required || []) {
+    if (!content.includes(phrase)) throw new Error(`${check.message} Missing required conformance marker in ${check.file}: ${phrase}`);
   }
 }
 
