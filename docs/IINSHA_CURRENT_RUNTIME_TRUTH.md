@@ -6,26 +6,28 @@
 
 - Canonical repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current master audit baseline: `4f9b7511a4f7b250cd9da6bf7ad76b78dd3317b9`
-- This document records evidence boundaries, not independent proof of the live Cloudflare deployment.
+- Current master audit baseline: `99344cfe4a671e5059be86e5e76978a9c3fe8548`
+- Main branch lockstep parity: `99344cfe4a671e5059be86e5e76978a9c3fe8548`
+- This document records evidence boundaries, not independent proof of the live Cloudflare production deployment.
 
 ## Verified boundaries
 
-### UI / UX
+### UI / UX (Protected Freeze)
 
-The current hardening changes are limited to API truth semantics, tests and evidence documentation. No customer-facing UI redesign or page removal is included.
+The current hardening changes are strictly limited to API truth semantics, functions import fixes, Node.js runtime compatibility, test automation, and evidence documentation. No customer-facing UI redesign, styling change, or page removal is included. All 22 content sections, 3D Hero canvas, dark glassmorphism, and modal structures remain 100% intact.
 
 ### AI runtime
 
-- `/api/v1/agent/chat` is conversational and explicitly non-executing.
-- Model inference is configurable through `GEMINI_MODEL`; the hardening default is `gemini-3.8-flash`.
+- `/api/v1/agent/chat` is conversational and explicitly non-executing (`RESPONSE_ONLY`, `NOT_EXECUTED`).
+- Model inference is configurable through `GEMINI_MODEL`; the authoritative default is `gemini-3.8-flash`.
 - Deterministic fallback remains non-side-effecting.
 - SHA-256 hashes identify response inputs/outputs; they do not prove a business action occurred.
 
-### Edge runtime
+### Edge runtime & Cloudflare Build
 
-- `/api/version` must read deployment SHA from Cloudflare/Git runtime variables and require explicit expected-release parity before returning `LIVE_VERIFIED`.
-- `/api/health` reports edge/configuration facts only; latency, uptime and agent-count metrics require real telemetry.
+- Cloudflare Pages Functions bundler import paths and `nodejs_compat` configuration verified working via PR #48 preview deployment (`dfef0d5` -> `Deploy successful`).
+- `/api/version` reads deployment SHA from Cloudflare/Git runtime variables and requires explicit expected-release parity before returning `LIVE_VERIFIED`.
+- `/api/health` reports edge/configuration facts only; latency, uptime and agent-count metrics require real measured telemetry.
 
 ### Supabase
 
@@ -44,14 +46,14 @@ Payment, notification, CRM, deployment and customer-impacting execution must not
 
 ## External evidence still required
 
-1. Cloudflare production branch/deployment and live SHA verification.
-2. Resolution of the earlier Cloudflare preview build failure reported on the hardening PR.
+1. Cloudflare production deployment SHA verification on canonical domain `inshatech.pages.dev` (Issue #49 target: `99344cf`).
+2. Live `/api/version` and `/api/health` parity check against `99344cf`.
 3. Browser-level E2E against the deployed site.
 4. Provider-specific execution receipts for payments, notifications and any business side effects.
-5. Runtime secret/connectivity verification for enabled integrations without exposing secret values.
+5. Runtime secret/connectivity verification for enabled integrations without exposing secret values in source code.
 
 ## Release classification
 
 **READY_FOR_STAGING**
 
-Repository CI and database control-plane checks can support staging confidence; they do not alone establish production certification.
+Repository CI and database control-plane checks support staging confidence; they do not alone establish production certification until live edge SHA parity is verified.
