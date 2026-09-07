@@ -96,3 +96,85 @@ jobs:
 
       - name: P0 Security & Content Hardening Gate
         run: node scratch/security_content_gate.js
+
+  production-runtime-evidence:
+    name: Post-Deploy Production Runtime Evidence Gate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    timeout-minutes: 12
+    needs: audit
+    permissions:
+      contents: read
+    steps:
+      - name: Wait for Cloudflare production deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://inshatech.pages.dev/api/version'
+          echo "Waiting for production runtime: $url"
+          for attempt in $(seq 1 60); do
+            if body=$(curl -fsSL --max-time 10 "$url"); then
+              echo "$body"
+              printf '%s' "$body" > /tmp/version.json
+              if jq -e '.deploy_sha != null' /tmp/version.json >/dev/null 2>&1; then
+                exit 0
+              fi
+            fi
+            echo "Attempt $attempt/60: runtime not ready yet"
+            sleep 10
+          done
+          echo 'Production /api/version did not become reachable with a deployment SHA.'
+          exit 1
+
+      - name: Verify production deployment identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='${{ github.sha }}'
+          actual=$(jq -r '.deploy_sha // empty' /tmp/version.json)
+          status=$(jq -r '.status // empty' /tmp/version.json)
+          branch=$(jq -r '.branch // empty' /tmp/version.json)
+          repo=$(jq -r '.canonical_repository // empty' /tmp/version.json)
+          db_parity=$(jq -r '.database_identity.db_parity // false' /tmp/version.json)
+
+          test -n "$actual" || { echo 'Missing production deploy_sha'; exit 1; }
+          test "${actual,,}" = "${expected,,}" || {
+            echo "Production SHA mismatch: expected $expected, got $actual"
+            exit 1
+          }
+          test "$branch" = 'master' || { echo "Unexpected production branch: $branch"; exit 1; }
+          test "$repo" = 'https://github.com/adnin4/inshatech.git' || { echo "Unexpected canonical repository: $repo"; exit 1; }
+          test "$db_parity" = 'true' || { echo 'Production database identity is not verified for parity'; exit 1; }
+          test "$status" = 'LIVE_VERIFIED' || { echo "Production release status is $status, not LIVE_VERIFIED"; exit 1; }
+
+      - name: Verify production health endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          body=$(curl -fsSL --max-time 15 'https://inshatech.pages.dev/api/health')
+          echo "$body"
+          status=$(printf '%s' "$body" | jq -r '.status // empty')
+          test "$status" = 'EDGE_HEALTHY' || { echo "Unexpected health status: $status"; exit 1; }
+
+      - name: Verify production SRE endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          body=$(curl -fsSL --max-time 15 'https://inshatech.pages.dev/api/sre/health')
+          echo "$body"
+          status=$(printf '%s' "$body" | jq -r '.status // empty')
+          git_sha=$(printf '%s' "$body" | jq -r '.git_sha // empty')
+          test "$status" = 'SRE_HEALTHY' || { echo "Unexpected SRE status: $status"; exit 1; }
+          test "${git_sha,,}" = "${{ github.sha }}" || { echo "SRE SHA mismatch: $git_sha"; exit 1; }
+
+      - name: Emit production evidence summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat <<EOF
+          PRODUCTION_RUNTIME_EVIDENCE=PASS
+          RELEASE_SHA=${{ github.sha }}
+          PRODUCTION_URL=https://inshatech.pages.dev
+          VERSION_STATUS=$(jq -r '.status' /tmp/version.json)
+          DB_PARITY=$(jq -r '.database_identity.db_parity' /tmp/version.json)
+          EOF
