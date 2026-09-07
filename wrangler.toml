@@ -1,6 +1,7 @@
 name = "inshatech"
 pages_build_output_dir = "."
 compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "production"
