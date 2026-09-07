@@ -3586,3 +3586,177 @@ form input[type="tel"]:focus {
     border-color: rgba(16, 185, 129, 0.5) !important;
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.2) !important;
 }
+
+
+/* === COMPLETE MODAL & POPUP OVERLAYS === */
+.toast-modal {
+    display: none;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(15, 23, 42, 0.98) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 18px !important;
+    padding: 28px !important;
+    max-width: 620px !important;
+    width: 90vw !important;
+    z-index: 1050 !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+.toast-modal.hidden,
+.toast-modal[style*="display:none"],
+.toast-modal[style*="display: none"] {
+    display: none !important;
+}
+
+.exit-popup-overlay,
+.pkg-modal-overlay,
+.admin-modal-overlay,
+.lead-modal-overlay,
+.cmd-palette-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    z-index: 999999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.exit-popup-overlay[style*="display: block"],
+.exit-popup-overlay[style*="display:flex"],
+.exit-popup-overlay[style*="display: flex"],
+.pkg-modal-overlay[style*="display: block"],
+.pkg-modal-overlay[style*="display:flex"],
+.pkg-modal-overlay[style*="display: flex"],
+.admin-modal-overlay[style*="display: block"],
+.admin-modal-overlay[style*="display:flex"],
+.admin-modal-overlay[style*="display: flex"],
+.lead-modal-overlay[style*="display: block"],
+.lead-modal-overlay[style*="display:flex"],
+.lead-modal-overlay[style*="display: flex"],
+.cmd-palette-overlay[style*="display: block"],
+.cmd-palette-overlay[style*="display:flex"],
+.cmd-palette-overlay[style*="display: flex"] {
+    display: flex !important;
+}
+
+.chatbot-window {
+    display: none;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 24px !important;
+    width: 380px !important;
+    max-width: calc(100vw - 32px) !important;
+    height: 520px !important;
+    max-height: 80vh !important;
+    background: rgba(15, 23, 42, 0.98) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(6, 182, 212, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    z-index: 9999 !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.chatbot-toggle {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #00f2fe, #4facfe) !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: 0 8px 24px rgba(0, 242, 254, 0.4) !important;
+    z-index: 9998 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+.chatbot-toggle:hover {
+    transform: scale(1.08) !important;
+    box-shadow: 0 12px 30px rgba(0, 242, 254, 0.6) !important;
+}
+
+/* === LEAD MAGNET / STARTER KIT SECTION === */
+.lead-magnet-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)) !important;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+    border-radius: 18px !important;
+    padding: 36px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    display: grid !important;
+    grid-template-columns: 200px 1fr !important;
+    gap: 36px !important;
+    align-items: center !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    max-width: 960px !important;
+    margin: 28px auto 0 !important;
+}
+@media (max-width: 768px) {
+    .lead-magnet-card {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 24px !important;
+    }
+}
+.lead-magnet-visual {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.lead-magnet-book {
+    width: 140px !important;
+    height: 180px !important;
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.35), inset 2px 0 6px rgba(255, 255, 255, 0.4) !important;
+    position: relative !important;
+}
+.lead-magnet-book::after {
+    content: "AI 2026";
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* === NEWSLETTER SUBSCRIPTION CARD === */
+.newsletter-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(6, 182, 212, 0.08)) !important;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+    border-radius: 18px !important;
+    padding: 36px 40px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+.newsletter-grid {
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.8fr !important;
+    gap: 36px !important;
+    align-items: center !important;
+}
+@media (max-width: 868px) {
+    .newsletter-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+}
