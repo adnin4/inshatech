@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci || npm install --no-audit
+        run: npm ci
 
       - name: Run P0 Security & Content Gate Scanner
         run: node scratch/security_content_gate.js
