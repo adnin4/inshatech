@@ -6,8 +6,8 @@ This checklist is an operational evidence register. It does not itself constitut
 
 - Canonical branch: `master`
 - Current runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
-- Current documentation tip: `040e2f7`
-- Main and master currently point to the same repository revision.
+- Documentation revisions after the runtime head do not modify application runtime behavior.
+- Main and master are expected to remain synchronized; verify branch SHA before release.
 - Business truth regression checks are wired into CI.
 
 ## Evidence gates
@@ -15,7 +15,7 @@ This checklist is an operational evidence register. It does not itself constitut
 | Gate | Required evidence | Current state |
 |---|---|---|
 | Git release identity | Exact reviewed runtime/code SHA | VERIFIED: `1b83d5c` |
-| GitHub CI | Required workflow/check-run success for current code head | RECHECK REQUIRED |
+| GitHub CI | Required workflow/check-run success for current code head | MUST RECHECK CURRENT HEAD |
 | Cloudflare preview | Successful preview for reviewed SHA | VERIFIED for prior preview releases |
 | Cloudflare production | Production deployment record for current code head | UNVERIFIED |
 | Live `/api/version` | `deploy_sha` equals expected runtime/code SHA | UNVERIFIED |
@@ -32,9 +32,9 @@ This checklist is an operational evidence register. It does not itself constitut
 | Backup/restore | Successful restore evidence | UNVERIFIED |
 | Rollback | Tested rollback/recovery evidence | UNVERIFIED |
 | Branch governance | Protected canonical branch + required checks | NOT VERIFIED |
-| Business truth gates | Synthetic payment/QA/delivery success prevented | VERIFIED IN CODE; CURRENT-HEAD CI RECHECK REQUIRED |
+| Business truth gates | Synthetic payment/QA/delivery success prevented | VERIFIED IN CODE |
 | Verification semantics | Operation/business verification cannot imply whole-production verification | VERIFIED IN CODE |
-| Canonical system state | Static state cannot impersonate live runtime evidence | HARDENED; RUNTIME STILL UNVERIFIED |
+| Canonical system state | Static state cannot impersonate live runtime evidence | HARDENED |
 
 ## Release rule
 
