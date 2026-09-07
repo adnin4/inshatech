@@ -5,16 +5,16 @@ This checklist is an operational evidence register. It does not itself constitut
 ## Current release lineage
 
 - Canonical branch: `master`
-- Current master release head: `bd96b1b70d0d36869aed073484fa05f2eb88c691`
-- Previous runtime/CI hardening lineage: `2d2f134`, `eee895fe`, `99344cf`
+- Current master release head at checklist update time: `44da3e8` (`docs(release): align evidence checklist with current master`)
+- Previous runtime/CI hardening lineage: `2d2f134`, `eee895fe`, `99344cf`, `bd96b1b`
 - PR #50 is merged and contains CI false-green hardening.
 
 ## Evidence gates
 
 | Gate | Required evidence | Current state |
 |---|---|---|
-| Git release identity | Exact reviewed master SHA | VERIFIED: `bd96b1b` |
-| GitHub CI | Required workflow/check-run success for current head | MUST RECHECK AFTER LATEST DOC-ONLY COMMITS |
+| Git release identity | Exact reviewed master SHA | VERIFIED at update time: `44da3e8` |
+| GitHub CI | Required workflow/check-run success for current head | MUST RECHECK AFTER THIS DOC UPDATE |
 | Cloudflare preview | Successful preview for reviewed SHA | VERIFIED for prior `99344cf` preview |
 | Cloudflare production | Production deployment record for current SHA | UNVERIFIED |
 | Live `/api/version` | `deploy_sha` equals expected release SHA | UNVERIFIED |
