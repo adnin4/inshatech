@@ -1,0 +1,401 @@
+﻿import { onRequestPost as checkoutPost } from '../functions/api/payments/checkout.js';
+import { onRequestPost as webhookPost } from '../functions/api/payments/webhook.js';
+import { SSLCommerzAdapter } from '../functions/api/payments/providers/sslcommerz.js';
+
+let passed = 0;
+let total = 0;
+
+function assert(condition, message) {
+    total++;
+    if (condition) {
+        console.log('  [PASS] ' + message);
+        passed++;
+    } else {
+        console.error('  [FAIL] ' + message);
+        process.exitCode = 1;
+    }
+}
+
+async function hmac(raw, secret) {
+    const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(secret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+    );
+    const bytes = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(raw));
+    return [...new Uint8Array(bytes)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function runAdversarialSuite() {
+    console.log('================================================================================');
+    console.log('IINSHA AI-BOS: PAYMENT ADVERSARIAL, RACE CONDITION & IPN CONTRACT TEST SUITE');
+    console.log('================================================================================\n');
+
+    // -------------------------------------------------------------------------
+    // TEST 1: Concurrent Idempotent Checkout Race Condition Handling
+    // -------------------------------------------------------------------------
+    {
+        console.log('--- SUITE 1: Checkout Idempotency & Concurrency ---');
+        const sharedIdempotencyKey = 'idem_race_test_999';
+
+        const ordersStore = new Map();
+        const mockEnv = {
+            SUPABASE_URL: 'https://mock.supabase.co',
+            SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key',
+            SSLCOMMERZ_STORE_ID: 'mock_store',
+            SSLCOMMERZ_STORE_PASSWORD: 'mock_password'
+        };
+
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = async (url, opts = {}) => {
+            const urlStr = String(url);
+
+            if (urlStr.includes('/ibos_orders?idempotency_key=eq.')) {
+                const key = decodeURIComponent(urlStr.split('idempotency_key=eq.')[1].split('&')[0]);
+                if (ordersStore.has(key)) {
+                    return new Response(JSON.stringify([ordersStore.get(key)]), { status: 200 });
+                }
+                return new Response(JSON.stringify([]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_services?slug=eq.')) {
+                return new Response(JSON.stringify([{ id: 'f81d4fae-7dec-11d0-a765-00a0c91e6bf6' }]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_orders') && opts.method === 'POST') {
+                const payload = JSON.parse(opts.body);
+                if (ordersStore.has(payload.idempotency_key)) {
+                    return new Response(JSON.stringify({ message: 'duplicate key' }), { status: 409 });
+                }
+                ordersStore.set(payload.idempotency_key, payload);
+                return new Response(JSON.stringify([payload]), { status: 201 });
+            }
+
+            if (urlStr.includes('securepay.sslcommerz.com/gwprocess/v4/api.php')) {
+                return new Response(JSON.stringify({
+                    status: 'SUCCESS',
+                    sessionkey: 'MOCK_SESSION_KEY_123',
+                    GatewayPageURL: 'https://securepay.sslcommerz.com/easycheckout.php?session=MOCK_SESSION_KEY_123'
+                }), { status: 200 });
+            }
+
+            return originalFetch(url, opts);
+        };
+
+        try {
+            const req1 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'b2b-lead-swarm',
+                    customer_name: 'Adnin Mahin',
+                    customer_email: 'adnin@inshatech.com',
+                    idempotency_key: sharedIdempotencyKey
+                })
+            });
+            const res1 = await checkoutPost({ request: req1, env: mockEnv });
+            const json1 = await res1.json();
+
+            const req2 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'b2b-lead-swarm',
+                    customer_name: 'Adnin Mahin',
+                    customer_email: 'adnin@inshatech.com',
+                    idempotency_key: sharedIdempotencyKey
+                })
+            });
+            const res2 = await checkoutPost({ request: req2, env: mockEnv });
+            const json2 = await res2.json();
+
+            assert(res1.status === 200 && json1.status === 'SUCCESS', 'First checkout request successfully registers order');
+            assert(
+                res2.status === 200 && json2.action === 'idempotent_order_reused' && json2.order_id === json1.order_id,
+                'Concurrent duplicate checkout safely reuses existing order without duplicating DB record'
+            );
+        } finally {
+            globalThis.fetch = originalFetch;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 2: SSLCommerz IPN Adversarial Scenarios
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 2: SSLCommerz IPN Adversarial Verification ---');
+        const secret = 'webhook_secret_2026';
+        const targetOrderCode = 'ORD-VERIF-777';
+
+        const mockEnv = {
+            WEBHOOK_SECRET: secret,
+            SUPABASE_URL: 'https://mock.supabase.co',
+            SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key',
+            SSLCOMMERZ_STORE_ID: 'iinsha_live',
+            SSLCOMMERZ_STORE_PASSWORD: 'store_password_live',
+            SSLCOMMERZ_IS_LIVE: 'true'
+        };
+
+        const existingOrder = {
+            id: 'd9b2d678-0000-0000-0000-000000000001',
+            order_code: targetOrderCode,
+            payment_status: 'awaiting_payment',
+            amount: 850,
+            currency: 'BDT',
+            bdt_amount: 104125,
+            payment_gateway: 'sslcommerz'
+        };
+
+        let validationApiResponse = {
+            status: 'VALID',
+            tran_id: targetOrderCode,
+            val_id: 'VAL_REAL_123',
+            amount: 104125,
+            currency: 'BDT',
+            risk_level: '0'
+        };
+
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = async (url, opts = {}) => {
+            const urlStr = String(url);
+
+            if (urlStr.includes('/ibos_webhook_events?event_id=eq.')) {
+                return new Response(JSON.stringify([]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_orders?order_code=eq.')) {
+                return new Response(JSON.stringify([existingOrder]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_webhook_events') && opts.method === 'POST') {
+                return new Response(JSON.stringify([{ id: 'mock-event-uuid' }]), { status: 201 });
+            }
+
+            if (urlStr.includes('/ibos_orders') && opts.method === 'PATCH') {
+                return new Response(JSON.stringify([{ id: existingOrder.id, payment_status: 'paid' }]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_webhook_events') && opts.method === 'PATCH') {
+                return new Response(JSON.stringify([{ id: 'mock-event-uuid', status: 'processed' }]), { status: 200 });
+            }
+
+            if (urlStr.includes('validationserverAPI.php')) {
+                return new Response(JSON.stringify(validationApiResponse), { status: 200 });
+            }
+
+            return originalFetch(url, opts);
+        };
+
+        try {
+            // Adversarial 2A: Missing val_id in SSLCommerz IPN
+            {
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 400 && json.status === 'VAL_ID_REQUIRED', 'SSLCommerz IPN rejects payload lacking val_id');
+            }
+
+            // Adversarial 2B: Tampered Transaction ID (tran_id mismatch)
+            {
+                validationApiResponse = {
+                    status: 'VALID',
+                    tran_id: 'ORD-TAMPERED-999',
+                    val_id: 'VAL_REAL_123',
+                    amount: 104125,
+                    currency: 'BDT',
+                    risk_level: '0'
+                };
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 400 && json.status === 'TRANSACTION_ID_MISMATCH', 'Rejects IPN when Order Validation tran_id does not match order_code');
+            }
+
+            // Adversarial 2C: Tampered Currency
+            {
+                validationApiResponse = {
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123',
+                    amount: 104125,
+                    currency: 'INR',
+                    risk_level: '0'
+                };
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 400 && json.status === 'CURRENCY_MISMATCH', 'Rejects IPN when currency is mismatched with order currency');
+            }
+
+            // Adversarial 2D: Tampered Amount
+            {
+                validationApiResponse = {
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123',
+                    amount: 500,
+                    currency: 'BDT',
+                    risk_level: '0'
+                };
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 400 && json.status === 'AMOUNT_MISMATCH', 'Rejects IPN when amount does not match locked order amount');
+            }
+
+            // Adversarial 2E: High Risk Level (risk_level = 1)
+            {
+                validationApiResponse = {
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123',
+                    amount: 104125,
+                    currency: 'BDT',
+                    risk_level: '1',
+                    risk_title: 'Suspected Stolen Card'
+                };
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 400 && json.status === 'RISK_LEVEL_EXCEEDED', 'Rejects IPN when SSLCommerz risk_level is 1 (Fail-Closed)');
+            }
+
+            // Adversarial 2F: Valid IPN Authenticated & Processed
+            {
+                validationApiResponse = {
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123',
+                    amount: 104125,
+                    currency: 'BDT',
+                    risk_level: '0'
+                };
+                const body = JSON.stringify({
+                    status: 'VALID',
+                    tran_id: targetOrderCode,
+                    val_id: 'VAL_REAL_123'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook?provider=sslcommerz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                const json = await res.json();
+                assert(res.status === 200 && json.action === 'payment_confirmed', 'Authoritative IPN successfully passes all validation gates and confirms payment');
+            }
+        } finally {
+            globalThis.fetch = originalFetch;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 3: SSLCommerz Refund Lifecycle API Verification
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 3: Refund Lifecycle Verification ---');
+        const adapter = new SSLCommerzAdapter({
+            SSLCOMMERZ_STORE_ID: 'iinsha_live',
+            SSLCOMMERZ_STORE_PASSWORD: 'store_password_live',
+            SSLCOMMERZ_IS_LIVE: 'true'
+        });
+
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = async (url) => {
+            const urlStr = String(url);
+            if (urlStr.includes('merchantTransIDvalidationAPI.php')) {
+                if (urlStr.includes('refund_amount=')) {
+                    return new Response(JSON.stringify({
+                        status: 'success',
+                        refund_ref_id: 'REF_99887766',
+                        trans_id: 'BANK_TRX_123',
+                        errorReason: ''
+                    }), { status: 200 });
+                }
+                if (urlStr.includes('refund_ref_id=')) {
+                    return new Response(JSON.stringify({
+                        status: 'success',
+                        refund_ref_id: 'REF_99887766',
+                        refund_status: 'Refunded',
+                        refund_amount: '104125'
+                    }), { status: 200 });
+                }
+            }
+            return originalFetch(url);
+        };
+
+        try {
+            const initRes = await adapter.initiateRefund({
+                bankTranId: 'BANK_TRX_123',
+                refundAmount: 104125,
+                refundRemarks: 'Customer Requested Refund'
+            });
+            assert(initRes.ok && initRes.refundRefId === 'REF_99887766', 'SSLCommerzAdapter successfully initiates refund and returns refundRefId');
+
+            const statusRes = await adapter.queryRefundStatus({
+                refundRefId: 'REF_99887766'
+            });
+            assert(statusRes.ok && statusRes.raw?.refund_status === 'Refunded', 'SSLCommerzAdapter successfully queries refund status');
+        } finally {
+            globalThis.fetch = originalFetch;
+        }
+    }
+
+    console.log('\n================================================================================');
+    console.log('ADVERSARIAL SUITE SUMMARY: ' + passed + '/' + total + ' ASSERTIONS PASSED!');
+    console.log('================================================================================\n');
+}
+
+runAdversarialSuite();

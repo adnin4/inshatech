@@ -144,4 +144,65 @@ export class SSLCommerzAdapter {
             };
         }
     }
+
+    /**
+     * Server-side Refund Initiation API (Call when authorized refund requested)
+     */
+    async initiateRefund({ bankTranId, refundAmount, refundRemarks }) {
+        if (!bankTranId || !refundAmount) {
+            return { ok: false, error: 'BANK_TRAN_ID_AND_AMOUNT_REQUIRED' };
+        }
+        if (!this.isConfigured()) {
+            return { ok: false, error: 'CONFIGURATION_REQUIRED' };
+        }
+
+        const endpoint = `${this.baseUrl}/validator/api/merchantTransIDvalidationAPI.php?bank_tran_id=${encodeURIComponent(bankTranId)}&refund_amount=${encodeURIComponent(refundAmount)}&refund_remarks=${encodeURIComponent(refundRemarks || 'Customer Refund')}&store_id=${encodeURIComponent(this.storeId)}&store_passwd=${encodeURIComponent(this.storePasswd)}&format=json`;
+
+        try {
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            const isSuccess = data.status === 'success' || data.status === 'SUCCESS';
+            return {
+                ok: isSuccess,
+                status: data.status,
+                refundRefId: data.refund_ref_id,
+                raw: data
+            };
+        } catch (e) {
+            return {
+                ok: false,
+                error: `Refund API request failed: ${e.message}`
+            };
+        }
+    }
+
+    /**
+     * Query Refund Status API
+     */
+    async queryRefundStatus({ refundRefId }) {
+        if (!refundRefId) {
+            return { ok: false, error: 'REFUND_REF_ID_REQUIRED' };
+        }
+        if (!this.isConfigured()) {
+            return { ok: false, error: 'CONFIGURATION_REQUIRED' };
+        }
+
+        const endpoint = `${this.baseUrl}/validator/api/merchantTransIDvalidationAPI.php?refund_ref_id=${encodeURIComponent(refundRefId)}&store_id=${encodeURIComponent(this.storeId)}&store_passwd=${encodeURIComponent(this.storePasswd)}&format=json`;
+
+        try {
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            return {
+                ok: true,
+                status: data.status,
+                raw: data
+            };
+        } catch (e) {
+            return {
+                ok: false,
+                error: `Query refund status failed: ${e.message}`
+            };
+        }
+    }
 }
+

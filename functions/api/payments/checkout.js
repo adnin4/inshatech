@@ -80,31 +80,74 @@ export async function onRequestPost({ request, env = {} }) {
         const orderId = `ORD-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
         const idempotencyKey = String(b.idempotency_key || `idem_${orderId}`).slice(0, 128);
 
-        // Durable Order Persistence before returning checkout URL
+        // Durable Order Persistence & Idempotency Key Reuse before returning checkout URL
         if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
             try {
                 const base = `${env.SUPABASE_URL}/rest/v1`;
                 const key = env.SUPABASE_SERVICE_ROLE_KEY;
                 const auth = { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
 
+                // Idempotency check: if an order with this idempotency key already exists, reuse it
+                const existingRes = await fetch(
+                    `${base}/ibos_orders?idempotency_key=eq.${encodeURIComponent(idempotencyKey)}&select=order_code,amount,currency,bdt_amount,payment_gateway,payment_status,order_status&limit=1`,
+                    { method: 'GET', headers: auth }
+                );
+                if (existingRes.ok) {
+                    const existingOrders = await existingRes.json().catch(() => []);
+                    if (Array.isArray(existingOrders) && existingOrders.length > 0) {
+                        const existing = existingOrders[0];
+                        return new Response(JSON.stringify({
+                            status: 'SUCCESS',
+                            action: 'idempotent_order_reused',
+                            order_id: existing.order_code,
+                            provider: existing.payment_gateway || provider,
+                            amount_usd: existing.amount ? parseFloat(existing.amount) : usdAmount,
+                            amount_bdt: existing.bdt_amount ? parseFloat(existing.bdt_amount) : bdtAmount,
+                            redirect_url: null,
+                            payment_status: existing.payment_status || 'awaiting_payment'
+                        }), { status: 200, headers: h });
+                    }
+                }
+
+                // Resolve service UUID from ibos_services by slug if available
+                let resolvedServiceUuid = null;
+                try {
+                    const sLookupRes = await fetch(
+                        `${base}/ibos_services?slug=eq.${encodeURIComponent(serviceId)}&select=id&limit=1`,
+                        { method: 'GET', headers: auth }
+                    );
+                    if (sLookupRes.ok) {
+                        const sRows = await sLookupRes.json().catch(() => []);
+                        if (Array.isArray(sRows) && sRows.length > 0 && sRows[0].id) {
+                            resolvedServiceUuid = sRows[0].id;
+                        }
+                    }
+                } catch {
+                    resolvedServiceUuid = null;
+                }
+
+                const orderPayload = {
+                    order_code: orderId,
+                    service_id: resolvedServiceUuid,
+                    service_title: item[0],
+                    package_name: 'Standard',
+                    amount: usdAmount,
+                    currency: 'USD',
+                    bdt_amount: bdtAmount,
+                    client_name: customerName,
+                    client_email: customerEmail,
+                    client_phone: customerPhone,
+                    payment_gateway: provider,
+                    payment_status: 'awaiting_payment',
+                    order_status: 'pending',
+                    idempotency_key: idempotencyKey,
+                    created_at: new Date().toISOString()
+                };
+
                 const dbRes = await fetch(`${base}/ibos_orders`, {
                     method: 'POST',
                     headers: { ...auth, Prefer: 'return=representation' },
-                    body: JSON.stringify({
-                        order_code: orderId,
-                        service_id: serviceId,
-                        service_name: item[0],
-                        amount_usd: usdAmount,
-                        amount_bdt: bdtAmount,
-                        customer_name: customerName,
-                        customer_email: customerEmail,
-                        customer_phone: customerPhone,
-                        payment_provider: provider,
-                        payment_status: 'awaiting_payment',
-                        order_status: 'pending',
-                        idempotency_key: idempotencyKey,
-                        created_at: new Date().toISOString()
-                    })
+                    body: JSON.stringify(orderPayload)
                 });
 
                 if (!dbRes.ok) {

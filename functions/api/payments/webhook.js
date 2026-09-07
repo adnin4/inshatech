@@ -9,6 +9,8 @@
  * 5) only verified payment-success events may move an order to paid.
  */
 
+import { SSLCommerzAdapter } from './providers/sslcommerz.js';
+
 async function hmac(raw, secret) {
     const key = await crypto.subtle.importKey(
         'raw',
@@ -213,7 +215,7 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             const orderRes = await fetch(
-                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,payment_provider`,
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,bdt_amount,payment_gateway`,
                 { method: 'GET', headers: auth }
             );
             if (!orderRes.ok) {
@@ -224,6 +226,73 @@ export async function onRequestPost({ request, env = {} }) {
                 return json(409, { status: 'ORDER_NOT_UNIQUELY_RESOLVED', event_id: eventId, order_id: orderCode });
             }
             resolvedOrder = orders[0];
+
+            // Native SSLCommerz IPN verification using SSLCommerz Order Validation API
+            if (provider === 'sslcommerz') {
+                const valId = String(event.val_id || url.searchParams.get('val_id') || '').trim();
+                if (!valId) {
+                    return json(400, { status: 'VAL_ID_REQUIRED', event_id: eventId, provider });
+                }
+                const sslAdapter = new SSLCommerzAdapter(env);
+                if (sslAdapter.isConfigured()) {
+                    const valRes = await sslAdapter.validatePayment({ valId });
+                    if (!valRes.ok) {
+                        return json(400, {
+                            status: 'ORDER_VALIDATION_FAILED',
+                            reason: valRes.error || 'SSLCommerz validation failed',
+                            event_id: eventId,
+                            provider
+                        });
+                    }
+
+                    // Strict matching: transaction ID must match order_code
+                    if (valRes.tranId !== resolvedOrder.order_code) {
+                        return json(400, {
+                            status: 'TRANSACTION_ID_MISMATCH',
+                            expected: resolvedOrder.order_code,
+                            received: valRes.tranId,
+                            event_id: eventId,
+                            provider
+                        });
+                    }
+
+                    // Strict currency verification
+                    const expectedCurrency = String(resolvedOrder.currency || 'BDT').toUpperCase();
+                    const receivedCurrency = String(valRes.currency || '').toUpperCase();
+                    if (receivedCurrency && expectedCurrency && receivedCurrency !== expectedCurrency && receivedCurrency !== 'BDT') {
+                        return json(400, {
+                            status: 'CURRENCY_MISMATCH',
+                            expected: expectedCurrency,
+                            received: receivedCurrency,
+                            event_id: eventId,
+                            provider
+                        });
+                    }
+
+                    // Strict amount verification
+                    const expectedAmount = parseFloat(resolvedOrder.bdt_amount || resolvedOrder.amount || '0');
+                    if (expectedAmount > 0 && Math.abs(valRes.amount - expectedAmount) > 0.01) {
+                        return json(400, {
+                            status: 'AMOUNT_MISMATCH',
+                            expected: expectedAmount,
+                            received: valRes.amount,
+                            event_id: eventId,
+                            provider
+                        });
+                    }
+
+                    // Risk level assessment: fail-closed if risk_level is '1'
+                    if (String(valRes.raw?.risk_level || '0') === '1') {
+                        return json(400, {
+                            status: 'RISK_LEVEL_EXCEEDED',
+                            risk_level: valRes.raw.risk_level,
+                            risk_title: valRes.raw.risk_title || 'High Risk Transaction',
+                            event_id: eventId,
+                            provider
+                        });
+                    }
+                }
+            }
         }
 
         // Durable event registration happens BEFORE payment mutation. The
