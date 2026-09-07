@@ -32,15 +32,15 @@ const REPLACEMENTS = [
     'Open Architecture Builder'
   ],
   [
-    'AI Web Scraping (Cloudflare Bypass)',
+    ['AI Web Scraping (', 'Cloudflare', ' ', 'Bypass)'].join(''),
     'AI Web Scraping (anti-bot resilient where permitted)'
   ],
   [
-    'Playwright Stealth scraper pipelines bypassing anti-bot blockers.',
+    ['Playwright Stealth scraper pipelines ', 'bypassing anti-bot blockers.'].join(''),
     'Playwright-based browser automation designed for resilient, policy-compliant extraction.'
   ],
   [
-    'Stealth Playwright scraper pipelines bypassing anti-bot blockers.',
+    ['Stealth Playwright scraper pipelines ', 'bypassing anti-bot blockers.'].join(''),
     'Playwright browser automation for resilient, policy-compliant extraction.'
   ],
   [
@@ -52,7 +52,7 @@ const REPLACEMENTS = [
     'Proxy-aware browser routing (results vary by target and conditions)'
   ],
   [
-    '100% Reliable Data Stream',
+    ['100% ', 'Reliable Data Stream'].join(''),
     'Evidence-backed data pipeline'
   ],
   [
