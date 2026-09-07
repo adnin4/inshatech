@@ -22,7 +22,6 @@ jobs:
         with:
           base: ${{ github.event.repository.default_branch }}
           head: HEAD
-        continue-on-error: true
 
       - name: Setup Node.js 22.x
         uses: actions/setup-node@v4
@@ -30,7 +29,7 @@ jobs:
           node-version: '22'
 
       - name: Install Dependencies
-        run: npm ci || npm install --no-audit
+        run: npm ci
 
       - name: Master Regression Firewall & Security Certification
         run: npm test
