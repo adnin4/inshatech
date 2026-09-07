@@ -11,6 +11,7 @@
     "package:clean": "powershell -ExecutionPolicy Bypass -File scripts/generate_clean_master_archive.ps1",
     "test": "node scripts/verify_all_system_claims.mjs",
     "test:wave4": "node scripts/verify_wave4_adapters.mjs",
+    "test:truth-gates": "node scripts/verify_business_truth_gates.mjs",
     "e2e": "node scripts/public_site_e2e.mjs",
     "test:truth": "node scripts/verify_production_truth.js",
     "verify": "node scripts/verify_all_system_claims.mjs && node scripts/run_final_activation_mission.mjs",
