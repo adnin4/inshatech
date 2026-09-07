@@ -1,36 +1,69 @@
 /**
  * Cloudflare Pages Function: /api/health
- * Live SRE Health Stream, Uptime & SLO Verification Endpoint
+ * Live edge health endpoint.
+ * Reports infrastructure facts only; measured SLO metrics must come from telemetry.
  */
+
+const ALLOWED_ORIGINS = [
+    'https://inshatech.pages.dev',
+    'https://inshatech.com',
+    'https://www.inshatech.com',
+    'https://admin.inshatech.com',
+    'http://localhost:8080',
+    'http://localhost:8788',
+    'http://127.0.0.1:8080',
+    'http://127.0.0.1:8788'
+];
+
+function isOriginAllowed(origin) {
+    if (!origin) return false;
+    if (ALLOWED_ORIGINS.includes(origin)) return true;
+    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
+}
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
-    const origin = request.headers.get("Origin") || "*";
+    const origin = request.headers.get('Origin') || '';
+    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
+    const startedAt = Date.now();
+    const hasSupabaseConfig = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
+    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
 
-    const corsHeaders = {
-        "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, traceparent",
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        "traceparent": request.headers.get("traceparent") || `00-${Date.now().toString(16).padStart(32, '0')}-01`
+    const payload = {
+        status: 'EDGE_HEALTHY',
+        database_pool: hasSupabaseConfig ? 'CONFIGURED_UNVERIFIED' : 'NOT_CONFIGURED',
+        environment: env.ENVIRONMENT || 'unknown',
+        edge_region: request.cf?.colo || 'EDGE',
+        edge_country: request.cf?.country || 'GLOBAL',
+        git_sha: gitSha,
+        slo_target: '99.95%',
+        timestamp: new Date().toISOString(),
+        duration_ms: Date.now() - startedAt
     };
 
-    const startTime = Date.now();
-    const isDbConnected = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
-    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || "091332f";
+    return new Response(JSON.stringify(payload, null, 2), {
+        status: 200,
+        headers: {
+            'Access-Control-Allow-Origin': corsOrigin,
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, traceparent',
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache, must-revalidate',
+            'traceparent': request.headers.get('traceparent') || ''
+        }
+    });
+}
 
-    return new Response(JSON.stringify({
-        status: "HEALTHY",
-        uptime_sla: "99.95%_TARGET",
-        database_pool: isDbConnected ? "CONNECTED" : "NOT_CONFIGURED",
-        environment: env.ENVIRONMENT || "production",
-        edge_region: request.cf?.colo || "EDGE",
-        edge_country: request.cf?.country || "GLOBAL",
-        git_sha: gitSha,
-        latency_p95_ms: 24,
-        active_agents: 13,
-        timestamp: new Date().toISOString(),
-        duration_ms: Date.now() - startTime
-    }), { status: 200, headers: corsHeaders });
+export async function onRequestOptions(context) {
+    const origin = context.request.headers.get('Origin') || '';
+    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
+
+    return new Response(null, {
+        status: 204,
+        headers: {
+            'Access-Control-Allow-Origin': corsOrigin,
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, traceparent'
+        }
+    });
 }
