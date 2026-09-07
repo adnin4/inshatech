@@ -79,7 +79,7 @@ async function handleBrowserReturn({ request, env = {} }) {
             const key = env.SUPABASE_SERVICE_ROLE_KEY;
             const auth = { apikey: key, Authorization: `Bearer ${key}` };
 
-            const checkRes = await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderId)}&select=payment_status,order_status,service_name`, {
+            const checkRes = await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderId)}&select=payment_status,order_status,service_title,service_name`, {
                 headers: auth
             });
 
@@ -87,7 +87,7 @@ async function handleBrowserReturn({ request, env = {} }) {
                 const orders = await checkRes.json().catch(() => []);
                 if (Array.isArray(orders) && orders.length > 0) {
                     currentPaymentStatus = orders[0].payment_status || 'awaiting_payment';
-                    serviceName = orders[0].service_name || serviceName;
+                    serviceName = orders[0].service_title || orders[0].service_name || serviceName;
                 }
             }
         } catch (dbErr) {
