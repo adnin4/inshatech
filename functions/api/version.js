@@ -1,7 +1,7 @@
 /**
  * Cloudflare Pages Function: /api/version
- * Cryptographic Release Parity & Dynamic Version Manifest Endpoint
- * Production truth: never invent deployment or database state.
+ * Cryptographic release parity and runtime manifest.
+ * Never invents deployment or database health claims.
  */
 
 const ALLOWED_ORIGINS = [
@@ -18,7 +18,7 @@ const ALLOWED_ORIGINS = [
 function isOriginAllowed(origin) {
     if (!origin) return false;
     if (ALLOWED_ORIGINS.includes(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin) || origin.endsWith('.loca.lt');
+    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
 function databaseIdentity(env) {
@@ -41,7 +41,7 @@ function databaseIdentity(env) {
         runtime_db: runtime,
         db_parity: parity,
         status: parity && health === 'HEALTHY'
-            ? 'ACTIVE_HEALTHY'
+            ? 'ACTIVE_HEALTHY_DECLARED'
             : parity
                 ? 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
                 : 'MISMATCH'
