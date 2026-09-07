@@ -6,7 +6,7 @@ Updated: 2026-09-07
 
 - Repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Reviewed release tip: `f83a1b6381decfda45a2176e4c05797756ac49b2`
+- Reviewed release tip: `d043ce7bb3ef6ff400ad5bde3ee5578b24a8e525`
 - Release classification: `READY_FOR_STAGING`
 
 ## Enforced controls
@@ -21,12 +21,12 @@ Updated: 2026-09-07
 - homepage public truth guard
 - CI reality-boundary gate
 - static system claim classification
-- simulation/conformance runners explicitly labeled as non-production
+- simulation/conformance runners explicitly labeled non-production
 
-## External evidence required
+## External certification gates
 
-Cloudflare production SHA, live `/api/version`, live health/SRE health, runtime Supabase identity, production browser E2E, real AI provider receipts, real payment/webhook/reconciliation, provider delivery receipts, backup/restore, rollback, and branch governance remain external certification gates.
+Cloudflare production SHA, live API identity/health, runtime Supabase identity, production browser E2E, real AI provider receipts, real payment/webhook/reconciliation, provider delivery receipts, backup/restore, rollback, and GitHub branch governance remain external evidence gates.
 
 ## UI
 
-Existing UI/UX is frozen. No visual redesign is part of this release.
+Existing UI/UX is frozen. No redesign is part of this release.
