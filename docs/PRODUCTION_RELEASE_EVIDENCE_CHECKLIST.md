@@ -6,8 +6,8 @@ This checklist is an operational evidence register. It does not itself constitut
 
 - Canonical branch: `master`
 - Runtime/code hardening head: `1b83d5c` (`test(truth): cover fail-closed verification outcomes`)
-- Documentation changes after that head do not modify application runtime behavior.
 - Main and master must be SHA-checked before production release.
+- Documentation changes after the runtime head do not modify application runtime behavior.
 
 ## Evidence gates
 
