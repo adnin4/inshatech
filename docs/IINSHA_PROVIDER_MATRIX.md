@@ -1,20 +1,19 @@
-# 🏛️ IINSHA AI-BOS: PROVIDER CAPABILITY & REAL-WORLD EVIDENCE MATRIX
+# IINSHA AI-BOS — PROVIDER CAPABILITY & REAL-WORLD EVIDENCE MATRIX
 
-* **Date:** 2026-09-07
-* **Standard:** Real Execution Proof Only | Fail-Closed Fallback
+**Audit date:** 2026-09-07
+**Standard:** Real execution proof only | fail-closed by default
 
----
+| Provider | Capability | Evidence available now | Production status |
+| :--- | :--- | :--- | :---: |
+| **Gemini AI** | Model inference | Configurable `GEMINI_MODEL`; hardening default `gemini-3.8-flash`. No independent production receipt captured in this audit. | 🟡 SOURCE_READY |
+| **Supabase** | CRM / mission persistence | `ACTIVE_HEALTHY` control-plane status; security advisor zero lints; 110/110 public tables RLS-enabled. Cloudflare runtime connectivity remains unverified. | 🟡 CONTROL_PLANE_VERIFIED |
+| **Lemon Squeezy** | Hosted checkout | Adapter exists; no independently reconciled checkout/transaction receipt captured. | 🟡 ADAPTER_PRESENT |
+| **Stripe** | Card payments | Configuration-dependent adapter; no signed webhook/reconciliation receipt captured. | 🟡 FAIL_CLOSED_READY |
+| **bKash / Nagad** | Bangladesh mobile payment | Repository routing references exist; no independently verified merchant settlement receipt captured. | 🟡 ADAPTER_PRESENT |
+| **Telegram Bot** | Lead alerts | Configuration-dependent adapter; no live provider receipt captured. | 🟡 FAIL_CLOSED_READY |
+| **Resend** | Transactional email | Configuration-dependent adapter; no live provider receipt captured. | 🟡 FAIL_CLOSED_READY |
+| **Cloudflare Pages** | Edge static + Functions | Git integration supports branch-driven builds; current live deployment SHA/build state is not independently verified. Earlier hardening preview reported `Build failed`. | 🔴 LIVE_UNVERIFIED |
 
-| Provider | Capability | Environment | Credentials Configured? | Connectivity | Adapter | Runtime Output | Cryptographic Evidence | Production Verification Status |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Gemini AI** | Model Inference (Flash/Pro) | Production | Dynamic (`GEMINI_API_KEY`) | PASS | `ai/chat.js` | Model Response / Fallback | SHA-256 Signature | 🟢 **ACTIVE_CONNECTED** |
-| **Supabase** | CRM & Mission Persistence | Production | `kitwadizsvjmuxkfewxj` | Inactive | `crm_adapter.js` | `NOT_CONFIGURED` | Fail-Closed Boundary | 🟡 **FAIL_CLOSED_READY** |
-| **Lemon Squeezy** | Store 458722 Checkout | Production | Store 458722 | Live Endpoint | `checkout.js` | Hosted Checkout URL | Store ID Verification | 🟢 **ACTIVE_CONNECTED** |
-| **Stripe** | Credit/Debit Card Rail | Production | Dynamic (`STRIPE_SECRET_KEY`) | Config Dependent | `checkout.js` | Session / Config Required | Signature Verification | 🟡 **FAIL_CLOSED_READY** |
-| **bKash / Nagad** | Bangladesh Mobile Banking | Production | Manual / Merchant (`01629286887`) | Live Direct | `checkout.js` | TrxID Settlement | Reference Tracking | 🟢 **ACTIVE_CONNECTED** |
-| **Telegram Bot** | Real-Time Lead Alerts | Production | Dynamic (`TELEGRAM_BOT_TOKEN`) | Config Dependent | `notification_dispatcher.js` | `NOT_CONFIGURED` | Provider Receipt Required | 🟡 **FAIL_CLOSED_READY** |
-| **Resend** | Transactional Emails | Production | Dynamic (`RESEND_API_KEY`) | Config Dependent | `notification_dispatcher.js` | `NOT_CONFIGURED` | Provider Receipt Required | 🟡 **FAIL_CLOSED_READY** |
-| **Cloudflare Pages**| Edge Static & Functions | Production | `inshatech.pages.dev` | Live Edge | `version.js` | Dynamic SHA / Headers | Git SHA Parity | 🟢 **ACTIVE_CONNECTED** |
+## Evidence rule
 
----
-**GOVERNANCE SEAL: NO SYNTHETIC SUCCESS ALLOWED ACROSS ANY PROVIDER INTEGRATION.**
+A source-level adapter, generated identifier, mocked response, or successful static test is not sufficient to label an external provider `LIVE_VERIFIED`. Production certification requires an independently verifiable provider/runtime receipt and durable reconciliation where applicable.
