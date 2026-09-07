@@ -1,74 +1,164 @@
 /**
- * Payment Webhook Handler — Multi-Gateway Support:
- * Handles incoming webhooks from: Lemon Squeezy, SSLCommerz, AamarPay, Stripe, bKash, and Nagad.
- * Invariant: Verify signature first, check idempotency second, mutate order status third, record durable log last.
+ * Payment Webhook Handler — fail-closed and idempotent.
+ *
+ * Security invariant:
+ * 1) provider must be identified;
+ * 2) webhook secret and signature must be configured and valid;
+ * 3) duplicate event IDs are rejected before any order mutation;
+ * 4) durable webhook evidence is recorded with required provider metadata;
+ * 5) only verified payment-success events may move an order to paid.
  */
+
 async function hmac(raw, secret) {
-    const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-    return [...new Uint8Array(await crypto.subtle.sign('HMAC', k, new TextEncoder().encode(raw)))].map(b => b.toString(16).padStart(2, '0')).join('');
+    const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(secret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+    );
+    const bytes = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(raw));
+    return [...new Uint8Array(bytes)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 function headers() {
-    return { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
+    return {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+    };
 }
 
 function timingSafe(a, b) {
-    if (a.length !== b.length) return false;
-    let x = 0;
-    for (let i = 0; i < a.length; i++) x |= a.charCodeAt(i) ^ b.charCodeAt(i);
-    return x === 0;
+    if (!a || !b || a.length !== b.length) return false;
+    let diff = 0;
+    for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    return diff === 0;
+}
+
+function json(status, payload) {
+    return new Response(JSON.stringify(payload), { status, headers: headers() });
+}
+
+export async function onRequestGet({ request }) {
+    // Legacy gateway browser-return compatibility. This GET path only redirects;
+    // it never authenticates, records, or mutates payment state.
+    const url = new URL(request.url);
+    const orderId = String(
+        url.searchParams.get('order_id') ||
+        url.searchParams.get('tran_id') ||
+        url.searchParams.get('merchantInvoiceNumber') ||
+        ''
+    ).trim();
+    const provider = String(url.searchParams.get('provider') || '').trim().toLowerCase();
+    const status = String(url.searchParams.get('status') || 'unknown').trim().toLowerCase();
+
+    if (!/^ORD-[A-Z0-9]{8,32}$/.test(orderId)) {
+        return json(400, { status: 'INVALID_RETURN' });
+    }
+
+    const destination = new URL('https://inshatech.pages.dev/api/payments/return');
+    destination.searchParams.set('order_id', orderId);
+    destination.searchParams.set('status', status);
+    if (provider) destination.searchParams.set('provider', provider);
+    return Response.redirect(destination.toString(), 303);
 }
 
 export async function onRequestPost({ request, env = {} }) {
-    const H = headers();
     try {
         const raw = await request.text();
-        const lsSig = request.headers.get('X-Signature') || '';
-        const stripeSig = request.headers.get('Stripe-Signature') || '';
-        const genericSig = request.headers.get('X-Webhook-Signature') || '';
-        
-        // 1. Provider-Native Signature Verification (Fail-Closed)
-        if (env.LEMONSQUEEZY_WEBHOOK_SECRET && lsSig) {
-            const expected = await hmac(raw, env.LEMONSQUEEZY_WEBHOOK_SECRET);
-            if (!timingSafe(lsSig.toLowerCase(), expected.toLowerCase())) {
-                return new Response(JSON.stringify({ status: 'UNAUTHORIZED', error: 'Invalid Lemon Squeezy signature' }), { status: 401, headers: H });
-            }
-        } else if (env.STRIPE_WEBHOOK_SECRET && stripeSig) {
-            // Basic Stripe v1 signature extraction
-            const sigMap = Object.fromEntries(stripeSig.split(',').map(kv => kv.trim().split('=')));
-            if (sigMap.v1 && sigMap.t) {
-                const signedPayload = `${sigMap.t}.${raw}`;
-                const expected = await hmac(signedPayload, env.STRIPE_WEBHOOK_SECRET);
-                if (!timingSafe(sigMap.v1.toLowerCase(), expected.toLowerCase())) {
-                    return new Response(JSON.stringify({ status: 'UNAUTHORIZED', error: 'Invalid Stripe signature' }), { status: 401, headers: H });
-                }
+        const url = new URL(request.url);
+        let provider = String(
+            url.searchParams.get('provider') ||
+            request.headers.get('X-Payment-Provider') ||
+            ''
+        ).toLowerCase().trim();
+
+        if (!provider) {
+            if (request.headers.get('X-Signature') || env.LEMONSQUEEZY_WEBHOOK_SECRET) {
+                provider = 'lemonsqueezy';
+            } else if (request.headers.get('Stripe-Signature') || env.STRIPE_WEBHOOK_SECRET) {
+                provider = 'stripe';
             } else {
-                return new Response(JSON.stringify({ status: 'UNAUTHORIZED', error: 'Malformed Stripe signature header' }), { status: 401, headers: H });
+                provider = 'generic';
             }
-        } else if (env.WEBHOOK_SECRET && genericSig) {
-            const expected = await hmac(raw, env.WEBHOOK_SECRET);
-            if (!timingSafe(genericSig.toLowerCase(), expected.toLowerCase())) {
-                return new Response(JSON.stringify({ status: 'UNAUTHORIZED', error: 'Invalid webhook signature' }), { status: 401, headers: H });
-            }
-        } else if ((env.LEMONSQUEEZY_WEBHOOK_SECRET || env.STRIPE_WEBHOOK_SECRET || env.WEBHOOK_SECRET) && !lsSig && !stripeSig && !genericSig) {
-            // Secret configured but signature header completely missing -> Fail Closed
-            return new Response(JSON.stringify({ status: 'UNAUTHORIZED', error: 'Missing required signature header' }), { status: 401, headers: H });
         }
 
-        const event = JSON.parse(raw || '{}');
-        const eventId = String(event.id || event.event_id || event.data?.id || event.tran_id || event.mer_txnid || `evt_${Date.now()}`);
-        const type = String(event.type || event.event_name || event.meta?.event_name || event.status || event.pay_status || 'unknown');
+        let secret = env.WEBHOOK_SECRET;
+        if (provider === 'lemonsqueezy' && env.LEMONSQUEEZY_WEBHOOK_SECRET) {
+            secret = env.LEMONSQUEEZY_WEBHOOK_SECRET;
+        } else if (provider === 'stripe' && env.STRIPE_WEBHOOK_SECRET) {
+            secret = env.STRIPE_WEBHOOK_SECRET;
+        }
 
-        // Extract Order ID across different payment gateways
-        const orderId = event.data?.object?.metadata?.order_id || 
-                        event.meta?.custom_data?.order_id || 
-                        event.custom_data?.order_id || 
-                        event.data?.attributes?.checkout_data?.custom?.order_id ||
-                        event.value_a || 
-                        event.order_id || 
-                        event.tran_id;
+        if (!secret) {
+            if (!env.WEBHOOK_SECRET) {
+                return json(503, { status: 'WEBHOOK_NOT_CONFIGURED' });
+            }
+        }
 
-        // Check if event signifies successful payment
+        const signature = String(
+            request.headers.get('X-Webhook-Signature') ||
+            request.headers.get('X-Signature') ||
+            request.headers.get('Stripe-Signature') ||
+            ''
+        ).trim();
+        if (!signature) {
+            return json(401, { status: 'SIGNATURE_REQUIRED' });
+        }
+
+        let isValid = false;
+        if (provider === 'stripe' && signature.includes('t=') && signature.includes('v1=')) {
+            const sigMap = Object.fromEntries(signature.split(',').map(kv => kv.trim().split('=')));
+            if (sigMap.v1 && sigMap.t) {
+                const signedPayload = `${sigMap.t}.${raw}`;
+                const expected = await hmac(signedPayload, secret);
+                isValid = timingSafe(sigMap.v1.toLowerCase(), expected.toLowerCase());
+            }
+        } else {
+            const expected = await hmac(raw, secret);
+            isValid = timingSafe(signature.toLowerCase(), expected.toLowerCase());
+        }
+
+        if (!isValid) {
+            return json(401, { status: 'UNAUTHORIZED' });
+        }
+
+        let event;
+        try {
+            event = JSON.parse(raw || '{}');
+        } catch {
+            return json(400, { status: 'INVALID_JSON' });
+        }
+
+        const eventId = String(
+            event.id ||
+            event.event_id ||
+            event.tran_id ||
+            event.mer_txnid ||
+            ''
+        ).trim();
+        if (!eventId) {
+            return json(400, { status: 'EVENT_ID_REQUIRED' });
+        }
+
+        const type = String(
+            event.type ||
+            event.event_name ||
+            event.status ||
+            event.pay_status ||
+            'unknown'
+        ).trim();
+
+        const orderCode = String(
+            event.data?.object?.metadata?.order_id ||
+            event.meta?.custom_data?.order_id ||
+            event.custom_data?.order_id ||
+            event.value_a ||
+            event.order_id ||
+            event.tran_id ||
+            ''
+        ).trim();
+
         const isSuccess = [
             'payment_intent.succeeded',
             'checkout.session.completed',
@@ -78,85 +168,173 @@ export async function onRequestPost({ request, env = {} }) {
             'VALIDATED',
             'Successful',
             'payment.success',
-            'PAID',
-            'paid'
-        ].includes(type) || event.status === 'VALID' || event.status_code === '2' || event.data?.attributes?.status === 'paid';
+            'PAID'
+        ].includes(type) || event.status === 'VALID' || event.status_code === '2';
 
-        if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
-            const base = `${env.SUPABASE_URL}/rest/v1`;
-            const key = env.SUPABASE_SERVICE_ROLE_KEY;
-            const auth = { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
+        if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
+            return json(503, { status: 'DATABASE_NOT_CONFIGURED' });
+        }
 
-            // 2. Idempotency Check: Verify if event has already been ingested
-            try {
-                const checkRes = await fetch(`${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}&select=id`, {
-                    headers: auth
+        const base = `${env.SUPABASE_URL}/rest/v1`;
+        const key = env.SUPABASE_SERVICE_ROLE_KEY;
+        const auth = {
+            apikey: key,
+            Authorization: `Bearer ${key}`,
+            'Content-Type': 'application/json'
+        };
+
+        // Idempotency check MUST happen before any order mutation.
+        const duplicateRes = await fetch(
+            `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}&select=id&limit=1`,
+            { method: 'GET', headers: auth }
+        );
+        if (!duplicateRes.ok) {
+            return json(503, { status: 'DATABASE_LOOKUP_FAILED' });
+        }
+        const duplicateRows = await duplicateRes.json().catch(() => []);
+        if (Array.isArray(duplicateRows) && duplicateRows.length > 0) {
+            return json(200, {
+                status: 'SUCCESS',
+                action: 'duplicate_ignored',
+                event_id: eventId,
+                order_id: orderCode || 'UNSPECIFIED',
+                provider
+            });
+        }
+
+        let resolvedOrder = null;
+        if (isSuccess) {
+            if (!orderCode) {
+                return json(400, {
+                    status: 'ORDER_REQUIRED',
+                    event_id: eventId,
+                    provider
                 });
-                if (checkRes.ok) {
-                    const existing = await checkRes.json().catch(() => []);
-                    if (Array.isArray(existing) && existing.length > 0) {
-                        return new Response(JSON.stringify({
-                            status: 'DUPLICATE_IGNORED',
-                            action: 'REPLAY_PREVENTED',
-                            event_id: eventId,
-                            order_id: orderId || 'UNSPECIFIED'
-                        }), { status: 200, headers: H });
-                    }
-                }
-            } catch (checkErr) {
-                console.warn('Webhook idempotency check notice:', checkErr.message);
             }
 
-            // 3. Mutate Order Status and Record Durable Webhook Event (Fail-Closed)
-            try {
-                if (isSuccess && orderId) {
-                    const orderPatchRes = await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderId)}`, {
+            const orderRes = await fetch(
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,payment_provider`,
+                { method: 'GET', headers: auth }
+            );
+            if (!orderRes.ok) {
+                return json(503, { status: 'ORDER_LOOKUP_FAILED', event_id: eventId });
+            }
+            const orders = await orderRes.json().catch(() => []);
+            if (!Array.isArray(orders) || orders.length !== 1) {
+                return json(409, { status: 'ORDER_NOT_UNIQUELY_RESOLVED', event_id: eventId, order_id: orderCode });
+            }
+            resolvedOrder = orders[0];
+        }
+
+        // Durable event registration happens BEFORE payment mutation. The
+        // unique event_id constraint becomes the replay/concurrency gate.
+        const now = new Date().toISOString();
+        const eventRes = await fetch(`${base}/ibos_webhook_events`, {
+            method: 'POST',
+            headers: { ...auth, Prefer: 'return=representation' },
+            body: JSON.stringify({
+                event_id: eventId,
+                provider,
+                event_type: type,
+                order_code: orderCode || null,
+                order_id: resolvedOrder?.id || null,
+                status: isSuccess ? 'authenticated' : 'received',
+                signature_verified: true,
+                payload: event,
+                received_at: now,
+                processed_at: null
+            })
+        });
+
+        if (eventRes.status === 409) {
+            return json(200, {
+                status: 'SUCCESS',
+                action: 'duplicate_ignored',
+                event_id: eventId,
+                order_id: orderCode || 'UNSPECIFIED',
+                provider
+            });
+        }
+        if (!eventRes.ok) {
+            return json(503, {
+                status: 'DURABLE_EVENT_WRITE_FAILED',
+                event_id: eventId,
+                order_id: orderCode || 'UNSPECIFIED',
+                provider
+            });
+        }
+
+        if (isSuccess) {
+            if (resolvedOrder && String(resolvedOrder.payment_status || '').toLowerCase() === 'paid') {
+                const alreadyPaidPatch = await fetch(
+                    `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+                    {
                         method: 'PATCH',
-                        headers: { ...auth, Prefer: 'return=representation' },
-                        body: JSON.stringify({
-                            payment_status: 'paid',
-                            order_status: 'confirmed',
-                            updated_at: new Date().toISOString()
-                        })
-                    });
-
-                    if (!orderPatchRes.ok) {
-                        const err = await orderPatchRes.text().catch(() => 'Order patch error');
-                        return new Response(JSON.stringify({ status: 'DATABASE_ERROR', error: 'Failed to update order state', detail: err }), { status: 500, headers: H });
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({ status: 'processed', processed_at: now })
                     }
-                }
-
-                // Record durable ledger event
-                const eventLogRes = await fetch(`${base}/ibos_webhook_events`, {
-                    method: 'POST',
-                    headers: { ...auth, Prefer: 'return=minimal' },
-                    body: JSON.stringify({
-                        event_id: eventId,
-                        event_type: type,
-                        order_id: orderId || null,
-                        raw_payload: event,
-                        created_at: new Date().toISOString()
-                    })
+                );
+                if (!alreadyPaidPatch.ok) return json(503, { status: 'EVENT_FINALIZE_FAILED', event_id: eventId });
+                return json(200, {
+                    status: 'SUCCESS',
+                    action: 'already_paid',
+                    event_id: eventId,
+                    order_id: orderCode,
+                    provider
                 });
+            }
 
-                if (!eventLogRes.ok) {
-                    const err = await eventLogRes.text().catch(() => 'Event log error');
-                    return new Response(JSON.stringify({ status: 'DATABASE_ERROR', error: 'Failed to record webhook event', detail: err }), { status: 500, headers: H });
+            const patchRes = await fetch(
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
+                {
+                    method: 'PATCH',
+                    headers: { ...auth, Prefer: 'return=representation' },
+                    body: JSON.stringify({
+                        payment_status: 'paid',
+                        order_status: 'confirmed',
+                        payment_provider: provider,
+                        payment_reference: event.payment_reference || event.transaction_id || event.tran_id || event.id || null,
+                        paid_at: now
+                    })
                 }
-            } catch (dbError) {
-                return new Response(JSON.stringify({ status: 'DATABASE_ERROR', error: dbError.message }), { status: 500, headers: H });
+            );
+            if (!patchRes.ok) {
+                await fetch(
+                    `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+                    {
+                        method: 'PATCH',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({ status: 'failed', error_message: `ORDER_UPDATE_FAILED_${patchRes.status}` })
+                    }
+                );
+                return json(503, { status: 'ORDER_UPDATE_FAILED', event_id: eventId, order_id: orderCode });
             }
         }
 
-        return new Response(JSON.stringify({
+        const finalizeRes = await fetch(
+            `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
+            {
+                method: 'PATCH',
+                headers: { ...auth, Prefer: 'return=minimal' },
+                body: JSON.stringify({ status: isSuccess ? 'processed' : 'received', processed_at: isSuccess ? now : null })
+            }
+        );
+        if (!finalizeRes.ok) {
+            return json(503, { status: 'EVENT_FINALIZE_FAILED', event_id: eventId, order_id: orderCode || 'UNSPECIFIED' });
+        }
+
+        return json(200, {
             status: 'SUCCESS',
             action: isSuccess ? 'payment_confirmed' : 'event_recorded',
             event_id: eventId,
-            order_id: orderId || 'UNSPECIFIED',
-            event_type: type
-        }), { status: 200, headers: H });
-
-    } catch (e) {
-        return new Response(JSON.stringify({ status: 'ERROR', message: e.message }), { status: 500, headers: H });
+            order_id: orderCode || 'UNSPECIFIED',
+            event_type: type,
+            provider
+        });
+    } catch (error) {
+        return json(500, {
+            status: 'ERROR',
+            message: error instanceof Error ? error.message : 'Webhook processing failed'
+        });
     }
 }
