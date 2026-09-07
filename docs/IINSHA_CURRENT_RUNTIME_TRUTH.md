@@ -6,8 +6,8 @@
 
 - Canonical repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current master audit baseline: `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`
-- Main branch lockstep parity: `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`
+- Current master audit baseline: `2d2f134b0d4e171ded75fc34e5925c70bbbb5a8b`
+- Main branch lockstep parity: `2d2f134b0d4e171ded75fc34e5925c70bbbb5a8b`
 - This document records evidence boundaries, not independent proof of the live Cloudflare production deployment.
 
 ## Verified boundaries
@@ -46,8 +46,8 @@ Payment, notification, CRM, deployment and customer-impacting execution must not
 
 ## External evidence still required
 
-1. Cloudflare production deployment SHA verification on canonical domain `inshatech.pages.dev` (Issue #49 target: `99344cf`).
-2. Live `/api/version` and `/api/health` parity check against `99344cf`.
+1. Cloudflare production deployment SHA verification on canonical domain `inshatech.pages.dev` (Issue #49 target: `2d2f134`).
+2. Live `/api/version` and `/api/health` parity check against `2d2f134b0d4e171ded75fc34e5925c70bbbb5a8b`.
 3. Browser-level E2E against the deployed site.
 4. Provider-specific execution receipts for payments, notifications and any business side effects.
 5. Runtime secret/connectivity verification for enabled integrations without exposing secret values in source code.
