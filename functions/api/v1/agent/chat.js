@@ -1,8 +1,5 @@
-/**
- * Cloudflare Pages Function: /api/v1/agent/chat
- * IINSHA AI-BOS Authoritative Real Model + Mission + Evidence Pipeline
- * Enforces Truthful Semantic Model: RESPONSE_GENERATED vs EXECUTION_STATE
- */
+// IINSHA AI-BOS authoritative conversational entrypoint.
+// Model responses are conversational output; they are not proof of business execution.
 
 const ALLOWED_ORIGINS = [
     'https://inshatech.pages.dev',
@@ -18,7 +15,7 @@ const ALLOWED_ORIGINS = [
 function isOriginAllowed(origin) {
     if (!origin) return false;
     if (ALLOWED_ORIGINS.includes(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin) || origin.endsWith('.loca.lt');
+    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
 function getCorsHeaders(request) {
@@ -36,8 +33,7 @@ function getCorsHeaders(request) {
 async function sha256(str) {
     const buffer = new TextEncoder().encode(str);
     const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return Array.from(new Uint8Array(hashBuffer), b => b.toString(16).padStart(2, '0')).join('');
 }
 
 export async function onRequestPost(context) {
@@ -49,17 +45,13 @@ export async function onRequestPost(context) {
         const { message, session_id, mode = 'general', history = [], state = {} } = body;
 
         if (!message || typeof message !== 'string' || !message.trim()) {
-            return new Response(JSON.stringify({
-                status: 'ERROR',
-                error: 'Message is required and must be a non-empty string'
-            }), { headers: corsHeaders, status: 400 });
+            return new Response(JSON.stringify({ status: 'ERROR', error: 'Message is required and must be a non-empty string' }), { headers: corsHeaders, status: 400 });
         }
 
         const rawMessage = message.slice(0, 2000).trim();
         const cleanMessage = rawMessage
             .replace(/<[^>]*>?/gm, '')
             .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
-
         const sessionId = session_id || `sess_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
         const missionId = `mis_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
         const lowerMsg = cleanMessage.toLowerCase();
@@ -67,8 +59,8 @@ export async function onRequestPost(context) {
         let detectedAgent = 'SALES_AGENT';
         let agentRole = 'Sales & Growth Strategist';
         let intent = 'consultation';
-        let confidence = 0.95;
-        let isSideEffect = false;
+        const confidence = 0.95;
+        let requestedSideEffect = false;
 
         if (lowerMsg.includes('architect') || lowerMsg.includes('tech') || lowerMsg.includes('stack') || lowerMsg.includes('docker') || lowerMsg.includes('python') || lowerMsg.includes('database')) {
             detectedAgent = 'ARCHITECT_AGENT';
@@ -90,35 +82,34 @@ export async function onRequestPost(context) {
             detectedAgent = 'DEVELOPER_AGENT';
             agentRole = 'Sandbox Developer Swarm Lead';
             intent = 'code_development';
-            isSideEffect = true;
+            requestedSideEffect = true;
         }
 
         const geminiApiKey = env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY;
-        const configuredModel = env.GEMINI_MODEL || 'gemini-1.5-flash';
+        const configuredModel = env.GEMINI_MODEL || 'gemini-3.8-flash';
         let reply = '';
         let modelUsed = 'deterministic_agentic_brain';
-        let modelStatus = 'FALLBACK_CATALOG_GUIDE';
+        let modelStatus = 'DETERMINISTIC_FALLBACK';
         let runtimeState = 'DETERMINISTIC_RESPONSE';
         let providerResponseId = null;
         let providerModelVersion = null;
 
         if (geminiApiKey) {
             try {
-                const systemPrompt = `You are the IINSHA AI-BOS Autonomous ${agentRole} (${detectedAgent}).
-You represent Insha Tech, founded by Lead AI Engineer Adnin Sadat Mahin.
-Authoritative Turnkey Catalog:
-- B2B SaaS 5-Agent Hunter Swarm: $850 (৳104,125 BDT), 3 days delivery
-- 24/7 E-Commerce WhatsApp & Messenger Sales Agent: $750 (৳91,875 BDT), 2 days delivery
-- AI Voice Receptionist (Twilio + Gemini WebRTC): $1,800 (৳220,500 BDT), 5 days delivery
-- Self-Hosted n8n Enterprise Cluster on Hostinger VPS: $497 (৳60,882 BDT), 1 day delivery
-- Autonomous Invoice & Document OCR Pipeline: $249 (৳30,502 BDT), 1 day delivery
+                const systemPrompt = `You are the IINSHA AI-BOS ${agentRole} (${detectedAgent}).
+You represent Insha Tech.
+Authoritative service catalog:
+- B2B SaaS 5-Agent Hunter Swarm: $850
+- 24/7 E-Commerce WhatsApp & Messenger Sales Agent: $750
+- AI Voice Receptionist: $1800
+- Self-Hosted n8n Enterprise Cluster Deployment: $497
+- Autonomous Invoice & Document OCR Pipeline: $249
 
-Founder Direct WhatsApp: +8801629286887 | Lead Engineer: Adnin Sadat Mahin.
 Rules:
 - Respond in the user's language.
-- Be precise, professional, concise, and truthful.
-- Never claim a payment, deployment, CRM mutation, external message, customer result, or tool execution unless the corresponding backend/provider evidence exists.
-- A conversational response is not proof that a business mission executed. If asked for custom quotes or bookings, direct the client to WhatsApp.`;
+- Be precise, professional and truthful.
+- Never claim a payment, deployment, CRM mutation, external message, customer result, or tool execution unless corresponding backend/provider evidence exists.
+- A conversational response is not proof that a business mission executed.`;
 
                 const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(configuredModel)}:generateContent?key=${encodeURIComponent(geminiApiKey)}`;
                 const historyContext = Array.isArray(history)
@@ -127,7 +118,6 @@ Rules:
                         parts: [{ text: String(h?.text || h?.message || '').slice(0, 4000) }]
                     })).filter(h => h.parts[0].text)
                     : [];
-
                 const contents = [
                     ...historyContext,
                     { role: 'user', parts: [{ text: `${systemPrompt}\n\nClient User Query: ${cleanMessage}` }] }
@@ -136,13 +126,7 @@ Rules:
                 const geminiRes = await fetch(geminiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents,
-                        generationConfig: {
-                            temperature: 0.7,
-                            maxOutputTokens: 800
-                        }
-                    })
+                    body: JSON.stringify({ contents, generationConfig: { temperature: 0.7, maxOutputTokens: 800 } })
                 });
 
                 if (geminiRes.ok) {
@@ -158,28 +142,26 @@ Rules:
                     }
                 }
             } catch (modelErr) {
-                console.warn('Gemini edge fallback engaged:', modelErr.message);
+                console.warn('Gemini edge fallback engaged:', modelErr?.message || 'provider error');
             }
         }
 
-        // Deterministic Truthful Fallback
         if (!reply) {
-            if (intent === 'pricing_discovery' || lowerMsg.includes('roi')) {
-                reply = 'Our canonical enterprise solutions start at $249 USD (৳30,502 BDT) for Invoice OCR pipelines, $497 USD for self-hosted n8n clusters, and $750–$850 USD for autonomous sales and scraper swarms. Estimated ROI is achieved within 30 days.';
+            if (intent === 'pricing_discovery') {
+                reply = 'IINSHA AI-BOS turnkey automation packages start from $249 USD. Pricing and scope can be refined from the authoritative service catalog.';
             } else if (intent === 'technical_design') {
-                reply = 'Our architecture utilizes isolated Hostinger Linux VPS Docker containers running n8n, Python Playwright scrapers, PostgreSQL, and Gemini Pro multi-agent orchestration with zero monthly SaaS seat tax.';
+                reply = 'I can help design the architecture using the available IINSHA service catalog. External deployment or provider action requires a configured backend adapter and verification evidence.';
             } else if (intent === 'partner_inquiry') {
-                reply = 'Our Partner & Affiliate Program offers 15%–30% lifetime recurring commissions with instant tracking, sub-ID attribution, and transparent payout ledgers.';
+                reply = 'I can explain the current partner program and route you to the partner surface. Payout execution remains provider-dependent and must be verified separately.';
             } else if (intent === 'code_development') {
-                reply = 'Our Developer Agent swarm operates inside isolated execution sandboxes with automated linting, test verification, and independent QA approval before any production release.';
+                reply = 'I can help scope a development workflow. Actual sandbox execution requires a configured isolated worker and independent verification.';
             } else if (intent === 'technical_support') {
-                reply = 'Our Customer Success & SRE Agent is standing by. If you are experiencing an issue, please describe the symptom, affected endpoint, and project ID for immediate diagnostic triage.';
+                reply = 'Please describe the symptom, affected endpoint, and relevant project context. I can help triage the issue without claiming a fix was applied unless the backend provides evidence.';
             } else {
                 reply = 'Hello! I am the IINSHA AI Copilot. I can help with automation architecture, service selection, pricing discovery, and next-step planning.';
             }
         }
 
-        // Cryptographic Evidence & Execution State
         const inputHash = await sha256(cleanMessage);
         const outputHash = await sha256(reply);
         const evidenceSignature = await sha256(`${sessionId}:${missionId}:${inputHash}:${outputHash}`);
@@ -190,26 +172,15 @@ Rules:
             { label: 'Direct Founder Consultation', action: 'OPEN_WHATSAPP' }
         ];
 
-        const isDbConnected = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
-        const executionState = isSideEffect 
-            ? (isDbConnected ? 'QUEUED_IN_SANDBOX' : 'NOT_CONFIGURED')
-            : 'CONSULTATION_ONLY';
-
         const responsePayload = {
             status: 'SUCCESS',
-            response_state: 'RESPONSE_GENERATED',
-            execution_state: executionState,
             success_type: 'RESPONSE_ONLY',
-            execution_status: isSideEffect ? executionState : 'NOT_EXECUTED',
+            response_state: 'RESPONSE_GENERATED',
+            execution_status: 'NOT_EXECUTED',
+            execution_state: 'NOT_EXECUTED',
             session_id: sessionId,
             mission_id: missionId,
-            agent: {
-                id: detectedAgent,
-                role: agentRole,
-                mode,
-                intent,
-                confidence
-            },
+            agent: { id: detectedAgent, role: agentRole, mode, intent, confidence },
             model_info: {
                 model: modelUsed,
                 status: modelStatus,
@@ -226,11 +197,10 @@ Rules:
                 input_sha256: inputHash,
                 output_sha256: outputHash,
                 evidence_signature: evidenceSignature,
-                policy_verdict: 'APPROVED',
-                risk_level: 'LOW',
-                is_production_side_effect: isSideEffect,
-                is_persisted: isDbConnected,
-                persisted: isDbConnected,
+                policy_verdict: 'NOT_EXECUTED',
+                risk_level: requestedSideEffect ? 'PENDING_EXECUTION_REVIEW' : 'LOW',
+                requested_side_effect: requestedSideEffect,
+                persisted: false,
                 timestamp: new Date().toISOString()
             },
             client_state: state
@@ -238,12 +208,7 @@ Rules:
 
         return new Response(JSON.stringify(responsePayload, null, 2), { headers: corsHeaders });
     } catch (err) {
-        return new Response(JSON.stringify({
-            status: 'ERROR',
-            response_state: 'ERROR',
-            execution_state: 'EXECUTION_FAILED',
-            error: err.message || 'Internal server error in Agent Execution Pipeline'
-        }), { headers: corsHeaders, status: 500 });
+        return new Response(JSON.stringify({ status: 'ERROR', response_state: 'ERROR', execution_state: 'EXECUTION_FAILED', error: err.message || 'Internal server error in Agent Execution Pipeline' }), { headers: corsHeaders, status: 500 });
     }
 }
 
