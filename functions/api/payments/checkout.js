@@ -269,7 +269,7 @@ export async function onRequestPost({ request, env = {} }) {
                         body: JSON.stringify({
                             mode: '0011',
                             payerReference: customerPhone,
-                            callbackURL: `https://inshatech.pages.dev/portal.html?order_id=${orderId}&gateway=bkash`,
+                            callbackURL: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&provider=bkash&status=return`,
                             amount: bdtAmount.toString(),
                             currency: 'BDT',
                             intent: 'sale',
