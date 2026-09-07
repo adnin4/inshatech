@@ -1,0 +1,17 @@
+{
+  "status": "DEPLOYMENT_SHA_UNVERIFIED",
+  "platform": "IINSHA AI-BOS",
+  "deploy_sha": "70b316b3c3cb019215fa4fa0a35285e73f872499",
+  "expected_release_sha": null,
+  "parity": false,
+  "branch": "main",
+  "canonical_repository": "https://github.com/adnin4/inshatech.git",
+  "environment": "production",
+  "database_identity": {
+    "canonical_db": null,
+    "runtime_db": null,
+    "db_parity": false,
+    "status": "UNVERIFIED"
+  },
+  "timestamp": "2026-09-07T21:29:13.710Z"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "EDGE_HEALTHY",
+  "database_pool": "NOT_CONFIGURED",
+  "environment": "production",
+  "edge_region": "DAC",
+  "edge_country": "BD",
+  "git_sha": "70b316b3c3cb019215fa4fa0a35285e73f872499",
+  "slo_target": "99.95%",
+  "timestamp": "2026-09-07T21:29:13.764Z",
+  "duration_ms": 0
+}
