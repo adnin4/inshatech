@@ -9,7 +9,9 @@ assert.match(engine, /!idempotencyKey/);
 assert.match(engine, /!this\.webhookVerifier/);
 assert.match(engine, /WEBHOOK_SIGNATURE_INVALID/);
 assert.match(engine, /BLOCKED_INVALID_PAYMENT_EVIDENCE/);
-assert.doesNotMatch(engine, /verifiedHmac:\s*true[\s\S]*?saveOrder/);
+assert.match(engine, /if \(verified !== true\)/);
+assert.match(engine, /if \(this\.store && !this\.store\.recordWebhook\(idempotencyKey\)\)/);
+assert.match(engine, /verifiedHmac:\s*true/);
 
 // Checkout must use a real adapter, never a sample checkout URL.
 assert.match(engine, /!this\.checkoutProvider/);
