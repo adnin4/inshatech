@@ -1,35 +1,42 @@
-# ⚠️ IINSHA AI-BOS: OPEN PRODUCTION BLOCKERS & RUNTIME DEPENDENCIES
+# IINSHA AI-BOS — OPEN PRODUCTION BLOCKERS & RUNTIME DEPENDENCIES
 
-* **Audit Date:** 2026-09-07
-* **Status:** Ground-Truth Verified (Zero False Claims)
+**Audit date:** 2026-09-07
+**Readiness:** `READY_FOR_STAGING`
 
----
+## BLOCKER-01 — Cloudflare live deployment evidence
+**Severity:** P0 for production certification
 
-## 📋 Verified Blocker Register
+The earlier hardening PR received a Cloudflare Pages bot status of `Build failed`, while the repository-side GitHub workflow suite passed. The exact Cloudflare build log and current production deployment SHA are not independently accessible through the available connections.
 
-### 1. [BLOCKER-01] Supabase Project Inactive State
-* **Severity:** P0 / High
-* **Root Cause:** Database project `kitwadizsvjmuxkfewxj` is paused/inactive in Supabase cloud.
-* **Affected Components:** Real-time database persistence in `crm_adapter.js`, portal dynamic query updates.
-* **Current Runtime Status:** 🟡 **`FAIL_CLOSED`** (`NOT_CONFIGURED` returned honestly without data corruption).
-* **Required Action:** Re-activate project in Supabase dashboard or connect active project keys (`SUPABASE_URL`, `SUPABASE_ANON_KEY`).
-* **Owner Dependency:** Adnin Sadat Mahin (Supabase Cloud Console access).
+**Required:** confirm the Cloudflare project, production branch, successful deployment, and live `/api/version` SHA.
 
-### 2. [BLOCKER-02] Cloudflare Live Native Git Webhook Sync
-* **Severity:** P1 / Medium
-* **Root Cause:** Cloudflare Pages Native Git integration builds automatically on GitHub pushes. Live edge caching can delay SHA propagation.
-* **Affected Components:** Live parity on `https://inshatech.pages.dev/api/version`.
-* **Current Runtime Status:** 🟢 **`ALIGNED_IN_CODE`** (Endpoint reads `CF_PAGES_COMMIT_SHA`).
-* **Required Action:** Trigger Cloudflare Pages production deployment rebuild if live edge reports cache delay.
-* **Owner Dependency:** Cloudflare Dashboard webhook trigger.
+## BLOCKER-02 — Browser-level deployed E2E
+**Severity:** P1
 
-### 3. [BLOCKER-03] External Notification Provider API Keys
-* **Severity:** P2 / Low
-* **Root Cause:** Live Telegram Bot Token and Resend API Key are stored in Cloudflare Secrets and must be populated for outbound SMS/Email dispatch.
-* **Affected Components:** `ai_brain/adapters/notification_dispatcher.js`.
-* **Current Runtime Status:** 🟡 **`FAIL_CLOSED`** (Returns `NOT_CONFIGURED` without keys).
-* **Required Action:** Add keys in Cloudflare Pages Environment Secrets when live alerts are needed.
-* **Owner Dependency:** Cloudflare Pages Settings ➔ Environment Variables.
+Repository/static E2E is not equivalent to real browser interaction against the deployed customer surface.
 
----
-**SUMMARY: ZERO INTERNAL CODE/UI DEFECTS REMAIN. ALL REMAINING BLOCKERS ARE EXPLICITLY EXTERNAL-CREDENTIAL-DEPENDENT.**
+**Required:** exercise navigation, AI Solution Finder, chat, auth/portal flows, critical forms and checkout handoff against the deployed build.
+
+## BLOCKER-03 — Provider execution receipts
+**Severity:** P1
+
+Payment, notification, CRM and other external actions cannot be labeled `LIVE_VERIFIED` from adapters, generated IDs, or source-level tests alone.
+
+**Required:** provider acceptance, signature/webhook verification, idempotency/replay controls and durable reconciliation evidence.
+
+## BLOCKER-04 — Runtime secrets/connectivity
+**Severity:** P1 when the relevant capability is enabled
+
+Supabase control-plane health is confirmed, but Cloudflare runtime environment variables/secrets are not exposed through this connection and therefore cannot be independently verified.
+
+**Required:** verify runtime configuration without exposing secret values.
+
+## Verified now
+
+- Supabase project `kitwadizsvjmuxkfewxj`: `ACTIVE_HEALTHY`.
+- Supabase security advisor: zero lints.
+- Public PostgreSQL tables: 110; RLS enabled on 110/110.
+- Current canonical `master` at audit time: `4f9b7511a4f7b250cd9da6bf7ad76b78dd3317b9`.
+- No production deployment, payment activation or destructive database migration performed by this hardening pass.
+
+Production certification remains blocked only by the external evidence categories above.
