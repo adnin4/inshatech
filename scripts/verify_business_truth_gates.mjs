@@ -16,10 +16,13 @@ assert.match(engine, /verifiedHmac:\s*true/);
 // Verification semantics must remain separated: provider/business verification is not production verification.
 assert.match(engine, /webhook_verified:\s*true/);
 assert.match(engine, /payment_verified:\s*true/);
+assert.match(engine, /qa_verified:\s*true/);
 assert.match(engine, /client_approval_verified:\s*true/);
 assert.match(engine, /production_verified:\s*false/);
 assert.doesNotMatch(engine, /status:\s*'PAYMENT_VERIFIED_SUCCESS'[\s\S]{0,500}production_verified:\s*true/);
 assert.doesNotMatch(engine, /status:\s*'PROJECT_DELIVERED_SUCCESS'[\s\S]{0,500}production_verified:\s*true/);
+assert.match(engine, /status:\s*'DUPLICATE_IGNORED'[\s\S]{0,300}production_verified:\s*false/);
+assert.match(engine, /status:\s*'BLOCKED_INVALID_PAYMENT_EVIDENCE'[\s\S]{0,300}production_verified:\s*false/);
 
 // Checkout must use a real adapter, never a sample checkout URL.
 assert.match(engine, /!this\.checkoutProvider/);
@@ -35,6 +38,7 @@ assert.match(engine, /clientApprovalEvidenceRef/);
 // QA must reject missing evidence and must not hard-code verification checks to true.
 assert.match(verifier, /BLOCKED_INSUFFICIENT_EVIDENCE/);
 assert.match(verifier, /missingEvidence/);
+assert.match(verifier, /BLOCKED_MISSING_EVIDENCE_REFS/);
 assert.doesNotMatch(verifier, /functionalCorrectness:\s*true/);
 assert.doesNotMatch(verifier, /priceTamperProtected:\s*true/);
 assert.doesNotMatch(verifier, /accessibilityWcagPass:\s*true/);
