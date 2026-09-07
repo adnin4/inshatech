@@ -7,8 +7,8 @@
 - Canonical repository: `adnin4/inshatech`
 - Canonical branch: `master`
 - Runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
+- Documentation-only revisions follow the runtime head.
 - Main/master SHA must be checked again immediately before production release.
-- Documentation revisions after the runtime head do not change application runtime behavior.
 
 ## Current truthful classification
 
@@ -24,6 +24,10 @@
 - Static canonical state no longer claims live runtime database parity.
 - Business truth regression coverage is wired into CI.
 - UI/UX was not redesigned by this hardening pass.
+
+## Current Supabase evidence
+
+Live control-plane/database connectivity was confirmed for project `kitwadizsvjmuxkfewxj` using PostgreSQL 17.6. Public business tables have RLS and denial/public-read policies were audited; intentionally public content tables are limited to read policies. No public or authenticated execution was found for the audited secret-management functions. Runtime application-to-database parity remains unverified because the deployed Cloudflare runtime has not independently exposed its database identity.
 
 ## External production evidence still required
 
@@ -45,9 +49,9 @@ Control-plane baseline:
 - 110 public tables.
 - 110/110 RLS enabled.
 - 0 public tables without RLS.
-- Security Advisor: 0 findings.
+- Security Advisor baseline previously verified at 0 findings.
 
-Runtime database identity remains unverified until the deployed application proves it.
+Runtime identity and complete authorization behavior still require deployed-runtime evidence.
 
 ### AI runtime
 
@@ -64,7 +68,7 @@ No payment provider is `LIVE_VERIFIED` without a controlled real transaction, si
 ## Remaining blockers
 
 - Live Cloudflare/runtime evidence.
-- Runtime Supabase identity and authorization evidence.
+- Runtime Supabase identity and full deployed authorization evidence.
 - Production browser E2E.
 - Real AI execution receipts.
 - Provider receipts.
