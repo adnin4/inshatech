@@ -1,7 +1,7 @@
 {
   "status": "DEPLOYMENT_SHA_UNVERIFIED",
   "platform": "IINSHA AI-BOS",
-  "deploy_sha": "70b316b3c3cb019215fa4fa0a35285e73f872499",
+  "deploy_sha": "b0b5e99e15e400e4af6d7ff8defb18cb22b4ce41",
   "expected_release_sha": null,
   "parity": false,
   "branch": "main",
@@ -13,5 +13,5 @@
     "db_parity": false,
     "status": "UNVERIFIED"
   },
-  "timestamp": "2026-09-07T21:29:13.710Z"
+  "timestamp": "2026-09-07T21:32:00.562Z"
 }
