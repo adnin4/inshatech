@@ -1,6 +1,7 @@
 /**
  * IINSHA AI-BOS — AUTONOMOUS BUSINESS ENGINE
  * Governed cycle with explicit external-evidence gates.
+ * Local/provider verification is never conflated with whole-production verification.
  */
 
 const { NegotiationMarginEngine } = require('./negotiation_margin_engine.js');
@@ -64,6 +65,7 @@ class AutonomousBusinessEngine {
         if (!this.paymentProvidersConfigured || !this.checkoutProvider || typeof this.checkoutProvider.createCheckout !== 'function') {
             return {
                 status: 'NOT_CONFIGURED',
+                operation_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true,
                 message: `Payment provider '${provider}' is not backed by a configured live adapter. Checkout halted safely.`
@@ -74,6 +76,7 @@ class AutonomousBusinessEngine {
         if (!result || result.status !== 'CHECKOUT_INITIALIZED' || !result.checkoutUrl) {
             return {
                 status: 'PROVIDER_ERROR',
+                operation_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true
             };
@@ -81,7 +84,9 @@ class AutonomousBusinessEngine {
         return {
             ...result,
             status: 'CHECKOUT_INITIALIZED',
-            production_verified: result.production_verified === true
+            operation_verified: result.operation_verified === true,
+            production_verified: false,
+            blocked_from_success_claim: result.blocked_from_success_claim !== false
         };
     }
 
@@ -89,6 +94,8 @@ class AutonomousBusinessEngine {
         if (!idempotencyKey) {
             return {
                 status: 'BLOCKED_MISSING_IDEMPOTENCY_KEY',
+                webhook_verified: false,
+                payment_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true
             };
@@ -97,6 +104,8 @@ class AutonomousBusinessEngine {
         if (!this.webhookVerifier || typeof this.webhookVerifier.verify !== 'function') {
             return {
                 status: 'NOT_CONFIGURED',
+                webhook_verified: false,
+                payment_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true,
                 message: 'Webhook signature verification adapter is not configured. Payment state transition halted safely.'
@@ -109,6 +118,8 @@ class AutonomousBusinessEngine {
         } catch (error) {
             return {
                 status: 'WEBHOOK_VERIFICATION_ERROR',
+                webhook_verified: false,
+                payment_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true,
                 error: error instanceof Error ? error.message : 'Webhook verification failed'
@@ -118,6 +129,8 @@ class AutonomousBusinessEngine {
         if (verified !== true) {
             return {
                 status: 'WEBHOOK_SIGNATURE_INVALID',
+                webhook_verified: false,
+                payment_verified: false,
                 production_verified: false,
                 blocked_from_success_claim: true
             };
@@ -126,8 +139,10 @@ class AutonomousBusinessEngine {
         if (this.store && !this.store.recordWebhook(idempotencyKey)) {
             return {
                 status: 'DUPLICATE_IGNORED',
-                production_verified: true,
-                blocked_from_success_claim: false,
+                webhook_verified: true,
+                payment_verified: false,
+                production_verified: false,
+                blocked_from_success_claim: true,
                 message: 'Webhook event was already processed; replay prevented.'
             };
         }
@@ -135,7 +150,9 @@ class AutonomousBusinessEngine {
         if (!eventPayload.orderId || !Number.isFinite(Number(eventPayload.amount)) || !eventPayload.currency) {
             return {
                 status: 'BLOCKED_INVALID_PAYMENT_EVIDENCE',
-                production_verified: true,
+                webhook_verified: true,
+                payment_verified: false,
+                production_verified: false,
                 blocked_from_success_claim: true
             };
         }
@@ -153,18 +170,23 @@ class AutonomousBusinessEngine {
         if (this.store) this.store.saveOrder(order);
         return {
             status: 'PAYMENT_VERIFIED_SUCCESS',
-            production_verified: true,
+            webhook_verified: true,
+            payment_verified: true,
+            production_verified: false,
             blocked_from_success_claim: false,
             order
         };
     }
 
     createAndExecuteProject(orderId, options = {}) {
-        if (!options.paymentVerified) {
+        if (options.paymentVerified !== true) {
             return {
                 status: 'BLOCKED_PAYMENT_NOT_VERIFIED',
-                blocked_from_success_claim: true,
-                production_verified: false
+                payment_verified: false,
+                qa_verified: false,
+                client_approval_verified: false,
+                production_verified: false,
+                blocked_from_success_claim: true
             };
         }
 
@@ -178,8 +200,11 @@ class AutonomousBusinessEngine {
         if (!qaResult || qaResult.verdict !== 'PASS_CERTIFIED') {
             return {
                 status: 'BLOCKED_QA',
-                blocked_from_success_claim: true,
+                payment_verified: true,
+                qa_verified: false,
+                client_approval_verified: false,
                 production_verified: false,
+                blocked_from_success_claim: true,
                 qaResult
             };
         }
@@ -187,8 +212,11 @@ class AutonomousBusinessEngine {
         if (options.clientApproval !== true || !options.clientApprovalEvidenceRef) {
             return {
                 status: 'BLOCKED_CLIENT_APPROVAL_REQUIRED',
-                blocked_from_success_claim: true,
+                payment_verified: true,
+                qa_verified: true,
+                client_approval_verified: false,
                 production_verified: false,
+                blocked_from_success_claim: true,
                 qaResult
             };
         }
@@ -239,7 +267,10 @@ class AutonomousBusinessEngine {
 
         return {
             status: 'PROJECT_DELIVERED_SUCCESS',
-            production_verified: true,
+            payment_verified: true,
+            qa_verified: true,
+            client_approval_verified: true,
+            production_verified: false,
             blocked_from_success_claim: false,
             project,
             qaResult,
