@@ -6,8 +6,8 @@
 
 - Canonical repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Current master audit baseline: `99344cfe4a671e5059be86e5e76978a9c3fe8548`
-- Main branch lockstep parity: `99344cfe4a671e5059be86e5e76978a9c3fe8548`
+- Current master audit baseline: `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`
+- Main branch lockstep parity: `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`
 - This document records evidence boundaries, not independent proof of the live Cloudflare production deployment.
 
 ## Verified boundaries

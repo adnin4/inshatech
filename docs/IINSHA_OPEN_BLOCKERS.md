@@ -8,7 +8,7 @@
 
 The Cloudflare Pages build path fix (`functions` relative imports + `nodejs_compat` in `wrangler.toml`) has been proven working via PR #48 preview deployment (`dfef0d5` -> `Deploy successful`). However, the production deployment SHA on canonical domain `https://inshatech.pages.dev` and live edge SHA parity against master `99344cf` remain to be independently certified from the Cloudflare edge.
 
-**Required:** confirm the Cloudflare project production build completion and live `/api/version` SHA parity for commit `99344cfe4a671e5059be86e5e76978a9c3fe8548`.
+**Required:** confirm the Cloudflare project production build completion and live `/api/version` SHA parity for commit `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`.
 
 ## BLOCKER-02 — GitHub Branch Protection Governance
 **Severity:** P1 for release management
@@ -36,7 +36,7 @@ Payment, notification, CRM and other external actions cannot be labeled `LIVE_VE
 - Supabase project `kitwadizsvjmuxkfewxj`: `ACTIVE_HEALTHY`.
 - Supabase security advisor: 0 lints.
 - Public PostgreSQL tables: 110; RLS enabled on 110/110.
-- Current canonical `master` and `main` baseline: `99344cfe4a671e5059be86e5e76978a9c3fe8548`.
+- Current canonical `master` and `main` baseline: `67cd4e643bea652fa99c481d5d7a9f356fbaab5b`.
 - Zero UI/UX regressions; all 22 sections, 3D Hero, and glassmorphic designs 100% frozen.
 - All automated CI and security gates pass 100%.
 

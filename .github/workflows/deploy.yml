@@ -35,6 +35,7 @@ jobs:
           node -c scroll-engine.js
           node -c worker.js
           node -c universal_ai_copilot.js
+          node scripts/check_functions_imports.mjs
 
       - name: Gate 0 — UI/UX Visual Baseline Firewall
         run: node scripts/visual_regression_baseline.mjs
