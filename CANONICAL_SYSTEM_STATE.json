@@ -1,17 +1,33 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company Operating System",
-  "release_channel": "production",
-  "identity_source": "CI_ENVIRONMENT_AUTHORITATIVE",
+  "release_channel": "staging_candidate",
+  "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
-  "production_branch": "master",
-  "runtime_identity": "DYNAMIC_CF_PAGES_COMMIT_SHA",
-  "build_timestamp": "2026-08-31T15:31:17.788136+00:00",
-  "schema_version": "2026.8.28-autonomous-v1",
+  "canonical_branch": "master",
+  "canonical_runtime_code_head": "09f7bf187f4a91d6e3bd091f37c30392c214d657",
+  "current_repository_tip": "1409f8a3d85baaf9efcd264dca7f270072eeea02",
+  "runtime_identity": "UNVERIFIED_EXTERNAL_RUNTIME",
+  "build_timestamp": "2026-09-07",
+  "schema_version": "2026.9.7-autonomous-v1",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
-    "runtime_db_ref": "kitwadizsvjmuxkfewxj",
-    "db_parity": "PARITY_ALIGNED",
-    "status": "ACTIVE_HEALTHY"
+    "expected_runtime_db_ref": "kitwadizsvjmuxkfewxj",
+    "runtime_db_ref": "UNVERIFIED",
+    "db_parity": "UNVERIFIED",
+    "control_plane_status": "ACTIVE_HEALTHY",
+    "runtime_status": "UNVERIFIED"
+  },
+  "production_evidence": {
+    "cloudflare_deployment": "UNVERIFIED",
+    "live_api_version": "UNVERIFIED",
+    "live_api_health": "UNVERIFIED",
+    "live_sre_health": "UNVERIFIED",
+    "browser_production_e2e": "UNVERIFIED",
+    "ai_execution": "UNVERIFIED",
+    "payments": "NOT_CONFIGURED",
+    "notifications": "UNVERIFIED",
+    "backup_restore": "UNVERIFIED",
+    "rollback": "UNVERIFIED"
   },
   "parity_policy": "EXTERNAL_PROOF_REQUIRED"
 }
