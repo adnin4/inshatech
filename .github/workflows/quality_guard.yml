@@ -45,3 +45,6 @@ jobs:
               sys.exit(1)
           print('JS DOM Isolation Protocol Verified!')
           "
+
+      - name: Run Business Truth Regression Gates
+        run: node scripts/verify_business_truth_gates.mjs
