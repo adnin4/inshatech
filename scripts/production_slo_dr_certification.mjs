@@ -1,20 +1,14 @@
 /**
- * IINSHA AI-BOS: Step 13 — Production SLO, Cost Guardrails & DR Certification Harness (GitHub Issue #27 P0 Gate)
- * Validates:
- * 1. SLO/SLA telemetry data schema and availability targets
- * 2. Cost guardrails and per-mission spend caps
- * 3. Bounded autonomy and anti-loop safeguards
- * 4. Incident management state machine
- * 5. Disaster recovery replay and truthful model fallback behavior
- * 6. Cryptographic evidence verification
+ * IINSHA AI-BOS: Step 13 — Production SLO, Cost Guardrails & DR Certification Harness
+ * Validates structural SLO/DR invariants and truthful model fallback semantics.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-console.log("================================================================================");
-console.log("🏆 IINSHA AI-BOS: ISSUE #27 — SLO, COST GUARDRAILS & DR CERTIFICATION");
-console.log("================================================================================");
+console.log('================================================================================');
+console.log('🏆 IINSHA AI-BOS: ISSUE #27 — SLO, COST GUARDRAILS & DR CERTIFICATION');
+console.log('================================================================================');
 
 let passedCount = 0;
 const totalTests = 10;
@@ -68,13 +62,14 @@ const chatApiPath = path.resolve('functions/api/v1/agent/chat.js');
 const chatApiContent = fs.readFileSync(chatApiPath, 'utf8');
 assert(
     chatApiContent.includes('geminiApiKey') &&
-    chatApiContent.includes('pricing_discovery') &&
     chatApiContent.includes("runtimeState = 'MODEL_RESPONSE'") &&
     chatApiContent.includes("runtimeState = 'DETERMINISTIC_RESPONSE'") &&
     chatApiContent.includes("success_type: 'RESPONSE_ONLY'") &&
-    chatApiContent.includes("execution_status: 'NOT_EXECUTED'"),
+    chatApiContent.includes("execution_status: 'NOT_EXECUTED'") &&
+    chatApiContent.includes("execution_state: 'NOT_EXECUTED'") &&
+    chatApiContent.includes("policy_verdict: 'NOT_EXECUTED'"),
     'Test 06',
-    'Truthful model response + deterministic non-side-effecting fallback is active'
+    'Model-response and business-execution states remain explicitly separated'
 );
 
 const missionApiPath = path.resolve('functions/api/v1/agent/mission.js');
@@ -97,7 +92,7 @@ assert(
 const visualBaselinePath = path.resolve('scripts/visual_regression_baseline.mjs');
 assert(fs.existsSync(visualBaselinePath), 'Test 10', 'UI/UX Visual Baseline Regression Firewall Active');
 
-console.log("================================================================================");
+console.log('================================================================================');
 console.log(`📊 SLO & DR SUMMARY: ${passedCount}/${totalTests} TESTS PASSED`);
-console.log("Status: EVIDENCE_VERIFIED (structural gate; live provider evidence remains separate)");
-console.log("================================================================================");
+console.log('Status: TRUTH_BOUNDARY_VERIFIED (structural gate; live provider evidence remains separate)');
+console.log('================================================================================');
