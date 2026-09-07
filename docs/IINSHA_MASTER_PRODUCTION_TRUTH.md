@@ -7,7 +7,7 @@
 - Canonical engineering repository: `adnin4/inshatech`
 - Canonical branch: `master`
 - Current runtime/code hardening head: `1b83d5cb909e2d5510342c1e0f543d190c72d022`
-- Subsequent commits after this runtime/code head are documentation/release-state changes unless explicitly stated otherwise.
+- Current documentation tip: `4cb6565c6bf6d15daead3dedaf08d8e4cbfbca84`
 - This document is evidence-based and must not be treated as proof of live infrastructure by itself.
 
 ## Release lineage
