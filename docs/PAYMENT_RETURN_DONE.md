@@ -1,0 +1,1 @@
+Browser payment-return boundary is implemented. See `functions/api/payments/return.js` and scoped payment middleware. Payment state must remain webhook/IPN authoritative.
