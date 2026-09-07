@@ -6,7 +6,7 @@ Updated: 2026-09-07
 
 - Repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Reviewed release tip: `d043ce7bb3ef6ff400ad5bde3ee5578b24a8e525`
+- Reviewed release tip: `8e914be76c169660a883cc4854440c1370b48908`
 - Release classification: `READY_FOR_STAGING`
 
 ## Enforced controls
