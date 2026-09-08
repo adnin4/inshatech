@@ -25,3 +25,5 @@ __pycache__/
 
 # Scratch temp media
 scratch/tmp/
+scratch/*.mjs
+security-gate-report/

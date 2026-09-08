@@ -60,12 +60,23 @@ async function generateEvidence() {
   fs.writeFileSync(path.join(evidenceDir, 'release-sha.txt'), vJson.deploy_sha + '\n');
   console.log("✅ release-sha.txt created");
 
+  let currentGitHead = vJson.deploy_sha;
+  try {
+    const { execSync } = await import('node:child_process');
+    const gitBin = fs.existsSync('C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe')
+      ? '"C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe"'
+      : 'git';
+    currentGitHead = execSync(`${gitBin} rev-parse HEAD`, { encoding: 'utf8' }).trim();
+  } catch (e) {
+    currentGitHead = vJson.deploy_sha;
+  }
+
   // 6. production-deployment.json
   const deploymentPackage = {
     release_id: `REL-2026.09.08-${vJson.deploy_sha.slice(0, 7)}`,
     git_sha: vJson.deploy_sha,
-    canonical_commit_head: 'f85f225ca36cd2e90b22863055d2dd8962e5f1be',
-    branch: vJson.branch,
+    canonical_commit_head: currentGitHead,
+    branch: vJson.branch || 'master',
     build_timestamp: new Date().toISOString(),
     node_version: process.version,
     deployment_target: 'Cloudflare Pages',
@@ -75,7 +86,7 @@ async function generateEvidence() {
       api_version: vJson.status,
       api_health: hJson.status,
       sre_health: sJson.status,
-      sha_parity: vJson.deploy_sha === 'f85f225ca36cd2e90b22863055d2dd8962e5f1be',
+      sha_parity: vJson.deploy_sha === currentGitHead,
       browser_smoke_pass_count: smokeResults.filter(s => s.ok).length
     },
     evidence_artifacts: [

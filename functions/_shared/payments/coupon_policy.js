@@ -160,3 +160,102 @@ export function evaluateCoupon({
         error: null
     };
 }
+
+/**
+ * Asynchronously evaluates coupon against database usage counters and per-user limits
+ * if Supabase connection details are available, falling back safely to in-memory policies.
+ */
+export async function evaluateCouponWithDb({
+    couponCode,
+    serviceSlug,
+    packageName,
+    orderAmountUsd,
+    customerEmail,
+    supabaseUrl,
+    supabaseKey,
+    now = new Date()
+}) {
+    const memoryResult = evaluateCoupon({
+        couponCode,
+        serviceSlug,
+        packageName,
+        orderAmountUsd,
+        now
+    });
+
+    if (!memoryResult.valid || !memoryResult.appliedCoupon) {
+        return memoryResult;
+    }
+
+    if (!supabaseUrl || !supabaseKey) {
+        return memoryResult;
+    }
+
+    try {
+        const code = memoryResult.appliedCoupon;
+        const res = await fetch(
+            `${supabaseUrl}/rest/v1/ibos_coupons?code=eq.${encodeURIComponent(code)}&select=id,code,max_uses,used_count,per_user_limit,is_active&limit=1`,
+            {
+                headers: {
+                    apikey: supabaseKey,
+                    Authorization: `Bearer ${supabaseKey}`
+                }
+            }
+        );
+
+        if (res.ok) {
+            const rows = await res.json().catch(() => []);
+            if (Array.isArray(rows) && rows.length > 0) {
+                const dbCoupon = rows[0];
+                if (!dbCoupon.is_active) {
+                    return {
+                        valid: false,
+                        appliedCoupon: null,
+                        discountAmountUsd: 0,
+                        finalAmountUsd: orderAmountUsd,
+                        error: 'COUPON_INACTIVE'
+                    };
+                }
+
+                if (dbCoupon.used_count >= dbCoupon.max_uses) {
+                    return {
+                        valid: false,
+                        appliedCoupon: null,
+                        discountAmountUsd: 0,
+                        finalAmountUsd: orderAmountUsd,
+                        error: 'COUPON_MAX_USES_REACHED'
+                    };
+                }
+
+                if (customerEmail && dbCoupon.per_user_limit) {
+                    const redRes = await fetch(
+                        `${supabaseUrl}/rest/v1/ibos_coupon_redemptions?coupon_code=eq.${encodeURIComponent(code)}&customer_email=eq.${encodeURIComponent(customerEmail.toLowerCase().trim())}&select=id`,
+                        {
+                            headers: {
+                                apikey: supabaseKey,
+                                Authorization: `Bearer ${supabaseKey}`
+                            }
+                        }
+                    );
+                    if (redRes.ok) {
+                        const redRows = await redRes.json().catch(() => []);
+                        if (Array.isArray(redRows) && redRows.length >= dbCoupon.per_user_limit) {
+                            return {
+                                valid: false,
+                                appliedCoupon: null,
+                                discountAmountUsd: 0,
+                                finalAmountUsd: orderAmountUsd,
+                                error: 'COUPON_USER_LIMIT_REACHED'
+                            };
+                        }
+                    }
+                }
+            }
+        }
+    } catch {
+        // Fail-safe to in-memory evaluation on network error
+    }
+
+    return memoryResult;
+}
+

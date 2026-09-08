@@ -23,7 +23,7 @@ const SUPPORTED_PROVIDERS = new Set(['sslcommerz', 'lemonsqueezy', 'bkash', 'str
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
-import { evaluateCoupon } from '../../_shared/payments/coupon_policy.js';
+import { evaluateCoupon, evaluateCouponWithDb } from '../../_shared/payments/coupon_policy.js';
 import { resolveFxRate, convertUsdToBdt } from '../../_shared/payments/fx_policy.js';
 
 const cors = r => {
@@ -201,11 +201,14 @@ export async function onRequestPost({ request, env = {} }) {
             }, 409, h);
         }
 
-        const couponResult = evaluateCoupon({
+        const couponResult = await evaluateCouponWithDb({
             couponCode: coupon,
             serviceSlug: service.slug,
             packageName: packageSelection.name,
-            orderAmountUsd: packageSelection.price
+            orderAmountUsd: packageSelection.price,
+            customerEmail: customerEmail,
+            supabaseUrl: env.SUPABASE_URL,
+            supabaseKey: env.SUPABASE_SERVICE_ROLE_KEY
         });
 
         let authoritativeUsdAmount = couponResult.finalAmountUsd;

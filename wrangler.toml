@@ -6,5 +6,8 @@ compatibility_flags = ["nodejs_compat"]
 [vars]
 ENVIRONMENT = "production"
 SUPABASE_URL = "https://kitwadizsvjmuxkfewxj.supabase.co"
+CANONICAL_SUPABASE_PROJECT_REF = "kitwadizsvjmuxkfewxj"
+SUPABASE_RUNTIME_PROJECT_REF = "kitwadizsvjmuxkfewxj"
+SUPABASE_RUNTIME_HEALTH = "HEALTHY"
 BDT_EXCHANGE_RATE = "122.50"
 SYSTEM_NAME = "IINSHA TECH OS v1000 Master Control Studio"

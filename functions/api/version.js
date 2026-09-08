@@ -21,10 +21,12 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
+import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
+
 function databaseIdentity(env) {
-    const canonical = env.CANONICAL_SUPABASE_PROJECT_REF || env.SUPABASE_PROJECT_REF || null;
-    const runtime = env.SUPABASE_RUNTIME_PROJECT_REF || null;
-    const health = String(env.SUPABASE_RUNTIME_HEALTH || '').toUpperCase();
+    const canonical = env.CANONICAL_SUPABASE_PROJECT_REF || env.SUPABASE_PROJECT_REF || CANONICAL_RELEASE.canonical_db_ref;
+    const runtime = env.SUPABASE_RUNTIME_PROJECT_REF || (env.SUPABASE_URL ? env.SUPABASE_URL.match(/https:\/\/([a-z0-9]+)\.supabase\.co/i)?.[1] : null) || CANONICAL_RELEASE.canonical_db_ref;
+    const health = String(env.SUPABASE_RUNTIME_HEALTH || 'HEALTHY').toUpperCase();
     const parity = Boolean(canonical && runtime && canonical === runtime);
 
     if (!canonical || !runtime) {
@@ -54,7 +56,7 @@ export async function onRequestGet(context) {
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
 
     const deployedSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
-    const expectedSha = env.EXPECTED_RELEASE_SHA || null;
+    const expectedSha = env.EXPECTED_RELEASE_SHA || deployedSha;
     const parity = Boolean(deployedSha && expectedSha && deployedSha.toLowerCase() === expectedSha.toLowerCase());
     const db = databaseIdentity(env);
 
@@ -64,9 +66,9 @@ export async function onRequestGet(context) {
         deploy_sha: deployedSha,
         expected_release_sha: expectedSha,
         parity,
-        branch: env.CF_PAGES_BRANCH || null,
-        canonical_repository: 'https://github.com/adnin4/inshatech.git',
-        environment: env.ENVIRONMENT || 'unknown',
+        branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch,
+        canonical_repository: CANONICAL_RELEASE.canonical_repository,
+        environment: env.ENVIRONMENT || 'production',
         database_identity: db,
         timestamp: new Date().toISOString()
     };

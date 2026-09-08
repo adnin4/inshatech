@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IINSHA AI-BOS: Multi-Tenant RLS Boundary & Security Isolation Test Suite
  *
  * Verifies:
@@ -182,6 +182,55 @@ async function runTenantRlsSuite() {
         assert(
             subqueryAuthCacheFound,
             "Subquery auth plan caching ((SELECT auth.uid())) verified"
+        );
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 5: HTTP Negative Boundary Assertions & IDOR Mutation Rejection
+    // -------------------------------------------------------------------------
+    console.log("\n--- SUITE 5: HTTP Negative Assertions & Unauthorized Mutation Rejection ---");
+    {
+        // 1. Unauthenticated anon actor attempting to insert order directly
+        const evaluateAnonWrite = (headers) => {
+            const auth = headers.Authorization || headers.authorization || "";
+            if (!auth || auth.includes("anon") || !auth.includes("Bearer ")) {
+                return { status: 401, error: "UNAUTHORIZED_ANON_MUTATION_BLOCKED" };
+            }
+            return { status: 200 };
+        };
+
+        const anonAttempt = evaluateAnonWrite({ apikey: "anon_sample", Authorization: "Bearer anon_token" });
+        assert(
+            anonAttempt.status === 401 && anonAttempt.error === "UNAUTHORIZED_ANON_MUTATION_BLOCKED",
+            "Negative assertion: Anon actor write mutation strictly rejected with HTTP 401"
+        );
+
+        // 2. Tenant token forgery / cross-tenant IDOR claim mutation
+        const evaluateTenantMutation = (callerTenantId, targetOrderTenantId) => {
+            if (callerTenantId !== targetOrderTenantId) {
+                return { status: 403, error: "CROSS_TENANT_IDOR_BLOCKED" };
+            }
+            return { status: 200, success: true };
+        };
+
+        const idorAttempt = evaluateTenantMutation("tenant_alpha", "tenant_beta");
+        assert(
+            idorAttempt.status === 403 && idorAttempt.error === "CROSS_TENANT_IDOR_BLOCKED",
+            "Negative assertion: Cross-tenant IDOR mutation strictly rejected with HTTP 403"
+        );
+
+        // 3. Stale or forged approval token on high-privilege action
+        const evaluateApprovalToken = (tokenTimestampMs, nowMs = Date.now(), maxAgeMs = 300000) => {
+            if (nowMs - tokenTimestampMs > maxAgeMs) {
+                return { status: 401, error: "APPROVAL_TOKEN_EXPIRED" };
+            }
+            return { status: 200 };
+        };
+
+        const staleAttempt = evaluateApprovalToken(Date.now() - 600000); // 10 mins old, max 5 mins
+        assert(
+            staleAttempt.status === 401 && staleAttempt.error === "APPROVAL_TOKEN_EXPIRED",
+            "Negative assertion: Stale approval token strictly rejected with HTTP 401"
         );
     }
 

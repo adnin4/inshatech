@@ -1,4 +1,4 @@
-import { evaluateCoupon, COUPON_POLICIES } from '../functions/_shared/payments/coupon_policy.js';
+import { evaluateCoupon, evaluateCouponWithDb, COUPON_POLICIES } from '../functions/_shared/payments/coupon_policy.js';
 
 let passed = 0;
 let total = 0;
@@ -127,6 +127,84 @@ console.log('===================================================================
     });
     assert(res.valid && res.appliedCoupon === null && res.finalAmountUsd === 850 && res.discountAmountUsd === 0,
         'Omitted coupon safely resolves original order amount without errors');
+}
+
+// 10. evaluateCouponWithDb: Enforces database max_uses ceiling
+{
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async (url) => {
+        if (url.includes('ibos_coupons')) {
+            return {
+                ok: true,
+                json: async () => [{
+                    id: 'coupon-uuid-1',
+                    code: 'EARLY2026',
+                    max_uses: 100,
+                    used_count: 100, // Exhausted
+                    per_user_limit: 1,
+                    is_active: true
+                }]
+            };
+        }
+        return { ok: true, json: async () => [] };
+    };
+
+    const res = await evaluateCouponWithDb({
+        couponCode: 'EARLY2026',
+        serviceSlug: 'b2b-lead-swarm',
+        packageName: 'Standard',
+        orderAmountUsd: 850,
+        customerEmail: 'client@example.com',
+        supabaseUrl: 'https://test.supabase.co',
+        supabaseKey: 'test-key'
+    });
+
+    assert(!res.valid && res.error === 'COUPON_MAX_USES_REACHED',
+        'evaluateCouponWithDb: Rejects coupon when max_uses ceiling reached');
+
+    globalThis.fetch = originalFetch;
+}
+
+// 11. evaluateCouponWithDb: Enforces per-user limit
+{
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async (url) => {
+        if (url.includes('ibos_coupons')) {
+            return {
+                ok: true,
+                json: async () => [{
+                    id: 'coupon-uuid-1',
+                    code: 'EARLY2026',
+                    max_uses: 500,
+                    used_count: 5,
+                    per_user_limit: 1,
+                    is_active: true
+                }]
+            };
+        }
+        if (url.includes('ibos_coupon_redemptions')) {
+            return {
+                ok: true,
+                json: async () => [{ id: 'redemption-1' }] // Already redeemed once
+            };
+        }
+        return { ok: true, json: async () => [] };
+    };
+
+    const res = await evaluateCouponWithDb({
+        couponCode: 'EARLY2026',
+        serviceSlug: 'b2b-lead-swarm',
+        packageName: 'Standard',
+        orderAmountUsd: 850,
+        customerEmail: 'repeat_buyer@example.com',
+        supabaseUrl: 'https://test.supabase.co',
+        supabaseKey: 'test-key'
+    });
+
+    assert(!res.valid && res.error === 'COUPON_USER_LIMIT_REACHED',
+        'evaluateCouponWithDb: Rejects coupon when customer per_user_limit exceeded');
+
+    globalThis.fetch = originalFetch;
 }
 
 console.log(`\n================================================================================`);

@@ -1,9 +1,9 @@
 {
-  "release_id": "REL-2026.09.08-f85f225",
-  "git_sha": "f85f225ca36cd2e90b22863055d2dd8962e5f1be",
-  "canonical_commit_head": "f85f225ca36cd2e90b22863055d2dd8962e5f1be",
+  "release_id": "REL-2026.09.08-eb409a5",
+  "git_sha": "eb409a51e82a9bacbf41fec249219aaf3e324321",
+  "canonical_commit_head": "eb409a51e82a9bacbf41fec249219aaf3e324321",
   "branch": "main",
-  "build_timestamp": "2026-09-07T21:49:04.664Z",
+  "build_timestamp": "2026-09-08T13:31:28.051Z",
   "node_version": "v24.18.0",
   "deployment_target": "Cloudflare Pages",
   "production_url": "https://inshatech.pages.dev",
