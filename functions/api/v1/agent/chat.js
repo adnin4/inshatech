@@ -1,6 +1,11 @@
 // IINSHA AI-BOS authoritative conversational entrypoint.
 // Model responses are conversational output; they are not proof of business execution.
 
+import { AUTHORITATIVE_SERVICES } from '../../../_shared/knowledge/services_catalog.js';
+import { INTERNAL_AGENT_ROSTER, FIVE_TIER_HITL_LEVELS } from '../../../_shared/agent_registry.js';
+import { SalesEngine } from '../../../_shared/ai_brain/sales_engine.js';
+import { ToolExecutionGateway } from '../../../_shared/ai_brain/tool_execution_gateway.js';
+
 const ALLOWED_ORIGINS = [
     'https://inshatech.pages.dev',
     'https://inshatech.com',
@@ -56,33 +61,55 @@ export async function onRequestPost(context) {
         const missionId = `mis_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
         const lowerMsg = cleanMessage.toLowerCase();
 
+        let detectedAgentKey = 'sales';
         let detectedAgent = 'SALES_AGENT';
-        let agentRole = 'Sales & Growth Strategist';
+        let agentRole = 'Sales & Revenue Agent';
         let intent = 'consultation';
         const confidence = 0.95;
         let requestedSideEffect = false;
+        let invokedTool = null;
+        let toolReceipt = null;
 
         if (lowerMsg.includes('architect') || lowerMsg.includes('tech') || lowerMsg.includes('stack') || lowerMsg.includes('docker') || lowerMsg.includes('python') || lowerMsg.includes('database')) {
+            detectedAgentKey = 'architect';
             detectedAgent = 'ARCHITECT_AGENT';
-            agentRole = 'Solution Architect Lead';
+            agentRole = INTERNAL_AGENT_ROSTER.architect.name;
             intent = 'technical_design';
         } else if (lowerMsg.includes('support') || lowerMsg.includes('help') || lowerMsg.includes('issue') || lowerMsg.includes('error') || lowerMsg.includes('broken')) {
+            detectedAgentKey = 'success';
             detectedAgent = 'SUPPORT_AGENT';
-            agentRole = 'Customer Support & SRE';
+            agentRole = INTERNAL_AGENT_ROSTER.success.name;
             intent = 'technical_support';
         } else if (lowerMsg.includes('affiliate') || lowerMsg.includes('partner') || lowerMsg.includes('commission') || lowerMsg.includes('payout')) {
+            detectedAgentKey = 'affiliate';
             detectedAgent = 'AFFILIATE_AGENT';
-            agentRole = 'Affiliate & Partnership Lead';
+            agentRole = INTERNAL_AGENT_ROSTER.affiliate.name;
             intent = 'partner_inquiry';
         } else if (lowerMsg.includes('pricing') || lowerMsg.includes('cost') || lowerMsg.includes('price') || lowerMsg.includes('package') || lowerMsg.includes('roi')) {
+            detectedAgentKey = 'sales';
             detectedAgent = 'SALES_AGENT';
-            agentRole = 'Sales & Revenue Strategist';
+            agentRole = INTERNAL_AGENT_ROSTER.sales.name;
             intent = 'pricing_discovery';
         } else if (lowerMsg.includes('dev') || lowerMsg.includes('build') || lowerMsg.includes('code') || lowerMsg.includes('deploy') || lowerMsg.includes('execute') || lowerMsg.includes('developer')) {
+            detectedAgentKey = 'developer';
             detectedAgent = 'DEVELOPER_AGENT';
-            agentRole = 'Sandbox Developer Swarm Lead';
+            agentRole = INTERNAL_AGENT_ROSTER.developer.name;
             intent = 'code_development';
             requestedSideEffect = true;
+        }
+
+        const agentMetadata = INTERNAL_AGENT_ROSTER[detectedAgentKey] || INTERNAL_AGENT_ROSTER.sales;
+        const hitlLevel = FIVE_TIER_HITL_LEVELS[agentMetadata.level] || FIVE_TIER_HITL_LEVELS.L2_SAFE_EXECUTE;
+
+        // Tool Execution Spine: If pricing, catalog, or ROI query, invoke tool gateway
+        const gateway = new ToolExecutionGateway();
+        if (intent === 'pricing_discovery' || lowerMsg.includes('catalog') || lowerMsg.includes('service')) {
+            invokedTool = 'service_catalog_lookup';
+            toolReceipt = await gateway.execute({
+                agent_id: detectedAgent,
+                tool_id: 'service_catalog_lookup',
+                arguments_payload: { query: cleanMessage }
+            });
         }
 
         const geminiApiKey = env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY;
@@ -94,19 +121,18 @@ export async function onRequestPost(context) {
         let providerResponseId = null;
         let providerModelVersion = null;
 
+        // Authoritative catalog formatted dynamically from single truth
+        const catalogSummary = AUTHORITATIVE_SERVICES.map(s => `- ${s.name} (${s.id}): $${s.priceUSD} USD / ৳${s.priceBDT.toLocaleString()} BDT (${s.category}, Delivery: ${s.deliveryDays} business days)`).join('\n');
+
         if (geminiApiKey) {
             try {
                 const systemPrompt = `You are the IINSHA AI-BOS ${agentRole} (${detectedAgent}).
-You represent Insha Tech.
+You represent Insha Tech (Adnin Sadat Mahin).
 Authoritative service catalog:
-- B2B SaaS 5-Agent Hunter Swarm: $850
-- 24/7 E-Commerce WhatsApp & Messenger Sales Agent: $750
-- AI Voice Receptionist: $1800
-- Self-Hosted n8n Enterprise Cluster Deployment: $497
-- Autonomous Invoice & Document OCR Pipeline: $249
+${catalogSummary}
 
 Rules:
-- Respond in the user's language.
+- Respond in the user's language (English or Bengali).
 - Be precise, professional and truthful.
 - Never claim a payment, deployment, CRM mutation, external message, customer result, or tool execution unless corresponding backend/provider evidence exists.
 - A conversational response is not proof that a business mission executed.`;
@@ -148,15 +174,15 @@ Rules:
 
         if (!reply) {
             if (intent === 'pricing_discovery') {
-                reply = 'IINSHA AI-BOS turnkey automation packages start from $249 USD. Pricing and scope can be refined from the authoritative service catalog.';
+                reply = 'IINSHA AI-BOS turnkey automation packages start from $249 USD (৳30,502 BDT). Authoritative solutions include Document OCR ($249), n8n Enterprise Cluster ($497), WhatsApp Bot ($750), Lead Swarm ($850), and AI Voice Receptionist ($1,800).';
             } else if (intent === 'technical_design') {
-                reply = 'I can help design the architecture using the available IINSHA service catalog. External deployment or provider action requires a configured backend adapter and verification evidence.';
+                reply = 'I can help design the architecture using the authoritative IINSHA catalog. External deployment or provider action requires a configured backend adapter and verification evidence.';
             } else if (intent === 'partner_inquiry') {
-                reply = 'I can explain the current partner program and route you to the partner surface. Payout execution remains provider-dependent and must be verified separately.';
+                reply = 'I can explain the partner program and 20% commission structure. Payout execution remains provider-dependent and must be verified separately.';
             } else if (intent === 'code_development') {
                 reply = 'I can help scope a development workflow. Actual sandbox execution requires a configured isolated worker and independent verification.';
             } else if (intent === 'technical_support') {
-                reply = 'Please describe the symptom, affected endpoint, and relevant project context. I can help triage the issue without claiming a fix was applied unless the backend provides evidence.';
+                reply = 'Please describe the symptom, affected endpoint, and relevant project context. I can help triage without claiming a fix was applied unless backend evidence exists.';
             } else {
                 reply = 'Hello! I am the IINSHA AI Copilot. I can help with automation architecture, service selection, pricing discovery, and next-step planning.';
             }
@@ -165,6 +191,37 @@ Rules:
         const inputHash = await sha256(cleanMessage);
         const outputHash = await sha256(reply);
         const evidenceSignature = await sha256(`${sessionId}:${missionId}:${inputHash}:${outputHash}`);
+
+        // Persistence to Supabase when service role key is present
+        let persisted = false;
+        let persistenceStatus = 'CONFIGURATION_REQUIRED';
+        if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
+            try {
+                const dbRes = await fetch(`${env.SUPABASE_URL}/rest/v1/ibos_messages`, {
+                    method: 'POST',
+                    headers: {
+                        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
+                        Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+                        'Content-Type': 'application/json',
+                        Prefer: 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        role: 'user',
+                        content: cleanMessage,
+                        metadata: { agent: detectedAgent, intent, mission_id: missionId }
+                    })
+                });
+                if (dbRes.ok) {
+                    persisted = true;
+                    persistenceStatus = 'PERSISTED_TO_SUPABASE';
+                } else {
+                    persistenceStatus = 'DATABASE_WRITE_REJECTED';
+                }
+            } catch {
+                persistenceStatus = 'DATABASE_NETWORK_ERROR';
+            }
+        }
 
         const suggestedActions = [
             { label: 'AI Solution Finder', action: 'OPEN_FINDER' },
@@ -176,11 +233,19 @@ Rules:
             status: 'SUCCESS',
             success_type: 'RESPONSE_ONLY',
             response_state: 'RESPONSE_GENERATED',
-            execution_status: 'NOT_EXECUTED',
-            execution_state: 'NOT_EXECUTED',
+            execution_status: invokedTool ? 'TOOL_EVALUATED' : 'NOT_EXECUTED',
+            execution_state: invokedTool ? 'TOOL_EVALUATED' : 'NOT_EXECUTED',
             session_id: sessionId,
             mission_id: missionId,
-            agent: { id: detectedAgent, role: agentRole, mode, intent, confidence },
+            agent: {
+                id: detectedAgent,
+                role: agentRole,
+                level: agentMetadata.level,
+                cost_cap_usd: agentMetadata.costCapUsd,
+                mode,
+                intent,
+                confidence
+            },
             model_info: {
                 model: modelUsed,
                 status: modelStatus,
@@ -191,16 +256,18 @@ Rules:
                 temperature: 0.7
             },
             reply,
+            tool_receipt: toolReceipt,
             suggested_actions: suggestedActions,
             evidence: {
                 execution_id: `exec_${Date.now().toString(36)}`,
                 input_sha256: inputHash,
                 output_sha256: outputHash,
                 evidence_signature: evidenceSignature,
-                policy_verdict: 'NOT_EXECUTED',
+                policy_verdict: hitlLevel.blocked ? 'BLOCKED_BY_POLICY' : (hitlLevel.autoApprove ? 'AUTO_APPROVED' : 'APPROVAL_REQUIRED'),
                 risk_level: requestedSideEffect ? 'PENDING_EXECUTION_REVIEW' : 'LOW',
                 requested_side_effect: requestedSideEffect,
-                persisted: false,
+                persisted,
+                persistence_status: persistenceStatus,
                 timestamp: new Date().toISOString()
             },
             client_state: state

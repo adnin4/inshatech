@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cloudflare Pages Function: /api/knowledge/search
  * Canonical RAG search across services, faqs, and company knowledge base
  */
@@ -11,9 +11,9 @@ const services = [
     "priceUSD": 850,
     "priceBDT": 104125,
     "deliveryDays": 3,
-    "description": "5-Agent residential stealth scraper extracting 100+ verified decision-makers with corporate MX validation.",
+    "description": "5-Agent residential resilient extraction agent extracting 100+ verified decision-makers with corporate MX validation.",
     "features": [
-      "5 Stealth Scraping Agents",
+      "5 resilient web extraction Agents",
       "LinkedIn & Apollo Extraction",
       "Corporate MX Email Validation",
       "Auto-Sync to CRM & Google Sheets"

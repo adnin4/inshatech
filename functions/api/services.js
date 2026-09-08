@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cloudflare Pages Function: /api/services
  * Canonical Serverless API for IINSHA AI Services & Package Registry
  */
@@ -10,12 +10,12 @@ export const CANONICAL_SERVICES = [
         name: 'B2B SaaS 5-Agent Hunter Swarm',
         category: 'Lead Generation',
         priceUSD: 850,
-        badge: 'ðŸ”¥ Top Seller',
-        description: '5-Agent residential stealth scraper extracting 100+ verified decision-makers with corporate MX validation.',
+        badge: '🔥 Top Seller',
+        description: '5-Agent residential resilient extraction agent extracting 100+ verified decision-makers with corporate MX validation.',
         deliveryDays: 3,
         features: [
             '5-Agent Autonomous Lead Hunting Pipeline',
-            'Playwright Stealth Scraper with IP Rotation',
+            'Playwright Resilient Extractor with IP Rotation',
             'Corporate Email MX & SMTP Verification',
             'LinkedIn Sales Navigator & Apollo Data Extractor',
             'Auto-sync with HubSpot, Salesforce & n8n'
