@@ -25,9 +25,12 @@ jobs:
         run: |
           node scripts/verify_payment_schema_parity.mjs
           node scripts/test_service_authority_and_pricing.mjs
+          node scripts/test_payment_coupon_policy.mjs
+          node scripts/test_payment_fx_policy.mjs
           node scripts/test_payment_state_machine.mjs
           node scripts/payment_webhook_contract.mjs
           node scripts/test_payment_hardening_contract.mjs
           node scripts/test_payment_adversarial_suite.mjs
+          node scripts/test_payment_replay_concurrency.mjs
           node scripts/test_payment_reconciliation.mjs
           node scripts/test_tenant_rls_isolation.mjs
