@@ -1,6 +1,10 @@
 /**
  * IINSHA AI-BOS — Security & Content Hardening Gate
- * Scans all repository files to enforce ZERO P0 security leaks.
+ * Scans repository files to enforce ZERO P0 security leaks.
+ *
+ * The gate intentionally fails closed. On failure it also emits a deterministic
+ * machine-readable report so CI failures remain diagnosable even when hosted
+ * job logs are unavailable.
  */
 
 import fs from 'fs';
@@ -10,9 +14,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
+const REPORT_DIR = path.join(ROOT_DIR, 'security-gate-report');
 
 const SCAN_EXTENSIONS = ['.html', '.js', '.mjs', '.json', '.sql'];
-const EXCLUDE_DIRS = ['node_modules', '.git', 'docs', 'Implementation_Reports_Markdown', 'scratch', 'scripts'];
+const EXCLUDE_DIRS = ['node_modules', '.git', 'docs', 'Implementation_Reports_Markdown', 'scratch', 'scripts', 'security-gate-report'];
 
 const FORBIDDEN_PATTERNS = [
     { name: 'Hardcoded Default DB Password', regex: /@@@mahin12/i, severity: 'P0_CRITICAL' },
@@ -25,7 +30,7 @@ console.log('===================================================================
 console.log('🛡️ IINSHA AI-BOS: P0 SECURITY & CONTENT LEAK AUDIT');
 console.log('================================================================================\n');
 
-let violations = 0;
+const violations = [];
 let filesScanned = 0;
 
 function scanDir(dir) {
@@ -45,10 +50,23 @@ function scanDir(dir) {
             const content = fs.readFileSync(fullPath, 'utf-8');
 
             for (const rule of FORBIDDEN_PATTERNS) {
-                if (rule.regex.test(content)) {
-                    console.error(`❌ [${rule.severity}] ${rule.name} found in: ${relPath}`);
-                    violations++;
+                if (!rule.regex.test(content)) continue;
+
+                const lines = content.split(/\r?\n/);
+                const matchingLines = [];
+                for (let i = 0; i < lines.length; i++) {
+                    if (rule.regex.test(lines[i])) matchingLines.push(i + 1);
                 }
+
+                violations.push({
+                    severity: rule.severity,
+                    rule: rule.name,
+                    file: relPath,
+                    lines: matchingLines
+                });
+
+                console.error(`❌ [${rule.severity}] ${rule.name} found in: ${relPath}`);
+                if (matchingLines.length) console.error(`   Lines: ${matchingLines.join(', ')}`);
             }
         }
     }
@@ -56,12 +74,37 @@ function scanDir(dir) {
 
 scanDir(ROOT_DIR);
 
-console.log(`\nAudited ${filesScanned} files. Violations: ${violations}`);
+fs.mkdirSync(REPORT_DIR, { recursive: true });
+const report = {
+    generated_at: new Date().toISOString(),
+    repository_gate: 'P0_SECURITY_CONTENT',
+    files_scanned: filesScanned,
+    violation_count: violations.length,
+    violations
+};
+fs.writeFileSync(path.join(REPORT_DIR, 'security-gate-report.json'), `${JSON.stringify(report, null, 2)}\n`);
+fs.writeFileSync(
+    path.join(REPORT_DIR, 'security-gate-report.md'),
+    [
+        '# IINSHA P0 Security Gate Report',
+        '',
+        `Generated: ${report.generated_at}`,
+        `Files scanned: ${filesScanned}`,
+        `Violations: ${violations.length}`,
+        '',
+        ...(violations.length
+            ? violations.map(v => `- **${v.severity}** ${v.rule} — \`${v.file}\`${v.lines.length ? ` (lines ${v.lines.join(', ')})` : ''}`)
+            : ['No forbidden patterns detected.'])
+    ].join('\n') + '\n'
+);
 
-if (violations === 0) {
+console.log(`\nAudited ${filesScanned} files. Violations: ${violations.length}`);
+console.log(`Evidence report: ${path.relative(ROOT_DIR, path.join(REPORT_DIR, 'security-gate-report.json'))}`);
+
+if (violations.length === 0) {
     console.log('✅ P0 SECURITY & CONTENT GATE PASSED: ZERO LEAKS DETECTED');
     process.exit(0);
-} else {
-    console.error('❌ P0 SECURITY & CONTENT GATE FAILED');
-    process.exit(1);
 }
+
+console.error('❌ P0 SECURITY & CONTENT GATE FAILED');
+process.exit(1);
