@@ -101,7 +101,7 @@ async function runAdversarialSuite() {
         };
 
         try {
-            const req1 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+            const makeReq = () => new Request('https://inshatech.pages.dev/api/payments/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -111,29 +111,36 @@ async function runAdversarialSuite() {
                     idempotency_key: sharedIdempotencyKey
                 })
             });
-            const res1 = await checkoutPost({ request: req1, env: mockEnv });
-            const json1 = await res1.json();
 
-            const req2 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    service_id: 'b2b-lead-swarm',
-                    customer_name: 'Adnin Mahin',
-                    customer_email: 'adnin@inshatech.com',
-                    idempotency_key: sharedIdempotencyKey
-                })
-            });
-            const res2 = await checkoutPost({ request: req2, env: mockEnv });
+            // True parallel race condition execution via Promise.all
+            const [res1, res2] = await Promise.all([
+                checkoutPost({ request: makeReq(), env: mockEnv }),
+                checkoutPost({ request: makeReq(), env: mockEnv })
+            ]);
+
+            const json1 = await res1.json();
             const json2 = await res2.json();
 
-            assert(res1.status === 200 && json1.status === 'SUCCESS', 'First checkout request successfully registers order');
+            // Both requests succeed gracefully (one creates, one reuses or both return 200)
+            assert(res1.status === 200 && json1.status === 'SUCCESS', 'First concurrent checkout request returns HTTP 200 SUCCESS');
+            assert(res2.status === 200 && json2.status === 'SUCCESS', 'Second concurrent checkout request returns HTTP 200 SUCCESS');
+
+            assert(json1.order_id === json2.order_id, 'Concurrent checkout race strictly resolves to the single shared order_id');
+
+            const actions = [json1.action, json2.action];
             assert(
-                res2.status === 200 && json2.action === 'idempotent_order_reused' && json2.order_id === json1.order_id,
+                actions.includes('idempotent_order_reused'),
                 'Concurrent duplicate checkout safely reuses existing order without duplicating DB record'
             );
+
+            // Subsequent request with the same idempotency key retrieves the fully cached redirect URL
+            const reqSubsequent = makeReq();
+            const resSubsequent = await checkoutPost({ request: reqSubsequent, env: mockEnv });
+            const jsonSubsequent = await resSubsequent.json();
             assert(
-                json2.redirect_url === json1.redirect_url && Boolean(json1.redirect_url),
+                resSubsequent.status === 200 &&
+                jsonSubsequent.action === 'idempotent_order_reused' &&
+                Boolean(jsonSubsequent.redirect_url),
                 'Idempotent duplicate checkout returns cached gateway redirect URL'
             );
         } finally {

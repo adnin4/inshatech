@@ -5,6 +5,8 @@
  * minimum spend thresholds, discount ceilings, and floor price limits.
  */
 
+import { computeDiscountedPriceCents, toCents, toDollars } from './money.js';
+
 export const COUPON_POLICIES = Object.freeze({
     'EARLY2026': {
         code: 'EARLY2026',
@@ -136,34 +138,25 @@ export function evaluateCoupon({
         };
     }
 
-    let calculatedDiscount = 0;
-    if (policy.discount_type === 'percent') {
-        calculatedDiscount = Math.round(orderAmountUsd * (policy.discount_value / 100));
-    } else if (policy.discount_type === 'fixed') {
-        calculatedDiscount = Number(policy.discount_value);
-    }
+    const basePriceCents = toCents(orderAmountUsd);
+    const maxDiscountCents = policy.maximum_discount_usd !== null && policy.maximum_discount_usd !== undefined
+        ? toCents(policy.maximum_discount_usd)
+        : null;
+    const floorPriceCents = policy.min_floor_price_usd ? toCents(policy.min_floor_price_usd) : 0;
 
-    // Bound by maximum allowed discount
-    if (policy.maximum_discount_usd && calculatedDiscount > policy.maximum_discount_usd) {
-        calculatedDiscount = policy.maximum_discount_usd;
-    }
-
-    // Ensure discount does not exceed total order amount
-    calculatedDiscount = Math.max(0, Math.min(calculatedDiscount, orderAmountUsd));
-
-    // Floor price protection: bounded to avoid selling below server minimum
-    const minFloor = policy.min_floor_price_usd || 0;
-    let finalAmount = orderAmountUsd - calculatedDiscount;
-    if (finalAmount < minFloor && orderAmountUsd >= minFloor) {
-        finalAmount = minFloor;
-        calculatedDiscount = orderAmountUsd - finalAmount;
-    }
+    const computed = computeDiscountedPriceCents({
+        basePriceCents,
+        discountType: policy.discount_type,
+        discountValue: policy.discount_value,
+        maxDiscountCents,
+        floorPriceCents
+    });
 
     return {
         valid: true,
         appliedCoupon: code,
-        discountAmountUsd: calculatedDiscount,
-        finalAmountUsd: finalAmount,
+        discountAmountUsd: computed.discountUsd,
+        finalAmountUsd: computed.finalUsd,
         error: null
     };
 }
