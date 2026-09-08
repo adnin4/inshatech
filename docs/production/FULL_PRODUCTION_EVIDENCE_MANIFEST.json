@@ -1,10 +1,10 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company OS",
-  "manifest_id": "EVD-MANIFEST-MTSRI9L5",
-  "generated_at": "2026-09-08T14:25:52.649Z",
+  "manifest_id": "EVD-MANIFEST-MTSRSRYS",
+  "generated_at": "2026-09-08T14:34:03.028Z",
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
-  "canonical_master_sha": "e1f34cc4a5adad9ca889e46b64316d8b110bc45b",
+  "canonical_master_sha": "8f4a42f6616c5568294928f47d978921d4573849",
   "database_project_ref": "kitwadizsvjmuxkfewxj",
   "production_url": "https://inshatech.pages.dev/",
   "critical_file_checksums": {
@@ -18,7 +18,7 @@
     "functions/api/payments/return.js": "8d26d8b78a5b21b151e986bbb003e26136da17a63679dbf34d088f1f199b3542",
     "functions/api/payments/webhook.js": "fa1857de5105978d2db346546374f5b6fac8c27c05ba0dde5912ede51601c54c",
     "functions/api/payments/_middleware.js": "e635878733706d78b3d9f0242596711985290e015ec1f8042cca35ce49eff1f9",
-    "CANONICAL_SYSTEM_STATE.json": "2406e5e456efd8e2f88720d5a6945d187b6a568b2862f7edf373c8c0784b0981"
+    "CANONICAL_SYSTEM_STATE.json": "afc9ba14d0ee8704e4ac432020b07e80e8330bed9222b6ab821c25531851134c"
   },
   "test_verification_matrix": {
     "system_claims_classification": {
