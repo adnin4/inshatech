@@ -20,11 +20,11 @@ const ORIGINS = new Set([
 ]);
 
 const SUPPORTED_PROVIDERS = new Set(['sslcommerz', 'lemonsqueezy', 'bkash', 'stripe']);
-const BDT_RATE = 122.5;
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
 import { evaluateCoupon } from '../../_shared/payments/coupon_policy.js';
+import { resolveFxRate, convertUsdToBdt } from '../../_shared/payments/fx_policy.js';
 
 const cors = r => {
     const o = r.headers.get('Origin') || '';
@@ -221,7 +221,8 @@ export async function onRequestPost({ request, env = {} }) {
             }, 500, h);
         }
 
-        const authoritativeBdtAmount = Math.round(authoritativeUsdAmount * BDT_RATE);
+        const fxDetails = resolveFxRate(env);
+        const authoritativeBdtAmount = convertUsdToBdt(authoritativeUsdAmount, fxDetails.rate);
         if (provider === 'sslcommerz' && (authoritativeBdtAmount < SSL_MIN_BDT || authoritativeBdtAmount > SSL_MAX_BDT)) {
             return json({
                 status: 'ERROR',
@@ -253,7 +254,11 @@ export async function onRequestPost({ request, env = {} }) {
                 base_package_price_usd: packageSelection.price,
                 service_base_price_usd: serviceBasePrice,
                 final_price_usd: authoritativeUsdAmount,
-                bdt_rate: BDT_RATE
+                bdt_rate: fxDetails.rate,
+                fx_policy: fxDetails.policy,
+                fx_source: fxDetails.source,
+                fx_timestamp: fxDetails.timestamp,
+                fx_rounding: fxDetails.rounding
             }
         };
 
