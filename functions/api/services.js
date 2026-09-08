@@ -111,13 +111,16 @@ export const CANONICAL_SERVICES = [
     }
 ];
 
+import { resolveAuthoritativeCatalog } from '../_shared/knowledge/services_catalog.js';
+
 export async function onRequestGet(context) {
-    const { request } = context;
+    const { request, env = {} } = context;
     const url = new URL(request.url);
     const category = url.searchParams.get("category");
     const search = url.searchParams.get("search");
 
-    let results = CANONICAL_SERVICES;
+    const catalogResolution = await resolveAuthoritativeCatalog(env);
+    let results = catalogResolution.services;
 
     if (category) {
         results = results.filter(s => s.category.toLowerCase() === category.toLowerCase());
@@ -134,8 +137,9 @@ export async function onRequestGet(context) {
 
     return new Response(JSON.stringify({
         status: "SUCCESS",
+        source: catalogResolution.source,
         count: results.length,
-        usd_to_bdt_rate: 122.50,
+        usd_to_bdt_rate: Number(env.BDT_EXCHANGE_RATE) || 122.50,
         services: results
     }), {
         headers: {

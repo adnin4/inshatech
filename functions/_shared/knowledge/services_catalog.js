@@ -65,3 +65,57 @@ export const AUTHORITATIVE_SERVICES = Object.freeze([
     technologies: ["Gemini Vision", "n8n", "Google Sheets API", "Python"]
   }
 ]);
+
+/**
+ * Resolves authoritative service catalog from live database (ibos_services)
+ * with deterministic fallback to verified projection.
+ *
+ * Hierarchy: DB catalog -> canonical resolver -> pricing authority -> agent context -> proposal/order
+ */
+export async function resolveAuthoritativeCatalog(env = {}) {
+    if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
+        try {
+            const base = `${env.SUPABASE_URL}/rest/v1`;
+            const key = env.SUPABASE_SERVICE_ROLE_KEY;
+            const res = await fetch(`${base}/ibos_services?status=eq.published&select=*`, {
+                headers: {
+                    apikey: key,
+                    Authorization: `Bearer ${key}`,
+                    'Content-Type': 'application/json'
+                }
+            }).catch(() => null);
+
+            if (res && res.ok) {
+                const rows = await res.json().catch(() => []);
+                if (Array.isArray(rows) && rows.length > 0) {
+                    const mapped = rows.map(r => ({
+                        id: r.slug || r.id,
+                        name: r.title || r.name,
+                        category: r.category || 'Automation',
+                        priceUSD: Number(r.price) || 0,
+                        priceBDT: Math.round((Number(r.price) || 0) * (Number(env.BDT_EXCHANGE_RATE) || 122.50)),
+                        deliveryDays: r.delivery_days || 3,
+                        description: r.description || '',
+                        features: Array.isArray(r.features) ? r.features : (Array.isArray(r.packages) ? r.packages.map(p => p.name) : []),
+                        idealFor: r.ideal_for ? [r.ideal_for] : ['Enterprises', 'Agencies'],
+                        technologies: Array.isArray(r.tech_stack) ? r.tech_stack : ['n8n', 'Python', 'Gemini Pro'],
+                        source: 'DATABASE_AUTHORITATIVE'
+                    }));
+                    return {
+                        services: mapped,
+                        source: 'DATABASE_AUTHORITATIVE',
+                        count: mapped.length
+                    };
+                }
+            }
+        } catch (dbErr) {
+            console.warn('Catalog DB resolution notice:', dbErr.message);
+        }
+    }
+
+    return {
+        services: AUTHORITATIVE_SERVICES,
+        source: 'STATIC_PROJECTION',
+        count: AUTHORITATIVE_SERVICES.length
+    };
+}

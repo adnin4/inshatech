@@ -1,7 +1,7 @@
 // IINSHA AI-BOS authoritative conversational entrypoint.
 // Model responses are conversational output; they are not proof of business execution.
 
-import { AUTHORITATIVE_SERVICES } from '../../../_shared/knowledge/services_catalog.js';
+import { AUTHORITATIVE_SERVICES, resolveAuthoritativeCatalog } from '../../../_shared/knowledge/services_catalog.js';
 import { INTERNAL_AGENT_ROSTER, FIVE_TIER_HITL_LEVELS } from '../../../_shared/agent_registry.js';
 import { SalesEngine } from '../../../_shared/ai_brain/sales_engine.js';
 import { ToolExecutionGateway } from '../../../_shared/ai_brain/tool_execution_gateway.js';
@@ -121,8 +121,10 @@ export async function onRequestPost(context) {
         let providerResponseId = null;
         let providerModelVersion = null;
 
-        // Authoritative catalog formatted dynamically from single truth
-        const catalogSummary = AUTHORITATIVE_SERVICES.map(s => `- ${s.name} (${s.id}): $${s.priceUSD} USD / ৳${s.priceBDT.toLocaleString()} BDT (${s.category}, Delivery: ${s.deliveryDays} business days)`).join('\n');
+        // Authoritative catalog resolved dynamically from DB with verified fallback projection
+        const resolvedCatalogData = await resolveAuthoritativeCatalog(env);
+        const resolvedServices = resolvedCatalogData.services;
+        const catalogSummary = resolvedServices.map(s => `- ${s.name} (${s.id}): $${s.priceUSD} USD / ৳${Number(s.priceBDT || 0).toLocaleString()} BDT (${s.category}, Delivery: ${s.deliveryDays} business days)`).join('\n');
 
         if (geminiApiKey) {
             try {
@@ -266,6 +268,7 @@ Rules:
                 policy_verdict: hitlLevel.blocked ? 'BLOCKED_BY_POLICY' : (hitlLevel.autoApprove ? 'AUTO_APPROVED' : 'APPROVAL_REQUIRED'),
                 risk_level: requestedSideEffect ? 'PENDING_EXECUTION_REVIEW' : 'LOW',
                 requested_side_effect: requestedSideEffect,
+                catalog_source: resolvedCatalogData.source,
                 persisted,
                 persistence_status: persistenceStatus,
                 timestamp: new Date().toISOString()
