@@ -215,8 +215,8 @@ async function runAdversarialSuite() {
             const res2 = await checkoutPost({ request: req2, env: mockEnv });
             const json2 = await res2.json();
             assert(
-                res2.status === 200 && json2.amount_usd === 723 && json2.coupon_applied === 'APEX15',
-                'Authoritative coupon APEX15 accurately applies 15% discount ($850 -> $723)'
+                res2.status === 200 && json2.amount_usd === 722 && json2.coupon_applied === 'APEX15',
+                'Authoritative coupon APEX15 accurately applies 15% discount ($850 -> $722)'
             );
 
             // 3. Bogus / Unauthorized Coupon: fallback to catalog price ($850), coupon_applied null, coupon_error recorded

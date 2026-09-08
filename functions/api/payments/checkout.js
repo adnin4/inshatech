@@ -24,11 +24,7 @@ const BDT_RATE = 122.5;
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
-const AUTHORITATIVE_COUPONS = {
-    'EARLY2026': { discount_percent: 10, max_discount_usd: 150, valid_until: '2026-12-31T23:59:59Z', active: true },
-    'FOUNDER10': { discount_percent: 10, max_discount_usd: 100, valid_until: '2026-12-31T23:59:59Z', active: true },
-    'APEX15':    { discount_percent: 15, max_discount_usd: 250, valid_until: '2026-12-31T23:59:59Z', active: true }
-};
+import { evaluateCoupon } from '../../_shared/payments/coupon_policy.js';
 
 const cors = r => {
     const o = r.headers.get('Origin') || '';
@@ -205,27 +201,17 @@ export async function onRequestPost({ request, env = {} }) {
             }, 409, h);
         }
 
-        let authoritativeUsdAmount = packageSelection.price;
-        let authCouponDiscount = 0;
-        let authAppliedCoupon = null;
-        let authCouponError = null;
+        const couponResult = evaluateCoupon({
+            couponCode: coupon,
+            serviceSlug: service.slug,
+            packageName: packageSelection.name,
+            orderAmountUsd: packageSelection.price
+        });
 
-        if (coupon) {
-            const config = AUTHORITATIVE_COUPONS[coupon];
-            if (!config || !config.active) {
-                authCouponError = 'INVALID_COUPON';
-            } else if (Date.now() > new Date(config.valid_until).getTime()) {
-                authCouponError = 'EXPIRED_COUPON';
-            } else {
-                if (coupon === 'EARLY2026' || coupon === 'FOUNDER10') {
-                    authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.90);
-                } else if (coupon === 'APEX15') {
-                    authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.85);
-                }
-                authAppliedCoupon = coupon;
-            }
-        }
-        authCouponDiscount = packageSelection.price - authoritativeUsdAmount;
+        let authoritativeUsdAmount = couponResult.finalAmountUsd;
+        let authCouponDiscount = couponResult.discountAmountUsd;
+        let authAppliedCoupon = couponResult.appliedCoupon;
+        let authCouponError = couponResult.error;
 
         if (!Number.isFinite(authoritativeUsdAmount) || authoritativeUsdAmount < 0) {
             return json({
