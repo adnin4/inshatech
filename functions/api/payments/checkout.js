@@ -90,10 +90,10 @@ export async function onRequestPost({ request, env = {} }) {
 
     try {
         const b = await request.json().catch(() => ({}));
-        const requestedServiceIdentity = String(b.service_id || b.service_slug || '').trim();
+        const requestedServiceIdentity = String(b.service_slug || b.service_id || '').trim();
         const requestedPackage = String(b.package_name || '').trim();
 
-        if (!requestedServiceIdentity || (!isUuid(requestedServiceIdentity) && !KNOWN_SERVICES.has(requestedServiceIdentity))) {
+        if (!requestedServiceIdentity) {
             return json({
                 status: 'ERROR',
                 code: 'INVALID_SERVICE_ID',
@@ -126,6 +126,13 @@ export async function onRequestPost({ request, env = {} }) {
         const idempotencyKey = String(b.idempotency_key || `idem_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`).trim().slice(0, 128);
 
         if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
+            if (!isUuid(requestedServiceIdentity) && !KNOWN_SERVICES.has(requestedServiceIdentity)) {
+                return json({
+                    status: 'ERROR',
+                    code: 'INVALID_SERVICE_ID',
+                    message: 'A valid service identifier is required.'
+                }, 400, h);
+            }
             const fallbackPrice = requestedServiceIdentity === 'b2b-lead-swarm' ? 850 : null;
             return json({
                 status: 'DATABASE_CONFIGURATION_REQUIRED',
