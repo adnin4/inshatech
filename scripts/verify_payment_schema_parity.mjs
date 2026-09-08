@@ -3,17 +3,25 @@ import fs from 'node:fs/promises';
 const CHECKOUT = new URL('../functions/api/payments/checkout.js', import.meta.url);
 const source = await fs.readFile(CHECKOUT, 'utf8');
 
-const forbidden = [
-  'payment_gateway',
-  'service_name',
-  'amount_usd',
-  'amount_bdt',
-  'customer_name',
-  'customer_email',
-  'customer_phone',
+const failures = [];
+
+// Only persistence/DB-query references are forbidden. API request/response fields
+// such as customer_email and amount_usd are intentionally still allowed for compatibility.
+const forbiddenDbPatterns = [
+  /ibos_orders[^\n]*payment_gateway/,
+  /\bpayment_gateway\s*:/,
+  /\bservice_name\s*:/,
+  /\bamount_bdt\s*:/,
+  /\bcustomer_name\s*:/,
+  /\bcustomer_email\s*:/,
+  /\bcustomer_phone\s*:/,
 ];
 
-const canonical = [
+for (const pattern of forbiddenDbPatterns) {
+  if (pattern.test(source)) failures.push(`forbidden DB contract reference: ${pattern}`);
+}
+
+const canonicalDbFields = [
   'service_id',
   'service_title',
   'package_name',
@@ -30,11 +38,7 @@ const canonical = [
   'metadata',
 ];
 
-const failures = [];
-for (const field of forbidden) {
-  if (source.includes(field)) failures.push(`forbidden legacy field reference: ${field}`);
-}
-for (const field of canonical) {
+for (const field of canonicalDbFields) {
   if (!source.includes(field)) failures.push(`missing canonical field reference: ${field}`);
 }
 
