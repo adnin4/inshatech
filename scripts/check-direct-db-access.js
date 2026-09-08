@@ -1,8 +1,8 @@
 /**
  * Static Scanner: Checking for unauthorized Supabase Direct Service-Role Client Invasions
  */
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
 function scanDirectory(dir, infractions = []) {
   if (!fs.existsSync(dir)) return infractions;
