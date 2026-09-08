@@ -17,9 +17,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Verify payment webhook contract & security isolation
+      - name: Verify payment webhook, schema, service authority & security isolation
         run: |
           node scripts/verify_payment_schema_parity.mjs
+          node scripts/test_service_authority_and_pricing.mjs
           node scripts/payment_webhook_contract.mjs
           node scripts/test_payment_hardening_contract.mjs
           node scripts/test_payment_adversarial_suite.mjs
