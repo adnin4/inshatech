@@ -5,7 +5,7 @@
  * It handles the customer's browser redirection after completing payment at a gateway.
  * 
  * RULES:
- * 1. Accepts GET and POST (for form-based POST redirects from SSLCommerz/AamarPay).
+ * 1. Accepts GET only (POST returns 405 Method Not Allowed; browser GET queries read-only status).
  * 2. Resolves order status from database if Supabase credentials exist.
  * 3. NEVER mutates order payment_status to 'paid'.
  * 4. Redirects to /portal.html?order_id=... with explanatory status indicators.
@@ -47,25 +47,6 @@ async function handleBrowserReturn({ request, env = {} }) {
     let orderId = url.searchParams.get('order_id') || url.searchParams.get('tran_id') || '';
     let status = url.searchParams.get('status') || '';
     let gateway = url.searchParams.get('gateway') || url.searchParams.get('provider') || 'generic';
-
-    // If POST (e.g. SSLCommerz form POST redirect)
-    if (request.method === 'POST') {
-        try {
-            const contentType = request.headers.get('Content-Type') || '';
-            if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
-                const formData = await request.formData();
-                orderId = orderId || formData.get('tran_id') || formData.get('order_id') || '';
-                status = status || formData.get('status') || '';
-                gateway = gateway || formData.get('card_issuer') || 'sslcommerz';
-            } else if (contentType.includes('application/json')) {
-                const body = await request.json().catch(() => ({}));
-                orderId = orderId || body.order_id || body.tran_id || '';
-                status = status || body.status || '';
-            }
-        } catch (parseErr) {
-            console.warn('Browser return form parse notice:', parseErr.message);
-        }
-    }
 
     orderId = String(orderId || '').trim();
 
