@@ -231,12 +231,59 @@ export async function onRequestPost({ request, env = {} }) {
             }, 422, h);
         }
 
-        if (provider === 'bkash' && !customerPhone) {
-            return json({
-                status: 'ERROR',
-                code: 'CUSTOMER_PHONE_REQUIRED',
-                message: 'A customer phone number is required for bKash checkout.'
-            }, 400, h);
+        if (provider === 'sslcommerz') {
+            const storeId = env.SSLCOMMERZ_STORE_ID;
+            const storePass = env.SSLCOMMERZ_STORE_PASSWORD;
+            if (!storeId || !storePass) {
+                return json({
+                    status: 'GATEWAY_CREDENTIALS_REQUIRED',
+                    gateway: 'SSLCommerz',
+                    message: 'SSLCOMMERZ_STORE_ID and SSLCOMMERZ_STORE_PASSWORD required in Cloudflare Secrets.',
+                    amount_bdt: authoritativeBdtAmount
+                }, 422, h);
+            }
+        } else if (provider === 'lemonsqueezy') {
+            const apiKey = env.LEMONSQUEEZY_API_KEY;
+            const storeId = env.LEMONSQUEEZY_STORE_ID;
+            const variantId = env.LEMONSQUEEZY_VARIANT_ID;
+            if (!apiKey || !storeId || !variantId) {
+                return json({
+                    status: 'GATEWAY_CREDENTIALS_REQUIRED',
+                    gateway: 'Lemon Squeezy',
+                    message: 'LEMONSQUEEZY_API_KEY, LEMONSQUEEZY_STORE_ID, and LEMONSQUEEZY_VARIANT_ID required in Cloudflare Secrets.',
+                    amount_usd: authoritativeUsdAmount
+                }, 422, h);
+            }
+        } else if (provider === 'bkash') {
+            if (!customerPhone) {
+                return json({
+                    status: 'ERROR',
+                    code: 'CUSTOMER_PHONE_REQUIRED',
+                    message: 'A customer phone number is required for bKash checkout.'
+                }, 400, h);
+            }
+            const appKey = env.BKASH_APP_KEY;
+            const appSecret = env.BKASH_APP_SECRET;
+            const username = env.BKASH_USERNAME;
+            const password = env.BKASH_PASSWORD;
+            if (!appKey || !appSecret || !username || !password) {
+                return json({
+                    status: 'GATEWAY_CREDENTIALS_REQUIRED',
+                    gateway: 'bKash Tokenized Merchant',
+                    message: 'BKASH_APP_KEY, BKASH_APP_SECRET, BKASH_USERNAME, and BKASH_PASSWORD required in Cloudflare Secrets.',
+                    amount_bdt: authoritativeBdtAmount
+                }, 422, h);
+            }
+        } else if (provider === 'stripe') {
+            const stripeKey = env.STRIPE_SECRET_KEY;
+            if (!stripeKey) {
+                return json({
+                    status: 'GATEWAY_CREDENTIALS_REQUIRED',
+                    gateway: 'Stripe',
+                    message: 'STRIPE_SECRET_KEY required in Cloudflare Secrets.',
+                    amount_usd: authoritativeUsdAmount
+                }, 422, h);
+            }
         }
 
         const orderId = `ORD-${Date.now().toString(36).toUpperCase()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
