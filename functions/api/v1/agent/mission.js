@@ -122,6 +122,56 @@ export async function onRequestPost(context) {
             dag_hash: dagHash
         };
 
+        let persisted = false;
+        if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
+            const base = `${env.SUPABASE_URL}/rest/v1`;
+            const key = env.SUPABASE_SERVICE_ROLE_KEY;
+            const authHeaders = {
+                apikey: key,
+                Authorization: `Bearer ${key}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation'
+            };
+
+            try {
+                if (action === 'CREATE') {
+                    const insertRes = await fetch(`${base}/ibos_missions`, {
+                        method: 'POST',
+                        headers: authHeaders,
+                        body: JSON.stringify({
+                            id: generatedMissionId,
+                            user_id: body.user_id || 'system_anonymous',
+                            goal: title,
+                            status: currentStatus,
+                            plan: standardDAG,
+                            current_step: 0,
+                            result: checkpointData,
+                            created_at: missionTimestamp
+                        })
+                    }).catch(() => null);
+                    if (insertRes && insertRes.ok) {
+                        persisted = true;
+                    }
+                } else if (action === 'RESUME' || action === 'ADVANCE' || action === 'APPROVE') {
+                    const patchRes = await fetch(`${base}/ibos_missions?id=eq.${encodeURIComponent(generatedMissionId)}`, {
+                        method: 'PATCH',
+                        headers: authHeaders,
+                        body: JSON.stringify({
+                            status: currentStatus,
+                            plan: standardDAG,
+                            current_step: Number(checkpoint_index) + 1,
+                            result: checkpointData
+                        })
+                    }).catch(() => null);
+                    if (patchRes && patchRes.ok) {
+                        persisted = true;
+                    }
+                }
+            } catch (dbErr) {
+                console.warn('Mission DB sync non-blocking notice:', dbErr.message);
+            }
+        }
+
         const responsePayload = {
             status: "SUCCESS",
             mission: {
@@ -143,7 +193,8 @@ export async function onRequestPost(context) {
                 evidence_signature: evidenceSignature,
                 policy_verdict: "APPROVED",
                 risk_level: "LOW",
-                runtime_state: "SANDBOX_VERIFIED",
+                runtime_state: persisted ? "PERSISTED_LIVE_DB" : "SANDBOX_VERIFIED",
+                persisted,
                 timestamp: missionTimestamp
             }
         };
@@ -159,10 +210,49 @@ export async function onRequestPost(context) {
 }
 
 export async function onRequestGet(context) {
-    const { request } = context;
+    const { request, env = {} } = context;
     const corsHeaders = getCorsHeaders(request);
     const url = new URL(request.url);
     const missionId = url.searchParams.get("mission_id") || "mis_active_sample";
+
+    let persistedMission = null;
+    if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY && missionId !== "mis_active_sample") {
+        try {
+            const base = `${env.SUPABASE_URL}/rest/v1`;
+            const key = env.SUPABASE_SERVICE_ROLE_KEY;
+            const authHeaders = { apikey: key, Authorization: `Bearer ${key}` };
+            const res = await fetch(`${base}/ibos_missions?id=eq.${encodeURIComponent(missionId)}&select=*`, {
+                headers: authHeaders
+            }).catch(() => null);
+            if (res && res.ok) {
+                const rows = await res.json().catch(() => []);
+                if (Array.isArray(rows) && rows.length > 0) {
+                    persistedMission = rows[0];
+                }
+            }
+        } catch (e) {
+            console.warn('Mission query non-blocking warning:', e.message);
+        }
+    }
+
+    if (persistedMission) {
+        const taskDag = Array.isArray(persistedMission.plan) ? persistedMission.plan : [];
+        const dagHash = await sha256(JSON.stringify(taskDag));
+        return new Response(JSON.stringify({
+            status: "SUCCESS",
+            mission_id: persistedMission.id,
+            state: persistedMission.status,
+            assigned_agents: ["ARCHITECT_AGENT", "DEVELOPER_AGENT", "QA_AGENT"],
+            progress_percentage: persistedMission.current_step ? Math.min(100, persistedMission.current_step * 25) : 50,
+            task_dag: taskDag,
+            evidence: {
+                dag_sha256: dagHash,
+                runtime_state: "PERSISTED_LIVE_DB",
+                persisted: true,
+                last_checkpoint: persistedMission.result?.timestamp || persistedMission.created_at
+            }
+        }, null, 2), { headers: corsHeaders });
+    }
 
     const sampleDAG = [
         { task_id: "tsk_01", title: "Requirements Analysis", status: "COMPLETED", progress: 100 },
@@ -183,6 +273,7 @@ export async function onRequestGet(context) {
         evidence: {
             dag_sha256: dagHash,
             runtime_state: "SANDBOX_VERIFIED",
+            persisted: false,
             last_checkpoint: new Date().toISOString()
         }
     }, null, 2), { headers: corsHeaders });

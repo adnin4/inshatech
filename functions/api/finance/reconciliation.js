@@ -163,6 +163,52 @@ export async function onRequestGet(context) {
             }
         }
 
+        const url = new URL(request.url);
+        const autoResolve = url.searchParams.get('auto_resolve') === 'true';
+        let backfilledCount = 0;
+
+        if (autoResolve && discrepancies.length > 0) {
+            for (const item of discrepancies) {
+                if (item.issue === 'PAID_ORDER_MISSING_REVENUE_CREDIT') {
+                    const targetOrder = paidOrders.find(o => o.order_code === item.order_id);
+                    if (targetOrder) {
+                        const amountNum = parseFloat(targetOrder.amount || '0');
+                        if (amountNum > 0) {
+                            const nowIso = new Date().toISOString();
+                            const backfillRes = await fetch(`${base}/ibos_revenue`, {
+                                method: 'POST',
+                                headers: authHeaders,
+                                body: JSON.stringify({
+                                    order_id: targetOrder.id || null,
+                                    amount: amountNum,
+                                    currency: targetOrder.currency || 'USD',
+                                    type: 'one_time',
+                                    period_start: nowIso.slice(0, 10),
+                                    period_end: nowIso.slice(0, 10),
+                                    created_at: nowIso
+                                })
+                            }).catch(() => null);
+
+                            if (backfillRes && backfillRes.ok) {
+                                backfilledCount++;
+                                item.reconciliation_action = 'BACKFILLED_REVENUE_RECORD';
+                                await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(targetOrder.order_code)}`, {
+                                    method: 'PATCH',
+                                    headers: authHeaders,
+                                    body: JSON.stringify({
+                                        metadata: {
+                                            ledger_sync_pending: false,
+                                            reconciled_at: nowIso
+                                        }
+                                    })
+                                }).catch(() => null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         const isBalanced = discrepancies.length === 0 && Math.abs(totalOrdersUsd - totalRevenueLedgerUsd) < 0.01;
         const netSettledRevenue = totalRevenueLedgerUsd;
         const retainedEarnings = netSettledRevenue - totalCommissionsUsd - totalExpensesUsd;
@@ -173,6 +219,8 @@ export async function onRequestGet(context) {
             data_mode: 'LIVE_LEDGER',
             discrepancies: discrepancies.length,
             discrepancy_details: discrepancies,
+            auto_resolve_applied: autoResolve,
+            backfilled_count: backfilledCount,
             paid_order_total_usd: Math.round(totalOrdersUsd * 100) / 100,
             net_settled_revenue_usd: Math.round(netSettledRevenue * 100) / 100,
             gateway_fees_paid_usd: null,
@@ -203,13 +251,14 @@ export async function onRequestPost(context) {
 
     try {
         const body = await request.json().catch(() => ({}));
-        const { provider_tx, local_order, webhook_event } = body;
+        const { provider_tx, local_order, webhook_event, revenue_record } = body;
 
         const engine = new PaymentReconciliationEngine();
         const result = engine.reconcileTransaction({
             providerTx: provider_tx,
             localOrder: local_order,
-            webhookEvent: webhook_event
+            webhookEvent: webhook_event,
+            revenueRecord: revenue_record
         });
 
         return json({ status: 'SUCCESS', result }, 200, headers);

@@ -347,6 +347,9 @@ export async function onRequestPost({ request, env = {} }) {
             });
         }
 
+        let postSettlementNeedsReconciliation = false;
+        let postSettlementError = null;
+
         if (isSuccess) {
             if (resolvedOrder && String(resolvedOrder.payment_status || '').toLowerCase() === 'paid') {
                 const alreadyPaidPatch = await fetch(
@@ -405,11 +408,13 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             // Post-Payment Settlement & Reconciliation Automation
+            let revenueSuccess = true;
+            let commissionSuccess = true;
             try {
                 // 1. Record Revenue Ledger Entry (Double-entry credit)
                 const revenueAmount = parseFloat(resolvedOrder.amount || '0');
                 if (revenueAmount > 0) {
-                    await fetch(`${base}/ibos_revenue`, {
+                    const revRes = await fetch(`${base}/ibos_revenue`, {
                         method: 'POST',
                         headers: { ...auth, Prefer: 'return=minimal' },
                         body: JSON.stringify({
@@ -421,13 +426,19 @@ export async function onRequestPost({ request, env = {} }) {
                             period_end: now.slice(0, 10),
                             created_at: now
                         })
-                    }).catch(() => null);
+                    }).catch(err => {
+                        console.warn('Revenue ledger write failed:', err?.message);
+                        return null;
+                    });
+                    if (!revRes || !revRes.ok) {
+                        revenueSuccess = false;
+                    }
                 }
 
                 // 2. Affiliate Commission Settlement Ledger Entry if applicable
                 const commissionAmount = parseFloat(resolvedOrder.affiliate_commission || '0');
                 if (resolvedOrder.affiliate_ref_code && commissionAmount > 0) {
-                    await fetch(`${base}/ibos_commission_ledger`, {
+                    const commRes = await fetch(`${base}/ibos_commission_ledger`, {
                         method: 'POST',
                         headers: { ...auth, Prefer: 'return=minimal' },
                         body: JSON.stringify({
@@ -436,10 +447,44 @@ export async function onRequestPost({ request, env = {} }) {
                             status: 'pending',
                             created_at: now
                         })
-                    }).catch(() => null);
+                    }).catch(err => {
+                        console.warn('Commission ledger write failed:', err?.message);
+                        return null;
+                    });
+                    if (!commRes || !commRes.ok) {
+                        commissionSuccess = false;
+                    }
                 }
             } catch (settleErr) {
                 console.warn('Post-payment settlement non-blocking notice:', settleErr.message);
+                revenueSuccess = false;
+                postSettlementError = `SETTLEMENT_EXCEPTION: ${settleErr.message}`;
+            }
+
+            if (!revenueSuccess || !commissionSuccess) {
+                postSettlementNeedsReconciliation = true;
+                if (!postSettlementError) {
+                    postSettlementError = `LEDGER_SYNC_PARTIAL_FAILURE: revenue=${revenueSuccess}, commission=${commissionSuccess}`;
+                }
+                console.warn(`[RECONCILIATION_REQUIRED] Post-payment settlement partial failure for order ${orderCode}. ${postSettlementError}`);
+                const currentMeta = (resolvedOrder.metadata && typeof resolvedOrder.metadata === 'object') ? resolvedOrder.metadata : {};
+                await fetch(
+                    `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}`,
+                    {
+                        method: 'PATCH',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({
+                            metadata: {
+                                ...currentMeta,
+                                ledger_sync_pending: true,
+                                ledger_sync_error: postSettlementError,
+                                ledger_sync_failed_at: now,
+                                revenue_synced: revenueSuccess,
+                                commission_synced: commissionSuccess
+                            }
+                        })
+                    }
+                ).catch(() => null);
             }
         } else if (orderCode) {
             const isFailed = [
@@ -533,12 +578,17 @@ export async function onRequestPost({ request, env = {} }) {
             }
         }
 
+        const finalStatus = postSettlementNeedsReconciliation ? 'RECONCILIATION_REQUIRED' : (isSuccess ? 'processed' : 'received');
         const finalizeRes = await fetch(
             `${base}/ibos_webhook_events?event_id=eq.${encodeURIComponent(eventId)}`,
             {
                 method: 'PATCH',
                 headers: { ...auth, Prefer: 'return=minimal' },
-                body: JSON.stringify({ status: isSuccess ? 'processed' : 'received', processed_at: isSuccess ? now : null })
+                body: JSON.stringify({
+                    status: finalStatus,
+                    processed_at: isSuccess ? now : null,
+                    ...(postSettlementError ? { error_message: postSettlementError } : {})
+                })
             }
         );
         if (!finalizeRes.ok) {
@@ -547,11 +597,12 @@ export async function onRequestPost({ request, env = {} }) {
 
         return json(200, {
             status: 'SUCCESS',
-            action: isSuccess ? 'payment_confirmed' : 'event_recorded',
+            action: isSuccess ? (postSettlementNeedsReconciliation ? 'payment_confirmed_reconciliation_pending' : 'payment_confirmed') : 'event_recorded',
             event_id: eventId,
             order_id: orderCode || 'UNSPECIFIED',
             event_type: type,
-            provider
+            provider,
+            reconciliation_required: postSettlementNeedsReconciliation
         });
     } catch (error) {
         return json(500, {

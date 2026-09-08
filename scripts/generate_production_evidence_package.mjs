@@ -3,7 +3,7 @@ import path from 'node:path';
 
 async function generateEvidence() {
   console.log("================================================================================");
-  console.log("GENERATING PRODUCTION EVIDENCE PACKAGE FOR COMMIT 70b316b");
+  console.log("GENERATING PRODUCTION EVIDENCE PACKAGE");
   console.log("================================================================================");
 
   const evidenceDir = path.resolve('docs/production');

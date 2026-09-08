@@ -87,6 +87,28 @@ async function runReconciliationSuite() {
         'Detects missing durable webhook audit log and schedules backfill'
     );
 
+    const missingRevenueCase = engine.reconcileTransaction({
+        providerTx: { tran_id: 'ORD-REV-07', status: 'PAID', amount: 850, currency: 'USD', provider: 'sslcommerz' },
+        localOrder: { order_code: 'ORD-REV-07', payment_status: 'paid', amount: 850, currency: 'USD' },
+        webhookEvent: { order_code: 'ORD-REV-07' },
+        revenueRecord: null
+    });
+    assert(
+        missingRevenueCase.issues?.some(i => i.mismatch_type === 'MISSING_REVENUE_LEDGER_RECORD' && i.action === 'BACKFILL_REVENUE_RECORD'),
+        'Detects paid order missing double-entry revenue ledger record and triggers BACKFILL_REVENUE_RECORD'
+    );
+
+    const revenueAmountMismatchCase = engine.reconcileTransaction({
+        providerTx: { tran_id: 'ORD-REV-08', status: 'PAID', amount: 850, currency: 'USD', provider: 'sslcommerz' },
+        localOrder: { order_code: 'ORD-REV-08', payment_status: 'paid', amount: 850, currency: 'USD' },
+        webhookEvent: { order_code: 'ORD-REV-08' },
+        revenueRecord: { order_id: 'ORD-REV-08', amount: 500, currency: 'USD' }
+    });
+    assert(
+        revenueAmountMismatchCase.issues?.some(i => i.mismatch_type === 'REVENUE_LEDGER_AMOUNT_MISMATCH' && i.severity === 'HIGH'),
+        'Detects revenue ledger amount discrepancy against order amount'
+    );
+
     console.log('\n--- SUITE 2: Finance Endpoint Access Boundary ---');
 
     const unconfiguredReq = new Request('https://inshatech.pages.dev/api/finance/reconciliation');
@@ -148,6 +170,105 @@ async function runReconciliationSuite() {
         validPostRes.status === 200 && validPostJson.status === 'SUCCESS' && validPostJson.result?.status === 'RECONCILED_CLEAN',
         'Authorized finance POST can run an on-demand transaction audit'
     );
+
+    const postWithMissingRevReq = new Request('https://inshatech.pages.dev/api/finance/reconciliation', {
+        method: 'POST',
+        headers: { Authorization: 'Bearer test-finance-token', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            provider_tx: { tran_id: 'ORD-POST-100', status: 'PAID', amount: 850, currency: 'USD' },
+            local_order: { order_code: 'ORD-POST-100', payment_status: 'paid', amount: 850, currency: 'USD' },
+            webhook_event: { order_code: 'ORD-POST-100' },
+            revenue_record: null
+        })
+    });
+    const postWithMissingRevRes = await onRequestPost({
+        request: postWithMissingRevReq,
+        env: { FINANCE_ADMIN_TOKEN: 'test-finance-token' }
+    });
+    const postWithMissingRevJson = await postWithMissingRevRes.json();
+    assert(
+        postWithMissingRevRes.status === 200 &&
+        postWithMissingRevJson.result?.issues?.some(i => i.mismatch_type === 'MISSING_REVENUE_LEDGER_RECORD'),
+        'Finance POST audits transaction tuple and identifies missing revenue ledger record'
+    );
+
+    console.log('\n--- SUITE 3: Auto-Resolve Backfill and Ledger Invariant Verification ---');
+    const mockPaidOrders = [
+        { id: 'uuid-ord-1', order_code: 'ORD-MOCK-01', amount: 850, currency: 'USD', payment_status: 'paid' },
+        { id: 'uuid-ord-2', order_code: 'ORD-MOCK-02', amount: 497, currency: 'USD', payment_status: 'paid' }
+    ];
+    let mockRevenueRows = [
+        { id: 'rev-uuid-1', order_id: 'uuid-ord-1', amount: 850, currency: 'USD' }
+    ];
+    let backfilledRows = [];
+
+    const origFetch = globalThis.fetch;
+    globalThis.fetch = async (url, opts = {}) => {
+        const urlStr = String(url);
+        if (urlStr.includes('/ibos_orders?payment_status=eq.paid')) {
+            return new Response(JSON.stringify(mockPaidOrders), { status: 200 });
+        }
+        if (urlStr.includes('/ibos_revenue?select=')) {
+            return new Response(JSON.stringify([...mockRevenueRows, ...backfilledRows]), { status: 200 });
+        }
+        if (urlStr.includes('/ibos_commission_ledger')) {
+            return new Response(JSON.stringify([]), { status: 200 });
+        }
+        if (urlStr.includes('/ibos_expenses')) {
+            return new Response(JSON.stringify([]), { status: 200 });
+        }
+        if (urlStr.endsWith('/ibos_revenue') && opts.method === 'POST') {
+            const body = JSON.parse(opts.body || '{}');
+            backfilledRows.push(body);
+            return new Response(JSON.stringify([body]), { status: 201 });
+        }
+        if (urlStr.includes('/ibos_orders?order_code=eq.') && opts.method === 'PATCH') {
+            return new Response(JSON.stringify([{ status: 'updated' }]), { status: 200 });
+        }
+        return origFetch(url, opts);
+    };
+
+    try {
+        const auditGetReq = new Request('https://inshatech.pages.dev/api/finance/reconciliation', {
+            headers: { Authorization: 'Bearer test-finance-token' }
+        });
+        const auditGetRes = await onRequestGet({
+            request: auditGetReq,
+            env: {
+                FINANCE_ADMIN_TOKEN: 'test-finance-token',
+                SUPABASE_URL: 'https://mock.supabase.co',
+                SUPABASE_SERVICE_ROLE_KEY: 'mock-key'
+            }
+        });
+        const auditGetJson = await auditGetRes.json();
+        assert(
+            auditGetJson.status === 'DISCREPANCIES_DETECTED' && auditGetJson.discrepancies === 1 && auditGetJson.discrepancy_details[0].order_id === 'ORD-MOCK-02',
+            'Reconciliation detects missing revenue row for paid order in live ledger scan'
+        );
+
+        const resolveGetReq = new Request('https://inshatech.pages.dev/api/finance/reconciliation?auto_resolve=true', {
+            headers: { Authorization: 'Bearer test-finance-token' }
+        });
+        const resolveGetRes = await onRequestGet({
+            request: resolveGetReq,
+            env: {
+                FINANCE_ADMIN_TOKEN: 'test-finance-token',
+                SUPABASE_URL: 'https://mock.supabase.co',
+                SUPABASE_SERVICE_ROLE_KEY: 'mock-key'
+            }
+        });
+        const resolveGetJson = await resolveGetRes.json();
+        assert(
+            resolveGetJson.auto_resolve_applied === true && resolveGetJson.backfilled_count === 1,
+            'Reconciliation with auto_resolve=true automatically backfills missing revenue entry'
+        );
+        assert(
+            backfilledRows.length === 1 && backfilledRows[0].order_id === 'uuid-ord-2' && backfilledRows[0].amount === 497,
+            'Backfilled revenue entry matches order UUID, authoritative amount, and USD currency'
+        );
+    } finally {
+        globalThis.fetch = origFetch;
+    }
 
     console.log('\n================================================================================');
     console.log(`FINANCIAL RECONCILIATION SUITE SUMMARY: ${passed}/${total} ASSERTIONS PASSED!`);

@@ -13,9 +13,9 @@ export class PaymentReconciliationEngine {
     }
 
     /**
-     * Audit single transaction triple
+     * Audit single transaction triple / ledger tuple
      */
-    reconcileTransaction({ providerTx, localOrder, webhookEvent }) {
+    reconcileTransaction({ providerTx, localOrder, webhookEvent, revenueRecord }) {
         const issues = [];
         const orderId = localOrder?.order_code || providerTx?.tran_id || webhookEvent?.order_code || 'UNKNOWN';
 
@@ -71,6 +71,25 @@ export class PaymentReconciliationEngine {
                 expected: 'DURABLE_EVENT_ROW',
                 actual: 'NULL',
                 action: 'BACKFILL_AUDIT_FROM_PROVIDER'
+            });
+        }
+
+        // 6. Double-entry revenue ledger credit audit
+        if (localOrder?.payment_status === 'paid' && revenueRecord === null) {
+            issues.push({
+                mismatch_type: 'MISSING_REVENUE_LEDGER_RECORD',
+                severity: 'HIGH',
+                expected: 'REVENUE_ROW',
+                actual: 'NULL',
+                action: 'BACKFILL_REVENUE_RECORD'
+            });
+        } else if (localOrder?.payment_status === 'paid' && revenueRecord && Math.abs(parseFloat(revenueRecord.amount || '0') - parseFloat(localOrder.amount || '0')) >= 0.01) {
+            issues.push({
+                mismatch_type: 'REVENUE_LEDGER_AMOUNT_MISMATCH',
+                severity: 'HIGH',
+                expected: localOrder.amount,
+                actual: revenueRecord.amount,
+                action: 'FLAG_FOR_MANUAL_REVIEW'
             });
         }
 
