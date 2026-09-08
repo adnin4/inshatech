@@ -215,7 +215,7 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             const orderRes = await fetch(
-                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,bdt_amount,payment_gateway`,
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,bdt_amount,payment_gateway,payment_provider,affiliate_ref_code,affiliate_commission,client_email`,
                 { method: 'GET', headers: auth }
             );
             if (!orderRes.ok) {
@@ -390,6 +390,44 @@ export async function onRequestPost({ request, env = {} }) {
                     }
                 );
                 return json(503, { status: 'ORDER_UPDATE_FAILED', event_id: eventId, order_id: orderCode });
+            }
+
+            // Post-Payment Settlement & Reconciliation Automation
+            try {
+                // 1. Record Revenue Ledger Entry (Double-entry credit)
+                const revenueAmount = parseFloat(resolvedOrder.amount || '0');
+                if (revenueAmount > 0) {
+                    await fetch(`${base}/ibos_revenue`, {
+                        method: 'POST',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({
+                            order_id: resolvedOrder.id || null,
+                            amount: revenueAmount,
+                            currency: resolvedOrder.currency || 'USD',
+                            type: 'one_time',
+                            period_start: now.slice(0, 10),
+                            period_end: now.slice(0, 10),
+                            created_at: now
+                        })
+                    }).catch(() => null);
+                }
+
+                // 2. Affiliate Commission Settlement Ledger Entry if applicable
+                const commissionAmount = parseFloat(resolvedOrder.affiliate_commission || '0');
+                if (resolvedOrder.affiliate_ref_code && commissionAmount > 0) {
+                    await fetch(`${base}/ibos_commission_ledger`, {
+                        method: 'POST',
+                        headers: { ...auth, Prefer: 'return=minimal' },
+                        body: JSON.stringify({
+                            amount: commissionAmount,
+                            type: 'commission',
+                            status: 'pending',
+                            created_at: now
+                        })
+                    }).catch(() => null);
+                }
+            } catch (settleErr) {
+                console.warn('Post-payment settlement non-blocking notice:', settleErr.message);
             }
         }
 

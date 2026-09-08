@@ -129,6 +129,7 @@ export async function onRequestPost({ request, env = {} }) {
                 const orderPayload = {
                     order_code: orderId,
                     service_id: resolvedServiceUuid,
+                    service_slug: serviceId,
                     service_title: item[0],
                     package_name: 'Standard',
                     amount: usdAmount,
@@ -138,9 +139,15 @@ export async function onRequestPost({ request, env = {} }) {
                     client_email: customerEmail,
                     client_phone: customerPhone,
                     payment_gateway: provider,
+                    payment_provider: provider,
                     payment_status: 'awaiting_payment',
                     order_status: 'pending',
                     idempotency_key: idempotencyKey,
+                    metadata: {
+                        coupon_applied: coupon || null,
+                        client_ip: request.headers.get('CF-Connecting-IP') || null,
+                        user_agent: request.headers.get('User-Agent') || null
+                    },
                     created_at: new Date().toISOString()
                 };
 
