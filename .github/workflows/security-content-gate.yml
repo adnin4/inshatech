@@ -11,7 +11,6 @@ jobs:
   security-content-gate:
     name: Zero-Trust P0 Security & Content Leak Audit
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Codebase
         uses: actions/checkout@v4
@@ -27,3 +26,12 @@ jobs:
 
       - name: Run P0 Security & Content Gate Scanner
         run: node scratch/security_content_gate.js
+
+      - name: Upload Security Gate Evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-gate-report
+          path: security-gate-report/
+          if-no-files-found: ignore
+          retention-days: 14
