@@ -510,6 +510,23 @@ export async function onRequestPost({ request, env = {} }) {
                                     })
                                 }
                             ).catch(() => null);
+
+                            // Record ledger reversal entry in ibos_expenses
+                            const refundAmount = parseFloat(orderRows[0].amount || '0');
+                            if (refundAmount > 0) {
+                                await fetch(`${base}/ibos_expenses`, {
+                                    method: 'POST',
+                                    headers: { ...auth, Prefer: 'return=minimal' },
+                                    body: JSON.stringify({
+                                        category: 'refund',
+                                        description: `Refund reversal for order ${orderCode}`,
+                                        amount: refundAmount,
+                                        currency: orderRows[0].currency || 'USD',
+                                        vendor: provider,
+                                        created_at: now
+                                    })
+                                }).catch(() => null);
+                            }
                         }
                     }
                 }
