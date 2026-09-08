@@ -1,265 +1,273 @@
 # IINSHA AI-BOS — MASTER NEXT-CONVERSATION EXECUTION CHECKPOINT
 
 ## Purpose
-This document is the durable handoff for the next engineering conversation. Do not restart architecture discovery. Start from current repository/runtime evidence, verify every claim, and continue implementation in dependency order.
+This is the durable engineering handoff. Do not restart architecture discovery. Start from the current observed GitHub/Supabase/site evidence, distinguish live/runtime proof from source or historical claims, and continue implementation in dependency order.
 
-## Canonical identity
+## OBSERVED ON 2026-09-08
+
+### GitHub
 - Repository: `adnin4/inshatech`
 - Canonical branch: `master`
-- Latest observed repository tip commit: `8a18c4126192423bdd64e8a522911bb74bd0ee20`
-- Latest code-changing payment test commit: `109ecab9329ec4999412716395be90d8d230f11f`
-- Canonical runtime-code head recorded in system state: `e0f59020eb1919cfae6d275a98bca0c03872b6f0`
-- Current runtime identity recorded: `UNVERIFIED_EXTERNAL_RUNTIME`
-- Supabase project: `kitwadizsvjmuxkfewxj`
-- Public site: `https://inshatech.pages.dev/`
+- Repository visibility: private
+- Latest observed commit: `eb409a51e82a9bacbf41fec249219aaf3e324321`
+- Latest observed commit message: `feat(payments): record reversing ledger expense on refund webhook for double-entry integrity`
+- Immediately preceding payment hardening commits observed: `84fee3b4` (credential preflight), `b718193d` (minor-unit money + concurrent idempotency race suite), `e7d9dd04` (replay/concurrency readiness docs), `8898640f` (payment CI suites).
+- `eb409a51` adds refund-related expense recording in `functions/api/payments/webhook.js`.
+- Exact commit workflow-run query returned no workflow runs, and combined commit status returned no status records in the current connector response. Therefore CI is NOT proven green.
+- Existing umbrella blocker: Issue #62 `P0 FINAL: Pre-Pilot Certification, Production Parity, Commercial Readiness & Autonomous Operation Gate`.
+- Important open blockers/issues remain around runtime parity, real agent execution, payment/finance integrity, security behavior, browser certification and real pilot evidence.
 
-## Current truth
-Do not declare production certified. The current evidence supports a mature staging-ready architecture with important certification blockers still open.
+### Source/runtime truth
+- `CANONICAL_SYSTEM_STATE.json` is stale relative to the newly observed GitHub tip: it still records `current_repository_tip=8898640f...` and `runtime_identity=UNVERIFIED_EXTERNAL_RUNTIME`.
+- It records `canonical_runtime_code_head=e0f59020...`, while the observed repository tip is now `eb409a51...`.
+- Therefore Git SHA -> build SHA -> deploy SHA -> runtime SHA parity remains UNVERIFIED.
+- `wrangler.toml` points at the canonical Supabase URL `https://kitwadizsvjmuxkfewxj.supabase.co`, but configuration is not runtime proof.
 
-Required status ladder:
-`NOT_READY -> READY_FOR_STAGING -> STAGING_VERIFIED -> PRODUCTION_CANDIDATE -> PRODUCTION_VERIFIED -> REVENUE_OPERATIONAL -> AUTONOMOUS_OPERATIONAL`
+### Current agent chat implementation
+`functions/api/v1/agent/chat.js` now supports real Gemini inference when `GEMINI_API_KEY`/`GOOGLE_AI_API_KEY` exists, but it is still NOT the complete production mission/evidence runtime:
+- intent/agent routing remains keyword-based;
+- service catalog facts in the prompt are hard-coded rather than resolved from the authoritative DB;
+- it creates session/mission/execution IDs locally;
+- response evidence is hashes/signatures only and explicitly says `persisted: false`;
+- it does not persist mission/checkpoint/tool-receipt/evidence records in this path;
+- it does not delegate through the canonical mission/policy/tool gateway;
+- failure to reach Gemini falls back to deterministic canned responses.
+Therefore `/api/v1/agent/chat` must remain below `LIVE_VERIFIED` until the real runtime/evidence contract is implemented and runtime-tested.
 
-A higher status is forbidden until all lower gates have objective evidence.
+### Payment/webhook source truth
+The current webhook code is substantially hardened: provider identification, HMAC/signature checks, event IDs, duplicate protection, durable webhook-event registration before order mutation, SSLCommerz validation path, transaction/currency/amount checks, risk checks and legal payment-state transitions are present.
+However, the current code still needs transaction-level finance integrity verification. Several downstream ledger writes use independent REST calls and some failures are swallowed (`catch(() => null)`), so payment success must not be certified until revenue/commission/refund ledger invariants and reconciliation are proven under partial failure/concurrency.
 
-## Confirmed recent work
-- Authoritative FX policy and reconciliation metadata were added.
-- Webhook replay protection/concurrency atomicity test suite was added in commit `109ecab...`.
-- Canonical system state was synchronized in commit `8a18c412...`.
-- Supabase live SQL access is currently working from this environment.
-- Current Supabase public tables inspected in this checkpoint show `tables_without_rls = 0`.
+### Supabase — LIVE control-plane observations
+- Project: `inshatech-db`
+- Ref: `kitwadizsvjmuxkfewxj`
+- Region: `ap-southeast-1`
+- Status: `ACTIVE_HEALTHY`
+- PostgreSQL: 17.6.1.155 / engine 17
+- Public schema contains the existing AI-BOS/control-plane tables; no reset/rebuild is permitted.
+- All observed public tables have RLS enabled.
+- `pg_policies` currently reports 110 public policies.
+- Security Advisor currently reports 0 lints.
+- There is 1 `SECURITY DEFINER` function in public: `rls_auto_enable()`, configured with `search_path=pg_catalog`.
+- Supabase Edge Functions list is empty: `[]`. This is important: do not assume Supabase Edge Functions are the application runtime; Cloudflare Pages/Workers is the intended edge runtime unless deployment evidence proves otherwise.
+- Performance Advisor currently reports 117 INFO `unused_index` findings. Do NOT mass-delete them. First measure actual query plans/usage/write overhead after the real workload is running; remove only demonstrably redundant indexes through reviewed additive migrations.
+- Current migration history includes the payment/idempotency authority migration `20260907213737_payment_idempotency_and_authority_guards` plus the earlier autonomous-company/control-plane migrations.
+- RLS enabled + 0 Security Advisor lints is NOT a complete application security certification. Required next work includes grants, policies, views, functions, storage, SECURITY DEFINER behavior and authenticated tenant A/B negative tests.
 
-## Critical current uncertainty
-The repository metadata explicitly records `runtime_identity = UNVERIFIED_EXTERNAL_RUNTIME`, and `canonical_runtime_code_head` differs from the repository tip. Therefore source/runtime parity is not certified. GitHub combined status for the observed latest commit returned no status records in the current tool response; do not infer CI green.
+### Public Cloudflare site observation
+Public site: `https://inshatech.pages.dev/`
+The accessible site snapshot still contains public claims/phrasing that must be reviewed before production certification, including:
+- `VERIFIED STUDIO`
+- `100% Verifiable Codebase`
+- `99.8% Success`
+- `100% Reliable Data Stream`
+- `Cloudflare Bypass`
+- `OpenClaw stealth` / anti-bot bypass language
+- simulated execution text such as `simulate OpenClaw Playwright scraper output` and `simulate live execution pulse`
+- public marketplace download/review counts and other operational-looking metrics whose production provenance must be established.
+These must be removed, softened, or explicitly labeled `DEMO`, `SIMULATION`, `ESTIMATED`, or `NOT_CONFIGURED` unless evidence exists. Preserve the visual/UI structure; this is a truth-hardening/content change, not a redesign.
 
-## Non-negotiables
-1. Preserve all existing UI/UX, routes, tabs, buttons, information architecture and working behavior.
+The current environment cannot directly prove the Cloudflare production project configuration or live `/api/version`, `/api/health`, `/api/sre/health` SHA identity through an authenticated Cloudflare control-plane connector. A normal public site render is not enough to prove deployment/source/runtime parity.
+
+## CURRENT CERTIFICATION STATUS
+`PRODUCTION_VERIFIED` = NO.
+`REVENUE_OPERATIONAL` = NO.
+`AUTONOMOUS_OPERATIONAL` = NO.
+
+Best-supported maturity classification: `PRODUCTION_CANDIDATE` architecture / staging-grade control plane, with critical external-runtime and real-world execution evidence still missing. Do not promote the status ladder without objective evidence:
+`NOT_READY -> READY_FOR_STAGING -> STAGING_VERIFIED -> PRODUCTION_CANDIDATE -> PRODUCTION_VERIFIED -> REVENUE_OPERATIONAL -> AUTONOMOUS_OPERATIONAL`.
+
+## NON-NEGOTIABLES
+1. Preserve existing UI/UX, routes, tabs, buttons, information architecture and working behavior.
 2. No DB reset, rebuild, drop, destructive rewrite or unreviewed data deletion.
-3. No CI bypass, disabled gate, weakened assertion or fake green status.
-4. No fake customer, order, payment, revenue, testimonials, uptime, QA, deployment or provider evidence.
+3. No CI bypass, weakened assertion or fake green status.
+4. No fake customer, order, payment, revenue, testimonial, uptime, QA, deployment or provider evidence.
 5. Browser is never payment authority.
-6. Client never determines authoritative price, coupon result, commission, payment state or privileged action.
+6. Client never determines authoritative price, coupon, commission, payment state or privileged action.
 7. Agents never receive unrestricted authority.
-8. Financial, destructive and production-critical actions require policy and/or explicit scoped approval unless an already-approved low-risk policy permits automation.
-9. Unavailable provider => `NOT_CONFIGURED`, `BLOCKED`, or `UNVERIFIED`; never synthetic success.
-10. Every consequential state claim must have independent evidence.
+8. Financial/destructive/production-critical actions remain policy/approval controlled unless an already-approved low-risk policy explicitly permits automation.
+9. Unavailable provider => `NOT_CONFIGURED`, `BLOCKED`, `FAILED`, or `UNVERIFIED`; never synthetic success.
+10. Every consequential status claim requires independent evidence.
+11. One authoritative runtime and one workflow/lifecycle truth. Do not create competing runtimes.
 
-## Execution algorithm for every change
+## EXECUTION ALGORITHM
 `Inspect -> Reproduce -> Root cause -> Minimal additive fix -> Static/build checks -> Unit/contract tests -> Security tests -> DB integrity -> Browser regression -> Runtime observation -> Evidence -> Recheck -> Certify`
 
 ## FINAL DEPENDENCY ORDER
 
-### Gate 0 — CI truth
-- Split payment/master/security CI into independently observable jobs if still monolithic.
-- Capture exact failing workflow/job/test/file/assertion in machine-readable and human-readable artifacts.
-- Wire every new monetary/FX/replay/concurrency contract test into mandatory CI.
-- Fix, rerun and freeze a green baseline.
-- No downstream production activation before this gate is green.
+### GATE 0 — CI TRUTH
+- Inspect exact latest master SHA and all relevant workflow files.
+- Obtain real workflow run/job/log evidence; if unavailable, do not call CI green.
+- Split monolithic jobs only if needed for observability; do not weaken gates.
+- Make payment, FX, coupon, replay, concurrency, reconciliation and RLS contract tests mandatory.
+- Fix first real failure only; rerun; freeze a green baseline.
 
-### Gate 1 — Money and catalog authority
-- `ibos_services` remains the canonical service registry.
-- Server resolves published service/package/price.
-- Minor-unit representation for financial authority.
-- DB coupon authority with validity, scope, usage limits and atomic redemption.
-- Request fingerprint/idempotency rules, including same key + different payload rejection.
-- Concurrent checkout tests at realistic fan-out.
+### GATE 1 — MONEY / CATALOG / COUPON AUTHORITY
+- `ibos_services` is canonical service/package registry.
+- Server resolves published price/package; never trust browser price.
+- Minor-unit financial representation.
+- Coupon status/scope/validity/usage limits and atomic redemption.
+- Request fingerprint/idempotency; same key + different payload must reject.
+- Concurrency tests at realistic fan-out (10/50/100).
 
-### Gate 2 — Payment correctness
-- Legal payment state machine only.
-- Provider attempt/recovery state.
+### GATE 2 — PAYMENT CORRECTNESS
+- Legal state transitions only.
 - Real provider adapter; no sample checkout URL.
-- SSLCommerz native IPN/signature/hash validation if SSLCommerz is the enabled rail.
-- Order Validation API check.
-- Verify `tran_id`, amount, currency, order binding and risk state.
-- Replay-safe webhook/event ledger.
-- Atomic duplicate webhook handling.
+- Provider credential preflight.
+- SSLCommerz-native validation/signature/IPN if SSLCommerz is the enabled rail.
+- Exact transaction/order/amount/currency binding.
+- Risk handling.
+- Replay-safe event ledger and atomic duplicate webhook behavior.
 - Refund lifecycle with provider evidence.
-- Sandbox full-cycle certification.
-- Reconciliation against provider truth.
-- Keep all unconfigured providers explicitly non-live.
+- Sandbox full-cycle test.
+- Provider-vs-internal reconciliation.
 
-### Gate 3 — Finance
+### GATE 3 — FINANCE
 - Immutable double-entry ledger.
 - Payment fees, FX, taxes/adjustments where configured.
 - Commission only after qualifying order/payment/fraud rules.
-- Refund reversals, not destructive overwrites.
-- Ledger invariants and reconciliation checks.
-- No revenue operational claim until real transaction evidence exists.
+- Refunds create reversing entries; never overwrite history.
+- Do not swallow critical ledger-write failures. Use transactional DB functions/outbox/reconciliation so partial payment success cannot silently create incomplete finance state.
+- Automated invariants: debits=credits, unique business events, one revenue event per qualifying payment, one reversal per qualifying refund, reconciliation completeness.
 
-### Gate 4 — Security and authorization
+### GATE 4 — SECURITY / AUTHORIZATION
 - Actor/resource/action matrix.
-- Behavioral RLS tests for SELECT/INSERT/UPDATE/DELETE and `USING`/`WITH CHECK` semantics.
+- RLS behavioral tests for SELECT/INSERT/UPDATE/DELETE with `USING` and `WITH CHECK`.
 - Tenant A/B negative tests.
-- Audit every `SECURITY DEFINER` function for search_path, schema qualification, caller validation and grants.
-- Review views, functions, storage policies and exposed schemas.
-- Verify service-role/provider secret isolation.
+- Audit all SECURITY DEFINER functions, views, grants, exposed schemas and storage policies.
+- Keep service-role/provider secrets server-side.
 - Test replay, forged IDs, stale approvals, privilege escalation, prompt injection, tool authorization, memory poisoning and cross-tenant trace access.
 
-### Gate 5 — Source / Cloudflare / runtime parity
-- Prove the repo/branch that actually deploys the public site.
-- One canonical production source only.
+### GATE 5 — SOURCE / CLOUDFLARE / RUNTIME PARITY
+Required equality:
+`Git SHA = Build SHA = Deploy SHA = Runtime SHA = browser artifact identity`.
+- Prove Cloudflare project/source/branch.
+- One canonical production source.
 - CI-generated release metadata.
-- Required equality:
-  `Git SHA = Build SHA = Deploy SHA = Runtime SHA = browser artifact identity`
-- Runtime must prove canonical Supabase project ref.
-- Any mismatch => `UNVERIFIED` and release blocked.
+- Prove runtime Supabase ref = `kitwadizsvjmuxkfewxj`.
+- Any mismatch = `UNVERIFIED` and release blocked.
 
-### Gate 6 — Browser/UI certification
+### GATE 6 — BROWSER / UI CERTIFICATION
 - Real browser tests against deployed build.
-- Inventory every route and interactive surface.
+- Inventory routes and every major interaction.
 - Verify click -> request -> auth -> authorization -> execution -> result -> UI state -> failure state.
-- Desktop/mobile, keyboard, focus, accessibility, reduced motion, refresh/back/forward/reconnect.
-- No critical console/network failures.
-- Preserve visual baseline; only add minimal truthful status/loading/error affordances.
+- Desktop/mobile, keyboard/focus, accessibility, reduced motion, refresh/back/forward/reconnect.
+- No critical console/network errors.
+- Preserve visual baseline.
 
-### Gate 7 — CRM / Sales
+### GATE 7 — CRM / SALES
 - Canonical customer identity.
-- Lead capture and deterministic qualification.
-- Catalog-based recommendations.
-- Proposal versioning.
+- Real lead capture and deterministic qualification.
+- Catalog-backed recommendation and proposal.
 - Customer acceptance state machine.
-- No unauthorized discount or promise.
-- Commercial transitions audited.
+- No unauthorized discounts/promises.
+- Every commercial transition auditable.
 
-### Gate 8 — Project Factory
-- Verified/authorized order -> project.
+### GATE 8 — PROJECT FACTORY
+- Authorized order/test-order -> project.
 - Requirements -> architecture -> task DAG -> sandbox execution.
-- Artifact provenance and hashes.
+- Artifact provenance/hash.
 - Independent QA.
 - Preview deployment.
-- Explicit client approval/change-request loop.
+- Explicit client acceptance/change request.
 - Delivery only after verified acceptance.
 
-### Gate 9 — Agent Workforce
+### GATE 9 — AGENT WORKFORCE
 - Agent registry/versioning.
 - Tool/skill permissions.
-- Per-agent and per-mission budgets.
-- Typed agent delegation contracts.
+- Per-agent/mission time, token, tool, spend, recursion and concurrency budgets.
+- Typed delegation contracts.
 - Durable resumable missions.
-- Agent loop:
-  `Understand -> Plan -> Delegate -> Execute -> Observe -> Verify -> Recover -> Record -> Learn -> Escalate`
+- Loop: `Understand -> Plan -> Delegate -> Execute -> Observe -> Verify -> Recover -> Record -> Learn -> Escalate`.
 - Model/provider routing by quality, latency, cost, availability and data sensitivity.
-- LLM output is never execution evidence by itself.
+- LLM output never equals execution evidence.
 
-### Gate 10 — Evidence / evaluation / observability
-- Unified correlation/trace IDs.
-- Evidence graph across customer, conversation, lead, proposal, order, mission, task, agent, tool, provider, artifact, QA, deployment, delivery, support and ledger.
-- Independent verification.
-- Offline benchmark + adversarial evaluation before promotion.
-- Production sampled evaluation once live.
-- Cost/quality scorecards.
-- Regression gates.
+### GATE 10 — EVIDENCE / EVALUATION / OBSERVABILITY
+- Unified trace IDs across customer/session/mission/task/agent/tool/provider/artifact/QA/deployment/delivery/support/ledger.
+- Evidence graph and immutable receipts.
+- Offline benchmark + adversarial evaluation before model/prompt/policy promotion.
+- Sampled online evaluation after launch.
+- Cost/quality scorecards and regression gates.
 - Secret/PII-safe telemetry.
 
-### Gate 11 — Deployment / SRE
+### GATE 11 — DEPLOYMENT / SRE
 - Preview -> approval -> production.
-- Migration safety and backup before risky changes.
-- Smoke/health checks.
+- Backup before risky migration.
+- Health/smoke checks.
 - Real rollback drill.
-- SLO/SLI/error-budget model.
-- Dead-letter/manual recovery path.
+- SLO/SLI/error budgets.
+- Dead-letter/manual recovery.
 - Incident lifecycle.
-- Global and domain kill switches.
+- Global/domain kill switches.
 - Bounded self-healing only.
 
-### Gate 12 — Support / renewal
-- Classify bug/incident/feature/question.
-- Retrieve verified customer/project context.
-- Safe remediation.
-- Verify before closure.
+### GATE 12 — SUPPORT / RENEWAL
+- Bug/incident/feature/question classification.
+- Verified customer/project context.
+- Safe remediation and independent verification.
 - Customer confirmation.
-- Renewal/maintenance/expansion/referral only from evidence.
+- Renewal/maintenance/expansion/referral based on evidence.
 
-### Gate 13 — Growth / affiliate
+### GATE 13 — GROWTH / AFFILIATE
 - Real acquisition instrumentation.
-- Provider-backed marketing publication only.
+- Provider-backed marketing only.
 - Affiliate: click -> attribution -> lead -> conversion -> commission -> fraud/eligibility -> payout approval -> evidence.
 - Lock qualifying commission economics at sale time.
 - No fabricated campaign/affiliate/revenue metrics.
 
-### Gate 14 — Golden E2E without live payment
-Run an actual payment-independent customer journey through configured infrastructure:
-`Customer -> Chat -> Qualification -> Proposal -> CRM -> authorized test/manual order -> Mission -> Agent work -> Sandbox -> QA -> Preview -> Approval -> Delivery -> Support -> Evidence`
+### GATE 14 — GOLDEN E2E WITHOUT LIVE PAYMENT
+`Customer -> Chat -> Qualification -> Proposal -> CRM -> authorized test/manual order -> Mission -> real agent work -> Sandbox -> QA -> Preview -> Approval -> Delivery -> Support -> Evidence`.
+Payment remains `NOT_CONFIGURED` until genuine provider transaction testing is possible.
 
-Payment remains `NOT_CONFIGURED` until genuine transaction testing is possible.
-
-### Gate 15 — Real pilot
-- Allowlisted customer cohort.
-- Feature flags.
-- Owner alerts.
-- Kill switch.
+### GATE 15 — REAL PILOT
+- Allowlisted customer.
+- Feature flags and blast-radius limits.
+- Owner alerts and kill switch.
 - Full trace/evidence.
 - Explicit customer acceptance.
-- Post-pilot review and remediation.
+- Post-pilot review.
 
-### Gate 16 — Revenue operational
-Only when all are proven:
-- real customer
-- real payment
-- real order
-- real project
-- real delivery
-- real support
-- reconciled ledger
-- verified attribution
+### GATE 16 — REVENUE OPERATIONAL
+Requires real customer + real payment + real order + real project + real delivery + real support + reconciled ledger + verified attribution.
 
-### Gate 17 — Autonomous operational
-Only after Revenue Operational plus:
-- governed CRM
-- governed sales
-- payment orchestration
-- project factory
-- engineering agents
-- independent QA
-- deployment controls
-- support
-- renewal
-- finance
-- analytics
-- human override
-- global kill switch
+### GATE 17 — AUTONOMOUS OPERATIONAL
+Only after Revenue Operational plus governed CRM/sales/payment/project factory/engineering agents/independent QA/deployment/support/renewal/finance/analytics/human override/global kill switch.
 
-## Advanced architecture that is now locked
-Customer/UI -> API Gateway -> Session/Identity -> Context/Memory -> Planner/Router -> Mission Kernel -> Policy/Authority -> Tool Gateway -> Provider Adapter -> Execution -> Verification -> Evidence Graph -> Event/Outbox -> Next Action.
+## LOCKED TARGET ARCHITECTURE
+`Customer/UI -> API Gateway -> Session/Identity -> Context/Memory -> Planner/Router -> Mission Kernel -> Policy/Authority -> Tool Gateway -> Provider Adapter -> Execution -> Verification -> Evidence Graph -> Event/Outbox -> Next Action`.
 
-Use one authoritative runtime. Do not create competing agent runtimes, duplicate workflow kernels or duplicate lifecycle truths.
+One authoritative server-side runtime. Supabase is the authoritative business database/control plane. Cloudflare Pages/Workers is the edge delivery/runtime only if exact deployment parity is proven. n8n is an integration/automation adapter, not a competing business lifecycle kernel.
 
-## Memory model
-Session -> User -> Customer -> Organization -> Project -> Task -> Agent -> Institutional/Operational/Learned.
-Every durable memory item requires provenance, confidence, privacy classification, retention/expiry and evidence reference.
+Cloudflare's current documentation states Pages Functions execute server-side on Workers, and Cloudflare now positions Workers as the broader full-stack platform for new applications. Do not migrate merely for novelty: first prove the existing Pages deployment. If later migration to Workers materially improves Durable Objects/Cron/Observability/runtime control, do it as a measured, separate release after production parity—not during the current certification gate.
 
-## Learning model
-`Observed -> Candidate -> Benchmarked -> Security Review -> Shadow -> Canary -> Approved -> Active -> Rollback`
-Generated prompts/policies/skills/knowledge cannot directly self-promote into production authority.
+## MEMORY
+`Session -> User -> Customer -> Organization -> Project -> Task -> Agent -> Institutional/Operational/Learned`.
+Every durable memory item requires provenance, confidence, privacy class, retention/expiry and evidence reference. Never treat model-generated memory as authoritative without validation.
 
-## Resilience model
-Detect -> Diagnose -> Classify -> Policy -> Remediate -> Verify -> Rollback/Compensate -> Incident -> Learn.
+## LEARNING
+`Observed -> Candidate -> Benchmarked -> Security Review -> Shadow -> Canary -> Approved -> Active -> Rollback`.
+No generated prompt/policy/skill/knowledge may self-promote into production authority.
+
+## RESILIENCE
+`Detect -> Diagnose -> Classify -> Policy -> Remediate -> Verify -> Rollback/Compensate -> Incident -> Learn`.
 Bound retry count, duration, concurrency, spend, delegation depth and blast radius.
 
-## Business Control Tower minimum truth
-- Revenue and cash collected from ledger/provider evidence.
-- Contribution margin.
-- Qualified leads and conversion.
-- Active projects and SLA risk.
-- Agent health, quality and cost.
-- AI/tool/infrastructure spend.
-- Incidents and error-budget burn.
-- Customer health and support load.
-- Affiliate performance.
-- Pending approvals.
-- Top risks and recommended next actions.
-- Freshness timestamps for every KPI.
+## BUSINESS CONTROL TOWER TRUTH
+Revenue/cash, margin, leads/conversion, active projects/SLA risk, agent quality/cost, infrastructure spend, incidents/error budget, customer health/support, affiliate performance, approvals, risks/opportunities; every KPI has source and freshness timestamp.
 
-## Public trust rules
-Every public operational claim must map to evidence. Unsupported claims become:
-- removed; or
-- `DEMO`; or
-- `SIMULATION`; or
-- `ESTIMATED`; or
-- `NOT_CONFIGURED`.
-Never present synthetic data as real operational performance.
+## PUBLIC TRUST
+Unsupported claims must be removed or labeled `DEMO`, `SIMULATION`, `ESTIMATED`, or `NOT_CONFIGURED`. In particular, review bypass/stealth language, guaranteed success percentages, operational download/review counts, and simulated execution UI.
 
-## Final certification reports
-Maintain and regenerate as evidence changes:
+## PERFORMANCE
+Do not mass-delete the current 117 unused-index findings. Measure query plans and production workload first. Then selectively remove redundant indexes and add only evidence-backed indexes. Prioritize actual user-path latency: chat startup/TTFB, API/DB latency, mission polling/streaming, heavy JS, image/font loading, and mobile main-thread work.
+
+## SECURITY RESEARCH BASELINE
+- Supabase current guidance: exposed tables/views need RLS plus appropriate grants; RLS does not secure functions, so EXECUTE grants and SECURITY DEFINER review are required. SECURITY DEFINER functions should pin `search_path` and schema-qualify references.
+- NIST's 2026 AI Agent Standards Initiative emphasizes trusted autonomous action, interoperability, agent identity and authorization.
+- OWASP's 2026 Top 10 for Agentic Applications is the security baseline for autonomous planning/tool-use systems.
+
+## REQUIRED FINAL REPORTS
+Keep these regenerated from actual evidence:
 - `docs/PRODUCTION_READINESS_SCORECARD.md`
 - `docs/CI_FAILURE_EVIDENCE.md`
 - `docs/PAYMENT_CERTIFICATION.md`
@@ -273,20 +281,26 @@ Maintain and regenerate as evidence changes:
 - `docs/REVENUE_OPERATIONAL_CERTIFICATION.md`
 - `docs/AUTONOMOUS_OPERATIONAL_CERTIFICATION.md`
 
-## Next action in the next conversation
-1. Re-fetch latest `master` HEAD.
-2. Fetch combined CI/workflow runs for that exact SHA and obtain exact failing job/log evidence.
-3. Inspect the current payment CI workflow and the new replay/concurrency tests.
-4. Reproduce the first real failing gate and fix only its root cause.
-5. Re-run all affected gates.
-6. Update the certification/evidence files from observed results.
-7. Continue to the next dependency only after the current gate is actually green.
+## NEXT CONVERSATION — FIRST ACTIONS
+1. Re-fetch exact latest `master` HEAD.
+2. Inspect all GitHub Actions workflows and obtain the first real failing job/log; no status record is not green.
+3. Run/review payment contract suites and reproduce the first failure.
+4. Fix only the root cause; rerun all affected suites.
+5. Inspect the new money/idempotency/concurrency/refund code for atomicity and partial-failure behavior.
+6. Run live Supabase behavioral security queries/tests: policies, grants, views, SECURITY DEFINER, tenant isolation.
+7. Refresh `CANONICAL_SYSTEM_STATE.json` from observed facts only; do not hand-maintain fake runtime SHAs.
+8. Verify Cloudflare source/branch/deploy/runtime identity through direct control-plane evidence when available.
+9. Convert public unsupported claims/simulation-success wording to truthful states without redesigning UI.
+10. Replace the chat endpoint's hard-coded catalog/mission IDs and non-persisted evidence with the canonical catalog -> mission -> policy -> tool -> evidence path.
+11. Certify the payment-independent Golden E2E before activating any live payment rail.
+12. Only after production parity + browser + security + Golden E2E pass, run the allowlisted real pilot.
 
-## Do not do
-- Do not create more roadmap/architecture issues unless a genuinely new blocker is discovered outside this contract.
-- Do not mark `PRODUCTION_VERIFIED`, `REVENUE_OPERATIONAL`, or `AUTONOMOUS_OPERATIONAL` from source inspection alone.
-- Do not pretend external Cloudflare production runtime, payment providers, or real customer evidence exists unless directly observed.
-- Do not redesign the UI as part of backend hardening.
+## DO NOT
+- Do not create another roadmap/architecture issue unless a genuinely new blocker is discovered outside Issue #62.
+- Do not mark production/revenue/autonomous status from source inspection alone.
+- Do not claim Cloudflare runtime/payment/customer evidence without direct observation.
+- Do not redesign the UI to solve backend gaps.
+- Do not mass-delete indexes because the advisor labels them unused before real workload measurement.
 
-## Definition of done
-A capability is complete only when implemented, independently tested, runtime exercised where applicable, evidence recorded, failure modes handled, security verified, and its public status accurately reflects that evidence.
+## DEFINITION OF DONE
+A capability is complete only when it is implemented, independently tested, runtime exercised where applicable, evidence recorded, failure modes handled, security verified, and its public status exactly matches the evidence.
