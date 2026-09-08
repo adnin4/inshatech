@@ -27,3 +27,4 @@ __pycache__/
 scratch/tmp/
 scratch/*.mjs
 security-gate-report/
+ci-failure-evidence/

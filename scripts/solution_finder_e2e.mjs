@@ -86,14 +86,15 @@ const hasMojibake = sfSection.includes('ðŸ') || sfSection.includes('â ±');
 assertTest(14, "Zero Unicode Mojibake in Solution Finder section", !hasMojibake);
 
 // 15. Safe execution without live card charges or CRM mutations
-assertTest(15, "Synthetic test safety invariant passed (0 real data mutations)", true);
+const zeroUnsafeMutations = !sfSection.includes('fetch(') && !appJs.includes('/api/v1/charge') && !appJs.includes('mutation_unverified');
+assertTest(15, "Synthetic test safety invariant passed (0 real data mutations)", zeroUnsafeMutations);
 
 const passedCount = RESULTS.filter(r => r.passed).length;
 const totalCount = RESULTS.length;
 
 console.log("\n================================================================================");
 console.log(`📊 CERTIFICATION SUMMARY: ${passedCount}/${totalCount} TESTS PASSED (${Math.round(passedCount/totalCount*100)}%)`);
-console.log("Status: EVIDENCE_VERIFIED (Client-side interactive module & Safe Fallback Gateway)");
+console.log("Status: TEST_VERIFIED_SYNTHETIC (Client-side interactive module & Safe Fallback Gateway)");
 console.log("================================================================================");
 
 if (passedCount === totalCount) {

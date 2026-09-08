@@ -326,6 +326,14 @@ async function runAdversarialSuite() {
                 return new Response(JSON.stringify([{ id: 'mock-event-uuid', status: 'processed' }]), { status: 200 });
             }
 
+            if (urlStr.includes('/ibos_revenue')) {
+                return new Response(JSON.stringify([{ id: 'mock-rev-uuid' }]), { status: 201 });
+            }
+
+            if (urlStr.includes('/ibos_commission_ledger')) {
+                return new Response(JSON.stringify([{ id: 'mock-comm-uuid' }]), { status: 201 });
+            }
+
             if (urlStr.includes('validationserverAPI.php')) {
                 return new Response(JSON.stringify(validationApiResponse), { status: 200 });
             }
