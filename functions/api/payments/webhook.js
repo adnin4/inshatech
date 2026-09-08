@@ -10,6 +10,7 @@
  */
 
 import { SSLCommerzAdapter } from './providers/sslcommerz.js';
+import { canTransition, PAYMENT_STATES } from '../../_shared/payments/payment_state_machine.js';
 
 async function hmac(raw, secret) {
     const key = await crypto.subtle.importKey(
@@ -366,6 +367,17 @@ export async function onRequestPost({ request, env = {} }) {
                 });
             }
 
+            const currentPaymentStatus = String(resolvedOrder.payment_status || 'awaiting_payment').toLowerCase();
+            if (!canTransition(currentPaymentStatus, PAYMENT_STATES.PAID) && currentPaymentStatus !== PAYMENT_STATES.PAID) {
+                return json(409, {
+                    status: 'INVALID_STATE_TRANSITION',
+                    from: currentPaymentStatus,
+                    to: PAYMENT_STATES.PAID,
+                    event_id: eventId,
+                    order_id: orderCode
+                });
+            }
+
             const patchRes = await fetch(
                 `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
                 {
@@ -459,28 +471,40 @@ export async function onRequestPost({ request, env = {} }) {
                     const orderRows = await checkOrderRes.json().catch(() => []);
                     if (Array.isArray(orderRows) && orderRows.length === 1) {
                         const currentStatus = String(orderRows[0].payment_status || '').toLowerCase();
-                        if (currentStatus !== 'paid' && (isFailed || isCancelled)) {
-                            const targetStatus = isFailed ? 'failed' : 'cancelled';
+                        if (isFailed && canTransition(currentStatus, PAYMENT_STATES.FAILED)) {
                             await fetch(
                                 `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
                                 {
                                     method: 'PATCH',
                                     headers: { ...auth, Prefer: 'return=minimal' },
                                     body: JSON.stringify({
-                                        payment_status: targetStatus,
+                                        payment_status: PAYMENT_STATES.FAILED,
                                         order_status: 'cancelled',
                                         updated_at: now
                                     })
                                 }
                             ).catch(() => null);
-                        } else if (currentStatus === 'paid' && isRefunded) {
+                        } else if (isCancelled && canTransition(currentStatus, PAYMENT_STATES.CANCELLED)) {
+                            await fetch(
+                                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
+                                {
+                                    method: 'PATCH',
+                                    headers: { ...auth, Prefer: 'return=minimal' },
+                                    body: JSON.stringify({
+                                        payment_status: PAYMENT_STATES.CANCELLED,
+                                        order_status: 'cancelled',
+                                        updated_at: now
+                                    })
+                                }
+                            ).catch(() => null);
+                        } else if (isRefunded && currentStatus === PAYMENT_STATES.PAID) {
                             await fetch(
                                 `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}`,
                                 {
                                     method: 'PATCH',
                                     headers: { ...auth, Prefer: 'return=minimal' },
                                     body: JSON.stringify({
-                                        payment_status: 'refunded',
+                                        payment_status: PAYMENT_STATES.REFUNDED,
                                         order_status: 'refunded',
                                         updated_at: now
                                     })
