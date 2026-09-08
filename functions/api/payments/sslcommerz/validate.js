@@ -1,71 +1,37 @@
 /**
- * SSLCommerz Official Server-to-Server Order Validation API
- * Upstream API: https://securepay.sslcommerz.com/validator/api/validationserverAPI.php
+ * SSLCommerz Browser Return Redirect Handler
+ *
+ * Invariant:
+ * Browser returns from SSLCommerz are strictly read-only and redirected
+ * to the canonical /api/payments/return endpoint. State mutation is ONLY
+ * permitted via verified server-to-server IPN at /api/payments/webhook.
  */
 
-export async function onRequestPost({ request, env = {} }) {
-    try {
-        const storeId = env.SSLCOMMERZ_STORE_ID;
-        const storePass = env.SSLCOMMERZ_STORE_PASSWORD;
-        const isLive = env.SSLCOMMERZ_IS_LIVE !== 'false';
+export async function onRequest(context) {
+    const { request } = context;
+    const url = new URL(request.url);
+    const returnUrl = new URL('https://inshatech.pages.dev/api/payments/return');
 
-        const formData = await request.formData().catch(() => new FormData());
-        const valId = formData.get('val_id');
-        const tranId = formData.get('tran_id');
-        const amount = formData.get('amount');
-        const currency = formData.get('currency');
-
-        if (!valId || !storeId || !storePass) {
-            return new Response('SSLCommerz Validation Parameters Missing', { status: 400 });
-        }
-
-        const validatorEndpoint = isLive
-            ? `https://securepay.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${valId}&store_id=${storeId}&store_passwd=${storePass}&format=json`
-            : `https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${valId}&store_id=${storeId}&store_passwd=${storePass}&format=json`;
-
-        const valRes = await fetch(validatorEndpoint);
-        const valData = await valRes.json().catch(() => ({}));
-
-        if (valData.status === 'VALID' || valData.status === 'VALIDATED') {
-            // Update Supabase Database
-            if (env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY) {
-                const key = env.SUPABASE_SERVICE_ROLE_KEY;
-                const auth = { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
-
-                await fetch(`${env.SUPABASE_URL}/rest/v1/ibos_orders?order_code=eq.${encodeURIComponent(tranId)}`, {
-                    method: 'PATCH',
-                    headers: { ...auth, Prefer: 'return=representation' },
-                    body: JSON.stringify({
-                        payment_status: 'paid',
-                        order_status: 'confirmed',
-                        payment_provider: 'sslcommerz',
-                        updated_at: new Date().toISOString()
-                    })
-                });
-
-                await fetch(`${env.SUPABASE_URL}/rest/v1/ibos_webhook_events`, {
-                    method: 'POST',
-                    headers: { ...auth, Prefer: 'return=minimal' },
-                    body: JSON.stringify({
-                        event_id: `sslcommerz_${valId}`,
-                        provider: 'sslcommerz',
-                        event_type: 'SSLCOMMERZ_PAYMENT_VALIDATED',
-                        order_code: tranId,
-                        payload: valData,
-                        status: 'authenticated',
-                        signature_verified: true,
-                        received_at: new Date().toISOString()
-                    })
-                });
-            }
-
-            // Redirect customer to portal
-            return Response.redirect(`https://inshatech.pages.dev/portal.html?payment=success&order_id=${tranId}`, 302);
-        } else {
-            return Response.redirect(`https://inshatech.pages.dev/store.html?payment=failed&order_id=${tranId}`, 302);
-        }
-
-    } catch (err) {
-        return new Response(`Validation Error: ${err.message}`, { status: 500 });
+    for (const [k, v] of url.searchParams.entries()) {
+        returnUrl.searchParams.set(k, v);
     }
+
+    if (request.method === 'POST') {
+        try {
+            const formData = await request.formData().catch(() => new FormData());
+            for (const [k, v] of formData.entries()) {
+                if (typeof v === 'string') {
+                    returnUrl.searchParams.set(k, v);
+                }
+            }
+        } catch {
+            // Ignore formData parse error
+        }
+    }
+
+    if (!returnUrl.searchParams.get('provider')) {
+        returnUrl.searchParams.set('provider', 'sslcommerz');
+    }
+
+    return Response.redirect(returnUrl.toString(), 302);
 }

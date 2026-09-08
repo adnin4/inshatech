@@ -79,6 +79,16 @@ async function runAdversarialSuite() {
                 return new Response(JSON.stringify([payload]), { status: 201 });
             }
 
+            if (urlStr.includes('/ibos_orders?order_code=eq.') && opts.method === 'PATCH') {
+                const patch = JSON.parse(opts.body);
+                for (const [k, v] of ordersStore.entries()) {
+                    if (v.order_code && urlStr.includes(v.order_code)) {
+                        ordersStore.set(k, { ...v, ...patch, metadata: { ...v.metadata, ...patch.metadata } });
+                    }
+                }
+                return new Response(JSON.stringify([{ status: 'ok' }]), { status: 200 });
+            }
+
             if (urlStr.includes('securepay.sslcommerz.com/gwprocess/v4/api.php')) {
                 return new Response(JSON.stringify({
                     status: 'SUCCESS',
@@ -121,6 +131,10 @@ async function runAdversarialSuite() {
             assert(
                 res2.status === 200 && json2.action === 'idempotent_order_reused' && json2.order_id === json1.order_id,
                 'Concurrent duplicate checkout safely reuses existing order without duplicating DB record'
+            );
+            assert(
+                json2.redirect_url === json1.redirect_url && Boolean(json1.redirect_url),
+                'Idempotent duplicate checkout returns cached gateway redirect URL'
             );
         } finally {
             globalThis.fetch = originalFetch;
@@ -269,7 +283,7 @@ async function runAdversarialSuite() {
             amount: 850,
             currency: 'BDT',
             bdt_amount: 104125,
-            payment_gateway: 'sslcommerz'
+            payment_provider: 'sslcommerz'
         };
 
         let validationApiResponse = {
@@ -568,6 +582,130 @@ async function runAdversarialSuite() {
         };
         const tamperedResult = adapter.verifyIPNHash(tamperedPayload);
         assert(tamperedResult.ok === false, 'verifyIPNHash detects tampered parameters and rejects signature');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 5: Payment State Machine & Non-Downgrade Invariants
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 5: Payment State Machine Lifecycle & Invariants ---');
+        const secret = 'webhook_secret_2026';
+        const mockEnv = {
+            WEBHOOK_SECRET: secret,
+            SUPABASE_URL: 'https://mock.supabase.co',
+            SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key'
+        };
+
+        const stateDb = new Map();
+        stateDb.set('ORD-SM-001', {
+            id: 'uuid-sm-001',
+            order_code: 'ORD-SM-001',
+            payment_status: 'awaiting_payment',
+            order_status: 'pending',
+            amount: 850,
+            currency: 'USD'
+        });
+        stateDb.set('ORD-SM-002', {
+            id: 'uuid-sm-002',
+            order_code: 'ORD-SM-002',
+            payment_status: 'paid',
+            order_status: 'confirmed',
+            amount: 850,
+            currency: 'USD'
+        });
+
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = async (url, opts = {}) => {
+            const urlStr = String(url);
+
+            if (urlStr.includes('/ibos_webhook_events?event_id=eq.')) {
+                return new Response(JSON.stringify([]), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_orders?order_code=eq.')) {
+                const codeMatch = urlStr.match(/order_code=eq\.([^&]+)/);
+                const code = codeMatch ? decodeURIComponent(codeMatch[1]) : null;
+                const order = code ? stateDb.get(code) : null;
+                if (opts.method === 'PATCH') {
+                    if (urlStr.includes('payment_status=neq.paid') && order?.payment_status === 'paid') {
+                        return new Response(JSON.stringify([]), { status: 200 });
+                    }
+                    const patch = JSON.parse(opts.body);
+                    if (order) {
+                        Object.assign(order, patch);
+                    }
+                    return new Response(JSON.stringify([order]), { status: 200 });
+                }
+                return new Response(JSON.stringify(order ? [order] : []), { status: 200 });
+            }
+
+            if (urlStr.includes('/ibos_webhook_events') && opts.method === 'POST') {
+                return new Response(JSON.stringify([{ id: 'mock-evt' }]), { status: 201 });
+            }
+            if (urlStr.includes('/ibos_webhook_events') && opts.method === 'PATCH') {
+                return new Response(JSON.stringify([{ id: 'mock-evt', status: 'processed' }]), { status: 200 });
+            }
+
+            return originalFetch(url, opts);
+        };
+
+        try {
+            // Case 5A: awaiting_payment -> failed transition
+            {
+                const body = JSON.stringify({
+                    id: 'evt_fail_1',
+                    type: 'payment_intent.payment_failed',
+                    order_id: 'ORD-SM-001'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                assert(res.status === 200, 'Webhook accepted failure event');
+                assert(stateDb.get('ORD-SM-001').payment_status === 'failed', 'State Machine: transitioning awaiting_payment -> failed');
+            }
+
+            // Case 5B: paid order CANNOT be downgraded to failed
+            {
+                const body = JSON.stringify({
+                    id: 'evt_fail_2',
+                    type: 'payment_intent.payment_failed',
+                    order_id: 'ORD-SM-002'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                assert(res.status === 200, 'Webhook processed failure attempt on paid order');
+                assert(stateDb.get('ORD-SM-002').payment_status === 'paid', 'State Machine Invariant: paid order cannot be downgraded to failed');
+            }
+
+            // Case 5C: paid -> refunded transition
+            {
+                const body = JSON.stringify({
+                    id: 'evt_refund_1',
+                    type: 'charge.refunded',
+                    order_id: 'ORD-SM-002'
+                });
+                const sig = await hmac(body, secret);
+                const req = new Request('https://inshatech.pages.dev/api/payments/webhook', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Webhook-Signature': sig },
+                    body
+                });
+                const res = await webhookPost({ request: req, env: mockEnv });
+                assert(res.status === 200, 'Webhook accepted refund event');
+                assert(stateDb.get('ORD-SM-002').payment_status === 'refunded', 'State Machine: successfully transitioned paid -> refunded');
+            }
+        } finally {
+            globalThis.fetch = originalFetch;
+        }
     }
 
     console.log('\n================================================================================');

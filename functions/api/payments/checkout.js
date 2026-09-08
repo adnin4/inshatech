@@ -158,6 +158,7 @@ export async function onRequestPost({ request, env = {} }) {
             const existingOrders = await existingRes.json().catch(() => []);
             if (Array.isArray(existingOrders) && existingOrders.length > 0) {
                 const existing = existingOrders[0];
+                const cachedRedirect = existing.metadata?.gateway_redirect_url || (existing.payment_status === 'paid' ? `https://inshatech.pages.dev/portal.html?order_id=${existing.order_code}` : null);
                 return json({
                     status: 'SUCCESS',
                     action: 'idempotent_order_reused',
@@ -165,8 +166,8 @@ export async function onRequestPost({ request, env = {} }) {
                     provider: existing.payment_provider || provider,
                     amount_usd: existing.amount !== null && existing.amount !== undefined ? Number(existing.amount) : null,
                     amount_bdt: existing.bdt_amount !== null && existing.bdt_amount !== undefined ? Number(existing.bdt_amount) : null,
-                    redirect_url: null,
-                    gateway_data: null,
+                    redirect_url: cachedRedirect,
+                    gateway_data: existing.metadata?.gateway_response || null,
                     payment_status: existing.payment_status || 'awaiting_payment',
                     order_status: existing.order_status || 'pending'
                 }, 200, h);
@@ -321,6 +322,7 @@ export async function onRequestPost({ request, env = {} }) {
                     const replayOrders = await replayRes.json().catch(() => []);
                     if (Array.isArray(replayOrders) && replayOrders.length > 0) {
                         const existing = replayOrders[0];
+                        const cachedRedirect = existing.metadata?.gateway_redirect_url || (existing.payment_status === 'paid' ? `https://inshatech.pages.dev/portal.html?order_id=${existing.order_code}` : null);
                         return json({
                             status: 'SUCCESS',
                             action: 'idempotent_order_reused',
@@ -328,8 +330,8 @@ export async function onRequestPost({ request, env = {} }) {
                             provider: existing.payment_provider || provider,
                             amount_usd: existing.amount !== null && existing.amount !== undefined ? Number(existing.amount) : null,
                             amount_bdt: existing.bdt_amount !== null && existing.bdt_amount !== undefined ? Number(existing.bdt_amount) : null,
-                            redirect_url: null,
-                            gateway_data: null,
+                            redirect_url: cachedRedirect,
+                            gateway_data: existing.metadata?.gateway_response || null,
                             payment_status: existing.payment_status || 'awaiting_payment',
                             order_status: existing.order_status || 'pending'
                         }, 200, h);
@@ -513,6 +515,19 @@ export async function onRequestPost({ request, env = {} }) {
             });
             gatewayResponse = await stripeRes.json().catch(() => ({}));
             if (gatewayResponse.url) redirectUrl = gatewayResponse.url;
+        }
+
+        if (redirectUrl) {
+            const updatedMetadata = {
+                ...metadata,
+                gateway_redirect_url: redirectUrl,
+                gateway_response: gatewayResponse || null
+            };
+            await fetch(`${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderId)}`, {
+                method: 'PATCH',
+                headers: auth,
+                body: JSON.stringify({ metadata: updatedMetadata })
+            }).catch(() => null);
         }
 
         return json({

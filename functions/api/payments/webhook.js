@@ -429,6 +429,67 @@ export async function onRequestPost({ request, env = {} }) {
             } catch (settleErr) {
                 console.warn('Post-payment settlement non-blocking notice:', settleErr.message);
             }
+        } else if (orderCode) {
+            const isFailed = [
+                'payment_intent.payment_failed',
+                'charge.failed',
+                'FAILED',
+                'FAIL',
+                'payment.failed'
+            ].includes(type) || event.status === 'FAILED';
+
+            const isCancelled = [
+                'CANCELLED',
+                'CANCEL',
+                'checkout.session.expired'
+            ].includes(type) || event.status === 'CANCELLED';
+
+            const isRefunded = [
+                'charge.refunded',
+                'payment.refunded',
+                'REFUNDED'
+            ].includes(type) || event.status === 'REFUNDED';
+
+            if (isFailed || isCancelled || isRefunded) {
+                const checkOrderRes = await fetch(
+                    `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status`,
+                    { method: 'GET', headers: auth }
+                );
+                if (checkOrderRes.ok) {
+                    const orderRows = await checkOrderRes.json().catch(() => []);
+                    if (Array.isArray(orderRows) && orderRows.length === 1) {
+                        const currentStatus = String(orderRows[0].payment_status || '').toLowerCase();
+                        if (currentStatus !== 'paid' && (isFailed || isCancelled)) {
+                            const targetStatus = isFailed ? 'failed' : 'cancelled';
+                            await fetch(
+                                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&payment_status=neq.paid`,
+                                {
+                                    method: 'PATCH',
+                                    headers: { ...auth, Prefer: 'return=minimal' },
+                                    body: JSON.stringify({
+                                        payment_status: targetStatus,
+                                        order_status: 'cancelled',
+                                        updated_at: now
+                                    })
+                                }
+                            ).catch(() => null);
+                        } else if (currentStatus === 'paid' && isRefunded) {
+                            await fetch(
+                                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}`,
+                                {
+                                    method: 'PATCH',
+                                    headers: { ...auth, Prefer: 'return=minimal' },
+                                    body: JSON.stringify({
+                                        payment_status: 'refunded',
+                                        order_status: 'refunded',
+                                        updated_at: now
+                                    })
+                                }
+                            ).catch(() => null);
+                        }
+                    }
+                }
+            }
         }
 
         const finalizeRes = await fetch(
