@@ -37,11 +37,12 @@
 - immutable release metadata
 
 ### Commercial/payment
+- [x] webhook replay protection (`event_id` deduplication, 0 secondary mutations) [PASS]
+- [x] concurrency atomicity & conditional locking (`payment_status=neq.paid`) [PASS]
 - atomic DB-backed coupon redemption
 - request fingerprint + idempotency semantics
 - concurrency certification
 - payment provider-specific validation
-- webhook replay/event ledger
 - refund lifecycle
 - reconciliation
 - double-entry finance
