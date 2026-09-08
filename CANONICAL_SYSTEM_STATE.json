@@ -6,28 +6,29 @@
   "canonical_branch": "master",
   "canonical_runtime_code_head": "e9468646fab8837bf68aaf691af7f5900044522c",
   "current_repository_tip": "8f4a42f6616c5568294928f47d978921d4573849",
-  "runtime_identity": "LIVE_VERIFIED",
+  "runtime_identity": "UNVERIFIED",
   "build_timestamp": "2026-09-08T14:33:50.490Z",
   "schema_version": "2026.9.8-autonomous-v2",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
     "expected_runtime_db_ref": "kitwadizsvjmuxkfewxj",
-    "runtime_db_ref": "kitwadizsvjmuxkfewxj",
-    "db_parity": true,
-    "control_plane_status": "ACTIVE_HEALTHY",
-    "runtime_status": "ACTIVE_HEALTHY_DECLARED"
+    "runtime_db_ref": "UNVERIFIED",
+    "db_parity": false,
+    "control_plane_status": "REFRESH_REQUIRED",
+    "runtime_status": "UNVERIFIED"
   },
   "production_evidence": {
-    "cloudflare_deployment": "LIVE_VERIFIED",
-    "live_api_version": "LIVE_VERIFIED",
-    "live_api_health": "EDGE_HEALTHY",
-    "live_sre_health": "SRE_HEALTHY",
-    "browser_production_e2e": "VERIFIED_12_PAGES",
-    "ai_execution": "VERIFIED_15_TRACKS",
-    "payments": "SERVER_AUTHORITY_HARDENED",
+    "cloudflare_deployment": "UNVERIFIED",
+    "live_api_version": "UNVERIFIED",
+    "live_api_health": "UNVERIFIED",
+    "live_sre_health": "UNVERIFIED",
+    "browser_production_e2e": "UNVERIFIED",
+    "ai_execution": "TEST_VERIFIED_ONLY",
+    "payments": "SERVER_AUTHORITY_HARDENED_UNVERIFIED_LIVE_PROVIDER",
     "notifications": "UNVERIFIED",
-    "backup_restore": "VERIFIED_RPO_RTO",
-    "rollback": "VERIFIED_AUTOMATED"
+    "backup_restore": "UNVERIFIED",
+    "rollback": "UNVERIFIED"
   },
-  "parity_policy": "EXTERNAL_PROOF_REQUIRED"
+  "parity_policy": "EXTERNAL_PROOF_REQUIRED",
+  "certification_status": "READY_FOR_STAGING"
 }
