@@ -28,13 +28,22 @@ for (const relPath of criticalFiles) {
     }
 }
 
+let canonicalMasterSha = "e1f34cc4a5adad9ca889e46b64316d8b110bc45b";
+try {
+    const { execSync } = await import('node:child_process');
+    const gitBin = fs.existsSync('C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe')
+        ? '"C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe"'
+        : 'git';
+    canonicalMasterSha = execSync(`${gitBin} rev-parse HEAD`, { encoding: 'utf8' }).trim();
+} catch (e) {}
+
 const manifest = {
     platform: "IINSHA AI-BOS Autonomous Company OS",
     manifest_id: "EVD-MANIFEST-" + Date.now().toString(36).toUpperCase(),
     generated_at: new Date().toISOString(),
     canonical_repository: "https://github.com/adnin4/inshatech.git",
     canonical_branch: "master",
-    canonical_master_sha: "3d871db2cb790b0cbdd9c382dec7a3145af79b16",
+    canonical_master_sha: canonicalMasterSha,
     database_project_ref: "kitwadizsvjmuxkfewxj",
     production_url: "https://inshatech.pages.dev/",
     critical_file_checksums: fileHashes,
