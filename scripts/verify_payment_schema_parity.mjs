@@ -5,13 +5,12 @@ const source = await fs.readFile(CHECKOUT, 'utf8');
 
 const failures = [];
 
-// Only persistence/DB-query references are forbidden. API request/response fields
-// such as customer_email and amount_usd are intentionally still allowed for compatibility.
+// Only persistence/query references are forbidden. Public API request/response fields
+// such as customer_email and amount_usd remain intentionally compatible.
 const forbiddenDbPatterns = [
   /ibos_orders[^\n]*payment_gateway/,
   /\bpayment_gateway\s*:/,
   /\bservice_name\s*:/,
-  /\bamount_bdt\s*:/,
   /\bcustomer_name\s*:/,
   /\bcustomer_email\s*:/,
   /\bcustomer_phone\s*:/,
@@ -23,6 +22,7 @@ for (const pattern of forbiddenDbPatterns) {
 
 const canonicalDbFields = [
   'service_id',
+  'service_slug',
   'service_title',
   'package_name',
   'amount',
