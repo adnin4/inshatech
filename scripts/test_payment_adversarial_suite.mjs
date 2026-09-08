@@ -1,6 +1,6 @@
-﻿import { onRequestPost as checkoutPost } from '../functions/api/payments/checkout.js';
+import { onRequestPost as checkoutPost } from '../functions/api/payments/checkout.js';
 import { onRequestPost as webhookPost } from '../functions/api/payments/webhook.js';
-import { SSLCommerzAdapter } from '../functions/api/payments/providers/sslcommerz.js';
+import { SSLCommerzAdapter, computeMd5 } from '../functions/api/payments/providers/sslcommerz.js';
 
 let passed = 0;
 let total = 0;
@@ -391,6 +391,59 @@ async function runAdversarialSuite() {
         } finally {
             globalThis.fetch = originalFetch;
         }
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 4: SSLCommerz IPN MD5 Hash & verify_sign Verification
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 4: MD5 & IPN verify_sign Verification ---');
+
+        // RFC 1321 Test Vectors
+        assert(computeMd5('') === 'd41d8cd98f00b204e9800998ecf8427e', 'MD5 RFC vector: empty string matches expected');
+        assert(computeMd5('a') === '0cc175b9c0f1b6a831c399e269772661', 'MD5 RFC vector: "a" matches expected');
+        assert(computeMd5('abc') === '900150983cd24fb0d6963f7d28e17f72', 'MD5 RFC vector: "abc" matches expected');
+        assert(computeMd5('message digest') === 'f96b697d7cb7938d525a2f31aaf161d0', 'MD5 RFC vector: "message digest" matches expected');
+
+        // SSLCommerz verifyIPNHash calculation test
+        const adapter = new SSLCommerzAdapter({
+            SSLCOMMERZ_STORE_ID: 'iinsha_store',
+            SSLCOMMERZ_STORE_PASSWORD: 'test_password_123'
+        });
+
+        // Compute expected verify_sign manually to simulate SSLCommerz gateway
+        // params: amount=104125, currency=BDT, tran_id=ORD-TEST-123, val_id=VAL_123
+        // verify_key: amount,currency,tran_id,val_id
+        // store_passwd_md5 = computeMd5('test_password_123')
+        const storePasswdMd5 = computeMd5('test_password_123');
+        const sortedKvs = [
+            'amount=104125',
+            'currency=BDT',
+            'tran_id=ORD-TEST-123',
+            'val_id=VAL_123',
+            `store_passwd=${storePasswdMd5}`
+        ].join('&');
+        const expectedSign = computeMd5(sortedKvs);
+
+        const ipnPayload = {
+            tran_id: 'ORD-TEST-123',
+            val_id: 'VAL_123',
+            amount: '104125',
+            currency: 'BDT',
+            verify_key: 'amount,currency,tran_id,val_id',
+            verify_sign: expectedSign
+        };
+
+        const verifyResult = adapter.verifyIPNHash(ipnPayload);
+        assert(verifyResult.ok === true, 'verifyIPNHash successfully validates correct SSLCommerz verify_sign');
+
+        // Tampered payload
+        const tamperedPayload = {
+            ...ipnPayload,
+            amount: '500' // tampered amount
+        };
+        const tamperedResult = adapter.verifyIPNHash(tamperedPayload);
+        assert(tamperedResult.ok === false, 'verifyIPNHash detects tampered parameters and rejects signature');
     }
 
     console.log('\n================================================================================');

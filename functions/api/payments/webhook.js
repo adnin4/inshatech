@@ -291,6 +291,19 @@ export async function onRequestPost({ request, env = {} }) {
                             provider
                         });
                     }
+
+                    // Optional verify_sign hash check if present in IPN payload
+                    if (event.verify_sign && event.verify_key) {
+                        const hashCheck = sslAdapter.verifyIPNHash(event);
+                        if (!hashCheck.ok) {
+                            return json(400, {
+                                status: 'IPN_HASH_VERIFICATION_FAILED',
+                                reason: hashCheck.error || 'verify_sign mismatch',
+                                event_id: eventId,
+                                provider
+                            });
+                        }
+                    }
                 }
             }
         }
