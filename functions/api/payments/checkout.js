@@ -109,17 +109,21 @@ export async function onRequestPost({ request, env = {} }) {
                     }
                 }
 
-                // Resolve service UUID from ibos_services by slug if available
+                // Resolve canonical service UUID and details from ibos_services by slug
                 let resolvedServiceUuid = null;
+                let authoritativeTitle = item[0];
                 try {
                     const sLookupRes = await fetch(
-                        `${base}/ibos_services?slug=eq.${encodeURIComponent(serviceId)}&select=id&limit=1`,
+                        `${base}/ibos_services?slug=eq.${encodeURIComponent(serviceId)}&status=eq.active&select=id,name,title,price_usd,price_bdt&limit=1`,
                         { method: 'GET', headers: auth }
                     );
                     if (sLookupRes.ok) {
                         const sRows = await sLookupRes.json().catch(() => []);
                         if (Array.isArray(sRows) && sRows.length > 0 && sRows[0].id) {
                             resolvedServiceUuid = sRows[0].id;
+                            if (sRows[0].title || sRows[0].name) {
+                                authoritativeTitle = sRows[0].title || sRows[0].name;
+                            }
                         }
                     }
                 } catch {
@@ -130,7 +134,7 @@ export async function onRequestPost({ request, env = {} }) {
                     order_code: orderId,
                     service_id: resolvedServiceUuid,
                     service_slug: serviceId,
-                    service_title: item[0],
+                    service_title: authoritativeTitle,
                     package_name: 'Standard',
                     amount: usdAmount,
                     currency: 'USD',
