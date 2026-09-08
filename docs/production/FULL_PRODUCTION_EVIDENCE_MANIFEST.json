@@ -1,7 +1,7 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company OS",
-  "manifest_id": "EVD-MANIFEST-MTRQDOT2",
-  "generated_at": "2026-09-07T21:06:33.302Z",
+  "manifest_id": "EVD-MANIFEST-MTSR0BUA",
+  "generated_at": "2026-09-08T14:11:55.762Z",
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
   "canonical_master_sha": "3d871db2cb790b0cbdd9c382dec7a3145af79b16",
@@ -14,11 +14,11 @@
     "admin.html": "5b99c8d3381407586b38b85036ee27649f5005c50489f2d52e6a5549cc027f66",
     "app.js": "ce6e6c26a4a53aca7120401d7aeaf01cb645f9f8258761ad8a632b99e2214f4d",
     "functions/_middleware.js": "612964be98e4713ea1bde25c7dbe2f8b3e670f15de8bec777e4561d9507050b5",
-    "functions/api/payments/checkout.js": "d55100a24fac6b90f6b61545ed722aff8886faa2c9ac1e97cbea8bf8a19ac0a2",
-    "functions/api/payments/return.js": "112579ca207e0405bc1e412170ba00041d3495b7fb5bbd21360e5fcc2b5c3ac6",
-    "functions/api/payments/webhook.js": "e8fb6b28d47ab0ea69008bed6f90f32ca9c57d90f682f06c7b05f3906e01b58d",
-    "functions/api/payments/_middleware.js": "64ac09e085d73603d474aaf08903dfedaed64da59a1048e9e31c0f5a8e378c84",
-    "CANONICAL_SYSTEM_STATE.json": "760806a4030a58941c931c20fafc767be2968fabd8b0f7d34b4e1b2a1d86ac10"
+    "functions/api/payments/checkout.js": "c63204e05f73a06a8b2bbcaf01fe6d02872ea0f21c95ca5916496cb4e3eb04a8",
+    "functions/api/payments/return.js": "8d26d8b78a5b21b151e986bbb003e26136da17a63679dbf34d088f1f199b3542",
+    "functions/api/payments/webhook.js": "fa1857de5105978d2db346546374f5b6fac8c27c05ba0dde5912ede51601c54c",
+    "functions/api/payments/_middleware.js": "e635878733706d78b3d9f0242596711985290e015ec1f8042cca35ce49eff1f9",
+    "CANONICAL_SYSTEM_STATE.json": "1b03375d443c14e0fc5a6efad7dcfc93d4fcaf25b122080f4140e586cf81dc13"
   },
   "test_verification_matrix": {
     "system_claims_classification": {

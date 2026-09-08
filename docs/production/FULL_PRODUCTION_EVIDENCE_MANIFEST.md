@@ -1,7 +1,7 @@
 # IINSHA AI-BOS: FULL PRODUCTION EVIDENCE MANIFEST
 
-* **Manifest ID:** EVD-MANIFEST-MTRQDOT2
-* **Generated At:** 2026-09-07T21:06:33.302Z
+* **Manifest ID:** EVD-MANIFEST-MTSR0BUA
+* **Generated At:** 2026-09-08T14:11:55.762Z
 * **Canonical Master SHA:** 3d871db2cb790b0cbdd9c382dec7a3145af79b16
 * **Canonical Database:** kitwadizsvjmuxkfewxj
 
