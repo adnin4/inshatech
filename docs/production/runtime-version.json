@@ -1,8 +1,8 @@
 {
   "status": "LIVE_VERIFIED",
   "platform": "IINSHA AI-BOS",
-  "deploy_sha": "02ee214c9879e51fea87b66a29f7fd96056ce975",
-  "expected_release_sha": "02ee214c9879e51fea87b66a29f7fd96056ce975",
+  "deploy_sha": "aa0c1275570591ae2bf130b85e8abcef33dbede4",
+  "expected_release_sha": "aa0c1275570591ae2bf130b85e8abcef33dbede4",
   "parity": true,
   "branch": "main",
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
@@ -13,5 +13,5 @@
     "db_parity": true,
     "status": "ACTIVE_HEALTHY_DECLARED"
   },
-  "timestamp": "2026-09-08T13:34:40.082Z"
+  "timestamp": "2026-09-08T13:41:18.983Z"
 }
