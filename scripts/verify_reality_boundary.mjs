@@ -61,13 +61,18 @@ const truthGuardFile = path.join(ROOT, 'functions', '_middleware.js');
 if (!fs.existsSync(truthGuardFile)) throw new Error('Homepage truth guard middleware is missing.');
 const truthGuardSource = fs.readFileSync(truthGuardFile, 'utf8');
 
+const replacementsMatch = truthGuardSource.match(/const\s+REPLACEMENTS\s*=\s*(\[[\s\S]*?\n\];)/);
+if (!replacementsMatch) throw new Error('REPLACEMENTS array not found in functions/_middleware.js');
+const parseReplacements = new Function(`return ${replacementsMatch[1].replace(/;$/, '')};`);
+const REPLACEMENTS = parseReplacements();
+
 const requiredReplacements = [
   {
     source: 'IINSHA AI-BOS Autonomous Company OS Operational',
     replacement: 'IINSHA AI-BOS — Evidence-Gated Staging'
   },
   {
-    source: '100% Reliable Data Stream',
+    sourceFragment: 'Reliable Data Stream',
     replacement: 'Evidence-backed data pipeline'
   },
   {

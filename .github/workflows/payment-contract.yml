@@ -24,4 +24,5 @@ jobs:
           node scripts/payment_webhook_contract.mjs
           node scripts/test_payment_hardening_contract.mjs
           node scripts/test_payment_adversarial_suite.mjs
+          node scripts/test_payment_reconciliation.mjs
           node scripts/test_tenant_rls_isolation.mjs

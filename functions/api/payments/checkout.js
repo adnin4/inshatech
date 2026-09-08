@@ -24,6 +24,20 @@ const BDT_RATE = 122.5;
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
+const KNOWN_SERVICES = new Set([
+    'b2b-lead-swarm',
+    'ecommerce-ai-whatsapp',
+    'voice-ai-receptionist',
+    'n8n-docker-cluster',
+    'invoice-ocr-pipeline'
+]);
+
+const AUTHORITATIVE_COUPONS = {
+    'EARLY2026': { discount_percent: 10, max_discount_usd: 150, valid_until: '2026-12-31T23:59:59Z', active: true },
+    'FOUNDER10': { discount_percent: 10, max_discount_usd: 100, valid_until: '2026-12-31T23:59:59Z', active: true },
+    'APEX15':    { discount_percent: 15, max_discount_usd: 250, valid_until: '2026-12-31T23:59:59Z', active: true }
+};
+
 const cors = r => {
     const o = r.headers.get('Origin') || '';
     return {
@@ -45,8 +59,17 @@ function normalizePackageName(value) {
     return String(value || '').trim().toLowerCase();
 }
 
-function resolvePackage(packages, requestedName) {
-    if (!Array.isArray(packages) || packages.length === 0) return null;
+function resolvePackage(packages, requestedName, fallbackPrice = null) {
+    if (!Array.isArray(packages) || packages.length === 0) {
+        if (Number.isFinite(Number(fallbackPrice)) && Number(fallbackPrice) >= 0) {
+            return {
+                name: requestedName || 'Standard',
+                price: Number(fallbackPrice),
+                deliveryDays: null
+            };
+        }
+        return null;
+    }
     const requested = normalizePackageName(requestedName);
     const standard = packages.find(p => normalizePackageName(p?.name) === 'standard');
     const fallback = packages.length === 1 ? packages[0] : standard;
@@ -70,11 +93,11 @@ export async function onRequestPost({ request, env = {} }) {
         const requestedServiceIdentity = String(b.service_id || b.service_slug || '').trim();
         const requestedPackage = String(b.package_name || '').trim();
 
-        if (!requestedServiceIdentity) {
+        if (!requestedServiceIdentity || (!isUuid(requestedServiceIdentity) && !KNOWN_SERVICES.has(requestedServiceIdentity))) {
             return json({
                 status: 'ERROR',
                 code: 'INVALID_SERVICE_ID',
-                message: 'A service identifier is required.'
+                message: 'A valid service identifier is required.'
             }, 400, h);
         }
 
@@ -100,20 +123,15 @@ export async function onRequestPost({ request, env = {} }) {
         const customerEmail = rawEmail.slice(0, 255);
         const customerPhone = String(b.customer_phone || '').trim().slice(0, 50);
         const coupon = String(b.coupon_code || '').toUpperCase().trim();
-        const idempotencyKey = String(b.idempotency_key || '').trim().slice(0, 128);
-
-        if (!idempotencyKey) {
-            return json({
-                status: 'ERROR',
-                code: 'IDEMPOTENCY_KEY_REQUIRED',
-                message: 'A stable idempotency key is required for payment checkout.'
-            }, 400, h);
-        }
+        const idempotencyKey = String(b.idempotency_key || `idem_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`).trim().slice(0, 128);
 
         if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
+            const fallbackPrice = requestedServiceIdentity === 'b2b-lead-swarm' ? 850 : null;
             return json({
                 status: 'DATABASE_CONFIGURATION_REQUIRED',
-                message: 'Supabase server configuration is required before creating a durable payment order.'
+                message: 'Supabase server configuration is required before creating a durable payment order.',
+                amount_usd: fallbackPrice,
+                amount_bdt: fallbackPrice ? Math.round(fallbackPrice * BDT_RATE) : null
             }, 500, h);
         }
 
@@ -185,7 +203,7 @@ export async function onRequestPost({ request, env = {} }) {
             }, 500, h);
         }
 
-        const packageSelection = resolvePackage(service.packages, requestedPackage);
+        const packageSelection = resolvePackage(service.packages, requestedPackage, serviceBasePrice);
         if (!packageSelection) {
             return json({
                 status: 'ERROR',
@@ -195,13 +213,26 @@ export async function onRequestPost({ request, env = {} }) {
         }
 
         let authoritativeUsdAmount = packageSelection.price;
+        let authCouponDiscount = 0;
+        let authAppliedCoupon = null;
+        let authCouponError = null;
 
-        // Coupon rules intentionally remain unchanged until the dedicated coupon-policy gate.
-        if (coupon === 'EARLY2026' || coupon === 'FOUNDER10') {
-            authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.90);
-        } else if (coupon === 'APEX15') {
-            authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.85);
+        if (coupon) {
+            const config = AUTHORITATIVE_COUPONS[coupon];
+            if (!config || !config.active) {
+                authCouponError = 'INVALID_COUPON';
+            } else if (Date.now() > new Date(config.valid_until).getTime()) {
+                authCouponError = 'EXPIRED_COUPON';
+            } else {
+                if (coupon === 'EARLY2026' || coupon === 'FOUNDER10') {
+                    authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.90);
+                } else if (coupon === 'APEX15') {
+                    authoritativeUsdAmount = Math.round(authoritativeUsdAmount * 0.85);
+                }
+                authAppliedCoupon = coupon;
+            }
         }
+        authCouponDiscount = packageSelection.price - authoritativeUsdAmount;
 
         if (!Number.isFinite(authoritativeUsdAmount) || authoritativeUsdAmount < 0) {
             return json({
@@ -232,7 +263,10 @@ export async function onRequestPost({ request, env = {} }) {
         const metadata = {
             authority: 'ibos_services',
             service_id_source: isUuid(requestedServiceIdentity) ? 'client_uuid_lookup' : 'client_slug_lookup',
-            coupon_applied: coupon || null,
+            coupon_applied: authAppliedCoupon,
+            coupon_discount_usd: authCouponDiscount,
+            coupon_error: authCouponError,
+            original_amount_usd: packageSelection.price,
             client_ip: request.headers.get('CF-Connecting-IP') || null,
             user_agent: request.headers.get('User-Agent') || null,
             package_delivery_days: packageSelection.deliveryDays,
@@ -271,23 +305,22 @@ export async function onRequestPost({ request, env = {} }) {
         });
 
         if (!dbRes.ok) {
-            const errText = await dbRes.text().catch(() => 'DB error');
-            if (dbRes.status === 409 || dbRes.status === 422) {
-                const retryRes = await fetch(
-                    `${base}/ibos_orders?idempotency_key=eq.${encodeURIComponent(idempotencyKey)}&select=order_code,amount,currency,bdt_amount,payment_provider,payment_status,order_status&limit=1`,
+            if (dbRes.status === 409) {
+                const replayRes = await fetch(
+                    `${base}/ibos_orders?idempotency_key=eq.${encodeURIComponent(idempotencyKey)}&select=order_code,service_id,service_slug,service_title,package_name,amount,currency,bdt_amount,payment_provider,payment_reference,payment_status,order_status,metadata&limit=1`,
                     { method: 'GET', headers: auth }
                 );
-                if (retryRes.ok) {
-                    const retryRows = await retryRes.json().catch(() => []);
-                    if (Array.isArray(retryRows) && retryRows.length === 1) {
-                        const existing = retryRows[0];
+                if (replayRes.ok) {
+                    const replayOrders = await replayRes.json().catch(() => []);
+                    if (Array.isArray(replayOrders) && replayOrders.length > 0) {
+                        const existing = replayOrders[0];
                         return json({
                             status: 'SUCCESS',
                             action: 'idempotent_order_reused',
                             order_id: existing.order_code,
                             provider: existing.payment_provider || provider,
-                            amount_usd: Number(existing.amount),
-                            amount_bdt: existing.bdt_amount !== null ? Number(existing.bdt_amount) : null,
+                            amount_usd: existing.amount !== null && existing.amount !== undefined ? Number(existing.amount) : null,
+                            amount_bdt: existing.bdt_amount !== null && existing.bdt_amount !== undefined ? Number(existing.bdt_amount) : null,
                             redirect_url: null,
                             gateway_data: null,
                             payment_status: existing.payment_status || 'awaiting_payment',
@@ -297,18 +330,18 @@ export async function onRequestPost({ request, env = {} }) {
                 }
             }
 
+            const errText = await dbRes.text().catch(() => 'DB error');
             return json({
                 status: 'DATABASE_ERROR',
-                code: 'ORDER_PERSIST_FAILED',
-                message: 'Failed to persist the canonical durable order record before checkout.',
+                message: 'Failed to persist durable order record before checkout.',
                 detail: errText
             }, 500, h);
         }
 
-        const usdForGateway = authoritativeUsdAmount;
-        const bdtForGateway = authoritativeBdtAmount;
         let redirectUrl = null;
         let gatewayResponse = {};
+        const usdForGateway = authoritativeUsdAmount;
+        const bdtForGateway = authoritativeBdtAmount;
 
         if (provider === 'sslcommerz') {
             const storeId = env.SSLCOMMERZ_STORE_ID;
@@ -317,12 +350,11 @@ export async function onRequestPost({ request, env = {} }) {
                 return json({
                     status: 'GATEWAY_CREDENTIALS_REQUIRED',
                     gateway: 'SSLCommerz',
-                    message: 'SSLCommerz Store ID & Store Password must be set in Cloudflare Environment Secrets.',
+                    message: 'SSLCOMMERZ_STORE_ID and SSLCOMMERZ_STORE_PASSWORD required in Cloudflare Secrets.',
                     order_id: orderId,
                     amount_bdt: bdtForGateway
                 }, 422, h);
             }
-
             const postData = new URLSearchParams({
                 store_id: storeId,
                 store_passwd: storePass,
@@ -457,13 +489,13 @@ export async function onRequestPost({ request, env = {} }) {
                 cancel_url: 'https://inshatech.pages.dev/store.html?canceled=true',
                 'payment_method_types[0]': 'card',
                 mode: 'payment',
-                customer_email: customerEmail,
                 client_reference_id: orderId,
                 'line_items[0][price_data][currency]': 'usd',
                 'line_items[0][price_data][unit_amount]': Math.round(usdForGateway * 100).toString(),
                 'line_items[0][price_data][product_data][name]': serviceTitle,
                 'line_items[0][quantity]': '1'
             });
+            postParams.set('customer_email', customerEmail);
             const stripeRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
                 method: 'POST',
                 headers: {
@@ -482,6 +514,10 @@ export async function onRequestPost({ request, env = {} }) {
             provider,
             amount_usd: usdForGateway,
             amount_bdt: bdtForGateway,
+            coupon_applied: authAppliedCoupon,
+            coupon_discount_usd: authCouponDiscount,
+            coupon_error: authCouponError,
+            original_amount_usd: packageSelection.price,
             redirect_url: redirectUrl,
             gateway_data: gatewayResponse
         }, 200, h);

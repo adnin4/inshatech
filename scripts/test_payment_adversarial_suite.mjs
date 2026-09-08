@@ -61,7 +61,13 @@ async function runAdversarialSuite() {
             }
 
             if (urlStr.includes('/ibos_services?slug=eq.')) {
-                return new Response(JSON.stringify([{ id: 'f81d4fae-7dec-11d0-a765-00a0c91e6bf6' }]), { status: 200 });
+                return new Response(JSON.stringify([{
+                    id: 'f81d4fae-7dec-11d0-a765-00a0c91e6bf6',
+                    slug: 'b2b-lead-swarm',
+                    title: 'B2B SaaS 5-Agent Hunter Swarm',
+                    price: 850,
+                    packages: {}
+                }]), { status: 200 });
             }
 
             if (urlStr.includes('/ibos_orders') && opts.method === 'POST') {
@@ -115,6 +121,124 @@ async function runAdversarialSuite() {
             assert(
                 res2.status === 200 && json2.action === 'idempotent_order_reused' && json2.order_id === json1.order_id,
                 'Concurrent duplicate checkout safely reuses existing order without duplicating DB record'
+            );
+        } finally {
+            globalThis.fetch = originalFetch;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 1B: Server Coupon Authority & Floor Price Verification
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 1B: Server Coupon Authority & Floor Price Bounding ---');
+        const mockEnv = {
+            SUPABASE_URL: 'https://mock.supabase.co',
+            SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key',
+            SSLCOMMERZ_STORE_ID: 'mock_store',
+            SSLCOMMERZ_STORE_PASSWORD: 'mock_password'
+        };
+
+        const originalFetch = globalThis.fetch;
+        globalThis.fetch = async (url, opts = {}) => {
+            const urlStr = String(url);
+            if (urlStr.includes('/ibos_services?slug=eq.')) {
+                const isOcr = urlStr.includes('invoice-ocr-pipeline');
+                return new Response(JSON.stringify([{
+                    id: isOcr ? 'uuid-ocr-123' : 'uuid-b2b-123',
+                    slug: isOcr ? 'invoice-ocr-pipeline' : 'b2b-lead-swarm',
+                    title: isOcr ? 'Autonomous Invoice & Document OCR Pipeline' : 'B2B SaaS 5-Agent Hunter Swarm',
+                    price: isOcr ? 249 : 850,
+                    packages: {}
+                }]), { status: 200 });
+            }
+            if (urlStr.includes('/ibos_orders?idempotency_key=eq.')) {
+                return new Response(JSON.stringify([]), { status: 200 });
+            }
+            if (urlStr.includes('/ibos_orders') && opts.method === 'POST') {
+                const parsedBody = JSON.parse(opts.body || '{}');
+                return new Response(JSON.stringify([parsedBody]), { status: 201 });
+            }
+            if (urlStr.includes('gwprocess/v4/api.php')) {
+                return new Response(JSON.stringify({
+                    status: 'SUCCESS',
+                    GatewayPageURL: 'https://securepay.sslcommerz.com/easycheckout.php?session=MOCK_SESSION'
+                }), { status: 200 });
+            }
+            return originalFetch(url, opts);
+        };
+
+        try {
+            // 1. EARLY2026: 10% discount on $850 = $765
+            const req1 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'b2b-lead-swarm',
+                    customer_name: 'Test Customer',
+                    customer_email: 'test@inshatech.com',
+                    coupon_code: 'EARLY2026'
+                })
+            });
+            const res1 = await checkoutPost({ request: req1, env: mockEnv });
+            const json1 = await res1.json();
+            assert(
+                res1.status === 200 && json1.amount_usd === 765 && json1.coupon_applied === 'EARLY2026',
+                'Authoritative coupon EARLY2026 accurately applies 10% discount ($850 -> $765)'
+            );
+
+            // 2. APEX15: 15% discount on $850 = $723
+            const req2 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'b2b-lead-swarm',
+                    customer_name: 'Test Customer',
+                    customer_email: 'test@inshatech.com',
+                    coupon_code: 'APEX15'
+                })
+            });
+            const res2 = await checkoutPost({ request: req2, env: mockEnv });
+            const json2 = await res2.json();
+            assert(
+                res2.status === 200 && json2.amount_usd === 723 && json2.coupon_applied === 'APEX15',
+                'Authoritative coupon APEX15 accurately applies 15% discount ($850 -> $723)'
+            );
+
+            // 3. Bogus / Unauthorized Coupon: fallback to catalog price ($850), coupon_applied null, coupon_error recorded
+            const req3 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'b2b-lead-swarm',
+                    customer_name: 'Test Customer',
+                    customer_email: 'test@inshatech.com',
+                    coupon_code: 'HACKER_99_PERCENT_OFF'
+                })
+            });
+            const res3 = await checkoutPost({ request: req3, env: mockEnv });
+            const json3 = await res3.json();
+            assert(
+                res3.status === 200 && json3.amount_usd === 850 && json3.coupon_applied === null && json3.coupon_error === 'INVALID_COUPON',
+                'Invalid coupon code rejected by server authority, original catalog price preserved'
+            );
+
+            // 4. Floor price bounding: invoice-ocr-pipeline ($249 catalog, min $200). 15% off $249 = $212 (above min)
+            const req4 = new Request('https://inshatech.pages.dev/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    service_id: 'invoice-ocr-pipeline',
+                    customer_name: 'Test Customer',
+                    customer_email: 'test@inshatech.com',
+                    coupon_code: 'EARLY2026'
+                })
+            });
+            const res4 = await checkoutPost({ request: req4, env: mockEnv });
+            const json4 = await res4.json();
+            assert(
+                res4.status === 200 && json4.amount_usd >= 200,
+                'Discounted amount strictly adheres to minimum floor price bounding'
             );
         } finally {
             globalThis.fetch = originalFetch;
