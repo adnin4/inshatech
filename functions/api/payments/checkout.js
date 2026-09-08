@@ -24,14 +24,6 @@ const BDT_RATE = 122.5;
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
-const KNOWN_SERVICES = new Set([
-    'b2b-lead-swarm',
-    'ecommerce-ai-whatsapp',
-    'voice-ai-receptionist',
-    'n8n-docker-cluster',
-    'invoice-ocr-pipeline'
-]);
-
 const AUTHORITATIVE_COUPONS = {
     'EARLY2026': { discount_percent: 10, max_discount_usd: 150, valid_until: '2026-12-31T23:59:59Z', active: true },
     'FOUNDER10': { discount_percent: 10, max_discount_usd: 100, valid_until: '2026-12-31T23:59:59Z', active: true },
@@ -126,19 +118,12 @@ export async function onRequestPost({ request, env = {} }) {
         const idempotencyKey = String(b.idempotency_key || `idem_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`).trim().slice(0, 128);
 
         if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
-            if (!isUuid(requestedServiceIdentity) && !KNOWN_SERVICES.has(requestedServiceIdentity)) {
-                return json({
-                    status: 'ERROR',
-                    code: 'INVALID_SERVICE_ID',
-                    message: 'A valid service identifier is required.'
-                }, 400, h);
-            }
-            const fallbackPrice = requestedServiceIdentity === 'b2b-lead-swarm' ? 850 : null;
             return json({
                 status: 'DATABASE_CONFIGURATION_REQUIRED',
+                code: 'DATABASE_CONFIGURATION_REQUIRED',
                 message: 'Supabase server configuration is required before creating a durable payment order.',
-                amount_usd: fallbackPrice,
-                amount_bdt: fallbackPrice ? Math.round(fallbackPrice * BDT_RATE) : null
+                amount_usd: null,
+                amount_bdt: null
             }, 500, h);
         }
 
