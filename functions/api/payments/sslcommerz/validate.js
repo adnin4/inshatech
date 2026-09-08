@@ -38,7 +38,7 @@ export async function onRequestPost({ request, env = {} }) {
                     body: JSON.stringify({
                         payment_status: 'paid',
                         order_status: 'confirmed',
-                        payment_gateway: 'sslcommerz',
+                        payment_provider: 'sslcommerz',
                         updated_at: new Date().toISOString()
                     })
                 });
@@ -48,10 +48,13 @@ export async function onRequestPost({ request, env = {} }) {
                     headers: { ...auth, Prefer: 'return=minimal' },
                     body: JSON.stringify({
                         event_id: `sslcommerz_${valId}`,
+                        provider: 'sslcommerz',
                         event_type: 'SSLCOMMERZ_PAYMENT_VALIDATED',
-                        order_id: tranId,
-                        raw_payload: valData,
-                        created_at: new Date().toISOString()
+                        order_code: tranId,
+                        payload: valData,
+                        status: 'authenticated',
+                        signature_verified: true,
+                        received_at: new Date().toISOString()
                     })
                 });
             }

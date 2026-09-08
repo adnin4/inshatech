@@ -54,7 +54,7 @@ export async function onRequestPost({ request, env = {} }) {
                     body: JSON.stringify({
                         payment_status: 'paid',
                         order_status: 'confirmed',
-                        payment_gateway: 'lemonsqueezy',
+                        payment_provider: 'lemonsqueezy',
                         updated_at: new Date().toISOString()
                     })
                 });
@@ -64,10 +64,13 @@ export async function onRequestPost({ request, env = {} }) {
                     headers: { ...auth, Prefer: 'return=minimal' },
                     body: JSON.stringify({
                         event_id: eventId,
+                        provider: 'lemonsqueezy',
                         event_type: `LEMONSQUEEZY_${eventName.toUpperCase()}`,
-                        order_id: orderId,
-                        raw_payload: event,
-                        created_at: new Date().toISOString()
+                        order_code: orderId,
+                        payload: event,
+                        status: 'authenticated',
+                        signature_verified: true,
+                        received_at: new Date().toISOString()
                     })
                 });
             }

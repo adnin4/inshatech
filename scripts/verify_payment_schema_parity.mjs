@@ -1,7 +1,16 @@
 import fs from 'node:fs/promises';
 
 const CHECKOUT = new URL('../functions/api/payments/checkout.js', import.meta.url);
-const source = await fs.readFile(CHECKOUT, 'utf8');
+const WEBHOOK = new URL('../functions/api/payments/webhook.js', import.meta.url);
+const RETURN = new URL('../functions/api/payments/return.js', import.meta.url);
+const SSL_VALIDATE = new URL('../functions/api/payments/sslcommerz/validate.js', import.meta.url);
+const LEMON_WEBHOOK = new URL('../functions/api/payments/lemonsqueezy/webhook.js', import.meta.url);
+
+const checkoutSource = await fs.readFile(CHECKOUT, 'utf8');
+const webhookSource = await fs.readFile(WEBHOOK, 'utf8');
+const returnSource = await fs.readFile(RETURN, 'utf8');
+const sslValidateSource = await fs.readFile(SSL_VALIDATE, 'utf8');
+const lemonWebhookSource = await fs.readFile(LEMON_WEBHOOK, 'utf8');
 
 const failures = [];
 
@@ -17,7 +26,21 @@ const forbiddenDbPatterns = [
 ];
 
 for (const pattern of forbiddenDbPatterns) {
-  if (pattern.test(source)) failures.push(`forbidden DB contract reference: ${pattern}`);
+  if (pattern.test(checkoutSource)) failures.push(`checkout.js: forbidden DB contract reference: ${pattern}`);
+}
+
+// Ensure webhook, return and adapters do not query or mutate forbidden DB columns
+if (/ibos_orders[^\n]*payment_gateway/.test(webhookSource)) {
+  failures.push('webhook.js: forbidden DB contract reference: ibos_orders...payment_gateway');
+}
+if (/ibos_orders[^\n]*service_name/.test(returnSource)) {
+  failures.push('return.js: forbidden DB contract reference: ibos_orders...service_name');
+}
+if (/\bpayment_gateway\s*:/.test(sslValidateSource)) {
+  failures.push('sslcommerz/validate.js: forbidden DB contract reference: payment_gateway:');
+}
+if (/\bpayment_gateway\s*:/.test(lemonWebhookSource)) {
+  failures.push('lemonsqueezy/webhook.js: forbidden DB contract reference: payment_gateway:');
 }
 
 const canonicalDbFields = [
@@ -39,7 +62,7 @@ const canonicalDbFields = [
 ];
 
 for (const field of canonicalDbFields) {
-  if (!source.includes(field)) failures.push(`missing canonical field reference: ${field}`);
+  if (!checkoutSource.includes(field)) failures.push(`checkout.js: missing canonical field reference: ${field}`);
 }
 
 if (failures.length) {

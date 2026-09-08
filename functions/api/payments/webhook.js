@@ -215,7 +215,7 @@ export async function onRequestPost({ request, env = {} }) {
             }
 
             const orderRes = await fetch(
-                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,bdt_amount,payment_gateway,payment_provider,affiliate_ref_code,affiliate_commission,client_email`,
+                `${base}/ibos_orders?order_code=eq.${encodeURIComponent(orderCode)}&select=id,order_code,payment_status,amount,currency,bdt_amount,payment_provider,affiliate_ref_code,affiliate_commission,client_email`,
                 { method: 'GET', headers: auth }
             );
             if (!orderRes.ok) {
