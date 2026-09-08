@@ -19,6 +19,7 @@ jobs:
 
       - name: Verify payment webhook contract & security isolation
         run: |
+          node scripts/verify_payment_schema_parity.mjs
           node scripts/payment_webhook_contract.mjs
           node scripts/test_payment_hardening_contract.mjs
           node scripts/test_payment_adversarial_suite.mjs
