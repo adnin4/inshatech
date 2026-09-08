@@ -2,9 +2,9 @@
   "status": "SRE_HEALTHY",
   "observability_level": "FAIL_CLOSED",
   "environment": "production",
-  "edge_region": "CGP",
+  "edge_region": "DAC",
   "edge_country": "BD",
-  "git_sha": "db4fdb8d23bf546c75d5344d5b7057f91421c785",
+  "git_sha": "743a1a1cdc017bbd6563017d3462ff3e02e632ae",
   "runtime_identity": {
     "platform": "Cloudflare Pages Functions",
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
@@ -15,6 +15,6 @@
     "measured_availability": "TELEMETRY_REQUIRED",
     "latency_slo_ms": 100
   },
-  "timestamp": "2026-09-08T14:16:55.634Z",
+  "timestamp": "2026-09-08T14:18:33.211Z",
   "duration_ms": 0
 }

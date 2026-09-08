@@ -2,10 +2,10 @@
   "status": "EDGE_HEALTHY",
   "database_pool": "NOT_CONFIGURED",
   "environment": "production",
-  "edge_region": "CGP",
+  "edge_region": "DAC",
   "edge_country": "BD",
-  "git_sha": "db4fdb8d23bf546c75d5344d5b7057f91421c785",
+  "git_sha": "743a1a1cdc017bbd6563017d3462ff3e02e632ae",
   "slo_target": "99.95%",
-  "timestamp": "2026-09-08T14:16:55.605Z",
+  "timestamp": "2026-09-08T14:18:33.179Z",
   "duration_ms": 0
 }

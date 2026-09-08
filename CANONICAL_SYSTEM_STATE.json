@@ -4,10 +4,10 @@
   "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
-  "canonical_runtime_code_head": "7a96a4cbb5dfb58c63dab632ee6c8859affeda51",
-  "current_repository_tip": "7a96a4cbb5dfb58c63dab632ee6c8859affeda51",
+  "canonical_runtime_code_head": "743a1a1cdc017bbd6563017d3462ff3e02e632ae",
+  "current_repository_tip": "743a1a1cdc017bbd6563017d3462ff3e02e632ae",
   "runtime_identity": "LIVE_VERIFIED",
-  "build_timestamp": "2026-09-08T14:10:16.889Z",
+  "build_timestamp": "2026-09-08T14:18:32.155Z",
   "schema_version": "2026.9.8-autonomous-v2",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
