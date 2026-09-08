@@ -70,11 +70,11 @@ export class ToolExecutionGateway {
     async _executeTool(toolId, args) {
         switch (toolId) {
             case 'knowledge_search':
-                return { status: 'SUCCESS', production_verified: true, result: { query: args.query || '', source: 'IINSHA_KNOWLEDGE_BASE' } };
+                return { status: 'SUCCESS', execution_verified: true, production_verified: false, result: { query: args.query || '', source: 'IINSHA_KNOWLEDGE_BASE' } };
             case 'service_catalog_lookup':
-                return { status: 'SUCCESS', production_verified: true, result: { source: 'IINSHA_SERVICE_CATALOG' } };
+                return { status: 'SUCCESS', execution_verified: true, production_verified: false, result: { source: 'IINSHA_SERVICE_CATALOG' } };
             case 'generate_proposal_draft':
-                return { status: 'SUCCESS', production_verified: true, result: { proposal_id: `PROP-${crypto.randomUUID()}`, client: args.client_name || null, price_usd: Number(args.price_usd) || null } };
+                return { status: 'SUCCESS', execution_verified: true, production_verified: false, result: { proposal_id: `PROP-${crypto.randomUUID()}`, client: args.client_name || null, price_usd: Number(args.price_usd) || null } };
             case 'create_crm_lead':
                 return await this.crmAdapter.syncLead(args);
             case 'create_checkout_session':
