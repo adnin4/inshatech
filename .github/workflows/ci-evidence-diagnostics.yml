@@ -1,0 +1,90 @@
+name: CI Evidence Diagnostics
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci-evidence-diagnostics:
+    name: CI Failure Evidence Diagnostics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialize evidence transport
+        shell: bash
+        run: |
+          set -u
+          mkdir -p ci-failure-evidence
+          {
+            echo "evidence_transport_initialized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "github_repository=${GITHUB_REPOSITORY:-UNKNOWN}"
+            echo "github_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "github_ref_name=${GITHUB_REF_NAME:-UNKNOWN}"
+            echo "github_run_id=${GITHUB_RUN_ID:-UNKNOWN}"
+            echo "runner_os=${RUNNER_OS:-UNKNOWN}"
+          } > ci-failure-evidence/transport-start.txt
+
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Capture repository identity
+        shell: bash
+        run: |
+          set -u
+          {
+            echo "git_head=$(git rev-parse HEAD)"
+            echo "git_branch=$(git branch --show-current || true)"
+            echo "git_status=$(git status --short)"
+          } > ci-failure-evidence/repository-identity.txt
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Capture toolchain identity
+        shell: bash
+        run: |
+          set -u
+          {
+            node --version
+            npm --version
+            git --version
+          } > ci-failure-evidence/toolchain.txt
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -o pipefail
+          npm ci 2>&1 | tee ci-failure-evidence/npm-ci.log
+
+      - name: Run suites independently and capture evidence
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/ci_evidence_runner.mjs 2>&1 | tee ci-failure-evidence/runner.log
+
+      - name: Finalize evidence transport metadata
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "evidence_transport_finalized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "working_tree=$(git status --short 2>/dev/null || true)"
+            echo "evidence_files=$(find ci-failure-evidence -maxdepth 1 -type f -printf '%f\n' 2>/dev/null | sort || true)"
+          } > ci-failure-evidence/transport-end.txt
+
+      - name: Upload deterministic CI evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-failure-evidence-${{ github.run_id }}
+          path: ci-failure-evidence/
+          if-no-files-found: error
+          retention-days: 14

@@ -18,7 +18,8 @@ console.log('===================================================================
 console.log('IINSHA AI-BOS: WEBHOOK REPLAY PROTECTION & CONCURRENCY ATOMICITY TEST SUITE');
 console.log('================================================================================\n');
 
-async function runSuite() {
+async function runSequentialReplaySuite() {
+    console.log('--- SECTION 1: DETERMINISTIC SEQUENTIAL WEBHOOK REPLAY PROTECTION ---');
     const mockEnv = {
         SUPABASE_URL: 'https://mock.supabase.co',
         SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key',
@@ -72,7 +73,6 @@ async function runSuite() {
         if (urlStr.includes('/ibos_orders?') && opts.method === 'PATCH') {
             if (urlStr.includes('payment_status=neq.paid')) {
                 if (orderState.payment_status === 'paid') {
-                    // Zero rows updated if already paid
                     return new Response(JSON.stringify([]), { status: 200 });
                 }
                 orderPatchCount++;
@@ -172,11 +172,151 @@ async function runSuite() {
     } finally {
         globalThis.fetch = originalFetch;
     }
+}
 
-    console.log(`\nREPLAY & CONCURRENCY SUMMARY: ${passed}/${total} ASSERTIONS PASSED!`);
-    if (passed === total) {
-        console.log('WEBHOOK_REPLAY_AND_CONCURRENCY=PASS\n');
+async function runParallelConcurrencyRaceSuite() {
+    console.log('\n--- SECTION 2: HIGH-CONCURRENCY PARALLEL RACE ATOMICITY (50 CONCURRENT REQUESTS) ---');
+    const mockEnv = {
+        SUPABASE_URL: 'https://mock.supabase.co',
+        SUPABASE_SERVICE_ROLE_KEY: 'mock_service_key',
+        WEBHOOK_SECRET: 'test_secret_concurrency'
+    };
+
+    const CONCURRENCY_LEVEL = 50;
+    const existingEvents = new Set();
+    let orderState = {
+        id: 'ord-concurrent-001',
+        order_code: 'ORD-CONCURRENT-001',
+        payment_status: 'awaiting_payment',
+        amount: 1800,
+        currency: 'USD'
+    };
+    let orderPatchCount = 0;
+    let revenueCreditCount = 0;
+
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async (url, opts = {}) => {
+        const urlStr = String(url);
+
+        // Webhook events duplicate check
+        if (urlStr.includes('/ibos_webhook_events?event_id=eq.')) {
+            const match = urlStr.match(/event_id=eq\.([^&]+)/);
+            const evtId = match ? decodeURIComponent(match[1]) : '';
+            return new Response(JSON.stringify(existingEvents.has(evtId) ? [{ event_id: evtId }] : []), { status: 200 });
+        }
+
+        // Webhook events insert (atomic unique constraint enforcement)
+        if (urlStr.endsWith('/ibos_webhook_events') && opts.method === 'POST') {
+            const body = JSON.parse(opts.body || '{}');
+            if (existingEvents.has(body.event_id)) {
+                return new Response(JSON.stringify({ message: 'duplicate key value violates unique constraint' }), { status: 409 });
+            }
+            existingEvents.add(body.event_id);
+            return new Response(JSON.stringify([body]), { status: 201 });
+        }
+
+        // Webhook events patch
+        if (urlStr.includes('/ibos_webhook_events?event_id=eq.') && opts.method === 'PATCH') {
+            return new Response(JSON.stringify([{ id: 'mock-evt-uuid', status: 'processed' }]), { status: 200 });
+        }
+
+        // Order lookup (GET)
+        if (urlStr.includes('/ibos_orders?order_code=eq.') && (!opts.method || opts.method === 'GET')) {
+            return new Response(JSON.stringify([{ ...orderState }]), { status: 200 });
+        }
+
+        // Order conditional atomic patch (payment_status=neq.paid)
+        if (urlStr.includes('/ibos_orders?') && opts.method === 'PATCH') {
+            if (urlStr.includes('payment_status=neq.paid')) {
+                if (orderState.payment_status === 'paid') {
+                    return new Response(JSON.stringify([]), { status: 200 });
+                }
+                orderPatchCount++;
+                orderState.payment_status = 'paid';
+                return new Response(JSON.stringify([{ ...orderState }]), { status: 200 });
+            }
+        }
+
+        // Revenue ledger insert
+        if (urlStr.endsWith('/ibos_revenue') && opts.method === 'POST') {
+            revenueCreditCount++;
+            return new Response(JSON.stringify([{ id: `rev-${revenueCreditCount}` }]), { status: 201 });
+        }
+
+        return originalFetch(url, opts);
+    };
+
+    try {
+        const payload = {
+            id: 'evt_race_condition_001',
+            type: 'order_created',
+            order_id: 'ORD-CONCURRENT-001',
+            data: {
+                id: 'order_created',
+                type: 'orders',
+                attributes: {
+                    order_number: 'ORD-CONCURRENT-001',
+                    status: 'paid',
+                    total: 180000,
+                    currency: 'USD'
+                }
+            }
+        };
+
+        const rawBody = JSON.stringify(payload);
+        const encoder = new TextEncoder();
+        const key = await crypto.subtle.importKey(
+            'raw',
+            encoder.encode('test_secret_concurrency'),
+            { name: 'HMAC', hash: 'SHA-256' },
+            false,
+            ['sign']
+        );
+        const sigBuffer = await crypto.subtle.sign('HMAC', key, encoder.encode(rawBody));
+        const signature = [...new Uint8Array(sigBuffer)].map(b => b.toString(16).padStart(2, '0')).join('');
+
+        // Fire 50 simultaneous parallel webhook POSTs
+        const requests = Array.from({ length: CONCURRENCY_LEVEL }, () => {
+            const req = new Request('https://inshatech.pages.dev/api/payments/webhook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Signature': signature
+                },
+                body: rawBody
+            });
+            return handleWebhookPost({ request: req, env: mockEnv }).then(r => r.json());
+        });
+
+        const responses = await Promise.all(requests);
+
+        // Verification of concurrency invariants
+        assert(responses.length === CONCURRENCY_LEVEL, `All ${CONCURRENCY_LEVEL} parallel concurrent requests returned valid JSON`);
+        assert(orderState.payment_status === 'paid', 'Order transitioned to paid state safely');
+        assert(orderPatchCount === 1, `Atomic update occurred exactly ONCE despite ${CONCURRENCY_LEVEL} parallel racers (orderPatchCount=${orderPatchCount})`);
+        assert(revenueCreditCount === 1, `Double-entry revenue ledger credited exactly ONCE across ${CONCURRENCY_LEVEL} parallel racers (revenueCreditCount=${revenueCreditCount})`);
+
+        const successResponses = responses.filter(r => r.status === 'SUCCESS');
+        assert(successResponses.length === CONCURRENCY_LEVEL, `All ${CONCURRENCY_LEVEL} responses acknowledged with HTTP 200 SUCCESS`);
+
+        const duplicateIgnored = responses.filter(r => r.action === 'duplicate_ignored' || r.action === 'already_paid');
+        assert(duplicateIgnored.length === CONCURRENCY_LEVEL - 1, `Exactly ${CONCURRENCY_LEVEL - 1} parallel requests recognized as duplicates/already_paid`);
+
+    } finally {
+        globalThis.fetch = originalFetch;
     }
 }
 
-await runSuite();
+async function main() {
+    await runSequentialReplaySuite();
+    await runParallelConcurrencyRaceSuite();
+
+    console.log(`\n================================================================================`);
+    console.log(`REPLAY & CONCURRENCY SUMMARY: ${passed}/${total} ASSERTIONS PASSED!`);
+    if (passed === total) {
+        console.log('WEBHOOK_REPLAY_AND_CONCURRENCY=PASS');
+    }
+    console.log(`================================================================================\n`);
+}
+
+await main();
