@@ -1,10 +1,10 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company OS",
-  "manifest_id": "EVD-MANIFEST-MTTRB42Q",
-  "generated_at": "2026-09-09T07:08:05.090Z",
+  "manifest_id": "EVD-MANIFEST-MTTRN09Z",
+  "generated_at": "2026-09-09T07:17:20.039Z",
   "provenance": {
     "evidence_compiler": "scripts/generate_full_production_evidence_manifest.mjs",
-    "repository_head_sha": "4927022e4a12eb48a8fad60a8028e43cc7ebe7c8",
+    "repository_head_sha": "c6062e1db61a2f39210c5a27484c9e398dd85d03",
     "checkout_branch": "master",
     "source_of_truth": "git-checkout"
   },
@@ -22,7 +22,7 @@
     "runtime_to_database_parity": false
   },
   "critical_file_checksums": {
-    "index.html": "76eb91ef3aa14d13cd466c3bb3831fe737f9ae266e1e6478e4c94fbd7606a64c",
+    "index.html": "1fefd703a31f9bac39c19b1933d5fe041cb369a51ec0aedbbc21080be76f1433",
     "store.html": "733946c4e5e0076428cd2e035f1d95d75b72e1abadf6bc7ffefadda220dc8577",
     "portal.html": "04308eb78c5917ded2f89b332d8e12a68b8470ed01fdd81c506695db6e70e1f2",
     "admin.html": "5b99c8d3381407586b38b85036ee27649f5005c50489f2d52e6a5549cc027f66",
