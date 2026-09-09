@@ -1,12 +1,14 @@
-# IINSHA AI-BOS CI Failure Evidence Report
+# IINSHA AI-BOS CI Failure Evidence Report (Gate 0A-0H)
 
-* **Generated At:** 2026-09-08T15:05:30.956Z
+* **Generated At:** 2026-09-09T07:06:42.607Z
 * **Repository:** adnin4/inshatech
-* **Commit SHA:** f8e2c4885853b10c547ba563dfe0ece2573b5544
-* **Branch / Ref:** master
+* **Commit SHA:** `0855a3dd01556bd63a0679460ea0269a235ef466`
+* **Branch / Ref:** `reconcile-pr65`
 * **Workflow Run ID:** LOCAL_EXECUTION
+* **Transport Self-Test:** 🟢 VERIFIED NON-EMPTY & COMPLETE
+* **Immutable Baseline:** IMMUTABLE_GREEN_BASELINE_ESTABLISHED
 
-## Evidence Boundary & Non-Certification
+## Evidence Boundary & Non-Certification Guarantees
 - This artifact records diagnostic CI execution evidence only.
 - Zero static assertions or test passes self-certify production readiness.
 - External runtime evidence is mandatory for production and revenue certification.
@@ -15,33 +17,37 @@
 - **Total Suites Audited:** 23
 - **Passed:** 23
 - **Failed:** 0
+- **Primary Failures:** 0
+- **Secondary (Cascading) Failures:** 0
+- **Dependency Failures:** 0
+- **Environment Failures:** 0
 
-## Suite Breakdown
-| Suite | Status | Exit Code | Duration (ms) | Started At | Finished At |
-|---|---|---:|---:|---|---|
-| `reality_boundary` | **PASS** | `0` | 33 ms | 2026-09-08T15:05:29.106Z | 2026-09-08T15:05:29.139Z |
-| `system_claims` | **PASS** | `0` | 38 ms | 2026-09-08T15:05:29.139Z | 2026-09-08T15:05:29.177Z |
-| `security_gate` | **PASS** | `0` | 59 ms | 2026-09-08T15:05:29.178Z | 2026-09-08T15:05:29.237Z |
-| `check_direct_db` | **PASS** | `0` | 33 ms | 2026-09-08T15:05:29.237Z | 2026-09-08T15:05:29.270Z |
-| `visual_baseline` | **PASS** | `0` | 34 ms | 2026-09-08T15:05:29.271Z | 2026-09-08T15:05:29.305Z |
-| `form_contract` | **PASS** | `0` | 34 ms | 2026-09-08T15:05:29.305Z | 2026-09-08T15:05:29.339Z |
-| `solution_finder` | **PASS** | `0` | 33 ms | 2026-09-08T15:05:29.340Z | 2026-09-08T15:05:29.373Z |
-| `copilot_e2e` | **PASS** | `0` | 32 ms | 2026-09-08T15:05:29.374Z | 2026-09-08T15:05:29.406Z |
-| `service_authority` | **PASS** | `0` | 148 ms | 2026-09-08T15:05:29.407Z | 2026-09-08T15:05:29.555Z |
-| `payment_schema` | **PASS** | `0` | 33 ms | 2026-09-08T15:05:29.555Z | 2026-09-08T15:05:29.588Z |
-| `payment_coupon` | **PASS** | `0` | 32 ms | 2026-09-08T15:05:29.589Z | 2026-09-08T15:05:29.621Z |
-| `payment_fx` | **PASS** | `0` | 31 ms | 2026-09-08T15:05:29.622Z | 2026-09-08T15:05:29.653Z |
-| `payment_state_machine` | **PASS** | `0` | 31 ms | 2026-09-08T15:05:29.653Z | 2026-09-08T15:05:29.684Z |
-| `payment_webhook_contract` | **PASS** | `0` | 31 ms | 2026-09-08T15:05:29.685Z | 2026-09-08T15:05:29.716Z |
-| `payment_hardening` | **PASS** | `0` | 52 ms | 2026-09-08T15:05:29.716Z | 2026-09-08T15:05:29.768Z |
-| `payment_adversarial` | **PASS** | `0` | 78 ms | 2026-09-08T15:05:29.769Z | 2026-09-08T15:05:29.847Z |
-| `payment_replay_concurrency` | **PASS** | `0` | 50 ms | 2026-09-08T15:05:29.847Z | 2026-09-08T15:05:29.897Z |
-| `payment_reconciliation` | **PASS** | `0` | 50 ms | 2026-09-08T15:05:29.897Z | 2026-09-08T15:05:29.947Z |
-| `tenant_rls` | **PASS** | `0` | 36 ms | 2026-09-08T15:05:29.947Z | 2026-09-08T15:05:29.983Z |
-| `tenant_isolation_adversarial` | **PASS** | `0` | 30 ms | 2026-09-08T15:05:29.983Z | 2026-09-08T15:05:30.013Z |
-| `production_slo_dr` | **PASS** | `0` | 30 ms | 2026-09-08T15:05:30.014Z | 2026-09-08T15:05:30.044Z |
-| `production_browser` | **PASS** | `0` | 878 ms | 2026-09-08T15:05:30.045Z | 2026-09-08T15:05:30.923Z |
-| `business_truth_gates` | **PASS** | `0` | 32 ms | 2026-09-08T15:05:30.923Z | 2026-09-08T15:05:30.955Z |
+## Gate 0A Test Inventory & Execution Breakdown
+| Suite | Domain | Evidence Level | Status | Exit Code | Duration (ms) | Stdout SHA-256 |
+|---|---|---|---|---:|---:|---|
+| `reality_boundary` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 39 ms | `4b4cc69dea07...` |
+| `system_claims` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 37 ms | `c66cbc25802b...` |
+| `security_gate` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 58 ms | `980103631838...` |
+| `check_direct_db` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 31 ms | `778610841e47...` |
+| `visual_baseline` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 33 ms | `759fdbe60ed5...` |
+| `form_contract` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 35 ms | `174567b3e1c0...` |
+| `solution_finder` | SALES_ENGINE | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 33 ms | `2266039a1a6b...` |
+| `copilot_e2e` | AI_AGENT | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 31 ms | `490c3a123b80...` |
+| `service_authority` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 138 ms | `a4f2332c354e...` |
+| `payment_schema` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 33 ms | `6abc1e70bb25...` |
+| `payment_coupon` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 34 ms | `924507ec5f55...` |
+| `payment_fx` | PAYMENT | `FINANCIAL_CONTRACT` | **PASS** | `0` | 31 ms | `df7ad9bf4763...` |
+| `payment_state_machine` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 32 ms | `23ebe8112530...` |
+| `payment_webhook_contract` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 31 ms | `7aa2322af6d2...` |
+| `payment_hardening` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 53 ms | `19d3adb9e8ba...` |
+| `payment_adversarial` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 79 ms | `21c71a392200...` |
+| `payment_replay_concurrency` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 55 ms | `69945f4d5647...` |
+| `payment_reconciliation` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 50 ms | `2f4c2fe8f74b...` |
+| `tenant_rls` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 34 ms | `ccca39eddeb8...` |
+| `tenant_isolation_adversarial` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 31 ms | `000b831459da...` |
+| `production_slo_dr` | SRE_INFRASTRUCTURE | `SRE_CONTRACT` | **PASS** | `0` | 32 ms | `51ae2fc4b3c4...` |
+| `production_browser` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 884 ms | `e398c5ca1218...` |
+| `business_truth_gates` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 33 ms | `da7a799d696e...` |
 
 ## Diagnostic Output for Non-Passing Suites
-All suites passed with zero failures. Green baseline established.
+All 23 suites passed with zero failures. Immutable green baseline frozen.
