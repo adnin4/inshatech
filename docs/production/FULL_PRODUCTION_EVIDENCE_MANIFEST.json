@@ -1,10 +1,10 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company OS",
-  "manifest_id": "EVD-MANIFEST-MTTRN09Z",
-  "generated_at": "2026-09-09T07:17:20.039Z",
+  "manifest_id": "EVD-MANIFEST-MTTS3GKM",
+  "generated_at": "2026-09-09T07:30:07.654Z",
   "provenance": {
     "evidence_compiler": "scripts/generate_full_production_evidence_manifest.mjs",
-    "repository_head_sha": "c6062e1db61a2f39210c5a27484c9e398dd85d03",
+    "repository_head_sha": "7fbeb64510559981cdfb68da7edc55fb85649928",
     "checkout_branch": "master",
     "source_of_truth": "git-checkout"
   },
@@ -32,7 +32,7 @@
     "functions/api/payments/return.js": "8d26d8b78a5b21b151e986bbb003e26136da17a63679dbf34d088f1f199b3542",
     "functions/api/payments/webhook.js": "fa1857de5105978d2db346546374f5b6fac8c27c05ba0dde5912ede51601c54c",
     "functions/api/payments/_middleware.js": "e635878733706d78b3d9f0242596711985290e015ec1f8042cca35ce49eff1f9",
-    "CANONICAL_SYSTEM_STATE.json": "d9cd7c7cd377f5a827ba74e6ada423a1e2ca4c9aa02e2652968467b4a248f0bb"
+    "CANONICAL_SYSTEM_STATE.json": "44e40fa7a82f47a58ba72205e3097127f02e34f5dab7f314c521f4ee7746e663"
   },
   "verification_policy": {
     "rule": "No file presence, static assertion, or generated report is sufficient to certify production.",

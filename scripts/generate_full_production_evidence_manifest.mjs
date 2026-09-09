@@ -27,11 +27,17 @@ const criticalFiles = [
 ];
 
 function git(args) {
-    const gitExe = 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-        return execFileSync(gitExe, args, { encoding: 'utf8' }).trim();
+    try {
+        return execFileSync('git', args, { encoding: 'utf8' }).trim();
+    } catch {
+        const gitExe = process.env.GIT_EXEC_PATH 
+            ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
+            : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
+        if (fs.existsSync(gitExe)) {
+            return execFileSync(gitExe, args, { encoding: 'utf8' }).trim();
+        }
+        throw new Error('git executable not found in PATH or environment');
     }
-    return execFileSync('git', args, { encoding: 'utf8' }).trim();
 }
 
 function getGitIdentity() {
