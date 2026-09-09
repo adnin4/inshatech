@@ -1,23 +1,32 @@
 # IINSHA AI-BOS: FULL PRODUCTION EVIDENCE MANIFEST
 
-* **Manifest ID:** EVD-MANIFEST-MTSRSRYS
-* **Generated At:** 2026-09-08T14:34:03.028Z
-* **Canonical Master SHA:** 8f4a42f6616c5568294928f47d978921d4573849
+* **Manifest ID:** EVD-MANIFEST-MTTRB42Q
+* **Generated At:** 2026-09-09T07:08:05.090Z
+* **Repository HEAD SHA:** 4927022e4a12eb48a8fad60a8028e43cc7ebe7c8
+* **Checkout Branch:** master
+* **Canonical Branch:** master
 * **Canonical Database:** kitwadizsvjmuxkfewxj
 
-## Test Verification Matrix (100% Green)
-- System Claims: 10/10 PASS
-- Business Truth Gates: PASS
-- Enterprise Security: 357 files audited (0 P0/P1 defects)
-- Public Pages E2E: 12/12 PASS
-- UI/UX Guardian: 22/22 sections (0 defects)
-- Payment Hardening & Return Contract: 8/8 PASS
-- Tenant Isolation Adversarial Suite: 6/6 PASS
-- Disaster Recovery & Rollback Drill: 6/6 PASS
-- Golden E2E Master Suite: 12/12 PASS
-- Frontier Master Suite: 15/15 PASS
+## Release / Runtime Evidence
+- Deployed code SHA: UNVERIFIED
+- Runtime SHA: UNVERIFIED
+- Cloudflare deployment ID: UNVERIFIED
+- Cloudflare deployment branch: UNVERIFIED
+- Source → deployed parity: UNVERIFIED
+- Deployed → runtime parity: UNVERIFIED
+- Runtime → database parity: UNVERIFIED
 
-## Certification Status
-- STAGING_VERIFIED: TRUE
-- PRODUCTION_CANDIDATE: TRUE
-- PRODUCTION_VERIFIED: FALSE (Awaiting live payment provider credentials & real external card receipt)
+## Certification Truth Rule
+- Generated artifacts never self-certify production.
+- External runtime evidence is mandatory for production parity.
+- Real payment and real customer evidence are mandatory for Revenue Operational.
+- Autonomous Operational requires every preceding gate plus governed human override and kill-switch evidence.
+
+## Current Certification
+- READY_FOR_STAGING: TRUE
+- STAGING_VERIFIED: FALSE
+- PRODUCTION_CANDIDATE: FALSE
+- PRODUCTION_VERIFIED: FALSE
+- REVENUE_OPERATIONAL: FALSE
+- AUTONOMOUS_OPERATIONAL: FALSE
+

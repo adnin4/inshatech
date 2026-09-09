@@ -1,12 +1,26 @@
 {
   "platform": "IINSHA AI-BOS Autonomous Company OS",
-  "manifest_id": "EVD-MANIFEST-MTSRSRYS",
-  "generated_at": "2026-09-08T14:34:03.028Z",
+  "manifest_id": "EVD-MANIFEST-MTTRB42Q",
+  "generated_at": "2026-09-09T07:08:05.090Z",
+  "provenance": {
+    "evidence_compiler": "scripts/generate_full_production_evidence_manifest.mjs",
+    "repository_head_sha": "4927022e4a12eb48a8fad60a8028e43cc7ebe7c8",
+    "checkout_branch": "master",
+    "source_of_truth": "git-checkout"
+  },
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
-  "canonical_master_sha": "8f4a42f6616c5568294928f47d978921d4573849",
   "database_project_ref": "kitwadizsvjmuxkfewxj",
-  "production_url": "https://inshatech.pages.dev/",
+  "deployment": {
+    "cloudflare_deployment_id": null,
+    "deployment_branch": null,
+    "deployed_code_sha": null,
+    "runtime_sha": null,
+    "runtime_db_ref": null,
+    "source_to_deployed_code_parity": false,
+    "deployed_to_runtime_parity": false,
+    "runtime_to_database_parity": false
+  },
   "critical_file_checksums": {
     "index.html": "76eb91ef3aa14d13cd466c3bb3831fe737f9ae266e1e6478e4c94fbd7606a64c",
     "store.html": "733946c4e5e0076428cd2e035f1d95d75b72e1abadf6bc7ffefadda220dc8577",
@@ -18,63 +32,53 @@
     "functions/api/payments/return.js": "8d26d8b78a5b21b151e986bbb003e26136da17a63679dbf34d088f1f199b3542",
     "functions/api/payments/webhook.js": "fa1857de5105978d2db346546374f5b6fac8c27c05ba0dde5912ede51601c54c",
     "functions/api/payments/_middleware.js": "e635878733706d78b3d9f0242596711985290e015ec1f8042cca35ce49eff1f9",
-    "CANONICAL_SYSTEM_STATE.json": "afc9ba14d0ee8704e4ac432020b07e80e8330bed9222b6ab821c25531851134c"
+    "CANONICAL_SYSTEM_STATE.json": "d9cd7c7cd377f5a827ba74e6ada423a1e2ca4c9aa02e2652968467b4a248f0bb"
+  },
+  "verification_policy": {
+    "rule": "No file presence, static assertion, or generated report is sufficient to certify production.",
+    "external_runtime_proof_required": true,
+    "live_payment_proof_required_for_revenue": true,
+    "real_customer_proof_required_for_revenue": true
   },
   "test_verification_matrix": {
     "system_claims_classification": {
-      "status": "PASS",
-      "passed": 10,
-      "total": 10
+      "status": "UNVERIFIED"
     },
     "business_truth_gates": {
-      "status": "PASS"
+      "status": "UNVERIFIED"
     },
     "enterprise_security_gate": {
-      "status": "PASS",
-      "files_audited": 357,
-      "defects": 0
+      "status": "UNVERIFIED"
     },
     "public_site_e2e_surface": {
-      "status": "PASS",
-      "pages_verified": 12,
-      "total": 12
+      "status": "UNVERIFIED"
     },
     "ui_ux_regression_guardian": {
-      "status": "PASS",
-      "sections_verified": 22,
-      "defects": 0
+      "status": "UNVERIFIED"
     },
     "payment_hardening_contract": {
-      "status": "PASS",
-      "passed": 8,
-      "total": 8
+      "status": "UNVERIFIED"
     },
     "tenant_isolation_adversarial": {
-      "status": "PASS",
-      "passed": 6,
-      "total": 6
+      "status": "UNVERIFIED"
     },
     "disaster_recovery_rollback_drill": {
-      "status": "PASS",
-      "passed": 6,
-      "total": 6
+      "status": "UNVERIFIED"
     },
     "golden_e2e_master_suite": {
-      "status": "PASS",
-      "passed": 12,
-      "total": 12
+      "status": "UNVERIFIED"
     },
     "frontier_master_suite": {
-      "status": "PASS",
-      "passed": 15,
-      "total": 15
+      "status": "UNVERIFIED"
     }
   },
   "certification_ladder": {
     "ready_for_staging": true,
-    "staging_verified": true,
-    "production_candidate": true,
+    "staging_verified": false,
+    "production_candidate": false,
     "production_verified": false,
-    "reason": "External live credit card transaction receipt & live Cloudflare master SHA match pending."
+    "revenue_operational": false,
+    "autonomous_operational": false,
+    "reason": "This manifest contains source/release evidence only. Runtime, payment, customer, finance, and autonomous certification require independently captured evidence."
   }
 }

@@ -27,11 +27,15 @@ const criticalFiles = [
 ];
 
 function git(args) {
+    const gitExe = 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
+    if (fs.existsSync(gitExe)) {
+        return execFileSync(gitExe, args, { encoding: 'utf8' }).trim();
+    }
     return execFileSync('git', args, { encoding: 'utf8' }).trim();
 }
 
 function getGitIdentity() {
-    const sha = git(['rev-parse', 'HEAD']);
+    const sha = process.env.GITHUB_SHA || git(['rev-parse', 'HEAD']);
     const branch = process.env.GITHUB_REF_NAME || (() => {
         try {
             const value = git(['branch', '--show-current']);
