@@ -1,0 +1,1 @@
+This branch contains release-governance documentation only. It does not certify or modify production runtime, payment, database, or UI behavior.
