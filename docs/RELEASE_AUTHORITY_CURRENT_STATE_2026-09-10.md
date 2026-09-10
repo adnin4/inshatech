@@ -18,7 +18,7 @@ Date: 2026-09-10
 
 PR #67: `fix(release): fail closed on missing release and database identity evidence`
 
-Current branch head at handoff: `e1870ea8a807deff26fe77fae4bf97b4a66a76e1`
+Latest branch head at handoff: `e1870ea8a807deff26fe77fae4bf97b4a66a76e1` before this documentation commit.
 
 This branch:
 - requires independently supplied release identity fields;
@@ -34,7 +34,7 @@ The first current PR #67 diagnostics failure was caused by evidence-directory li
 
 The workflow was corrected so checkout happens first and evidence storage is initialized afterward.
 
-Latest diagnostics run after that correction: CI Evidence Diagnostics completed successfully.
+A new diagnostics run has been queued for the correction; its result must be re-read before declaring transport verified. The prior failed run is not evidence of a current failure after the fix.
 
 ## External truth boundary
 
@@ -56,10 +56,10 @@ Payment contracts, replay, concurrency, webhook hardening and reconciliation sui
 
 ## Required next sequence
 
-1. Verify the successful Gate 0 run artifact is retrievable.
-2. Repeat the diagnostics run to detect transport flakiness.
+1. Read the newly queued Gate 0 diagnostics run and verify that capture files and the artifact are actually retrievable.
+2. Repeat diagnostics at least twice more to detect transport flakiness.
 3. Add regression coverage for `/api/version` requiring verified DB identity for `LIVE_VERIFIED`.
-4. Merge PR #67 only after its actual required checks are green.
+4. Merge PR #67 only after actual required checks are green.
 5. Resolve Cloudflare production deployment authority (Issue #68).
 6. Rationalize duplicate/legacy workflows; preserve coverage while removing ambiguous control paths.
 7. Define unique required GitHub checks, then enable branch protection/rulesets.
