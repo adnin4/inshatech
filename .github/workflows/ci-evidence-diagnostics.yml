@@ -13,6 +13,12 @@ jobs:
     name: CI Failure Evidence Diagnostics
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
       - name: Initialize evidence transport
         shell: bash
         run: |
@@ -21,26 +27,49 @@ jobs:
           {
             echo "evidence_transport_initialized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "github_repository=${GITHUB_REPOSITORY:-UNKNOWN}"
-            echo "github_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "workflow_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "pr_head_sha=${{ github.event.pull_request.head.sha || 'UNKNOWN' }}"
+            echo "base_sha=${{ github.event.pull_request.base.sha || 'UNKNOWN' }}"
+            echo "workflow_ref=${GITHUB_REF:-UNKNOWN}"
+            echo "pr_ref=refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head"
             echo "github_ref_name=${GITHUB_REF_NAME:-UNKNOWN}"
             echo "github_run_id=${GITHUB_RUN_ID:-UNKNOWN}"
             echo "runner_os=${RUNNER_OS:-UNKNOWN}"
           } > ci-failure-evidence/transport-start.txt
 
-      - name: Checkout exact PR head
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Capture repository identity
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || 'UNKNOWN' }}
+          PR_REF: refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head
         run: |
-          set -u
+          set +e
+          git_head="$(git rev-parse HEAD 2>&1)"
+          git_head_exit=$?
+          git_branch="$(git branch --show-current 2>&1)"
+          git_branch_exit=$?
+          git_status="$(git status --short 2>&1)"
+          git_status_exit=$?
           {
-            echo "git_head=$(git rev-parse HEAD)"
-            echo "git_branch=$(git branch --show-current || true)"
-            echo "git_status=$(git status --short)"
+            echo "workflow_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "pr_head_sha=${PR_HEAD_SHA:-UNKNOWN}"
+            echo "checked_out_sha=${git_head}"
+            echo "base_sha=${BASE_SHA:-UNKNOWN}"
+            echo "workflow_ref=${GITHUB_REF:-UNKNOWN}"
+            echo "pr_ref=${PR_REF:-UNKNOWN}"
+            echo "git_head_exit=${git_head_exit}"
+            echo "git_branch=${git_branch}"
+            echo "git_branch_exit=${git_branch_exit}"
+            echo "git_status=${git_status}"
+            echo "git_status_exit=${git_status_exit}"
+            if [ "$git_head_exit" -eq 0 ] && [ "$git_head" = "$PR_HEAD_SHA" ]; then
+              echo "identity_match=true"
+            else
+              echo "identity_match=false"
+            fi
           } > ci-failure-evidence/repository-identity.txt
+          exit 0
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -51,12 +80,13 @@ jobs:
       - name: Capture toolchain identity
         shell: bash
         run: |
-          set -u
+          set +e
           {
             node --version
             npm --version
             git --version
-          } > ci-failure-evidence/toolchain.txt
+          } > ci-failure-evidence/toolchain.txt 2>&1
+          exit 0
 
       - name: Install dependencies
         shell: bash
@@ -66,6 +96,10 @@ jobs:
 
       - name: Run suites independently and capture evidence
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || 'UNKNOWN' }}
+          PR_REF: refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head
         run: |
           set -o pipefail
           node scripts/ci_evidence_runner.mjs 2>&1 | tee ci-failure-evidence/runner.log
@@ -74,11 +108,13 @@ jobs:
         if: always()
         shell: bash
         run: |
+          set +e
           {
             echo "evidence_transport_finalized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "working_tree=$(git status --short 2>/dev/null || true)"
             echo "evidence_files=$(find ci-failure-evidence -maxdepth 1 -type f -printf '%f\n' 2>/dev/null | sort || true)"
           } > ci-failure-evidence/transport-end.txt
+          exit 0
 
       - name: Upload deterministic CI evidence
         if: always()

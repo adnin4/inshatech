@@ -4,6 +4,9 @@
  * Never invents deployment or database health claims.
  */
 
+import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
+import { verifyReleaseIdentity } from '../_shared/release_identity.js';
+
 const ALLOWED_ORIGINS = [
     'https://inshatech.pages.dev',
     'https://inshatech.com',
@@ -21,33 +24,32 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
-import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
-import { verifyReleaseIdentity } from '../_shared/release_identity.js';
-
 function databaseIdentity(env) {
-    const canonical = env.CANONICAL_SUPABASE_PROJECT_REF || env.SUPABASE_PROJECT_REF || CANONICAL_RELEASE.canonical_db_ref;
-    const runtime = env.SUPABASE_RUNTIME_PROJECT_REF || (env.SUPABASE_URL ? env.SUPABASE_URL.match(/https:\/\/([a-z0-9]+)\.supabase\.co/i)?.[1] : null) || CANONICAL_RELEASE.canonical_db_ref;
-    const health = String(env.SUPABASE_RUNTIME_HEALTH || 'HEALTHY').toUpperCase();
-    const parity = Boolean(canonical && runtime && canonical === runtime);
+    const canonical = typeof env.CANONICAL_SUPABASE_PROJECT_REF === 'string'
+        ? env.CANONICAL_SUPABASE_PROJECT_REF.trim()
+        : null;
+    const runtime = typeof env.SUPABASE_RUNTIME_PROJECT_REF === 'string'
+        ? env.SUPABASE_RUNTIME_PROJECT_REF.trim()
+        : null;
+    const health = typeof env.SUPABASE_RUNTIME_HEALTH === 'string'
+        ? env.SUPABASE_RUNTIME_HEALTH.trim().toUpperCase()
+        : null;
 
-    if (!canonical || !runtime) {
-        return {
-            canonical_db: canonical,
-            runtime_db: runtime,
-            db_parity: false,
-            status: 'UNVERIFIED'
-        };
-    }
+    const identityPresent = Boolean(canonical && runtime);
+    const identityMatches = identityPresent && canonical === runtime;
+    const healthVerified = health === 'HEALTHY';
 
     return {
-        canonical_db: canonical,
-        runtime_db: runtime,
-        db_parity: parity,
-        status: parity && health === 'HEALTHY'
-            ? 'ACTIVE_HEALTHY_DECLARED'
-            : parity
-                ? 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
-                : 'MISMATCH'
+        canonical_db: canonical || 'UNSPECIFIED',
+        runtime_db: runtime || 'UNSPECIFIED',
+        db_parity: identityMatches,
+        status: !identityPresent
+            ? 'UNVERIFIED'
+            : !identityMatches
+                ? 'MISMATCH'
+                : healthVerified
+                    ? 'LIVE_VERIFIED'
+                    : 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
     };
 }
 
@@ -56,25 +58,24 @@ export async function onRequestGet(context) {
     const origin = request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
 
-    const deployedSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
-    const expectedSha = env.EXPECTED_RELEASE_SHA || deployedSha;
     const identity = verifyReleaseIdentity({
-        deployment_sha: deployedSha,
-        runtime_sha: expectedSha,
-        source_sha: env.GIT_COMMIT_SHA || deployedSha,
-        branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch
+        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || null,
+        build_sha: env.BUILD_RELEASE_SHA || null,
+        deployment_sha: env.CF_PAGES_COMMIT_SHA || null,
+        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || null,
+        branch: env.CF_PAGES_BRANCH || null
     });
-    const parity = identity.verified;
     const db = databaseIdentity(env);
+    const productionVerified = identity.verified && db.status === 'LIVE_VERIFIED';
 
     const payload = {
-        status: parity ? 'LIVE_VERIFIED' : (deployedSha ? 'DEPLOYMENT_SHA_UNVERIFIED' : 'UNVERIFIED'),
+        status: productionVerified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
         platform: 'IINSHA AI-BOS',
-        deploy_sha: deployedSha,
-        expected_release_sha: expectedSha,
-        parity,
+        deploy_sha: identity.shas.deployment_sha === 'UNSPECIFIED' ? null : identity.shas.deployment_sha,
+        expected_release_sha: identity.shas.runtime_sha === 'UNSPECIFIED' ? null : identity.shas.runtime_sha,
+        parity: productionVerified,
         release_identity: identity,
-        branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch,
+        branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,
         environment: env.ENVIRONMENT || 'production',
         database_identity: db,

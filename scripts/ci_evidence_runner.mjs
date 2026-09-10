@@ -21,46 +21,24 @@ function computeSha256(data) {
   return crypto.createHash('sha256').update(data || '').digest('hex');
 }
 
-function resolveCommitSha() {
-  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA;
+function resolveGitValue(args, unknownValue) {
   try {
-    return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    const value = execFileSync('git', args, { encoding: 'utf8' }).trim();
+    return value || unknownValue;
   } catch {
-    const gitExe = process.env.GIT_EXEC_PATH 
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_SHA';
-      }
-    }
-    return 'UNKNOWN_SHA';
+    return unknownValue;
   }
 }
 
-function resolveBranch() {
-  if (process.env.GITHUB_REF_NAME) return process.env.GITHUB_REF_NAME;
-  try {
-    return execFileSync('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-  } catch {
-    const gitExe = process.env.GIT_EXEC_PATH
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_BRANCH';
-      }
-    }
-    return 'UNKNOWN_BRANCH';
-  }
-}
-
-const currentSha = resolveCommitSha();
-const currentBranch = resolveBranch();
+const workflowSha = process.env.GITHUB_SHA || 'UNKNOWN_SHA';
+const prHeadSha = process.env.PR_HEAD_SHA || 'UNKNOWN_SHA';
+const baseSha = process.env.BASE_SHA || 'UNKNOWN_SHA';
+const workflowRef = process.env.GITHUB_REF || 'UNKNOWN_REF';
+const prRef = process.env.PR_REF || (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith('refs/pull/') ? process.env.GITHUB_REF : 'UNKNOWN_REF');
+const checkedOutSha = resolveGitValue(['rev-parse', 'HEAD'], 'UNKNOWN_SHA');
+const checkedOutBranch = resolveGitValue(['branch', '--show-current'], 'UNKNOWN_BRANCH');
+const currentSha = checkedOutSha;
+const currentBranch = process.env.GITHUB_REF_NAME || checkedOutBranch;
 
 /**
  * GATE 0A: Full Test Inventory with Metadata
@@ -358,7 +336,8 @@ const SUITE_INVENTORY = [
 
 console.log('================================================================================');
 console.log('🔬 IINSHA AI-BOS: DETERMINISTIC CI FAILURE EVIDENCE RUNNER (GATE 0A-0H)');
-console.log(`Commit: ${currentSha} | Branch: ${currentBranch}`);
+console.log(`Workflow SHA: ${workflowSha} | PR Head SHA: ${prHeadSha} | Checked-Out SHA: ${checkedOutSha}`);
+console.log(`Base SHA: ${baseSha} | Workflow Ref: ${workflowRef} | PR Ref: ${prRef}`);
 console.log(`Inventory: ${SUITE_INVENTORY.length} registered suites across 6 domains`);
 console.log('================================================================================\n');
 
@@ -431,7 +410,15 @@ for (const item of SUITE_INVENTORY) {
     duration_ms: durationMs,
     started_at: startedAt,
     finished_at: finishedAt,
-    commit_sha: currentSha,
+    commit_sha: checkedOutSha,
+    identity: {
+      workflow_sha: workflowSha,
+      pr_head_sha: prHeadSha,
+      checked_out_sha: checkedOutSha,
+      base_sha: baseSha,
+      workflow_ref: workflowRef,
+      pr_ref: prRef
+    },
     environment: process.env.CI ? 'github_actions' : 'local_diagnostics',
     stdout_sha256: stdoutSha256,
     stderr_sha256: stderrSha256,
@@ -482,16 +469,28 @@ const writtenFiles = fs.readdirSync(OUT_DIR);
 const missingEvidenceFiles = results.filter(r => !writtenFiles.includes(`${r.suite_id}.json`));
 const transportSelfTestPassed = missingEvidenceFiles.length === 0 && writtenFiles.length >= results.length;
 
+const identity = {
+  workflow_sha: workflowSha,
+  pr_head_sha: prHeadSha,
+  checked_out_sha: checkedOutSha,
+  base_sha: baseSha,
+  workflow_ref: workflowRef,
+  pr_ref: prRef,
+  checked_out_branch: checkedOutBranch,
+  source_sha_authority: checkedOutSha !== 'UNKNOWN_SHA' ? 'checked_out_sha' : 'UNVERIFIED'
+};
+
 const summary = {
   platform: 'IINSHA AI-BOS CI Diagnostics (Gate 0A-0H)',
   generated_at: new Date().toISOString(),
   repository: process.env.GITHUB_REPOSITORY ?? 'adnin4/inshatech',
-  commit_sha: currentSha,
+  commit_sha: checkedOutSha,
   ref: currentBranch,
   workflow_run_id: process.env.GITHUB_RUN_ID ?? null,
   runner: 'scripts/ci_evidence_runner.mjs',
   evidence_only: true,
   production_certification: false,
+  identity,
   transport_self_test: {
     passed: transportSelfTestPassed,
     total_expected_files: results.length,
@@ -520,7 +519,7 @@ const summary = {
   root_cause_graph: rootCauseGraph,
   immutable_green_baseline: {
     frozen: failedSuites.length === 0,
-    baseline_sha: failedSuites.length === 0 ? currentSha : null,
+    baseline_sha: failedSuites.length === 0 ? checkedOutSha : null,
     status: failedSuites.length === 0 ? 'IMMUTABLE_GREEN_BASELINE_ESTABLISHED' : 'FAILURES_PRESENT'
   },
   results: results.map(({ stdout, stderr, ...rest }) => rest)
@@ -537,8 +536,13 @@ const md = [
   '',
   `* **Generated At:** ${summary.generated_at}`,
   `* **Repository:** ${summary.repository}`,
-  `* **Commit SHA:** \`${summary.commit_sha}\``,
-  `* **Branch / Ref:** \`${summary.ref}\``,
+  `* **Workflow SHA:** \`${identity.workflow_sha}\``,
+  `* **PR Head SHA:** \`${identity.pr_head_sha}\``,
+  `* **Checked-Out Source SHA:** \`${identity.checked_out_sha}\``,
+  `* **Base SHA:** \`${identity.base_sha}\``,
+  `* **Workflow Ref:** \`${identity.workflow_ref}\``,
+  `* **PR Ref:** \`${identity.pr_ref}\``,
+  `* **Branch / Ref Name:** \`${summary.ref}\``,
   `* **Workflow Run ID:** ${summary.workflow_run_id ?? 'LOCAL_EXECUTION'}`,
   `* **Transport Self-Test:** ${transportSelfTestPassed ? '🟢 VERIFIED NON-EMPTY & COMPLETE' : '🔴 TRANSPORT_INTEGRITY_FAILED'}`,
   `* **Immutable Baseline:** ${summary.immutable_green_baseline.status}`,
@@ -547,6 +551,7 @@ const md = [
   '- This artifact records diagnostic CI execution evidence only.',
   '- Zero static assertions or test passes self-certify production readiness.',
   '- External runtime evidence is mandatory for production and revenue certification.',
+  '- GitHub pull-request merge SHA is recorded separately from the checked-out source SHA.',
   '',
   '## Execution Summary',
   `- **Total Suites Audited:** ${summary.counts.total}`,
@@ -564,7 +569,7 @@ const md = [
   '',
   '## Diagnostic Output for Non-Passing Suites',
   failedSuites.length === 0
-    ? 'All 23 suites passed with zero failures. Immutable green baseline frozen.'
+    ? `All ${summary.counts.total} suites passed with zero failures. Immutable green baseline frozen.`
     : failedSuites.flatMap((r) => [
         `### Suite: \`${r.suite_id}\` (${r.status} | Category: ${r.failure_category})`,
         '',
@@ -591,4 +596,3 @@ console.log(`- docs/CI_FAILURE_EVIDENCE.md`);
 console.log('================================================================================\n');
 
 process.exit(failedSuites.length ? 1 : 0);
-
