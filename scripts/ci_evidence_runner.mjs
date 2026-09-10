@@ -331,6 +331,18 @@ const SUITE_INVENTORY = [
     upstream_dependencies: ['visual_baseline', 'form_contract']
   },
   {
+    id: 'release_identity',
+    name: 'Cryptographic Release Identity Engine',
+    command: 'node',
+    args: ['scripts/test_release_identity.mjs'],
+    domain: 'GOVERNANCE',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-REL-01', 'REQ-IDENTITY-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['reality_boundary', 'system_claims']
+  },
+  {
     id: 'business_truth_gates',
     name: 'Production & Revenue Boundary Truth Gates',
     command: 'node',

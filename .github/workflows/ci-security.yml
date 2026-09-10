@@ -1,0 +1,29 @@
+name: CI Security (Zero-Trust, Injection & Multi-Tenant Isolation)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ci-security:
+    name: Security, Direct DB Scan & Tenant RLS Isolation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Real-World Security & Injection Gate
+        run: node scripts/real_world_security_gate.mjs
+      - name: Direct DB Access Scanner
+        run: node scripts/check-direct-db-access.js
+      - name: Multi-Tenant RLS & Adversarial Isolation Suite
+        run: |
+          node scripts/test_tenant_rls_isolation.mjs
+          node scripts/test_tenant_isolation_adversarial.mjs

@@ -1,0 +1,39 @@
+name: CI Fast (Syntax, Token Baselines & Static Contracts)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ci-fast:
+    name: Syntax, Visual Baseline & Code Contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Syntax & Import Integrity
+        run: |
+          node -c app.js
+          node -c hero3d.js
+          node -c scroll-engine.js
+          node -c worker.js
+          node -c universal_ai_copilot.js
+          node scripts/check_functions_imports.mjs
+      - name: Visual Baseline & Form Contracts
+        run: |
+          node scripts/visual_regression_baseline.mjs
+          node scripts/form_contract_audit.mjs
+      - name: Governance & Truth Gates
+        run: |
+          node scripts/verify_reality_boundary.mjs
+          node scripts/verify_all_system_claims.mjs
+          node scripts/verify_business_truth_gates.mjs
+          node scripts/test_release_identity.mjs

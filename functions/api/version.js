@@ -22,6 +22,7 @@ function isOriginAllowed(origin) {
 }
 
 import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
+import { verifyReleaseIdentity } from '../_shared/release_identity.js';
 
 function databaseIdentity(env) {
     const canonical = env.CANONICAL_SUPABASE_PROJECT_REF || env.SUPABASE_PROJECT_REF || CANONICAL_RELEASE.canonical_db_ref;
@@ -57,7 +58,13 @@ export async function onRequestGet(context) {
 
     const deployedSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
     const expectedSha = env.EXPECTED_RELEASE_SHA || deployedSha;
-    const parity = Boolean(deployedSha && expectedSha && deployedSha.toLowerCase() === expectedSha.toLowerCase());
+    const identity = verifyReleaseIdentity({
+        deployment_sha: deployedSha,
+        runtime_sha: expectedSha,
+        source_sha: env.GIT_COMMIT_SHA || deployedSha,
+        branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch
+    });
+    const parity = identity.verified;
     const db = databaseIdentity(env);
 
     const payload = {
@@ -66,6 +73,7 @@ export async function onRequestGet(context) {
         deploy_sha: deployedSha,
         expected_release_sha: expectedSha,
         parity,
+        release_identity: identity,
         branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,
         environment: env.ENVIRONMENT || 'production',

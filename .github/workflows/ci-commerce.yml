@@ -1,0 +1,37 @@
+name: CI Commerce (Service Authority, Payment Security & Reconciliation)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ci-commerce:
+    name: Pricing Authority, Payment Contracts & Reconciliation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Service Authority, Pricing Peg, Coupon & FX Invariants
+        run: |
+          node scripts/test_service_authority_and_pricing.mjs
+          node scripts/verify_payment_schema_parity.mjs
+          node scripts/test_payment_coupon_policy.mjs
+          node scripts/test_payment_fx_policy.mjs
+      - name: Payment State Machine & Webhook Hardening
+        run: |
+          node scripts/test_payment_state_machine.mjs
+          node scripts/payment_webhook_contract.mjs
+          node scripts/test_payment_hardening_contract.mjs
+      - name: Adversarial, Replay Concurrency & Double-Entry Reconciliation
+        run: |
+          node scripts/test_payment_adversarial_suite.mjs
+          node scripts/test_payment_replay_concurrency.mjs
+          node scripts/test_payment_reconciliation.mjs

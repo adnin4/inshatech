@@ -1,0 +1,34 @@
+name: CI Runtime (Cloudflare Parity, Browser Certification & Live Surface)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ci-runtime:
+    name: Browser Interaction, Chaos & Surface Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Synthetic Browser & UI/UX Regression Certification
+        run: node scripts/production_browser_certification.mjs
+      - name: Chaos Resilience & Production SLO / DR
+        run: |
+          node scripts/production_slo_dr_certification.mjs
+          node scripts/chaos_resilience_certification.mjs
+      - name: Golden E2E Master & Full-Spectrum Execution
+        run: |
+          node scripts/golden_e2e_master_certification.mjs
+          node scripts/master_full_spectrum_executor.mjs
+          node scripts/all_surface_reliability_audit.mjs
+      - name: Live Surface Smoke & Button Parity Scanner
+        run: node scripts/live-surface-smoke.mjs
