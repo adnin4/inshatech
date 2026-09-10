@@ -1,12 +1,12 @@
 # IINSHA AI-BOS — Final Readiness Conformance Report
 
-Generated: 2026-09-07T21:06:43.052Z
+Generated: 2026-09-10T09:45:19.804Z
 
 Mode: `CONFORMANCE / STAGING READINESS`
 
 | Check | Status | Production Verified |
 |---|---|---|
-| knowledge_search | SUCCESS | YES |
+| knowledge_search | SUCCESS | NO |
 | create_crm_lead | NOT_CONFIGURED | NO |
 | checkout_provider | NOT_CONFIGURED | NO |
 | destructive_action_block | BLOCKED | NO |
