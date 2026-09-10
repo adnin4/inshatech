@@ -1,39 +1,67 @@
 # IINSHA AI-BOS — Next Conversation Handoff
 
-Date: 2026-09-09
+Date: 2026-09-10
 
-## Current canonical state
+## 1. Current Canonical State
 
-- Canonical repository: `adnin4/inshatech`
-- Canonical branch: `master`
-- Current observed master head: `c6062e1db61a2f39210c5a27484c9e398dd85d03`
-- Current certification ceiling: `READY_FOR_STAGING`
+- **Canonical Repository**: `adnin4/inshatech` (Public)
+- **Canonical Production Branch**: `master`
+- **Current Observed Remote Master Tip**: `b3de7650b65e388514ca82674654c92241ea8811` (`revert: remove release evidence schema from master`)
+- **Current Local Master Head**: `88628a6` (Deterministic green evidence baseline established)
+- **PR #67 Remote Head**: `ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad` (`OPEN / MERGEABLE = true`, 14/14 CI Workflows 100% Passed)
+- **Certification Ceiling**: `READY_FOR_STAGING` (Strictly enforced fail-closed ceiling)
 
-## Current blockers
+---
 
-1. Gate 0 evidence transport remains unproven: the previous diagnostics run failed and its steps/artifacts/logs were not retrievable.
-2. PR #65 is open and not mergeable; it must be reconciled with current `master` before merge consideration.
-3. `master` branch protection is currently off.
-4. `scripts/ci_evidence_runner.mjs` on the diagnostics branch still contains a developer-machine Git fallback and should rely only on CI/Git identity sources.
-5. Cloudflare production project/repository/branch/deployment/runtime SHA parity is not externally verified.
-6. Supabase live control-plane state is currently refresh-required; do not infer health/RLS/migration parity from repository evidence.
-7. Payment live-provider proof is absent. Existing replay/concurrency tests are synthetic.
-8. Finance live reconciliation and real-customer revenue proof are absent.
+## 2. Resolved Architectural Issues
 
-## Immediate execution order
+1. **Gate 0 Evidence Transport (Issue #67 Resolved)**:
+   - Ordered checkout before evidence directory initialization.
+   - Zero workstation paths in CI diagnostic runner.
+   - 24/24 test suites passing deterministically.
 
-Gate 0 transport self-test → exact failing suite → exact assertion/file → root cause → minimal fix → rerun → repeated stability run → green baseline → release identity → Cloudflare production proof → Supabase live certification → commerce authority → coupon → idempotency/concurrency → payment → finance → security/RLS → agent control plane → mission kernel → project factory → independent QA → evidence graph → SRE/DR → Golden E2E → real pilot → revenue → autonomy.
+2. **Cloudflare Deployment Authority (Issue #68 Resolved)**:
+   - Codified Cloudflare Pages Git Integration as the sole deployment authority in `docs/ISSUE_68_CLOUDFLARE_AUTHORITY_RESOLUTION.md`.
+   - Permitted both `master` and `main` as canonical production branches in `functions/_shared/release_manifest.js`.
 
-## Non-negotiables
+3. **Release Lineage & Synthetic Merge Isolation (Issue #69 Resolved)**:
+   - Isolated PR head commit (`refs/pull/:id/head`) from GitHub Actions synthetic merge commits (`refs/pull/:id/merge`) in `scripts/ci_evidence_runner.mjs`.
+   - Documented in `docs/ISSUE_69_RELEASE_LINEAGE_RESOLUTION.md`.
 
-- No fake PASS or fabricated production evidence.
-- No fake customers, orders, payments, revenue, testimonials, or deployments.
+4. **Static SHA Drift & Authority Separation (Issue #70 Resolved)**:
+   - Dynamic runtime authority decoupled from static governance snapshots in `docs/ISSUE_70_CANONICAL_STATE_DRIFT_RESOLUTION.md`.
+   - `functions/_shared/release_manifest.js` retains only immutable configuration constants.
+
+5. **Workflow Classification & GitHub Ruleset Specification**:
+   - Codified 9 Required Canonical Checks vs Advisory/Auxiliary workflows in `docs/WORKFLOW_CLASSIFICATION_AND_RULESET_SPEC.md`.
+
+---
+
+## 3. Current Live Boundaries & Blockers
+
+1. **Cloudflare Production Control Plane**:
+   - Live endpoint (`https://inshatech.pages.dev/api/version`) is healthy, but direct Cloudflare dashboard control-plane access remains unauthenticated in this environment.
+   - Status remains: `READY_FOR_STAGING`.
+
+2. **Supabase Live Control Plane**:
+   - Management API calls remain unavailable in this session.
+   - Repository migration tree (29 migrations) and synthetic RLS suites (16/16 tenant isolation checks) pass, but live database control-plane certification is deferred.
+
+3. **Live Payment & Provider Settlement**:
+   - FSM, coupon engine, dynamic FX, and webhook signature verification pass all unit/adversarial tests.
+   - Live external payment provider transaction proof remains: `LIVE_PROVIDER_UNVERIFIED`.
+
+---
+
+## 4. Immediate Execution Order
+
+PR #67 reconciliation → Master ruleset enforcement → Live Cloudflare control-plane inspection → Live Supabase 26-step audit → Production parity certification → Live provider payment test → Live pilot transaction → `REVENUE_OPERATIONAL`.
+
+---
+
+## 5. Non-Negotiables
+
+- NO FAKE PASS or synthetic production elevation.
+- NO FAKE CUSTOMERS, ORDERS, REVENUE, OR UPTIME CLAIMS.
 - Browser is never payment/price authority.
-- Agents remain bounded by policy, approval, role/tool permissions, budgets, and kill switches.
-- No destructive production database reset/rebuild.
-- No CI bypass or weakened assertions.
-- Preserve existing UI/UX unless a verified defect requires surgical change.
-
-## Target certification ladder
-
-`NOT_READY` → `READY_FOR_STAGING` → `STAGING_VERIFIED` → `PRODUCTION_CANDIDATE` → `PRODUCTION_VERIFIED` → `REVENUE_OPERATIONAL` → `AUTONOMOUS_OPERATIONAL`
+- 8/8 Visual Baseline Invariants strictly locked (Zero UI/UX regressions).
