@@ -1,19 +1,34 @@
 {
-  "repository_head": "8c0152bb912083637852ef4275c734e6d58b90ab",
-  "default_branch": "master",
-  "production_url": "https://inshatech.pages.dev",
-  "deployment_provider": "cloudflare_pages",
-  "database_project": "uulqaslcfjrvkvyegmvo",
-  "api_authority": "https://inshatech.pages.dev/api",
-  "canonical_frontend_root": "portfolio-showcase",
-  "git_status": "CLEAN",
-  "commit_message": "fix: make Cloudflare Pages the authoritative production deployment",
-  "parity_state": {
-    "git_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "build_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "deploy_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "live_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
-    "status": "EXACT_PARITY_MATCH"
+  "identity_source": "CI_SOURCE_OF_TRUTH",
+  "source_repository": "https://github.com/adnin4/inshatech.git",
+  "canonical_branch": "master",
+  "canonical_runtime_code_head": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "current_repository_tip": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "runtime_identity": "UNVERIFIED",
+  "build_timestamp": "2026-09-10T07:31:03Z",
+  "schema_version": "2026.9.8-autonomous-v2",
+  "database_identity": {
+    "canonical_db_ref": "kitwadizsvjmuxkfewxj",
+    "runtime_db_ref": null,
+    "db_parity": false,
+    "status": "UNVERIFIED"
   },
-  "status": "VERIFIED"
+  "parity_state": {
+    "source_sha": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+    "build_sha": null,
+    "deploy_sha": null,
+    "runtime_sha": null,
+    "status": "UNVERIFIED"
+  },
+  "control_plane_status": "EXTERNAL_EVIDENCE_REQUIRED",
+  "runtime_status": "UNVERIFIED",
+  "cloudflare_production": "UNVERIFIED",
+  "supabase_live": "UNVERIFIED",
+  "browser_production_e2e": "UNVERIFIED",
+  "notifications": "UNVERIFIED",
+  "backup_restore": "UNVERIFIED",
+  "rollback": "UNVERIFIED",
+  "ai_execution": "TEST_VERIFIED_ONLY",
+  "payments": "SERVER_AUTHORITY_HARDENED_UNVERIFIED_LIVE_PROVIDER",
+  "certification_status": "READY_FOR_STAGING"
 }
