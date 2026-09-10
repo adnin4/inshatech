@@ -1,57 +1,46 @@
 {
   "manifest_name": "IINSHA AI-BOS Production Evidence Manifest",
-  "generated_at": "2026-08-28T17:07:00Z",
+  "generated_at": "2026-09-10T07:31:03Z",
+  "evidence_boundary": "SOURCE_AND_TEST_EVIDENCE_ONLY",
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "production_branch": "master",
   "production_domain": "https://inshatech.pages.dev",
-  "evidence_records": [
-    {
-      "category": "SECURITY",
-      "suite": "P0 Security & Content Leak Audit",
-      "result": "PASS",
-      "files_audited": 344,
-      "violations": 0
-    },
-    {
-      "category": "VISUAL_BASELINE",
-      "suite": "Gate 0 UI/UX Baseline Firewall",
-      "result": "PASS",
-      "invariants_locked": 8,
-      "total_invariants": 8
-    },
-    {
-      "category": "FORM_CONTRACTS",
-      "suite": "Step 7 Form Contract Root-Cause Repair",
-      "result": "PASS",
-      "forms_passed": 6,
-      "fields_audited": 18
-    },
-    {
-      "category": "SOLUTION_FINDER",
-      "suite": "Step 8 AI Solution Finder E2E",
-      "result": "PASS",
-      "tests_passed": 15,
-      "total_tests": 15
-    },
-    {
-      "category": "COPILOT_ENGINE",
-      "suite": "Step 9 Universal AI Copilot E2E",
-      "result": "PASS",
-      "tests_passed": 10,
-      "total_tests": 10
-    },
-    {
-      "category": "SURFACE_SMOKE",
-      "suite": "Live Surface & Button Parity Scanner",
-      "result": "PASS",
-      "checks_passed": 30,
-      "total_checks": 30
-    }
-  ],
+  "source_head_sha": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "external_runtime_evidence": {
+    "cloudflare_deployment_id": null,
+    "cloudflare_deployed_sha": null,
+    "runtime_sha": null,
+    "api_sha": null,
+    "browser_asset_sha": null,
+    "supabase_project_ref": "kitwadizsvjmuxkfewxj",
+    "supabase_runtime_project_ref": null,
+    "supabase_migration_head": null
+  },
+  "source_test_evidence": {
+    "ci_diagnostics": "TEST_VERIFIED_SYNTHETIC",
+    "release_identity_contract": "TEST_VERIFIED_SYNTHETIC",
+    "payment_contracts": "TEST_VERIFIED_SYNTHETIC",
+    "tenant_isolation_contracts": "TEST_VERIFIED_SYNTHETIC",
+    "browser_regression": "TEST_VERIFIED_SYNTHETIC"
+  },
   "runtime_state_summary": {
-    "cloudflare_pages_edge": "LIVE_VERIFIED",
-    "agentic_gateway_v2": "LIVE_VERIFIED",
-    "supabase_database": "MISMATCH_UNVERIFIED",
-    "payment_gateways": "NOT_CONFIGURED"
-  }
+    "cloudflare_pages_edge": "UNVERIFIED",
+    "agentic_gateway_v2": "UNVERIFIED",
+    "supabase_database": "UNVERIFIED",
+    "payment_gateways": "NOT_CONFIGURED_OR_UNVERIFIED",
+    "finance_reconciliation": "UNVERIFIED",
+    "real_customer_revenue": "UNVERIFIED"
+  },
+  "certification": {
+    "status": "READY_FOR_STAGING",
+    "production_candidate": false,
+    "production_verified": false,
+    "revenue_operational": false,
+    "autonomous_operational": false
+  },
+  "rules": [
+    "Generated documentation may summarize evidence but may not manufacture runtime or production verification.",
+    "CI and synthetic tests do not prove live provider, database, deployment, customer, payment, revenue, or browser production state.",
+    "Missing external identity remains UNVERIFIED until independently captured."
+  ]
 }
