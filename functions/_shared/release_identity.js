@@ -59,7 +59,10 @@ export function verifyReleaseIdentity(context = {}) {
 
     const all_shas = [source_sha, build_sha, deployment_sha, runtime_sha];
     const allMatch = missing_fields.length === 0 && all_shas.every((sha) => sha === source_sha);
-    const branchMatch = branch === CANONICAL_RELEASE.canonical_branch;
+    const canonicalBranches = Array.isArray(CANONICAL_RELEASE.canonical_branches)
+        ? CANONICAL_RELEASE.canonical_branches
+        : [CANONICAL_RELEASE.canonical_branch];
+    const branchMatch = canonicalBranches.includes(branch);
 
     let parity_status = 'UNVERIFIED';
     if (missing_fields.length > 0) {
@@ -79,6 +82,7 @@ export function verifyReleaseIdentity(context = {}) {
         branch: {
             active: branch || 'UNSPECIFIED',
             canonical: CANONICAL_RELEASE.canonical_branch,
+            allowed: canonicalBranches,
             matches: branchMatch
         },
         shas: {

@@ -142,7 +142,7 @@ jobs:
             echo "Production SHA mismatch: expected $expected, got $actual"
             exit 1
           }
-          test "$branch" = 'master' || { echo "Unexpected production branch: $branch"; exit 1; }
+          test "$branch" = 'master' || test "$branch" = 'main' || { echo "Unexpected production branch: $branch"; exit 1; }
           test "$repo" = 'https://github.com/adnin4/inshatech.git' || { echo "Unexpected canonical repository: $repo"; exit 1; }
           test "$db_parity" = 'true' || { echo 'Production database identity is not verified for parity'; exit 1; }
           test "$status" = 'LIVE_VERIFIED' || { echo "Production release status is $status, not LIVE_VERIFIED"; exit 1; }

@@ -63,11 +63,23 @@ const wrongBranch = verifyReleaseIdentity({
     build_sha: testSha,
     deployment_sha: testSha,
     runtime_sha: testSha,
-    branch: 'main'
+    branch: 'staging-dev'
 });
 assert.strictEqual(wrongBranch.verified, false);
 assert.strictEqual(wrongBranch.parity_status, 'NON_CANONICAL_BRANCH');
 assert.strictEqual(wrongBranch.branch.matches, false);
+
+// 5B. Both master and main (Cloudflare Pages production alias) are authorized canonical branches
+const mainBranch = verifyReleaseIdentity({
+    source_sha: testSha,
+    build_sha: testSha,
+    deployment_sha: testSha,
+    runtime_sha: testSha,
+    branch: 'main'
+});
+assert.strictEqual(mainBranch.verified, true);
+assert.strictEqual(mainBranch.parity_status, 'FULL_PARITY_VERIFIED');
+assert.strictEqual(mainBranch.branch.matches, true);
 
 // 6. No evidence remains unverified
 const none = verifyReleaseIdentity({});
