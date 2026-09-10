@@ -51,30 +51,52 @@ function findGitExe() {
   return null;
 }
 
-function resolveCommitSha() {
-  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA;
+function resolveGitInfo() {
   const gitExe = findGitExe();
-  if (!gitExe) return 'UNKNOWN_SHA';
-  try {
-    return execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-  } catch {
-    return 'UNKNOWN_SHA';
+  let checkedOutSha = 'UNKNOWN_SHA';
+  let checkedOutBranch = 'UNKNOWN_BRANCH';
+
+  if (gitExe) {
+    try {
+      checkedOutSha = execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    } catch {}
+    try {
+      checkedOutBranch = execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
+    } catch {}
   }
+
+  // PR_HEAD_SHA is explicitly passed by workflow or environment for pull requests
+  const prHeadSha = process.env.PR_HEAD_SHA || (checkedOutSha !== 'UNKNOWN_SHA' ? checkedOutSha : null);
+  const workflowSha = process.env.GITHUB_SHA || null;
+  const workflowRef = process.env.GITHUB_REF || null;
+  const workflowRefName = process.env.GITHUB_REF_NAME || null;
+
+  // Authoritative commit SHA is the actual PR head / checked-out commit, NOT the synthetic PR merge commit
+  const authoritativeSha = prHeadSha || checkedOutSha || workflowSha || 'UNKNOWN_SHA';
+  const authoritativeBranch = workflowRefName || (checkedOutBranch !== 'UNKNOWN_BRANCH' ? checkedOutBranch : 'UNKNOWN_BRANCH');
+
+  return {
+    authoritativeSha,
+    authoritativeBranch,
+    lineage: {
+      checked_out_sha: checkedOutSha,
+      pr_head_sha: prHeadSha || 'NOT_PROVIDED',
+      workflow_sha: workflowSha || 'NOT_PROVIDED',
+      workflow_ref: workflowRef || 'NOT_PROVIDED',
+      synthetic_merge_detected: Boolean(
+        workflowSha &&
+        prHeadSha &&
+        workflowSha !== prHeadSha &&
+        (workflowRef && workflowRef.includes('/merge'))
+      )
+    }
+  };
 }
 
-function resolveBranch() {
-  if (process.env.GITHUB_REF_NAME) return process.env.GITHUB_REF_NAME;
-  const gitExe = findGitExe();
-  if (!gitExe) return 'UNKNOWN_BRANCH';
-  try {
-    return execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-  } catch {
-    return 'UNKNOWN_BRANCH';
-  }
-}
-
-const currentSha = resolveCommitSha();
-const currentBranch = resolveBranch();
+const gitInfo = resolveGitInfo();
+const currentSha = gitInfo.authoritativeSha;
+const currentBranch = gitInfo.authoritativeBranch;
+const releaseLineage = gitInfo.lineage;
 
 /**
  * GATE 0A: Full Test Inventory with Metadata
@@ -502,6 +524,7 @@ const summary = {
   repository: process.env.GITHUB_REPOSITORY ?? 'adnin4/inshatech',
   commit_sha: currentSha,
   ref: currentBranch,
+  release_lineage: releaseLineage,
   workflow_run_id: process.env.GITHUB_RUN_ID ?? null,
   runner: 'scripts/ci_evidence_runner.mjs',
   evidence_only: true,
@@ -551,8 +574,12 @@ const md = [
   '',
   `* **Generated At:** ${summary.generated_at}`,
   `* **Repository:** ${summary.repository}`,
-  `* **Commit SHA:** \`${summary.commit_sha}\``,
+  `* **Commit SHA (Authoritative Source):** \`${summary.commit_sha}\``,
   `* **Branch / Ref:** \`${summary.ref}\``,
+  `* **Release Lineage (Checked Out):** \`${releaseLineage.checked_out_sha}\``,
+  `* **Release Lineage (PR Head):** \`${releaseLineage.pr_head_sha}\``,
+  `* **Release Lineage (Workflow SHA):** \`${releaseLineage.workflow_sha}\``,
+  `* **Synthetic Merge Commit Detected:** \`${releaseLineage.synthetic_merge_detected}\``,
   `* **Workflow Run ID:** ${summary.workflow_run_id ?? 'LOCAL_EXECUTION'}`,
   `* **Transport Self-Test:** ${transportSelfTestPassed ? '🟢 VERIFIED NON-EMPTY & COMPLETE' : '🔴 TRANSPORT_INTEGRITY_FAILED'}`,
   `* **Immutable Baseline:** ${summary.immutable_green_baseline.status}`,
