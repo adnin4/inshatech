@@ -22,6 +22,7 @@ jobs:
             echo "evidence_transport_initialized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "github_repository=${GITHUB_REPOSITORY:-UNKNOWN}"
             echo "github_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "pull_request_head_sha=${{ github.event.pull_request.head.sha || 'UNKNOWN' }}"
             echo "github_ref_name=${GITHUB_REF_NAME:-UNKNOWN}"
             echo "github_run_id=${GITHUB_RUN_ID:-UNKNOWN}"
             echo "runner_os=${RUNNER_OS:-UNKNOWN}"
@@ -30,17 +31,35 @@ jobs:
       - name: Checkout exact PR head
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Capture repository identity
         shell: bash
         run: |
-          set -u
+          set +e
+          git_head="$(git rev-parse HEAD 2>&1)"
+          git_head_exit=$?
+          git_branch="$(git branch --show-current 2>&1)"
+          git_branch_exit=$?
+          git_status="$(git status --short 2>&1)"
+          git_status_exit=$?
+          expected_pr_head="${{ github.event.pull_request.head.sha || github.sha }}"
           {
-            echo "git_head=$(git rev-parse HEAD)"
-            echo "git_branch=$(git branch --show-current || true)"
-            echo "git_status=$(git status --short)"
+            echo "expected_pr_head=${expected_pr_head}"
+            echo "git_head=${git_head}"
+            echo "git_head_exit=${git_head_exit}"
+            echo "git_branch=${git_branch}"
+            echo "git_branch_exit=${git_branch_exit}"
+            echo "git_status=${git_status}"
+            echo "git_status_exit=${git_status_exit}"
+            if [ "$git_head_exit" -eq 0 ] && [ "$git_head" = "$expected_pr_head" ]; then
+              echo "identity_match=true"
+            else
+              echo "identity_match=false"
+            fi
           } > ci-failure-evidence/repository-identity.txt
+          exit 0
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -51,12 +70,13 @@ jobs:
       - name: Capture toolchain identity
         shell: bash
         run: |
-          set -u
+          set +e
           {
             node --version
             npm --version
             git --version
-          } > ci-failure-evidence/toolchain.txt
+          } > ci-failure-evidence/toolchain.txt 2>&1
+          exit 0
 
       - name: Install dependencies
         shell: bash
@@ -74,11 +94,13 @@ jobs:
         if: always()
         shell: bash
         run: |
+          set +e
           {
             echo "evidence_transport_finalized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "working_tree=$(git status --short 2>/dev/null || true)"
             echo "evidence_files=$(find ci-failure-evidence -maxdepth 1 -type f -printf '%f\n' 2>/dev/null | sort || true)"
           } > ci-failure-evidence/transport-end.txt
+          exit 0
 
       - name: Upload deterministic CI evidence
         if: always()
