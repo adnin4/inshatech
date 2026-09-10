@@ -39,8 +39,8 @@ export async function onRequestPost(context) {
     {
       "pipeline": "Name of automation",
       "nodes": ["Step 1", "Step 2", "Step 3"],
-      "estimatedCost": "$XXX",
-      "timeSavedWeekly": "XX Hours",
+      "estimatedCost": "$[Amount in USD]",
+      "timeSavedWeekly": "[Number] Hours",
       "recommendedStack": "Tech stack details"
     }`;
 
