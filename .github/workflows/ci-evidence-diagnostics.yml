@@ -27,8 +27,11 @@ jobs:
           {
             echo "evidence_transport_initialized_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "github_repository=${GITHUB_REPOSITORY:-UNKNOWN}"
-            echo "github_sha=${GITHUB_SHA:-UNKNOWN}"
-            echo "pull_request_head_sha=${{ github.event.pull_request.head.sha || 'UNKNOWN' }}"
+            echo "workflow_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "pr_head_sha=${{ github.event.pull_request.head.sha || 'UNKNOWN' }}"
+            echo "base_sha=${{ github.event.pull_request.base.sha || 'UNKNOWN' }}"
+            echo "workflow_ref=${GITHUB_REF:-UNKNOWN}"
+            echo "pr_ref=refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head"
             echo "github_ref_name=${GITHUB_REF_NAME:-UNKNOWN}"
             echo "github_run_id=${GITHUB_RUN_ID:-UNKNOWN}"
             echo "runner_os=${RUNNER_OS:-UNKNOWN}"
@@ -36,6 +39,10 @@ jobs:
 
       - name: Capture repository identity
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || 'UNKNOWN' }}
+          PR_REF: refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head
         run: |
           set +e
           git_head="$(git rev-parse HEAD 2>&1)"
@@ -44,16 +51,19 @@ jobs:
           git_branch_exit=$?
           git_status="$(git status --short 2>&1)"
           git_status_exit=$?
-          expected_pr_head="${{ github.event.pull_request.head.sha || github.sha }}"
           {
-            echo "expected_pr_head=${expected_pr_head}"
-            echo "git_head=${git_head}"
+            echo "workflow_sha=${GITHUB_SHA:-UNKNOWN}"
+            echo "pr_head_sha=${PR_HEAD_SHA:-UNKNOWN}"
+            echo "checked_out_sha=${git_head}"
+            echo "base_sha=${BASE_SHA:-UNKNOWN}"
+            echo "workflow_ref=${GITHUB_REF:-UNKNOWN}"
+            echo "pr_ref=${PR_REF:-UNKNOWN}"
             echo "git_head_exit=${git_head_exit}"
             echo "git_branch=${git_branch}"
             echo "git_branch_exit=${git_branch_exit}"
             echo "git_status=${git_status}"
             echo "git_status_exit=${git_status_exit}"
-            if [ "$git_head_exit" -eq 0 ] && [ "$git_head" = "$expected_pr_head" ]; then
+            if [ "$git_head_exit" -eq 0 ] && [ "$git_head" = "$PR_HEAD_SHA" ]; then
               echo "identity_match=true"
             else
               echo "identity_match=false"
@@ -86,6 +96,10 @@ jobs:
 
       - name: Run suites independently and capture evidence
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || 'UNKNOWN' }}
+          PR_REF: refs/pull/${{ github.event.pull_request.number || 'UNKNOWN' }}/head
         run: |
           set -o pipefail
           node scripts/ci_evidence_runner.mjs 2>&1 | tee ci-failure-evidence/runner.log
