@@ -1,6 +1,6 @@
 # IINSHA AI-BOS — System Claim Classification Report
 
-Generated: 2026-09-10T09:39:13.857Z
+Generated: 2026-09-10T09:39:30.930Z
 
 This report certifies static/structural invariants only. It is not production-runtime evidence.
 
