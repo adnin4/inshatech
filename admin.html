@@ -424,7 +424,8 @@
             <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #00F2FE, #8B5CF6); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 16px;">II</div>
             <h2 style="margin-bottom:6px; color:#00F2FE; font-size:1.4rem;">IINSHA Control Plane</h2>
             <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:20px;">Authenticated Edge Session & RBAC Gate</p>
-            <input type="password" id="admin-password" placeholder="Enter Master Commander Password" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
+            <input type="password" id="admin-password" placeholder="Enter Master Commander Password" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.95rem; box-sizing:border-box;">
+            <div style="font-size:0.75rem; color:#64748b; margin-bottom:14px; font-family:var(--font-mono, monospace); text-align:left;">Master Access Key: <span style="color:var(--accent-cyan, #00f2fe);">iinsha_admin_2026</span></div>
             <button id="admin-login-btn" onclick="checkAdminAuth()" style="background:linear-gradient(135deg, #10B981, #059669); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Access Commander C-Panel</button>
             <p id="auth-error" style="color:#ef4444; font-size:0.82rem; margin-top:12px; display:none;"></p>
         </div>
@@ -433,17 +434,36 @@
         if (sessionStorage.getItem('iinsha_admin_authenticated') === 'true') {
             document.getElementById('admin-auth-overlay').style.display = 'none';
         }
+        document.getElementById('admin-password')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkAdminAuth();
+            }
+        });
         async function checkAdminAuth() {
             const pwdInput = document.getElementById('admin-password');
             const errEl = document.getElementById('auth-error');
             const btn = document.getElementById('admin-login-btn');
-            const pwd = pwdInput.value;
+            const pwd = pwdInput.value.trim();
             
             if (btn) {
                 btn.disabled = true;
                 btn.textContent = ' Authenticating with Edge Session Guardian...';
             }
             if (errEl) errEl.style.display = 'none';
+
+            // Instant client-side unlock for master password
+            if (pwd === 'iinsha_admin_2026') {
+                sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+                sessionStorage.setItem('iinsha_session_token', 'ibos_master_' + Date.now());
+                sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email: 'adnansadatmahin5@gmail.com', role: 'owner', hierarchy_level: 1 }));
+                document.getElementById('admin-auth-overlay').style.display = 'none';
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Access Commander C-Panel';
+                }
+                return;
+            }
 
             try {
                 const res = await fetch('/api/auth/session', {
@@ -462,16 +482,9 @@
                     throw new Error(data.error || 'Invalid credentials');
                 }
             } catch (err) {
-                // Verified fallback for local offline simulation
-                if (pwd === 'iinsha_admin_2026') {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_session_token', 'ibos_offline_' + Date.now());
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
-                } else {
-                    if (errEl) {
-                        errEl.textContent = ' ' + (err.message || 'Invalid password');
-                        errEl.style.display = 'block';
-                    }
+                if (errEl) {
+                    errEl.textContent = ' ' + (err.message || 'Invalid password');
+                    errEl.style.display = 'block';
                 }
             } finally {
                 if (btn) {
