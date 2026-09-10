@@ -88,6 +88,7 @@ CREATE OR REPLACE FUNCTION redeem_coupon_atomic(
 ) RETURNS JSONB
 LANGUAGE plpgsql
 SECURITY DEFINER
+SET search_path = pg_catalog, public
 AS $$
 DECLARE
     v_coupon ibos_coupons%ROWTYPE;
