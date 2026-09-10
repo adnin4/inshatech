@@ -13,6 +13,12 @@ jobs:
     name: CI Failure Evidence Diagnostics
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
       - name: Initialize evidence transport
         shell: bash
         run: |
@@ -27,12 +33,6 @@ jobs:
             echo "github_run_id=${GITHUB_RUN_ID:-UNKNOWN}"
             echo "runner_os=${RUNNER_OS:-UNKNOWN}"
           } > ci-failure-evidence/transport-start.txt
-
-      - name: Checkout exact PR head
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
 
       - name: Capture repository identity
         shell: bash
