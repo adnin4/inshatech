@@ -2,10 +2,10 @@
   "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
-  "canonical_runtime_code_head": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "canonical_runtime_code_head": "b3de7650b65e388514ca82674654c92241ea8811",
   "current_repository_tip": "b3de7650b65e388514ca82674654c92241ea8811",
   "runtime_identity": "UNVERIFIED",
-  "build_timestamp": "2026-09-10T07:31:03Z",
+  "build_timestamp": "2026-09-10T12:00:00Z",
   "schema_version": "2026.9.8-autonomous-v2",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
@@ -14,7 +14,7 @@
     "status": "UNVERIFIED"
   },
   "parity_state": {
-    "source_sha": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+    "source_sha": "b3de7650b65e388514ca82674654c92241ea8811",
     "build_sha": null,
     "deploy_sha": null,
     "runtime_sha": null,
@@ -30,5 +30,7 @@
   "rollback": "UNVERIFIED",
   "ai_execution": "TEST_VERIFIED_ONLY",
   "payments": "SERVER_AUTHORITY_HARDENED_UNVERIFIED_LIVE_PROVIDER",
-  "certification_status": "READY_FOR_STAGING"
+  "certification_status": "READY_FOR_STAGING",
+  "authority_type": "GOVERNANCE_SNAPSHOT",
+  "dynamic_evidence_authority": "ci-failure-evidence/summary.json"
 }

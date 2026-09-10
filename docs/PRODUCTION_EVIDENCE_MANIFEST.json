@@ -1,11 +1,11 @@
 {
   "manifest_name": "IINSHA AI-BOS Production Evidence Manifest",
-  "generated_at": "2026-09-10T07:31:03Z",
+  "generated_at": "2026-09-10T12:00:00Z",
   "evidence_boundary": "SOURCE_AND_TEST_EVIDENCE_ONLY",
   "canonical_repository": "https://github.com/adnin4/inshatech.git",
   "production_branch": "master",
   "production_domain": "https://inshatech.pages.dev",
-  "source_head_sha": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "source_head_sha": "b3de7650b65e388514ca82674654c92241ea8811",
   "external_runtime_evidence": {
     "cloudflare_deployment_id": null,
     "cloudflare_deployed_sha": null,
@@ -42,5 +42,7 @@
     "Generated documentation may summarize evidence but may not manufacture runtime or production verification.",
     "CI and synthetic tests do not prove live provider, database, deployment, customer, payment, revenue, or browser production state.",
     "Missing external identity remains UNVERIFIED until independently captured."
-  ]
+  ],
+  "authority_type": "GOVERNANCE_SNAPSHOT",
+  "dynamic_evidence_authority": "ci-failure-evidence/summary.json"
 }
