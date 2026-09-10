@@ -1,25 +1,26 @@
 /**
- * Release Identity Engine (Phase 1)
+ * Release Identity Engine (Phase 2)
  *
- * Enforces cryptographic consistency across source_sha, build_sha, deployment_sha, and runtime_sha.
- * Replaces ad-hoc string comparisons with a single, authoritative verification engine.
+ * Fail-closed verification of source/build/deployment/runtime identity.
+ * Missing identity is never inferred from another field.
  */
 
 import { CANONICAL_RELEASE } from './release_manifest.js';
 
 /**
- * Validates a SHA-1 or SHA-256 hash string format.
+ * Validate a full Git SHA-1 or SHA-256 hash.
+ * Short SHAs are intentionally rejected for release authority.
  * @param {string|null|undefined} sha
  * @returns {boolean}
  */
 export function isValidSha(sha) {
     if (typeof sha !== 'string') return false;
     const clean = sha.trim();
-    return /^[0-9a-f]{7,64}$/i.test(clean);
+    return /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(clean);
 }
 
 /**
- * Normalizes SHA to lowercase.
+ * Normalize a full release SHA.
  * @param {string|null|undefined} sha
  * @returns {string|null}
  */
@@ -31,38 +32,55 @@ export function normalizeSha(sha) {
 
 /**
  * Computes release identity parity across execution contexts.
+ * Every required identity field is independently supplied; no field is
+ * backfilled from deployment_sha or another observed value.
  *
  * @param {Object} context
- * @param {string} [context.source_sha]       - Git commit SHA at repository source
- * @param {string} [context.build_sha]        - SHA tagged during build/bundle step
- * @param {string} [context.deployment_sha]   - SHA provided by deployment provider (e.g. CF_PAGES_COMMIT_SHA)
- * @param {string} [context.runtime_sha]      - Expected release SHA configured in environment
- * @param {string} [context.branch]           - Active Git branch name
- * @returns {Object} Full cryptographic identity assessment
+ * @param {string} [context.source_sha]
+ * @param {string} [context.build_sha]
+ * @param {string} [context.deployment_sha]
+ * @param {string} [context.runtime_sha]
+ * @param {string} [context.branch]
+ * @returns {Object}
  */
 export function verifyReleaseIdentity(context = {}) {
+    const source_sha = normalizeSha(context.source_sha);
+    const build_sha = normalizeSha(context.build_sha);
     const deployment_sha = normalizeSha(context.deployment_sha);
-    const runtime_sha = normalizeSha(context.runtime_sha) || deployment_sha;
-    const build_sha = normalizeSha(context.build_sha) || deployment_sha;
-    const source_sha = normalizeSha(context.source_sha) || deployment_sha;
+    const runtime_sha = normalizeSha(context.runtime_sha);
+    const branch = typeof context.branch === 'string' ? context.branch.trim() : null;
 
-    const shasPresent = [deployment_sha, runtime_sha, build_sha, source_sha].filter(Boolean);
-    const hasSufficientData = shasPresent.length > 0;
+    const missing_fields = [];
+    if (!source_sha) missing_fields.push('source_sha');
+    if (!build_sha) missing_fields.push('build_sha');
+    if (!deployment_sha) missing_fields.push('deployment_sha');
+    if (!runtime_sha) missing_fields.push('runtime_sha');
+    if (!branch) missing_fields.push('branch');
 
-    const allMatch = hasSufficientData && shasPresent.every(s => s === shasPresent[0]);
+    const all_shas = [source_sha, build_sha, deployment_sha, runtime_sha];
+    const allMatch = missing_fields.length === 0 && all_shas.every((sha) => sha === source_sha);
+    const branchMatch = branch === CANONICAL_RELEASE.canonical_branch;
 
-    let parityStatus = 'UNVERIFIED';
-    if (!hasSufficientData) {
-        parityStatus = 'NO_SHA_SUPPLIED';
+    let parity_status = 'UNVERIFIED';
+    if (missing_fields.length > 0) {
+        parity_status = 'MISSING_IDENTITY_FIELDS';
+    } else if (!branchMatch) {
+        parity_status = 'NON_CANONICAL_BRANCH';
     } else if (allMatch) {
-        parityStatus = 'FULL_PARITY_VERIFIED';
+        parity_status = 'FULL_PARITY_VERIFIED';
     } else {
-        parityStatus = 'MISMATCH_DETECTED';
+        parity_status = 'MISMATCH_DETECTED';
     }
 
     return {
-        verified: allMatch,
-        parity_status: parityStatus,
+        verified: allMatch && branchMatch,
+        parity_status,
+        missing_fields,
+        branch: {
+            active: branch || 'UNSPECIFIED',
+            canonical: CANONICAL_RELEASE.canonical_branch,
+            matches: branchMatch
+        },
         shas: {
             source_sha: source_sha || 'UNSPECIFIED',
             build_sha: build_sha || 'UNSPECIFIED',
@@ -73,7 +91,6 @@ export function verifyReleaseIdentity(context = {}) {
             platform: 'IINSHA AI-BOS',
             canonical_repository: CANONICAL_RELEASE.canonical_repository,
             canonical_branch: CANONICAL_RELEASE.canonical_branch,
-            active_branch: context.branch || CANONICAL_RELEASE.canonical_branch,
             evaluated_at: new Date().toISOString()
         }
     };
