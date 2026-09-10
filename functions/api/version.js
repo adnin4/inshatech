@@ -66,13 +66,14 @@ export async function onRequestGet(context) {
         branch: env.CF_PAGES_BRANCH || null
     });
     const db = databaseIdentity(env);
+    const productionVerified = identity.verified && db.status === 'LIVE_VERIFIED';
 
     const payload = {
-        status: identity.verified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
+        status: productionVerified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
         platform: 'IINSHA AI-BOS',
         deploy_sha: identity.shas.deployment_sha === 'UNSPECIFIED' ? null : identity.shas.deployment_sha,
         expected_release_sha: identity.shas.runtime_sha === 'UNSPECIFIED' ? null : identity.shas.runtime_sha,
-        parity: identity.verified,
+        parity: productionVerified,
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,

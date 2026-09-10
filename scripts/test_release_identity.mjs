@@ -75,4 +75,91 @@ assert.strictEqual(none.verified, false);
 assert.strictEqual(none.parity_status, 'MISSING_IDENTITY_FIELDS');
 assert.ok(none.missing_fields.length > 0);
 
-console.log('✅ All release identity unit tests passed!');
+// 7. Regression: /api/version fail-closed on unverified database identity
+{
+    const { onRequestGet } = await import('../functions/api/version.js');
+
+    const validReleaseEnv = {
+        SOURCE_RELEASE_SHA: testSha,
+        BUILD_RELEASE_SHA: testSha,
+        CF_PAGES_COMMIT_SHA: testSha,
+        RUNTIME_RELEASE_SHA: testSha,
+        CF_PAGES_BRANCH: 'master'
+    };
+
+    // Case 7A: Valid release identity but missing DB configuration -> must fail-closed as UNVERIFIED
+    const resA = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: { ...validReleaseEnv }
+    });
+    const bodyA = await resA.json();
+    assert.strictEqual(bodyA.release_identity.verified, true, 'Release identity itself should be verified');
+    assert.strictEqual(bodyA.database_identity.status, 'UNVERIFIED', 'Database status must be UNVERIFIED');
+    assert.strictEqual(bodyA.status, 'UNVERIFIED', '/api/version status must be UNVERIFIED when DB is unverified');
+    assert.strictEqual(bodyA.parity, false, 'Parity must be false when DB is unverified');
+
+    // Case 7B: Valid release identity but DB mismatch -> must fail-closed as UNVERIFIED
+    const resB = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            ...validReleaseEnv,
+            CANONICAL_SUPABASE_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_PROJECT_REF: 'different_db_ref',
+            SUPABASE_RUNTIME_HEALTH: 'HEALTHY'
+        }
+    });
+    const bodyB = await resB.json();
+    assert.strictEqual(bodyB.database_identity.status, 'MISMATCH', 'Database status must detect MISMATCH');
+    assert.strictEqual(bodyB.status, 'UNVERIFIED', 'Status must remain UNVERIFIED on DB mismatch');
+    assert.strictEqual(bodyB.parity, false, 'Parity must be false on DB mismatch');
+
+    // Case 7C: Valid release identity + DB identity matches, but health is UNHEALTHY or unverified -> must fail-closed
+    const resC = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            ...validReleaseEnv,
+            CANONICAL_SUPABASE_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_HEALTH: 'DEGRADED'
+        }
+    });
+    const bodyC = await resC.json();
+    assert.strictEqual(bodyC.database_identity.status, 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED');
+    assert.strictEqual(bodyC.status, 'UNVERIFIED', 'Status must remain UNVERIFIED when DB health is degraded');
+    assert.strictEqual(bodyC.parity, false, 'Parity must be false when DB health is not HEALTHY');
+
+    // Case 7D: Valid release identity + matching DB ref + HEALTHY -> LIVE_VERIFIED
+    const resD = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            ...validReleaseEnv,
+            CANONICAL_SUPABASE_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_HEALTH: 'HEALTHY'
+        }
+    });
+    const bodyD = await resD.json();
+    assert.strictEqual(bodyD.database_identity.status, 'LIVE_VERIFIED');
+    assert.strictEqual(bodyD.release_identity.verified, true);
+    assert.strictEqual(bodyD.status, 'LIVE_VERIFIED', 'Status should be LIVE_VERIFIED only when both release & DB pass');
+    assert.strictEqual(bodyD.parity, true, 'Parity should be true only when both release & DB pass');
+
+    // Case 7E: Invalid release identity even if DB is LIVE_VERIFIED -> must fail-closed as UNVERIFIED
+    const resE = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            SOURCE_RELEASE_SHA: testSha,
+            CF_PAGES_COMMIT_SHA: otherSha, // mismatch
+            CF_PAGES_BRANCH: 'master',
+            CANONICAL_SUPABASE_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_PROJECT_REF: 'kitwadizsvjmuxkfewxj',
+            SUPABASE_RUNTIME_HEALTH: 'HEALTHY'
+        }
+    });
+    const bodyE = await resE.json();
+    assert.strictEqual(bodyE.release_identity.verified, false);
+    assert.strictEqual(bodyE.status, 'UNVERIFIED');
+    assert.strictEqual(bodyE.parity, false);
+}
+
+console.log('✅ All release identity & /api/version database verification unit tests passed!');
