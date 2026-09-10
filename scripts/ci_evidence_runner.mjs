@@ -21,40 +21,54 @@ function computeSha256(data) {
   return crypto.createHash('sha256').update(data || '').digest('hex');
 }
 
+function findGitExe() {
+  try {
+    execFileSync('git', ['--version'], { stdio: 'ignore' });
+    return 'git';
+  } catch {}
+  if (process.env.GIT_EXEC_PATH) {
+    const p = path.join(process.env.GIT_EXEC_PATH, 'git.exe');
+    if (fs.existsSync(p)) return p;
+  }
+  const candidates = [
+    path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git', 'cmd', 'git.exe'),
+    path.join(process.env['ProgramFiles(x86)'] || 'C:\\Program Files (x86)', 'Git', 'cmd', 'git.exe')
+  ];
+  if (process.env.LOCALAPPDATA) {
+    const ghBase = path.join(process.env.LOCALAPPDATA, 'GitHubDesktop');
+    if (fs.existsSync(ghBase)) {
+      try {
+        const appDirs = fs.readdirSync(ghBase).filter(d => d.startsWith('app-'));
+        for (const appDir of appDirs) {
+          candidates.push(path.join(ghBase, appDir, 'resources', 'app', 'git', 'cmd', 'git.exe'));
+        }
+      } catch {}
+    }
+  }
+  for (const cand of candidates) {
+    if (fs.existsSync(cand)) return cand;
+  }
+  return null;
+}
+
 function resolveCommitSha() {
   if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA;
+  const gitExe = findGitExe();
+  if (!gitExe) return 'UNKNOWN_SHA';
   try {
-    return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    return execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
   } catch {
-    const gitExe = process.env.GIT_EXEC_PATH 
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_SHA';
-      }
-    }
     return 'UNKNOWN_SHA';
   }
 }
 
 function resolveBranch() {
   if (process.env.GITHUB_REF_NAME) return process.env.GITHUB_REF_NAME;
+  const gitExe = findGitExe();
+  if (!gitExe) return 'UNKNOWN_BRANCH';
   try {
-    return execFileSync('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
+    return execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
   } catch {
-    const gitExe = process.env.GIT_EXEC_PATH
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_BRANCH';
-      }
-    }
     return 'UNKNOWN_BRANCH';
   }
 }
@@ -564,7 +578,7 @@ const md = [
   '',
   '## Diagnostic Output for Non-Passing Suites',
   failedSuites.length === 0
-    ? 'All 23 suites passed with zero failures. Immutable green baseline frozen.'
+    ? `All ${results.length} suites passed with zero failures. Immutable green baseline frozen.`
     : failedSuites.flatMap((r) => [
         `### Suite: \`${r.suite_id}\` (${r.status} | Category: ${r.failure_category})`,
         '',
