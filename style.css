@@ -3850,3 +3850,34 @@ button:focus-visible {
     opacity: 1;
     transform: translateX(-50%) translateY(-4px);
 }
+
+/* 6. Deep Mobile & Touch Adaptations (360px - 480px) */
+@media screen and (max-width: 480px) {
+    .btn, button, .nav-cta, .cta-btn, .service-tab-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .ipc-card, .calc-box {
+        padding: 16px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .nav-inner {
+        padding: 8px 12px !important;
+    }
+
+    .modal-content, .modal-box {
+        width: 95vw !important;
+        max-width: 95vw !important;
+        padding: 16px !important;
+        margin: 10px auto !important;
+    }
+
+    .table-container, .comparison-table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100% !important;
+    }
+}
