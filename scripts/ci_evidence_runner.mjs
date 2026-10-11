@@ -379,6 +379,18 @@ const SUITE_INVENTORY = [
     upstream_dependencies: ['reality_boundary', 'system_claims']
   },
   {
+    id: 'admin_auth_security',
+    name: 'Admin Auth & Fail-Closed Session Gate Security',
+    command: 'node',
+    args: ['scripts/test_admin_auth_security.mjs'],
+    domain: 'SECURITY',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-SEC-01', 'REQ-AUTH-01', 'REQ-ADMIN-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['security_gate', 'reality_boundary']
+  },
+  {
     id: 'business_truth_gates',
     name: 'Production & Revenue Boundary Truth Gates',
     command: 'node',

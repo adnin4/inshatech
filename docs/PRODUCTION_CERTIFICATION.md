@@ -31,4 +31,5 @@
 | **T** | **Disaster Recovery** | 🟢 **PASS** | Emergency kill-switch & snapshot restore |
 
 ---
-**SOVEREIGN VERDICT: CERTIFIED READY FOR SOVEREIGN PILOT LAUNCH.**
+**SOVEREIGN VERDICT: CERTIFIED READY FOR STAGING.**
+*(Production certification gated by external owner milestones: live Cloudflare Pages SHA deployment and resuming inactive cloud Supabase project `kitwadizsvjmuxkfewxj`.)*

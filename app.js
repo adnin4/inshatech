@@ -672,25 +672,24 @@ function renderAdminLoginFormCard(container) {
         <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
             <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
-
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
-                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@inshatech.pages.dev</strong> (or adnansadatmahin5@gmail.com)</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> or <strong style="color:#fff;">iinsha_admin_2026</strong></div>
-            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (Server-Enforced 2FA)</p>
 
             <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" value="admin@inshatech.pages.dev" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="email" id="admin-input-email" placeholder="admin@inshatech.pages.dev" required autocomplete="username" style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
-                <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="password" id="admin-input-pass" placeholder="••••••••••••" required autocomplete="current-password" style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">⚠️ Passphrase must be at least 6 characters.</div>
+                <div id="admin-modal-mfa-group" style="display: none; margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 4px; font-family: var(--font-mono);">6-DIGIT MFA / TOTP TOKEN</label>
+                    <input type="text" id="admin-input-mfa" maxlength="6" placeholder="123456" autocomplete="one-time-code" style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--accent-cyan); border-radius: 8px; color: var(--accent-cyan); font-size: 1.1rem; letter-spacing: 4px; text-align: center; outline: none; font-family: var(--font-mono);">
+                </div>
+
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;"></div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">⚡ Authenticate & Open Studio →</button>
+                    <button type="submit" id="admin-modal-submit-btn" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">⚡ Authenticate & Open Studio →</button>
                 </div>
             </form>
 
@@ -699,62 +698,110 @@ function renderAdminLoginFormCard(container) {
             </div>
 
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
+                🔒 Fail-Closed Server Verification ● Zero Hardcoded Passwords ● MFA Protected
             </div>
         </div>
     `;
 }
 
-function handleAdminLoginSubmit(e) {
+async function handleAdminLoginSubmit(e) {
     if (e && e.preventDefault) e.preventDefault();
     const emailEl = document.getElementById('admin-input-email');
     const passEl = document.getElementById('admin-input-pass');
+    const mfaEl = document.getElementById('admin-input-mfa');
+    const mfaGroup = document.getElementById('admin-modal-mfa-group');
+    const errEl = document.getElementById('admin-login-error');
+    const btn = document.getElementById('admin-modal-submit-btn');
+
     const email = emailEl ? emailEl.value.trim() : '';
     const pass = passEl ? passEl.value : '';
+    const mfaToken = mfaEl ? mfaEl.value.trim() : '';
 
-    if (email && pass && pass.length >= 6) {
-        sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-        sessionStorage.setItem('iinsha_2fa_verified', 'true');
-        sessionStorage.setItem('iinsha_session_token', 'ibos_admin_verified_' + Date.now());
-        sessionStorage.setItem('iinsha_admin_user', JSON.stringify({
-            email: email,
-            phone: '+8801629286887',
-            role: 'owner',
-            hierarchy_level: 1,
-            mfa_verified: true
-        }));
-        const rootContainer = document.getElementById('index-admin-cms-root');
-        if (rootContainer) {
-            renderAdminModalCmsStudio(rootContainer);
-        }
-    } else {
-        const errEl = document.getElementById('admin-login-error');
+    if (!email || !pass) {
         if (errEl) {
+            errEl.textContent = '⚠️ Please enter admin email and password.';
             errEl.style.display = 'block';
-            errEl.textContent = '⚠️ Invalid credentials. Passphrase must be at least 6 characters.';
+        }
+        return;
+    }
+
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Verifying Server Credentials...';
+    }
+    if (errEl) errEl.style.display = 'none';
+
+    try {
+        const payload = { email, password: pass };
+        if (mfaToken) payload.mfa_token = mfaToken;
+
+        const res = await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.status === 503 || data.status === 'CONFIGURATION_ERROR') {
+            throw new Error(`Server Auth Not Configured: ${data.error || 'Missing JWT_SECRET or ADMIN secrets on server'}`);
+        }
+
+        if (data.status === 'MFA_REQUIRED') {
+            if (mfaGroup) mfaGroup.style.display = 'block';
+            if (mfaEl) mfaEl.focus();
+            if (errEl) {
+                errEl.textContent = '🔐 Multi-factor Authentication Required. Enter your 6-digit TOTP code.';
+                errEl.style.display = 'block';
+                errEl.style.color = 'var(--accent-cyan)';
+            }
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = '🔐 Verify MFA Code & Open Studio →';
+            }
+            return;
+        }
+
+        if (res.ok && data.status === 'AUTHENTICATED' && data.session_token) {
+            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+            sessionStorage.setItem('iinsha_2fa_verified', 'true');
+            sessionStorage.setItem('iinsha_session_token', data.session_token);
+            sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email }));
+
+            const rootContainer = document.getElementById('index-admin-cms-root');
+            if (rootContainer) {
+                renderAdminModalCmsStudio(rootContainer);
+            }
+            return;
+        }
+
+        throw new Error(data.error || data.status || 'Invalid email or password');
+    } catch (err) {
+        if (errEl) {
+            errEl.textContent = '❌ ' + (err.message || 'Authentication failed');
+            errEl.style.display = 'block';
+            errEl.style.color = '#ef4444';
+        }
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = mfaGroup && mfaGroup.style.display !== 'none'
+                ? '🔐 Verify MFA Code & Open Studio →'
+                : '⚡ Authenticate & Open Studio →';
         }
     }
 }
 window.handleAdminLoginSubmit = handleAdminLoginSubmit;
 
 function handleAdminMasterUnlock() {
-    alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
+    alert("🔒 Zero-Trust Security Policy: Offline bypass is permanently disabled. Server authentication via /api/auth/session is required.");
 }
 window.handleAdminMasterUnlock = handleAdminMasterUnlock;
 
 function initAdminModalLoginForm() {
     const form = document.getElementById('admin-modal-login-form');
     if (form) {
-        form.onsubmit = function(e) {
-            if (e) e.preventDefault();
-            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-            const errEl = document.getElementById('admin-login-error');
-            if (errEl) errEl.style.display = 'none';
-            const modal = document.getElementById('admin-control-modal');
-            if (modal) modal.style.display = 'flex';
-            renderAdminModalContent();
-            return false;
-        };
+        form.onsubmit = handleAdminLoginSubmit;
     }
 }
 
