@@ -2256,7 +2256,7 @@ button, .btn, .btn-primary, .btn-glass, .btn-primary-sm, .btn-glass-sm, .btn-gho
 .cmd-modal-overlay,
 .admin-modal-overlay,
 .lead-modal-overlay {
-    display: none !important;
+    display: none;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -2265,8 +2265,8 @@ button, .btn, .btn-primary, .btn-glass, .btn-primary-sm, .btn-glass-sm, .btn-gho
     background: rgba(0, 0, 0, 0.85) !important;
     backdrop-filter: blur(12px) !important;
     z-index: 999999 !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
+    justify-content: center;
 }
 
 .cmd-palette-box,

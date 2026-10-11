@@ -628,15 +628,15 @@ function openProtectedAdminPanel() {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'admin-control-modal';
-        modal.className = 'modal hidden';
+        modal.className = 'admin-modal-overlay';
         modal.innerHTML = `
             <div class="admin-modal-box" style="background: #030712; border: 1px solid var(--accent-gold); border-radius: 16px; width: 95%; max-width: 1100px; max-height: 90vh; overflow-y: auto; padding: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95); color: #fff;">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️</span>
+                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️ </span>
                         <div>
                             <h2 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin:0;">IINSHA TECH OS v1000 Master Control Panel</h2>
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">● Active Super Admin Session | 20 Enterprise Modules</p>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">●  Active Super Admin Session | 20 Enterprise Modules</p>
                         </div>
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
@@ -650,24 +650,20 @@ function openProtectedAdminPanel() {
         document.body.appendChild(modal);
     }
 
-    // Move modal to body root to ensure position:fixed works correctly
-    if (modal.parentElement !== document.body) {
-        document.body.appendChild(modal);
-    }
-    
     modal.classList.remove('hidden');
-    modal.style.cssText = 'display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; opacity:1; visibility:visible; background:rgba(2,6,23,0.95); overflow-y:auto;';
-    window.scrollTo(0, 0);
+    modal.style.display = 'flex';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
 
     const rootContainer = document.getElementById('index-admin-cms-root');
-    if (!rootContainer) return;
-
-    const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
-
-    if (isAuthenticated) {
-        renderAdminModalCmsStudio(rootContainer);
-    } else {
-        renderAdminLoginFormCard(rootContainer);
+    if (rootContainer) {
+        const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
+        if (isAuthenticated) {
+            renderAdminModalCmsStudio(rootContainer);
+        } else {
+            renderAdminLoginFormCard(rootContainer);
+        }
     }
 }
 
