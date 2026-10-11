@@ -641,7 +641,7 @@ function openProtectedAdminPanel() {
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span style="background:rgba(217,119,6,0.2); color:var(--accent-gold); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(217,119,6,0.3);">Super Admin Mode</span>
-                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">✕ Close</button>
+                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'; })();" class="btn btn-glass-sm" style="font-weight:700;">✕ Close</button>
                     </div>
                 </div>
                 <div id="index-admin-cms-root"></div>
@@ -706,7 +706,7 @@ function renderAdminLoginFormCard(container) {
 }
 
 function handleAdminLoginSubmit(e) {
-    if (e) e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     const emailEl = document.getElementById('admin-input-email');
     const passEl = document.getElementById('admin-input-pass');
     const email = emailEl ? emailEl.value.trim() : '';
@@ -723,14 +723,16 @@ function handleAdminLoginSubmit(e) {
         const errEl = document.getElementById('admin-login-error');
         if (errEl) {
             errEl.style.display = 'block';
-            errEl.textContent = '  Invalid credentials. Passphrase must be at least 6 characters.';
+            errEl.textContent = '⚠️ Invalid credentials. Passphrase must be at least 6 characters.';
         }
     }
 }
+window.handleAdminLoginSubmit = handleAdminLoginSubmit;
 
 function handleAdminMasterUnlock() {
     alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
 }
+window.handleAdminMasterUnlock = handleAdminMasterUnlock;
 
 function initAdminModalLoginForm() {
     const form = document.getElementById('admin-modal-login-form');

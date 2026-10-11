@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IINSHA AI-BOS MASTER AUTONOMOUS SALES, MARKETING & DEAL-CLOSING AI COPILOT
  * Multilingual (Bangla / Banglish / English) • 5-Layer Stateful Brain Engine
  * Zero Repetition Guard • Real Context Memory • Multi-Turn Conversation
@@ -916,40 +916,67 @@
             const lower = query.toLowerCase().trim();
             const isBn = this.isBengali(query);
 
-            // Try Cloudflare Pages /api/ai/chat endpoint first (Gemini Cloud Edge)
+            // 1. Client-Side RAG Knowledge Retrieval Layer
+            let ragKnowledgeSnippet = '';
             try {
-                const apiPromise = fetch('/api/v1/agent/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        conversation_id: this.conversationId,
-                        message: query,
-                        history: this.history,
-                        state: this.state
-                    })
-                });
-
-                // Timeout after 2.5 seconds to fallback to our rich client brain
-                const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2500));
-                const res = await Promise.race([apiPromise, timeoutPromise]);
-                
-                if (res && res.ok) {
-                    const data = await res.json();
-                    if (data.status === 'SUCCESS' && data.response && !data.fallback_needed) {
-                        this.hideTyping();
-                        this.addAssistantMessage(data.response, data.response.replace(/<[^>]*>?/gm, '').substring(0, 120));
-                        return;
+                const ragRes = await fetch(`/api/knowledge/search?q=${encodeURIComponent(query)}`);
+                if (ragRes.ok) {
+                    const ragData = await ragRes.json();
+                    if (ragData.results && ragData.results.length > 0) {
+                        const topHit = ragData.results[0];
+                        if (topHit.source === 'services.json') {
+                            const s = topHit.content;
+                            ragKnowledgeSnippet = `Found matched service: ${s.name} (${s.category}) - Price: $${s.priceUSD} USD (৳${(s.priceBDT || Math.round(s.priceUSD * 122.5)).toLocaleString()} BDT). Key features: ${(s.features || []).join(', ')}.`;
+                        } else if (topHit.source === 'faqs.json') {
+                            ragKnowledgeSnippet = `Q: ${topHit.content.question}\nA: ${topHit.content.answer}`;
+                        }
                     }
                 }
-            } catch (e) {
-                // API not available, proceed to local deep stateful intelligence engine
+            } catch (ragErr) {
+                // RAG offline fallback, continue to chat edge endpoints
             }
 
-            // Stateful Local Brain Engine
+            // 2. Multi-Endpoint Edge Intelligence (Primary /api/v1/agent/chat -> Secondary /api/ai/chat)
+            const chatEndpoints = ['/api/v1/agent/chat', '/api/ai/chat'];
+            for (const endpoint of chatEndpoints) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 2800);
+
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        signal: controller.signal,
+                        body: JSON.stringify({
+                            conversation_id: this.conversationId,
+                            session_id: this.conversationId,
+                            message: query,
+                            history: this.history,
+                            state: this.state,
+                            rag_context: ragKnowledgeSnippet
+                        })
+                    });
+                    clearTimeout(timeoutId);
+
+                    if (res && res.ok) {
+                        const data = await res.json();
+                        const replyText = data.reply || data.response;
+                        if (data.status === 'SUCCESS' && replyText && !data.fallback_needed) {
+                            this.hideTyping();
+                            this.addAssistantMessage(replyText, replyText.replace(/<[^>]*>?/gm, '').substring(0, 120));
+                            return;
+                        }
+                    }
+                } catch (edgeErr) {
+                    // Endpoint unavailable, try next endpoint or fallback to local brain
+                }
+            }
+
+            // 3. Stateful Local Brain Engine Fallback
             setTimeout(() => {
                 this.hideTyping();
                 this.generateStatefulResponse(query, lower, isBn);
-            }, 400);
+            }, 300);
         }
 
         extractFacts(query, lower) {
