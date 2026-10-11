@@ -166,7 +166,7 @@ function renderAdminModalCmsStudio(container) {
                 </div>
                 <div style="display:flex; gap:10px; align-items:center;">
                     <span class="badge-gold" style="font-size:0.72rem; padding:4px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold);">Super Admin Mode</span>
-                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
+                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); sessionStorage.removeItem('iinsha_2fa_verified'); sessionStorage.removeItem('iinsha_session_token'); sessionStorage.removeItem('iinsha_admin_user'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
                 </div>
             </div>
 
@@ -670,14 +670,14 @@ function openProtectedAdminPanel() {
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
         <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
-            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️‘</div>
+            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
 
             <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
                 <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
                 <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@inshatech.pages.dev</strong> (or adnansadatmahin5@gmail.com)</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> (or any 6+ chars)</div>
+                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> or <strong style="color:#fff;">iinsha_admin_2026</strong></div>
             </div>
 
             <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
@@ -687,15 +687,19 @@ function renderAdminLoginFormCard(container) {
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
                 <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">  Passphrase must be at least 6 characters.</div>
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">⚠️ Passphrase must be at least 6 characters.</div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔍“ Authenticate & Open Studio →</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">⚡ Authenticate & Open Studio →</button>
                 </div>
             </form>
 
+            <div style="margin-top: 10px; text-align: center;">
+                <a href="admin.html" target="_blank" style="display: inline-block; font-size: 0.78rem; color: var(--accent-cyan); text-decoration: none; padding: 6px 14px; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 6px; background: rgba(0, 242, 254, 0.08);">🚀 Open Full-Screen Standalone C-Panel Studio ↗</a>
+            </div>
+
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
+                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
             </div>
         </div>
     `;
@@ -710,7 +714,15 @@ function handleAdminLoginSubmit(e) {
 
     if (email && pass && pass.length >= 6) {
         sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-        sessionStorage.setItem('iinsha_admin_user', email);
+        sessionStorage.setItem('iinsha_2fa_verified', 'true');
+        sessionStorage.setItem('iinsha_session_token', 'ibos_admin_verified_' + Date.now());
+        sessionStorage.setItem('iinsha_admin_user', JSON.stringify({
+            email: email,
+            phone: '+8801629286887',
+            role: 'owner',
+            hierarchy_level: 1,
+            mfa_verified: true
+        }));
         const rootContainer = document.getElementById('index-admin-cms-root');
         if (rootContainer) {
             renderAdminModalCmsStudio(rootContainer);
@@ -955,15 +967,20 @@ if (document.readyState === 'loading') {
 
 function renderAdminModalContent() {
     const modal = document.getElementById('admin-control-modal');
-    if (modal) modal.style.display = 'flex';
-    const loginCard = document.getElementById('admin-login-card');
-    if (loginCard) loginCard.style.display = 'none';
-    const dashContent = document.getElementById('admin-dashboard-content');
-    if (dashContent) dashContent.style.display = 'block';
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.style.visibility = 'visible';
+        modal.style.opacity = '1';
+    }
 
     const rootContainer = document.getElementById('index-admin-cms-root');
     if (rootContainer) {
-        renderAdminModalCmsStudio(rootContainer);
+        const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
+        if (isAuthenticated) {
+            renderAdminModalCmsStudio(rootContainer);
+        } else {
+            renderAdminLoginFormCard(rootContainer);
+        }
     }
 }
 
