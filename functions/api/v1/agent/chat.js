@@ -113,7 +113,7 @@ export async function onRequestPost(context) {
         }
 
         const geminiApiKey = env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY;
-        const configuredModel = env.GEMINI_MODEL || 'gemini-3.8-flash';
+        const configuredModel = env.GEMINI_MODEL || 'gemini-1.5-flash';
         let reply = '';
         let modelUsed = 'deterministic_agentic_brain';
         let modelStatus = 'DETERMINISTIC_FALLBACK';

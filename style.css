@@ -2984,8 +2984,8 @@ form input[type="tel"]:focus {
 
     .nav-container, .navbar {
         flex-direction: column !important;
-        gap: 12px !important;
-        padding: 12px 16px !important;
+        gap: 10px !important;
+        padding: 10px 14px !important;
     }
 
     .nav-links, nav {
@@ -2996,9 +2996,27 @@ form input[type="tel"]:focus {
         width: 100% !important;
     }
 
+    .portal-tabs {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+        padding: 4px 6px !important;
+        scrollbar-width: none !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .portal-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+
     .portal-tab-btn {
-        padding: 6px 10px !important;
-        font-size: 0.76rem !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        padding: 8px 14px !important;
+        font-size: 0.8rem !important;
+        min-height: 38px !important;
     }
 
     /* Hero Section */

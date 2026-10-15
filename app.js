@@ -970,6 +970,90 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
+/* Live FOMO Activity Stream Notification Toast Engine & Zero-Raw-Dialog Handler */
+function showFomoToast(msg, type = 'info') {
+    let toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toastContainer';
+        toastContainer.style.cssText = 'position:fixed; bottom:20px; left:20px; z-index:99999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
+        document.body.appendChild(toastContainer);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'glass-toast';
+    let borderColor = 'var(--accent-cyan)';
+    let badgeColor = 'var(--accent-emerald)';
+    let badgeLabel = '● LIVE';
+    if (type === 'error' || type === 'danger') {
+        borderColor = '#ef4444';
+        badgeColor = '#ef4444';
+        badgeLabel = '● ALERT';
+    } else if (type === 'warning') {
+        borderColor = '#f59e0b';
+        badgeColor = '#f59e0b';
+        badgeLabel = '● NOTICE';
+    } else if (type === 'success') {
+        borderColor = '#10b981';
+        badgeColor = '#10b981';
+        badgeLabel = '● SUCCESS';
+    }
+    toast.style.cssText = `background:rgba(15,23,42,0.95); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid ${borderColor}; font-size:0.84rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.6); backdrop-filter:blur(12px); animation:slideUp 0.3s ease; pointer-events:auto; max-width:420px; word-break:break-word;`;
+    toast.innerHTML = `<span style="color:${badgeColor}; font-weight:bold; margin-right:6px;">${badgeLabel}</span> ${msg}`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => toast.remove(), 400);
+    }, 4500);
+}
+window.showFomoToast = showFomoToast;
+window.showIinshaToast = showFomoToast;
+
+function showIinshaModal({ title, subtitle, icon = '⚡', contentHtml = '', confirmText = 'OK', cancelText = '', onConfirm = null }) {
+    const existing = document.getElementById('iinsha-universal-modal');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'iinsha-universal-modal';
+    modal.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
+    modal.innerHTML = `
+        <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
+            <div style="padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h3 style="margin:0; font-size:1.1rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;"><span>${icon}</span> ${title}</h3>
+                    ${subtitle ? `<p style="margin:4px 0 0; font-size:0.75rem; color:#94a3b8;">${subtitle}</p>` : ''}
+                </div>
+                <button id="iinsha-modal-close-btn" style="background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer; line-height:1;">&times;</button>
+            </div>
+            <div style="padding:20px; max-height:70vh; overflow-y:auto;" id="iinsha-modal-body">
+                ${contentHtml}
+            </div>
+            <div style="padding:14px 20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
+                ${cancelText ? `<button id="iinsha-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
+                <button id="iinsha-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">${confirmText}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    const close = () => modal.remove();
+    modal.querySelector('#iinsha-modal-close-btn').onclick = close;
+    const cancelBtn = modal.querySelector('#iinsha-modal-cancel-btn');
+    if (cancelBtn) cancelBtn.onclick = close;
+    modal.querySelector('#iinsha-modal-confirm-btn').onclick = () => {
+        if (onConfirm) onConfirm(modal);
+        else close();
+    };
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) close();
+    });
+    return modal;
+}
+window.showIinshaModal = showIinshaModal;
+
+// Zero-Alert Interceptor for Complete WCAG / Enterprise UX Compliance
+window.alert = function(msg) {
+    showFomoToast(String(msg || ''), 'info');
+};
+
 /* Live FOMO Activity Stream Notification Toast Engine */
 function initFomoToasts() {
     const notifications = [
@@ -2368,7 +2452,7 @@ function confirmOrderAndSyncToWhatsApp() {
     const email = emailInput ? emailInput.value.trim() : '';
 
     if (!name || !phone) {
-        alert("Please enter your Name and WhatsApp phone number to confirm your order!");
+        showFomoToast("⚠️ Please enter your Name and WhatsApp phone number to confirm your order!", "warning");
         return;
     }
 
@@ -2407,7 +2491,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    showFomoToast(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`, 'success');
     window.open(whatsappUrl, '_blank');
 }
 
@@ -2721,7 +2805,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
     const email = emailInput ? emailInput.value.trim() : '';
 
     if (!name || !phone) {
-        alert("Please enter your Name and WhatsApp phone number to confirm your order!");
+        showFomoToast("⚠️ Please enter your Name and WhatsApp phone number to confirm your order!", "warning");
         return;
     }
 
@@ -2760,7 +2844,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    showFomoToast(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`, 'success');
     window.open(whatsappUrl, '_blank');
 }
 window.confirmOrderAndSyncToWhatsApp = confirmOrderAndSyncToWhatsApp;

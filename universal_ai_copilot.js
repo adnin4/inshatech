@@ -941,7 +941,7 @@
             for (const endpoint of chatEndpoints) {
                 try {
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 2800);
+                    const timeoutId = setTimeout(() => controller.abort(), 8500);
 
                     const res = await fetch(endpoint, {
                         method: 'POST',
