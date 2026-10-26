@@ -280,7 +280,7 @@
             if (modal) modal.style.display = 'flex';
         },
         openPrivacyModal: function () {
-            alert("GDPR Controls:\n• Article 15 Data Export: Active via /api/privacy/controls\n• Article 17 Erasure: Active\n• Contact: adnansadatmahin5@gmail.com | WA: +8801629286887");
+            alert("GDPR Controls:\n• Article 15 Data Export: Active via /api/privacy/controls\n• Article 17 Erasure: Active\n• Contact: inshatech.dev@gmail.com | WA: +8801629286887");
         },
         pingHealth: async function () {
             const t0 = performance.now();

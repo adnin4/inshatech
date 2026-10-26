@@ -14,7 +14,7 @@ class MemorySystem {
             company_name: "IINSHA AI-BOS & Automation Agency",
             founder: "Adnin Sadat Mahin (n8n Certified Automation Engineer)",
             contact_whatsapp: "+8801629286887",
-            contact_email: "adnansadatmahin5@gmail.com",
+            contact_email: "inshatech.dev@gmail.com",
             usd_to_bdt_rate: 122.50,
             sla_delivery_hours: 48,
             warranty_days: 14,

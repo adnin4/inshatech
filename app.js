@@ -87,9 +87,9 @@ function getBlogPosts() {
 
 function getAdminUsers() {
     try {
-        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"adnansadatmahin5@gmail.com","name":"Adnin Sadat","role":"owner"}]');
+        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"inshatech.dev@gmail.com","name":"Adnin Sadat","role":"owner"}]');
     } catch(e) {
-        return [{ email: "adnansadatmahin5@gmail.com", name: "Adnin Sadat", role: "owner" }];
+        return [{ email: "inshatech.dev@gmail.com", name: "Adnin Sadat", role: "owner" }];
     }
 }
 
