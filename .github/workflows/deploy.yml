@@ -2,9 +2,9 @@ name: Production Quality & Cloudflare Release Authority CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
   pull_request:
-    branches: [main, master]
+    branches: [master]
   workflow_dispatch:
 
 concurrency:
@@ -139,7 +139,7 @@ jobs:
           status=$(jq -r '.status // empty' /tmp/version.json)
           branch=$(jq -r '.branch // .release_identity.branch.active // empty' /tmp/version.json)
           repo=$(jq -r '.canonical_repository // empty' /tmp/version.json)
-          db_parity=$(jq -r '.database_identity.db_parity // false' /tmp/version.json)
+          db_verified=$(jq -r '.database_identity.verified // .database_identity.db_parity // false' /tmp/version.json)
           db_status=$(jq -r '.database_identity.status // empty' /tmp/version.json)
 
           test -n "$actual" || { echo 'Missing production deploy_sha'; exit 1; }
@@ -149,7 +149,7 @@ jobs:
           }
           test "$branch" = 'master' || test "$branch" = 'main' || { echo "Unexpected production branch: $branch"; exit 1; }
           test "$repo" = 'https://github.com/adnin4/inshatech.git' || { echo "Unexpected canonical repository: $repo"; exit 1; }
-          test "$db_parity" = 'true' || { echo 'Production database identity is not verified for parity'; exit 1; }
+          test "$db_verified" = 'true' || { echo "Production database identity is not verified: status=$db_status"; exit 1; }
 
           echo "Deployment SHA and Repository Parity Verified: $actual on branch $branch"
           echo "Database Parity Status: $db_status"

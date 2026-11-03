@@ -65,6 +65,7 @@ export async function onRequestGet(context) {
         database_identity: {
             status: dbProbe.status,
             verified: dbProbe.verified,
+            db_parity: dbProbe.verified && dbProbe.canonical_ref === dbProbe.project_ref,
             canonical_db: dbProbe.canonical_ref,
             runtime_db: dbProbe.project_ref,
             query_latency_ms: dbProbe.query_latency_ms,
