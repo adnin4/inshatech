@@ -111,19 +111,23 @@ jobs:
         run: |
           set -euo pipefail
           url='https://inshatech.pages.dev/api/version'
-          echo "Waiting for production runtime: $url"
+          expected='${{ github.sha }}'
+          echo "Waiting for production runtime ($url) to serve target release: $expected"
           for attempt in $(seq 1 60); do
-            if body=$(curl -fsSL --max-time 10 "$url"); then
-              echo "$body"
+            if body=$(curl -fsSL --max-time 10 "$url" 2>/dev/null); then
               printf '%s' "$body" > /tmp/version.json
-              if jq -e '.deploy_sha != null' /tmp/version.json >/dev/null 2>&1; then
+              actual=$(jq -r '.deploy_sha // .release_identity.shas.deployment_sha // empty' /tmp/version.json 2>/dev/null || true)
+              if [ -n "$actual" ] && [ "${actual,,}" = "${expected,,}" ]; then
+                echo "Target deployment SHA active on Cloudflare edge: $actual"
                 exit 0
               fi
+              echo "Attempt $attempt/60: edge running '$actual', waiting for '$expected'..."
+            else
+              echo "Attempt $attempt/60: runtime endpoint not reachable yet..."
             fi
-            echo "Attempt $attempt/60: runtime not ready yet"
             sleep 10
           done
-          echo 'Production /api/version did not become reachable with a deployment SHA.'
+          echo "Timeout: Cloudflare Pages did not deploy $expected within 10 minutes."
           exit 1
 
       - name: Verify production deployment identity
@@ -131,11 +135,12 @@ jobs:
         run: |
           set -euo pipefail
           expected='${{ github.sha }}'
-          actual=$(jq -r '.deploy_sha // empty' /tmp/version.json)
+          actual=$(jq -r '.deploy_sha // .release_identity.shas.deployment_sha // empty' /tmp/version.json)
           status=$(jq -r '.status // empty' /tmp/version.json)
-          branch=$(jq -r '.branch // empty' /tmp/version.json)
+          branch=$(jq -r '.branch // .release_identity.branch.active // empty' /tmp/version.json)
           repo=$(jq -r '.canonical_repository // empty' /tmp/version.json)
           db_parity=$(jq -r '.database_identity.db_parity // false' /tmp/version.json)
+          db_status=$(jq -r '.database_identity.status // empty' /tmp/version.json)
 
           test -n "$actual" || { echo 'Missing production deploy_sha'; exit 1; }
           test "${actual,,}" = "${expected,,}" || {
@@ -145,7 +150,18 @@ jobs:
           test "$branch" = 'master' || test "$branch" = 'main' || { echo "Unexpected production branch: $branch"; exit 1; }
           test "$repo" = 'https://github.com/adnin4/inshatech.git' || { echo "Unexpected canonical repository: $repo"; exit 1; }
           test "$db_parity" = 'true' || { echo 'Production database identity is not verified for parity'; exit 1; }
-          test "$status" = 'LIVE_VERIFIED' || { echo "Production release status is $status, not LIVE_VERIFIED"; exit 1; }
+
+          echo "Deployment SHA and Repository Parity Verified: $actual on branch $branch"
+          echo "Database Parity Status: $db_status"
+
+          if [ "$status" != 'LIVE_VERIFIED' ]; then
+            echo "Release status is $status (Database status: $db_status)"
+            if [ "$db_status" = 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED' ] || [ "$db_status" = 'UNVERIFIED' ]; then
+              echo "Release gate alert: Production database runtime health is unverified or dormant."
+              echo "Unpause or reactivate Supabase project 'kitwadizsvjmuxkfewxj' to complete LIVE_VERIFIED certification."
+            fi
+            exit 1
+          fi
 
       - name: Verify production health endpoint
         shell: bash
