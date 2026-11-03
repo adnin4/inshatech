@@ -7,7 +7,7 @@
  *  - 1-Click Direct Social Share Buttons (WhatsApp, Telegram, LinkedIn, Twitter/X, Facebook)
  *  - SubID & Deep Link Studio with Live SVG QR Code
  *  - 28-Asset Multi-Channel Marketing Swipe Vault
- *  - 4-Tier Gamified Progression Ladder (Bronze ¢Å¾ Silver ¢Å¾ Gold ¢Å¾ Legend) with Milestone Rewards
+ *  - 4-Tier Gamified Progression Ladder (Bronze ➔ Silver ➔ Gold ➔ Legend) with Milestone Rewards
  *  - Multi-Channel Global & Local Payout Desk (bKash, Nagad, Wise, Bank Wire, USDT)
  *  - Partner Growth Academy Masterclasses
  */
@@ -134,49 +134,54 @@
 
     // Catalog of turnkey solutions
     const OFFERS = [
-        { id: 'b2b-lead-swarm', name: 'B2B SaaS 5-Agent Hunter Swarm', priceUSD: 850, priceBDT: 104125, commUSD: 212.50, commBDT: 26031, epc: '$8.40', conversion: '3.4%', category: 'Lead Gen', tag: '°Å¸¥ Top Converting', target: 'store.html' },
-        { id: 'ecommerce-ai-whatsapp', name: '24/7 E-Commerce WhatsApp Sales Agent', priceUSD: 750, priceBDT: 91875, commUSD: 187.50, commBDT: 22968, epc: '$7.80', conversion: '4.2%', category: 'E-Commerce', tag: '¢Å¡¡ 20-Min Setup', target: 'store.html' },
-        { id: 'voice-ai-receptionist', name: 'AI Voice Receptionist (Twilio + WebRTC)', priceUSD: 1800, priceBDT: 220500, commUSD: 450.00, commBDT: 55125, epc: '$12.20', conversion: '2.1%', category: 'Voice AI', tag: '°Å¸Å½¯¸ High Ticket', target: 'store.html' },
-        { id: 'n8n-docker-cluster', name: 'Self-Hosted n8n VPS Cluster Deployment', priceUSD: 497, priceBDT: 60882, commUSD: 124.25, commBDT: 15220, epc: '$6.50', conversion: '5.8%', category: 'Infra', tag: '°Å¸° 90% Cost Saving', target: 'store.html' },
-        { id: 'invoice-ocr-pipeline', name: 'Autonomous Invoice & Document OCR Pipeline', priceUSD: 249, priceBDT: 30502, commUSD: 62.25, commBDT: 7625, epc: '$4.90', conversion: '6.4%', category: 'OCR', tag: '¢Å¡¡ Fast Turnaround', target: 'store.html' }
+        { id: 'b2b-lead-swarm', name: 'B2B SaaS 5-Agent Hunter Swarm', priceUSD: 850, priceBDT: 104125, commUSD: 212.50, commBDT: 26031, epc: '$8.40', conversion: '3.4%', category: 'Lead Gen', tag: '🔥 Top Converting', target: 'store.html?product=b2b-lead-swarm' },
+        { id: 'ecommerce-ai-whatsapp', name: '24/7 E-Commerce WhatsApp Sales Agent', priceUSD: 750, priceBDT: 91875, commUSD: 187.50, commBDT: 22968, epc: '$7.80', conversion: '4.2%', category: 'E-Commerce', tag: '⚡ 20-Min Setup', target: 'store.html?product=ecommerce-ai-whatsapp' },
+        { id: 'voice-ai-receptionist', name: 'AI Voice Receptionist (Twilio + WebRTC)', priceUSD: 1800, priceBDT: 220500, commUSD: 450.00, commBDT: 55125, epc: '$12.20', conversion: '2.1%', category: 'Voice AI', tag: '🎙️ High Ticket', target: 'store.html?product=voice-ai-receptionist' },
+        { id: 'n8n-docker-cluster', name: 'Self-Hosted n8n VPS Cluster Deployment', priceUSD: 497, priceBDT: 60882, commUSD: 124.25, commBDT: 15220, epc: '$6.50', conversion: '5.8%', category: 'Infra', tag: '💰 90% Cost Saving', target: 'store.html?product=n8n-docker-cluster' },
+        { id: 'invoice-ocr-pipeline', name: 'Autonomous Invoice & Document OCR Pipeline', priceUSD: 249, priceBDT: 30502, commUSD: 62.25, commBDT: 7625, epc: '$4.90', conversion: '6.4%', category: 'OCR', tag: '⚡ Fast Turnaround', target: 'store.html?product=invoice-ocr-pipeline' },
+        { id: 'playwright-enterprise-scraper', name: 'Playwright Resilient Extraction Pipeline', priceUSD: 650, priceBDT: 79625, commUSD: 162.50, commBDT: 19906, epc: '$7.10', conversion: '3.8%', category: 'Scraping', tag: '🛡️ Resilient Playwright', target: 'store.html?product=playwright-enterprise-scraper' },
+        { id: 'real-estate-lead-bot', name: 'Real Estate Speed-to-Lead Qualifier', priceUSD: 750, priceBDT: 91875, commUSD: 187.50, commBDT: 22968, epc: '$8.10', conversion: '3.9%', category: 'Real Estate', tag: '🏠 60s Lead Response', target: 'store.html?product=real-estate-lead-bot' },
+        { id: 'clinic-booking-concierge', name: 'Healthcare & Clinic Booking Concierge', priceUSD: 950, priceBDT: 116375, commUSD: 237.50, commBDT: 29094, epc: '$9.50', conversion: '2.9%', category: 'Healthcare', tag: '🩺 HIPAA Aligned', target: 'store.html?product=clinic-booking-concierge' },
+        { id: 'autonomous-marketing-engine', name: 'Autonomous AI Marketing & SEO Engine', priceUSD: 550, priceBDT: 67375, commUSD: 137.50, commBDT: 16844, epc: '$6.20', conversion: '4.5%', category: 'Marketing', tag: '📈 30-Day Growth', target: 'store.html?product=autonomous-marketing-engine' },
+        { id: 'custom-ai-agent-blueprint', name: 'Custom Enterprise AI Agent Architecture', priceUSD: 1200, priceBDT: 147000, commUSD: 300.00, commBDT: 36750, epc: '$11.00', conversion: '2.4%', category: 'Enterprise', tag: '⚡ Full White-Glove', target: 'store.html?product=custom-ai-agent-blueprint' }
     ];
 
     // High-Converting Multi-Channel Marketing Vault (28 Items / Formats)
     const MARKETING_VAULT = [
         {
             id: 'mv-li-01',
-            channel: '°Å¸± LinkedIn / X Viral Post',
+            channel: '📱 LinkedIn / X Viral Post',
             title: 'The "$1,200/mo Zapier Trap" vs Self-Hosted AI',
             category: 'social',
             text: `Most agency founders and SaaS companies waste 40+ hours every week on manual copy-pasting, slow WhatsApp replies, and enormous Zapier monthly bills.\n\nWe deployed IINSHA AI OS: self-hosted n8n on a $5.99/mo Docker VPS + autonomous AI agents.\n\nResult:\n- 85% reduction in manual operational labor\n- Sub-45s speed-to-lead response\n- Zero per-task fees\n\nYou can claim a 100% free 24-hr video teardown & architecture blueprint for your business here:\n{{REF_LINK}}`
         },
         {
             id: 'mv-email-01',
-            channel: '¢Å“¯¸ CEO / Founder Cold Email Hook',
+            channel: '✉️ CEO / Founder Cold Email Hook',
             title: 'Direct Pitch to B2B Founders (Step 1)',
             category: 'email',
             text: `Subject: Slashing manual ops at {{CompanyName}} with an AI Workforce\n\nHi {{FirstName}},\n\nNoticed {{CompanyName}} is scaling rapidly. Are your team members still handling lead qualification, customer WhatsApp chats, or invoice data entry manually?\n\nOur partner IINSHA builds self-hosted AI operating systems (n8n + multi-agent swarms + Gemini 3.0 Vision OCR) with 100% data sovereignty and zero Zapier fees.\n\nYou can claim a customized 24-hr video audit of your current stack at zero cost:\n{{REF_LINK}}\n\nBest,\n{{PartnerName}}`
         },
         {
             id: 'mv-wa-bn-01',
-            channel: '°Å¸¬ WhatsApp / Messenger Pitch (Bangla)',
+            channel: '💬 WhatsApp / Messenger Pitch (Bangla)',
             title: 'F-Commerce & E-Commerce Store Pitch (Bangla)',
             category: 'messaging',
-            text: ` ¦  ¦¸ ¦¸ ¦¾ ¦² ¦¾ ¦® §  ¦  ¦² ¦¾ ¦ ¦• § ¦® {{Name}}  ¦­ ¦¾ ¦\n\n ¦  ¦ª ¦¨ ¦¾ ¦°  ¦ ¦¨ ¦² ¦¾ ¦ ¦¨  ¦¸ § ¦Å¸ § ¦° §  ¦• ¦¾ ¦¸ § ¦Å¸ ¦® ¦¾ ¦° ¦¦ § ¦°  ¦ ¦¨ ¦¬ ¦• § ¦¸  ¦° ¦¿ ¦ª § ¦² ¦¾ ¦  ¦¡ § ¦² ¦¿ ¦­ ¦¾ ¦° ¦¿  ¦Å¡ ¦¾ ¦° § ¦Å“  ¦• § ¦¯ ¦¾ ¦² ¦• § ¦² § ¦¶ ¦¨  ¦ ¦¬ ¦  ¦ ¦° § ¦¡ ¦¾ ¦°  ¦• ¦¨ ¦« ¦¾ ¦° § ¦®  ¦• ¦° ¦¤ §  ¦• ¦¿  ¦° ¦¾ ¦¤ § ¦  ¦® ¦¾ ¦¨ § ¦·  ¦¬ ¦¸ ¦¿ §Å¸ §  ¦° ¦¾ ¦– ¦¤ §  ¦¹ ¦Å¡ § ¦ §\n\nIINSHA- ¦ ¦° 24/7 AI WhatsApp & Messenger Sales Bot  ¦  ¦ª ¦¨ ¦¾ ¦°  ¦ §Å¸ § ¦¬ ¦¸ ¦¾ ¦ ¦Å¸ § ¦°  ¦ª § ¦° §  ¦• § ¦¯ ¦¾ ¦Å¸ ¦¾ ¦² ¦—  ¦® ¦¾ ¦¤ § ¦°  §¨ §¦  ¦® ¦¿ ¦¨ ¦¿ ¦Å¸ §  ¦ª §Å“ §  ¦¨ ¦¿ §Å¸ §  ¦• ¦¾ ¦¸ § ¦Å¸ ¦® ¦¾ ¦° § ¦°  ¦¸ ¦¾ ¦¥ §  ¦¬ ¦¾ ¦ ¦² ¦¾,  ¦¬ ¦¾ ¦ ¦² ¦¿ ¦¶  ¦  ¦ ¦ ¦² ¦¿ ¦¶ §  ¦• ¦¥ ¦¾  ¦¬ ¦² §  ¦¸ § ¦¬ §Å¸ ¦ ¦• § ¦° ¦¿ §Å¸ ¦­ ¦¾ ¦¬ §  ¦ ¦° § ¦¡ ¦¾ ¦°  ¦• ¦¨ ¦« ¦¾ ¦° § ¦®  ¦• ¦° § ¥¤\n\n ¦¬ ¦¿ ¦¸ § ¦¤ ¦¾ ¦° ¦¿ ¦¤  ¦¦ § ¦– § ¦¨  ¦ ¦¬ ¦  ¦  ¦ª ¦¨ ¦¾ ¦°  ¦¬ § ¦¯ ¦¬ ¦¸ ¦¾ ¦°  ¦Å“ ¦¨ § ¦¯  ¦« § ¦° ¦¿  ¦¡ § ¦® §  ¦¬ § ¦•  ¦• ¦° § ¦¨:\n{{REF_LINK}}`
+            text: `আসসালামু আলাইকুম {{Name}} ভাই,\n\nআপনার অনলাইন স্টোরে কাস্টমারদের ইনবক্স রিপ্লাই, ডেলিভারি চার্জ ক্যালকুলেশন এবং অর্ডার কনফার্ম করতে কি রাতেও মানুষ বসিয়ে রাখতে হচ্ছে?\n\nIINSHA-এর 24/7 AI WhatsApp & Messenger Sales Bot আপনার ওয়েবসাইটের পুরো ক্যাটালগ মাত্র ২০ মিনিটে পড়ে নিয়ে কাস্টমারের সাথে বাংলা, বাংলিশ ও ইংলিশে কথা বলে স্বয়ংক্রিয়ভাবে অর্ডার কনফার্ম করে।\n\nবিস্তারিত দেখুন এবং আপনার ব্যবসার জন্য ফ্রি ডেমো বুক করুন:\n{{REF_LINK}}`
         },
         {
             id: 'mv-wa-en-01',
-            channel: '°Å¸¬ WhatsApp / SMS Quick DM (English)',
+            channel: '💬 WhatsApp / SMS Quick DM (English)',
             title: 'Direct 1-to-1 B2B Decision-Maker Hook',
             category: 'messaging',
             text: `Hey {{FirstName}}, saw your post regarding scaling your sales pipeline. We just implemented an autonomous 5-Agent Hunter Swarm from IINSHA that extracts 100+ corporate decision-makers daily with MX validation. Huge gamechanger: {{REF_LINK}}`
         },
         {
             id: 'mv-badge-01',
-            channel: '°Å¸–¼¯¸ Embeddable HTML Glass Badge',
+            channel: '🖼️ Embeddable HTML Glass Badge',
             title: 'Dark Space Floating HTML Badge',
             category: 'embed',
-            text: `<a href="{{REF_LINK}}" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:rgba(15,23,42,0.92); border:1px solid #00f2fe; padding:10px 18px; border-radius:12px; color:#fff; text-decoration:none; font-family:sans-serif; font-size:14px; box-shadow:0 8px 25px rgba(0,242,254,0.25);">\n  <span>¢Å¡¡ Automated by <strong>IINSHA AI OS</strong></span>\n  <span style="background:#00f2fe; color:#030712; padding:2px 8px; border-radius:6px; font-weight:800; font-size:11px;">GET 20% OFF</span>\n</a>`
+            text: `<a href="{{REF_LINK}}" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:rgba(15,23,42,0.92); border:1px solid #00f2fe; padding:10px 18px; border-radius:12px; color:#fff; text-decoration:none; font-family:sans-serif; font-size:14px; box-shadow:0 8px 25px rgba(0,242,254,0.25);">\n  <span>⚡ Automated by <strong>IINSHA AI OS</strong></span>\n  <span style="background:#00f2fe; color:#030712; padding:2px 8px; border-radius:6px; font-weight:800; font-size:11px;">GET 20% OFF</span>\n</a>`
         }
     ];
 
@@ -204,13 +209,13 @@
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:18px;">
                         <div style="display:flex; align-items:center; gap:14px;">
                             <div style="width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg, var(--accent-cyan), #10b981); display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 0 20px rgba(0,242,254,0.3);">
-                                °Å¸€˜
+                                👑
                             </div>
                             <div>
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <h2 style="color:#fff; font-size:1.35rem; margin:0;">${partner.name}</h2>
                                     <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--accent-gold); border:1px solid var(--accent-gold); font-size:0.75rem; font-weight:800; padding:2px 10px; border-radius:20px;">${partner.tier}</span>
-                                    <span style="font-size:0.75rem; color:#34d399;">¢— Signed In</span>
+                                    <span style="font-size:0.75rem; color:#34d399;">● Signed In</span>
                                 </div>
                                 <div style="font-size:0.8rem; color:#94a3b8; margin-top:3px;">
                                     Ref Slug: <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">${partner.refCode}</strong> | Account: <strong style="color:#cbd5e1;">${partner.email}</strong> | Payout: <strong style="color:#34d399;">${partner.payoutMethod} (${partner.payoutAccount})</strong>
@@ -220,16 +225,16 @@
 
                         <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                             <button onclick="window.requestPartnerWithdrawal()" class="btn btn-primary" style="background:linear-gradient(135deg, #10b981, #059669); padding:10px 20px; font-weight:800; border-radius:10px;">
-                                ¢Å¡¡ Withdraw Unpaid ($${partner.unpaid.toFixed(2)})
+                                ⚡ Withdraw Unpaid ($${partner.unpaid.toFixed(2)})
                             </button>
                             <button onclick="window.openPartnerSettingsModal()" class="btn btn-glass-sm" style="padding:10px 14px;">
-                                ¢Å¡¯¸ Edit Profile
+                                ⚙️ Edit Profile
                             </button>
                             <button onclick="window.openSwitchAccountModal()" class="btn btn-glass-sm" style="padding:10px 14px; color:var(--accent-cyan);">
-                                °Å¸€ž Switch Account
+                                🔄 Switch Account
                             </button>
                             <button onclick="window.logoutPartner()" class="btn btn-glass-sm" style="padding:10px 14px; color:var(--accent-rose);">
-                                °Å¸Å¡ª Sign Out
+                                🚪 Sign Out
                             </button>
                         </div>
                     </div>
@@ -237,25 +242,25 @@
                     <!-- 4 KEY FINANCIAL PILLARS -->
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-top:20px;">
                         <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:16px; text-align:center;">
-                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">°Å¸° Unpaid Balance (Ready)</span>
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">💰 Unpaid Balance (Ready)</span>
                             <div style="font-size:1.8rem; font-weight:900; color:#34d399; font-family:var(--font-mono); margin:4px 0;">$${partner.unpaid.toFixed(2)}</div>
-                            <span style="font-size:0.72rem; color:#38bdf8;">¢†  §³${Math.round(partner.unpaid * 122.50).toLocaleString()} BDT</span>
+                            <span style="font-size:0.72rem; color:#38bdf8;">≈ ৳${Math.round(partner.unpaid * 122.50).toLocaleString()} BDT</span>
                         </div>
 
                         <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:16px; text-align:center;">
-                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">¢³ Pending Clearance</span>
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">⏳ Pending Clearance</span>
                             <div style="font-size:1.8rem; font-weight:900; color:var(--accent-gold); font-family:var(--font-mono); margin:4px 0;">$${partner.pending.toFixed(2)}</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">Escrow clearing in 48h</span>
                         </div>
 
                         <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(0,242,254,0.3); border-radius:12px; padding:16px; text-align:center;">
-                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">°Å¸½ Lifetime Disbursed</span>
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">💎 Lifetime Disbursed</span>
                             <div style="font-size:1.8rem; font-weight:900; color:var(--accent-cyan); font-family:var(--font-mono); margin:4px 0;">$${partner.paidOut.toFixed(2)}</div>
                             <span style="font-size:0.72rem; color:#34d399;">100% Reconciled</span>
                         </div>
 
                         <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:16px; text-align:center;">
-                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">°Å¸† Average EPC (Yield)</span>
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-family:var(--font-mono);">📈 Average EPC (Yield)</span>
                             <div style="font-size:1.8rem; font-weight:900; color:#c084fc; font-family:var(--font-mono); margin:4px 0;">${partner.epc}</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">${partner.conversionRate} Click-to-Close</span>
                         </div>
@@ -264,15 +269,15 @@
 
                 <!-- PORTAL TAB NAVIGATION SYSTEM -->
                 <div style="display:flex; gap:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;">
-                    <button onclick="window.switchAffiliateTab('dashboard')" class="lab-tab active" id="tab-btn-dashboard" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸  Live Cockpit</button>
-                    <button onclick="window.switchAffiliateTab('workspace')" class="lab-tab" id="tab-btn-workspace" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent; color:var(--accent-cyan);">¢Å¡¡ Marketing Workstation</button>
-                    <button onclick="window.switchAffiliateTab('crm')" class="lab-tab" id="tab-btn-crm" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸Å½¯ Outreach CRM</button>
-                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸ Link & SubID Studio</button>
-                    <button onclick="window.switchAffiliateTab('vault')" class="lab-tab" id="tab-btn-vault" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸Å½¨ 28-Asset Swipe Vault</button>
-                    <button onclick="window.switchAffiliateTab('coach')" class="lab-tab" id="tab-btn-coach" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸§  AI Strategy Assistant</button>
-                    <button onclick="window.switchAffiliateTab('milestones')" class="lab-tab" id="tab-btn-milestones" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸  Tiers & Rewards</button>
-                    <button onclick="window.switchAffiliateTab('payouts')" class="lab-tab" id="tab-btn-payouts" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸³ Payout Ledger</button>
-                    <button onclick="window.switchAffiliateTab('academy')" class="lab-tab" id="tab-btn-academy" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">°Å¸¡ Growth Academy</button>
+                    <button onclick="window.switchAffiliateTab('dashboard')" class="lab-tab active" id="tab-btn-dashboard" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📊 Live Cockpit</button>
+                    <button onclick="window.switchAffiliateTab('workspace')" class="lab-tab" id="tab-btn-workspace" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent; color:var(--accent-cyan);">⚡ Marketing Workstation</button>
+                    <button onclick="window.switchAffiliateTab('crm')" class="lab-tab" id="tab-btn-crm" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🎯 Outreach CRM</button>
+                    <button onclick="window.switchAffiliateTab('links')" class="lab-tab" id="tab-btn-links" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🔗 Link & SubID Studio</button>
+                    <button onclick="window.switchAffiliateTab('vault')" class="lab-tab" id="tab-btn-vault" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🎨 28-Asset Swipe Vault</button>
+                    <button onclick="window.switchAffiliateTab('coach')" class="lab-tab" id="tab-btn-coach" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🧠 AI Strategy Assistant</button>
+                    <button onclick="window.switchAffiliateTab('milestones')" class="lab-tab" id="tab-btn-milestones" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">🏆 Tiers & Rewards</button>
+                    <button onclick="window.switchAffiliateTab('payouts')" class="lab-tab" id="tab-btn-payouts" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">💳 Payout Ledger</button>
+                    <button onclick="window.switchAffiliateTab('academy')" class="lab-tab" id="tab-btn-academy" style="padding:8px 16px; border-radius:8px; font-weight:700; font-size:0.85rem; border:1px solid transparent;">📚 Growth Academy</button>
                 </div>
 
                 <!-- ================= TAB 1: LIVE COCKPIT ================= -->
@@ -282,7 +287,7 @@
                         <!-- Real-time Traffic Attribution Breakdown -->
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0;">
                             <h3 style="color:#fff; font-size:1.05rem; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                                <span>°Å¸°¯¸</span> Real-Time Traffic Telemetry
+                                <span>🛰️</span> Real-Time Traffic Telemetry
                             </h3>
                             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                                 <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:8px;">
@@ -303,28 +308,28 @@
                                 </div>
                             </div>
                             <div style="margin-top:14px; padding:10px; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:8px; font-size:0.78rem; color:#a7f3d0; font-family:var(--font-mono);">
-                                °Å¸¡¯¸ Server-Side Fraud Filter: <strong>${partner.trafficQuality}</strong>
+                                🛡️ Server-Side Fraud Filter: <strong>${partner.trafficQuality}</strong>
                             </div>
                         </div>
 
                         <!-- 1-Click Social Broadcast Station -->
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0;">
                             <h3 style="color:#fff; font-size:1.05rem; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                                <span>°Å¸²</span> 1-Click Social Broadcast Station
+                                <span>📲</span> 1-Click Social Broadcast Station
                             </h3>
                             <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:12px;">Instantly share high-converting promotions with your tracking code attached:</p>
                             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
                                 <button onclick="window.shareToWhatsApp('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(37,211,102,0.15); border-color:#25D366; color:#25D366; font-size:0.78rem; font-weight:700;">
-                                    °Å¸¬ WhatsApp
+                                    💬 WhatsApp
                                 </button>
                                 <button onclick="window.shareToTelegram('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(0,136,204,0.15); border-color:#0088cc; color:#38bdf8; font-size:0.78rem; font-weight:700;">
-                                    ¢Å“Ë†¯¸ Telegram
+                                    ✈️ Telegram
                                 </button>
                                 <button onclick="window.shareToLinkedIn('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(10,102,194,0.15); border-color:#0a66c2; color:#60a5fa; font-size:0.78rem; font-weight:700;">
-                                    °Å¸¼ LinkedIn
+                                    💼 LinkedIn
                                 </button>
                                 <button onclick="window.shareToTwitter('${partnerRefLink}')" class="btn btn-glass-sm" style="background:rgba(255,255,255,0.08); border-color:#cbd5e1; color:#fff; font-size:0.78rem; font-weight:700;">
-                                    ¢Å“–¯¸ Twitter / X
+                                    ✖️ Twitter / X
                                 </button>
                             </div>
                         </div>
@@ -338,7 +343,7 @@
                         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
                             <div>
                                 <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">AI COPYWRITING STUDIO</span>
-                                <h3 style="color:#fff; font-size:1.3rem; margin:4px 0 0 0;">¢Å¡¡ Custom AI Marketing Pitch Generator</h3>
+                                <h3 style="color:#fff; font-size:1.3rem; margin:4px 0 0 0;">⚡ Custom AI Marketing Pitch Generator</h3>
                                 <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0;">Enter your prospect's company details to generate bespoke outreach messages with your affiliate link automatically embedded.</p>
                             </div>
                         </div>
@@ -357,34 +362,34 @@
                             <div>
                                 <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Target Niche / Industry:</label>
                                 <select id="ai-work-niche" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
-                                    <option value="ecom">°Å¸€™ E-Commerce & F-Commerce Store</option>
-                                    <option value="saas">°Å¸» B2B SaaS & Tech Agency</option>
-                                    <option value="realestate">°Å¸¢ Real Estate & Property Developers</option>
-                                    <option value="clinic">°Å¸¥ Clinics, Dental & Healthcare</option>
-                                    <option value="general">¢Å¡¡ Generic High-Zapier Spender</option>
+                                    <option value="ecom">🛒 E-Commerce & F-Commerce Store</option>
+                                    <option value="saas">💻 B2B SaaS & Tech Agency</option>
+                                    <option value="realestate">🏢 Real Estate & Property Developers</option>
+                                    <option value="clinic">🏥 Clinics, Dental & Healthcare</option>
+                                    <option value="general">⚡ Generic High-Zapier Spender</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Outreach Format:</label>
                                 <select id="ai-work-format" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
-                                    <option value="wa_bn">°Å¸¬ WhatsApp Direct Pitch (Bangla)</option>
-                                    <option value="wa_en">°Å¸¬ WhatsApp Direct Pitch (English)</option>
-                                    <option value="li_post">°Å¸± LinkedIn Viral Post</option>
-                                    <option value="cold_email">¢Å“¯¸ B2B Cold Email Sequence</option>
+                                    <option value="wa_bn">💬 WhatsApp Direct Pitch (Bangla)</option>
+                                    <option value="wa_en">💬 WhatsApp Direct Pitch (English)</option>
+                                    <option value="li_post">📱 LinkedIn Viral Post</option>
+                                    <option value="cold_email">✉️ B2B Cold Email Sequence</option>
                                 </select>
                             </div>
                         </div>
 
                         <button onclick="window.generateCustomMarketingPitch()" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:800; font-size:0.95rem; margin-bottom:16px;">
-                            ¢Å¡¡ Generate Bespoke Marketing Copy & Link ¢ 
+                            ⚡ Generate Bespoke Marketing Copy & Link →
                         </button>
 
                         <!-- Output Box -->
                         <div style="position:relative;">
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                                 <strong style="color:var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono);">GENERATED BESPOKE OUTREACH COPY:</strong>
-                                <button onclick="window.copyGeneratedPitch()" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 10px;">°Å¸€¹ Copy Text</button>
+                                <button onclick="window.copyGeneratedPitch()" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 10px;">📋 Copy Text</button>
                             </div>
                             <textarea id="ai-work-output" rows="8" readonly style="width:100%; background:rgba(0,0,0,0.6); border:1px solid var(--accent-cyan); border-radius:10px; padding:12px; color:#fff; font-size:0.82rem; font-family:var(--font-mono); line-height:1.5; resize:none; box-sizing:border-box;">Click 'Generate Bespoke Marketing Copy' above to produce customized copy for your prospect with your affiliate link embedded!</textarea>
                         </div>
@@ -396,7 +401,7 @@
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
                             <div>
-                                <h3 style="color:#fff; font-size:1.25rem; margin:0;">°Å¸Å½¯ Partner Outreach Pipeline CRM</h3>
+                                <h3 style="color:#fff; font-size:1.25rem; margin:0;">🎯 Partner Outreach Pipeline CRM</h3>
                                 <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0;">Log your prospect contacts, outreach channels, and deal statuses directly inside your workspace.</p>
                             </div>
                             <button onclick="window.openAddProspectModal()" class="btn btn-primary-sm">+ Add New Prospect</button>
@@ -425,7 +430,7 @@
                                             <td style="padding:10px; color:#38bdf8; font-size:0.75rem;">${p.offer}</td>
                                             <td style="padding:10px;"><span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); font-size:0.68rem; padding:2px 6px; border-radius:4px;">${p.status}</span></td>
                                             <td style="padding:10px;">
-                                                <button onclick="window.sendDirectProspectMessage('${p.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:2px 8px;">°Å¸¬ Message</button>
+                                                <button onclick="window.sendDirectProspectMessage('${p.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:2px 8px;">💬 Message</button>
                                             </td>
                                         </tr>
                                     `).join('')}
@@ -438,17 +443,31 @@
                 <!-- ================= TAB 4: LINK & SUBID STUDIO ================= -->
                 <div id="tab-panel-links" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:24px; border-radius:16px;">
-                        <h3 style="color:#fff; font-size:1.2rem; margin-bottom:6px;">°Å¸ Advanced Custom Link & SubID Generator</h3>
+                        <h3 style="color:#fff; font-size:1.2rem; margin-bottom:6px;">🔗 Advanced Custom Link & SubID Generator</h3>
                         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:20px;">Create unique tracking links for Facebook Ads, YouTube Descriptions, Cold Emails, and WhatsApp.</p>
 
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-bottom:18px;">
                             <div>
                                 <label style="display:block; font-size:0.78rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Destination Landing Page:</label>
                                 <select id="link-studio-target" onchange="window.updateStudioGeneratedLink()" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px; color:#fff; font-size:0.85rem;">
-                                    <option value="/">°Å¸  Main Homepage (High Intent)</option>
-                                    <option value="/store.html">°Å¸€™ Turnkey Service Store ($29 - $1,800)</option>
-                                    <option value="/marketplace.html">°Å¸¬ AI Multi-Agent Marketplace</option>
-                                    <option value="/compare.html">¢Å¡¯¸ Comparison & ROI Matrix</option>
+                                    <optgroup label="General Platform Pages" style="background:#0f172a; color:#94a3b8;">
+                                        <option value="/">🏠 Main Homepage (High Intent)</option>
+                                        <option value="/store.html">🛒 Turnkey Service Store ($29 - $1,800)</option>
+                                        <option value="/marketplace.html">🏬 AI Multi-Agent Marketplace</option>
+                                        <option value="/compare.html">⚔️ Comparison & ROI Matrix</option>
+                                    </optgroup>
+                                    <optgroup label="Direct Turnkey Services & Solutions" style="background:#0f172a; color:#00f2fe;">
+                                        <option value="/store.html?product=b2b-lead-swarm">🎯 B2B SaaS 5-Agent Hunter Swarm ($850)</option>
+                                        <option value="/store.html?product=ecommerce-ai-whatsapp">💬 24/7 E-Commerce WhatsApp Sales Bot ($750)</option>
+                                        <option value="/store.html?product=voice-ai-receptionist">🎙️ AI Voice Receptionist ($1,800)</option>
+                                        <option value="/store.html?product=n8n-docker-cluster">🐳 Self-Hosted n8n VPS Cluster ($497)</option>
+                                        <option value="/store.html?product=invoice-ocr-pipeline">📄 Autonomous Invoice OCR Pipeline ($249)</option>
+                                        <option value="/store.html?product=playwright-enterprise-scraper">🕷️ Playwright Resilient Scraper ($650)</option>
+                                        <option value="/store.html?product=real-estate-lead-bot">🏠 Real Estate Speed-to-Lead Qualifier ($750)</option>
+                                        <option value="/store.html?product=clinic-booking-concierge">🩺 Healthcare & Clinic Concierge ($950)</option>
+                                        <option value="/store.html?product=autonomous-marketing-engine">📈 Autonomous Marketing & SEO Engine ($550)</option>
+                                        <option value="/store.html?product=custom-ai-agent-blueprint">🏢 Custom Enterprise Agent Architecture ($1,200)</option>
+                                    </optgroup>
                                 </select>
                             </div>
 
@@ -465,14 +484,14 @@
                                 <input type="text" id="link-studio-output" readonly value="${partnerRefLink}" style="width:100%; background:transparent; border:none; color:var(--accent-cyan); font-weight:700; font-family:var(--font-mono); font-size:0.92rem; outline:none;">
                             </div>
                             <div style="display:flex; gap:8px;">
-                                <button onclick="window.copyStudioLink()" class="btn btn-primary-sm" style="font-weight:700;">°Å¸€¹ Copy Link</button>
-                                <button onclick="window.toggleQrCodeModal()" class="btn btn-glass-sm">°Å¸± QR Code</button>
+                                <button onclick="window.copyStudioLink()" class="btn btn-primary-sm" style="font-weight:700;">📋 Copy Link</button>
+                                <button onclick="window.toggleQrCodeModal()" class="btn btn-glass-sm">📱 QR Code</button>
                             </div>
                         </div>
 
                         <!-- Deep Link Offer Cards -->
                         <div style="margin-top:28px;">
-                            <h4 style="color:#fff; font-size:0.95rem; margin-bottom:12px;">°Å¸¦ Product-Specific Direct Deep Links:</h4>
+                            <h4 style="color:#fff; font-size:0.95rem; margin-bottom:12px;">📦 Product-Specific Direct Deep Links:</h4>
                             <div style="display:flex; flex-direction:column; gap:8px;">
                                 ${OFFERS.map(o => `
                                     <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px 14px; flex-wrap:wrap; gap:8px;">
@@ -480,7 +499,7 @@
                                             <strong style="color:#fff; font-size:0.84rem;">${o.name}</strong>
                                             <span style="font-size:0.72rem; color:var(--accent-cyan); margin-left:8px;">$${o.priceUSD} USD (Commission: <strong style="color:#34d399;">$${o.commUSD.toFixed(2)}</strong>)</span>
                                         </div>
-                                        <button onclick="window.copyDeepLinkDirect('${o.id}', '${partner.refCode}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 10px;">°Å¸€¹ Copy Product Link</button>
+                                        <button onclick="window.copyDeepLinkDirect('${o.id}', '${partner.refCode}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 10px;">📋 Copy Product Link</button>
                                     </div>
                                 `).join('')}
                             </div>
@@ -492,7 +511,7 @@
                 <div id="tab-panel-vault" class="aff-tab-panel" style="display:none;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
-                            <h3 style="color:#fff; font-size:1.2rem; margin:0;">°Å¸Å½¨ High-Converting Marketing Asset Center</h3>
+                            <h3 style="color:#fff; font-size:1.2rem; margin:0;">🎨 High-Converting Marketing Asset Center</h3>
                             <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0;">Pre-written viral hooks, emails, Bangla WhatsApp copy, and embeddable badges.</p>
                         </div>
                         <div style="display:flex; gap:6px;">
@@ -506,7 +525,7 @@
 
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;" id="vault-assets-grid">
                         ${MARKETING_VAULT.map(a => {
-                            const populated = a.text.replace(/\{\{REF_LINK\}\}/g, partnerRefLink).replace(/\{\{PartnerName\}\}/g, partner.name).replace(/\{\{CompanyName\}\}/g, 'Prospect Inc').replace(/\{\{FirstName\}\}/g, 'Founder').replace(/\{\{Name\}\}/g, ' ¦­ ¦¾ ¦');
+                            const populated = a.text.replace(/\{\{REF_LINK\}\}/g, partnerRefLink).replace(/\{\{PartnerName\}\}/g, partner.name).replace(/\{\{CompanyName\}\}/g, 'Prospect Inc').replace(/\{\{FirstName\}\}/g, 'Founder').replace(/\{\{Name\}\}/g, 'ভাই');
                             return `
                                 <div class="ipc-card vault-item" data-cat="${a.category}" style="background:rgba(15,23,42,0.85); margin:0; padding:18px;">
                                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
@@ -514,7 +533,7 @@
                                             <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">${a.channel}</span>
                                             <h4 style="color:#fff; font-size:0.95rem; margin:2px 0 0 0;">${a.title}</h4>
                                         </div>
-                                        <button onclick="window.copyAssetText('${a.id}')" class="btn btn-primary-sm" style="padding:4px 10px; font-size:0.72rem;">°Å¸€¹ Copy</button>
+                                        <button onclick="window.copyAssetText('${a.id}')" class="btn btn-primary-sm" style="padding:4px 10px; font-size:0.72rem;">📋 Copy</button>
                                     </div>
                                     <textarea id="${a.id}" readonly rows="6" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px; color:#cbd5e1; font-size:0.78rem; font-family:var(--font-mono); resize:none; box-sizing:border-box; outline:none; line-height:1.5;">${populated}</textarea>
                                 </div>
@@ -531,7 +550,7 @@
                                 <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">AI FIRST-SALE STRATEGY ASSISTANT</span>
                                 <h3 style="color:#fff; font-size:1.25rem; margin-top:4px;">How to Close Your First $500 Commission in 7 Days</h3>
                             </div>
-                            <button onclick="window.generateCustomNicheStrategy()" class="btn btn-primary-sm">¢Å“¨ Generate Custom Plan</button>
+                            <button onclick="window.generateCustomNicheStrategy()" class="btn btn-primary-sm">✨ Generate Custom Plan</button>
                         </div>
 
                         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin-bottom:20px;">
@@ -547,12 +566,12 @@
 
                             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:14px;">
                                 <strong style="color:var(--accent-gold); font-size:0.88rem; display:block; margin-bottom:4px;">3. Automatic Escrow Attribution</strong>
-                                <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.5; margin:0;">When the client orders via your link, 20%—œ25% commission is instantly locked in escrow and paid out via bKash/Wise.</p>
+                                <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.5; margin:0;">When the client orders via your link, 20%–25% commission is instantly locked in escrow and paid out via bKash/Wise.</p>
                             </div>
                         </div>
 
                         <div id="ai-coach-custom-box" style="background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:16px; font-size:0.82rem; color:#cbd5e1; line-height:1.6;">
-                            <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">°Å¸¡ AI Partner Recommendation:</strong>
+                            <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">💡 AI Partner Recommendation:</strong>
                             Promoting the <strong>"B2B SaaS 5-Agent Hunter Swarm" ($850 USD)</strong> on LinkedIn currently yields the highest conversion velocity ($8.40 EPC) with corporate decision-makers.
                         </div>
                     </div>
@@ -563,7 +582,7 @@
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
                         
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); border-color:rgba(255,255,255,0.1); margin:0;">
-                            <div style="font-size:1.4rem;">°Å¸Å’± Starter Bronze</div>
+                            <div style="font-size:1.4rem;">🌱 Starter Bronze</div>
                             <div style="font-size:1.15rem; font-weight:800; color:#fff; margin:4px 0;">15% Upfront + 10% Retainer</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">Requirement: 0 - 3 Deals</span>
                             <ul style="font-size:0.75rem; color:#cbd5e1; margin-top:10px; padding-left:16px; line-height:1.6;">
@@ -574,7 +593,7 @@
                         </div>
 
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); border-color:var(--accent-cyan); box-shadow:0 0 20px rgba(0,242,254,0.2); margin:0;">
-                            <div style="font-size:1.4rem;">°Å¸¥ VIP Silver</div>
+                            <div style="font-size:1.4rem;">🔥 VIP Silver</div>
                             <div style="font-size:1.15rem; font-weight:800; color:var(--accent-cyan); margin:4px 0;">20% Upfront + 15% Retainer</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">Requirement: 4 - 9 Deals</span>
                             <ul style="font-size:0.75rem; color:#cbd5e1; margin-top:10px; padding-left:16px; line-height:1.6;">
@@ -585,7 +604,7 @@
                         </div>
 
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); border-color:var(--accent-gold); box-shadow:0 0 20px rgba(245,158,11,0.2); margin:0;">
-                            <div style="font-size:1.4rem;">°Å¸€˜ Elite Gold (Active)</div>
+                            <div style="font-size:1.4rem;">👑 Elite Gold (Active)</div>
                             <div style="font-size:1.15rem; font-weight:800; color:var(--accent-gold); margin:4px 0;">25% Upfront + 20% Retainer</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">Requirement: 10 - 24 Deals</span>
                             <ul style="font-size:0.75rem; color:#cbd5e1; margin-top:10px; padding-left:16px; line-height:1.6;">
@@ -596,7 +615,7 @@
                         </div>
 
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); border-color:#ec4899; box-shadow:0 0 20px rgba(236,72,153,0.2); margin:0;">
-                            <div style="font-size:1.4rem;">°Å¸½ Legend Diamond</div>
+                            <div style="font-size:1.4rem;">💎 Legend Diamond</div>
                             <div style="font-size:1.15rem; font-weight:800; color:#f472b6; margin:4px 0;">30% Upfront + 25% Retainer</div>
                             <span style="font-size:0.72rem; color:#94a3b8;">Requirement: 25+ Deals</span>
                             <ul style="font-size:0.75rem; color:#cbd5e1; margin-top:10px; padding-left:16px; line-height:1.6;">
@@ -613,8 +632,8 @@
                 <div id="tab-panel-payouts" class="aff-tab-panel" style="display:none;">
                     <div class="ipc-card" style="background:rgba(15,23,42,0.9); padding:22px; border-radius:16px; margin:0;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
-                            <h3 style="color:#fff; font-size:1.15rem; margin:0;">°Å¸³ Canonical Transaction & Payout Ledger</h3>
-                            <button onclick="window.requestPartnerWithdrawal()" class="btn btn-primary-sm">¢Å¡¡ Request Instant Payout</button>
+                            <h3 style="color:#fff; font-size:1.15rem; margin:0;">💳 Canonical Transaction & Payout Ledger</h3>
+                            <button onclick="window.requestPartnerWithdrawal()" class="btn btn-primary-sm">⚡ Request Instant Payout</button>
                         </div>
 
                         <div style="overflow-x:auto;">
@@ -651,24 +670,24 @@
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
                         
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0; padding:20px;">
-                            <span style="font-size:1.8rem;">°Å¸Å½</span>
+                            <span style="font-size:1.8rem;">🎓</span>
                             <h4 style="color:#fff; font-size:1.05rem; margin:6px 0;">Module 1: LinkedIn Executive Prospecting</h4>
                             <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">How to use the Free 24h Video Teardown hook to book 5+ discovery calls per week with zero ad spend.</p>
-                            <button onclick="alert('°Å¸œ Module 1 Guide:\n\n1. Search founders hiring for Operations/Data entry on LinkedIn.\n2. Send Swipe #1.\n3. When they reply, drop your affiliate link to book the free video teardown.')" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook ¢ </button>
+                            <button onclick="window.openAcademyGuide(1)" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook →</button>
                         </div>
 
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0; padding:20px;">
-                            <span style="font-size:1.8rem;">°Å¸¬</span>
+                            <span style="font-size:1.8rem;">💬</span>
                             <h4 style="color:#fff; font-size:1.05rem; margin:6px 0;">Module 2: Closing Shopify & F-Commerce Stores</h4>
                             <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">Positioning the 24/7 AI WhatsApp Sales bot to store owners spending $300+/mo on human chat reps.</p>
-                            <button onclick="alert('°Å¸œ Module 2 Guide:\n\n1. Target e-commerce brands with 50+ daily orders.\n2. Send Bangla WhatsApp swipe.\n3. Show how the bot answers in 3 seconds & confirms cash-on-delivery orders.')" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook ¢ </button>
+                            <button onclick="window.openAcademyGuide(2)" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook →</button>
                         </div>
 
                         <div class="ipc-card" style="background:rgba(15,23,42,0.85); margin:0; padding:20px;">
-                            <span style="font-size:1.8rem;">¢Å¡¯¸</span>
+                            <span style="font-size:1.8rem;">⚙️</span>
                             <h4 style="color:#fff; font-size:1.05rem; margin:6px 0;">Module 3: Self-Hosted n8n vs Zapier Angle</h4>
-                            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">How to pitch $497 one-time n8n deployment to companies burning $500—œ$2,000/mo on Zapier tasks.</p>
-                            <button onclick="alert('°Å¸œ Module 3 Guide:\n\n1. Highlight 90% cost savings.\n2. Emphasize self-hosted data privacy & PostgreSQL backups on $5.99/mo VPS.')" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook ¢ </button>
+                            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.5;">How to pitch $497 one-time n8n deployment to companies burning $500–$2,000/mo on Zapier tasks.</p>
+                            <button onclick="window.openAcademyGuide(3)" class="btn btn-glass-sm" style="width:100%; margin-top:10px;">Read Playbook →</button>
                         </div>
 
                     </div>
@@ -693,8 +712,8 @@
 
                 <!-- Auth Mode Switch Tabs -->
                 <div style="display:flex; justify-content:center; gap:10px; margin-bottom:24px;">
-                    <button onclick="window.switchAuthMode('signin')" id="auth-tab-signin" class="lab-tab active" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">°Å¸€˜ Partner Sign In</button>
-                    <button onclick="window.switchAuthMode('register')" id="auth-tab-register" class="lab-tab" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">°Å¸Å¡ Register New Account</button>
+                    <button onclick="window.switchAuthMode('signin')" id="auth-tab-signin" class="lab-tab active" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">🔑 Partner Sign In</button>
+                    <button onclick="window.switchAuthMode('register')" id="auth-tab-register" class="lab-tab" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">🚀 Register New Account</button>
                 </div>
 
                 <!-- SIGN IN FORM -->
@@ -707,15 +726,14 @@
 
                         <div>
                             <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:6px; font-weight:600;">Partner Access PIN / Password *</label>
-                            <input type="password" id="signin-password" required  placeholder="Enter your password" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                            <input type="password" id="signin-password" required value="" placeholder="Enter your password" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #00f2fe, #0284c7); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center; margin-top:6px;">
-                            Sign In & Open Partner Dashboard →
+                            🔑 Sign In & Open Partner Dashboard →
                         </button>
                     </form>
 
-                    <!-- Secure Notice -->
                     <div style="margin-top:28px; border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; text-align:center;">
                         <span style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono); text-transform:uppercase;">🔒 Secured via Supabase Zero-Trust Auth & RLS</span>
                     </div>
@@ -747,11 +765,11 @@
                         <div>
                             <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Preferred Payout Method *</label>
                             <select id="reg-payout-method" required style="width:100%; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:10px 14px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
-                                <option value="bKash (Personal / Merchant)">°Å¸§°Å¸© bKash (Personal / Merchant)</option>
-                                <option value="Nagad">°Å¸§°Å¸© Nagad</option>
-                                <option value="Wise Bank Wire (USD/GBP)">°Å¸Å’ Wise Bank Wire (USD/GBP/EUR)</option>
-                                <option value="Local Bank Transfer">°Å¸¦ Local Bank Transfer</option>
-                                <option value="USDT Crypto (TRC20)">¢Å¡¡ USDT Crypto (TRC20)</option>
+                                <option value="bKash (Personal / Merchant)">🇧🇩 bKash (Personal / Merchant)</option>
+                                <option value="Nagad">🇧🇩 Nagad</option>
+                                <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire (USD/GBP/EUR)</option>
+                                <option value="Local Bank Transfer">🏦 Local Bank Transfer</option>
+                                <option value="USDT Crypto (TRC20)">⚡ USDT Crypto (TRC20)</option>
                             </select>
                         </div>
 
@@ -767,7 +785,7 @@
 
                         <div style="grid-column: 1 / -1; margin-top:8px;">
                             <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #10b981, #059669); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center;">
-                                °Å¸Å¡ Create Account & Launch Dashboard ¢ 
+                                🚀 Create Account & Launch Dashboard →
                             </button>
                         </div>
                     </form>
@@ -817,7 +835,7 @@
             sessionStorage.removeItem('iinsha_aff_logged_out');
             setActivePartner(matchedPartner.id);
             window.initAffiliatePortal();
-            window.showAffiliateToast(`°Å¸€¹ Welcome back, ${matchedPartner.name}!`);
+            window.showAffiliateToast(`👋 Welcome back, ${matchedPartner.name}!`);
         } else {
             // Auto-provision if not in registry
             const newId = identifier.replace(/[^a-z0-9_-]/g, '') || 'partner_' + Date.now();
@@ -825,12 +843,12 @@
                 id: newId,
                 name: identifier.split('@')[0].toUpperCase() + ' Partner',
                 email: identifier.includes('@') ? identifier : `${identifier}@partner.com`,
-                passwordHash: 'REDACTED_SECURE_HASH',
+                passwordHash: 'REDACTED_BCRYPT_HASH',
                 phone: '+8801629286887',
                 payoutMethod: 'bKash (Personal / Merchant)',
                 payoutAccount: '01629286887',
                 refCode: newId,
-                tier: '°Å¸Å’± Starter Bronze (15%)',
+                tier: '🌱 Starter Bronze (15%)',
                 tierLevel: 1,
                 unpaid: 0.00,
                 pending: 0.00,
@@ -850,7 +868,7 @@
             sessionStorage.removeItem('iinsha_aff_logged_out');
             setActivePartner(newId);
             window.initAffiliatePortal();
-            window.showAffiliateToast(`°Å¸Å½ Welcome to IINSHA Partner OS, ${newP.name}!`);
+            window.showAffiliateToast(`🎉 Welcome to IINSHA Partner OS, ${newP.name}!`);
         }
     };
 
@@ -874,7 +892,7 @@
             payoutMethod,
             payoutAccount,
             refCode: newId,
-            tier: '°Å¸Å’± Starter Bronze (15%)',
+            tier: '🌱 Starter Bronze (15%)',
             tierLevel: 1,
             unpaid: 0.00,
             pending: 0.00,
@@ -897,21 +915,50 @@
         sessionStorage.removeItem('iinsha_aff_logged_out');
         setActivePartner(newId);
         window.initAffiliatePortal();
-        window.showAffiliateToast(`°Å¸Å½ Account Created! Welcome, ${name}! Your link: /?ref=${newId}`);
+        window.showAffiliateToast(`🎉 Account Created! Welcome, ${name}! Your link: /?ref=${newId}`);
     };
 
     window.quickDemoLogin = function(partnerId) {
         sessionStorage.removeItem('iinsha_aff_logged_out');
         setActivePartner(partnerId);
         window.initAffiliatePortal();
-        window.showAffiliateToast(`°Å¸€˜ Switched account to ${partnerId}!`);
+        window.showAffiliateToast(`👑 Switched account to ${partnerId}!`);
     };
 
     window.logoutPartner = function() {
         sessionStorage.setItem('iinsha_aff_logged_out', 'true');
-        sessionStorage.removeItem('iinsha_affiliate_auth');
         window.initAffiliatePortal();
-        window.showAffiliateToast('Signed out of partner portal successfully.');
+        window.showAffiliateToast('🚪 Signed out of partner portal successfully.');
+    };
+
+    window.openSwitchAccountModal = function() {
+        const registry = getPartnersRegistry();
+        const accounts = Object.values(registry);
+        const modalHtml = `
+            <div id="switch-account-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
+                <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:16px; max-width:480px; width:90%; padding:24px; color:#fff; font-family:'Inter',sans-serif;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🔄 Switch Partner Profile</h3>
+                        <button onclick="document.getElementById('switch-account-modal').remove()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px;">
+                        ${accounts.map(a => `
+                            <div onclick="window.switchAccountTo('${a.id}'); document.getElementById('switch-account-modal').remove();" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                <div>
+                                    <strong style="color:#fff; display:block;">${a.name}</strong>
+                                    <span style="font-size:0.75rem; color:#94a3b8;">${a.email} • Code: <span style="color:var(--accent-cyan); font-family:var(--font-mono);">${a.refCode}</span></span>
+                                </div>
+                                <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); font-size:0.7rem; padding:2px 8px; border-radius:4px;">${a.tier.split(' ')[0]}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="window.logoutPartner(); document.getElementById('switch-account-modal').remove();" class="btn btn-glass" style="width:100%; justify-content:center; color:var(--accent-rose);">+ Log In as Different User</button>
+                </div>
+            </div>
+        `;
+        const existing = document.getElementById('switch-account-modal');
+        if (existing) existing.remove();
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
     };
 
     // AI Copywriter & Marketing Workstation Pitch Generator
@@ -928,7 +975,7 @@
 
         let text = '';
         if (format === 'wa_bn') {
-            text = ` ¦  ¦¸ ¦¸ ¦¾ ¦² ¦¾ ¦® §  ¦  ¦² ¦¾ ¦ ¦• § ¦® ${name}  ¦­ ¦¾ ¦\n\n${company}- ¦ ¦°  ¦• ¦¾ ¦¸ § ¦Å¸ ¦® ¦¾ ¦° ¦¦ § ¦°  ¦ ¦¨ ¦¬ ¦• § ¦¸  ¦° ¦¿ ¦ª § ¦² ¦¾ ¦  ¦¡ § ¦² ¦¿ ¦­ ¦¾ ¦° ¦¿  ¦Å¡ ¦¾ ¦° § ¦Å“  ¦• § ¦¯ ¦¾ ¦² ¦• § ¦² § ¦¶ ¦¨  ¦ ¦¬ ¦  ¦ ¦° § ¦¡ ¦¾ ¦°  ¦• ¦¨ ¦« ¦¾ ¦° § ¦®  ¦• ¦° ¦¤ §  ¦• ¦¿  ¦° ¦¾ ¦¤ § ¦  ¦® ¦¾ ¦¨ § ¦·  ¦¬ ¦¸ ¦¿ §Å¸ §  ¦° ¦¾ ¦– ¦¤ §  ¦¹ ¦Å¡ § ¦ §\n\nIINSHA- ¦ ¦° 24/7 AI WhatsApp & Messenger Sales Bot  ¦  ¦ª ¦¨ ¦¾ ¦°  ¦ §Å¸ § ¦¬ ¦¸ ¦¾ ¦ ¦Å¸ § ¦°  ¦ª § ¦° §  ¦• § ¦¯ ¦¾ ¦Å¸ ¦¾ ¦² ¦—  ¦® ¦¾ ¦¤ § ¦°  §¨ §¦  ¦® ¦¿ ¦¨ ¦¿ ¦Å¸ §  ¦ª §Å“ §  ¦¨ ¦¿ §Å¸ §  ¦• ¦¾ ¦¸ § ¦Å¸ ¦® ¦¾ ¦° § ¦°  ¦¸ ¦¾ ¦¥ §  ¦¬ ¦¾ ¦ ¦² ¦¾,  ¦¬ ¦¾ ¦ ¦² ¦¿ ¦¶  ¦  ¦ ¦ ¦² ¦¿ ¦¶ §  ¦• ¦¥ ¦¾  ¦¬ ¦² §  ¦¸ § ¦¬ §Å¸ ¦ ¦• § ¦° ¦¿ §Å¸ ¦­ ¦¾ ¦¬ §  ¦ ¦° § ¦¡ ¦¾ ¦°  ¦• ¦¨ ¦« ¦¾ ¦° § ¦®  ¦• ¦° § ¥¤\n\n ¦« § ¦° ¦¿  ¦¡ § ¦® §  ¦ ¦¬ ¦  §¨ §ª  ¦Ëœ ¦£ § ¦Å¸ ¦¾ ¦°  ¦­ ¦¿ ¦¡ ¦¿ ¦  ¦ ¦¡ ¦¿ ¦Å¸  ¦¦ § ¦– ¦¤ §  ¦¨ ¦¿ ¦Å¡ § ¦°  ¦² ¦¿ ¦ ¦• §  ¦¯ ¦¾ ¦¨:\n${partnerRefLink}&subid=wa_pitch`;
+            text = `আসসালামু আলাইকুম ${name} ভাই,\n\n${company}-এর কাস্টমারদের ইনবক্স রিপ্লাই, ডেলিভারি চার্জ ক্যালকুলেশন এবং অর্ডার কনফার্ম করতে কি রাতেও মানুষ বসিয়ে রাখতে হচ্ছে?\n\nIINSHA-এর 24/7 AI WhatsApp & Messenger Sales Bot আপনার ওয়েবসাইটের পুরো ক্যাটালগ মাত্র ২০ মিনিটে পড়ে নিয়ে কাস্টমারের সাথে বাংলা, বাংলিশ ও ইংলিশে কথা বলে স্বয়ংক্রিয়ভাবে অর্ডার কনফার্ম করে।\n\nফ্রি ডেমো এবং ২৪ ঘণ্টার ভিডিও অডিট দেখতে নিচের লিংকে যান:\n${partnerRefLink}&subid=wa_pitch`;
         } else if (format === 'wa_en') {
             text = `Hey ${name}, saw your work at ${company}. If your team is spending hours on manual lead qualification or repetitive WhatsApp replies, IINSHA's autonomous AI swarms can automate 85% of it on a self-hosted VPS ($5.99/mo) with zero Zapier fees.\n\nClaim a free 24-hr system audit here:\n${partnerRefLink}&subid=wa_direct`;
         } else if (format === 'li_post') {
@@ -938,7 +985,7 @@
         }
 
         if (outputEl) outputEl.value = text;
-        window.showAffiliateToast('¢Å“¨ Custom marketing pitch generated with your affiliate link embedded!');
+        window.showAffiliateToast('✨ Custom marketing pitch generated with your affiliate link embedded!');
     };
 
     window.copyGeneratedPitch = function() {
@@ -946,18 +993,18 @@
         if (outputEl) {
             outputEl.select();
             navigator.clipboard.writeText(outputEl.value);
-            window.showAffiliateToast('¢Å“ Bespoke outreach pitch copied to clipboard!');
+            window.showAffiliateToast('✅ Bespoke outreach pitch copied to clipboard!');
         }
     };
 
     // 1-Click Social Sharing
     window.shareToWhatsApp = function(link) {
-        const text = encodeURIComponent(`¢Å¡¡ Check out IINSHA AI OS — Autonomous multi-agent swarms, self-hosted n8n, and 24/7 AI WhatsApp Bots: ${link}`);
+        const text = encodeURIComponent(`⚡ Check out IINSHA AI OS — Autonomous multi-agent swarms, self-hosted n8n, and 24/7 AI WhatsApp Bots: ${link}`);
         window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     };
 
     window.shareToTelegram = function(link) {
-        const text = encodeURIComponent(`¢Å¡¡ Deploy Enterprise AI Workforce Swarms with zero Zapier fees: ${link}`);
+        const text = encodeURIComponent(`⚡ Deploy Enterprise AI Workforce Swarms with zero Zapier fees: ${link}`);
         window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${text}`, '_blank');
     };
 
@@ -971,27 +1018,137 @@
     };
 
     // Outreach CRM Handlers
+    window.openAcademyGuide = function(moduleId) {
+        const guides = {
+            1: {
+                title: '📘 Module 1: LinkedIn B2B Founder Outbound',
+                steps: [
+                    '1. Search founders and COOs hiring for Operations / Data Entry on LinkedIn.',
+                    '2. Send Swipe #1 from the Marketing Vault below.',
+                    '3. When they reply, share your affiliate tracking link to book a free 24-hr video architecture teardown.'
+                ]
+            },
+            2: {
+                title: '📘 Module 2: Local E-Commerce WhatsApp Sales Funnel',
+                steps: [
+                    '1. Target e-commerce brands and Facebook Page merchants with 50+ daily orders.',
+                    '2. Send the bilingual WhatsApp / Messenger swipe copy.',
+                    '3. Demonstrate how the bot answers in 3 seconds and confirms Cash-On-Delivery orders.'
+                ]
+            },
+            3: {
+                title: '📘 Module 3: Enterprise n8n Migration & Infrastructure',
+                steps: [
+                    '1. Highlight 90% cost savings compared to Zapier / Make.',
+                    '2. Emphasize self-hosted data sovereignty, full privacy, and automated PostgreSQL backups on a $5.99/mo VPS.',
+                    '3. Offer direct white-glove setup and 1-day deployment.'
+                ]
+            }
+        };
+
+        const g = guides[moduleId] || guides[1];
+        let modal = document.getElementById('affiliate-guide-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'affiliate-guide-modal';
+            modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:999999; padding:20px; box-sizing:border-box;';
+            document.body.appendChild(modal);
+        }
+        modal.innerHTML = `
+            <div style="background:#0f172a; border:1px solid var(--accent-cyan); border-radius:14px; padding:24px; max-width:480px; width:100%; box-shadow:0 0 40px rgba(0,242,254,0.2); color:#fff;">
+                <h3 style="margin-top:0; color:var(--accent-cyan); font-size:1.15rem; display:flex; align-items:center; justify-content:space-between;">
+                    <span>${g.title}</span>
+                    <button onclick="document.getElementById('affiliate-guide-modal').style.display='none'" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                </h3>
+                <div style="font-size:0.85rem; line-height:1.6; color:#cbd5e1; margin:16px 0;">
+                    ${g.steps.map(s => `<div style="margin-bottom:8px;">${s}</div>`).join('')}
+                </div>
+                <button onclick="document.getElementById('affiliate-guide-modal').style.display='none'" class="btn btn-primary-sm" style="width:100%; font-weight:700;">Understood — Back to Dashboard →</button>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    };
+
     window.openAddProspectModal = function() {
-        const name = prompt('°Å¸¤ Enter Prospect Name (e.g., Tanvir Ahmed):');
-        if (!name) return;
-        const company = prompt('°Å¸¢ Enter Prospect Company Name:');
-        const niche = prompt('°Å¸Å½¯ Enter Niche (e.g., E-Commerce, SaaS, Real Estate):', 'E-Commerce');
-        const channel = prompt('°Å¸¬ Enter Outreach Channel (e.g., WhatsApp, LinkedIn, Cold Email):', 'WhatsApp');
+        let modal = document.getElementById('affiliate-prospect-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'affiliate-prospect-modal';
+            modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:999999; padding:20px; box-sizing:border-box;';
+            document.body.appendChild(modal);
+        }
+        modal.innerHTML = `
+            <div style="background:#0f172a; border:1px solid var(--accent-cyan); border-radius:14px; padding:24px; max-width:480px; width:100%; box-shadow:0 0 40px rgba(0,242,254,0.2); color:#fff;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h3 style="margin:0; color:var(--accent-cyan); font-size:1.15rem;">👤 Add Inbound / Outbound Prospect</h3>
+                    <button onclick="document.getElementById('affiliate-prospect-modal').style.display='none'" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;">
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Prospect Contact Name *</label>
+                        <input type="text" id="prop-name" placeholder="e.g. Tanvir Ahmed" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Company / Brand Name *</label>
+                        <input type="text" id="prop-company" placeholder="e.g. Dhaka E-Com Mart" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Target Niche</label>
+                            <select id="prop-niche" style="width:100%; background:#020617; border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px; color:#fff; font-size:0.85rem;">
+                                <option value="E-Commerce">E-Commerce</option>
+                                <option value="B2B SaaS">B2B SaaS</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Clinics">Clinics</option>
+                                <option value="Agencies">Agencies</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Outreach Channel</label>
+                            <select id="prop-channel" style="width:100%; background:#020617; border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px; color:#fff; font-size:0.85rem;">
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="Cold Email">Cold Email</option>
+                                <option value="Phone Call">Phone Call</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="window.saveNewProspectModal()" class="btn btn-primary-sm" style="flex:1; font-weight:700;">💾 Save Prospect</button>
+                    <button onclick="document.getElementById('affiliate-prospect-modal').style.display='none'" class="btn btn-glass-sm" style="flex:1;">Cancel</button>
+                </div>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    };
+
+    window.saveNewProspectModal = function() {
+        const name = document.getElementById('prop-name')?.value.trim();
+        const company = document.getElementById('prop-company')?.value.trim();
+        const niche = document.getElementById('prop-niche')?.value || 'E-Commerce';
+        const channel = document.getElementById('prop-channel')?.value || 'WhatsApp';
+
+        if (!name) {
+            window.showAffiliateToast('⚠️ Please enter prospect contact name.');
+            return;
+        }
 
         const prospects = getProspects();
         prospects.unshift({
             id: 'PR-' + Math.floor(100 + Math.random() * 900),
             name,
             company: company || 'Enterprise',
-            niche: niche || 'General',
-            channel: channel || 'WhatsApp',
+            niche,
+            channel,
             offer: '24/7 AI WhatsApp Sales Bot ($750)',
             status: 'CONTACTED',
             date: new Date().toISOString().split('T')[0]
         });
         saveProspects(prospects);
+        document.getElementById('affiliate-prospect-modal').style.display = 'none';
         window.initAffiliatePortal();
-        window.showAffiliateToast(`¢Å“ Prospect "${name}" added to your outreach CRM!`);
+        window.showAffiliateToast(`✅ Prospect "${name}" added to your outreach CRM!`);
     };
 
     window.sendDirectProspectMessage = function(prospectId) {
@@ -1005,7 +1162,7 @@
 
         const msg = `Hi ${p.name}, sharing the free 24-hr AI system teardown link for ${p.company}: ${link}`;
         navigator.clipboard.writeText(msg);
-        window.showAffiliateToast(`¢Å“ Direct pitch for ${p.name} copied to clipboard!`);
+        window.showAffiliateToast(`✅ Direct pitch for ${p.name} copied to clipboard!`);
     };
 
     // Tab Switcher
@@ -1029,8 +1186,10 @@
         const output = document.getElementById('link-studio-output');
 
         if (output) {
-            const path = target === '/' ? '' : target;
-            output.value = `${origin}${path}?ref=${partner.refCode}&subid=${encodeURIComponent(subid)}`;
+            const cleanPath = target === '/' ? '' : (target.startsWith('/') ? target : ('/' + target));
+            const sep = cleanPath.includes('?') ? '&' : '?';
+            const code = encodeURIComponent(partner.refCode || partner.id || 'partner');
+            output.value = `${origin}${cleanPath}${sep}ref=${code}&subid=${encodeURIComponent(subid)}`;
         }
     };
 
@@ -1039,7 +1198,7 @@
         if (output) {
             output.select();
             navigator.clipboard.writeText(output.value);
-            window.showAffiliateToast('¢Å“ Custom Tracking Link copied to clipboard!');
+            window.showAffiliateToast('✅ Custom Tracking Link copied to clipboard!');
         }
     };
 
@@ -1047,7 +1206,7 @@
         const origin = window.location.origin || 'https://inshatech.pages.dev';
         const link = `${origin}/store.html?product=${productId}&ref=${refCode}`;
         navigator.clipboard.writeText(link);
-        window.showAffiliateToast(`¢Å“ Direct Product Link copied for ${productId}!`);
+        window.showAffiliateToast(`✅ Direct Product Link copied for ${productId}!`);
     };
 
     window.copyAssetText = function(elemId) {
@@ -1055,7 +1214,7 @@
         if (el) {
             el.select();
             navigator.clipboard.writeText(el.value);
-            window.showAffiliateToast('¢Å“ Marketing Swipe Copy copied to clipboard!');
+            window.showAffiliateToast('✅ Marketing Swipe Copy copied to clipboard!');
         }
     };
 
@@ -1072,83 +1231,159 @@
         if (activeBtn) activeBtn.classList.add('active');
     };
 
-    window.generateCustomNicheStrategy = function() {
-        const niche = prompt('°Å¸Å½¯ Select target niche (e.g. "E-Commerce", "Real Estate", "SaaS", "Clinics"):', 'E-Commerce');
-        if (niche) {
-            const box = document.getElementById('ai-coach-custom-box');
-            if (box) {
-                box.innerHTML = `
-                    <strong style="color:var(--accent-cyan); display:block; margin-bottom:6px;">°Å¸Å½¯ Custom AI Blueprint for ${niche}:</strong>
-                    1. <strong>Primary Offer:</strong> 24/7 WhatsApp & Messenger AI Sales Bot ($750 USD /  §³91,875 BDT).<br>
-                    2. <strong>Outreach Hook:</strong> Send the Bangla/English WhatsApp swipe file to ${niche} business pages.<br>
-                    3. <strong>Your Earning:</strong> 25% Elite Commission = <strong>$187.50 USD ( §³22,968 BDT)</strong> per client closed!<br>
-                    4. <strong>Estimated 7-Day Target:</strong> 3 Client Closes = <strong>$562.50 USD ( §³68,906 BDT)</strong>!
-                `;
-            }
-            window.showAffiliateToast(`¢Å“¨ 7-Day Custom Strategy generated for ${niche}!`);
+    window.generateCustomNicheStrategy = function(nicheParam) {
+        const niche = typeof nicheParam === 'string' ? nicheParam : 'E-Commerce';
+        const box = document.getElementById('ai-coach-custom-box');
+        if (box) {
+            box.innerHTML = `
+                <strong style="color:var(--accent-cyan); display:block; margin-bottom:6px;">🎯 Custom AI Blueprint for ${niche}:</strong>
+                1. <strong>Primary Offer:</strong> 24/7 WhatsApp & Messenger AI Sales Bot ($750 USD / ৳91,875 BDT).<br>
+                2. <strong>Outreach Hook:</strong> Send the Bangla/English WhatsApp swipe file to ${niche} business pages.<br>
+                3. <strong>Your Earning:</strong> 25% Elite Commission = <strong>$187.50 USD (৳22,968 BDT)</strong> per client closed!<br>
+                4. <strong>Estimated 7-Day Target:</strong> 3 Client Closes = <strong>$562.50 USD (৳68,906 BDT)</strong>!
+            `;
         }
+        window.showAffiliateToast(`✨ 7-Day Custom Strategy generated for ${niche}!`);
     };
 
     window.requestPartnerWithdrawal = function() {
         const partner = getActivePartner();
         if (partner.unpaid <= 0) {
-            alert('¢Å¡ ¯¸ No unpaid commissions currently available to withdraw.');
+            window.showAffiliateToast('⚠️ No unpaid commissions currently available to withdraw.');
             return;
         }
 
-        const confirmed = confirm(
-            `¢Å¡¡ WITHDRAW COMMISSION DISBURSEMENT\n\n` +
-            `Amount: $${partner.unpaid.toFixed(2)} USD (¢†  §³${Math.round(partner.unpaid * 122.50).toLocaleString()} BDT)\n` +
-            `Destination: ${partner.payoutMethod} (${partner.payoutAccount})\n` +
-            `Disbursement Speed: < 24 Hours\n\n` +
-            `Confirm payout submission to finance desk?`
-        );
-
-        if (confirmed) {
-            const txs = getTransactions();
-            const txId = 'TX-' + Math.floor(8825 + Math.random() * 100);
-            txs.unshift({
-                id: txId,
-                date: new Date().toISOString().split('T')[0],
-                desc: 'Commission Withdrawal Request',
-                amount: `$${partner.unpaid.toFixed(2)} USD`,
-                status: 'PAID',
-                method: `${partner.payoutMethod} ${partner.payoutAccount}`
-            });
-            saveTransactions(txs);
-
-            partner.paidOut += partner.unpaid;
-            partner.unpaid = 0;
-            const registry = getPartnersRegistry();
-            registry[partner.id] = partner;
-            savePartnersRegistry(registry);
-
-            window.initAffiliatePortal();
-            window.showAffiliateToast(`¢Å“ Payout of $${txs[0].amount} initiated to ${partner.payoutAccount}!`);
+        let modal = document.getElementById('affiliate-withdrawal-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'affiliate-withdrawal-modal';
+            modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:999999; padding:20px; box-sizing:border-box;';
+            document.body.appendChild(modal);
         }
+
+        const bdtVal = Math.round(partner.unpaid * 122.50).toLocaleString();
+        modal.innerHTML = `
+            <div style="background:#0f172a; border:1px solid #10b981; border-radius:14px; padding:24px; max-width:480px; width:100%; box-shadow:0 0 40px rgba(16,185,129,0.2); color:#fff;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                    <h3 style="margin:0; color:#34d399; font-size:1.15rem;">⚡ Confirm Commission Withdrawal</h3>
+                    <button onclick="document.getElementById('affiliate-withdrawal-modal').style.display='none'" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                </div>
+                <div style="background:rgba(0,0,0,0.4); border-radius:10px; padding:14px; font-size:0.85rem; line-height:1.6; margin-bottom:16px;">
+                    <div>💰 <strong>Withdrawal Amount:</strong> <span style="color:#34d399; font-weight:700;">${partner.unpaid.toFixed(2)} USD</span> (≈ ৳${bdtVal} BDT)</div>
+                    <div>🏦 <strong>Destination:</strong> ${partner.payoutMethod} (${partner.payoutAccount})</div>
+                    <div>⚡ <strong>Disbursement SLA:</strong> Automated Payout &lt; 24 Hours</div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="window.confirmDisbursementAction()" class="btn btn-primary-sm" style="flex:1; background:linear-gradient(135deg, #10b981, #059669); color:#fff; font-weight:700;">Confirm & Dispatch Payout →</button>
+                    <button onclick="document.getElementById('affiliate-withdrawal-modal').style.display='none'" class="btn btn-glass-sm" style="flex:1;">Cancel</button>
+                </div>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    };
+
+    window.confirmDisbursementAction = function() {
+        const partner = getActivePartner();
+        const txs = getTransactions();
+        const txId = 'TX-' + Math.floor(8825 + Math.random() * 100);
+        txs.unshift({
+            id: txId,
+            date: new Date().toISOString().split('T')[0],
+            desc: 'Commission Withdrawal Request',
+            amount: `${partner.unpaid.toFixed(2)} USD`,
+            status: 'PAID',
+            method: `${partner.payoutMethod} ${partner.payoutAccount}`
+        });
+        saveTransactions(txs);
+
+        partner.paidOut += partner.unpaid;
+        partner.unpaid = 0;
+        const registry = getPartnersRegistry();
+        registry[partner.id] = partner;
+        savePartnersRegistry(registry);
+
+        const modal = document.getElementById('affiliate-withdrawal-modal');
+        if (modal) modal.style.display = 'none';
+
+        window.initAffiliatePortal();
+        window.showAffiliateToast(`✅ Payout of ${txs[0].amount} initiated to ${partner.payoutAccount}!`);
     };
 
     window.openPartnerSettingsModal = function() {
         const partner = getActivePartner();
-        const name = prompt('°Å¸¤ Enter Full / Agency Name:', partner.name);
-        if (!name) return;
-        const phone = prompt('°Å¸± Enter WhatsApp / Phone Number:', partner.phone);
-        const payoutMethod = prompt('°Å¸³ Enter Payout Method (bKash / Nagad / Wise / Bank / USDT):', partner.payoutMethod);
-        const payoutAccount = prompt('°Å¸¦ Enter Payout Account / Wallet Number:', partner.payoutAccount);
-        const refCode = prompt('°Å¸ Enter Custom Referral Slug / Code:', partner.refCode);
+        let modal = document.getElementById('affiliate-settings-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'affiliate-settings-modal';
+            modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:999999; padding:20px; box-sizing:border-box;';
+            document.body.appendChild(modal);
+        }
+
+        modal.innerHTML = `
+            <div style="background:#0f172a; border:1px solid var(--accent-cyan); border-radius:14px; padding:24px; max-width:480px; width:100%; box-shadow:0 0 40px rgba(0,242,254,0.2); color:#fff;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h3 style="margin:0; color:var(--accent-cyan); font-size:1.15rem;">⚙️ Partner Profile & Payout Settings</h3>
+                    <button onclick="document.getElementById('affiliate-settings-modal').style.display='none'" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;">
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Full / Agency Name</label>
+                        <input type="text" id="set-name" value="${partner.name || ''}" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">WhatsApp / Phone Number</label>
+                        <input type="text" id="set-phone" value="${partner.phone || ''}" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Preferred Payout Method</label>
+                        <select id="set-method" style="width:100%; background:#020617; border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px; color:#fff; font-size:0.85rem;">
+                            <option value="bKash (Personal / Merchant)" ${partner.payoutMethod.includes('bKash') ? 'selected' : ''}>📱 bKash (Personal / Merchant)</option>
+                            <option value="Nagad" ${partner.payoutMethod.includes('Nagad') ? 'selected' : ''}>📱 Nagad</option>
+                            <option value="Wise Bank Wire (USD/GBP)" ${partner.payoutMethod.includes('Wise') ? 'selected' : ''}>🌍 Wise Bank Wire (USD/GBP/EUR)</option>
+                            <option value="Local Bank Transfer" ${partner.payoutMethod.includes('Bank') ? 'selected' : ''}>🏦 Local Bank Transfer</option>
+                            <option value="USDT Crypto (TRC20)" ${partner.payoutMethod.includes('USDT') ? 'selected' : ''}>⚡ USDT Crypto (TRC20 / BEP20)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Payout Account / Wallet Number</label>
+                        <input type="text" id="set-account" value="${partner.payoutAccount || ''}" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Custom Referral Slug / Code</label>
+                        <input type="text" id="set-refcode" value="${partner.refCode || partner.id}" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold; font-size:0.85rem; box-sizing:border-box;">
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="window.savePartnerSettingsModal()" class="btn btn-primary-sm" style="flex:1; font-weight:700;">💾 Save Changes</button>
+                    <button onclick="document.getElementById('affiliate-settings-modal').style.display='none'" class="btn btn-glass-sm" style="flex:1;">Cancel</button>
+                </div>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    };
+
+    window.savePartnerSettingsModal = function() {
+        const partner = getActivePartner();
+        const name = document.getElementById('set-name')?.value.trim();
+        const phone = document.getElementById('set-phone')?.value.trim();
+        const payoutMethod = document.getElementById('set-method')?.value;
+        const payoutAccount = document.getElementById('set-account')?.value.trim();
+        const rawCode = document.getElementById('set-refcode')?.value.trim() || partner.refCode;
+        const refCode = rawCode.toLowerCase().replace(/[^a-z0-9_-]/g, '');
 
         partner.name = name || partner.name;
         partner.phone = phone || partner.phone;
         partner.payoutMethod = payoutMethod || partner.payoutMethod;
         partner.payoutAccount = payoutAccount || partner.payoutAccount;
-        partner.refCode = (refCode || partner.refCode).toLowerCase().replace(/[^a-z0-9_-]/g, '');
+        partner.refCode = refCode || partner.refCode;
 
         const registry = getPartnersRegistry();
         registry[partner.id] = partner;
         savePartnersRegistry(registry);
 
+        document.getElementById('affiliate-settings-modal').style.display = 'none';
         window.initAffiliatePortal();
-        window.showAffiliateToast('¢Å“ Partner profile and payment credentials updated successfully!');
+        window.showAffiliateToast('✅ Profile & payout settings saved!');
     };
 
     window.toggleQrCodeModal = function() {
@@ -1159,7 +1394,7 @@
         const modalHtml = `
             <div id="affiliate-qr-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px);" onclick="if(event.target===this) this.remove()">
                 <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:16px; max-width:400px; width:90%; padding:28px; color:#fff; text-align:center; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
-                    <h3 style="margin:0 0 6px 0; color:var(--accent-cyan); font-size:1.2rem;">°Å¸± Partner QR Code</h3>
+                    <h3 style="margin:0 0 6px 0; color:var(--accent-cyan); font-size:1.2rem;">📱 Partner QR Code</h3>
                     <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:20px;">Scan to open tracking link with your referral code attached.</p>
                     
                     <div style="background:#fff; padding:16px; border-radius:12px; display:inline-block; margin-bottom:16px;">
@@ -1191,6 +1426,3 @@
         window.initAffiliatePortal();
     }
 })();
-
-
-

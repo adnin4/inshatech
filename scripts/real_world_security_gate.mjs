@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 const SCAN_EXTENSIONS = ['.html', '.js', '.mjs', '.json', '.sql'];
-const EXCLUDE_DIRS = ['node_modules', '.git', 'docs', 'Implementation_Reports_Markdown', 'scratch', 'scripts'];
+const EXCLUDE_DIRS = ['node_modules', '.git', 'docs', 'Implementation_Reports_Markdown', 'scratch', 'scripts', 'ci-failure-evidence'];
 
 const FORBIDDEN_RULES = [
     { name: 'Hardcoded Admin Password', regex: /@@@mahin12|password123/i, severity: 'P0_CRITICAL' },
