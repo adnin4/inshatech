@@ -1,11 +1,12 @@
 /**
  * Cloudflare Pages Function: /api/version
- * Cryptographic release parity and runtime manifest.
- * Never invents deployment or database health claims.
+ * Cryptographic release parity and runtime manifest with live database health probe.
+ * Never invents deployment or database health claims from static variables.
  */
 
 import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
-import { verifyReleaseIdentity } from '../_shared/release_identity.js';
+import { verifyReleaseIdentity, RELEASE_CLASSIFICATIONS } from '../_shared/release_identity.js';
+import { probeDatabaseHealth, PROBE_STATUS } from '../_shared/database_probe.js';
 
 const ALLOWED_ORIGINS = [
     'https://inshatech.pages.dev',
@@ -24,61 +25,53 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
-function databaseIdentity(env) {
-    const canonical = typeof env.CANONICAL_SUPABASE_PROJECT_REF === 'string'
-        ? env.CANONICAL_SUPABASE_PROJECT_REF.trim()
-        : null;
-    const runtime = typeof env.SUPABASE_RUNTIME_PROJECT_REF === 'string'
-        ? env.SUPABASE_RUNTIME_PROJECT_REF.trim()
-        : null;
-    const health = typeof env.SUPABASE_RUNTIME_HEALTH === 'string'
-        ? env.SUPABASE_RUNTIME_HEALTH.trim().toUpperCase()
-        : null;
-
-    const identityPresent = Boolean(canonical && runtime);
-    const identityMatches = identityPresent && canonical === runtime;
-    const healthVerified = health === 'HEALTHY';
-
-    return {
-        canonical_db: canonical || 'UNSPECIFIED',
-        runtime_db: runtime || 'UNSPECIFIED',
-        db_parity: identityMatches,
-        status: !identityPresent
-            ? 'UNVERIFIED'
-            : !identityMatches
-                ? 'MISMATCH'
-                : healthVerified
-                    ? 'LIVE_VERIFIED'
-                    : 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
-    };
-}
-
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
     const origin = request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
 
+    // 1. Live Authenticated Database Probe (no static fallback illusions)
+    const dbProbe = await probeDatabaseHealth(env);
+    const databaseVerified = dbProbe.status === PROBE_STATUS.ACTIVE_HEALTHY;
+
+    // 2. Multi-SHA Release Parity Verification
     const identity = verifyReleaseIdentity({
         source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || null,
         build_sha: env.BUILD_RELEASE_SHA || null,
         deployment_sha: env.CF_PAGES_COMMIT_SHA || null,
         runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || null,
-        branch: env.CF_PAGES_BRANCH || null
+        branch: env.CF_PAGES_BRANCH || null,
+        repository: env.GITHUB_REPOSITORY || CANONICAL_RELEASE.canonical_repository,
+        deployment_id: env.CF_PAGES_DEPLOYMENT_ID || null,
+        captured_at: env.BUILD_TIMESTAMP || null,
+        pr_head_sha: env.PR_HEAD_SHA || null,
+        synthetic_merge_sha: env.SYNTHETIC_MERGE_SHA || null,
+        database_verified: databaseVerified
     });
-    const db = databaseIdentity(env);
-    const productionVerified = identity.verified && db.status === 'LIVE_VERIFIED';
+
+    const isFullReleaseVerified = identity.verified && databaseVerified;
 
     const payload = {
-        status: productionVerified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
+        status: isFullReleaseVerified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
         platform: 'IINSHA AI-BOS',
+        classification: identity.classification,
         deploy_sha: identity.shas.deployment_sha === 'UNSPECIFIED' ? null : identity.shas.deployment_sha,
         expected_release_sha: identity.shas.runtime_sha === 'UNSPECIFIED' ? null : identity.shas.runtime_sha,
-        parity: productionVerified,
+        parity: isFullReleaseVerified,
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,
         environment: env.ENVIRONMENT || 'production',
-        database_identity: db,
+        database_identity: {
+            status: dbProbe.status,
+            verified: dbProbe.verified,
+            canonical_db: dbProbe.canonical_ref,
+            runtime_db: dbProbe.project_ref,
+            query_latency_ms: dbProbe.query_latency_ms,
+            details: dbProbe.details,
+            probe_type: dbProbe.probe_type,
+            checked_at: dbProbe.checked_at
+        },
         timestamp: new Date().toISOString()
     };
 
@@ -103,7 +96,8 @@ export async function onRequestOptions(context) {
         headers: {
             'Access-Control-Allow-Origin': corsOrigin,
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Max-Age': '86400'
         }
     });
 }
