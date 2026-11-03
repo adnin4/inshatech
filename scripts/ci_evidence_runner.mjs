@@ -391,6 +391,18 @@ const SUITE_INVENTORY = [
     upstream_dependencies: ['security_gate', 'reality_boundary']
   },
   {
+    id: 'canonical_manifest_guard',
+    name: 'Canonical System State Parity Guard',
+    command: 'node',
+    args: ['scripts/verify_canonical_manifest_guard.mjs'],
+    domain: 'GOVERNANCE',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-GOV-04', 'REQ-MANIFEST-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['reality_boundary', 'system_claims']
+  },
+  {
     id: 'business_truth_gates',
     name: 'Production & Revenue Boundary Truth Gates',
     command: 'node',

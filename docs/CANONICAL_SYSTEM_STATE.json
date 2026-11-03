@@ -1,4 +1,7 @@
 {
+  "snapshot_type": "SNAPSHOT_ONLY",
+  "captured_at": "2026-11-03T21:43:00Z",
+  "captured_source_sha": "b3de7650b65e388514ca82674654c92241ea8811",
   "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
