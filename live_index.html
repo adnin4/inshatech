@@ -146,7 +146,7 @@
 
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.78rem;">
 
-            <div style="display: flex; gap: 14px; align-items: center;">
+            <div class="status-bar-left" style="display: flex; gap: 14px; align-items: center;">
 
                 <span class="os-metric-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border-color: var(--accent-emerald); font-weight: 700;">
 
@@ -156,13 +156,13 @@
 
                 <span style="color: var(--text-muted);">✨ Gemini 3.8 Flash / Pro Multi-Agent Mesh</span>
 
-                <span style="color: var(--text-muted);"> Self-Hosted Cloud VPS • Zero Vendor Lock-in</span>
+                <span class="os-status-secondary-text" style="color: var(--text-muted);"> Self-Hosted Cloud VPS • Zero Vendor Lock-in</span>
 
             </div>
 
-            <div style="display: flex; gap: 12px; align-items: center;">
+            <div class="status-bar-right" style="display: flex; gap: 12px; align-items: center;">
 
-                <span style="color: var(--text-muted);">📱 Direct WhatsApp: <strong>+8801629286887</strong></span>
+                <span class="os-whatsapp-contact" style="color: var(--text-muted);">📱 Direct WhatsApp: <strong>+8801629286887</strong></span>
 
                 <button onclick="document.getElementById('admin-control-modal').style.display='flex'" class="btn btn-primary-sm" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.75rem;">🎛️ Master Control Panel</button>
 
@@ -192,7 +192,7 @@
 
             
 
-            <nav class="nav-links portal-tabs">
+            <nav class="portal-tabs" aria-label="Primary Navigation">
 
                 <a href="#hero" class="portal-tab-btn active">  Studio</a>
 
@@ -5376,12 +5376,12 @@
 
     <!-- STICKY MOBILE CTA (Revenue Stream 12) -->
 
-    <div class="sticky-mobile-cta">
-
+    <div class="sticky-mobile-cta" id="sticky-mobile-cta">
         <span class="sticky-cta-text">🚀 Free Architecture Blueprint</span>
-
-        <button id="sticky-mobile-cta-btn" class="sticky-cta-btn">WhatsApp Now →</button>
-
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <button id="sticky-mobile-cta-btn" class="sticky-cta-btn">WhatsApp Now →</button>
+            <button type="button" onclick="dismissMobileStickyCta(event)" class="sticky-cta-close-btn" aria-label="Dismiss Blueprint Banner" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #cbd5e1; width: 34px; height: 34px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0; touch-action: manipulation;">✕</button>
+        </div>
     </div>
 
 

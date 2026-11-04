@@ -495,15 +495,28 @@
                     <strong style="color:#38bdf8; display:block; margin-bottom:2px;"> Deploy Enterprise AI for your Business</strong>
                     Ask about 24/7 AI agents, pricing, or paste your website URL to build an automated product catalog in 20 mins!
                 </div>
-                <button class="teaser-close" title="Close">✕</button>
+                <button type="button" class="teaser-close" title="Close" aria-label="Dismiss Teaser">✕</button>
             `;
             document.body.appendChild(teaser);
 
-            teaser.querySelector('.teaser-close').onclick = (e) => {
-                e.stopPropagation();
+            if (window.innerWidth <= 768 || sessionStorage.getItem('iinsha_teaser_dismissed') === 'true') {
                 teaser.style.display = 'none';
+            }
+
+            const dismissTeaser = (e) => {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                teaser.style.display = 'none';
+                sessionStorage.setItem('iinsha_teaser_dismissed', 'true');
             };
-            setTimeout(() => { if (teaser) teaser.style.display = 'none'; }, 20000);
+            const closeBtn = teaser.querySelector('.teaser-close');
+            if (closeBtn) {
+                closeBtn.onclick = dismissTeaser;
+                closeBtn.ontouchend = dismissTeaser;
+            }
+            setTimeout(() => { if (teaser) teaser.style.display = 'none'; }, 10000);
 
             // 3. Main Copilot Window
             const windowEl = document.createElement('div');

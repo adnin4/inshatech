@@ -2982,33 +2982,103 @@ form input[type="tel"]:focus {
         align-items: center !important;
     }
 
-    .nav-container, .navbar {
-        flex-direction: column !important;
-        gap: 10px !important;
-        padding: 10px 14px !important;
+    /* OS Status Bar Mobile Optimizations */
+    .os-status-bar {
+        padding: 4px 10px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 
-    .nav-links, nav {
+    .os-status-bar .container {
         display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 8px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        padding: 0 !important;
         width: 100% !important;
     }
 
-    .portal-tabs {
+    .status-bar-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .os-status-secondary-text,
+    .os-whatsapp-contact,
+    .os-partner-link {
+        display: none !important;
+    }
+
+    .status-bar-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        margin-left: auto !important;
+    }
+
+    .os-admin-btn {
+        padding: 4px 8px !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+
+    #iinsha-global-controls {
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        margin-left: 0 !important;
+    }
+
+    #iinsha-global-controls > button:first-child {
+        display: none !important;
+    }
+
+    #iinsha-global-controls div button {
+        padding: 2px 5px !important;
+        font-size: 0.68rem !important;
+    }
+
+    #iinsha-global-controls > button:last-child {
+        padding: 2px 6px !important;
+        font-size: 0.68rem !important;
+    }
+
+    .nav-container, .navbar {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px 12px !important;
+        position: relative !important;
+    }
+
+    /* Portal Tabs: Clean horizontal pill strip in document flow */
+    .portal-tabs,
+    .nav-container nav.portal-tabs {
+        display: flex !important;
+        flex-direction: row !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
         justify-content: flex-start !important;
-        padding: 4px 6px !important;
+        align-items: center !important;
+        padding: 4px 4px 6px 4px !important;
         scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
         gap: 8px !important;
         width: 100% !important;
+        max-width: 100% !important;
+        position: static !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .portal-tabs::-webkit-scrollbar {
         display: none !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .portal-tab-btn {
@@ -3016,7 +3086,24 @@ form input[type="tel"]:focus {
         white-space: nowrap !important;
         padding: 8px 14px !important;
         font-size: 0.8rem !important;
-        min-height: 38px !important;
+        min-height: 40px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #e2e8f0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+    }
+
+    .portal-tab-btn:hover,
+    .portal-tab-btn.active {
+        background: rgba(0, 242, 254, 0.15) !important;
+        border-color: rgba(0, 242, 254, 0.4) !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2) !important;
     }
 
     /* Hero Section */
@@ -3123,18 +3210,45 @@ form input[type="tel"]:focus {
         margin: 10px auto !important;
     }
 
-    /* Floating Toast Notification on Mobile */
+    /* Floating Toast Notification on Mobile - Placed at Top to Prevent Bottom CTA Overlap */
     #toastContainer {
-        bottom: 10px !important;
-        left: 10px !important;
-        right: 10px !important;
+        top: 60px !important;
+        bottom: auto !important;
+        left: 12px !important;
+        right: 12px !important;
         width: auto !important;
-        max-width: calc(100vw - 20px) !important;
+        max-width: calc(100vw - 24px) !important;
+        z-index: 99995 !important;
     }
 
+    .glass-toast,
     .live-notification-toast {
-        font-size: 0.75rem !important;
+        font-size: 0.76rem !important;
         padding: 8px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    /* Neo-Kinpaku 3D Card Depth & Cyberpunk Elevation */
+    .hero-studio-card,
+    .pkg-card,
+    .blueprint-card,
+    .trust-principle-card,
+    .premium-card {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 15, 30, 0.96) 100%) !important;
+        border: 1px solid rgba(0, 242, 254, 0.2) !important;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.08) !important;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease !important;
+    }
+    .hero-studio-card:hover,
+    .pkg-card:hover,
+    .blueprint-card:hover {
+        transform: translateY(-3px) !important;
+        border-color: rgba(0, 242, 254, 0.45) !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 242, 254, 0.18) !important;
     }
 
     /* Floating AI Chat Assistant on Mobile */
