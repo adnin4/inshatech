@@ -324,14 +324,212 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* === HERO SECTION === */
+/* === HERO SECTION (World-Class Neo-Kinpaku & Obsidian Glass) === */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    padding: 120px 0 80px;
+    padding: 100px 0 70px;
     overflow: hidden;
+    background-image: 
+        radial-gradient(at 10% 20%, rgba(0, 242, 254, 0.08) 0px, transparent 40%),
+        radial-gradient(at 90% 10%, rgba(99, 102, 241, 0.08) 0px, transparent 40%),
+        radial-gradient(at 50% 60%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
+}
+
+/* 2-Column Hero Grid on Desktop */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Obsidian Glass Studio Cockpit Card */
+.hero-studio-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(9, 13, 24, 0.96));
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 242, 254, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.hero-studio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.6), transparent);
+}
+.hero-studio-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 242, 254, 0.5);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 242, 254, 0.22);
+}
+
+/* World-Class Pre-Sales Prompt Engine */
+.presales-box {
+    margin-top: 24px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 18px 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.25s ease;
+}
+.presales-box:focus-within {
+    border-color: rgba(0, 242, 254, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+.presales-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.presales-input {
+    flex: 1;
+    background: rgba(8, 12, 22, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 12px 18px;
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: all 0.2s ease;
+}
+.presales-input:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+.presales-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.presales-chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.presales-chip:hover {
+    background: rgba(0, 242, 254, 0.12);
+    border-color: rgba(0, 242, 254, 0.4);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* High-Impact Hero Action Buttons */
+.btn-primary-glow {
+    background: linear-gradient(135deg, #00f2fe 0%, #0284c7 100%) !important;
+    color: #030712 !important;
+    font-weight: 800 !important;
+    font-size: 0.92rem !important;
+    padding: 13px 22px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.35) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+.btn-primary-glow:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5) !important;
+    color: #000000 !important;
+}
+
+.btn-glass-glow {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    padding: 13px 20px !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(12px) !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+}
+.btn-glass-glow:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+    color: #00f2fe !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+.btn-gold-pill {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border: 1px solid rgba(245, 158, 11, 0.35) !important;
+    color: #fbbf24 !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    padding: 12px 18px !important;
+    border-radius: 10px !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-decoration: none !important;
+}
+.btn-gold-pill:hover {
+    background: rgba(245, 158, 11, 0.2) !important;
+    border-color: rgba(245, 158, 11, 0.6) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2) !important;
+}
+
+.btn-purple-pill {
+    background: rgba(168, 85, 247, 0.1) !important;
+    border: 1px solid rgba(168, 85, 247, 0.35) !important;
+    color: #c084fc !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    padding: 12px 18px !important;
+    border-radius: 10px !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+}
+.btn-purple-pill:hover {
+    background: rgba(168, 85, 247, 0.2) !important;
+    border-color: rgba(168, 85, 247, 0.6) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2) !important;
 }
 
 #hero3d-container {
