@@ -130,7 +130,7 @@
 
     <!-- Ambient Background -->
 
-    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
+    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.06;"></canvas>
 
     <div class="bg-glow bg-glow-1"></div>
 
@@ -142,39 +142,22 @@
 
     <!-- SLEEK GLASSMORPHIC TOP CONTROL BAR -->
 
-    <div class="os-status-bar" style="background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-card); padding: 6px 16px;">
-
+    <div class="os-status-bar" style="background: rgba(6, 8, 13, 0.95); border-bottom: 1px solid var(--border-card); padding: 6px 16px;">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.78rem;">
-
             <div class="status-bar-left" style="display: flex; gap: 14px; align-items: center;">
-
-                <span class="os-metric-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border-color: var(--accent-emerald); font-weight: 700;">
-
-                    <span class="os-pulse-dot"></span> IINSHA AI-BOS Architecture Preview • Ready For Staging
-
+                <span class="os-metric-badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.3); font-weight: 700;">
+                    <span class="os-pulse-dot"></span> SYSTEM ONLINE • NODE 22 MESH
                 </span>
-
-                <span class="os-status-secondary-text" style="color: var(--text-muted);">✨ Multi-Agent System Mesh Architecture</span>
-
-                <span class="os-status-secondary-text" style="color: var(--text-muted);"> Self-Hosted Cloud VPS • Zero Vendor Lock-in</span>
-
+                <span class="os-status-secondary-text" style="color: var(--text-dim);">Enterprise Multi-Agent Architecture</span>
+                <span class="os-status-secondary-text" style="color: var(--text-dim);">Sovereign VPS • Zero Vendor Lock-in</span>
             </div>
-
             <div class="status-bar-right" style="display: flex; gap: 12px; align-items: center;">
-
-                <span class="os-whatsapp-contact" style="color: var(--text-muted);">📱 Direct WhatsApp: <strong>+8801629286887</strong></span>
-
-                <button onclick="openProtectedAdminPanel()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.75rem;">🎛️ Master Control Panel</button>
-
-                <a href="affiliate.html" style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;">🤝 Partner Network →</a>
-
+                <a href="https://wa.me/8801629286887" target="_blank" class="os-whatsapp-contact" style="color: var(--text-secondary); text-decoration: none;">Direct WhatsApp: <strong style="color: #f1f5f9;">+8801629286887</strong></a>
+                <a href="affiliate.html" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Partner Network →</a>
+                <button onclick="openProtectedAdminPanel()" class="portal-tab-admin-btn" style="padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer;">Control Panel</button>
             </div>
-
         </div>
-
     </div>
-
-
 
     <!-- NAVIGATION HEADER -->
 
@@ -184,7 +167,7 @@
 
             <a href="#" class="logo">
 
-                <span class="logo-icon">⚡</span>
+                <span class="logo-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
 
                 <span class="logo-text">IINSHA AI <span class="badge-pro">AUTOMATION LAB</span></span>
 
@@ -252,7 +235,7 @@
                         <!-- PRIORITY 3: SCARCITY & LIVE AVAILABILITY BADGE -->
                         <div class="scarcity-badge" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(16, 185, 129, 0.35); color: #e2e8f0; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; margin: 12px 0 16px 0; display: inline-flex; align-items: center; gap: 8px; backdrop-filter: blur(10px);">
                             <span class="os-pulse-dot" style="background: #10b981;"></span>
-                            <span>Production Capacity: <strong style="color: #10b981;">3 Active Engineering Slots</strong> • Response SLA: <strong style="color: #38bdf8;">&lt; 1 Hour</strong></span>
+                            <span>Operational Invariant: <strong style="color: #10b981;">Deterministic Autonomous Workflows</strong> • Verification SLA: <strong style="color: #38bdf8;">100% Invariant Gate</strong></span>
                         </div>
                         
                         <h1 class="hero-title" style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px;">
@@ -266,7 +249,7 @@
 
                         <div class="hero-actions" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
                             <a href="#solution-finder" class="btn btn-primary-glow">
-                                <span>Launch AI Solution Finder →</span>
+                                <span>Explore Solutions →</span>
                             </a>
                             <a href="#architecture-builder" class="btn btn-glass-glow">
                                 <span>Open Architecture Builder</span>
@@ -276,16 +259,16 @@
                         <!-- Secondary Capability Pills -->
                         <div class="hero-sub-actions" style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
                             <a href="affiliate.html" class="btn btn-gold-pill" style="font-size: 0.8rem; padding: 8px 14px;">
-                                <span>Partner Network (15-20% Recurring) →</span>
+                                <span>Partner Network →</span>
                             </a>
                             <button id="hero-readiness-btn" class="btn btn-purple-pill" style="font-size: 0.8rem; padding: 8px 14px;">
-                                <span>20-Q AI Readiness Audit</span>
+                                <span>AI Readiness Audit (20-Q)</span>
                             </button>
                         </div>
 
                         <!-- PRE-SALES AI ASSISTANT HERO INPUT -->
                         <div class="presales-box" style="margin-top: 24px;">
-                            <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💡 AI Pre-Sales Assistant</div>
+                            <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">AI Pre-Sales Assistant</div>
                             <div style="font-size: 0.95rem; color: #fff; margin-bottom: 10px; font-weight: 600;">What workflow bottleneck do you want to automate today?</div>
                             <div class="presales-input-row">
                                 <input type="text" name="presales_query" id="presales-query-input" aria-label="Pre-sales Inquiry" autocomplete="off" placeholder="e.g. Automate invoice OCR extraction to PostgreSQL" class="presales-input">
@@ -376,7 +359,7 @@
 
                 <div class="urgency-pulse" style="background: var(--accent-emerald);"></div>
 
-                <span class="urgency-text">⚡ <strong>Current Studio Capacity:</strong> Open for B2B Architecture Builds & Client Retainers — <strong style="color: var(--accent-emerald);">Enterprise-Verified Source Codebase</strong></span>
+                <span class="urgency-text"><strong>Current Studio Capacity:</strong> Open for B2B Architecture Builds & Client Retainers — <strong style="color: var(--accent-emerald);">Enterprise-Verified Source Codebase</strong></span>
 
             </div>
 
@@ -392,9 +375,9 @@
 
                 <div class="section-header">
 
-                    <span class="section-tag">Interactive AI Module 1</span>
+                    <span class="section-tag">Architecture Engine 01</span>
 
-                    <h2> AI Solution Finder</h2>
+                    <h2>AI Solution Finder</h2>
 
                     <p>Describe your business bottleneck in plain English and instantly generate your custom technical architecture blueprint!</p>
 
@@ -416,13 +399,13 @@
 
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
 
-                        <button class="btn btn-glass-sm finder-preset" data-query="Automate invoice processing with Gemini OCR and store in Postgres">📄 Invoice OCR</button>
+                        <button class="btn btn-glass-sm finder-preset" data-query="Automate invoice processing with Gemini OCR and store in Postgres">Invoice OCR</button>
 
                         <button class="btn btn-glass-sm finder-preset" data-query="Scrape e-commerce competitor prices with Playwright Pipeline and alert on Telegram">🕷️ E-commerce Scraper</button>
 
-                        <button class="btn btn-glass-sm finder-preset" data-query="24/7 Customer support triage bot using Pinecone RAG Vector DB">🤖 Support Triage Bot</button>
+                        <button class="btn btn-glass-sm finder-preset" data-query="24/7 Customer support triage bot using Pinecone RAG Vector DB">Support Triage Bot</button>
 
-                        <button class="btn btn-glass-sm finder-preset" data-query="Enrich inbound leads with LinkedIn data and sync to HubSpot CRM">📊 Lead Enrichment</button>
+                        <button class="btn btn-glass-sm finder-preset" data-query="Enrich inbound leads with LinkedIn data and sync to HubSpot CRM">Lead Enrichment</button>
 
                     </div>
 
@@ -430,7 +413,7 @@
 
                     <button id="run-finder-btn" class="btn btn-primary btn-full" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7); padding: 14px; font-size: 1.05rem;">
 
-                        <span>✨ Generate Custom Architecture Blueprint →</span>
+                        <span>Generate Custom Architecture Blueprint →</span>
 
                     </button>
 
@@ -554,7 +537,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="agents" style="background: linear-gradient(135deg, var(--accent-primary), #4338ca);">📦 View Packages ($99 - $1,299+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="agents" style="background: linear-gradient(135deg, var(--accent-primary), #4338ca);">View Packages ($99 - $1,299+) →</button>
 
                     </div>
 
@@ -586,7 +569,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="workflow" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7);">📦 View Packages ($49 - $699+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="workflow" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7);">View Packages ($49 - $699+) →</button>
 
                     </div>
 
@@ -616,7 +599,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="scraping" style="background: linear-gradient(135deg, var(--accent-emerald), #047857);">📦 View Packages ($99 - $999+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="scraping" style="background: linear-gradient(135deg, var(--accent-emerald), #047857);">View Packages ($99 - $999+) →</button>
 
                     </div>
 
@@ -648,7 +631,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="conv" style="background: linear-gradient(135deg, var(--accent-purple), #7e22ce);">📦 View Packages ($149 - $999+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="conv" style="background: linear-gradient(135deg, var(--accent-purple), #7e22ce);">View Packages ($149 - $999+) →</button>
 
                     </div>
 
@@ -680,7 +663,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="vision" style="background: linear-gradient(135deg, var(--accent-pink), #be185d);">📦 View Packages ($99 - $799+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="vision" style="background: linear-gradient(135deg, var(--accent-pink), #be185d);">View Packages ($99 - $799+) →</button>
 
                     </div>
 
@@ -712,7 +695,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="software" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:700;">📦 View Packages ($249 - $1,999+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="software" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:700;">View Packages ($249 - $1,999+) →</button>
 
                     </div>
 
@@ -744,7 +727,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="infra" style="background: linear-gradient(135deg, #10b981, #059669);">📦 View Packages ($49 - $799+) →</button>
+                        <button class="btn btn-primary-sm btn-full open-pkg-modal-btn" data-cat="infra" style="background: linear-gradient(135deg, #10b981, #059669);">View Packages ($49 - $799+) →</button>
 
                     </div>
 

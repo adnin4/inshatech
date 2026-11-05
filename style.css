@@ -45,6 +45,8 @@
     --accent-green: #00FF87;
     --accent-green-dim: #10B981;
     --accent-green-glow: rgba(0, 255, 135, 0.15);
+    --accent-emerald: #10B981;
+    --border-card: rgba(255, 255, 255, 0.08);
 
     /* Text */
     --text-primary: #F1F5F9;
@@ -155,6 +157,198 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* === OS STATUS BAR & COMMAND CENTER TICKER === */
+.os-status-bar {
+    background: #06080d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 7px 16px;
+    font-size: 0.76rem;
+    font-family: var(--font-body);
+    position: relative;
+    z-index: 1001;
+}
+.os-status-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.status-bar-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.status-bar-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.os-metric-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    letter-spacing: 0.04em;
+}
+.os-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    animation: pulse-dot 2s infinite ease-in-out;
+}
+
+/* === PRIMARY TOP NAVBAR & PORTAL TABS (DESKTOP & GLOBAL) === */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(8, 10, 16, 0.9);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+    padding: 0 24px;
+    max-width: var(--content-wide, 1400px);
+    margin: 0 auto;
+}
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+}
+.logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #38bdf8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.logo-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+.badge-pro {
+    font-size: 0.62rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    text-transform: uppercase;
+}
+.portal-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 3px 5px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.portal-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    background: transparent;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    cursor: pointer;
+}
+.portal-tab-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+.portal-tab-btn.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+.portal-tab-admin-btn {
+    background: rgba(245, 158, 11, 0.1) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.28) !important;
+    font-weight: 600 !important;
+}
+.portal-tab-admin-btn:hover {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #ffffff !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Hero Badge & Beacon */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    margin-bottom: 16px;
+    width: fit-content;
+}
+.pulse-beacon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+    animation: pulse-dot 2s infinite ease-in-out;
+    display: inline-block;
 }
 
 /* === FLOATING GLASS NAVBAR === */
@@ -351,14 +545,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* Obsidian Glass Studio Cockpit Card */
 .hero-studio-card {
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(9, 13, 24, 0.96));
-    border: 1px solid rgba(0, 242, 254, 0.25);
+    background: rgba(11, 15, 23, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
     padding: 26px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 242, 254, 0.12);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
     position: relative;
     overflow: hidden;
 }
@@ -369,29 +563,29 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.6), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
 }
 .hero-studio-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 242, 254, 0.5);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 242, 254, 0.22);
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* World-Class Pre-Sales Prompt Engine */
 .presales-box {
     margin-top: 24px;
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    background: rgba(11, 15, 23, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
     padding: 18px 20px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    transition: border-color 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .presales-box:focus-within {
-    border-color: rgba(0, 242, 254, 0.45);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 .presales-input-row {
@@ -402,19 +596,19 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 .presales-input {
     flex: 1;
-    background: rgba(8, 12, 22, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 10px;
-    padding: 12px 18px;
+    background: rgba(6, 9, 14, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    padding: 10px 16px;
     color: #ffffff;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-family: var(--font-body);
     outline: none;
     transition: all 0.2s ease;
 }
 .presales-input:focus {
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.12);
 }
 
 .presales-chips {
@@ -425,11 +619,11 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .presales-chip {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     color: #94a3b8;
     padding: 5px 12px;
-    border-radius: 20px;
+    border-radius: 9999px;
     font-size: 0.78rem;
     font-weight: 500;
     cursor: pointer;
@@ -437,8 +631,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     user-select: none;
 }
 .presales-chip:hover {
-    background: rgba(0, 242, 254, 0.12);
-    border-color: rgba(0, 242, 254, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
     color: #ffffff;
     transform: translateY(-1px);
 }
@@ -446,33 +640,33 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 /* High-Impact Hero Action Buttons */
 .btn-primary-glow {
     background: #ffffff !important;
-    color: #090d16 !important;
-    font-weight: 700 !important;
-    font-size: 0.92rem !important;
-    padding: 12px 24px !important;
+    color: #080a0f !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 11px 22px !important;
     border-radius: 8px !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 20px rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
     text-decoration: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid #ffffff !important;
 }
 .btn-primary-glow:hover {
-    background: #f1f5f9 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 25px rgba(255, 255, 255, 0.25) !important;
+    background: #f8fafc !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
     color: #000000 !important;
 }
 
 .btn-glass-glow {
     background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #f1f5f9 !important;
-    font-weight: 600 !important;
-    font-size: 0.92rem !important;
-    padding: 12px 22px !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    padding: 11px 22px !important;
     border-radius: 8px !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -481,13 +675,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     align-items: center !important;
     gap: 8px !important;
     text-decoration: none !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 .btn-glass-glow:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(255, 255, 255, 0.28) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
     color: #ffffff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 .btn-gold-pill {
@@ -1797,7 +1992,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     height: 100vh !important;
     z-index: -1 !important;
     pointer-events: none !important;
-    opacity: 0.55 !important;
+    opacity: 0.06 !important;
     display: block !important;
 }
 
@@ -3300,10 +3495,10 @@ form input[type="tel"]:focus {
 
     .portal-tab-btn:hover,
     .portal-tab-btn.active {
-        background: rgba(0, 242, 254, 0.15) !important;
-        border-color: rgba(0, 242, 254, 0.4) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
         color: #ffffff !important;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
     }
 
     /* Hero Section */
@@ -3483,18 +3678,18 @@ form input[type="tel"]:focus {
 
 
 /* ========================================================
-   GLOWING BORDER CYBERPUNK ACCENT
+   GLOWING BORDER — REFINED AMBIENT ACCENT (UNSLOP)
    ======================================================== */
 .glowing-border {
     position: relative;
-    border: 1px solid rgba(0, 242, 254, 0.35) !important;
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15) !important;
-    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .glowing-border:hover {
-    border-color: rgba(0, 242, 254, 0.7) !important;
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.3) !important;
+    border-color: rgba(56, 189, 248, 0.32) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(56, 189, 248, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* ========================================================
@@ -3525,9 +3720,9 @@ form input[type="tel"]:focus {
 }
 
 .cat-overview-card:hover {
-    transform: translateY(-6px) !important;
-    border-color: rgba(6, 182, 212, 0.6) !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(6, 182, 212, 0.25) !important;
+    transform: translateY(-3px) !important;
+    border-color: rgba(56, 189, 248, 0.3) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .cat-card-header {
@@ -4246,8 +4441,9 @@ button:focus-visible {
 }
 
 .glass-card:hover, .ipc-card:hover, .blueprint-card:hover, .store-card:hover, .tmpl-card:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 242, 254, 0.18) !important;
+    transform: translateY(-3px) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Shimmer animation on CTA buttons */
@@ -4293,7 +4489,7 @@ button:focus-visible {
 }
 
 .glowing-border {
-    animation: subtleHoloPulse 4s infinite ease-in-out;
+    animation: none !important;
 }
 
 
