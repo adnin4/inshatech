@@ -449,6 +449,32 @@
                         color: #64748b !important;
                         font-weight: 500 !important;
                     }
+                    @media (max-width: 768px) {
+                        #iinsha-copilot-teaser {
+                            display: none !important;
+                        }
+                        #iinsha-copilot-trigger,
+                        .iinsha-cockpit-launcher {
+                            bottom: 74px !important;
+                            right: 14px !important;
+                            padding: 6px 12px 6px 8px !important;
+                            transform: scale(0.92) !important;
+                            transform-origin: bottom right !important;
+                        }
+                        body.cta-dismissed #iinsha-copilot-trigger,
+                        body.cta-dismissed .iinsha-cockpit-launcher {
+                            bottom: 16px !important;
+                        }
+                        #iinsha-copilot-window {
+                            width: 100vw !important;
+                            height: 100vh !important;
+                            max-width: 100vw !important;
+                            max-height: 100vh !important;
+                            bottom: 0 !important;
+                            right: 0 !important;
+                            border-radius: 0 !important;
+                        }
+                    }
                 `;
                 document.head.appendChild(styleEl);
             }

@@ -142,55 +142,29 @@
 
     <!-- SLEEK GLASSMORPHIC TOP CONTROL BAR -->
 
-    <div class="os-status-bar" style="background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-card); padding: 6px 16px;">
-
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.78rem;">
-
-            <div class="status-bar-left" style="display: flex; gap: 14px; align-items: center;">
-
-                <span class="os-metric-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border-color: var(--accent-emerald); font-weight: 700;">
-
-                    <span class="os-pulse-dot"></span> IINSHA AI-BOS Autonomous Company OS Operational
-
+    <div class="os-status-bar" style="background: #06080e; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding: 6px 16px; font-size: 0.74rem;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="status-bar-left" style="display: flex; gap: 10px; align-items: center;">
+                <span class="os-metric-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.25); padding: 2px 8px; border-radius: 20px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                    <span class="os-pulse-dot" style="background: #10b981; width: 6px; height: 6px; border-radius: 50%;"></span>
+                    <span>Systems Operational • 99.95% SLO</span>
                 </span>
-
-                <span style="color: var(--text-muted);">✨ Gemini 3.8 Flash / Pro Multi-Agent Mesh</span>
-
-                <span class="os-status-secondary-text" style="color: var(--text-muted);"> Self-Hosted Cloud VPS • Zero Vendor Lock-in</span>
-
+                <span class="os-status-secondary-text" style="color: #64748b;">Enterprise Autonomous Systems v10.0</span>
             </div>
-
-            <div class="status-bar-right" style="display: flex; gap: 12px; align-items: center;">
-
-                <span class="os-whatsapp-contact" style="color: var(--text-muted);">📱 Direct WhatsApp: <strong>+8801629286887</strong></span>
-
-                <button onclick="document.getElementById('admin-control-modal').style.display='flex'" class="btn btn-primary-sm" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.75rem;">🎛️ Master Control Panel</button>
-
-                <a href="affiliate.html" style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;">🤝 Partner Network →</a>
-
+            <div class="status-bar-right" style="display: flex; gap: 14px; align-items: center;">
+                <a href="https://wa.me/8801629286887" target="_blank" class="os-whatsapp-contact" style="color: #94a3b8; text-decoration: none;">Direct WhatsApp: <strong style="color: #ffffff;">+8801629286887</strong></a>
+                <a href="affiliate.html" style="color: #38bdf8; text-decoration: none; font-weight: 600;">Partner Network →</a>
             </div>
-
         </div>
-
     </div>
 
-
-
     <!-- NAVIGATION HEADER -->
-
     <header class="navbar">
-
         <div class="container nav-container">
-
             <a href="#" class="logo">
-
-                <span class="logo-icon">⚡</span>
-
+                <span class="logo-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
                 <span class="logo-text">IINSHA AI <span class="badge-pro">AUTOMATION LAB</span></span>
-
             </a>
-
-            
 
             <nav class="portal-tabs" aria-label="Primary Navigation">
                 <a href="#hero" class="portal-tab-btn active">Studio</a>
@@ -202,9 +176,7 @@
                 <a href="portal.html" class="portal-tab-btn">Portal</a>
                 <button onclick="openProtectedAdminPanel()" class="portal-tab-btn portal-tab-admin-btn">Control Panel (Auth)</button>
             </nav>
-
         </div>
-
     </header>
 
 
@@ -255,12 +227,12 @@
                             <span>Production Capacity: <strong style="color: #10b981;">3 Active Engineering Slots</strong> • Response SLA: <strong style="color: #38bdf8;">&lt; 1 Hour</strong></span>
                         </div>
                         
-                        <h1 class="hero-title" style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px;">
+                        <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.8vw, 3.5rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 16px;">
                             Autonomous AI Systems.<br>
                             <span class="gradient-text">Engineered for Production.</span>
                         </h1>
                         
-                        <p class="hero-subtitle" style="font-size: 1.05rem; color: #94a3b8; font-weight: 400; margin-bottom: 24px; line-height: 1.65; max-width: 620px;">
+                        <p class="hero-subtitle" style="font-size: 1.05rem; color: #94a3b8; font-weight: 400; margin-bottom: 26px; line-height: 1.65; max-width: 600px;">
                             Deploy autonomous AI agent meshes, Playwright stealth scraping pipelines, and sovereign cloud infrastructure with zero vendor lock-in. Co-architected by Lead AI Engineer <strong>Adnin Sadat Mahin</strong> for <strong>IINSHA AI Automation Lab</strong>.
                         </p>
 
@@ -283,22 +255,24 @@
                             </button>
                         </div>
 
-                        <!-- PRE-SALES AI ASSISTANT HERO INPUT -->
-                        <div class="presales-box" style="margin-top: 24px;">
-                            <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">💡 AI Pre-Sales Assistant</div>
-                            <div style="font-size: 0.95rem; color: #fff; margin-bottom: 10px; font-weight: 600;">What workflow bottleneck do you want to automate today?</div>
-                            <div class="presales-input-row">
-                                <input type="text" name="presales_query" id="presales-query-input" aria-label="Pre-sales Inquiry" autocomplete="off" placeholder="e.g. Automate invoice OCR extraction to PostgreSQL" class="presales-input">
-                                <button id="presales-submit-btn" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7); white-space: nowrap; font-weight: 700;">Estimate Architecture</button>
+                        <!-- Enterprise Invariant Trust Strip -->
+                        <div class="hero-trust-strip" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 26px; max-width: 580px;">
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981; font-size: 0.9rem;">✔</span>
+                                <span style="font-size: 0.82rem; color: #cbd5e1;">Zero Vendor Lock-in (Sovereign VPS)</span>
                             </div>
-                            <div class="presales-chips" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                                <span class="presales-chip">Invoice OCR</span>
-                                <span class="presales-chip">Support Chatbot</span>
-                                <span class="presales-chip">Playwright Scraper</span>
-                                <span class="presales-chip">CRM Pipeline</span>
-                                <span class="presales-chip">WhatsApp Bot</span>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981; font-size: 0.9rem;">✔</span>
+                                <span style="font-size: 0.82rem; color: #cbd5e1;">18 Autonomous Specialist Agents</span>
                             </div>
-                            <div id="presales-output-box" style="display: none;"></div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981; font-size: 0.9rem;">✔</span>
+                                <span style="font-size: 0.82rem; color: #cbd5e1;">PostgreSQL 17 + pgvector RLS</span>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981; font-size: 0.9rem;">✔</span>
+                                <span style="font-size: 0.82rem; color: #cbd5e1;">26/26 Invariant Gate Verification</span>
+                            </div>
                         </div>
                     </div>
 
