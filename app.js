@@ -1110,16 +1110,8 @@ window.alert = function(msg) {
     showFomoToast(String(msg || ''), 'info');
 };
 
-/* Live FOMO Activity Stream Notification Toast Engine */
+/* Clean Enterprise Notification System (Zero Fake FOMO Popups) */
 function initFomoToasts() {
-    const notifications = [
-        "🛒 Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
-        "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
-        "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
-        "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
-        "🚀 Self-Hosted Linux VPS Docker Container #04 deployed successfully"
-    ];
-
     let toastContainer = document.getElementById('toastContainer');
     if (!toastContainer) {
         toastContainer = document.createElement('div');
@@ -1127,21 +1119,7 @@ function initFomoToasts() {
         toastContainer.style.cssText = 'position:fixed; bottom:20px; left:20px; z-index:9999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
         document.body.appendChild(toastContainer);
     }
-
-    setInterval(() => {
-        const randomMsg = notifications[Math.floor(Math.random() * notifications.length)];
-        const toast = document.createElement('div');
-        toast.className = 'glass-toast';
-        toast.style.cssText = 'background:rgba(15,23,42,0.92); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); backdrop-filter:blur(10px); animation:slideUp 0.4s ease; pointer-events:auto;';
-        toast.innerHTML = `<span style="color:var(--accent-emerald);">● LIVE</span> ${randomMsg}`;
-        toastContainer.appendChild(toast);
-
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => toast.remove(), 500);
-        }, 5000);
-    }, 25000);
+    // Fake automated timers permanently disabled for authentic enterprise UX.
 }
 
 if (document.readyState === 'loading') {

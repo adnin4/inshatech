@@ -151,7 +151,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan), var(--accent-green-dim));
+    background: linear-gradient(135deg, #ffffff 10%, #e2e8f0 50%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -445,36 +445,38 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* High-Impact Hero Action Buttons */
 .btn-primary-glow {
-    background: linear-gradient(135deg, #00f2fe 0%, #0284c7 100%) !important;
-    color: #030712 !important;
-    font-weight: 800 !important;
+    background: #ffffff !important;
+    color: #090d16 !important;
+    font-weight: 700 !important;
     font-size: 0.92rem !important;
-    padding: 13px 22px !important;
-    border-radius: 10px !important;
-    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.35) !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 20px rgba(255, 255, 255, 0.15) !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
     text-decoration: none !important;
-    border: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
 }
 .btn-primary-glow:hover {
+    background: #f1f5f9 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5) !important;
+    box-shadow: 0 4px 25px rgba(255, 255, 255, 0.25) !important;
     color: #000000 !important;
 }
 
 .btn-glass-glow {
     background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: #f1f5f9 !important;
+    font-weight: 600 !important;
     font-size: 0.92rem !important;
-    padding: 13px 20px !important;
-    border-radius: 10px !important;
+    padding: 12px 22px !important;
+    border-radius: 8px !important;
     backdrop-filter: blur(12px) !important;
-    transition: all 0.2s ease !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
@@ -482,10 +484,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 .btn-glass-glow:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(0, 242, 254, 0.4) !important;
-    color: #00f2fe !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
 }
 
 .btn-gold-pill {
@@ -4452,4 +4454,20 @@ html, body {
         z-index: 999999 !important;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
     }
+}
+
+/* Sleek Executive Control Panel Tab Button */
+.portal-tab-admin-btn {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.25)) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.45) !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    transition: all 0.2s ease !important;
+}
+.portal-tab-admin-btn:hover {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: #000000 !important;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.4) !important;
 }
