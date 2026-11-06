@@ -1,11 +1,11 @@
 # IINSHA AI-BOS CI Failure Evidence Report (Gate 0A-0H)
 
-* **Generated At:** 2026-11-06T17:22:12.541Z
+* **Generated At:** 2026-11-06T17:57:52.504Z
 * **Repository:** adnin4/inshatech
-* **Commit SHA (Authoritative Source):** `98b4d6338bd33c142c6a19f5f1e224b5b59961b1`
-* **Branch / Ref:** `fix/p0-admin-auth-release-identity`
-* **Release Lineage (Checked Out):** `98b4d6338bd33c142c6a19f5f1e224b5b59961b1`
-* **Release Lineage (PR Head):** `98b4d6338bd33c142c6a19f5f1e224b5b59961b1`
+* **Commit SHA (Authoritative Source):** `63ec78e10f095c848a234644566f7dbdd376d520`
+* **Branch / Ref:** `master`
+* **Release Lineage (Checked Out):** `63ec78e10f095c848a234644566f7dbdd376d520`
+* **Release Lineage (PR Head):** `63ec78e10f095c848a234644566f7dbdd376d520`
 * **Release Lineage (Workflow SHA):** `NOT_PROVIDED`
 * **Synthetic Merge Commit Detected:** `false`
 * **Workflow Run ID:** LOCAL_EXECUTION
@@ -29,32 +29,32 @@
 ## Gate 0A Test Inventory & Execution Breakdown
 | Suite | Domain | Evidence Level | Status | Exit Code | Duration (ms) | Stdout SHA-256 |
 |---|---|---|---|---:|---:|---|
-| `reality_boundary` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 36 ms | `4b4cc69dea07...` |
-| `system_claims` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 39 ms | `c66cbc25802b...` |
-| `security_gate` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 71 ms | `93b16213b6d9...` |
-| `check_direct_db` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 36 ms | `778610841e47...` |
-| `visual_baseline` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 37 ms | `759fdbe60ed5...` |
-| `form_contract` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 37 ms | `174567b3e1c0...` |
-| `solution_finder` | SALES_ENGINE | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 38 ms | `2266039a1a6b...` |
-| `copilot_e2e` | AI_AGENT | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 36 ms | `490c3a123b80...` |
-| `service_authority` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 137 ms | `a4f2332c354e...` |
-| `payment_schema` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 35 ms | `6abc1e70bb25...` |
-| `payment_coupon` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 35 ms | `924507ec5f55...` |
-| `payment_fx` | PAYMENT | `FINANCIAL_CONTRACT` | **PASS** | `0` | 34 ms | `df7ad9bf4763...` |
-| `payment_state_machine` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 34 ms | `23ebe8112530...` |
-| `payment_webhook_contract` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 33 ms | `7aa2322af6d2...` |
-| `payment_hardening` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 58 ms | `19d3adb9e8ba...` |
-| `payment_adversarial` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 90 ms | `21c71a392200...` |
-| `payment_replay_concurrency` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 68 ms | `69945f4d5647...` |
-| `payment_reconciliation` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 53 ms | `2f4c2fe8f74b...` |
-| `tenant_rls` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 36 ms | `ccca39eddeb8...` |
-| `tenant_isolation_adversarial` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 33 ms | `000b831459da...` |
-| `production_slo_dr` | SRE_INFRASTRUCTURE | `SRE_CONTRACT` | **PASS** | `0` | 36 ms | `51ae2fc4b3c4...` |
-| `production_browser` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 1014 ms | `5aa0cdef78c3...` |
-| `release_identity` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 3145 ms | `98a9569105c4...` |
-| `admin_auth_security` | SECURITY | `CODE_CONTRACT` | **PASS** | `0` | 69 ms | `79bd8ef70df0...` |
-| `canonical_manifest_guard` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 43 ms | `3cc5155d644a...` |
-| `business_truth_gates` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 42 ms | `da7a799d696e...` |
+| `reality_boundary` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 39 ms | `4b4cc69dea07...` |
+| `system_claims` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 41 ms | `c66cbc25802b...` |
+| `security_gate` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 78 ms | `93b16213b6d9...` |
+| `check_direct_db` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 37 ms | `778610841e47...` |
+| `visual_baseline` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 39 ms | `759fdbe60ed5...` |
+| `form_contract` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 40 ms | `174567b3e1c0...` |
+| `solution_finder` | SALES_ENGINE | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 40 ms | `2266039a1a6b...` |
+| `copilot_e2e` | AI_AGENT | `TEST_VERIFIED_SYNTHETIC` | **PASS** | `0` | 37 ms | `490c3a123b80...` |
+| `service_authority` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 148 ms | `a4f2332c354e...` |
+| `payment_schema` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 40 ms | `6abc1e70bb25...` |
+| `payment_coupon` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 36 ms | `924507ec5f55...` |
+| `payment_fx` | PAYMENT | `FINANCIAL_CONTRACT` | **PASS** | `0` | 37 ms | `df7ad9bf4763...` |
+| `payment_state_machine` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 36 ms | `23ebe8112530...` |
+| `payment_webhook_contract` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 35 ms | `7aa2322af6d2...` |
+| `payment_hardening` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 61 ms | `19d3adb9e8ba...` |
+| `payment_adversarial` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 89 ms | `21c71a392200...` |
+| `payment_replay_concurrency` | PAYMENT | `PAYMENT_CONTRACT` | **PASS** | `0` | 66 ms | `69945f4d5647...` |
+| `payment_reconciliation` | FINANCE | `FINANCIAL_CONTRACT` | **PASS** | `0` | 56 ms | `2f4c2fe8f74b...` |
+| `tenant_rls` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 39 ms | `ccca39eddeb8...` |
+| `tenant_isolation_adversarial` | SECURITY | `SECURITY_CONTRACT` | **PASS** | `0` | 35 ms | `000b831459da...` |
+| `production_slo_dr` | SRE_INFRASTRUCTURE | `SRE_CONTRACT` | **PASS** | `0` | 38 ms | `51ae2fc4b3c4...` |
+| `production_browser` | FRONTEND | `SYNTHETIC_TEST` | **PASS** | `0` | 1067 ms | `5aa0cdef78c3...` |
+| `release_identity` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 3141 ms | `98a9569105c4...` |
+| `admin_auth_security` | SECURITY | `CODE_CONTRACT` | **PASS** | `0` | 72 ms | `79bd8ef70df0...` |
+| `canonical_manifest_guard` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 38 ms | `3cc5155d644a...` |
+| `business_truth_gates` | GOVERNANCE | `CODE_CONTRACT` | **PASS** | `0` | 39 ms | `da7a799d696e...` |
 
 ## Diagnostic Output for Non-Passing Suites
 All 26 suites passed with zero failures. Immutable green baseline frozen.

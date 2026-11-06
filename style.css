@@ -4823,3 +4823,134 @@ html, body {
         font-size: 0.7rem !important;
     }
 }
+
+
+/* ==========================================================================
+   GLOBAL FULLSITE CINEMATIC 3D MOTION STAGE (AWWWARDS / LITTLEWEBSITE)
+   Top-to-Bottom Dynamic Full-Screen Background
+   ========================================================================== */
+.global-cinematic-stage {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+}
+
+.global-video-backdrop {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.32 !important;
+    mix-blend-mode: screen !important;
+    filter: contrast(1.18) brightness(0.92) saturate(1.3) !important;
+    transition: opacity 0.6s ease !important;
+    display: block !important;
+}
+
+.global-video-backdrop img,
+.global-media-cover {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.global-3d-canvas-wrap {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+.hero3d-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.global-halftone-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px) !important;
+    background-size: 20px 20px !important;
+    opacity: 0.55 !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+
+.global-vignette-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: radial-gradient(ellipse 95% 85% at 50% 50%, rgba(3, 7, 18, 0.25) 0%, rgba(3, 7, 18, 0.78) 65%, rgba(3, 7, 18, 0.96) 100%) !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+}
+
+/* Ensure all page content floats seamlessly above the global stage */
+body {
+    background-color: #030712 !important;
+    position: relative !important;
+}
+
+main, section, .hero-section {
+    position: relative !important;
+    background: transparent !important;
+}
+
+.hero-section {
+    position: relative !important;
+    min-height: 82vh !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Floating Motion Control Button (LittleWebsite Standard) */
+.global-motion-control {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    z-index: 9995 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 0.76rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: #cbd5e1 !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 9999px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.global-motion-control:hover {
+    color: #ffffff !important;
+    border-color: rgba(56, 189, 248, 0.6) !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.3) !important;
+    transform: translateY(-1px) !important;
+}
+
+@media (max-width: 768px) {
+    .global-motion-control {
+        bottom: 16px !important;
+        left: 14px !important;
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+    }
+}
