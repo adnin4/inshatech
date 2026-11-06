@@ -128,6 +128,30 @@
 
 <body>
 
+    <!-- ====================================================================
+         GLOBAL FULLSITE CINEMATIC 3D MOTION STAGE (AWWWARDS / LITTLEWEBSITE)
+         Dynamic Top-to-Bottom Interactive Video + Lorenzo Lottici 3D Mesh
+         ==================================================================== -->
+    <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
+        <!-- LittleWebsite Fullsite Looping Motion Video / Animated WebP -->
+        <picture class="global-video-backdrop">
+            <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
+            <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/thumbnail.webp?time=0&amp;width=1920" alt="Fullsite Cinematic 3D Motion" class="global-media-cover" loading="eager">
+        </picture>
+        <!-- Fullsite Lorenzo Lottici 3D Kinetic Constellation WebGL / Canvas Container -->
+        <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
+        <!-- Fullsite Halftone Dot-Matrix Pattern Overlay -->
+        <div class="global-halftone-overlay"></div>
+        <!-- Fullsite Ambient Vignette & Contrast Control Mask -->
+        <div class="global-vignette-overlay"></div>
+    </div>
+
+    <!-- AWWWARDS / LITTLEWEBSITE FLOATING MOTION CONTROLLER (GLOBAL) -->
+    <button id="hero-motion-toggle" class="global-motion-control" aria-label="Toggle Fullsite 3D Background Motion" title="Pause / Play Fullsite 3D Motion">
+        <span class="motion-icon motion-pause">⏸ 3D Motion Active</span>
+        <span class="motion-icon motion-play" style="display:none;">▶ 3D Motion Paused</span>
+    </button>
+
     <!-- Ambient Background -->
 
     <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
