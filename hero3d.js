@@ -237,9 +237,9 @@
 
             // Volumetric Outer Corona Glow
             const coronaGrad = ctx.createRadialGradient(0, 0, coreR * 0.2, 0, 0, coreR * 3.8);
-            coronaGrad.addColorStop(0, 'rgba(0, 242, 254, 0.25)');
-            coronaGrad.addColorStop(0.35, 'rgba(139, 92, 246, 0.14)');
-            coronaGrad.addColorStop(0.7, 'rgba(0, 242, 254, 0.04)');
+            coronaGrad.addColorStop(0, 'rgba(0, 242, 254, 0.55)');
+            coronaGrad.addColorStop(0.35, 'rgba(139, 92, 246, 0.35)');
+            coronaGrad.addColorStop(0.7, 'rgba(0, 242, 254, 0.15)');
             coronaGrad.addColorStop(1, 'transparent');
             ctx.beginPath();
             ctx.arc(0, 0, coreR * 3.8, 0, Math.PI * 2);
@@ -283,12 +283,12 @@
                 ctx.save();
                 if (ring === 0) {
                     ctx.setLineDash([12, 16]);
-                    ctx.strokeStyle = 'rgba(0, 242, 254, 0.22)';
+                    ctx.strokeStyle = 'rgba(0, 242, 254, 0.45)';
                 } else if (ring === 1) {
                     ctx.setLineDash([6, 12]);
-                    ctx.strokeStyle = 'rgba(139, 92, 246, 0.18)';
+                    ctx.strokeStyle = 'rgba(139, 92, 246, 0.38)';
                 } else {
-                    ctx.strokeStyle = 'rgba(56, 189, 248, 0.10)';
+                    ctx.strokeStyle = 'rgba(56, 189, 248, 0.28)';
                 }
                 ctx.lineWidth = 1;
                 ctx.stroke();
@@ -355,7 +355,7 @@
 
                     if (dist < maxDist) {
                         validConnections.push({ i, j, p1, p2, dist });
-                        const lineAlpha = (1 - dist / maxDist) * Math.min(p1.alpha, p2.alpha) * 0.45;
+                        const lineAlpha = (1 - dist / maxDist) * Math.min(p1.alpha, p2.alpha) * 0.85;
                         ctx.beginPath();
                         ctx.moveTo(p1.px, p1.py);
                         ctx.lineTo(p2.px, p2.py);
