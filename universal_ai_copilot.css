@@ -729,3 +729,11 @@
         bottom: 16px !important;
     }
 }
+
+@media (max-width: 900px) {
+    #iinsha-copilot-teaser {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}

@@ -201,21 +201,36 @@
 
 
 
-        <!-- TIER 1: HERO SECTION -->
+                <!-- TIER 1: HERO SECTION -->
+        <section id="hero" class="hero-section" style="padding-top: 50px; padding-bottom: 50px; position: relative; overflow: hidden;">
+            <!-- CINEMATIC 3D MOTION STAGE (LITTLEWEBSITE & LORENZO LOTTICI) -->
+            <div class="hero-cinematic-stage" aria-hidden="true">
+                <picture class="hero-video-backdrop">
+                    <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
+                    <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/thumbnail.webp?time=0&width=1920" alt="Cinematic 3D Motion Backdrop" class="hero-media-cover" loading="eager">
+                </picture>
+                <div id="hero3d-container" class="hero3d-canvas-wrap"></div>
+                <div class="hero-halftone-overlay"></div>
+                <div class="hero-vignette-overlay"></div>
+            </div>
 
-        <section id="hero" class="hero-section" style="padding-top: 50px; padding-bottom: 50px;">
+            <!-- LITTLEWEBSITE MOTION CONTROL TOGGLE -->
+            <button id="hero-motion-toggle" class="hero-motion-control" aria-label="Toggle Hero Background Motion" title="Pause / Play 3D Kinetic Motion">
+                <span class="motion-icon motion-pause">⏸ Motion Active</span>
+                <span class="motion-icon motion-play" style="display:none;">▶ Motion Paused</span>
+            </button>
 
-            <div class="container">
-
+            <div class="container" style="position: relative; z-index: 4;">
                 <div class="hero-grid">
-
                     <div>
-
                         <!-- AI RETURNING USER MEMORY BANNER -->
-
                         <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 20px;"></div>
 
-
+                        <!-- AWWWARDS EDITORIAL NOMINEE BADGE -->
+                        <div class="hero-awwwards-tag">
+                            <span class="awwwards-pulsing-dot"></span>
+                            <span class="awwwards-tag-text">AWWWARDS HONOREE NOMINEE • DIGITAL EXCELLENCE 2026</span>
+                        </div>
 
                         <div class="hero-badge">
                             <span class="pulse-beacon" style="width: 6px; height: 6px;"></span> ENTERPRISE AUTONOMOUS INFRASTRUCTURE
@@ -227,9 +242,9 @@
                             <span>Production Capacity: <strong style="color: #10b981;">3 Active Engineering Slots</strong> • Response SLA: <strong style="color: #38bdf8;">&lt; 1 Hour</strong></span>
                         </div>
                         
-                        <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.8vw, 3.5rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 16px;">
+                        <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.8vw, 3.8rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 16px;">
                             Autonomous AI Systems.<br>
-                            <span class="gradient-text">Engineered for Production.</span>
+                            <span class="hero-gradient-silver">Engineered for Scale.</span>
                         </h1>
                         
                         <p class="hero-subtitle" style="font-size: 1.05rem; color: #94a3b8; font-weight: 400; margin-bottom: 26px; line-height: 1.65; max-width: 600px;">
@@ -4674,6 +4689,7 @@
 
 
 
+    <script src="hero3d.js?v=20261106_awwwards_mesh" defer></script>
     <script src="app.js?v=20260907_v130_modal_dom_perfection" defer></script>
 
     <script>

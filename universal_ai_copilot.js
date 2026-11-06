@@ -525,7 +525,8 @@
             `;
             document.body.appendChild(teaser);
 
-            if (window.innerWidth <= 768 || sessionStorage.getItem('iinsha_teaser_dismissed') === 'true') {
+            const isMobileTeaser = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+            if (isMobileTeaser || sessionStorage.getItem('iinsha_teaser_dismissed') === 'true') {
                 teaser.style.display = 'none';
             }
 

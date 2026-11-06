@@ -4664,3 +4664,162 @@ html, body {
     color: #000000 !important;
     box-shadow: 0 0 16px rgba(245, 158, 11, 0.4) !important;
 }
+
+
+/* ==========================================================================
+   AWWWARDS LORENZO LOTTICI & LITTLEWEBSITE DESIGN SYSTEM (2026)
+   ========================================================================== */
+.hero-section {
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 82vh !important;
+    display: flex !important;
+    align-items: center !important;
+    background: radial-gradient(ellipse 90% 70% at 50% -15%, rgba(14, 28, 54, 0.65), rgba(4, 7, 15, 0.98) 75%) !important;
+}
+
+.hero-cinematic-stage {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+.hero-video-backdrop {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.28 !important;
+    mix-blend-mode: screen !important;
+    filter: contrast(1.15) brightness(0.9) saturate(1.2) !important;
+    transition: opacity 0.6s ease !important;
+    display: block !important;
+}
+
+.hero-video-backdrop img,
+.hero-media-cover {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.hero3d-canvas-wrap {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+.hero3d-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.hero-halftone-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%) !important;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%) !important;
+    opacity: 0.45 !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+
+.hero-vignette-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(4, 7, 15, 0.2) 0%, rgba(4, 7, 15, 0.85) 75%, rgba(4, 7, 15, 1) 100%) !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+}
+
+.hero-section > .container {
+    position: relative !important;
+    z-index: 4 !important;
+}
+
+.hero-motion-control {
+    position: absolute !important;
+    bottom: 24px !important;
+    right: 32px !important;
+    z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 0.76rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: #94a3b8 !important;
+    background: rgba(15, 23, 42, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px !important;
+    backdrop-filter: blur(12px) !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-motion-control:hover {
+    color: #ffffff !important;
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    background: rgba(15, 23, 42, 0.9) !important;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2) !important;
+}
+
+.hero-awwwards-tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 4px 14px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 9999px !important;
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    color: #cbd5e1 !important;
+    margin-bottom: 14px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.awwwards-pulsing-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: #38bdf8 !important;
+    box-shadow: 0 0 10px #38bdf8 !important;
+    animation: awwwardsPulse 2s infinite ease-in-out !important;
+}
+
+@keyframes awwwardsPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hero-gradient-silver {
+    background: linear-gradient(135deg, #ffffff 20%, #cbd5e1 50%, #38bdf8 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+    .hero-motion-control {
+        bottom: 12px !important;
+        right: 14px !important;
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+    }
+}
