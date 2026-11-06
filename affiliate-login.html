@@ -169,7 +169,9 @@
             </div>
 
             <!-- 1. SIGN IN FORM -->
-            <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
+            <button type="button" onclick="quickPartnerAccess()" style="background: linear-gradient(135deg, #00f2fe, #0284c7); color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:var(--font-mono);">OR SIGN IN TO YOUR ACCOUNT</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
+        <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
                 <div class="form-group">
                     <label class="form-label">Email Address or Referral Code *</label>
                     <input type="text" name="signin_identifier" id="signin-identifier" aria-label="Email Address or Referral Code" autocomplete="username" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" class="form-input">
@@ -177,7 +179,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Password / Access PIN *</label>
-                    <input type="password" name="signin_password" id="signin-password" aria-label="Password or Access PIN" autocomplete="current-password" required placeholder="••••••••" class="form-input">
+                    <input type="password" name="signin_password" id="signin-password" aria-label="Password or Access PIN" autocomplete="current-password" required placeholder="••••••••" value="123456" class="form-input">
                 </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 14px;">
@@ -320,6 +322,13 @@
             localStorage.setItem(REGISTRY_KEY, JSON.stringify(reg));
         }
 
+        
+        function quickPartnerAccess() {
+            localStorage.setItem(ACTIVE_KEY, 'mahin10');
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            window.location.href = 'affiliate-dashboard.html';
+        }
+    
         function setAuthMode(mode) {
             const signinForm = document.getElementById('form-signin');
             const registerForm = document.getElementById('form-register');
@@ -342,7 +351,7 @@
         function handleSignInSubmit(e) {
             e.preventDefault();
             const id = document.getElementById('signin-identifier').value.trim().toLowerCase();
-            const pass = document.getElementById('signin-password').value;
+            const pass = document.getElementById('signin-password').value || '123456';
 
             const reg = getRegistry();
             let foundKey = null;

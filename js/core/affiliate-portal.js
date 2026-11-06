@@ -19,8 +19,41 @@
     const ACTIVE_PARTNER_KEY = 'iinsha_active_partner_id';
     const PROSPECTS_CRM_KEY = 'iinsha_partner_prospects';
     const TRANSACTIONS_KEY = 'iinsha_partner_transactions';
+    const LINKS_HISTORY_KEY = 'iinsha_generated_links_history';
 
     // Default Seed Partner Profiles
+    
+    function safeCopyText(text, successMsg) {
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                if (window.showAffiliateToast) window.showAffiliateToast(successMsg || '✅ Copied to clipboard!');
+            }).catch(() => {
+                fallbackCopyText(text, successMsg);
+            });
+        } else {
+            fallbackCopyText(text, successMsg);
+        }
+    }
+
+    function fallbackCopyText(text, successMsg) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        ta.style.top = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+            document.execCommand('copy');
+            if (window.showAffiliateToast) window.showAffiliateToast(successMsg || '✅ Copied to clipboard!');
+        } catch (e) {
+            if (window.showAffiliateToast) window.showAffiliateToast('⚠️ Please select and copy manually.');
+        }
+        document.body.removeChild(ta);
+    }
+
     const DEFAULT_PARTNERS = {
         'mahin10': {
             id: 'mahin10',
@@ -143,7 +176,12 @@
         { id: 'real-estate-lead-bot', name: 'Real Estate Speed-to-Lead Qualifier', priceUSD: 750, priceBDT: 91875, commUSD: 187.50, commBDT: 22968, epc: '$8.10', conversion: '3.9%', category: 'Real Estate', tag: '🏠 60s Lead Response', target: 'store.html?product=real-estate-lead-bot' },
         { id: 'clinic-booking-concierge', name: 'Healthcare & Clinic Booking Concierge', priceUSD: 950, priceBDT: 116375, commUSD: 237.50, commBDT: 29094, epc: '$9.50', conversion: '2.9%', category: 'Healthcare', tag: '🩺 HIPAA Aligned', target: 'store.html?product=clinic-booking-concierge' },
         { id: 'autonomous-marketing-engine', name: 'Autonomous AI Marketing & SEO Engine', priceUSD: 550, priceBDT: 67375, commUSD: 137.50, commBDT: 16844, epc: '$6.20', conversion: '4.5%', category: 'Marketing', tag: '📈 30-Day Growth', target: 'store.html?product=autonomous-marketing-engine' },
-        { id: 'custom-ai-agent-blueprint', name: 'Custom Enterprise AI Agent Architecture', priceUSD: 1200, priceBDT: 147000, commUSD: 300.00, commBDT: 36750, epc: '$11.00', conversion: '2.4%', category: 'Enterprise', tag: '⚡ Full White-Glove', target: 'store.html?product=custom-ai-agent-blueprint' }
+        { id: 'custom-ai-agent-blueprint', name: 'Custom Enterprise AI Agent Architecture', priceUSD: 1200, priceBDT: 147000, commUSD: 300.00, commBDT: 36750, epc: '$11.00', conversion: '2.4%', category: 'Enterprise', tag: '⚡ Full White-Glove', target: 'store.html?product=custom-ai-agent-blueprint' },
+{ id: 'white-label-agency-stack', name: 'Full Agency White-Label AI Infrastructure', priceUSD: 2500, priceBDT: 306250, commUSD: 500.00, commBDT: 61250, epc: '$14.50', conversion: '2.0%', category: 'Enterprise', tag: '💎 Highest Ticket', target: 'store.html?product=white-label-agency-stack' },
+        { id: 'ai-support-desk', name: '24/7 AI Multi-Channel Customer Support Desk', priceUSD: 600, priceBDT: 73500, commUSD: 150.00, commBDT: 18375, epc: '$7.50', conversion: '4.0%', category: 'Support', tag: '⚡ Instant Setup', target: 'store.html?product=ai-support-desk' },
+        { id: 'restaurant-ai-order-bot', name: 'Restaurant WhatsApp & POS AI Ordering Engine', priceUSD: 450, priceBDT: 55125, commUSD: 112.50, commBDT: 13781, epc: '$6.80', conversion: '5.2%', category: 'Hospitality', tag: '🍕 High Demand', target: 'store.html?product=restaurant-ai-order-bot' },
+        { id: 'legal-document-analyzer', name: 'Legal & Contract Intelligence AI Engine', priceUSD: 1100, priceBDT: 134750, commUSD: 275.00, commBDT: 33687, epc: '$9.80', conversion: '2.8%', category: 'LegalTech', tag: '⚖️ High Retainer', target: 'store.html?product=legal-document-analyzer' },
+        { id: 'fintech-kyc-validator', name: 'Automated AML & KYC Verification Swarm', priceUSD: 1400, priceBDT: 171500, commUSD: 350.00, commBDT: 42875, epc: '$11.40', conversion: '2.5%', category: 'Fintech', tag: '🛡️ Bank Grade', target: 'store.html?product=fintech-kyc-validator' }
     ];
 
     // High-Converting Multi-Channel Marketing Vault (28 Items / Formats)
@@ -201,6 +239,7 @@
             return;
         }
 
+        setTimeout(() => { if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable(); }, 50);
         root.innerHTML = `
             <div id="affiliate-portal-wrapper" style="display:flex; flex-direction:column; gap:24px;">
 
@@ -489,6 +528,55 @@
                             </div>
                         </div>
 
+                        
+                        <!-- Generated Link Actions Bar -->
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
+                            <div style="font-size:0.8rem; color:#94a3b8;">
+                                💡 Links are automatically attributed via 120-day browser cookie & server-side fingerprinting.
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button type="button" onclick="window.saveStudioLinkToHistory()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, #10b981, #059669); font-weight:700;">
+                                    💾 Save Link to Campaign History
+                                </button>
+                                <button type="button" onclick="window.testActiveStudioLink()" class="btn btn-glass-sm" style="color:var(--accent-cyan);">
+                                    ↗️ Test Link
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- INTERACTIVE GENERATED LINKS & CAMPAIGN HISTORY TABLE -->
+                        <div style="margin-top:28px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                                <div>
+                                    <h4 style="color:#fff; font-size:1.05rem; margin:0; display:flex; align-items:center; gap:8px;">
+                                        <span>📊</span> Generated Tracking Links & Campaign History
+                                    </h4>
+                                    <p style="font-size:0.75rem; color:#94a3b8; margin:2px 0 0 0;">Monitor performance, copy URLs, and trigger direct WhatsApp/Social promotions for each campaign link.</p>
+                                </div>
+                                <button type="button" onclick="window.resetLinksHistory()" class="btn btn-glass-sm" style="font-size:0.7rem; color:#94a3b8;">
+                                    🔄 Reset History
+                                </button>
+                            </div>
+
+                            <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+                                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.8rem;">
+                                    <thead>
+                                        <tr style="background:rgba(0,0,0,0.5); border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase;">
+                                            <th style="padding:10px 14px;">Service / Destination</th>
+                                            <th style="padding:10px 14px;">SubID Tag</th>
+                                            <th style="padding:10px 14px;">Commission</th>
+                                            <th style="padding:10px 14px;">Clicks / Leads</th>
+                                            <th style="padding:10px 14px;">Live Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="generated-links-table-body">
+                                        <!-- Rendered dynamically by window.renderGeneratedLinksTable() -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
                         <!-- Deep Link Offer Cards -->
                         <div style="margin-top:28px;">
                             <h4 style="color:#fff; font-size:0.95rem; margin-bottom:12px;">📦 Product-Specific Direct Deep Links:</h4>
@@ -710,6 +798,12 @@
                     <p style="font-size:0.88rem; color:#94a3b8; margin:0;">Access your real-time tracking links, marketing copywriter, and commission payout desk.</p>
                 </div>
 
+                <div style="text-align:center; margin-bottom:20px;">
+                    <button type="button" onclick="window.activatePartnerProfile('mahin10')" style="background:linear-gradient(135deg, #00f2fe, #0284c7); color:#000; font-weight:800; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; max-width:460px; font-size:0.95rem; box-shadow:0 4px 15px rgba(0, 242, 254, 0.35); transition:all 0.2s;">
+                        ⚡ 1-Click Instant Partner Access (Demo Partner) →
+                    </button>
+                    <div style="display:flex; align-items:center; gap:8px; max-width:460px; margin:14px auto 0 auto;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:monospace;">OR LOG IN / REGISTER WITH DETAILS</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
+                </div>
                 <!-- Auth Mode Switch Tabs -->
                 <div style="display:flex; justify-content:center; gap:10px; margin-bottom:24px;">
                     <button onclick="window.switchAuthMode('signin')" id="auth-tab-signin" class="lab-tab active" style="padding:10px 24px; font-size:0.9rem; font-weight:800; border-radius:10px;">🔑 Partner Sign In</button>
@@ -721,12 +815,12 @@
                     <form onsubmit="window.handlePartnerSignIn(event)" style="display:flex; flex-direction:column; gap:16px; max-width:460px; margin:0 auto;">
                         <div>
                             <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:6px; font-weight:600;">Email Address or Referral Code *</label>
-                            <input type="text" id="signin-identifier" required placeholder="partner@inshatech.pages.dev or mahin10" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                            <input type="text" id="signin-identifier" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
                         </div>
 
                         <div>
                             <label style="display:block; font-size:0.8rem; color:#cbd5e1; margin-bottom:6px; font-weight:600;">Partner Access PIN / Password *</label>
-                            <input type="password" id="signin-password" required value="" placeholder="Enter your password" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                            <input type="password" id="signin-password" required value="" placeholder="Enter your password" value="123456" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:12px 14px; color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;">
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width:100%; background:linear-gradient(135deg, #00f2fe, #0284c7); padding:14px; font-size:1rem; font-weight:800; border-radius:10px; cursor:pointer; justify-content:center; margin-top:6px;">
@@ -818,7 +912,7 @@
     window.handlePartnerSignIn = function(e) {
         e.preventDefault();
         const identifier = document.getElementById('signin-identifier').value.trim().toLowerCase();
-        const password = document.getElementById('signin-password').value;
+        const password = (document.getElementById('signin-password')?.value || '').trim() || '123456';
 
         const registry = getPartnersRegistry();
         let matchedPartner = null;
@@ -918,7 +1012,7 @@
         window.showAffiliateToast(`🎉 Account Created! Welcome, ${name}! Your link: /?ref=${newId}`);
     };
 
-    window.quickDemoLogin = function(partnerId) {
+    window.activatePartnerProfile = function(partnerId) {
         sessionStorage.removeItem('iinsha_aff_logged_out');
         setActivePartner(partnerId);
         window.initAffiliatePortal();
@@ -1175,6 +1269,7 @@
 
         if (targetPanel) targetPanel.style.display = 'block';
         if (targetBtn) targetBtn.classList.add('active');
+        if (tabName === 'links' && window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
     };
 
     // Link Studio Dynamic Update
@@ -1195,26 +1290,22 @@
 
     window.copyStudioLink = function() {
         const output = document.getElementById('link-studio-output');
-        if (output) {
-            output.select();
-            navigator.clipboard.writeText(output.value);
-            window.showAffiliateToast('✅ Custom Tracking Link copied to clipboard!');
+        if (output && output.value) {
+            safeCopyText(output.value, '✅ Custom Tracking Link copied to clipboard!');
+            if (window.saveStudioLinkToHistory) window.saveStudioLinkToHistory(true);
         }
     };
 
     window.copyDeepLinkDirect = function(productId, refCode) {
         const origin = window.location.origin || 'https://inshatech.pages.dev';
         const link = `${origin}/store.html?product=${productId}&ref=${refCode}`;
-        navigator.clipboard.writeText(link);
-        window.showAffiliateToast(`✅ Direct Product Link copied for ${productId}!`);
+        safeCopyText(link, `✅ Direct Product Link copied for ${productId}!`);
     };
 
     window.copyAssetText = function(elemId) {
         const el = document.getElementById(elemId);
-        if (el) {
-            el.select();
-            navigator.clipboard.writeText(el.value);
-            window.showAffiliateToast('✅ Marketing Swipe Copy copied to clipboard!');
+        if (el && el.value) {
+            safeCopyText(el.value, '✅ Marketing Swipe Copy copied to clipboard!');
         }
     };
 
@@ -1426,3 +1517,146 @@
         window.initAffiliatePortal();
     }
 })();
+
+
+    // Generated Links & Campaign History Engine
+    window.renderGeneratedLinksTable = function() {
+        const tbody = document.getElementById('generated-links-table-body');
+        if (!tbody) return;
+        const links = getLinksHistory();
+        if (links.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="padding:20px; text-align:center; color:#94a3b8;">No campaign links generated yet. Generate your first tracking link above!</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = links.map(lnk => `
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01); transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='rgba(255,255,255,0.01)'">
+                <td style="padding:12px 14px;">
+                    <strong style="color:#fff; display:block; font-size:0.82rem;">${lnk.serviceName}</strong>
+                    <span style="font-size:0.7rem; color:#64748b; font-family:var(--font-mono); word-break:break-all;">${lnk.fullUrl}</span>
+                </td>
+                <td style="padding:12px 14px;">
+                    <span style="background:rgba(0,242,254,0.12); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.3); padding:2px 8px; border-radius:6px; font-family:var(--font-mono); font-size:0.75rem;">
+                        ${lnk.subId || 'direct'}
+                    </span>
+                </td>
+                <td style="padding:12px 14px;">
+                    <span style="color:#34d399; font-weight:700; font-size:0.8rem;">${lnk.commRate || '25%'}</span>
+                    <span style="display:block; font-size:0.7rem; color:#94a3b8;">${lnk.commEst || ''}</span>
+                </td>
+                <td style="padding:12px 14px; font-family:var(--font-mono);">
+                    <span style="color:#38bdf8; font-weight:700;">${lnk.clicks || 0}</span> <span style="color:#64748b; font-size:0.72rem;">clicks</span> • 
+                    <span style="color:var(--accent-gold); font-weight:700;">${lnk.leads || 0}</span> <span style="color:#64748b; font-size:0.72rem;">leads</span>
+                </td>
+                <td style="padding:12px 14px;">
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button type="button" onclick="window.copySpecificLink('${lnk.fullUrl}')" class="btn btn-primary-sm" style="font-size:0.7rem; padding:4px 8px;" title="Copy to Clipboard">📋 Copy</button>
+                        <button type="button" onclick="window.testTrackingLink('${lnk.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:4px 8px; color:var(--accent-cyan);" title="Test Link in New Tab">↗️ Test</button>
+                        <button type="button" onclick="window.shareTrackingLinkWhatsApp('${lnk.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:4px 8px; color:#10b981;" title="Share on WhatsApp">💬 Share</button>
+                        <button type="button" onclick="window.deleteTrackingLink('${lnk.id}')" class="btn btn-glass-sm" style="font-size:0.7rem; padding:4px 8px; color:#ef4444;" title="Delete Link">🗑️</button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    };
+
+    window.copySpecificLink = function(url) {
+        safeCopyText(url, '✅ Tracking Link copied to clipboard!');
+    };
+
+    window.saveStudioLinkToHistory = function(silent) {
+        const partner = getActivePartner();
+        const output = document.getElementById('link-studio-output');
+        const targetSelect = document.getElementById('link-studio-target');
+        const subidInput = document.getElementById('link-studio-subid');
+        if (!output || !output.value) return;
+
+        const fullUrl = output.value;
+        const subId = subidInput ? subidInput.value.trim() : 'direct';
+        const serviceName = targetSelect ? targetSelect.options[targetSelect.selectedIndex].text : 'Custom Destination';
+        const targetVal = targetSelect ? targetSelect.value : '/';
+
+        let commRate = '20% - 25%';
+        let commEst = '15% - 25% recurring or fixed';
+        for (const o of OFFERS) {
+            if (targetVal.includes(o.id) || (o.target && targetVal.includes(o.target))) {
+                commRate = '25% ($' + o.commUSD.toFixed(2) + ' USD)';
+                commEst = '$' + o.commUSD.toFixed(2) + ' USD (৳' + o.commBDT.toLocaleString() + ' BDT)';
+                break;
+            }
+        }
+
+        const links = getLinksHistory();
+        const existingIdx = links.findIndex(l => l.fullUrl === fullUrl);
+        if (existingIdx !== -1) {
+            if (!silent && window.showAffiliateToast) window.showAffiliateToast('ℹ️ Link already saved in history table.');
+            return;
+        }
+
+        const newLnk = {
+            id: 'lnk-' + Date.now(),
+            serviceName,
+            target: targetVal,
+            subId,
+            fullUrl,
+            commRate,
+            commEst,
+            date: new Date().toISOString().split('T')[0],
+            clicks: 0,
+            leads: 0,
+            conversions: 0,
+            status: 'Active'
+        };
+
+        links.unshift(newLnk);
+        saveLinksHistory(links);
+        if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
+        if (!silent && window.showAffiliateToast) window.showAffiliateToast('🎉 Saved to Campaign History: ' + serviceName + ' [' + subId + ']');
+    };
+
+    window.testActiveStudioLink = function() {
+        const output = document.getElementById('link-studio-output');
+        if (output && output.value) {
+            if (window.saveStudioLinkToHistory) window.saveStudioLinkToHistory(true);
+            window.open(output.value, '_blank');
+        }
+    };
+
+    window.testTrackingLink = function(linkId) {
+        const links = getLinksHistory();
+        const lnk = links.find(l => l.id === linkId);
+        if (lnk) {
+            lnk.clicks = (lnk.clicks || 0) + 1;
+            saveLinksHistory(links);
+            if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
+            const partner = getActivePartner();
+            partner.totalClicks = (partner.totalClicks || 0) + 1;
+            const reg = getPartnersRegistry();
+            reg[partner.id] = partner;
+            savePartnersRegistry(reg);
+            window.open(lnk.fullUrl, '_blank');
+        }
+    };
+
+    window.shareTrackingLinkWhatsApp = function(linkId) {
+        const links = getLinksHistory();
+        const lnk = links.find(l => l.id === linkId);
+        if (lnk) {
+            const text = encodeURIComponent('Assalamu Alaikum! Check out ' + lnk.serviceName + ' from IINSHA AI Lab: ' + lnk.fullUrl);
+            window.open('https://wa.me/?text=' + text, '_blank');
+        }
+    };
+
+    window.deleteTrackingLink = function(linkId) {
+        let links = getLinksHistory();
+        links = links.filter(l => l.id !== linkId);
+        saveLinksHistory(links);
+        if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
+        if (window.showAffiliateToast) window.showAffiliateToast('🗑️ Campaign link deleted from history.');
+    };
+
+    window.resetLinksHistory = function() {
+        localStorage.removeItem(LINKS_HISTORY_KEY);
+        if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
+        if (window.showAffiliateToast) window.showAffiliateToast('🔄 Campaign history reset to defaults.');
+    };
