@@ -18,16 +18,16 @@
     <link rel="stylesheet" href="style.css?v=20260907_v130_modal_dom_perfection">
     <style>
         :root {
-            --bg-cockpit: #040812;
-            --bg-sidebar: #070d1a;
-            --bg-card: rgba(13, 22, 38, 0.85);
+            --bg-cockpit: #030712;
+            --bg-sidebar: rgba(5, 10, 22, 0.90);
+            --bg-card: rgba(8, 13, 26, 0.85);
             --bg-card-hover: rgba(20, 34, 58, 0.95);
             --accent-cyan: #00F2FE;
             --accent-emerald: #10B981;
             --accent-purple: #A855F7;
             --accent-gold: #F59E0B;
             --accent-rose: #F43F5E;
-            --border-cockpit: rgba(0, 242, 254, 0.15);
+            --border-cockpit: rgba(0, 242, 254, 0.16);
             --border-card: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -513,6 +513,19 @@
     <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260818_gemini_ui_v3">
 </head>
 <body>
+
+    <!-- FULLSITE CINEMATIC 3D BACKGROUND STAGE -->
+    <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
+        <picture class="global-video-backdrop">
+            <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
+            <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" alt="Cinematic Ambient 3D Mesh" class="global-media-cover" loading="eager" decoding="async">
+        </picture>
+        <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
+        <div class="global-halftone-overlay"></div>
+        <div class="global-vignette-overlay"></div>
+    </div>
+
+
     <!-- SERVER-AUTHENTICATED 2-STEP VERIFICATION GUARDIAN OVERLAY -->
     <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
         <div style="background:#0f172a; padding:36px; border-radius:16px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:440px; width:90%; box-shadow: 0 0 60px rgba(0,242,254,0.2);">
@@ -3281,6 +3294,7 @@
     <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
     <script src="src/whatsapp_concierge.js"></script>
     <script src="src/js/ux_interactions.js?v=20260907_v135_ux"></script>
+    <script src="hero3d.js?v=20261106_awwwards_mesh" defer></script>
 </body>
 </html>
 

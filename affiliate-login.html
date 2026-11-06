@@ -126,7 +126,20 @@
     </style>
 </head>
 <body>
-    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.06;"></canvas>
+
+    <!-- FULLSITE CINEMATIC 3D BACKGROUND STAGE -->
+    <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
+        <picture class="global-video-backdrop">
+            <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
+            <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" alt="Cinematic Ambient 3D Mesh" class="global-media-cover" loading="eager" decoding="async">
+        </picture>
+        <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
+        <div class="global-halftone-overlay"></div>
+        <div class="global-vignette-overlay"></div>
+    </div>
+
+
+    <!-- particleCanvas unified into global-cinematic-stage -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
     <div class="grid-overlay"></div>
@@ -443,6 +456,7 @@
         }
     </script>
     <script src="src/js/ux_interactions.js?v=20260907_v135_ux"></script>
+    <script src="hero3d.js?v=20261106_awwwards_mesh" defer></script>
 </body>
 </html>
 
