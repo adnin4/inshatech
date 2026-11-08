@@ -6,7 +6,6 @@ import { onRequestPost as orderTransition } from '../functions/api/orders/state_
 import { onRequestPost as createInvoice } from '../functions/api/finance/invoice.js';
 import { onRequestPost as affiliateConvert } from '../functions/api/affiliate/convert.js';
 
-globalThis.crypto = webcrypto;
 const SECRET = "unit-test-owner-secret-for-hmac-session";
 function b64url(s) { return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,''); }
 async function ownerToken() {

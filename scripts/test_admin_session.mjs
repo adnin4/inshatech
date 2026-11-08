@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import { verifyAdminSession, isAllowedAdminOrigin } from '../functions/_shared/admin_session.js';
 
-globalThis.crypto = webcrypto;
 
 const SECRET = "unit-test-owner-secret-for-hmac-session";
 function encodeBase64Url(value) {
