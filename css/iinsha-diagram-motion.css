@@ -1,0 +1,562 @@
+/*
+ * IINSHA Diagram-inspired visual system
+ * Original implementation: dark cosmic canvas, 3D orbital scene, editorial layout,
+ * spacious bento cards, quiet glass surfaces and accessible motion.
+ * Scope: opt in by adding data-iinsha-design="diagram" to <html>.
+ */
+:root {
+  --idg-bg: #070811;
+  --idg-bg-raised: #0d1020;
+  --idg-panel: rgba(17, 20, 37, .74);
+  --idg-panel-strong: #111426;
+  --idg-line: rgba(222, 229, 255, .11);
+  --idg-line-strong: rgba(222, 229, 255, .19);
+  --idg-text: #f7f8ff;
+  --idg-muted: #a7adc4;
+  --idg-subtle: #737c99;
+  --idg-violet: #8b7cff;
+  --idg-blue: #69baff;
+  --idg-pink: #ee85ca;
+  --idg-cyan: #6be6ee;
+  --idg-gold: #f6bd78;
+  --idg-radius-xl: 30px;
+  --idg-radius-lg: 22px;
+  --idg-radius-md: 15px;
+  --idg-content: 1200px;
+  --idg-section-space: clamp(76px, 10vw, 148px);
+  --idg-shadow: 0 24px 80px rgba(0, 0, 0, .38);
+  --idg-ease: cubic-bezier(.2, .75, .2, 1);
+}
+
+html[data-iinsha-design="diagram"] {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background: var(--idg-bg);
+}
+
+html[data-iinsha-design="diagram"] body {
+  background: var(--idg-bg);
+  color: var(--idg-text);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[data-iinsha-design="diagram"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(92, 91, 190, .2), transparent 44%),
+    radial-gradient(ellipse at 85% 24%, rgba(67, 112, 183, .08), transparent 35%),
+    linear-gradient(180deg, #080914 0%, #070811 58%, #080a13 100%);
+}
+
+html[data-iinsha-design="diagram"] :focus-visible {
+  outline: 2px solid var(--idg-cyan) !important;
+  outline-offset: 4px !important;
+}
+
+html[data-iinsha-design="diagram"] .container,
+html[data-iinsha-design="diagram"] .container-wide,
+html[data-iinsha-design="diagram"] .idg-container {
+  width: min(var(--idg-content), calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* Shared public navigation. Existing hrefs and click handlers are retained. */
+html[data-iinsha-design="diagram"] .iinsha-navbar,
+html[data-iinsha-design="diagram"] .navbar {
+  border: 1px solid var(--idg-line) !important;
+  border-radius: 999px !important;
+  background: rgba(10, 12, 25, .78) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  backdrop-filter: blur(22px) saturate(1.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .24) !important;
+}
+html[data-iinsha-design="diagram"] .iinsha-navbar .nav-link,
+html[data-iinsha-design="diagram"] .navbar .nav-link,
+html[data-iinsha-design="diagram"] .navbar .nav-links a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 999px;
+  color: var(--idg-muted);
+  transition: color .2s ease, background .2s ease;
+}
+html[data-iinsha-design="diagram"] .iinsha-navbar .nav-link:hover,
+html[data-iinsha-design="diagram"] .iinsha-navbar .nav-link.active,
+html[data-iinsha-design="diagram"] .navbar .nav-link:hover,
+html[data-iinsha-design="diagram"] .navbar .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, .09);
+}
+
+/* Buttons: one strong action, one quiet secondary action. */
+html[data-iinsha-design="diagram"] .btn-primary,
+html[data-iinsha-design="diagram"] .btn-primary-sm,
+html[data-iinsha-design="diagram"] .idg-button-primary {
+  min-height: 48px;
+  border: 1px solid rgba(255,255,255,.2) !important;
+  border-radius: 999px !important;
+  padding: 0 23px !important;
+  color: #090a13 !important;
+  background: linear-gradient(115deg, #fff 0%, #e8eaff 55%, #d9dcff 100%) !important;
+  font-weight: 750;
+  box-shadow: 0 8px 28px rgba(189, 190, 255, .14) !important;
+  transition: transform .25s var(--idg-ease), box-shadow .25s ease, filter .25s ease;
+}
+html[data-iinsha-design="diagram"] .btn-primary:hover,
+html[data-iinsha-design="diagram"] .btn-primary-sm:hover,
+html[data-iinsha-design="diagram"] .idg-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(189, 190, 255, .22) !important;
+  filter: brightness(1.03);
+}
+html[data-iinsha-design="diagram"] .btn-glass-sm,
+html[data-iinsha-design="diagram"] .btn-ghost,
+html[data-iinsha-design="diagram"] .idg-button-quiet {
+  min-height: 46px;
+  border: 1px solid var(--idg-line-strong) !important;
+  border-radius: 999px !important;
+  padding: 0 20px !important;
+  color: var(--idg-text) !important;
+  background: rgba(255,255,255,.045) !important;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+html[data-iinsha-design="diagram"] .btn-glass-sm:hover,
+html[data-iinsha-design="diagram"] .btn-ghost:hover,
+html[data-iinsha-design="diagram"] .idg-button-quiet:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.3) !important;
+  background: rgba(255,255,255,.085) !important;
+}
+
+/* Hero stage */
+html[data-iinsha-design="diagram"] #hero.hero-section,
+html[data-iinsha-design="diagram"] .hero-centered-stage {
+  position: relative;
+  isolation: isolate;
+  min-height: min(900px, 100svh);
+  padding: clamp(118px, 15vh, 174px) 0 80px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+html[data-iinsha-design="diagram"] #hero .hero-content,
+html[data-iinsha-design="diagram"] .hero-centered-content {
+  width: min(920px, calc(100% - 40px));
+  margin-inline: auto;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+html[data-iinsha-design="diagram"] #hero .hero-title,
+html[data-iinsha-design="diagram"] .hero-centered-title {
+  max-width: 920px;
+  margin: 22px auto 20px;
+  color: #fff;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+  font-weight: 760;
+  letter-spacing: -.075em;
+  line-height: .99;
+  text-wrap: balance;
+}
+html[data-iinsha-design="diagram"] .idg-gradient-text {
+  color: transparent;
+  background: linear-gradient(105deg, #fff 8%, #cdd0ff 42%, #a58bff 68%, #eea9d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+html[data-iinsha-design="diagram"] #hero .hero-subtitle,
+html[data-iinsha-design="diagram"] .hero-centered-subtitle {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--idg-muted);
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
+  line-height: 1.75;
+  text-wrap: balance;
+}
+html[data-iinsha-design="diagram"] #hero .hero-actions,
+html[data-iinsha-design="diagram"] .hero-centered-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+#iinsha-diagram-scene,
+[data-iinsha-motion-scene] {
+  display: block;
+  width: min(100%, 1040px);
+  height: clamp(340px, 51vw, 590px);
+  margin: -28px auto -86px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .98;
+}
+html[data-iinsha-design="diagram"] #hero3d-container {
+  position: absolute;
+  inset: 4% 0 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .92;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 13%, #000 76%, transparent 100%);
+}
+html[data-iinsha-design="diagram"] #hero3d-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+html[data-iinsha-design="diagram"] .hero-eyebrow,
+html[data-iinsha-design="diagram"] .idg-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 30px;
+  padding: 6px 12px;
+  border: 1px solid var(--idg-line);
+  border-radius: 999px;
+  color: #d8d9f0;
+  background: rgba(255,255,255,.04);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+html[data-iinsha-design="diagram"] .idg-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--idg-cyan);
+  box-shadow: 0 0 14px rgba(107,230,238,.7);
+}
+
+/* Section rhythm and editorial headings */
+html[data-iinsha-design="diagram"] .section,
+html[data-iinsha-design="diagram"] section.idg-section {
+  position: relative;
+  padding-block: var(--idg-section-space);
+  scroll-margin-top: 100px;
+}
+html[data-iinsha-design="diagram"] .section-header,
+html[data-iinsha-design="diagram"] .idg-section-header {
+  max-width: 760px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+html[data-iinsha-design="diagram"] .section-header h2,
+html[data-iinsha-design="diagram"] .idg-section-title {
+  margin: 12px 0 14px;
+  color: var(--idg-text);
+  font-size: clamp(2.1rem, 4.2vw, 4.2rem);
+  font-weight: 720;
+  letter-spacing: -.06em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+html[data-iinsha-design="diagram"] .section-header p,
+html[data-iinsha-design="diagram"] .idg-section-lede {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--idg-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+html[data-iinsha-design="diagram"] .section-tag {
+  color: #b8b5f5;
+  letter-spacing: .14em;
+}
+
+/* Bento capability grid */
+html[data-iinsha-design="diagram"] .idg-bento-grid,
+html[data-iinsha-design="diagram"] #bento-capabilities {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+html[data-iinsha-design="diagram"] .idg-bento-card,
+html[data-iinsha-design="diagram"] #bento-capabilities .idg-bento-card {
+  grid-column: span 6;
+  min-width: 0;
+  min-height: 310px;
+  padding: clamp(22px, 3vw, 36px);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--idg-line) !important;
+  border-radius: var(--idg-radius-xl) !important;
+  background:
+    radial-gradient(ellipse at 85% 5%, rgba(137, 119, 255, .11), transparent 40%),
+    linear-gradient(145deg, rgba(21, 24, 43, .92), rgba(11, 13, 25, .94)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 55px rgba(0,0,0,.18) !important;
+  transition: border-color .3s ease, transform .35s var(--idg-ease), box-shadow .35s ease;
+}
+html[data-iinsha-design="diagram"] .idg-bento-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(177, 168, 255, .34) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 28px 70px rgba(0,0,0,.3) !important;
+}
+html[data-iinsha-design="diagram"] .idg-bento-card--wide { grid-column: span 7; }
+html[data-iinsha-design="diagram"] .idg-bento-card--narrow { grid-column: span 5; }
+html[data-iinsha-design="diagram"] .idg-bento-card h3 {
+  max-width: 430px;
+  margin: 14px 0 10px;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  letter-spacing: -.04em;
+  line-height: 1.15;
+}
+html[data-iinsha-design="diagram"] .idg-bento-card p {
+  max-width: 470px;
+  color: var(--idg-muted);
+  line-height: 1.7;
+}
+html[data-iinsha-design="diagram"] .idg-card-index {
+  color: #9d9abb;
+  font: 700 .72rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .12em;
+}
+html[data-iinsha-design="diagram"] .idg-visual {
+  position: relative;
+  min-height: 145px;
+  margin-top: 26px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 17px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 45%, rgba(105, 130, 255, .14), transparent 62%), rgba(4,6,15,.35);
+}
+
+/* Services: don't delete items; search/filter controls visibility. */
+html[data-iinsha-design="diagram"] #service-discovery,
+html[data-iinsha-design="diagram"] .idg-service-discovery {
+  max-width: var(--idg-content);
+  margin-inline: auto;
+}
+html[data-iinsha-design="diagram"] #service-live-search,
+html[data-iinsha-design="diagram"] [data-service-search] {
+  width: min(100%, 580px);
+  min-height: 54px;
+  margin: 0 auto 22px;
+  padding: 0 19px;
+  border: 1px solid var(--idg-line-strong);
+  border-radius: 999px;
+  outline: none;
+  color: var(--idg-text);
+  background: rgba(255,255,255,.045);
+  box-shadow: 0 12px 40px rgba(0,0,0,.15);
+}
+html[data-iinsha-design="diagram"] #service-live-search:focus,
+html[data-iinsha-design="diagram"] [data-service-search]:focus {
+  border-color: rgba(153, 143, 255, .8);
+  box-shadow: 0 0 0 4px rgba(139,124,255,.13);
+}
+html[data-iinsha-design="diagram"] .idg-filter-hidden { display: none !important; }
+html[data-iinsha-design="diagram"] .service-item-card,
+html[data-iinsha-design="diagram"] .m-product-card,
+html[data-iinsha-design="diagram"] .pkg-card,
+html[data-iinsha-design="diagram"] .product-card {
+  border: 1px solid var(--idg-line) !important;
+  border-radius: var(--idg-radius-lg) !important;
+  background: linear-gradient(145deg, rgba(20,23,42,.88), rgba(11,13,25,.93)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045) !important;
+  backdrop-filter: blur(14px);
+  transition: transform .28s var(--idg-ease), border-color .25s ease, box-shadow .25s ease;
+}
+html[data-iinsha-design="diagram"] .service-item-card:hover,
+html[data-iinsha-design="diagram"] .m-product-card:hover,
+html[data-iinsha-design="diagram"] .pkg-card:hover,
+html[data-iinsha-design="diagram"] .product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(174,164,255,.33) !important;
+  box-shadow: 0 22px 56px rgba(0,0,0,.24) !important;
+}
+html[data-iinsha-design="diagram"] .service-item-title,
+html[data-iinsha-design="diagram"] .service-item-card h3 {
+  color: var(--idg-text) !important;
+  line-height: 1.25;
+}
+html[data-iinsha-design="diagram"] .service-item-desc,
+html[data-iinsha-design="diagram"] .service-item-card p {
+  color: var(--idg-muted) !important;
+  line-height: 1.65;
+}
+html[data-iinsha-design="diagram"] .service-tab-btn,
+html[data-iinsha-design="diagram"] .blueprint-filter-btn,
+html[data-iinsha-design="diagram"] .idg-filter-pill {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--idg-line) !important;
+  border-radius: 999px !important;
+  color: var(--idg-muted) !important;
+  background: rgba(255,255,255,.035) !important;
+}
+html[data-iinsha-design="diagram"] .service-tab-btn.active,
+html[data-iinsha-design="diagram"] .blueprint-filter-btn.active,
+html[data-iinsha-design="diagram"] .idg-filter-pill[aria-pressed="true"] {
+  color: #0a0b14 !important;
+  background: #f1f1ff !important;
+  border-color: #f1f1ff !important;
+}
+
+/* Scroll reveal. JS adds .idg-reveal-ready only when observers are supported. */
+html[data-iinsha-design="diagram"] .idg-reveal {
+  opacity: 1;
+  transform: none;
+}
+html[data-iinsha-design="diagram"] .idg-reveal.idg-reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity .75s var(--idg-ease), transform .75s var(--idg-ease);
+  transition-delay: var(--idg-delay, 0ms);
+}
+html[data-iinsha-design="diagram"] .idg-reveal.idg-revealed {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+html[data-iinsha-design="diagram"] [data-idg-flow-node] {
+  opacity: .54;
+  transform: translateY(5px);
+  transition: opacity .45s ease, transform .45s var(--idg-ease), border-color .45s ease;
+}
+html[data-iinsha-design="diagram"] [data-idg-flow-node].is-flow-active {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(158, 147, 255, .56) !important;
+  box-shadow: 0 0 28px rgba(132, 119, 255, .12);
+}
+html[data-iinsha-design="diagram"] .idg-flow-track {
+  position: absolute;
+  height: 1px;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, rgba(153,143,255,.65), rgba(107,230,238,.7), transparent);
+  transform-origin: left;
+  opacity: .75;
+}
+html[data-iinsha-design="diagram"] .idg-flow-track::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 14px 4px rgba(137,124,255,.65);
+  animation: idg-packet-travel 3.8s linear infinite;
+}
+@keyframes idg-packet-travel { to { left: 100%; } }
+
+/* Optional cinematic video backdrop. Video is optional; canvas remains the main visual. */
+html[data-iinsha-design="diagram"] .idg-ambient-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .14;
+  filter: saturate(.8) contrast(1.1);
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, #000, rgba(0,0,0,.7) 65%, transparent);
+}
+
+/* Section ids map to the IINSHA story; they are not copied source-site markup. */
+html[data-iinsha-design="diagram"] #s1,
+html[data-iinsha-design="diagram"] #s2,
+html[data-iinsha-design="diagram"] #s3,
+html[data-iinsha-design="diagram"] #s4,
+html[data-iinsha-design="diagram"] #s5,
+html[data-iinsha-design="diagram"] #s6 {
+  scroll-margin-top: 96px;
+}
+
+/* Admin and portal: retain functional layout, refine surfaces only. */
+html[data-iinsha-design="diagram"] .cockpit-header,
+html[data-iinsha-design="diagram"] .cockpit-nav,
+html[data-iinsha-design="diagram"] .cockpit-inspector,
+html[data-iinsha-design="diagram"] .admin-view-panel,
+html[data-iinsha-design="diagram"] .workspace-header,
+html[data-iinsha-design="diagram"] .terminal-box {
+  border-color: var(--idg-line) !important;
+}
+html[data-iinsha-design="diagram"] .admin-kpi-card,
+html[data-iinsha-design="diagram"] .glass-card,
+html[data-iinsha-design="diagram"] .metric-card,
+html[data-iinsha-design="diagram"] .roadmap-card,
+html[data-iinsha-design="diagram"] .sla-card {
+  border: 1px solid var(--idg-line) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, rgba(20,23,42,.88), rgba(11,13,25,.94)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045) !important;
+}
+html[data-iinsha-design="diagram"] .admin-view-panel { min-width: 0; }
+html[data-iinsha-design="diagram"] .admin-kpi-grid { gap: 14px; }
+html[data-iinsha-design="diagram"] .workspace-title { letter-spacing: -.035em; line-height: 1.15; }
+
+@media (max-width: 900px) {
+  html[data-iinsha-design="diagram"] #bento-capabilities .idg-bento-card,
+  html[data-iinsha-design="diagram"] .idg-bento-card,
+  html[data-iinsha-design="diagram"] .idg-bento-card--wide,
+  html[data-iinsha-design="diagram"] .idg-bento-card--narrow { grid-column: span 6; }
+  html[data-iinsha-design="diagram"] #hero.hero-section { min-height: 760px; }
+}
+@media (max-width: 640px) {
+  html[data-iinsha-design="diagram"] .container,
+  html[data-iinsha-design="diagram"] .container-wide,
+  html[data-iinsha-design="diagram"] .idg-container { width: min(100% - 32px, var(--idg-content)); }
+  html[data-iinsha-design="diagram"] #hero.hero-section,
+  html[data-iinsha-design="diagram"] .hero-centered-stage {
+    min-height: 730px;
+    padding: 112px 0 58px;
+  }
+  html[data-iinsha-design="diagram"] #hero .hero-title,
+  html[data-iinsha-design="diagram"] .hero-centered-title {
+    font-size: clamp(2.65rem, 12vw, 4.1rem);
+    letter-spacing: -.07em;
+  }
+  html[data-iinsha-design="diagram"] #hero .hero-actions,
+  html[data-iinsha-design="diagram"] .hero-centered-actions { gap: 9px; }
+  html[data-iinsha-design="diagram"] #hero .hero-actions .btn,
+  html[data-iinsha-design="diagram"] #hero .hero-actions a,
+  html[data-iinsha-design="diagram"] #hero .hero-actions button { width: auto; }
+  #iinsha-diagram-scene,
+  [data-iinsha-motion-scene] { height: 360px; margin: -12px auto -55px; }
+  html[data-iinsha-design="diagram"] .idg-bento-grid,
+  html[data-iinsha-design="diagram"] #bento-capabilities { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  html[data-iinsha-design="diagram"] .idg-bento-card,
+  html[data-iinsha-design="diagram"] .idg-bento-card--wide,
+  html[data-iinsha-design="diagram"] .idg-bento-card--narrow { grid-column: 1 / -1; min-height: 260px; }
+  html[data-iinsha-design="diagram"] .section,
+  html[data-iinsha-design="diagram"] section.idg-section { padding-block: 72px; }
+  html[data-iinsha-design="diagram"] .section-header { margin-bottom: 28px; }
+  html[data-iinsha-design="diagram"] .iinsha-navbar,
+  html[data-iinsha-design="diagram"] .navbar { border-radius: 20px !important; }
+  html[data-iinsha-design="diagram"] .nav-links { max-width: 100%; overflow-x: auto; flex-wrap: nowrap !important; justify-content: flex-start !important; scrollbar-width: none; }
+  html[data-iinsha-design="diagram"] .nav-links::-webkit-scrollbar { display: none; }
+  html[data-iinsha-design="diagram"] .nav-link { white-space: nowrap; min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-iinsha-design="diagram"] *,
+  html[data-iinsha-design="diagram"] *::before,
+  html[data-iinsha-design="diagram"] *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  html[data-iinsha-design="diagram"] .idg-reveal.idg-reveal-ready {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
