@@ -8,6 +8,7 @@ const forbid=(s,n,label)=>{if(s.includes(n))throw new Error('Unsafe pattern dete
 export function verifySiteSafety(){
  const index=read('index.html'),app=read('app.js'),admin=read('admin.html');
  const login=read('affiliate-login.html'),portal=read('js/core/affiliate-portal.js');
+ const ux=read('src/js/ux_interactions.js');
  const affiliate=read('affiliate.html'),killswitch=read('functions/api/admin/killswitch.js');
  const integrations=read('functions/api/admin/integrations.js'),orders=read('functions/api/orders/state_machine.js');
  const invoice=read('functions/api/finance/invoice.js');
@@ -16,6 +17,12 @@ export function verifySiteSafety(){
  const routes=['portal','stats','track','convert','attribution','payout','fraud_radar'].map(n=>read('functions/api/affiliate/'+n+'.js'));
  need(index,'togglePrimaryNavigation(this)','mobile navigation control');
  need(index,'hero-network-visual','homepage hero visual');
+ need(index,'sticky-mobile-cta-close','dismissible mobile contact bar');
+ need(ux,'iinsha-toast-close','dismissible notification');
+ need(ux,'initStickyCtaDismissal','mobile CTA dismissal handler');
+ forbid(ux,'Starter Kit Sent!','fake lead magnet delivery success');
+ forbid(ux,'AI Automation Starter Kit sent to your inbox!','fake email success');
+ forbid(ux,'Copied: ${textToCopy}','false clipboard success fallback');
  need(app,'verifyAdminEdgeSession','server-side admin token verification');
  need(app,'mfa_token','homepage admin TOTP');
  need(app,'lockAdminPanel();','admin lock button clears the local session and returns to sign-in');

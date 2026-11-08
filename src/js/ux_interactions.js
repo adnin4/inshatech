@@ -12,7 +12,11 @@
         if (!document.getElementById('iinsha-ux-toast')) {
             const toast = document.createElement('div');
             toast.id = 'iinsha-ux-toast';
-            toast.innerHTML = '<span id="iinsha-toast-icon">✨</span><span id="iinsha-toast-msg">Notification</span>';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            toast.innerHTML = '<span id="iinsha-toast-icon" aria-hidden="true">✨</span><span id="iinsha-toast-msg">Notification</span><button id="iinsha-toast-close" type="button" aria-label="Dismiss notification">×</button>';
+            const closeButton = toast.querySelector('#iinsha-toast-close');
+            if (closeButton) closeButton.addEventListener('click', () => toast.classList.remove('show'));
             document.body.appendChild(toast);
         }
     }
@@ -24,6 +28,8 @@
         const iconEl = document.getElementById('iinsha-toast-icon');
         if (!toast || !msgEl) return;
 
+        toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+        toast.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
         msgEl.textContent = msg;
         if (type === 'success') {
             iconEl.textContent = '✅';
@@ -49,6 +55,8 @@
             // Escape key closes any open modal/popup
             if (e.key === 'Escape' || e.keyCode === 27) {
                 closeAllModals();
+                const toast = document.getElementById('iinsha-ux-toast');
+                if (toast) toast.classList.remove('show');
             }
 
             // Ctrl + K or Cmd + K opens Command Palette
@@ -121,7 +129,7 @@
                     navigator.clipboard.writeText(textToCopy).then(() => {
                         window.showToast(`Copied to Clipboard! ✓`, 'success');
                     }).catch(() => {
-                        window.showToast(`Copied: ${textToCopy}`, 'info');
+                        window.showToast('Clipboard access was blocked. Select the text and copy it manually.', 'error');
                     });
                 }
             }
@@ -141,32 +149,24 @@
         });
     }
 
-    // 7. Lead Magnet Download Form Feedback Handler
-    function initLeadMagnetHandler() {
-        const magnetBtn = document.getElementById('magnet-download-btn');
-        const magnetInput = document.getElementById('magnet-contact-input');
+    // 7. Dismissible mobile contact bar
+    function initStickyCtaDismissal() {
+        const cta = document.querySelector('.sticky-mobile-cta');
+        const closeButton = document.getElementById('sticky-mobile-cta-close');
+        if (!cta || !closeButton) return;
 
-        if (magnetBtn && magnetInput) {
-            magnetBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const val = magnetInput.value.trim();
-                if (!val) {
-                    magnetInput.focus();
-                    magnetInput.style.borderColor = '#ef4444';
-                    window.showToast('Please enter your work email or WhatsApp number', 'error');
-                    return;
-                }
-
-                magnetBtn.disabled = true;
-                magnetBtn.innerHTML = 'Sending Blueprint... ⏳';
-                setTimeout(() => {
-                    magnetBtn.innerHTML = '✅ Starter Kit Sent!';
-                    magnetBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                    window.showToast('AI Automation Starter Kit sent to your inbox!', 'success');
-                    magnetInput.value = '';
-                }, 800);
-            });
+        try {
+            if (sessionStorage.getItem('iinsha_mobile_cta_dismissed') === '1') {
+                cta.classList.add('is-dismissed');
+            }
+        } catch (error) {
+            // The close button remains usable when browser storage is unavailable.
         }
+
+        closeButton.addEventListener('click', () => {
+            cta.classList.add('is-dismissed');
+            try { sessionStorage.setItem('iinsha_mobile_cta_dismissed', '1'); } catch (error) {}
+        });
     }
 
     // Initialize all on DOM ready
@@ -176,7 +176,7 @@
         initBackdropDismissal();
         initClipboardCopy();
         initMobileNavAutoClose();
-        initLeadMagnetHandler();
+        initStickyCtaDismissal();
     }
 
     if (document.readyState === 'loading') {
