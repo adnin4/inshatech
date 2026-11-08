@@ -31,13 +31,8 @@ function databaseIdentity(env) {
     const runtime = typeof env.SUPABASE_RUNTIME_PROJECT_REF === 'string'
         ? env.SUPABASE_RUNTIME_PROJECT_REF.trim()
         : null;
-    const health = typeof env.SUPABASE_RUNTIME_HEALTH === 'string'
-        ? env.SUPABASE_RUNTIME_HEALTH.trim().toUpperCase()
-        : null;
-
     const identityPresent = Boolean(canonical && runtime);
     const identityMatches = identityPresent && canonical === runtime;
-    const healthVerified = health === 'HEALTHY';
 
     return {
         canonical_db: canonical || 'UNSPECIFIED',
@@ -47,9 +42,7 @@ function databaseIdentity(env) {
             ? 'UNVERIFIED'
             : !identityMatches
                 ? 'MISMATCH'
-                : healthVerified
-                    ? 'LIVE_VERIFIED'
-                    : 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
+                : 'IDENTITY_VERIFIED_HEALTH_UNVERIFIED'
     };
 }
 
