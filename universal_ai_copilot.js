@@ -154,7 +154,7 @@
                         width: 40px !important;
                         height: 40px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -237,7 +237,7 @@
                         width: 36px !important;
                         height: 36px !important;
                         border-radius: 12px !important;
-                        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -920,7 +920,7 @@
             setTimeout(() => {
                 this.hideTyping();
                 const resultHtml = `
-                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:6px;">
+                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius: 18px; padding:14px; margin-top:6px;">
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
                             <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">✓ DATABASE INGESTION COMPLETE</span>
                             <span style="font-size:0.7rem; color:#94a3b8; font-family:monospace;">Speed: 18.4s</span>
@@ -1125,7 +1125,7 @@
                 const qty = this.state.lead_quantity || 100;
 
                 const resultHtml = `
-                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:4px;">
+                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius: 18px; padding:14px; margin-top:4px;">
                         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
                             <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">✓ EXECUTION COMPLETE</span>
                             <span style="font-size:0.7rem; color:#ffffff; font-family:monospace;">Runtime: 1.84s • 0% Bounce</span>

@@ -1581,7 +1581,7 @@ function initInteractiveDiagramVisualizer() {
                 <defs>
                     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stop-color="#10b981" />
-                        <stop offset="100%" stop-color="#ffffff" />
+                        <stop offset="100%" stop-color="#8b5cf6" />
                     </linearGradient>
                 </defs>
                 <rect x="20" y="70" width="160" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
@@ -1594,16 +1594,16 @@ function initInteractiveDiagramVisualizer() {
 
                 <path d="M 460 100 L 560 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
-                <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(139,92,246,0.6)" stroke-width="2"/>
                 <text x="665" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">⚡ n8n Pipeline & Supabase</text>
             </svg>
         `,
         scraper: `
             <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
-                <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(139,92,246,0.6)" stroke-width="2"/>
                 <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🌐 E-Commerce Target Site</text>
 
-                <line x1="200" y1="100" x2="300" y2="100" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                <line x1="200" y1="100" x2="300" y2="100" stroke="rgba(139,92,246,0.6)" stroke-width="3"/>
 
                 <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
                 <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ Playwright Pipeline Resilient Scraper</text>
@@ -1777,7 +1777,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate AI</span>
-                        <span style="font-size:0.65rem; color:#cbd5e1; font-weight:bold;">● 98% TRUST</span>
+                        <span style="font-size:0.65rem; color:#c084fc; font-weight:bold;">● 98% TRUST</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Fraud Shield Active | 54 Active Partners</p>
                 </div>
@@ -1848,7 +1848,7 @@ function initAiVoiceSimulator() {
                         <div style="width:4px; height:12px; background:var(--accent-cyan); border-radius:2px; animation:wave 0.9s infinite ease-in-out;"></div>
                     </div>
 
-                    <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e2e8f0; background:#000; padding:10px; border-radius:8px;">
+                    <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e0e7ff; background:#000; padding:10px; border-radius:8px;">
                         <p style="margin:0 0 6px 0; color:#94a3b8;"><strong>[CLIENT]:</strong> "Hi, I need an automated AI customer support agent for my e-commerce store."</p>
                         <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 3.0 Pro support bot on your Self-Hosted Linux VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
                     </div>
@@ -2206,12 +2206,12 @@ function initUltraStrongPortfolio() {
                 <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(139,92,246,0.3); display:flex; flex-direction:column; justify:space-between;">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#cbd5e1; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
+                            <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#c084fc; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
                             <span style="font-size:0.85rem; color:#c4b5fd; font-weight:bold; font-family:var(--font-mono);">99.999% Uptime</span>
                         </div>
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Self-Hosted Linux VPS Docker Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated CI/CD failover and container recovery system ensuring continuous deployment with zero downtime during traffic spikes.</p>
-                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#cbd5e1; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#c084fc; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
                             <code>Stack: Docker Compose ➔ Self-Hosted Linux VPS ➔ Telegram Bot</code>
                         </div>
                     </div>
@@ -2951,7 +2951,7 @@ function initVerifiedTestimonialsTicker() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Marcus Vance (CTO, Austin TX)</span>
                         <span style="color:var(--accent-emerald);">Verified $1.2K Order</span>
@@ -2960,7 +2960,7 @@ function initVerifiedTestimonialsTicker() {
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Tariq Al-Maktoum (Dubai UAE)</span>
                         <span style="color:var(--accent-cyan);">Verified $2.4K Order</span>
@@ -2969,7 +2969,7 @@ function initVerifiedTestimonialsTicker() {
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Rifat H. (Chittagong BD)</span>
                         <span style="color:var(--accent-emerald);">Verified Partner</span>
@@ -3132,13 +3132,13 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                     <div style="display:grid; gap:12px;">
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
                             <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">📱 Pre-Written LinkedIn Post Template</div>
-                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
+                            <p style="font-size:0.8rem; color:#c084fc; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
                             <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); showIinshaToast('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
                         </div>
 
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
                             <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;"> Cold Outreach Email Script</div>
-                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
+                            <p style="font-size:0.8rem; color:#c084fc; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
                             <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); showIinshaToast('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
                         </div>
                     </div>
@@ -3653,7 +3653,7 @@ function renderEventBusTelemetry() {
                 ${iinshaEventBusLogs.map(evt => `
                     <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem; padding:4px 0; border-bottom:1px dashed rgba(255,255,255,0.08);">
                         <span style="color:var(--accent-cyan); font-weight:bold;">[${evt.timestamp}] ${evt.name}</span>
-                        <span style="color:#cbd5e1;">${evt.payload} (${evt.actor})</span>
+                        <span style="color:#c084fc;">${evt.payload} (${evt.actor})</span>
                         <span style="color:${evt.zone.includes('RED') ? '#fca5a5' : evt.zone.includes('YELLOW') ? '#f59e0b' : 'var(--accent-emerald)'}; font-weight:bold;">${evt.zone}</span>
                     </div>
                 `).join('')}
@@ -3733,7 +3733,7 @@ function renderExtremeAgentStudio() {
                                 <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 6px; border-radius:8px; font-weight:bold;">${a.confidence} Conf.</span>
                             </div>
                             <div style="font-size:0.7rem; color:var(--accent-cyan); margin-bottom:6px; font-family:var(--font-mono);">${a.model} | Temp: ${a.temperature}</div>
-                            <p style="font-size:0.75rem; color:#cbd5e1; background:#000; padding:8px; border-radius:6px; margin:0 0 10px 0; line-height:1.3; max-height:60px; overflow-y:auto;">"${a.prompt}"</p>
+                            <p style="font-size:0.75rem; color:#c084fc; background:#000; padding:8px; border-radius:6px; margin:0 0 10px 0; line-height:1.3; max-height:60px; overflow-y:auto;">"${a.prompt}"</p>
                         </div>
                         <button onclick="retrainExtremeAgentPrompt('${a.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.75rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
                             ⚡ Re-Train & Fine-Tune Persona →
@@ -3935,7 +3935,7 @@ function renderGodModeControlStudio() {
                         <span>🚀 Growth Velocity</span>
                         <span id="growth-slider-val" style="color:#ffffff;">${iinshaGodModeState.growthSlider}%</span>
                     </div>
-                    <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#cbd5e1;">
+                    <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#c084fc;">
                 </div>
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
@@ -4115,7 +4115,7 @@ function renderDynamicServiceCMSStudio() {
                             </div>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.72rem; color:var(--accent-cyan); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
@@ -4232,7 +4232,7 @@ function renderCompleteEnterpriseStudioCMS() {
                             <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="editServiceInStudio('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
@@ -4299,7 +4299,7 @@ function render2026OutcomeServicesStudio() {
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                         <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
                             📄 Generate 2026 Outcome SoW
                         </button>
@@ -4457,8 +4457,8 @@ function renderCatalogV4Studio() {
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                         <div style="font-size:0.75rem; color:#ffffff; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
-                        <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#ffffff; border-color:#cbd5e1;">
+                        <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#ffffff; border-color:#c084fc;">
                             📄 Generate v4.0 SoW Contract
                         </button>
                     </div>

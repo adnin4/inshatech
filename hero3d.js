@@ -18,12 +18,13 @@
         particleCount: window.innerWidth < 768 ? 36 : 84,
         nodeCount: window.innerWidth < 768 ? 18 : 36,
         colors: {
-            core: '#ffffff',
-            cyan: '#ffffff',
-            violet: '#ffffff',
-            gold: '#e2e8f0',
-            emerald: '#cbd5e1',
-            particles: ['#ffffff', '#ffffff', '#e2e8f0', '#cbd5e1', '#94a3b8', '#64748b']
+            core: '#8B5CF6',
+            cyan: '#38BDF8',
+            violet: '#6366F1',
+            gold: '#F59E0B',
+            emerald: '#10B981',
+            magenta: '#EC4899',
+            particles: ['#6366F1', '#8B5CF6', '#EC4899', '#38BDF8', '#F59E0B', '#10B981', '#FFFFFF']
         },
         mouse: { x: 0, y: 0, targetX: 0, targetY: 0, isHovered: false, clickX: 0, clickY: 0, clickTime: 0 },
         scrollY: 0,
@@ -290,7 +291,7 @@
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
                 } else if (ring === 1) {
                     ctx.setLineDash([6, 12]);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.35)';
                 } else {
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
                 }

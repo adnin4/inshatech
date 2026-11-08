@@ -5,14 +5,14 @@
 
 /* === DESIGN TOKENS === */
 :root {
-    --accent-gold: #f59e0b;
+    --accent-gold: #F59E0B;
     --accent-purple: #a855f7;
     /* Backgrounds — 80% dark neutral */
-    --bg-space: #020202;
-    --bg-deep: #050505;
-    --bg-surface: #080808;
-    --bg-card: rgba(10, 10, 10, 0.85);
-    --bg-card-hover: rgba(16, 16, 16, 0.92);
+    --bg-space: #070913;
+    --bg-deep: #0b0e1b;
+    --bg-surface: #0f1424;
+    --bg-card: rgba(15, 20, 36, 0.75);
+    --bg-card-hover: rgba(22, 29, 52, 0.88);
 
     /* WCAG 2.2 AA Keyboard Focus Indicator */
 }
@@ -21,7 +21,7 @@
     outline-offset: 2px !important;
 }
 :root {
-    --accent-gold: #f59e0b;
+    --accent-gold: #F59E0B;
     --accent-purple: #a855f7;
 
     /* Glass — 10% */
@@ -31,21 +31,21 @@
     --glass-border-hover: rgba(255, 255, 255, 0.2);
 
     /* Primary — Electric Violet (5%) */
-    --accent-primary: #ffffff;
-    --accent-primary-dim: #e8e8e8;
+    --accent-primary: #8B5CF6;
+    --accent-primary-dim: #7C3AED;
     --accent-primary-glow: rgba(255, 255, 255, 0.15);
     --accent-primary-surface: rgba(255, 255, 255, 0.04);
 
     /* Secondary — Cyber Cyan (3%) */
-    --accent-cyan: #ffffff;
+    --accent-cyan: #38BDF8;
     --accent-cyan-glow: rgba(255, 255, 255, 0.2);
     --accent-cyan-surface: rgba(255, 255, 255, 0.06);
 
     /* Accent — Acid Green (2%) */
-    --accent-green: #ffffff;
+    --accent-green: #10B981;
     --accent-green-dim: #a0a0a0;
     --accent-green-glow: rgba(255, 255, 255, 0.08);
-    --accent-emerald: #a0a0a0;
+    --accent-emerald: #10B981;
     --border-card: rgba(255, 255, 255, 0.08);
 
     /* Text */
@@ -90,8 +90,8 @@ html {
 
 body {
     font-family: var(--font-body);
-    background: #020202;
-    color: #f1f1f1;
+    background: #070913;
+    color: #f1f5f9;
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
@@ -4861,8 +4861,8 @@ body {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.12 !important;
-    filter: grayscale(100%) contrast(1.4) brightness(0.5) !important;
+    opacity: 0.28 !important;
+    filter: contrast(1.15) brightness(0.7) saturate(1.4) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
@@ -4966,264 +4966,216 @@ header, .navbar, .iinsha-navbar, .os-status-bar, main, section, .hero-section, f
 
 
 /* ==========================================================================
-   PONDER STRUCTURAL DESIGN SYSTEM — DEEP EDITORIAL OVERRIDE
-   True Ponder.ai aesthetic: deep black, 1px borders, no glow, editorial type
+   DIAGRAM DESIGN SYSTEM (diagram.com / landing.love/sites/diagram)
+   Futuristic AI-SaaS: Bento Box Cards, Magical Gradient Pills, Cosmic Underglows
    ========================================================================== */
 
-/* Card universal — flat, 1px border, no glow shadows */
+/* Diagram Signature Bento Box Cards */
 .glass-card, .ipc-card, .blueprint-card, .store-card, .tmpl-card, 
 .solution-card, .category-card, .feature-card, .admin-card, .dash-card, 
 .hero-studio-card, .auth-container, .pricing-card, .pricing-tier-card,
 .lead-magnet-card, .newsletter-card, .trust-principle-card, .premium-card {
-    background: rgba(8, 8, 8, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 12px !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: none !important;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s ease !important;
+    background: linear-gradient(180deg, rgba(17, 22, 38, 0.72) 0%, rgba(9, 11, 20, 0.88) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .glass-card:hover, .ipc-card:hover, .blueprint-card:hover, .store-card:hover, .tmpl-card:hover, 
 .solution-card:hover, .category-card:hover, .feature-card:hover, .admin-card:hover, .dash-card:hover, 
 .hero-studio-card:hover, .auth-container:hover, .pricing-card:hover, .pricing-tier-card:hover,
 .lead-magnet-card:hover, .newsletter-card:hover, .trust-principle-card:hover, .premium-card:hover {
-    transform: none !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: none !important;
+    transform: translateY(-4px) !important;
+    border-color: rgba(168, 85, 247, 0.45) !important;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 35px rgba(139, 92, 246, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Kill cursor spotlight — Ponder doesn't have radial gradient cursor effects */
-.glass-card::before,
-.ipc-card::before,
-.solution-card::before,
-.blueprint-card::before,
-.store-card::before,
-.tmpl-card::before,
-.hero-studio-card::before,
-.lead-magnet-card::before,
-.newsletter-card::before,
-.trust-principle-card::before,
-.premium-card::before {
-    display: none !important;
+/* Diagram Card Ambient Spotlight */
+.glass-card::before, .ipc-card::before, .solution-card::before, 
+.blueprint-card::before, .store-card::before, .hero-studio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(168, 85, 247, 0.6) 50%, transparent 100%);
+    opacity: 0.8;
 }
 
-/* Kill corner accent marks */
-.glass-card::after,
-.ipc-card::after,
-.hero-studio-card::after {
-    display: none !important;
+/* Diagram Glowing Border Invariant */
+.glowing-border {
+    border: 1px solid rgba(139, 92, 246, 0.28) !important;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Ponder Form Controls — darker, cleaner */
+/* Diagram Primary Magical Gradient Pill CTA */
+.btn-primary, .btn-primary-glow, .btn-submit, .ponder-pill-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 25px rgba(139, 92, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    letter-spacing: -0.01em !important;
+    padding: 14px 28px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-primary:hover, .btn-primary-glow:hover, .btn-submit:hover, .ponder-pill-primary:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 35px rgba(139, 92, 246, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Diagram Frosted Dark Glass Pill CTA */
+.btn-secondary, .btn-outline, .btn-ghost, .btn-glass-glow, .btn-glass, .btn-glass-sm, .ponder-pill-secondary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-secondary:hover, .btn-outline:hover, .btn-ghost:hover, .btn-glass-glow:hover, .btn-glass:hover, .btn-glass-sm:hover, .ponder-pill-secondary:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Diagram Warm Amber Partner Pill CTA */
+.btn-gold-pill, .ponder-pill-amber {
+    background: rgba(245, 158, 11, 0.1) !important;
+    color: #fbbf24 !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(245, 158, 11, 0.35) !important;
+    box-shadow: 0 4px 18px rgba(245, 158, 11, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-gold-pill:hover, .ponder-pill-amber:hover {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #fef08a !important;
+    border-color: rgba(245, 158, 11, 0.6) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 24px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* Diagram Floating Pill Navbar */
+.navbar {
+    position: sticky !important;
+    top: 16px !important;
+    z-index: 1000 !important;
+    width: min(92%, 1280px) !important;
+    margin: 16px auto 0 auto !important;
+    background: rgba(11, 14, 25, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(1.5) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portal-tabs {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    background: transparent !important;
+    padding: 3px 5px !important;
+    border-radius: 9999px !important;
+    border: none !important;
+}
+
+.portal-tab-btn {
+    color: #94a3b8 !important;
+    font-weight: 500 !important;
+    border-radius: 9999px !important;
+    padding: 7px 16px !important;
+    font-size: 0.84rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.portal-tab-btn:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.portal-tab-btn.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+    font-weight: 600 !important;
+}
+
+/* Diagram Eyebrow / Badges */
+.hero-awwwards-tag, .section-tag, .badge-pro {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(217, 70, 239, 0.18)) !important;
+    border: 1px solid rgba(168, 85, 247, 0.35) !important;
+    border-radius: 9999px !important;
+    color: #e0e7ff !important;
+    font-weight: 700 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    padding: 6px 16px !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.18) !important;
+}
+
+/* Diagram Hero Title Shimmering Gradient */
+.hero-title {
+    font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 1.05 !important;
+    color: #ffffff !important;
+}
+
+.hero-gradient-silver {
+    background: linear-gradient(135deg, #ffffff 20%, #e0e7ff 60%, #c084fc 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Diagram Form Controls */
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], 
 select, textarea, .form-input, .dash-select, .calc-select {
-    background: rgba(5, 5, 5, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: #f1f1f1 !important;
-    border-radius: 8px !important;
-    transition: border-color 0.2s ease !important;
+    background: rgba(13, 17, 30, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: #f8fafc !important;
+    border-radius: 12px !important;
+    transition: all 0.25s ease !important;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="tel"]:focus, 
 select:focus, textarea:focus, .form-input:focus, .dash-select:focus, .calc-select:focus {
-    border-color: rgba(255, 255, 255, 0.4) !important;
-    box-shadow: none !important;
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.35) !important;
     outline: none !important;
 }
 
-/* Ponder Primary CTA — solid white, no glow shadow */
-.btn-primary, .btn-primary-glow, .btn-submit, .ponder-pill-primary {
-    background: #ffffff !important;
-    color: #020202 !important;
-    font-weight: 700 !important;
-    border-radius: 9999px !important;
-    border: 1px solid #ffffff !important;
-    box-shadow: none !important;
-    letter-spacing: -0.01em !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.btn-primary:hover, .btn-primary-glow:hover, .btn-submit:hover, .ponder-pill-primary:hover {
-    background: #e0e0e0 !important;
-    color: #020202 !important;
-    transform: translateY(-1px) !important;
-    box-shadow: none !important;
-}
-
-/* Ponder Ghost CTA — transparent with thin white border */
-.btn-secondary, .btn-outline, .btn-ghost, .btn-glass-glow, .ponder-pill-secondary {
-    background: transparent !important;
-    color: #cccccc !important;
-    font-weight: 500 !important;
-    border-radius: 9999px !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    transition: all 0.25s ease !important;
-}
-
-.btn-secondary:hover, .btn-outline:hover, .btn-ghost:hover, .btn-glass-glow:hover, .ponder-pill-secondary:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
-    color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* Ponder Amber pill — very muted, editorial */
-.btn-gold-pill, .ponder-pill-amber {
-    background: transparent !important;
-    color: #999999 !important;
-    font-weight: 600 !important;
-    border-radius: 9999px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    box-shadow: none !important;
-    transition: all 0.25s ease !important;
-}
-
-.btn-gold-pill:hover, .ponder-pill-amber:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
-    color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
-    box-shadow: none !important;
-}
-
-/* Kill glowing-border class entirely */
-.glowing-border {
-    box-shadow: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-.glowing-border::before,
-.glowing-border::after {
-    display: none !important;
-}
-
-/* Section backgrounds — clean, no blue-tinted rgba */
-section[style*="background: rgba(15, 23, 42"],
-section[style*="background: rgba(8, 10, 25"],
-section[style*="background: rgba(10, 15, 30"] {
-    background: transparent !important;
-}
-
-/* Section borders — cleaner */
-section[style*="border-top: 1px solid"],
-section[style*="border-bottom: 1px solid"] {
-    border-color: rgba(255, 255, 255, 0.06) !important;
-}
-
-/* Hero section — more breathing room */
-.hero-section {
-    padding-top: 80px !important;
-    padding-bottom: 80px !important;
-}
-
-/* Hero title — Ponder editorial scale */
-.hero-title {
-    font-size: clamp(3rem, 6.5vw, 5rem) !important;
-    font-weight: 900 !important;
-    letter-spacing: -0.04em !important;
-    line-height: 0.95 !important;
-    color: #f1f1f1 !important;
-}
-
-/* Hero subtitle — muted, editorial */
-.hero-subtitle {
-    font-size: 1.05rem !important;
-    color: #777777 !important;
-    font-weight: 400 !important;
-    line-height: 1.7 !important;
-    letter-spacing: -0.01em !important;
-}
-
-/* Hero gradient text — flat white, no gradient */
-.hero-gradient-silver {
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: #999999 !important;
-    color: #999999 !important;
-}
-
-/* Kill all box-shadow: glow patterns globally */
-[style*="box-shadow: 0 0 25px"],
-[style*="box-shadow: 0 16px 45px"] {
-    box-shadow: none !important;
-}
-
-/* Footer — minimal Ponder editorial */
+/* Footer */
 footer, .site-footer {
-    background: #020202 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    background: #05070d !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
-
-/* Section header spacing — Ponder generous */
-.section-header {
-    margin-bottom: 48px !important;
-}
-
-/* All section tags — monochrome */
-.section-tag {
-    background: rgba(255, 255, 255, 0.04) !important;
-    color: #777777 !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: none !important;
-}
-
-/* Hero awwwards tag — Ponder style numbered badge */
-.hero-awwwards-tag {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: none !important;
-}
-
-/* Scrollbar — Ponder dark */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #020202;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-/* Ponder typography overrides for all headings */
-h1, h2, h3 {
-    letter-spacing: -0.04em !important;
-    font-weight: 800 !important;
-}
-
-h4, h5, h6 {
-    letter-spacing: -0.02em !important;
-    font-weight: 700 !important;
-}
-
-/* Kill all text-shadow effects */
-[style*="text-shadow"] {
-    text-shadow: none !important;
-}
-
-/* Ponder navigation link color */
-.portal-tab-btn {
-    color: #555555 !important;
-}
-.portal-tab-btn:hover {
-    color: #ffffff !important;
-    background: transparent !important;
-}
-.portal-tab-btn.active {
-    color: #020202 !important;
-    background: #ffffff !important;
-    border-color: #ffffff !important;
-}
-
 /* ==========================================================================
    MASTER UNIVERSAL RESPONSIVE ARCHITECTURE (A-Z RESPONSIVE ENGINE)
    Enforces Gemini & Awwwards Standard:
@@ -5282,8 +5234,8 @@ embed {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.12 !important;
-    filter: grayscale(100%) contrast(1.4) brightness(0.5) !important;
+    opacity: 0.28 !important;
+    filter: contrast(1.15) brightness(0.7) saturate(1.4) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
