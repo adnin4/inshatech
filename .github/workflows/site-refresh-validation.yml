@@ -40,6 +40,12 @@ jobs:
           node --check app.js
           node --check src/js/auth.js
           node --check functions/api/version.js
+          node --check functions/_shared/admin_session.js
+          node --check functions/api/admin/gate.js
+          node --check functions/api/admin/killswitch.js
+          node --check functions/api/admin/integrations.js
+          node --check functions/api/orders/state_machine.js
+          node --check functions/api/finance/invoice.js
           node --check functions/_shared/affiliate_unavailable.js
           node --check functions/api/affiliate/portal.js
           node --check functions/api/affiliate/stats.js

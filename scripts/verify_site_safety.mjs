@@ -8,6 +8,10 @@ const forbid=(s,n,label)=>{if(s.includes(n))throw new Error('Unsafe pattern dete
 export function verifySiteSafety(){
  const index=read('index.html'),app=read('app.js'),admin=read('admin.html');
  const login=read('affiliate-login.html'),portal=read('js/core/affiliate-portal.js');
+ const affiliate=read('affiliate.html'),killswitch=read('functions/api/admin/killswitch.js');
+ const integrations=read('functions/api/admin/integrations.js'),orders=read('functions/api/orders/state_machine.js');
+ const invoice=read('functions/api/finance/invoice.js');
+ const adminSession=read('functions/_shared/admin_session.js');
  const wrangler=read('wrangler.toml'),version=read('functions/api/version.js');
  const routes=['portal','stats','track','convert','attribution','payout','fraud_radar'].map(n=>read('functions/api/affiliate/'+n+'.js'));
  need(index,'togglePrimaryNavigation(this)','mobile navigation control');
@@ -18,6 +22,18 @@ export function verifySiteSafety(){
  forbid(app,"sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();",'obsolete admin lock handler');
  forbid(app,"sessionStorage.setItem('iinsha_admin_authenticated', 'true')",'client-only admin authentication');
  need(admin,'/api/admin/gate','dedicated page token verification');
+ need(adminSession,'verifyAdminSession','shared server-side admin session verifier');
+ need(killswitch,'verifyAdminSession','kill-switch authentication');
+ forbid(killswitch,'let SYSTEM_LOCKDOWN = false','isolate-local kill-switch state');
+ need(killswitch,'KILLSWITCH_ENFORCEMENT_NOT_READY','honest kill-switch status');
+ need(integrations,'CONFIGURED_UNVERIFIED','secret presence does not prove provider health');
+ need(integrations,'PROVIDER_HEALTH_CHECK_NOT_IMPLEMENTED','no fake provider connection success');
+ forbid(integrations,'CONNECTION_TESTED','synthetic provider connection success');
+ need(orders,'PERSISTENT_ORDER_STORE_NOT_CONFIGURED','no fake order transition success');
+ need(invoice,'INVOICE_STORAGE_AND_RENDERER_NOT_CONFIGURED','no fake invoice PDF success');
+ need(affiliate,'No verified partner leaderboard is available','no seeded affiliate leaderboard');
+ forbid(affiliate,'Payouts are processed within 24 hours','no unsupported payout SLA');
+ forbid(affiliate,'secure 120-day cookie','no unsupported attribution promise');
  need(admin,'mfa_token','dedicated page TOTP payload');
  forbid(admin,'ibos_offline_','offline admin token fallback');
  forbid(admin,'iinsha_admin_2026','hard-coded admin password');

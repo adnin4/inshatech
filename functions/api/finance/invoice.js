@@ -1,39 +1,14 @@
 /**
- * Cloudflare Pages Function: /api/finance/invoice
- * Automatic Invoice Generator & Tax/Dynamic Fee Engine
+ * Invoice API remains blocked until a durable order source, immutable invoice
+ * records and a real PDF/object-storage renderer are configured.
  */
-
-export async function onRequestPost(context) {
-    const { request } = context;
-    const origin = request.headers.get("Origin") || "*";
-
-    const corsHeaders = {
-        "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Content-Type": "application/json"
-    };
-
-    try {
-        const body = await request.json().catch(() => ({}));
-        const { order_id = `ORD-${Date.now()}`, customer_name = 'Enterprise Client', amount_usd = 850 } = body;
-
-        const invoiceId = `INV-${Date.now().toString(36).toUpperCase()}`;
-
-        return new Response(JSON.stringify({
-            status: 'INVOICE_GENERATED',
-            invoice_id: invoiceId,
-            order_id,
-            billed_to: customer_name,
-            subtotal_usd: amount_usd,
-            tax_usd: 0.00,
-            total_usd: amount_usd,
-            total_bdt: Math.round(amount_usd * 122.50),
-            pdf_url: `https://inshatech.pages.dev/invoices/${invoiceId}.pdf`,
-            timestamp: new Date().toISOString()
-        }), { status: 200, headers: corsHeaders });
-
-    } catch (err) {
-        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
-    }
+export async function onRequestPost() {
+  return new Response(JSON.stringify({
+    status: 'NOT_CONFIGURED',
+    code: 'INVOICE_STORAGE_AND_RENDERER_NOT_CONFIGURED',
+    message: 'No invoice was generated or stored. A persistent order source, tax policy and PDF renderer are required.'
+  }), {
+    status: 503,
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+  });
 }

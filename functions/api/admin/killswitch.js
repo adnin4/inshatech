@@ -1,54 +1,37 @@
+import { verifyAdminSession, adminJson, adminOptions, rejectAdminRequest } from '../../_shared/admin_session.js';
+
 /**
- * Cloudflare Pages Function: /api/admin/killswitch
- * Hardware Emergency Kill-Switch & Sovereign Lockdown Gateway
+ * The previous implementation used an isolate-local boolean and did not verify
+ * x-admin-token. It was neither persistent nor capable of stopping all workers.
+ * Keep the control unavailable until durable storage and enforcement are wired
+ * into every governed agent/tool execution path.
  */
+export async function onRequestGet({ request, env = {} }) {
+  const auth = await verifyAdminSession(request, env);
+  if (!auth.ok) return rejectAdminRequest(request, auth);
+  return adminJson(request, {
+    status: 'NOT_CONFIGURED',
+    code: 'KILLSWITCH_ENFORCEMENT_NOT_READY',
+    message: 'No persistent, system-wide kill-switch is configured. No state change was made.'
+  }, 503);
+}
 
-let SYSTEM_LOCKDOWN = false;
+export async function onRequestPost({ request, env = {} }) {
+  const auth = await verifyAdminSession(request, env);
+  if (!auth.ok) return rejectAdminRequest(request, auth);
+  const body = await request.json().catch(() => ({}));
+  const action = body.action || 'STATUS';
+  if (!['STATUS', 'ENGAGE_KILL_SWITCH', 'DISENGAGE_KILL_SWITCH'].includes(action)) {
+    return adminJson(request, { status: 'INVALID_ACTION' }, 400);
+  }
+  return adminJson(request, {
+    status: 'NOT_CONFIGURED',
+    code: 'KILLSWITCH_ENFORCEMENT_NOT_READY',
+    requested_action: action,
+    message: 'No persistent, system-wide kill-switch is configured. No agent or worker state was changed.'
+  }, 503);
+}
 
-export async function onRequestPost(context) {
-    const { request } = context;
-    const origin = request.headers.get("Origin") || "*";
-
-    const corsHeaders = {
-        "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, x-admin-token",
-        "Content-Type": "application/json"
-    };
-
-    try {
-        const adminToken = request.headers.get("x-admin-token");
-        const body = await request.json().catch(() => ({}));
-        const { action = 'STATUS' } = body;
-
-        if (action === 'ENGAGE_KILL_SWITCH') {
-            SYSTEM_LOCKDOWN = true;
-            return new Response(JSON.stringify({
-                status: 'LOCKDOWN_ENGAGED',
-                message: 'All autonomous agents and background workers immediately suspended.',
-                killswitch_active: true,
-                timestamp: new Date().toISOString()
-            }), { status: 200, headers: corsHeaders });
-        }
-
-        if (action === 'DISENGAGE_KILL_SWITCH') {
-            SYSTEM_LOCKDOWN = false;
-            return new Response(JSON.stringify({
-                status: 'LOCKDOWN_DISENGAGED',
-                message: 'Autonomous systems resumed with policy bounds.',
-                killswitch_active: false,
-                timestamp: new Date().toISOString()
-            }), { status: 200, headers: corsHeaders });
-        }
-
-        return new Response(JSON.stringify({
-            status: 'KILLSWITCH_STATUS',
-            killswitch_active: SYSTEM_LOCKDOWN,
-            admin_access: 'AUTHENTICATED',
-            timestamp: new Date().toISOString()
-        }), { status: 200, headers: corsHeaders });
-
-    } catch (err) {
-        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
-    }
+export function onRequestOptions({ request }) {
+  return adminOptions(request);
 }
