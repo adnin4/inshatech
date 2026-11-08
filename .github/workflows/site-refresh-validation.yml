@@ -40,6 +40,8 @@ jobs:
           node --check app.js
           node --check src/js/auth.js
           node --check src/js/ux_interactions.js
+          node --check src/js/iinsha-diagram-motion.js
+          node --check scripts/test_diagram_design.mjs
           node --check functions/api/version.js
           node --check functions/_shared/admin_session.js
           node --check functions/api/admin/gate.js
@@ -65,6 +67,9 @@ jobs:
 
       - name: Test API fail-closed behavior for privileged/financial operations
         run: npm run test:api-fail-closed
+
+      - name: Test Diagram-inspired design, 3D hero, service search and feature preservation
+        run: npm run test:diagram-design
 
       - name: Enforce auth, affiliate and database truth guardrails
         run: npm run test:site-safety

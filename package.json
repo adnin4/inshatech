@@ -18,7 +18,8 @@
     "build": "node scripts/build_pages.mjs",
     "test:site-safety": "node scripts/verify_site_safety.mjs",
     "test:admin-session": "node scripts/test_admin_session.mjs",
-    "test:api-fail-closed": "node scripts/test_api_fail_closed.mjs"
+    "test:api-fail-closed": "node scripts/test_api_fail_closed.mjs",
+    "test:diagram-design": "node scripts/test_diagram_design.mjs"
   },
   "keywords": [
     "ai-bos",
