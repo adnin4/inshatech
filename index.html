@@ -134,10 +134,12 @@
          ==================================================================== -->
     <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
         <!-- LittleWebsite Fullsite Looping Motion Video / Animated WebP -->
-        <picture class="global-video-backdrop">
-            <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
-            <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/thumbnail.webp?time=0&amp;width=1920" alt="Fullsite Cinematic 3D Motion" class="global-media-cover" loading="eager">
-        </picture>
+        <div class="global-video-backdrop">
+            <video id="global-3d-bg-video" autoplay loop muted playsinline poster="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/thumbnail.webp?time=0&amp;width=1920" class="global-media-cover">
+                <source src="https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8" type="application/x-mpegURL">
+                <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" alt="Fullsite Cinematic 3D Motion" class="global-media-cover" loading="eager">
+            </video>
+        </div>
         <!-- Fullsite Lorenzo Lottici 3D Kinetic Constellation WebGL / Canvas Container -->
         <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
         <!-- Fullsite Halftone Dot-Matrix Pattern Overlay -->

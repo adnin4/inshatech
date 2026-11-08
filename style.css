@@ -4862,12 +4862,13 @@ body {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.62 !important;
-    filter: contrast(1.15) brightness(0.95) saturate(1.4) !important;
+    opacity: 0.72 !important;
+    filter: contrast(1.18) brightness(0.98) saturate(1.5) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
 
+.global-video-backdrop video,
 .global-video-backdrop img,
 .global-media-cover {
     width: 100% !important;
