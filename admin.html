@@ -22,12 +22,12 @@
             --bg-sidebar: rgba(5, 10, 22, 0.90);
             --bg-card: rgba(8, 13, 26, 0.85);
             --bg-card-hover: rgba(20, 34, 58, 0.95);
-            --accent-cyan: #00F2FE;
+            --accent-cyan: #ffffff;
             --accent-emerald: #10B981;
             --accent-purple: #A855F7;
             --accent-gold: #F59E0B;
             --accent-rose: #F43F5E;
-            --border-cockpit: rgba(0, 242, 254, 0.16);
+            --border-cockpit: rgba(255, 255, 255, 0.16);
             --border-card: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -75,9 +75,9 @@
             font-size: 0.65rem;
             padding: 2px 8px;
             border-radius: 6px;
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             font-family: var(--font-mono);
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -99,7 +99,7 @@
 
         .header-search:hover, .header-search:focus-within {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             color: #fff;
         }
 
@@ -170,11 +170,11 @@
         }
 
         .nav-item-btn.active {
-            background: rgba(0, 242, 254, 0.1);
-            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
             color: var(--accent-cyan);
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
         }
 
         .nav-badge-pill {
@@ -194,7 +194,7 @@
             flex-direction: column;
             overflow-y: auto;
             padding: 24px;
-            background: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
         }
 
         .workspace-header {
@@ -236,7 +236,7 @@
         }
 
         .admin-kpi-card:hover {
-            border-color: rgba(0, 242, 254, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
@@ -344,7 +344,7 @@
         }
 
         .cmd-result-item:hover, .cmd-result-item.selected {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
         }
 
@@ -532,8 +532,8 @@
     <!-- SERVER-AUTHENTICATED 2-STEP VERIFICATION GUARDIAN OVERLAY -->
     <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
         <div style="background:#0f172a; padding:36px; border-radius:16px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:440px; width:90%; box-shadow: 0 0 60px rgba(0,242,254,0.2);">
-            <div style="width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg, #00F2FE, #8B5CF6); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
-            <h2 style="margin-bottom:4px; color:#00F2FE; font-size:1.35rem;">IINSHA Control Plane</h2>
+            <div style="width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg, #ffffff, #8B5CF6); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
+            <h2 style="margin-bottom:4px; color:#ffffff; font-size:1.35rem;">IINSHA Control Plane</h2>
             <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; margin-bottom:18px;">
                 <span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
                 <span style="font-size:0.72rem; color:#34d399; font-weight:700; font-family:var(--font-mono, monospace);">2-STEP VERIFICATION ACTIVE</span>
@@ -548,18 +548,18 @@
                 <p style="font-size:0.8rem; color:#94a3b8; color:#94a3b8; margin-bottom:14px; line-height:1.4;">Step 1 of 2: Enter Master Commander Security Credentials to initiate session authentication.</p>
                 <input type="email" id="admin-email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
                 <input type="password" id="admin-password" placeholder="Enter Master Commander Password (or 123456)" value="123456" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
-                <button id="admin-login-btn" onclick="submitAdminStep1()" style="background:linear-gradient(135deg, #00F2FE, #0284c7); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
+                <button id="admin-login-btn" onclick="submitAdminStep1()" style="background:linear-gradient(135deg, #ffffff, #e2e8f0); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
             </div>
 
             <!-- STEP 2: 2-STEP TOTP VERIFICATION OTP -->
             <div id="auth-step-2" style="display:none;">
                 <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-bottom:14px; text-align:left;">
                     <div style="font-size:0.75rem; color:#94a3b8;">🔐 Multi-Factor Authenticator (TOTP / SMS):</div>
-                    <div style="font-size:0.85rem; color:#38bdf8; font-weight:700; font-family:var(--font-mono, monospace); margin-top:2px;">inshatech.dev@gmail.com</div>
+                    <div style="font-size:0.85rem; color:#ffffff; font-weight:700; font-family:var(--font-mono, monospace); margin-top:2px;">inshatech.dev@gmail.com</div>
                     <div id="sms-toast-notify" style="font-size:0.73rem; color:#34d399; margin-top:4px;">⚡ Server Challenge Active — Enter 6-digit TOTP code.</div>
                 </div>
                 <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Step 2 of 2: Enter the 6-digit time-based code from your authenticator device:</p>
-                <input type="text" id="admin-otp-code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #00F2FE; background:#020617; color:#00F2FE; width:100%; margin-bottom:8px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
+                <input type="text" id="admin-otp-code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:8px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
                 <button type="button" onclick="document.getElementById('admin-otp-code').value='123456'; verifyAdminStep2();" style="background:rgba(0,242,254,0.1); border:1px solid rgba(0,242,254,0.3); color:var(--accent-cyan); font-size:0.75rem; border-radius:6px; padding:6px 10px; margin-bottom:12px; cursor:pointer; width:100%;">
                     ⚡ Auto-Fill Emergency Owner Verification Key (123456)
                 </button>
@@ -932,7 +932,7 @@
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('flow')" id="nav-btn-flow" aria-label="Watch Agent Work Live Pipeline">
                                 <span>📹</span> <span>Watch Agent Work</span>
-                                <span class="nav-badge-pill" style="color: #38bdf8;">Live Pipeline</span>
+                                <span class="nav-badge-pill" style="color: #ffffff;">Live Pipeline</span>
                             </button>
                         </li>
                         <li>
@@ -1062,7 +1062,7 @@
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Gross Closed Revenue</span>
-                        <div class="kpi-value" style="color: #38bdf8;">$94,950</div>
+                        <div class="kpi-value" style="color: #ffffff;">$94,950</div>
                         <span class="kpi-sub">56 Verified Client Contracts</span>
                     </div>
                     <div class="admin-kpi-card">
@@ -1240,7 +1240,7 @@
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Context Retention</span>
-                        <div class="kpi-value" style="color: #38bdf8;">99.4%</div>
+                        <div class="kpi-value" style="color: #ffffff;">99.4%</div>
                         <span class="kpi-sub">Multi-turn Memory Contract</span>
                     </div>
                     <div class="admin-kpi-card">
@@ -1293,7 +1293,7 @@
                     </div>
                     <div class="admin-kpi-card">
                         <span class="kpi-title">🔍µ UI Only</span>
-                        <div class="kpi-value" style="color: #38bdf8;" id="truth-uionly-count">0</div>
+                        <div class="kpi-value" style="color: #ffffff;" id="truth-uionly-count">0</div>
                         <span class="kpi-sub">Visual Wireframe</span>
                     </div>
                 </div>
@@ -1372,7 +1372,7 @@
                     </div>
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Economic Efficiency</span>
-                        <div class="kpi-value" style="color: #38bdf8;">875x ROI</div>
+                        <div class="kpi-value" style="color: #ffffff;">875x ROI</div>
                         <span class="kpi-sub">Net Profit Margin: 82.8%</span>
                     </div>
                 </div>
@@ -1767,7 +1767,7 @@
                             <div><strong style="color:#94a3b8;">5. TOOL CALL:</strong> <span style="color:var(--accent-gold); font-family:var(--font-mono);">${t.tool}</span></div>
                             <div><strong style="color:#94a3b8;">6. 5-TIER HITL POLICY:</strong> <span style="color:#34d399; font-weight:bold;">${t.policy}</span></div>
                             <div><strong style="color:#94a3b8;">7. HUMAN APPROVAL STATUS:</strong> <span style="color:#cbd5e1;">${t.approval}</span></div>
-                            <div><strong style="color:#94a3b8;">8. EXECUTION RESULT:</strong> <span style="color:#38bdf8;">${t.result}</span></div>
+                            <div><strong style="color:#94a3b8;">8. EXECUTION RESULT:</strong> <span style="color:#ffffff;">${t.result}</span></div>
                             <div style="display:flex; justify-content:space-between; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; margin-top:6px;">
                                 <span>AI Inference Cost: <strong style="color:var(--accent-rose);">${t.cost}</strong></span>
                                 <span>Revenue Impact: <strong style="color:var(--accent-emerald); font-size:0.95rem;">${t.rev}</strong></span>
@@ -1812,7 +1812,7 @@
                     <td style="padding:10px; color:var(--accent-rose);">${a.cost}</td>
                     <td style="padding:10px; color:var(--accent-gold);">${a.human}</td>
                     <td style="padding:10px; color:var(--accent-emerald); font-weight:bold;">${a.rev}</td>
-                    <td style="padding:10px; color:#38bdf8; font-weight:bold;">${a.roi}</td>
+                    <td style="padding:10px; color:#ffffff; font-weight:bold;">${a.roi}</td>
                 </tr>
             `).join('');
         }
@@ -1900,7 +1900,7 @@
                     <td style="padding:10px; color:var(--accent-cyan);">${p.read}</td>
                     <td style="padding:10px; color:#34d399;">${p.write}</td>
                     <td style="padding:10px; color:var(--accent-gold);">${p.ext}</td>
-                    <td style="padding:10px; color:#38bdf8;">${p.fin}</td>
+                    <td style="padding:10px; color:#ffffff;">${p.fin}</td>
                     <td style="padding:10px; color:var(--accent-rose);">${p.dest}</td>
                 </tr>
             `).join('');
@@ -1996,7 +1996,7 @@
                     </div>
                     <div style="padding:14px 20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
                         ${cancelText ? `<button id="admin-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
-                        <button id="admin-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">${confirmText}</button>
+                        <button id="admin-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">${confirmText}</button>
                     </div>
                 </div>
             `;
@@ -2152,7 +2152,7 @@
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
                             <span style="font-size:0.75rem; color:#94a3b8;">Mandatory Verifier Status:</span>
-                            <strong style="display:block; color:#38bdf8; font-size:0.9rem; margin-top:4px;">7/7 Safety Checks Passed</strong>
+                            <strong style="display:block; color:#ffffff; font-size:0.9rem; margin-top:4px;">7/7 Safety Checks Passed</strong>
                         </div>
                     </div>
 
@@ -2578,7 +2578,7 @@
                             <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🛒 Dynamic Turnkey Services Studio</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Manage and publish AI services, catalog pricing, and SLA delivery terms.</p>
                         </div>
-                        <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">➕ Add New Service</button>
+                        <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">➕ Add New Service</button>
                     </div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
                         ${services.map(s => {
@@ -3062,7 +3062,7 @@
                             <div><strong style="color:#94a3b8;">• Service Package:</strong> <span style="color:var(--accent-cyan); font-weight:600;">${d.service}</span></div>
                             <div><strong style="color:#94a3b8;">• Deal Valuation:</strong> <span style="color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">${d.size}</span></div>
                             <div><strong style="color:#94a3b8;">• Current Stage:</strong> <span style="color:var(--accent-gold); font-weight:600;">${d.stage}</span></div>
-                            <div><strong style="color:#94a3b8;">• Assigned Swarm Agent:</strong> <span style="color:#38bdf8;">${d.agent}</span></div>
+                            <div><strong style="color:#94a3b8;">• Assigned Swarm Agent:</strong> <span style="color:#ffffff;">${d.agent}</span></div>
                             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; margin-top:6px;">
                                 <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">⚡ Autonomous Next Action:</strong>
                                 <span style="color:#cbd5e1;">${d.nextAction}</span>
@@ -3171,7 +3171,7 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'admin-toast-el';
-                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:rgba(15,23,42,0.95); border:1px solid #00F2FE; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none;';
+                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:rgba(15,23,42,0.95); border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none;';
                 document.body.appendChild(toast);
             }
             toast.textContent = msg;

@@ -47,10 +47,10 @@
             width: 92%;
             margin: 40px auto;
             background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(0, 242, 254, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 20px;
             padding: 36px 32px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(16px);
         }
 
@@ -69,10 +69,10 @@
         }
 
         .auth-tab-btn.active {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .form-group {
@@ -102,13 +102,13 @@
 
         .form-input:focus {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+            background: linear-gradient(135deg, var(--accent-cyan), #e2e8f0);
             color: #030712;
             font-weight: 800;
             font-size: 1rem;
@@ -121,7 +121,7 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
@@ -182,7 +182,7 @@
             </div>
 
             <!-- 1. SIGN IN FORM -->
-            <button type="button" onclick="quickPartnerAccess()" style="background: linear-gradient(135deg, #00f2fe, #0284c7); color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
+            <button type="button" onclick="quickPartnerAccess()" style="background: linear-gradient(135deg, #ffffff, #e2e8f0); color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:var(--font-mono);">OR SIGN IN TO YOUR ACCOUNT</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
         <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
                 <div class="form-group">
