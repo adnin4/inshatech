@@ -231,7 +231,47 @@
     };
 
     // Initialize all on DOM ready
+    
+    // Live Real-Time Service Search & Filter across all 80+ Micro-Services
+    function initServiceLiveSearch() {
+        const searchInput = document.getElementById('service-live-search');
+        if (!searchInput) return;
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const panels = document.querySelectorAll('.service-panel');
+            const tabs = document.querySelectorAll('.service-tab-btn');
+
+            if (!query) {
+                // Restore currently selected tab view
+                const activeTab = document.querySelector('.service-tab-btn.active') || tabs[0];
+                const targetId = activeTab ? activeTab.getAttribute('data-target') : 'cat-agents';
+                panels.forEach(p => {
+                    p.classList.toggle('active', p.id === targetId);
+                    p.querySelectorAll('.service-item-card').forEach(c => {
+                        c.style.display = '';
+                        c.style.opacity = '1';
+                    });
+                });
+                return;
+            }
+
+            // Search active: Reveal matching cards across all categories
+            panels.forEach(p => {
+                let hasMatchInPanel = false;
+                p.querySelectorAll('.service-item-card').forEach(c => {
+                    const text = c.textContent.toLowerCase();
+                    const isMatch = text.includes(query);
+                    c.style.display = isMatch ? 'flex' : 'none';
+                    if (isMatch) hasMatchInPanel = true;
+                });
+                p.classList.toggle('active', hasMatchInPanel);
+            });
+        });
+    }
+
     function initUX() {
+        initServiceLiveSearch();
         ensureToastElement();
         initKeyboardShortcuts();
         initBackdropDismissal();
