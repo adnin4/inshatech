@@ -143,16 +143,12 @@ function renderAdminModalCmsStudio(container) {
     const adminUsers = data.admins;
     const flags = data.flags;
     const briefing = data.briefing;
-    const clients = data.clients.length ? data.clients : [
-        { id: 'c1', name: 'Tanvir Ahmed', company: 'SMMA Growth Agency', email: 'tanvir@smma.com', phone: '+8801700000000', totalSpent: 948, status: 'Active VIP' },
-        { id: 'c2', name: 'Rifat Hossain', company: 'Apex E-commerce Ltd', email: 'rifat@apex.com', phone: '+8801800000000', totalSpent: 1249, status: 'Active' }
-    ];
-    const projects = data.projects.length ? data.projects : [
-        { id: 'p1', title: 'Playwright Enterprise Pipeline Price Monitor', client: 'Apex E-commerce Ltd', phase: 'Deployment', progress: 85, price: 599, status: 'On Track' },
-        { id: 'p2', title: 'Gemini Customer Support RAG Bot', client: 'SMMA Growth Agency', phase: 'Development', progress: 60, price: 450, status: 'In Progress' }
-    ];
+    const clients = Array.isArray(data.clients) ? data.clients : [];
+    const projects = Array.isArray(data.projects) ? data.projects : [];
+    const localDataNotice = 'This console currently reads browser-local records. Provider/database health and financial figures are not independently verified.';
 
     container.innerHTML = `
+        <div role="status" style="margin:0 0 16px;padding:12px 14px;border:1px solid rgba(245,158,11,.32);border-radius:10px;background:rgba(245,158,11,.08);color:#f8d7a3;font-size:.82rem;line-height:1.6;"><strong>DATA SOURCE NOTICE:</strong> ${localDataNotice}</div>
         <div style="background: rgba(3, 7, 18, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 24px; color: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
             
             <!-- IBOS HEADER BRANDING -->
@@ -160,13 +156,13 @@ function renderAdminModalCmsStudio(container) {
                 <div style="display:flex; align-items:center; gap:12px;">
                     <div style="font-size:2.4rem; background:linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">🛡️</div>
                     <div>
-                        <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin:0; color:#fff;">IINSHAA OS v50 Enterprise Operating System</h2>
-                        <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:700;">15 Domains | 20 Levels | 10 Control Systems | Single Source Kernel</span>
+                        <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin:0; color:#fff;">IINSHA Admin Control Studio</h2>
+                        <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:700;">Owner console | Browser-local settings | Live data requires verified service connections</span>
                     </div>
                 </div>
                 <div style="display:flex; gap:10px; align-items:center;">
                     <span class="badge-gold" style="font-size:0.72rem; padding:4px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold);">Super Admin Mode</span>
-                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
+                    <button onclick="lockAdminPanel();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
                 </div>
             </div>
 

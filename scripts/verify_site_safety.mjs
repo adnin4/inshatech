@@ -14,6 +14,8 @@ export function verifySiteSafety(){
  need(index,'hero-network-visual','homepage hero visual');
  need(app,'verifyAdminEdgeSession','server-side admin token verification');
  need(app,'mfa_token','homepage admin TOTP');
+ need(app,'lockAdminPanel();','admin lock button clears the local session and returns to sign-in');
+ forbid(app,"sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();",'obsolete admin lock handler');
  forbid(app,"sessionStorage.setItem('iinsha_admin_authenticated', 'true')",'client-only admin authentication');
  need(admin,'/api/admin/gate','dedicated page token verification');
  need(admin,'mfa_token','dedicated page TOTP payload');
