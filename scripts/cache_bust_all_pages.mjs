@@ -16,7 +16,7 @@ const htmlFiles = [
     'portal.html'
 ];
 
-const newVer = '20261107_v150_cinematic_motion_unlocked';
+const newVer = '20261108_v170_master_responsive_engine_unlocked';
 
 for (const file of htmlFiles) {
     const filePath = path.join(ROOT, file);
