@@ -170,7 +170,7 @@
     }
 
     
-    // 8. Chronicle HQ & Linear Dynamic Cursor Spotlight Tracking
+    // 8. Ponder & Chronicle Dynamic Cursor Spotlight Tracking
     function initSpotlightTracking() {
         const updateSpotlight = (card, e) => {
             const rect = card.getBoundingClientRect();
@@ -181,14 +181,14 @@
         };
 
         document.addEventListener('mousemove', (e) => {
-            const card = e.target.closest('.glass-card, .ipc-card, .blueprint-card, .store-card, .tmpl-card, .solution-card, .hero-studio-card');
+            const card = e.target.closest('.glass-card, .ipc-card, .blueprint-card, .store-card, .tmpl-card, .solution-card, .hero-studio-card, .pkg-card, .trust-principle-card, .premium-card, .lead-magnet-card, .newsletter-card');
             if (card) {
                 updateSpotlight(card, e);
             }
         }, { passive: true });
     }
 
-    // 9. Interactive Hero Autonomous Workflow Simulator (Apiant & ChainGPT style)
+    // 9. Interactive Ponder 4-Step Pipeline Workflow Simulator
     let simulatedDealRevenue = 850;
     window.simulatePipelineStep = function(stepIdx) {
         const steps = document.querySelectorAll('.pipeline-step-item');
@@ -196,21 +196,23 @@
 
         steps.forEach((s, idx) => {
             if (idx === stepIdx) {
-                s.style.boxShadow = '0 0 25px rgba(0, 242, 254, 0.45)';
-                s.style.borderColor = '#00f2fe';
-                s.style.transform = 'scale(1.02)';
+                s.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25)';
+                s.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                s.style.transform = 'scale(1.02) translateX(4px)';
+                s.style.background = 'rgba(255, 255, 255, 0.08)';
             } else {
                 s.style.boxShadow = 'none';
-                s.style.borderColor = 'transparent';
-                s.style.transform = 'scale(1)';
+                s.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                s.style.transform = 'scale(1) translateX(0)';
+                s.style.background = 'rgba(255, 255, 255, 0.03)';
             }
         });
 
         const msgs = [
-            '⚡ Step 1: Inbound WhatsApp Lead Captured & Validated via Webhook',
-            '🤖 Step 2: Gemini 3.0 Vision OCR Extracted Intent & Specifications',
-            '🧠 Step 3: 18-Agent Autonomous Swarm Formulated Architecture Proposal',
-            '💰 Step 4: Deal Auto-Closed & Synced to PostgreSQL 17 + Cloudflare R2'
+            '⚡ 01 // Inbound WhatsApp Lead Captured & Validated via Webhook',
+            '🤖 02 // Gemini 3.0 Vision OCR Extracted Intent & Specifications',
+            '🧠 03 // 18-Agent Autonomous Swarm Formulated Architecture Proposal',
+            '💰 04 // Deal Auto-Closed & Synced to PostgreSQL 17 + Cloudflare R2'
         ];
 
         if (window.showToast) {

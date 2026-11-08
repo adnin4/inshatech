@@ -16,7 +16,7 @@ const htmlFiles = [
     'portal.html'
 ];
 
-const newVer = '20261108_v170_master_responsive_engine_unlocked';
+const newVer = '20261108_v180_ponder_editorial_unlocked';
 
 for (const file of htmlFiles) {
     const filePath = path.join(ROOT, file);
@@ -34,5 +34,5 @@ for (const file of htmlFiles) {
     content = content.replace(/app\.js\?v=[^"'\s>]+/g, `app.js?v=${newVer}`);
 
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`✓ Cache-busted assets in ${file} to v=${newVer}`);
+    console.log(`✅ Cache-busted assets in ${file} to v=${newVer}`);
 }
