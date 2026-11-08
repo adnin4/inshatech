@@ -164,7 +164,7 @@
 
                 <span style="color: var(--text-muted);">📱 Direct WhatsApp: <strong>+8801629286887</strong></span>
 
-                <button onclick="document.getElementById('admin-control-modal').style.display='flex'" class="btn btn-primary-sm" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.75rem;">🎛️ Master Control Panel</button>
+                <button onclick="openProtectedAdminPanel()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.75rem;">🎛️ Master Control Panel</button>
 
                 <a href="affiliate.html" style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;">🤝 Partner Network →</a>
 
@@ -192,7 +192,7 @@
 
             
 
-            <nav class="nav-links portal-tabs">
+            <nav id="primary-navigation" class="nav-links portal-tabs" aria-label="Primary navigation">
 
                 <a href="#hero" class="portal-tab-btn active">  Studio</a>
 
@@ -211,6 +211,10 @@
                 <button onclick="openProtectedAdminPanel()" class="portal-tab-btn" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800; border-radius:6px; border:none; padding:6px 12px; cursor:pointer;">🎛️ Control Panel (Auth)</button>
 
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false" onclick="togglePrimaryNavigation(this)">
+                <span></span><span></span><span></span>
+            </button>
 
         </div>
 
@@ -264,27 +268,15 @@
 
                         <!-- PRIORITY 3: SCARCITY & LIVE AVAILABILITY BADGE -->
 
-                        <div class="scarcity-badge" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin: 15px 0; display: inline-block;">
-
-                            <span class="os-pulse-dot"></span> Production Capacity: 3 Active Engineering Slots | Estimated Provisioning: 48-72 Hours | Average Response: &lt; 1 Hour
-
-                        </div>
+                        <div class="scarcity-badge">AI agents <span>·</span> workflow automation <span>·</span> business integrations</div>
 
                         
 
-                        <h1 class="hero-title" style="font-size: 2.7rem; line-height: 1.25;">
-
-                            Describe your business problem, <br><span class="gradient-text">and I'll show you the automation architecture</span> before you hire me.
-
-                        </h1>
+                        <h1 class="hero-title">Turn repetitive work into <span class="gradient-text">intelligent workflows.</span></h1>
 
                         
 
-                        <p class="hero-subtitle" style="font-size: 1.1rem; color: #f8fafc; font-weight: 400; margin-bottom: 24px; line-height: 1.6;">
-
-                            <strong>IINSHA AI Automation Lab</strong> combines AI Agents, Playwright Enterprise Pipeline web scrapers, custom n8n pipelines, and self-hosted Hostinger Docker VPS containers. Founded by Lead AI Engineer <strong>Adnin Sadat Mahin</strong>.
-
-                        </p>
+                        <p class="hero-subtitle">IINSHA designs custom AI agents, business automations, chatbots and integrations around the way your team works — from workflow mapping to implementation and handover.</p>
 
 
 
@@ -296,9 +288,9 @@
 
                             </a>
 
-                            <a href="affiliate.html" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800;">
+                            <a href="#services" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800;">
 
-                                <span>🎛️ Partner Control Panel (15-20% Recurring) →</span>
+                                <span>Explore services →</span>
 
                             </a>
 
@@ -359,6 +351,10 @@
                     <!-- LEAD ENGINEER PROFILE & STUDIO CARD -->
 
                     <div class="glass-card glowing-border" style="padding: 28px; background: rgba(15, 23, 42, 0.85); border-color: rgba(99, 102, 241, 0.3);">
+<div class="hero-network-visual" aria-hidden="true">
+<div class="hero-orbit hero-orbit-one"></div><div class="hero-orbit hero-orbit-two"></div><div class="hero-orbit hero-orbit-three"></div><div class="hero-core">AI</div>
+<span class="hero-node hero-node-one">Agents</span><span class="hero-node hero-node-two">Data</span><span class="hero-node hero-node-three">Workflows</span><span class="hero-node hero-node-four">Systems</span>
+</div>
 
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-card); padding-bottom: 12px;">
 
@@ -380,7 +376,7 @@
 
                             </div>
 
-                            <span class="badge-pro" style="padding: 4px 8px; font-size: 0.7rem;">AUDITED STUDIO</span>
+                            <span class="badge-pro" style="padding: 4px 8px; font-size: 0.7rem;">STUDIO LEAD</span>
 
                         </div>
 
@@ -388,13 +384,13 @@
 
                         <div style="background: rgba(0, 0, 0, 0.4); padding: 14px; border-radius: 12px; border: 1px solid var(--border-card); font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; color: #a5f3fc; margin-bottom: 16px;">
 
-                            <div>⚡ <strong>Studio Focus:</strong> Autonomous AI & Scraping</div>
+                            <div>⚡ <strong>Studio Focus:</strong> AI agents & workflow design</div>
 
-                            <div>🤖 <strong>AI Stack:</strong> Antigravity SDK, Gemini & RAG</div>
+                            <div>🤖 <strong>AI Stack:</strong> Models, tools & knowledge systems</div>
 
-                            <div>🕷️  <strong>Scraper:</strong> Playwright Pipeline Playwright Stealth</div>
+                            <div>🔗 <strong>Integrations:</strong> APIs, data pipelines & automation</div>
 
-                            <div>🐳 <strong>Hosting:</strong> Self-Hosted Linux VPS (Code: IINSHA20)</div>
+                            <div>☁️ <strong>Delivery:</strong> Cloud and self-hosted deployments</div>
 
                         </div>
 
@@ -426,7 +422,7 @@
 
                 <div class="urgency-pulse" style="background: var(--accent-emerald);"></div>
 
-                <span class="urgency-text">⚡ <strong>Current Studio Capacity:</strong> Open for B2B Architecture Builds & Client Retainers — <strong style="color: var(--accent-emerald);">Enterprise-Verified Source Codebase</strong></span>
+                <span class="urgency-text"><strong>Start with a clear scope:</strong> map the workflow, agree on success criteria, then build and verify the solution.</span>
 
             </div>
 
@@ -2659,11 +2655,11 @@
 
                 <div class="section-header">
 
-                    <span class="section-tag">Proven Results</span>
+                    <span class="section-tag">Illustrative Workflows</span>
 
-                    <h2> Client Success Stories & Results</h2>
+                    <h2>Automation Architecture Examples</h2>
 
-                    <p>Verified Engineering Case Studies & Benchmarks (Simulated Architecture Sandbox & Production Teardowns).</p>
+                    <p>Illustrative scenarios that explain how an automation could work. They are not presented as verified client outcomes.</p>
 
                 </div>
 
@@ -2691,7 +2687,7 @@
 
                                 <h3 style="color:#fff;margin:12px 0 8px;font-size:1.4rem;">Stealth E-commerce Price Scraper</h3>
 
-                                <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Automated daily extraction of 50,000+ product listings with zero IP blocks using proxy mesh rotation on Self-Hosted Linux VPS Docker.</p>
+                                <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Illustrative concept: monitor permitted product catalogues, detect meaningful price changes and send structured alerts. Final scope depends on the source site’s terms and access rules.</p>
 
                                 <div style="display:flex;gap:16px;flex-wrap:wrap;">
 
@@ -2727,7 +2723,7 @@
 
                                 <h3 style="color:#fff;margin:12px 0 8px;font-size:1.4rem;">Failed Payment Recovery Pipeline</h3>
 
-                                <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Recovered $14,200 in churned SaaS subscriptions via automated multi-channel email & WhatsApp dunning sequences.</p>
+                                <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Illustrative concept: detect failed subscription payments and trigger policy-compliant reminders with status tracking.</p>
 
                                 <div style="display:flex;gap:16px;flex-wrap:wrap;">
 
@@ -3717,7 +3713,7 @@
 
                             <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">Inspect n8n workflow engine status, Playwright Pipeline Playwright scraper workers, and PostgreSQL vector database health.</p>
 
-                            <button onclick="document.getElementById('admin-control-modal').style.display='flex'" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); font-weight:700;">⚙️ Open Master Control Panel Modal →</button>
+                            <button onclick="openProtectedAdminPanel()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); font-weight:700;">⚙️ Open Master Control Panel Modal →</button>
 
                         </div>
 

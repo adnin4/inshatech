@@ -1,3 +1,0 @@
-# IINSHA AI-BOS Cloudflare Pages Clean URL Configuration
-# Cloudflare Pages automatically serves /store from store.html with zero redirect loop
-/website /index.html 301
