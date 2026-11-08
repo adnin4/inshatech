@@ -4861,8 +4861,8 @@ body {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.28 !important;
-    filter: contrast(1.15) brightness(0.7) saturate(1.4) !important;
+    opacity: 0.65 !important;
+    filter: contrast(1.18) brightness(0.88) saturate(1.45) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
@@ -4904,7 +4904,7 @@ body {
 .global-vignette-overlay {
     position: absolute !important;
     inset: 0 !important;
-    background: radial-gradient(ellipse 95% 85% at 50% 50%, rgba(2, 4, 10, 0.15) 0%, rgba(2, 4, 10, 0.5) 60%, rgba(2, 4, 10, 0.88) 100%) !important;
+    background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(7, 9, 19, 0.15) 0%, rgba(7, 9, 19, 0.55) 60%, rgba(7, 9, 19, 0.92) 100%) !important;
     pointer-events: none !important;
     z-index: 3 !important;
 }
@@ -5234,8 +5234,8 @@ embed {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.28 !important;
-    filter: contrast(1.15) brightness(0.7) saturate(1.4) !important;
+    opacity: 0.65 !important;
+    filter: contrast(1.18) brightness(0.88) saturate(1.45) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
@@ -5647,4 +5647,40 @@ table {
     border-color: rgba(255, 255, 255, 0.35) !important;
     transform: translateY(-1px) !important;
     box-shadow: none !important;
+}
+
+
+/* DIAGRAM VIBRANT MOTION ENGINE */
+@keyframes diagramTextShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes diagramPulseAura {
+    0%, 100% { box-shadow: 0 4px 25px rgba(139, 92, 246, 0.45); }
+    50% { box-shadow: 0 6px 35px rgba(236, 72, 153, 0.65); }
+}
+
+@keyframes nodeFlowPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.85)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5)); }
+}
+
+.diagram-active-node {
+    animation: nodeFlowPulse 1.2s ease-in-out infinite !important;
+    border-color: #a855f7 !important;
+}
+
+.hero-title .hero-gradient-silver {
+    background: linear-gradient(135deg, #ffffff 0%, #c084fc 35%, #38bdf8 70%, #ffffff 100%) !important;
+    background-size: 250% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: diagramTextShimmer 8s ease infinite !important;
+}
+
+.btn-primary, .btn-primary-glow, .ponder-pill-primary {
+    animation: diagramPulseAura 4s ease-in-out infinite !important;
 }

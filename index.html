@@ -62,7 +62,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=20261108_v300_diagram_futuristic_design">
+    <link rel="stylesheet" href="style.css?v=20261108_v400_diagram_cinematic_motion">
 
 
 
@@ -124,6 +124,8 @@
     </script>
 
     <link rel="stylesheet" href="universal_ai_copilot.css">
+    <!-- HLS.js Engine for Chromium / Windows Native 3D Motion Video Streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 
 <body>
@@ -243,7 +245,7 @@
                         
                         <h1 class="hero-title" style="font-size: clamp(2.5rem, 5.5vw, 4.2rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px;">
                             Autonomous AI Systems.<br>
-                            <span class="hero-gradient-silver" style="background: linear-gradient(135deg, #ffffff 20%, #e0e7ff 60%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineered for Enterprise Scale.</span>
+                            <span class="hero-gradient-silver" style="background: linear-gradient(135deg, #ffffff 0%, #c084fc 35%, #38bdf8 70%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineered for Enterprise Scale.</span>
                         </h1>
                         
                         <p class="hero-subtitle" style="font-size: 1.12rem; color: #cbd5e1; font-weight: 400; margin-bottom: 28px; line-height: 1.7; max-width: 620px;">
@@ -4696,8 +4698,8 @@
 
 
 
-    <script src="hero3d.js?v=20261108_v300_diagram_futuristic_design" defer></script>
-    <script src="app.js?v=20261108_v300_diagram_futuristic_design" defer></script>
+    <script src="hero3d.js?v=20261108_v400_diagram_cinematic_motion" defer></script>
+    <script src="app.js?v=20261108_v400_diagram_cinematic_motion" defer></script>
 
     <script>
 
@@ -5327,7 +5329,34 @@
     
 
 
-    <script src="src/js/ux_interactions.js?v=20261108_v300_diagram_futuristic_design"></script>
+    <script src="src/js/ux_interactions.js?v=20261108_v400_diagram_cinematic_motion"></script>
+
+    <!-- Global Cinematic Video HLS Stream Initializer -->
+    <script>
+    (function initGlobalCinematicStream() {
+        function setupHls() {
+            var video = document.getElementById('global-3d-bg-video');
+            if (!video) return;
+            var streamUrl = 'https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8';
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = streamUrl;
+                video.play().catch(function(){});
+            } else if (window.Hls && Hls.isSupported()) {
+                var hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(function(){});
+                });
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupHls);
+        } else {
+            setupHls();
+        }
+    })();
+    </script>
 </body>
 </html>
 

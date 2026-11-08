@@ -15,7 +15,7 @@
     <meta property="og:description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta property="og:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261108_v300_diagram_futuristic_design">
+    <link rel="stylesheet" href="style.css?v=20261108_v400_diagram_cinematic_motion">
     <style>
         :root {
             --bg-cockpit: #030712;
@@ -511,6 +511,8 @@
         }
     </style>
     <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260818_gemini_ui_v3">
+    <!-- HLS.js Engine for Chromium / Windows Native 3D Motion Video Streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body>
 
@@ -1601,7 +1603,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=20261108_v300_diagram_futuristic_design"></script>
+    <script src="app.js?v=20261108_v400_diagram_cinematic_motion"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -3309,8 +3311,35 @@
     <script src="js/core/enterprise_experience.js?v=20260820"></script>
     <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
     <script src="src/whatsapp_concierge.js"></script>
-    <script src="src/js/ux_interactions.js?v=20261108_v300_diagram_futuristic_design"></script>
-    <script src="hero3d.js?v=20261108_v300_diagram_futuristic_design" defer></script>
+    <script src="src/js/ux_interactions.js?v=20261108_v400_diagram_cinematic_motion"></script>
+    <script src="hero3d.js?v=20261108_v400_diagram_cinematic_motion" defer></script>
+
+    <!-- Global Cinematic Video HLS Stream Initializer -->
+    <script>
+    (function initGlobalCinematicStream() {
+        function setupHls() {
+            var video = document.getElementById('global-3d-bg-video');
+            if (!video) return;
+            var streamUrl = 'https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8';
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = streamUrl;
+                video.play().catch(function(){});
+            } else if (window.Hls && Hls.isSupported()) {
+                var hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(function(){});
+                });
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupHls);
+        } else {
+            setupHls();
+        }
+    })();
+    </script>
 </body>
 </html>
 

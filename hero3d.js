@@ -24,7 +24,7 @@
             gold: '#F59E0B',
             emerald: '#10B981',
             magenta: '#EC4899',
-            particles: ['#6366F1', '#8B5CF6', '#EC4899', '#38BDF8', '#F59E0B', '#10B981', '#FFFFFF']
+            particles: ['#6366F1', '#8B5CF6', '#EC4899', '#38BDF8', '#F59E0B', '#10B981', '#FFFFFF', '#C084FC']
         },
         mouse: { x: 0, y: 0, targetX: 0, targetY: 0, isHovered: false, clickX: 0, clickY: 0, clickTime: 0 },
         scrollY: 0,
@@ -291,7 +291,7 @@
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
                 } else if (ring === 1) {
                     ctx.setLineDash([6, 12]);
-                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.35)';
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.45)';
                 } else {
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
                 }

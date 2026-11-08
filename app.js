@@ -6813,3 +6813,62 @@ if (typeof document !== 'undefined') {
         }
     });
 }
+
+
+/* DIAGRAM AUTOMATOR PIPELINE RUNNER (Diagram #s3 Replica) */
+(function initDiagramAutomatorRunner() {
+    function setupRunner() {
+        const runBtn = document.getElementById('canvas-run-test-btn');
+        const logBox = document.getElementById('canvas-sim-log');
+        const container = document.getElementById('canvas-nodes-container');
+        if (!runBtn || !logBox || !container) return;
+
+        const nodes = container.querySelectorAll('.canvas-node-card');
+        let isRunning = false;
+
+        runBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (isRunning) return;
+            isRunning = true;
+            runBtn.disabled = true;
+            runBtn.innerHTML = '⏳ Simulating Flow...';
+
+            logBox.innerHTML = '<div style="color:#c084fc;">✦ [DIAGRAM FLOW RUNNER ACTIVE] Initializing neural pipeline simulation...</div>';
+
+            const stages = [
+                { delay: 400, nodeIdx: 0, msg: '<div style="color:#38bdf8;">[14:02:11.014] ⚡ Step 1: Webhook Trigger received: Incoming Lead Payload (WhatsApp Business API)</div>' },
+                { delay: 1100, nodeIdx: 1, msg: '<div style="color:#a855f7;">[14:02:11.224] 🕷️ Step 2: Playwright Pipeline Scraper extracted company data in 210ms (Status: 200 OK)</div>' },
+                { delay: 1800, nodeIdx: 2, msg: '<div style="color:#ec4899;">[14:02:11.404] 🤖 Step 3: Gemini 3.0 OCR verified business registration & trade license (Confidence: 99.4%)</div>' },
+                { delay: 2500, nodeIdx: 3, msg: '<div style="color:#10b981;">[14:02:11.436] 💾 Step 4: PostgreSQL DB row written to tenant_vault in 32ms. Deal value: $850 USD. Executed successfully!</div>' }
+            ];
+
+            stages.forEach(function(st, idx) {
+                setTimeout(function() {
+                    nodes.forEach(function(n) { n.classList.remove('diagram-active-node'); });
+                    if (nodes[st.nodeIdx]) {
+                        nodes[st.nodeIdx].classList.add('diagram-active-node');
+                        nodes[st.nodeIdx].style.boxShadow = '0 0 25px rgba(168, 85, 247, 0.7)';
+                    }
+                    logBox.innerHTML += st.msg;
+                    logBox.scrollTop = logBox.scrollHeight;
+
+                    if (idx === stages.length - 1) {
+                        setTimeout(function() {
+                            nodes.forEach(function(n) { n.classList.remove('diagram-active-node'); n.style.boxShadow = ''; });
+                            isRunning = false;
+                            runBtn.disabled = false;
+                            runBtn.innerHTML = '▶️ Run Workflow Test';
+                            logBox.innerHTML += '<div style="color:#34d399; font-weight:bold; margin-top:4px;">✔ [EXECUTION COMPLETE] 436ms E2E Latency. Zero errors.</div>';
+                        }, 800);
+                    }
+                }, st.delay);
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupRunner);
+    } else {
+        setupRunner();
+    }
+})();
