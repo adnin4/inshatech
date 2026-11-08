@@ -71,3 +71,6 @@ jobs:
 
       - name: Build Pages output and run UI/UX invariants
         run: npm run build
+
+      - name: Check all public page surfaces and local assets
+        run: node scripts/public_site_e2e.mjs
