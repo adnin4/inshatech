@@ -51,7 +51,11 @@ export function verifySiteSafety(){
  need(portal,'LIVE PARTNER DATA NOT CONFIGURED','honest dashboard status');
  forbid(wrangler,'SUPABASE_RUNTIME_HEALTH','static DB health assertion');
  forbid(version,'healthVerified','environment-string health verification');
- for(const route of routes)need(route,'affiliateUnavailable','affiliate API fail-closed response');
+ for(const route of routes) {
+   need(route,'affiliateUnavailable','affiliate API fail-closed response');
+   if (/export const onRequest(?:GET|POST|OPTIONS)\\b/.test(route)) throw new Error('Invalid Cloudflare Pages handler naming in affiliate API');
+   need(route,'onRequestOptions','affiliate route OPTIONS handler');
+ }
  return 'Site safety guard: PASS (source assertions only; deployed runtime remains separately unverified).';
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){

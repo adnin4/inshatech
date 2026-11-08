@@ -5,6 +5,12 @@ import { onRequestGet as integrationsGet, onRequestPost as integrationsPost } fr
 import { onRequestPost as orderTransition } from '../functions/api/orders/state_machine.js';
 import { onRequestPost as createInvoice } from '../functions/api/finance/invoice.js';
 import { onRequestPost as affiliateConvert } from '../functions/api/affiliate/convert.js';
+import { onRequestGet as affiliatePortal } from '../functions/api/affiliate/portal.js';
+import { onRequestGet as affiliateStats } from '../functions/api/affiliate/stats.js';
+import { onRequestPost as affiliateTrack } from '../functions/api/affiliate/track.js';
+import { onRequestPost as affiliateAttribution } from '../functions/api/affiliate/attribution.js';
+import { onRequestPost as affiliatePayout } from '../functions/api/affiliate/payout.js';
+import { onRequestGet as affiliateFraud } from '../functions/api/affiliate/fraud_radar.js';
 
 const SECRET = "unit-test-owner-secret-for-hmac-session";
 function b64url(s) { return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,''); }
@@ -54,4 +60,17 @@ const conversion=await affiliateConvert({request:request('/api/affiliate/convert
 assert.equal(conversion.status,503);
 assert.equal((await conversion.json()).status,'NOT_CONFIGURED');
 
-console.log('API fail-closed tests: PASS (kill-switch, provider test, order transition, invoice, affiliate conversion).');
+const affiliateChecks = [
+  await affiliatePortal({ request: request('/api/affiliate/portal', null, undefined, 'GET') }),
+  await affiliateStats({ request: request('/api/affiliate/stats', null, undefined, 'GET') }),
+  await affiliateTrack({ request: request('/api/affiliate/track', null, { referral_code: 'TEST' }) }),
+  await affiliateAttribution({ request: request('/api/affiliate/attribution', null, { referral_code: 'TEST' }) }),
+  await affiliatePayout({ request: request('/api/affiliate/payout', null, { amount: 100 }) }),
+  await affiliateFraud({ request: request('/api/affiliate/fraud_radar', null, undefined, 'GET') })
+];
+for (const response of affiliateChecks) {
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).status, 'NOT_CONFIGURED');
+}
+
+console.log('API fail-closed tests: PASS (kill-switch, provider test, order transition, invoice, affiliate portal/stats/tracking/conversion/attribution/payout/fraud).');
