@@ -1,0 +1,35 @@
+{
+  "schema_version": "CycloneDX-1.5",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "metadata": {
+    "timestamp": "2026-08-20T15:53:53.405Z",
+    "component": {
+      "name": "iinsha-ai-bos",
+      "version": "10.0.0",
+      "type": "application",
+      "author": "Adnin Sadat Mahin"
+    }
+  },
+  "components": [
+    {
+      "name": "node",
+      "version": "20.x",
+      "license": "MIT",
+      "security_status": "VERIFIED"
+    },
+    {
+      "name": "cloudflare-workers",
+      "version": "latest",
+      "license": "Apache-2.0",
+      "security_status": "VERIFIED"
+    },
+    {
+      "name": "supabase-postgrest",
+      "version": "17.6.1",
+      "license": "PostgreSQL",
+      "security_status": "VERIFIED"
+    }
+  ],
+  "vulnerabilities": []
+}

@@ -1,0 +1,26 @@
+{
+  "repository": "adnin4/inshatech",
+  "head_sha": "ab3023391a4f0d8d44c1c45df2ae2cd5989f0d36",
+  "html_pages": [
+    "admin.html",
+    "affiliate-dashboard.html",
+    "affiliate-login.html",
+    "affiliate.html",
+    "blog.html",
+    "compare.html",
+    "index.html",
+    "live_index.html",
+    "marketplace.html",
+    "portal.html",
+    "store.html"
+  ],
+  "functions_api_count": 112,
+  "migrations_count": 21,
+  "workflow_files": [
+    "ci.yml",
+    "deploy-ci.yml",
+    "deploy.yml",
+    "quality_guard.yml"
+  ],
+  "timestamp": "2026-08-22T20:47:09.396Z"
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-01T22:36:00Z",
+  "master_head": "7f969d2",
+  "deployment_authority": "Cloudflare Pages Native Git Integration",
+  "routes": [
+    {
+      "path": "/",
+      "file": "index.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 185,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/store.html",
+      "canonical_path": "/store",
+      "file": "store.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 23,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/marketplace.html",
+      "canonical_path": "/marketplace",
+      "file": "marketplace.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 95,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/compare.html",
+      "canonical_path": "/compare",
+      "file": "compare.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 20,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/blog.html",
+      "canonical_path": "/blog",
+      "file": "blog.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 17,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/portal.html",
+      "canonical_path": "/portal",
+      "file": "portal.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 13,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/admin.html",
+      "canonical_path": "/admin",
+      "file": "admin.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 47,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/affiliate.html",
+      "canonical_path": "/affiliate",
+      "file": "affiliate.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 14,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/affiliate-login.html",
+      "canonical_path": "/affiliate-login",
+      "file": "affiliate-login.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 11,
+      "verification": "LOCAL_VERIFIED"
+    },
+    {
+      "path": "/affiliate-dashboard.html",
+      "canonical_path": "/affiliate-dashboard",
+      "file": "affiliate-dashboard.html",
+      "status": 200,
+      "type": "static",
+      "interactive_elements": 8,
+      "verification": "LOCAL_VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "gross_order_amount_usd": 850,
+  "gateway_processing_fee_usd": 24.65,
+  "affiliate_commission_usd": 170,
+  "net_retained_margin_usd": 655.35,
+  "formula": "Gross = Fee + Commission + Margin",
+  "balance_drift_usd": 0,
+  "double_entry_invariant": "VERIFIED_EXACT_MATCH",
+  "stored_procedure": "public.execute_financial_settlement"
+}

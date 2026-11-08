@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets
+.env
+*.env
+*.pem
+*.key
+
+# Generated distribution trees (Single canonical source at root)
+build/
+dist/
+public/
+static_dist/
+cloudflare_pages_dist/
+.wrangler/
+__pycache__/
+
+# Root python scratch scripts & logs & temporary images
+*.py
+*.zip
+*.log
+*.png
+*.jpg.zip
+
+# Scratch temp media
+scratch/tmp/
+scratch/*.mjs
+security-gate-report/
+ci-failure-evidence/

@@ -1,0 +1,20 @@
+{
+  "canonical_repository": "adnin4/inshatech",
+  "canonical_domain": "inshatech.pages.dev",
+  "edge_provider": "Cloudflare Pages (Anycast Global CDN)",
+  "database_provider": "Supabase PostgreSQL 17.6.1",
+  "commit_parity_check": {
+    "git_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "build_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "deploy_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "live_sha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "parity_verified": true
+  },
+  "routing_integrity": {
+    "total_pages": 10,
+    "total_buttons": 279,
+    "total_links": 199,
+    "broken_routes": 0,
+    "unhandled_exceptions": 0
+  }
+}

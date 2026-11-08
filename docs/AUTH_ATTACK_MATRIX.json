@@ -1,0 +1,33 @@
+{
+  "attacks_tested": [
+    {
+      "attack": "Brute Force Password Spray",
+      "target": "/api/auth/session",
+      "defense": "Rate Limiter (5 req/min)",
+      "result": "429_TOO_MANY_REQUESTS",
+      "status": "PASS"
+    },
+    {
+      "attack": "Session Token Replay after Expiry",
+      "target": "/api/admin/gate",
+      "defense": "Cryptographic Expiry Check",
+      "result": "401_UNAUTHORIZED",
+      "status": "PASS"
+    },
+    {
+      "attack": "Privilege Escalation to SuperAdmin",
+      "target": "/api/admin/gate",
+      "defense": "Role Token Verification",
+      "result": "403_FORBIDDEN",
+      "status": "PASS"
+    },
+    {
+      "attack": "Timing Side-Channel Attack",
+      "target": "/api/auth/session",
+      "defense": "crypto.timingSafeEqual",
+      "result": "CONSTANT_TIME_MATCH",
+      "status": "PASS"
+    }
+  ],
+  "overall_status": "100_PERCENT_BLOCKED"
+}

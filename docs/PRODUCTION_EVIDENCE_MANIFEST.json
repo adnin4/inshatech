@@ -1,0 +1,46 @@
+{
+  "manifest_name": "IINSHA AI-BOS Production Evidence Manifest",
+  "generated_at": "2026-09-10T07:31:03Z",
+  "evidence_boundary": "SOURCE_AND_TEST_EVIDENCE_ONLY",
+  "canonical_repository": "https://github.com/adnin4/inshatech.git",
+  "production_branch": "master",
+  "production_domain": "https://inshatech.pages.dev",
+  "source_head_sha": "45ee4c1f90f699686c71912a7f22598cbe3b0a74",
+  "external_runtime_evidence": {
+    "cloudflare_deployment_id": null,
+    "cloudflare_deployed_sha": null,
+    "runtime_sha": null,
+    "api_sha": null,
+    "browser_asset_sha": null,
+    "supabase_project_ref": "kitwadizsvjmuxkfewxj",
+    "supabase_runtime_project_ref": null,
+    "supabase_migration_head": null
+  },
+  "source_test_evidence": {
+    "ci_diagnostics": "TEST_VERIFIED_SYNTHETIC",
+    "release_identity_contract": "TEST_VERIFIED_SYNTHETIC",
+    "payment_contracts": "TEST_VERIFIED_SYNTHETIC",
+    "tenant_isolation_contracts": "TEST_VERIFIED_SYNTHETIC",
+    "browser_regression": "TEST_VERIFIED_SYNTHETIC"
+  },
+  "runtime_state_summary": {
+    "cloudflare_pages_edge": "UNVERIFIED",
+    "agentic_gateway_v2": "UNVERIFIED",
+    "supabase_database": "UNVERIFIED",
+    "payment_gateways": "NOT_CONFIGURED_OR_UNVERIFIED",
+    "finance_reconciliation": "UNVERIFIED",
+    "real_customer_revenue": "UNVERIFIED"
+  },
+  "certification": {
+    "status": "READY_FOR_STAGING",
+    "production_candidate": false,
+    "production_verified": false,
+    "revenue_operational": false,
+    "autonomous_operational": false
+  },
+  "rules": [
+    "Generated documentation may summarize evidence but may not manufacture runtime or production verification.",
+    "CI and synthetic tests do not prove live provider, database, deployment, customer, payment, revenue, or browser production state.",
+    "Missing external identity remains UNVERIFIED until independently captured."
+  ]
+}

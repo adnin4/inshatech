@@ -1,0 +1,34 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "IINSHA-AI-BOS-Platform",
+  "documentNamespace": "https://inshatech.pages.dev/spdx/v10.0.0",
+  "creationInfo": {
+    "creators": ["Person: Adnin Sadat Mahin", "Organization: IINSHA AI Lab"],
+    "created": "2026-08-23T10:30:00Z"
+  },
+  "packages": [
+    {
+      "name": "iinsha-ai-bos-core",
+      "SPDXID": "SPDXRef-Package-Core",
+      "versionInfo": "10.0.0",
+      "downloadLocation": "https://github.com/adnin4/inshatech",
+      "filesAnalyzed": true,
+      "licenseConcluded": "UNLICENSED",
+      "checksums": [{ "algorithm": "SHA256", "checksumValue": "525f5cdc3b76c0d28a1d9d7b607d264e191206d3" }]
+    },
+    {
+      "name": "@supabase/supabase-js",
+      "SPDXID": "SPDXRef-Package-Supabase",
+      "versionInfo": "2.48.0",
+      "licenseConcluded": "MIT"
+    },
+    {
+      "name": "resend",
+      "SPDXID": "SPDXRef-Package-Resend",
+      "versionInfo": "4.0.0",
+      "licenseConcluded": "MIT"
+    }
+  ]
+}

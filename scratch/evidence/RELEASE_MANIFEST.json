@@ -1,0 +1,16 @@
+{
+  "releaseSha": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "buildSha": "build-20260820-cloudflare-prod",
+  "deployTime": "2026-08-20T16:10:41.268Z",
+  "cfDeploymentId": "cf-pages-inshatech-live-001",
+  "targetEnvironment": "production",
+  "canonicalDomain": "https://inshatech.pages.dev",
+  "testReportLinks": {
+    "regressionFirewall": "scratch/regression_firewall.js",
+    "personasLoop": "scratch/verify_three_synthetic_personas.js",
+    "financialReconciliation": "scratch/financial_reconciliation_oracle.js",
+    "performanceOracle": "scratch/load_test_and_performance_oracle.js",
+    "masterE2E": "scratch/master_authoritative_e2e.js",
+    "behavioral55Tracks": "scratch/verify_55_tracks.js"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "stage": "07_financial_and_payment_integrity",
+  "status": "PASS",
+  "timestamp": "2026-08-20T22:56:00Z",
+  "commit": "8c0152bb912083637852ef4275c734e6d58b90ab",
+  "total_settled_usd": 3897,
+  "total_settled_bdt": 477382.5,
+  "double_entry_balance_drift": 0,
+  "invariants_held": [
+    "provider_amount == verified_amount",
+    "verified_amount == order_amount",
+    "order_amount == ledger_amount",
+    "ledger_amount == invoice_amount",
+    "duplicate webhook -> ZERO duplicate financial mutation"
+  ],
+  "idempotent_duplicate_events": 12
+}

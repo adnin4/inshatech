@@ -1,0 +1,25 @@
+{
+  "release_id": "REL-2026.09.08-e946864",
+  "git_sha": "e9468646fab8837bf68aaf691af7f5900044522c",
+  "canonical_commit_head": "e9468646fab8837bf68aaf691af7f5900044522c",
+  "branch": "main",
+  "build_timestamp": "2026-09-08T14:22:02.441Z",
+  "node_version": "v24.18.0",
+  "deployment_target": "Cloudflare Pages",
+  "production_url": "https://inshatech.pages.dev",
+  "database_ref": "kitwadizsvjmuxkfewxj",
+  "status": {
+    "api_version": "LIVE_VERIFIED",
+    "api_health": "EDGE_HEALTHY",
+    "sre_health": "SRE_HEALTHY",
+    "sha_parity": true,
+    "browser_smoke_pass_count": 12
+  },
+  "evidence_artifacts": [
+    "runtime-version.json",
+    "health-check.json",
+    "sre-health.json",
+    "browser-smoke.json",
+    "release-sha.txt"
+  ]
+}

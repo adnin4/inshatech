@@ -1,0 +1,12 @@
+{
+  "master": {
+    "commit": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "status": "CANONICAL_LOCKED",
+    "divergence": 0
+  },
+  "production": {
+    "commit": "8c0152bb912083637852ef4275c734e6d58b90ab",
+    "status": "IN_SYNC",
+    "divergence": 0
+  }
+}

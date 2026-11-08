@@ -1,0 +1,30 @@
+{
+  "workflows": [
+    {
+      "name": "CI Pipeline",
+      "file": ".github/workflows/ci.yml",
+      "stages": [
+        "lint",
+        "test",
+        "security",
+        "e2e"
+      ]
+    },
+    {
+      "name": "Deploy CI",
+      "file": ".github/workflows/deploy-ci.yml",
+      "stages": [
+        "build",
+        "deploy"
+      ]
+    },
+    {
+      "name": "Quality Guard",
+      "file": ".github/workflows/quality_guard.yml",
+      "stages": [
+        "quality_check"
+      ]
+    }
+  ],
+  "status": "VERIFIED_CONFIGURED"
+}

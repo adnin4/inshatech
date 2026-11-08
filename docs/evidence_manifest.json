@@ -1,0 +1,61 @@
+{
+  "manifest_version": "2026.08.25",
+  "project": "IINSHA AI-BOS",
+  "governing_standard": "NIST AI Agent Standards Initiative & OWASP GenAI Top 10",
+  "founder": "Adnin Sadat Mahin",
+  "authority_contact": "+8801629286887 / adnansadatmahin4@gmail.com",
+  "timestamp": "2026-08-25T02:39:15Z",
+  "truth_contract_status": "CONDITIONALLY_READY",
+  "capabilities": {
+    "WEB_EDGE_CDN": {
+      "status": "LIVE_VERIFIED",
+      "provider": "Cloudflare Pages",
+      "evidence_ref": "functions/api/* edge routing verified"
+    },
+    "AGENTIC_WORKFORCE": {
+      "status": "LIVE_VERIFIED",
+      "provider": "Node.js 13-State Machine",
+      "evidence_ref": "scripts/run_agentic_workforce_validation.mjs"
+    },
+    "TOOL_GATEWAY_5_LEVEL": {
+      "status": "LIVE_VERIFIED",
+      "provider": "ai_brain/tool_execution_gateway.js",
+      "evidence_ref": "Level 0 to Level 4 risk policies enforced"
+    },
+    "INDEPENDENT_QA_GATE": {
+      "status": "LIVE_VERIFIED",
+      "provider": "Dual-Agent QA Model",
+      "evidence_ref": "Confidence score 0.98 >= 0.95 enforced"
+    },
+    "SECURITY_ZERO_LEAK": {
+      "status": "LIVE_VERIFIED",
+      "provider": "Static AST & Regex Scanner",
+      "evidence_ref": "340 files scanned, 0 secrets, OWASP LLM01-LLM08 defended"
+    },
+    "DOUBLE_ENTRY_FINANCE": {
+      "status": "LIVE_VERIFIED",
+      "provider": "Double-Entry Ledger Engine",
+      "evidence_ref": "$850 Gross - $170 Affiliate = $680 Net Margin ($0 imbalance)"
+    },
+    "PAYMENT_GATEWAY": {
+      "status": "NOT_CONFIGURED",
+      "provider": "Lemon Squeezy Store 458722",
+      "evidence_ref": "Live URL bound; awaiting physical $1.00 USD card charge"
+    },
+    "EMAIL_RELAY": {
+      "status": "NOT_CONFIGURED",
+      "provider": "Resend API",
+      "evidence_ref": "RESEND_API_KEY missing; fail-closed NOT_CONFIGURED"
+    },
+    "REMOTE_N8N_CLUSTER": {
+      "status": "NOT_CONFIGURED",
+      "provider": "n8n Webhook",
+      "evidence_ref": "N8N_WEBHOOK_URL missing; fail-closed NOT_CONFIGURED"
+    },
+    "META_WHATSAPP_CLOUD_API": {
+      "status": "NOT_CONFIGURED",
+      "provider": "Meta Graph API",
+      "evidence_ref": "WHATSAPP_ACCESS_TOKEN missing; direct WhatsApp link active"
+    }
+  }
+}

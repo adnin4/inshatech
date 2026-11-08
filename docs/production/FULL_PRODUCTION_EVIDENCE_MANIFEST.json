@@ -1,0 +1,84 @@
+{
+  "platform": "IINSHA AI-BOS Autonomous Company OS",
+  "manifest_id": "EVD-MANIFEST-MTTS3GKM",
+  "generated_at": "2026-09-09T07:30:07.654Z",
+  "provenance": {
+    "evidence_compiler": "scripts/generate_full_production_evidence_manifest.mjs",
+    "repository_head_sha": "7fbeb64510559981cdfb68da7edc55fb85649928",
+    "checkout_branch": "master",
+    "source_of_truth": "git-checkout"
+  },
+  "canonical_repository": "https://github.com/adnin4/inshatech.git",
+  "canonical_branch": "master",
+  "database_project_ref": "kitwadizsvjmuxkfewxj",
+  "deployment": {
+    "cloudflare_deployment_id": null,
+    "deployment_branch": null,
+    "deployed_code_sha": null,
+    "runtime_sha": null,
+    "runtime_db_ref": null,
+    "source_to_deployed_code_parity": false,
+    "deployed_to_runtime_parity": false,
+    "runtime_to_database_parity": false
+  },
+  "critical_file_checksums": {
+    "index.html": "1fefd703a31f9bac39c19b1933d5fe041cb369a51ec0aedbbc21080be76f1433",
+    "store.html": "733946c4e5e0076428cd2e035f1d95d75b72e1abadf6bc7ffefadda220dc8577",
+    "portal.html": "04308eb78c5917ded2f89b332d8e12a68b8470ed01fdd81c506695db6e70e1f2",
+    "admin.html": "5b99c8d3381407586b38b85036ee27649f5005c50489f2d52e6a5549cc027f66",
+    "app.js": "ce6e6c26a4a53aca7120401d7aeaf01cb645f9f8258761ad8a632b99e2214f4d",
+    "functions/_middleware.js": "612964be98e4713ea1bde25c7dbe2f8b3e670f15de8bec777e4561d9507050b5",
+    "functions/api/payments/checkout.js": "c63204e05f73a06a8b2bbcaf01fe6d02872ea0f21c95ca5916496cb4e3eb04a8",
+    "functions/api/payments/return.js": "8d26d8b78a5b21b151e986bbb003e26136da17a63679dbf34d088f1f199b3542",
+    "functions/api/payments/webhook.js": "fa1857de5105978d2db346546374f5b6fac8c27c05ba0dde5912ede51601c54c",
+    "functions/api/payments/_middleware.js": "e635878733706d78b3d9f0242596711985290e015ec1f8042cca35ce49eff1f9",
+    "CANONICAL_SYSTEM_STATE.json": "44e40fa7a82f47a58ba72205e3097127f02e34f5dab7f314c521f4ee7746e663"
+  },
+  "verification_policy": {
+    "rule": "No file presence, static assertion, or generated report is sufficient to certify production.",
+    "external_runtime_proof_required": true,
+    "live_payment_proof_required_for_revenue": true,
+    "real_customer_proof_required_for_revenue": true
+  },
+  "test_verification_matrix": {
+    "system_claims_classification": {
+      "status": "UNVERIFIED"
+    },
+    "business_truth_gates": {
+      "status": "UNVERIFIED"
+    },
+    "enterprise_security_gate": {
+      "status": "UNVERIFIED"
+    },
+    "public_site_e2e_surface": {
+      "status": "UNVERIFIED"
+    },
+    "ui_ux_regression_guardian": {
+      "status": "UNVERIFIED"
+    },
+    "payment_hardening_contract": {
+      "status": "UNVERIFIED"
+    },
+    "tenant_isolation_adversarial": {
+      "status": "UNVERIFIED"
+    },
+    "disaster_recovery_rollback_drill": {
+      "status": "UNVERIFIED"
+    },
+    "golden_e2e_master_suite": {
+      "status": "UNVERIFIED"
+    },
+    "frontier_master_suite": {
+      "status": "UNVERIFIED"
+    }
+  },
+  "certification_ladder": {
+    "ready_for_staging": true,
+    "staging_verified": false,
+    "production_candidate": false,
+    "production_verified": false,
+    "revenue_operational": false,
+    "autonomous_operational": false,
+    "reason": "This manifest contains source/release evidence only. Runtime, payment, customer, finance, and autonomous certification require independently captured evidence."
+  }
+}

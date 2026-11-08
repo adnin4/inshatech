@@ -1,0 +1,10 @@
+Path,Method,AuthRequired,AuthzLevel,RateLimit,Validation,Idempotency,Status
+/api/solution-finder,POST,No,Public,Yes,Zod,No,VERIFIED
+/api/create-checkout,POST,No,Public,Yes,ServerCatalog,Yes,VERIFIED
+/api/stripe-webhook,POST,Yes,HMAC,No,StripeSignature,Yes,VERIFIED
+/api/payments/bkash-tokenized,POST,No,Public,Yes,bKashOAuth,Yes,VERIFIED
+/api/webhook/bkash-sns-ipn,POST,Yes,x509,No,SNSHandshake,Yes,VERIFIED
+/api/auth/session,POST,No,Public,Strict_5_Min,Zod,No,VERIFIED
+/api/admin/gate,GET,Yes,SuperAdmin,Standard,HMACSession,No,VERIFIED
+/api/ai/tool-broker,POST,Yes,PDP_Tier,Standard,CapabilityToken,Yes,VERIFIED
+/api/sre/health,GET,No,Public,Standard,None,No,VERIFIED

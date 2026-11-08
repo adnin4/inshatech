@@ -1,0 +1,41 @@
+{
+  "alerts": [
+    {
+      "severity": "P0_EMERGENCY",
+      "threshold": "Uptime < 99.0% or 5xx Spike > 5%",
+      "channels": [
+        "Telegram_Webhook",
+        "Emergency_SMS"
+      ],
+      "response_sla_minutes": 5
+    },
+    {
+      "severity": "P1_CRITICAL",
+      "threshold": "Payment Settlement Failure or Webhook Drop",
+      "channels": [
+        "Telegram_Webhook",
+        "Incident_Email"
+      ],
+      "response_sla_minutes": 15
+    },
+    {
+      "severity": "P2_IMPORTANT",
+      "threshold": "AI Rate Limit Hit or Tool Policy Denial",
+      "channels": [
+        "Dashboard_Badge",
+        "Internal_Log"
+      ],
+      "response_sla_minutes": 60
+    },
+    {
+      "severity": "P3_INFO",
+      "threshold": "Order Placed / Affiliate Conversion",
+      "channels": [
+        "Customer_Email",
+        "Portal_Notification"
+      ],
+      "response_sla_minutes": 1440
+    }
+  ],
+  "status": "ACTIVE_ALERT_FABRIC"
+}

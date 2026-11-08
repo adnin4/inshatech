@@ -1,0 +1,60 @@
+version: "10.0.0"
+governance: "SOVEREIGN_BOUNDED_AUTONOMY"
+target_certification: "100_SECTOR_REAL_LIFE_VERIFIED"
+
+gates:
+  - id: GATE_01_P0_SECURITY
+    name: "Zero P0 Security Leaks & Content Hardening"
+    validator: "node scripts/real_world_security_gate.mjs"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_02_CI_REGRESSION
+    name: "Master Regression Firewall & 308/308 QA Matrix"
+    validator: "npm test"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_03_STAGING_PREVIEW
+    name: "Branch-Derived Staging Preview & SHA Parity"
+    validator: "node scripts/verify-preview-deployment.mjs"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_04_LIVE_ROUTES
+    name: "Cloudflare Edge Production Route Reachability"
+    validator: "node scripts/live_evidence_gate.mjs"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_05_DB_RLS
+    name: "Supabase PostgreSQL 110/110 RLS Tenant Isolation"
+    validator: "node scratch/rls_tenant_isolation_test.js"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_06_DISASTER_RECOVERY
+    name: "Dual-Rail Backup & Anycast Rollback Drill"
+    validator: "node scratch/disaster_recovery_drill.js"
+    required_status: "PASS"
+    blocking: true
+
+  - id: GATE_07_REAL_PROVIDERS
+    name: "Live Integration Credentials & Handshake Audit"
+    validator: "npm run activation:preflight"
+    required_status: "LIVE_VERIFIED"
+    blocking: true
+
+  - id: GATE_08_PILOT_CUSTOMER_01
+    name: "First Paying Enterprise Client 20-Stage Lifecycle"
+    validator: "evidence_ledger:PILOT_01"
+    required_status: "REAL_CUSTOMER_VERIFIED"
+    blocking: true
+
+  - id: GATE_09_SCALE_COHORT
+    name: "5-10 Paying Clients Scaled with Zero P0 Outages"
+    validator: "evidence_ledger:COHORT_SCALE"
+    required_status: "SCALE_PROVEN"
+    blocking: true
+
+invariant: "No 100/100 Master Claim is certified without 100% PASS across all 9 gates."

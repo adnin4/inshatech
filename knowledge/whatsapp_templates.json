@@ -1,0 +1,32 @@
+{
+  "templates": [
+    {
+      "name": "order_confirmation",
+      "category": "UTILITY",
+      "language": "en",
+      "body": "Hi {{1}}, your order #{{2}} for {{3}} ($4 USD / ৳{{5}}) has been confirmed! Our AI Developer Swarm has provisioned your project workspace.",
+      "variables": ["customer_name", "order_id", "service_name", "amount_usd", "amount_bdt"]
+    },
+    {
+      "name": "order_confirmation_bn",
+      "category": "UTILITY",
+      "language": "bn",
+      "body": "প্রিয় {{1}}, আপনার অর্ডার #{{2}} ({{3}} - ৳{{4}}) সফলভাবে কনফার্ম হয়েছে! আমাদের এআই ওয়ার্কফোর্স প্রজেক্টের কাজ শুরু করেছে।",
+      "variables": ["customer_name", "order_id", "service_name", "amount_bdt"]
+    },
+    {
+      "name": "proposal_ready",
+      "category": "MARKETING",
+      "language": "en",
+      "body": "Hi {{1}}, your custom automation proposal for {{2}} is ready! Review scope, ROI, and delivery timeline here: {{3}}",
+      "variables": ["customer_name", "service_name", "proposal_link"]
+    },
+    {
+      "name": "sla_support_update",
+      "category": "UTILITY",
+      "language": "en",
+      "body": "Hello {{1}}, our 24/7 AI SRE Sentinel resolved incident #{{2}} on your service in {{3}} seconds. All systems are 100% operational.",
+      "variables": ["customer_name", "incident_id", "resolution_seconds"]
+    }
+  ]
+}
