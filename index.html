@@ -85,7 +85,7 @@
                 <a href="portal.html" class="status-link" style="color:#94a3b8; text-decoration:none;">Portal</a>
             </div>
             <span style="opacity: 0.6;">|</span>
-            <span style="color: #10b981;">Latency: 12ms</span>
+            <span style="color: #94a3b8; font-size: 0.72rem;">Target SLA: &lt;50ms</span>
         </div>
     </header>
 
@@ -113,61 +113,73 @@
              ==================================================================== -->
         <section id="s1" data-diagram-section="s1" class="hero-section idg-hero" style="position: relative; overflow: hidden; padding: clamp(40px, 8vh, 80px) 0 clamp(60px, 10vh, 100px); text-align: center;">
             <div id="hero" style="position: absolute; top: 0; left: 0;"></div>
-            <div class="idg-demo-wrap container hero-centered-stage" style="max-width: 1080px; margin: 0 auto; position: relative; z-index: 2;">
-                <!-- MEMORY BANNER -->
-                <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 18px;"></div>
 
-                <!-- DIAGRAM LUMINOUS PILL BADGE -->
-                <div class="idg-eyebrow hero-awwwards-tag" style="margin-bottom: 22px;">
-                    <span class="os-pulse-dot" style="background: #a855f7; width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 12px #a855f7;"></span>
-                    <span>✦ [ 01 // AUTONOMOUS AI SYSTEMS ARCHITECTURE ]</span>
-                </div>
+            <!-- ORIGINAL CELESTIAL BACKGROUND VIDEO & ORBIT BACKDROP -->
+            <div class="hero-visual-backdrop" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
+                <video id="hero-background-video" class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-celestial-poster.jpg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; opacity: 0.6;">
+                    <source src="assets/hero-celestial-loop.webm" type="video/webm">
+                </video>
+                <div class="hero-video-overlay" style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(7, 8, 17, 0.35) 0%, rgba(7, 8, 17, 0.88) 75%, #070811 100%); z-index: 2;"></div>
+            </div>
 
-                <!-- GIANT SCULPTURAL HEADLINE -->
-                <h1 class="hero-title" style="font-size: clamp(2.8rem, 7.5vw, 6.2rem); font-weight: 780; letter-spacing: -0.065em; line-height: 0.96; margin: 0 auto 22px auto; max-width: 960px; color: #ffffff;">
-                    Autonomous AI Systems.<br>
-                    <span class="idg-gradient-text hero-gradient-silver" style="background: linear-gradient(105deg, #ffffff 10%, #d8d9ff 45%, #a855f7 75%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineered for Enterprise Scale.</span>
-                </h1>
+            <!-- CENTERED SINGLE-COLUMN EDITORIAL STAGE -->
+            <div class="idg-demo-wrap container hero-centered-stage" style="max-width: 1080px; width: 100%; margin: 0 auto; position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; box-sizing: border-box;">
+                <div class="hero-centered-content" style="width: 100%; max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; box-sizing: border-box;">
+                    <!-- MEMORY BANNER -->
+                    <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 18px;"></div>
 
-                <!-- BALANCED REFINED SUBTITLE -->
-                <p class="hero-subtitle" style="font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: #a7adc4; line-height: 1.75; max-width: 720px; margin: 0 auto 32px auto;">
-                    We architect self-operating AI workforces, intelligent customer conversion pipelines, and high-precision automation systems that replace 80%+ of repetitive manual operations. Co-architected by Lead AI Engineer <strong>Adnin Sadat Mahin</strong> for <strong>IINSHA AI Automation Lab</strong>.
-                </p>
-
-                <!-- DIAGRAM PILL ACTION BUTTONS -->
-                <div class="idg-actions hero-actions" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
-                    <a href="#s3" class="idg-button-primary btn-primary ponder-pill-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 750; padding: 13px 28px; border-radius: 9999px; text-decoration: none; color: #080a13; background: linear-gradient(115deg, #ffffff 0%, #eaeaff 55%, #cfd5ff 100%); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2); border: 1px solid rgba(255,255,255,0.3);">
-                        <span>✦ Explore Services ↗</span>
-                    </a>
-                    <a href="#s6" class="idg-button-quiet btn-glass-sm ponder-pill-secondary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; padding: 13px 26px; border-radius: 9999px; text-decoration: none; color: #f5f6fb; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);">
-                        <span>Discuss a Project</span>
-                    </a>
-                    <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20architecture%20build" target="_blank" rel="noopener noreferrer" class="btn btn-glass-sm" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; padding: 13px 24px; border-radius: 9999px; text-decoration: none; color: #34d399; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3);">
-                        <span class="os-pulse-dot" style="background: #10b981; width: 6px; height: 6px; border-radius: 50%;"></span>
-                        <span>Direct WhatsApp Consult</span>
-                    </a>
-                </div>
-
-                <!-- REAL 3D WEBGL2 PLANETARY ORBIT CANVAS (Prominent Centerpiece) -->
-                <canvas id="iinsha-diagram-scene" data-iinsha-motion-scene aria-hidden="true" style="display: block; width: min(100%, 1040px); height: clamp(340px, 48vw, 540px); margin: 0 auto; position: relative; z-index: 1; pointer-events: none;"></canvas>
-
-                <!-- 4-METRIC TRUST STRIP -->
-                <div class="idg-proofline hero-trust-strip" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(14px, 3vw, 36px); margin-top: 14px;">
-                    <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
-                        <div style="font-size: 1.45rem; font-weight: 800; color: #ffffff; font-family: var(--font-mono, monospace);">85%</div>
-                        <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Labor Saved</div>
+                    <!-- DIAGRAM LUMINOUS PILL BADGE -->
+                    <div class="idg-eyebrow hero-awwwards-tag" style="margin-bottom: 22px;">
+                        <span class="os-pulse-dot" style="background: #a855f7; width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 12px #a855f7;"></span>
+                        <span>✦ [ 01 // AUTONOMOUS AI SYSTEMS ARCHITECTURE ]</span>
                     </div>
-                    <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
-                        <div style="font-size: 1.45rem; font-weight: 800; color: #38bdf8; font-family: var(--font-mono, monospace);">&lt;45s</div>
-                        <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Speed to Lead</div>
+
+                    <!-- GIANT SCULPTURAL HEADLINE -->
+                    <h1 class="hero-title" style="font-size: clamp(2.8rem, 6.5vw, 5.6rem); font-weight: 780; letter-spacing: -0.05em; line-height: 1.02; margin: 0 auto 22px auto; max-width: 920px; width: 100%; color: #ffffff; text-align: center;">
+                        Autonomous AI Systems.<br>
+                        <span class="idg-gradient-text hero-gradient-silver" style="background: linear-gradient(105deg, #ffffff 10%, #d8d9ff 45%, #a855f7 75%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineered for Enterprise Scale.</span>
+                    </h1>
+
+                    <!-- BALANCED REFINED SUBTITLE -->
+                    <p class="hero-subtitle" style="font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: #a7adc4; line-height: 1.75; max-width: 720px; min-width: min(100%, 460px); width: 100%; margin: 0 auto 32px auto; text-align: center;">
+                        We architect self-operating AI workforces, intelligent customer conversion pipelines, and high-precision automation systems that replace 80%+ of repetitive manual operations. Co-architected by Lead AI Engineer <strong>Adnin Sadat Mahin</strong> for <strong>IINSHA AI Automation Lab</strong>.
+                    </p>
+
+                    <!-- DIAGRAM PILL ACTION BUTTONS -->
+                    <div class="idg-actions hero-actions" style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; width: 100%;">
+                        <a href="#s3" class="idg-button-primary btn-primary ponder-pill-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 750; padding: 13px 28px; border-radius: 9999px; text-decoration: none; color: #080a13; background: linear-gradient(115deg, #ffffff 0%, #eaeaff 55%, #cfd5ff 100%); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2); border: 1px solid rgba(255,255,255,0.3);">
+                            <span>✦ Explore Services ↗</span>
+                        </a>
+                        <a href="#s6" class="idg-button-quiet btn-glass-sm ponder-pill-secondary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; padding: 13px 26px; border-radius: 9999px; text-decoration: none; color: #f5f6fb; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);">
+                            <span>Discuss a Project</span>
+                        </a>
+                        <a href="https://wa.me/8801629286887?text=Hi%20Adnin,%20I'd%20like%20to%20discuss%20an%20AI%20architecture%20build" target="_blank" rel="noopener noreferrer" class="btn btn-glass-sm" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; padding: 13px 24px; border-radius: 9999px; text-decoration: none; color: #34d399; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <span class="os-pulse-dot" style="background: #10b981; width: 6px; height: 6px; border-radius: 50%;"></span>
+                            <span>Direct WhatsApp Consult</span>
+                        </a>
                     </div>
-                    <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
-                        <div style="font-size: 1.45rem; font-weight: 800; color: #c084fc; font-family: var(--font-mono, monospace);">24/7</div>
-                        <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Self-Operating</div>
-                    </div>
-                    <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
-                        <div style="font-size: 1.45rem; font-weight: 800; color: #f59e0b; font-family: var(--font-mono, monospace);">100%</div>
-                        <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Data Sovereignty</div>
+
+                    <!-- REAL 3D WEBGL2 PLANETARY ORBIT CANVAS (Prominent Centerpiece) -->
+                    <canvas id="iinsha-diagram-scene" data-iinsha-motion-scene aria-hidden="true" style="display: block; width: min(100%, 1040px); height: clamp(320px, 44vw, 500px); margin: 0 auto; position: relative; z-index: 2; pointer-events: none;"></canvas>
+
+                    <!-- 4-METRIC TRUST STRIP -->
+                    <div class="idg-proofline hero-trust-strip" style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(14px, 3vw, 36px); margin-top: 14px; width: 100%;">
+                        <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
+                            <div style="font-size: 1.45rem; font-weight: 800; color: #ffffff; font-family: var(--font-mono, monospace);">85%</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Labor Saved</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
+                            <div style="font-size: 1.45rem; font-weight: 800; color: #38bdf8; font-family: var(--font-mono, monospace);">&lt;45s</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Speed to Lead</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
+                            <div style="font-size: 1.45rem; font-weight: 800; color: #c084fc; font-family: var(--font-mono, monospace);">24/7</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Self-Operating</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px 18px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
+                            <div style="font-size: 1.45rem; font-weight: 800; color: #f59e0b; font-family: var(--font-mono, monospace);">100%</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Data Sovereignty</div>
+                        </div>
                     </div>
                 </div>
             </div>

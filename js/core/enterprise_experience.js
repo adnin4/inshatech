@@ -93,19 +93,19 @@
         if (STATE.cookieConsent || document.getElementById('iinsha-gdpr-banner')) return;
         const banner = document.createElement('div');
         banner.id = 'iinsha-gdpr-banner';
-        banner.style.cssText = 'position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 680px; margin: 0 auto; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 18px 24px; z-index: 10050; box-shadow: 0 20px 40px rgba(0,0,0,0.8); display: flex; flex-direction: column; gap: 12px; color: #f8fafc; font-size: 0.85rem;';
+        banner.style.cssText = 'position: fixed; bottom: 24px; left: 24px; max-width: 420px; background: rgba(10, 13, 26, 0.96); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 16px 20px; z-index: 9990; box-shadow: 0 16px 36px rgba(0,0,0,0.65); display: flex; flex-direction: column; gap: 10px; color: #f8fafc; font-size: 0.82rem;';
         banner.innerHTML = `
             <div style="display: flex; align-items: center; justify-content: space-between;">
-                <strong style="color: #38bdf8; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">🛡️ Privacy & Enterprise Telemetry Protection (GDPR Compliant)</strong>
-                <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">● ZERO ADS</span>
+                <strong style="color: #ffffff; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">🛡️ Privacy & Cookie Preferences</strong>
+                <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 600;">First-Party Telemetry</span>
             </div>
-            <p style="margin: 0; color: #cbd5e1; line-height: 1.5; font-size: 0.82rem;">
-                We use secure, self-hosted session telemetry and cryptographic tokens to authenticate your workspace and maintain AI Copilot context. Fully compliant with <strong>GDPR Art. 15 (Data Portability)</strong> and <strong>Art. 17 (Right to Erasure)</strong>.
+            <p style="margin: 0; color: #94a3b8; line-height: 1.45; font-size: 0.78rem;">
+                We use strictly necessary session tokens and local preferences to maintain your workspace state and AI Copilot memory. No third-party ad networks are used.
             </p>
-            <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
-                <button onclick="window.IINSHA_ENTERPRISE.openPrivacyModal()" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #94a3b8; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">📜 View Policy</button>
-                <button onclick="window.IINSHA_ENTERPRISE.setGdprConsent('declined')" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239,68,68,0.4); color: #f87171; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">Decline</button>
-                <button onclick="window.IINSHA_ENTERPRISE.setGdprConsent('accepted')" style="background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-weight: 700; padding: 6px 18px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">✓ Accept All</button>
+            <div style="display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; margin-top: 4px;">
+                <button onclick="window.IINSHA_ENTERPRISE.openPrivacyModal()" style="background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #94a3b8; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">Policy</button>
+                <button onclick="window.IINSHA_ENTERPRISE.setGdprConsent('declined')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">Decline</button>
+                <button onclick="window.IINSHA_ENTERPRISE.setGdprConsent('accepted')" style="background: #ffffff; border: none; color: #000; font-weight: 700; padding: 5px 16px; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">Accept</button>
             </div>
         `;
         document.body.appendChild(banner);

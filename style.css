@@ -5692,11 +5692,17 @@ table {
 
 .hero-centered-stage {
     text-align: center !important;
-    max-width: 980px !important;
+    max-width: 1080px !important;
+    width: 100% !important;
     margin: 0 auto !important;
-    padding: 110px 24px 90px 24px !important;
+    padding: clamp(70px, 10vh, 120px) 20px clamp(50px, 7vh, 80px) !important;
     position: relative !important;
     z-index: 4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
 }
 
 .hero-centered-stage .hero-awwwards-tag {
@@ -5778,4 +5784,99 @@ table {
 /* SECTION BREATHING ROOM */
 section {
     padding: clamp(80px, 12vh, 140px) 0 !important;
+}
+
+
+/* ENFORCED SINGLE-COLUMN EDITORIAL HERO STAGE */
+.hero-visual-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+.hero-bg-video {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover !important;
+  opacity: 0.6 !important;
+  filter: contrast(1.1) brightness(0.95) !important;
+}
+.hero-video-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 50% 45%, rgba(7, 8, 17, 0.35) 0%, rgba(7, 8, 17, 0.88) 75%, #070811 100%) !important;
+  z-index: 2 !important;
+}
+html[data-iinsha-design="diagram"] .hero-centered-content,
+.hero-centered-content {
+  width: 100% !important;
+  max-width: 920px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  position: relative !important;
+  z-index: 3 !important;
+  box-sizing: border-box !important;
+}
+html[data-iinsha-design="diagram"] .hero-title,
+.hero-title {
+  display: block !important;
+  width: 100% !important;
+  max-width: 920px !important;
+  margin: 0 auto 22px auto !important;
+  color: #ffffff !important;
+  font-size: clamp(2.8rem, 6.5vw, 5.6rem) !important;
+  font-weight: 780 !important;
+  letter-spacing: -0.05em !important;
+  line-height: 1.02 !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+}
+html[data-iinsha-design="diagram"] .hero-subtitle,
+.hero-subtitle {
+  display: block !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  min-width: min(100%, 460px) !important;
+  margin: 0 auto 32px auto !important;
+  color: #a7adc4 !important;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem) !important;
+  line-height: 1.75 !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+}
+html[data-iinsha-design="diagram"] .hero-actions,
+.hero-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 820px !important;
+  margin: 0 auto 24px auto !important;
+}
+html[data-iinsha-design="diagram"] .hero-trust-strip,
+.hero-trust-strip {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: clamp(14px, 3vw, 36px) !important;
+  width: 100% !important;
+  max-width: 860px !important;
+  margin: 14px auto 0 auto !important;
 }
