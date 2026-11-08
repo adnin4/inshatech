@@ -6,8 +6,8 @@
   'use strict';
 
   const SUPABASE_CONFIG = {
-    url: window.SUPABASE_URL || 'https://inshatech-db.supabase.co',
-    anonKey: window.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+    url: window.SUPABASE_URL || 'https://kitwadizsvjmuxkfewxj.supabase.co',
+    anonKey: typeof window.SUPABASE_ANON_KEY === 'string' ? window.SUPABASE_ANON_KEY : ''
   };
 
   class AuthManager {
@@ -18,8 +18,14 @@
     }
 
     initClient() {
+      if (!SUPABASE_CONFIG.url || !SUPABASE_CONFIG.anonKey) {
+        this.configError = 'Supabase Auth is not configured for this deployment.';
+        return;
+      }
       if (window.supabase && typeof window.supabase.createClient === 'function') {
         this.client = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+      } else {
+        this.configError = 'Supabase client library is unavailable.';
       }
     }
 
@@ -34,12 +40,11 @@
 
     async signInWithPassword(email, password) {
       if (!this.client) {
-        return { error: { message: 'Supabase client initializing' } };
+        return { error: { message: this.configError || 'Supabase Auth is not configured.' } };
       }
       const res = await this.client.auth.signInWithPassword({ email, password });
       if (res.data?.session) {
         this.session = res.data.session;
-        sessionStorage.setItem('iinsha_auth_token', this.session.access_token);
       }
       return res;
     }

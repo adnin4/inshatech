@@ -143,16 +143,12 @@ function renderAdminModalCmsStudio(container) {
     const adminUsers = data.admins;
     const flags = data.flags;
     const briefing = data.briefing;
-    const clients = data.clients.length ? data.clients : [
-        { id: 'c1', name: 'Tanvir Ahmed', company: 'SMMA Growth Agency', email: 'tanvir@smma.com', phone: '+8801700000000', totalSpent: 948, status: 'Active VIP' },
-        { id: 'c2', name: 'Rifat Hossain', company: 'Apex E-commerce Ltd', email: 'rifat@apex.com', phone: '+8801800000000', totalSpent: 1249, status: 'Active' }
-    ];
-    const projects = data.projects.length ? data.projects : [
-        { id: 'p1', title: 'Playwright Enterprise Pipeline Price Monitor', client: 'Apex E-commerce Ltd', phase: 'Deployment', progress: 85, price: 599, status: 'On Track' },
-        { id: 'p2', title: 'Gemini Customer Support RAG Bot', client: 'SMMA Growth Agency', phase: 'Development', progress: 60, price: 450, status: 'In Progress' }
-    ];
+    const clients = Array.isArray(data.clients) ? data.clients : [];
+    const projects = Array.isArray(data.projects) ? data.projects : [];
+    const localDataNotice = 'This console currently reads browser-local records. Provider/database health and financial figures are not independently verified.';
 
     container.innerHTML = `
+        <div role="status" style="margin:0 0 16px;padding:12px 14px;border:1px solid rgba(245,158,11,.32);border-radius:10px;background:rgba(245,158,11,.08);color:#f8d7a3;font-size:.82rem;line-height:1.6;"><strong>DATA SOURCE NOTICE:</strong> ${localDataNotice}</div>
         <div style="background: rgba(3, 7, 18, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 24px; color: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
             
             <!-- IBOS HEADER BRANDING -->
@@ -160,13 +156,13 @@ function renderAdminModalCmsStudio(container) {
                 <div style="display:flex; align-items:center; gap:12px;">
                     <div style="font-size:2.4rem; background:linear-gradient(135deg, var(--accent-gold), #d97706); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">🛡️</div>
                     <div>
-                        <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin:0; color:#fff;">IINSHAA OS v50 Enterprise Operating System</h2>
-                        <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:700;">15 Domains | 20 Levels | 10 Control Systems | Single Source Kernel</span>
+                        <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin:0; color:#fff;">IINSHA Admin Control Studio</h2>
+                        <span style="font-size:0.75rem; color:var(--accent-gold); font-family:var(--font-mono); font-weight:700;">Owner console | Browser-local settings | Live data requires verified service connections</span>
                     </div>
                 </div>
                 <div style="display:flex; gap:10px; align-items:center;">
                     <span class="badge-gold" style="font-size:0.72rem; padding:4px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold);">Super Admin Mode</span>
-                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
+                    <button onclick="lockAdminPanel();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
                 </div>
             </div>
 
@@ -623,129 +619,145 @@ function bindIBOSModuleListeners() {
 
 
 
-function openProtectedAdminPanel() {
+function togglePrimaryNavigation(button) {
+    const nav = document.getElementById('primary-navigation');
+    if (!nav) return;
+    const open = nav.classList.toggle('mobile-open');
+    if (button) {
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    }
+}
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        const nav = document.getElementById('primary-navigation');
+        const toggle = document.querySelector('.nav-toggle[aria-expanded="true"]');
+        if (nav) nav.classList.remove('mobile-open');
+        if (toggle) { toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation'); }
+    }
+});
+document.addEventListener('click', (event) => {
+    if (event.target.closest('#primary-navigation a')) {
+        const nav = document.getElementById('primary-navigation');
+        const toggle = document.querySelector('.nav-toggle');
+        if (nav) nav.classList.remove('mobile-open');
+        if (toggle) { toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation'); }
+    }
+});
+async function verifyAdminEdgeSession(token) {
+    if (!token || typeof token !== 'string') return null;
+    try {
+        const response = await fetch('/api/admin/gate', {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            cache: 'no-store'
+        });
+        if (!response.ok) return null;
+        const data = await response.json();
+        return data && data.authenticated === true && data.status === 'AUTHORIZED' ? data.user : null;
+    } catch (error) { return null; }
+}
+function clearLocalAdminSession() {
+    sessionStorage.removeItem('iinsha_admin_authenticated');
+    sessionStorage.removeItem('iinsha_session_token');
+    sessionStorage.removeItem('iinsha_admin_user');
+}
+async function openProtectedAdminPanel() {
     let modal = document.getElementById('admin-control-modal');
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'admin-control-modal';
         modal.className = 'modal hidden';
         modal.innerHTML = `
-            <div class="admin-modal-box" style="background: #030712; border: 1px solid var(--accent-gold); border-radius: 16px; width: 95%; max-width: 1100px; max-height: 90vh; overflow-y: auto; padding: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95); color: #fff;">
-                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️</span>
-                        <div>
-                            <h2 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin:0;">IINSHA TECH OS v1000 Master Control Panel</h2>
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">● Active Super Admin Session | 20 Enterprise Modules</p>
-                        </div>
-                    </div>
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <span style="background:rgba(217,119,6,0.2); color:var(--accent-gold); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(217,119,6,0.3);">Super Admin Mode</span>
-                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">✕ Close</button>
-                    </div>
+            <div class="admin-modal-box" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title" style="background:#080d18;border:1px solid var(--accent-gold);border-radius:18px;width:95%;max-width:1100px;max-height:92dvh;overflow-y:auto;padding:24px;color:#fff;">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:16px;margin-bottom:20px;">
+                    <div><h2 id="admin-modal-title" style="font-size:1.2rem;margin:0;">IINSHA Control Studio</h2><p style="font-size:.76rem;color:#a8b3c7;margin:4px 0 0;">Owner sign-in is verified by the server</p></div>
+                    <button type="button" onclick="document.getElementById('admin-control-modal').style.display='none'" class="btn btn-glass-sm" aria-label="Close control studio">Close ✕</button>
                 </div>
                 <div id="index-admin-cms-root"></div>
-            </div>
-        `;
+            </div>`;
         document.body.appendChild(modal);
+        modal.addEventListener('click', (event) => { if (event.target === modal) modal.style.display = 'none'; });
     }
-
-    // Move modal to body root to ensure position:fixed works correctly
-    if (modal.parentElement !== document.body) {
-        document.body.appendChild(modal);
-    }
-    
+    if (modal.parentElement !== document.body) document.body.appendChild(modal);
     modal.classList.remove('hidden');
-    modal.style.cssText = 'display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; opacity:1; visibility:visible; background:rgba(2,6,23,0.95); overflow-y:auto;';
-    window.scrollTo(0, 0);
-
-    const rootContainer = document.getElementById('index-admin-cms-root');
-    if (!rootContainer) return;
-
-    const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
-
-    if (isAuthenticated) {
-        renderAdminModalCmsStudio(rootContainer);
-    } else {
-        renderAdminLoginFormCard(rootContainer);
-    }
+    modal.style.cssText = 'display:flex;align-items:flex-start;justify-content:center;position:fixed;inset:0;width:100%;height:100%;z-index:99999;overflow-y:auto;padding:24px 0;background:rgba(2,6,23,.96);';
+    const root = document.getElementById('index-admin-cms-root');
+    if (!root) return;
+    const user = await verifyAdminEdgeSession(sessionStorage.getItem('iinsha_session_token'));
+    if (user) renderAdminModalCmsStudio(root);
+    else { clearLocalAdminSession(); renderAdminLoginFormCard(root); }
 }
-
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
-        <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
-            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️‘</div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
-
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
-                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@inshatech.pages.dev</strong> (or adnansadatmahin5@gmail.com)</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> (or any 6+ chars)</div>
-            </div>
-
-            <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
-                <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" value="admin@inshatech.pages.dev" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
-
-                <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
-                <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
-
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">  Passphrase must be at least 6 characters.</div>
-
-                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔍“ Authenticate & Open Studio →</button>
-                </div>
+        <section class="partner-status-card" style="max-width:500px;margin:18px auto;text-align:left;">
+            <span class="partner-status-pill">OWNER AUTHENTICATION</span>
+            <h3 style="font-size:1.5rem;margin:14px 0 8px;color:#fff;">Secure Control Studio sign-in</h3>
+            <p style="font-size:.88rem;">Use configured owner credentials and a current authenticator-app code. Browser-only passwords and offline bypasses are disabled.</p>
+            <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" autocomplete="on" style="display:grid;gap:12px;margin-top:20px;">
+                <label for="admin-input-email">Owner email</label><input type="email" id="admin-input-email" name="email" autocomplete="username" required placeholder="owner@example.com">
+                <label for="admin-input-pass">Password</label><input type="password" id="admin-input-pass" name="password" autocomplete="current-password" required>
+                <label for="admin-input-mfa">Authenticator code</label><input type="text" id="admin-input-mfa" name="mfa_token" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" minlength="6" required placeholder="6-digit TOTP">
+                <p id="admin-login-error" role="alert" aria-live="polite" style="display:none;color:#fca5a5;font-size:.84rem;"></p>
+                <button type="submit" class="btn btn-primary" style="min-height:48px;">Verify and open Control Studio</button>
             </form>
-
-            <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
-            </div>
-        </div>
-    `;
+        </section>`;
 }
-
-function handleAdminLoginSubmit(e) {
-    if (e) e.preventDefault();
-    const emailEl = document.getElementById('admin-input-email');
-    const passEl = document.getElementById('admin-input-pass');
-    const email = emailEl ? emailEl.value.trim() : '';
-    const pass = passEl ? passEl.value : '';
-
-    if (email && pass && pass.length >= 6) {
-        sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-        sessionStorage.setItem('iinsha_admin_user', email);
-        const rootContainer = document.getElementById('index-admin-cms-root');
-        if (rootContainer) {
-            renderAdminModalCmsStudio(rootContainer);
-        }
-    } else {
-        const errEl = document.getElementById('admin-login-error');
-        if (errEl) {
-            errEl.style.display = 'block';
-            errEl.textContent = '  Invalid credentials. Passphrase must be at least 6 characters.';
-        }
-    }
-}
-
-function handleAdminMasterUnlock() {
-    alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
-}
-
-function initAdminModalLoginForm() {
+async function handleAdminLoginSubmit(event) {
+    if (event) event.preventDefault();
+    const email = document.getElementById('admin-input-email')?.value.trim() || '';
+    const passwordInput = document.getElementById('admin-input-pass');
+    const mfaInput = document.getElementById('admin-input-mfa');
+    const password = passwordInput?.value || '';
+    const mfa_token = mfaInput?.value.trim() || '';
     const form = document.getElementById('admin-modal-login-form');
-    if (form) {
-        form.onsubmit = function(e) {
-            if (e) e.preventDefault();
-            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-            const errEl = document.getElementById('admin-login-error');
-            if (errEl) errEl.style.display = 'none';
-            const modal = document.getElementById('admin-control-modal');
-            if (modal) modal.style.display = 'flex';
-            renderAdminModalContent();
-            return false;
-        };
+    const button = form?.querySelector('button[type="submit"]');
+    const error = document.getElementById('admin-login-error');
+    const showError = (message) => { if (error) { error.textContent = message; error.style.display = 'block'; } };
+    if (!email || !password || !/^[0-9]{6}$/.test(mfa_token)) {
+        showError('Enter your owner email, password and 6-digit authenticator code.');
+        return false;
     }
+    if (button) { button.disabled = true; button.textContent = 'Verifying credentials…'; }
+    if (error) error.style.display = 'none';
+    try {
+        const response = await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, mfa_token }),
+            cache: 'no-store'
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || data.status !== 'AUTHENTICATED' || !data.session_token) {
+            const messages = {
+                CONFIGURATION_ERROR: 'Admin authentication is not configured on the server. Required server secrets must be configured by the owner.',
+                MFA_REQUIRED: 'The authenticator code is missing or invalid.',
+                INVALID_CREDENTIALS: 'The email or password is incorrect.'
+            };
+            throw new Error(messages[data.status] || data.error || 'Sign-in could not be verified.');
+        }
+        const user = await verifyAdminEdgeSession(data.session_token);
+        if (!user) throw new Error('The server-issued session could not be verified. Access remains locked.');
+        sessionStorage.setItem('iinsha_session_token', data.session_token);
+        sessionStorage.setItem('iinsha_admin_user', JSON.stringify(user));
+        const root = document.getElementById('index-admin-cms-root');
+        if (root) renderAdminModalCmsStudio(root);
+    } catch (err) {
+        showError(err.message || 'Sign-in failed. No session was created.');
+    } finally {
+        if (passwordInput) passwordInput.value = '';
+        if (mfaInput) mfaInput.value = '';
+        if (button) { button.disabled = false; button.textContent = 'Verify and open Control Studio'; }
+    }
+    return false;
+}
+function lockAdminPanel() {
+    clearLocalAdminSession();
+    const root = document.getElementById('index-admin-cms-root');
+    if (root) renderAdminLoginFormCard(root);
+}
+function handleAdminMasterUnlock() {
+    alert('One-click unlock is disabled. Sign in using the server-verified password and authenticator code.');
 }
 
 
@@ -893,7 +905,6 @@ function initStorePageCheckout() {
    ============================================================ */
 window.addEventListener('DOMContentLoaded', () => {
     initFOMOToasts();
-    initAdminModalLoginForm();
     initComparePageHandlers();
     initMarketplaceHandlers();
     initStorePageCheckout();
@@ -955,18 +966,14 @@ if (document.readyState === 'loading') {
 
 
 
-function renderAdminModalContent() {
+async function renderAdminModalContent() {
     const modal = document.getElementById('admin-control-modal');
     if (modal) modal.style.display = 'flex';
-    const loginCard = document.getElementById('admin-login-card');
-    if (loginCard) loginCard.style.display = 'none';
-    const dashContent = document.getElementById('admin-dashboard-content');
-    if (dashContent) dashContent.style.display = 'block';
-
     const rootContainer = document.getElementById('index-admin-cms-root');
-    if (rootContainer) {
-        renderAdminModalCmsStudio(rootContainer);
-    }
+    if (!rootContainer) return;
+    const user = await verifyAdminEdgeSession(sessionStorage.getItem('iinsha_session_token'));
+    if (!user) { clearLocalAdminSession(); renderAdminLoginFormCard(rootContainer); return; }
+    renderAdminModalCmsStudio(rootContainer);
 }
 
 
@@ -5588,6 +5595,8 @@ function initRoiCalculatorEngine() {
 
 // Global Exports
 window.openProtectedAdminPanel = openProtectedAdminPanel;
+window.togglePrimaryNavigation = togglePrimaryNavigation;
+window.lockAdminPanel = lockAdminPanel;
 window.openIinshaBusinessAuditModal = openIinshaBusinessAuditModal;
 window.closeIinshaBusinessAuditModal = closeIinshaBusinessAuditModal;
 
@@ -5799,6 +5808,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Global Exports
 window.openProtectedAdminPanel = openProtectedAdminPanel;
+window.togglePrimaryNavigation = togglePrimaryNavigation;
+window.lockAdminPanel = lockAdminPanel;
 window.openIinshaBusinessAuditModal = openIinshaBusinessAuditModal;
 window.closeIinshaBusinessAuditModal = closeIinshaBusinessAuditModal;
 

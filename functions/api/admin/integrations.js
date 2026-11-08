@@ -1,133 +1,51 @@
-/**
- * Cloudflare Pages Function: /api/admin/integrations
- * Handles integration configuration testing, status inquiry, and secret presence checks.
- * Invariant: Never return raw secret keys in responses; only return fingerprints, status, and verification metrics.
- */
+import { verifyAdminSession, adminJson, adminOptions, rejectAdminRequest } from '../../_shared/admin_session.js';
 
-export async function onRequestGet(context) {
-    const { env } = context;
+const PROVIDERS = [
+  { id: 'bkash', name: 'bKash Online Business / Merchant API', riskTier: 'CRITICAL', requiredSecrets: ['BKASH_APP_KEY','BKASH_APP_SECRET','BKASH_USERNAME','BKASH_PASSWORD','BKASH_WEBHOOK_SECRET'], configured: env => Boolean(env.BKASH_APP_KEY && env.BKASH_APP_SECRET) },
+  { id: 'stripe', name: 'Stripe International Gateway & Elements', riskTier: 'CRITICAL', requiredSecrets: ['STRIPE_PUBLISHABLE_KEY','STRIPE_SECRET_KEY','STRIPE_WEBHOOK_SECRET'], configured: env => Boolean(env.STRIPE_SECRET_KEY || env.STRIPE_TEST_SECRET_KEY) },
+  { id: 'resend', name: 'Resend Transactional Email API', riskTier: 'HIGH_IMPACT', requiredSecrets: ['RESEND_API_KEY','RESEND_FROM_DOMAIN'], configured: env => Boolean(env.RESEND_API_KEY) },
+  { id: 'whatsapp', name: 'Meta WhatsApp Cloud API Gateway', riskTier: 'HIGH_IMPACT', requiredSecrets: ['WHATSAPP_TOKEN','WHATSAPP_PHONE_ID','WHATSAPP_BUSINESS_ACCOUNT_ID'], configured: env => Boolean(env.WHATSAPP_TOKEN && env.WHATSAPP_PHONE_ID) },
+  { id: 'telegram', name: 'Telegram Emergency Owner Alert Bot', riskTier: 'HIGH_IMPACT', requiredSecrets: ['TELEGRAM_BOT_TOKEN','TELEGRAM_OWNER_CHAT_ID'], configured: env => Boolean(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_OWNER_CHAT_ID) },
+  { id: 'hubspot', name: 'HubSpot / Private CRM Integration', riskTier: 'MEDIUM', requiredSecrets: ['HUBSPOT_ACCESS_TOKEN'], configured: env => Boolean(env.HUBSPOT_ACCESS_TOKEN) },
+  { id: 'lead_provider', name: 'Apollo / B2B Lead Enrichment Provider', riskTier: 'LOW', requiredSecrets: ['APOLLO_API_KEY'], configured: env => Boolean(env.APOLLO_API_KEY) }
+];
 
-    // Truthful check of server-side environment variables
-    const integrations = [
-        {
-            id: 'bkash',
-            pillar: 'PAYMENT',
-            name: 'bKash Online Business / Merchant API',
-            isConfigured: Boolean(env?.BKASH_APP_KEY && env?.BKASH_APP_SECRET),
-            status: Boolean(env?.BKASH_APP_KEY && env?.BKASH_APP_SECRET) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['BKASH_APP_KEY', 'BKASH_APP_SECRET', 'BKASH_USERNAME', 'BKASH_PASSWORD', 'BKASH_WEBHOOK_SECRET'],
-            environment: Boolean(env?.BKASH_APP_KEY) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.BKASH_APP_KEY) ? new Date().toISOString() : null,
-            riskTier: 'CRITICAL'
-        },
-        {
-            id: 'stripe',
-            pillar: 'PAYMENT',
-            name: 'Stripe International Gateway & Elements',
-            isConfigured: Boolean(env?.STRIPE_SECRET_KEY),
-            status: Boolean(env?.STRIPE_SECRET_KEY) ? 'LIVE_VERIFIED' : (Boolean(env?.STRIPE_TEST_SECRET_KEY) ? 'SANDBOX_VERIFIED' : 'NOT_CONFIGURED'),
-            requiredSecrets: ['STRIPE_PUBLISHABLE_KEY', 'STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET'],
-            environment: Boolean(env?.STRIPE_SECRET_KEY) ? 'LIVE' : (Boolean(env?.STRIPE_TEST_SECRET_KEY) ? 'SANDBOX' : 'UNINITIALIZED'),
-            lastVerified: Boolean(env?.STRIPE_SECRET_KEY || env?.STRIPE_TEST_SECRET_KEY) ? new Date().toISOString() : null,
-            riskTier: 'CRITICAL'
-        },
-        {
-            id: 'resend',
-            pillar: 'EMAIL',
-            name: 'Resend Transactional Email API',
-            isConfigured: Boolean(env?.RESEND_API_KEY),
-            status: Boolean(env?.RESEND_API_KEY) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['RESEND_API_KEY', 'RESEND_FROM_DOMAIN'],
-            environment: Boolean(env?.RESEND_API_KEY) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.RESEND_API_KEY) ? new Date().toISOString() : null,
-            riskTier: 'HIGH_IMPACT'
-        },
-        {
-            id: 'whatsapp',
-            pillar: 'WHATSAPP',
-            name: 'Meta WhatsApp Cloud API Gateway',
-            isConfigured: Boolean(env?.WHATSAPP_TOKEN && env?.WHATSAPP_PHONE_ID),
-            status: Boolean(env?.WHATSAPP_TOKEN && env?.WHATSAPP_PHONE_ID) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['WHATSAPP_TOKEN', 'WHATSAPP_PHONE_ID', 'WHATSAPP_BUSINESS_ACCOUNT_ID'],
-            environment: Boolean(env?.WHATSAPP_TOKEN) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.WHATSAPP_TOKEN) ? new Date().toISOString() : null,
-            riskTier: 'HIGH_IMPACT'
-        },
-        {
-            id: 'telegram',
-            pillar: 'NOTIFICATION',
-            name: 'Telegram Emergency Owner Alert Bot',
-            isConfigured: Boolean(env?.TELEGRAM_BOT_TOKEN && env?.TELEGRAM_OWNER_CHAT_ID),
-            status: Boolean(env?.TELEGRAM_BOT_TOKEN && env?.TELEGRAM_OWNER_CHAT_ID) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_OWNER_CHAT_ID'],
-            environment: Boolean(env?.TELEGRAM_BOT_TOKEN) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.TELEGRAM_BOT_TOKEN) ? new Date().toISOString() : null,
-            riskTier: 'HIGH_IMPACT'
-        },
-        {
-            id: 'hubspot',
-            pillar: 'CRM',
-            name: 'HubSpot / Private CRM Integration',
-            isConfigured: Boolean(env?.HUBSPOT_ACCESS_TOKEN),
-            status: Boolean(env?.HUBSPOT_ACCESS_TOKEN) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['HUBSPOT_ACCESS_TOKEN'],
-            environment: Boolean(env?.HUBSPOT_ACCESS_TOKEN) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.HUBSPOT_ACCESS_TOKEN) ? new Date().toISOString() : null,
-            riskTier: 'MEDIUM'
-        },
-        {
-            id: 'lead_provider',
-            pillar: 'CRM',
-            name: 'Apollo / B2B Lead Enrichment Provider',
-            isConfigured: Boolean(env?.APOLLO_API_KEY),
-            status: Boolean(env?.APOLLO_API_KEY) ? 'LIVE_VERIFIED' : 'NOT_CONFIGURED',
-            requiredSecrets: ['APOLLO_API_KEY'],
-            environment: Boolean(env?.APOLLO_API_KEY) ? 'LIVE' : 'UNINITIALIZED',
-            lastVerified: Boolean(env?.APOLLO_API_KEY) ? new Date().toISOString() : null,
-            riskTier: 'LOW'
-        }
-    ];
-
-    return new Response(JSON.stringify({
-        status: 'SUCCESS',
-        integrations,
-        timestamp: new Date().toISOString()
-    }), {
-        headers: {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'no-store'
-        }
-    });
+export async function onRequestGet({ request, env = {} }) {
+  const auth = await verifyAdminSession(request, env);
+  if (!auth.ok) return rejectAdminRequest(request, auth);
+  const integrations = PROVIDERS.map(provider => {
+    const configured = provider.configured(env);
+    return {
+      id: provider.id,
+      name: provider.name,
+      riskTier: provider.riskTier,
+      isConfigured: configured,
+      status: configured ? 'CONFIGURED_UNVERIFIED' : 'NOT_CONFIGURED',
+      requiredSecrets: provider.requiredSecrets,
+      environment: configured ? 'CONFIGURED' : 'UNINITIALIZED',
+      lastVerified: null
+    };
+  });
+  return adminJson(request, { status: 'INVENTORY_ONLY', integrations, timestamp: new Date().toISOString() });
 }
 
-export async function onRequestPost(context) {
-    const { request, env } = context;
-    const body = await request.json().catch(() => ({}));
-    const { provider_id, action } = body;
+export async function onRequestPost({ request, env = {} }) {
+  const auth = await verifyAdminSession(request, env);
+  if (!auth.ok) return rejectAdminRequest(request, auth);
+  const body = await request.json().catch(() => ({}));
+  const provider = PROVIDERS.find(item => item.id === body.provider_id);
+  if (!provider || body.action !== 'test_connection') {
+    return adminJson(request, { status: 'INVALID_ACTION' }, 400);
+  }
+  return adminJson(request, {
+    status: 'NOT_CONFIGURED',
+    code: 'PROVIDER_HEALTH_CHECK_NOT_IMPLEMENTED',
+    provider: provider.id,
+    credentials_present: provider.configured(env),
+    message: 'Secret presence is not proof of provider connectivity. A provider-specific sandbox/live health check is not implemented; no connection was tested.'
+  }, 503);
+}
 
-    // Simulation / Connection Test Dispatcher
-    if (action === 'test_connection') {
-        const hasEnv = Boolean(env?.[`${provider_id.toUpperCase()}_API_KEY`] || env?.[`${provider_id.toUpperCase()}_SECRET_KEY`] || env?.[`${provider_id.toUpperCase()}_APP_KEY`]);
-        
-        if (!hasEnv) {
-            return new Response(JSON.stringify({
-                status: 'NOT_CONFIGURED',
-                provider: provider_id,
-                message: `Provider '${provider_id}' credentials are not yet configured in server environment variables. Please add secrets in Cloudflare Pages dashboard.`
-            }), {
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
-        return new Response(JSON.stringify({
-            status: 'CONNECTION_TESTED',
-            provider: provider_id,
-            verifiedAt: new Date().toISOString(),
-            message: `Connection to ${provider_id} successfully verified with active server secrets.`
-        }), {
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
-
-    return new Response(JSON.stringify({ error: 'Invalid action' }), { status: 400 });
+export function onRequestOptions({ request }) {
+  return adminOptions(request);
 }

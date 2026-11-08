@@ -124,9 +124,10 @@
     </script>
 
     <link rel="stylesheet" href="universal_ai_copilot.css">
+    <link rel="stylesheet" href="css/iinsha-diagram-design.css?v=20261108_diagram_v1">
 </head>
 
-<body>
+<body class="iinsha-diagram-redesign">
 
     <!-- Ambient Background -->
 
@@ -244,9 +245,13 @@
 
             <div class="container">
 
-                <div class="hero-grid">
+                <div class="hero-grid diagram-hero-grid">
 
-                    <div>
+                    <div class="hero-primary">
+                        <div id="hero3d-container" aria-hidden="true" role="presentation">
+                            <canvas id="iinsha-hero-canvas"></canvas>
+                            <div class="diagram-hero-labels"><span>AI AGENTS</span><span>WORKFLOW SYSTEMS</span><span>DATA INTELLIGENCE</span><span>HUMAN OVERSIGHT</span></div>
+                        </div>
 
                         <!-- AI RETURNING USER MEMORY BANNER -->
 
@@ -308,11 +313,7 @@
 
                             </a>
 
-                            <button id="hero-readiness-btn" class="btn btn-glass" style="color: var(--accent-purple);">
-
-                                <span>📊 20-Q AI Readiness Audit</span>
-
-                            </button>
+                            
 
                         </div>
 
@@ -358,9 +359,9 @@
 
                     <!-- LEAD ENGINEER PROFILE & STUDIO CARD -->
 
-                    <div class="glass-card glowing-border" style="padding: 28px; background: rgba(15, 23, 42, 0.85); border-color: rgba(99, 102, 241, 0.3);">
+                    <div class="glass-card glowing-border hero-founder-card" style="padding: 28px; background: rgba(15, 23, 42, 0.85); border-color: rgba(99, 102, 241, 0.3);">
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-card); padding-bottom: 12px;">
+                        <div class="hero-founder-details" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-card); padding-bottom: 12px;">
 
                             <div style="display: flex; align-items: center; gap: 12px;">
 
@@ -400,7 +401,7 @@
 
 
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="hero-founder-links" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
 
                             <a href="https://github.com/adnin4/inshatech" target="_blank" class="btn btn-glass-sm btn-full" style="color: #fff;">💻 Public GitHub Repos</a>
 
@@ -417,6 +418,87 @@
         </section>
 
 
+
+                <!-- DIAGRAM-INSPIRED CAPABILITY BENTO -->
+        <section id="bento-capabilities" class="diagram-bento-section" aria-labelledby="diagram-bento-heading">
+          <div class="container">
+            <div class="diagram-section-head" data-diagram-reveal>
+              <span class="diagram-kicker">What IINSHA builds</span>
+              <h2 id="diagram-bento-heading">Intelligent systems, designed around your business.</h2>
+              <p>From one repetitive task to a connected operation, we design and build practical AI automation that fits your real workflow.</p>
+            </div>
+            <div class="diagram-bento-grid">
+              <article class="diagram-bento-card span-7" data-diagram-reveal>
+                <div>
+                  <span class="diagram-kicker">01 / AI agent engineering</span>
+                  <h3>AI agents that work together.</h3>
+                  <p>Purpose-built assistants, multi-agent workflows and human approval steps for research, operations, sales and support.</p>
+                </div>
+                <div class="diagram-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 620 142" role="img">
+                    <defs><linearGradient id="agentFlow" x1="0" x2="1"><stop offset="0" stop-color="#9183ff"/><stop offset="1" stop-color="#78dbe8"/></linearGradient></defs>
+                    <path class="flow-line" d="M96 72 C172 72 174 28 250 28 S330 72 402 72 S482 116 542 72" fill="none" stroke="url(#agentFlow)" stroke-width="2" opacity=".75"/>
+                    <path d="M96 72 L250 28 L402 72 L542 72" fill="none" stroke="#8793b4" stroke-width="1" stroke-dasharray="3 9" opacity=".45"/>
+                    <g class="flow-node"><circle cx="96" cy="72" r="23" fill="#151c34" stroke="#9485ff" stroke-width="1.5"/><circle cx="96" cy="72" r="7" fill="#b4aaff"/></g>
+                    <g class="flow-node"><circle cx="250" cy="28" r="18" fill="#151c34" stroke="#73d9e8" stroke-width="1.5"/><circle cx="250" cy="28" r="6" fill="#73d9e8"/></g>
+                    <g class="flow-node"><circle cx="402" cy="72" r="23" fill="#151c34" stroke="#8ce0bf" stroke-width="1.5"/><circle cx="402" cy="72" r="7" fill="#8ce0bf"/></g>
+                    <g class="flow-node"><circle cx="542" cy="72" r="17" fill="#151c34" stroke="#f1c985" stroke-width="1.5"/><circle cx="542" cy="72" r="5" fill="#f1c985"/></g>
+                    <g fill="#c4cce0" font-size="11" text-anchor="middle"><text x="96" y="119">Input</text><text x="250" y="62">Agent</text><text x="402" y="119">Review</text><text x="542" y="105">Action</text></g>
+                  </svg>
+                </div>
+              </article>
+              <article class="diagram-bento-card span-5" data-diagram-reveal>
+                <div>
+                  <span class="diagram-kicker">02 / Workflow automation</span>
+                  <h3>Connect the tools you already use.</h3>
+                  <p>n8n workflows, API integrations and business process automation with clear hand-off points.</p>
+                </div>
+                <div class="diagram-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 460 142">
+                    <path class="flow-line" d="M58 72 H166 M188 72 H286 M308 72 H402" stroke="#79d9e5" stroke-width="2" fill="none"/>
+                    <g fill="#111a2d" stroke="#7ad8e8"><rect x="20" y="45" width="76" height="54" rx="13"/><rect x="165" y="45" width="82" height="54" rx="13"/><rect x="285" y="45" width="76" height="54" rx="13"/><rect x="390" y="55" width="12" height="34" rx="6"/></g>
+                    <g fill="#dfe7f6" font-size="11" text-anchor="middle"><text x="58" y="77">Trigger</text><text x="206" y="77">Workflow</text><text x="323" y="77">Outcome</text></g>
+                    <g fill="#79d8e5"><circle cx="108" cy="72" r="4"/><circle cx="268" cy="72" r="4"/><circle cx="377" cy="72" r="4"/></g>
+                  </svg>
+                </div>
+              </article>
+              <article class="diagram-bento-card span-5" data-diagram-reveal>
+                <div>
+                  <span class="diagram-kicker">03 / Document intelligence</span>
+                  <h3>Turn documents into structured data.</h3>
+                  <p>Invoice, PDF and form extraction pipelines that route results into the systems your team depends on.</p>
+                </div>
+                <div class="diagram-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 460 142">
+                    <rect x="42" y="18" width="96" height="112" rx="10" fill="#111a2b" stroke="#8f84ff"/>
+                    <path d="M61 45 H119 M61 59 H111 M61 73 H120 M61 87 H104" stroke="#8f9ab6" stroke-width="4" stroke-linecap="round"/>
+                    <path class="flow-line" d="M158 74 H228" stroke="#8a7eff" stroke-width="2" stroke-dasharray="5 6"/>
+                    <rect x="230" y="36" width="90" height="76" rx="13" fill="#111a2b" stroke="#74dbe7"/>
+                    <path d="M252 57 H298 M252 72 H292 M252 87 H282" stroke="#75dbe7" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M338 74 H380" stroke="#7edcba" stroke-width="2"/>
+                    <ellipse cx="402" cy="50" rx="24" ry="9" fill="#142b2c" stroke="#8ae1bd"/><path d="M378 50 V92 C378 104 426 104 426 92 V50 M378 70 C378 82 426 82 426 70" fill="none" stroke="#8ae1bd" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </article>
+              <article class="diagram-bento-card span-7" data-diagram-reveal>
+                <div>
+                  <span class="diagram-kicker">04 / Enterprise infrastructure</span>
+                  <h3>Infrastructure that stays understandable.</h3>
+                  <p>Cloudflare edge delivery, database-backed applications, observability and self-hosted deployment options—configured to the required security model.</p>
+                </div>
+                <div class="diagram-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 620 142">
+                    <path class="flow-line" d="M110 70 H250 M276 70 H410 M436 70 H540" fill="none" stroke="#80dabb" stroke-width="2"/>
+                    <g fill="#111a2c" stroke="#8b83ff" stroke-width="1.3"><rect x="36" y="37" width="112" height="66" rx="14"/><rect x="242" y="37" width="112" height="66" rx="14"/><rect x="402" y="37" width="112" height="66" rx="14"/></g>
+                    <g fill="#e1e7f3" font-size="12" text-anchor="middle"><text x="92" y="76">Edge</text><text x="298" y="76">Application</text><text x="458" y="76">Database</text></g>
+                    <circle cx="190" cy="70" r="9" fill="#79d9e5" opacity=".85"/><circle cx="373" cy="70" r="9" fill="#93e0bf" opacity=".85"/>
+                    <text x="560" y="74" fill="#aeb8cc" font-size="11">Ops</text>
+                  </svg>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
         <!-- HONEST CAPACITY STATUS BAR -->
 
@@ -573,6 +655,13 @@
                 </div>
 
 
+
+                <div class="service-discovery-bar" role="search" aria-label="Search IINSHA services">
+                    <label for="service-live-search">Find a service</label>
+                    <input id="service-live-search" class="service-discovery-input" type="search" autocomplete="off" placeholder="Search AI agents, n8n, OCR, chatbot, integrations…" aria-describedby="service-live-search-meta">
+                    <div class="service-discovery-meta" id="service-live-search-meta" aria-live="polite">Search the service catalogue across all categories</div>
+                    <button class="service-discovery-clear" id="service-live-search-clear" type="button" hidden>Clear search</button>
+                </div>
 
                 <!-- 8 Clean Category Cards Overview -->
 
@@ -844,7 +933,7 @@
 
 
 
-                <!-- Category Navigation Tabs -->
+                                <!-- Category Navigation Tabs -->
 
                 <div class="service-nav-tabs">
 
@@ -5420,6 +5509,7 @@
     <script src="universal_ai_copilot.js"></script>
     <script src="src/whatsapp_concierge.js"></script>
     <script src="src/js/ux_interactions.js?v=20260907_v135_ux"></script>
+    <script src="src/js/iinsha-diagram-motion.js?v=20261108_diagram_v1" defer></script>
 </body>
 </html>
 

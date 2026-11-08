@@ -1,0 +1,81 @@
+name: IINSHA Site Refresh Validation
+
+on:
+  pull_request:
+    branches:
+      - fix/release-identity-fail-closed-20260910
+  push:
+    branches:
+      - feat/iinsha-site-refresh-admin-affiliate-guard-20261108
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-refresh-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Source, Safety and Pages Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout pull request source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup supported Node.js runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.2
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Check modified JavaScript syntax
+        run: |
+          node --check app.js
+          node --check src/js/auth.js
+          node --check src/js/ux_interactions.js
+          node --check src/js/iinsha-diagram-motion.js
+          node --check scripts/test_diagram_design.mjs
+          node --check functions/api/version.js
+          node --check functions/_shared/admin_session.js
+          node --check functions/api/admin/gate.js
+          node --check functions/api/admin/killswitch.js
+          node --check functions/api/admin/integrations.js
+          node --check functions/api/orders/state_machine.js
+          node --check functions/api/finance/invoice.js
+          node --check functions/_shared/affiliate_unavailable.js
+          node --check functions/api/affiliate/portal.js
+          node --check functions/api/affiliate/stats.js
+          node --check functions/api/affiliate/track.js
+          node --check functions/api/affiliate/convert.js
+          node --check functions/api/affiliate/attribution.js
+          node --check functions/api/affiliate/payout.js
+          node --check functions/api/affiliate/fraud_radar.js
+          node --check scripts/verify_site_safety.mjs
+          node --check scripts/test_admin_session.mjs
+          node --check scripts/test_api_fail_closed.mjs
+          node --check scripts/build_pages.mjs
+
+      - name: Test owner session signature, expiry, MFA and role enforcement
+        run: npm run test:admin-session
+
+      - name: Test API fail-closed behavior for privileged/financial operations
+        run: npm run test:api-fail-closed
+
+      - name: Test Diagram-inspired design, 3D hero, service search and feature preservation
+        run: npm run test:diagram-design
+
+      - name: Enforce auth, affiliate and database truth guardrails
+        run: npm run test:site-safety
+
+      - name: Build Pages output and run UI/UX invariants
+        run: npm run build
+
+      - name: Check all public page surfaces and local assets
+        run: node scripts/public_site_e2e.mjs

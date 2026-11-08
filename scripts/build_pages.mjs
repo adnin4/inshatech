@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { verifyUiUxInvariants } from './verify_ui_ux_invariants.mjs';
+import { verifySiteSafety } from './verify_site_safety.mjs';
 
 const cwd = process.cwd();
 console.log(`[BUILD] Cloudflare Pages build starting in: ${cwd}`);
@@ -22,6 +23,8 @@ for (const file of requiredFiles) {
 try {
     const uiUxStatus = verifyUiUxInvariants();
     console.log(`[BUILD] UI/UX Guardian: ${uiUxStatus}`);
+    const safetyStatus = verifySiteSafety();
+    console.log(`[BUILD] Site Safety Guardian: ${safetyStatus}`);
 } catch (err) {
     console.error(`[BUILD ERROR] UI/UX Invariant Violation: ${err.message}`);
     process.exit(1);
