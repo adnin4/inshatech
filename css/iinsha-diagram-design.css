@@ -528,3 +528,196 @@ body.iinsha-diagram-redesign.has-diagram-motion .diagram-bento-card:nth-child(4)
   }
   body.iinsha-diagram-redesign.has-diagram-motion [data-diagram-reveal] { opacity: 1; transform: none; }
 }
+
+
+/* --------------------------------------------------------------------------
+   Editorial system for every remaining homepage section (not just the hero)
+   -------------------------------------------------------------------------- */
+body.iinsha-diagram-redesign main > section:not(.hero-section):not(.diagram-bento-section) {
+  position: relative;
+  padding: clamp(64px, 7.2vw, 100px) 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+body.iinsha-diagram-redesign main > section:not(.hero-section):not(.diagram-bento-section)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: max(22px, calc((100% - var(--iinsha-content)) / 2));
+  right: max(22px, calc((100% - var(--iinsha-content)) / 2));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--iinsha-line), transparent);
+}
+body.iinsha-diagram-redesign main > section > .container,
+body.iinsha-diagram-redesign main > section > .container-wide {
+  position: relative;
+  z-index: 1;
+}
+body.iinsha-diagram-redesign .section-header {
+  max-width: 760px;
+  margin: 0 auto clamp(28px, 3.5vw, 42px) !important;
+}
+body.iinsha-diagram-redesign .section-header h2 {
+  margin: 10px 0 12px;
+  font-size: clamp(1.95rem, 4vw, 3.15rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 720;
+}
+body.iinsha-diagram-redesign .section-header p {
+  max-width: 62ch;
+  margin-inline: auto;
+  color: var(--iinsha-muted) !important;
+  font-size: .97rem;
+  line-height: 1.8;
+}
+body.iinsha-diagram-redesign .section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border: 1px solid rgba(169,158,255,.18);
+  border-radius: 999px;
+  background: rgba(124,109,255,.075);
+  color: #c9c1ff !important;
+  font-size: .69rem !important;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+body.iinsha-diagram-redesign :where(
+  .premium-card,.industry-card,.lab-tool-card,.template-card,.success-slide,
+  .model-cat-card,.blueprint-card-item,.pkg-card,.lead-magnet-card,
+  .canvas-node-card,.terminal-box,.roi-svg-container
+) {
+  border: 1px solid var(--iinsha-line) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(148deg, rgba(18,25,41,.95), rgba(10,15,26,.96)) !important;
+  box-shadow: 0 15px 42px rgba(0,0,0,.16) !important;
+}
+body.iinsha-diagram-redesign :where(
+  .premium-card,.industry-card,.lab-tool-card,.template-card,.success-slide,
+  .model-cat-card,.blueprint-card-item,.pkg-card,.canvas-node-card
+) {
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+body.iinsha-diagram-redesign :where(
+  .premium-card,.industry-card,.lab-tool-card,.template-card,.success-slide,
+  .model-cat-card,.blueprint-card-item,.pkg-card,.canvas-node-card
+):hover {
+  transform: translateY(-2px);
+  border-color: rgba(158,148,255,.31) !important;
+  box-shadow: 0 22px 55px rgba(0,0,0,.23) !important;
+}
+body.iinsha-diagram-redesign :where(.industry-grid,.premium-grid,.lab-tools-grid,.template-store-grid,.model-matrix-grid,.blueprint-grid,.packages-grid) {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  align-items: stretch;
+  gap: 14px !important;
+}
+body.iinsha-diagram-redesign .lab-tool-card,
+body.iinsha-diagram-redesign .industry-card,
+body.iinsha-diagram-redesign .premium-card,
+body.iinsha-diagram-redesign .template-card,
+body.iinsha-diagram-redesign .model-cat-card,
+body.iinsha-diagram-redesign .blueprint-card-item,
+body.iinsha-diagram-redesign .pkg-card {
+  min-width: 0;
+  padding: clamp(18px,2.2vw,25px) !important;
+}
+body.iinsha-diagram-redesign :where(.premium-badge,.premium-card-icon,.template-tech-badge,.template-price-tag,.pkg-badge,.badge-pro) {
+  border-radius: 999px !important;
+}
+body.iinsha-diagram-redesign .premium-badge,
+body.iinsha-diagram-redesign .template-tech-badge {
+  border: 1px solid var(--iinsha-line) !important;
+  background: rgba(255,255,255,.045) !important;
+  color: #cbd4e6 !important;
+  padding: 5px 10px;
+  font-size: .68rem;
+}
+body.iinsha-diagram-redesign .model-chips,
+body.iinsha-diagram-redesign .blueprint-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body.iinsha-diagram-redesign .model-chip,
+body.iinsha-diagram-redesign .blueprint-filter-btn {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid var(--iinsha-line) !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.035) !important;
+  color: #c5cede !important;
+  font-size: .76rem;
+}
+body.iinsha-diagram-redesign .blueprint-filter-btn.active,
+body.iinsha-diagram-redesign .blueprint-filter-btn[aria-pressed="true"] {
+  color: #fff !important;
+  border-color: rgba(157,145,255,.48) !important;
+  background: rgba(128,112,255,.15) !important;
+}
+body.iinsha-diagram-redesign .terminal-box {
+  overflow: hidden;
+  padding: 18px !important;
+  color: #d4e4ed;
+  font-family: "Fira Code", ui-monospace, monospace;
+  font-size: .78rem;
+  line-height: 1.75;
+}
+body.iinsha-diagram-redesign .terminal-log-line {
+  color: #a8bdc9 !important;
+}
+body.iinsha-diagram-redesign .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--iinsha-line);
+  border-radius: 16px;
+}
+body.iinsha-diagram-redesign .orders-table {
+  min-width: 620px;
+  color: #dbe3f2;
+}
+body.iinsha-diagram-redesign .roi-svg-container {
+  padding: 12px;
+  overflow: hidden;
+}
+body.iinsha-diagram-redesign .roi-svg-container svg {
+  max-width: 100%;
+  height: auto;
+}
+body.iinsha-diagram-redesign .success-carousel {
+  overflow: hidden;
+  border: 1px solid var(--iinsha-line);
+  border-radius: 20px;
+  background: rgba(10,15,26,.7);
+}
+body.iinsha-diagram-redesign .lead-magnet-card {
+  display: grid;
+  grid-template-columns: minmax(140px,.55fr) minmax(0,1fr);
+  gap: 20px;
+  padding: clamp(20px,3vw,30px) !important;
+}
+body.iinsha-diagram-redesign footer {
+  border-top: 1px solid var(--iinsha-line);
+  background: #070a12 !important;
+  color: #b0bbcd;
+}
+body.iinsha-diagram-redesign footer :where(a,p,li) { color: inherit; }
+body.iinsha-diagram-redesign footer a:hover { color: #fff; }
+@media (max-width: 900px) {
+  body.iinsha-diagram-redesign :where(.industry-grid,.premium-grid,.lab-tools-grid,.template-store-grid,.model-matrix-grid,.blueprint-grid,.packages-grid) {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width: 640px) {
+  body.iinsha-diagram-redesign main > section:not(.hero-section):not(.diagram-bento-section) {
+    padding: 58px 0 !important;
+  }
+  body.iinsha-diagram-redesign :where(.industry-grid,.premium-grid,.lab-tools-grid,.template-store-grid,.model-matrix-grid,.blueprint-grid,.packages-grid) {
+    grid-template-columns: minmax(0,1fr);
+  }
+  body.iinsha-diagram-redesign .lead-magnet-card { grid-template-columns: minmax(0,1fr); }
+  body.iinsha-diagram-redesign .section-header h2 { font-size: clamp(1.8rem,8vw,2.6rem) !important; }
+}
