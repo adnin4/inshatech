@@ -5,7 +5,7 @@ import os from 'os';
 
 const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
-export async function captureAndMeasure(viewport = { width: 1664, height: 924 }, outputPath = null) {
+export async function captureAndMeasure(viewport = { width: 1664, height: 924 }, outputPath = null, targetUrl = null) {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'chrome-cdp-'));
   const port = 9222 + Math.floor(Math.random() * 500);
 
@@ -69,9 +69,9 @@ export async function captureAndMeasure(viewport = { width: 1664, height: 924 },
       mobile: viewport.width <= 768
     });
 
-    const fileUrl = 'file:///' + path.resolve('index.html').replace(/\\/g, '/');
+    const fileUrl = targetUrl || ('file:///' + path.resolve('index.html').replace(/\\/g, '/'));
     await send('Page.navigate', { url: fileUrl });
-    await new Promise(r => setTimeout(r, 1500)); // wait for layout & fonts
+    await new Promise(r => setTimeout(r, 1800)); // wait for layout & fonts
 
     // Measure hero bounding boxes
     const evalRes = await send('Runtime.evaluate', {
