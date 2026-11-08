@@ -23,6 +23,7 @@ export function verifySiteSafety(){
  forbid(app,"sessionStorage.setItem('iinsha_admin_authenticated', 'true')",'client-only admin authentication');
  need(admin,'/api/admin/gate','dedicated page token verification');
  need(adminSession,'verifyAdminSession','shared server-side admin session verifier');
+ need(adminSession,'FORGERY_REJECTED','tampered session rejection');
  need(killswitch,'verifyAdminSession','kill-switch authentication');
  forbid(killswitch,'let SYSTEM_LOCKDOWN = false','isolate-local kill-switch state');
  need(killswitch,'KILLSWITCH_ENFORCEMENT_NOT_READY','honest kill-switch status');

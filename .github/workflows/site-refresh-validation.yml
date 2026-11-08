@@ -55,7 +55,15 @@ jobs:
           node --check functions/api/affiliate/payout.js
           node --check functions/api/affiliate/fraud_radar.js
           node --check scripts/verify_site_safety.mjs
+          node --check scripts/test_admin_session.mjs
+          node --check scripts/test_api_fail_closed.mjs
           node --check scripts/build_pages.mjs
+
+      - name: Test owner session signature, expiry, MFA and role enforcement
+        run: npm run test:admin-session
+
+      - name: Test API fail-closed behavior for privileged/financial operations
+        run: npm run test:api-fail-closed
 
       - name: Enforce auth, affiliate and database truth guardrails
         run: npm run test:site-safety
