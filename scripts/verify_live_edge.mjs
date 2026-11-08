@@ -3,15 +3,18 @@ async function verifyLive() {
   console.log('Live Deploy SHA:', v.deploy_sha);
 
   const html = await fetch('https://inshatech-b6b.pages.dev/').then(r=>r.text());
-  console.log('Has v400 cache buster:', html.includes('20261108_v400_diagram_cinematic_motion'));
+  console.log('Has v500 cache buster:', html.includes('20261108_v500_diagram_supreme_replica'));
   console.log('Has HLS.js streaming script:', html.includes('hls.js@1'));
   console.log('Has video backdrop tag:', html.includes('id="global-3d-bg-video"'));
-  console.log('Has hero-telemetry-grid:', html.includes('hero-telemetry-grid'));
-  console.log('Has ponder-pill-primary:', html.includes('ponder-pill-primary'));
-  console.log('Has 01 // Inbound Prospect:', html.includes('01 // Inbound Prospect'));
+  console.log('Has Section s1:', html.includes('data-diagram-section="s1"'));
+  console.log('Has Section s2:', html.includes('data-diagram-section="s2"'));
+  console.log('Has Section s3:', html.includes('data-diagram-section="s3"'));
+  console.log('Has Section s4:', html.includes('data-diagram-section="s4"'));
+  console.log('Has Section s5:', html.includes('data-diagram-section="s5"'));
+  console.log('Has Section s6:', html.includes('data-diagram-section="s6"'));
 
   const aff = await fetch('https://inshatech-b6b.pages.dev/affiliate-dashboard.html').then(r=>r.text());
-  console.log('Affiliate dashboard has v400:', aff.includes('20261108_v400_diagram_cinematic_motion'));
+  console.log('Affiliate dashboard has v500:', aff.includes('20261108_v500_diagram_supreme_replica'));
 
   const admin = await fetch('https://inshatech-b6b.pages.dev/admin.html').then(r=>r.text());
   console.log('Admin has bypass logic:', admin.includes('instantOwnerBypass'));

@@ -1,125 +1,111 @@
 /**
- * IINSHA AI LAB — Fullsite 3D Kinetic Neural Mesh & Cybernetic Core Engine v6.0
- * Architecture: ChainGPT + Zero-Tech + Active Theory + Lorenzo Lottici + Apiant
- * 
+ * DIAGRAM CELESTIAL SOLAR SYSTEM & PLANETARY 3D ORBIT ENGINE
+ * Replicates Diagram's iconic celestial orbit system (diagram.com / landing.love/sites/diagram/#s1)
  * Features:
- * - Central 3D Pulsating Neural Core with volumetric breathing corona & chromatic glow
- * - Dynamic kinetic synaptic energy packets traveling across laser filaments (synapses firing)
- * - Concentric 3D orbital rings with rotating targeting reticles & tick dashes
- * - Interactive mouse gravitational attraction & click shockwave ripples
- * - Full-viewport (100vw x 100vh) scroll-reactive 3D constellation running top-to-bottom
- * - 60+ FPS high-performance Canvas 2D matrix, high-DPI scaling, and power-efficient pause/play
+ * - Central Pulsating Solar Core with Volumetric Breathing Corona
+ * - 6 Major Orbiting Planets (Magician, Automator, Genius, UI-AI, Prototyper, Enterprise)
+ * - Concentric 3D Dashed Elliptical Orbital Rings
+ * - Synaptic Laser Filaments with Traveling Light Spark Packets
+ * - Full-Viewport Interactive Mouse Attraction & Scroll-Reactive Perspective
  */
 
 (function() {
     'use strict';
 
-    const HERO3D_CONFIG = {
-        particleCount: window.innerWidth < 768 ? 36 : 84,
-        nodeCount: window.innerWidth < 768 ? 18 : 36,
-        colors: {
-            core: '#8B5CF6',
-            cyan: '#38BDF8',
-            violet: '#6366F1',
-            gold: '#F59E0B',
-            emerald: '#10B981',
-            magenta: '#EC4899',
-            particles: ['#6366F1', '#8B5CF6', '#EC4899', '#38BDF8', '#F59E0B', '#10B981', '#FFFFFF', '#C084FC']
-        },
-        mouse: { x: 0, y: 0, targetX: 0, targetY: 0, isHovered: false, clickX: 0, clickY: 0, clickTime: 0 },
+    const DIAGRAM_CONFIG = {
+        isPaused: false,
+        isVisible: true,
+        isReducedMotion: false,
         scrollY: 0,
         lastScrollY: 0,
         scrollVelocity: 0,
         scrollProgress: 0,
-        isVisible: true,
-        isPaused: false,
-        isReducedMotion: false
+        mouse: { x: 0, y: 0, targetX: 0, targetY: 0, clickX: 0, clickY: 0, clickTime: 0 }
     };
 
-    function initHero3D() {
+    // 6 Iconic Celestial Planets (Diagram Tools: Magician, Automator, Genius, UI-AI, Prototyper, Enterprise)
+    const PLANETS = [
+        { name: 'Magician', color: '#8B5CF6', aura: 'rgba(139, 92, 246, 0.45)', radius: 15, orbitR: 150, speed: 0.0022, angle: 0, tilt: 0.35 },
+        { name: 'Automator', color: '#38BDF8', aura: 'rgba(56, 189, 248, 0.45)', radius: 17, orbitR: 240, speed: -0.0016, angle: 1.2, tilt: -0.42 },
+        { name: 'Genius', color: '#EC4899', aura: 'rgba(236, 72, 153, 0.50)', radius: 19, orbitR: 330, speed: 0.0012, angle: 2.5, tilt: 0.28 },
+        { name: 'UI-AI', color: '#6366F1', aura: 'rgba(99, 102, 241, 0.45)', radius: 16, orbitR: 420, speed: -0.0009, angle: 3.8, tilt: -0.32 },
+        { name: 'Prototyper', color: '#10B981', aura: 'rgba(16, 185, 129, 0.45)', radius: 14, orbitR: 510, speed: 0.0007, angle: 4.9, tilt: 0.40 },
+        { name: 'Enterprise', color: '#F59E0B', aura: 'rgba(245, 158, 11, 0.45)', radius: 16, orbitR: 600, speed: -0.0005, angle: 0.6, tilt: -0.25 }
+    ];
+
+    function initDiagram3D() {
         const container = document.getElementById('hero3d-container');
         if (!container) return;
 
-        // Check reduced motion
+        // Motion preferences
         if (typeof window.matchMedia === 'function') {
             const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-            HERO3D_CONFIG.isReducedMotion = motionQuery.matches;
+            DIAGRAM_CONFIG.isReducedMotion = motionQuery.matches;
             if (motionQuery.addEventListener) {
-                motionQuery.addEventListener('change', (e) => {
-                    HERO3D_CONFIG.isReducedMotion = e.matches;
-                });
+                motionQuery.addEventListener('change', e => { DIAGRAM_CONFIG.isReducedMotion = e.matches; });
             }
         }
 
-        // Track visibility
+        // Visibility
         document.addEventListener('visibilitychange', () => {
-            HERO3D_CONFIG.isVisible = !document.hidden;
+            DIAGRAM_CONFIG.isVisible = !document.hidden;
         });
 
-        // Track scroll globally across the entire document
+        // Scroll tracking
         window.addEventListener('scroll', () => {
             const currentY = window.scrollY;
-            HERO3D_CONFIG.scrollVelocity = currentY - HERO3D_CONFIG.lastScrollY;
-            HERO3D_CONFIG.lastScrollY = currentY;
-            HERO3D_CONFIG.scrollY = currentY;
+            DIAGRAM_CONFIG.scrollVelocity = currentY - DIAGRAM_CONFIG.lastScrollY;
+            DIAGRAM_CONFIG.lastScrollY = currentY;
+            DIAGRAM_CONFIG.scrollY = currentY;
 
             const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-            HERO3D_CONFIG.scrollProgress = Math.min(1, Math.max(0, currentY / docHeight));
+            DIAGRAM_CONFIG.scrollProgress = Math.min(1, Math.max(0, currentY / docHeight));
         }, { passive: true });
 
-        // Global mouse & touch tracking
-        window.addEventListener('mousemove', (e) => {
-            HERO3D_CONFIG.mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
-            HERO3D_CONFIG.mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-            HERO3D_CONFIG.mouse.isHovered = true;
+        // Mouse tracking
+        window.addEventListener('mousemove', e => {
+            DIAGRAM_CONFIG.mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+            DIAGRAM_CONFIG.mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
         }, { passive: true });
 
         window.addEventListener('mouseleave', () => {
-            HERO3D_CONFIG.mouse.targetX = 0;
-            HERO3D_CONFIG.mouse.targetY = 0;
-            HERO3D_CONFIG.mouse.isHovered = false;
+            DIAGRAM_CONFIG.mouse.targetX = 0;
+            DIAGRAM_CONFIG.mouse.targetY = 0;
         });
 
-        // Click Shockwave Ripple Trigger (Active Theory / Zero-Tech style)
-        window.addEventListener('click', (e) => {
-            HERO3D_CONFIG.mouse.clickX = e.clientX;
-            HERO3D_CONFIG.mouse.clickY = e.clientY;
-            HERO3D_CONFIG.mouse.clickTime = Date.now();
+        window.addEventListener('click', e => {
+            DIAGRAM_CONFIG.mouse.clickX = e.clientX;
+            DIAGRAM_CONFIG.mouse.clickY = e.clientY;
+            DIAGRAM_CONFIG.mouse.clickTime = Date.now();
         }, { passive: true });
 
-        // Setup Play/Pause toggle button (LittleWebsite style)
+        // Toggle button
         const toggleBtn = document.getElementById('hero-motion-toggle');
         if (toggleBtn) {
-            toggleBtn.addEventListener('click', (e) => {
+            toggleBtn.addEventListener('click', e => {
                 e.preventDefault();
-                HERO3D_CONFIG.isPaused = !HERO3D_CONFIG.isPaused;
+                DIAGRAM_CONFIG.isPaused = !DIAGRAM_CONFIG.isPaused;
                 const pauseIcon = toggleBtn.querySelector('.motion-pause');
                 const playIcon = toggleBtn.querySelector('.motion-play');
-                const videoBackdrop = document.querySelector('.global-video-backdrop, .hero-video-backdrop');
+                const video = document.getElementById('global-3d-bg-video');
 
-                if (HERO3D_CONFIG.isPaused) {
+                if (DIAGRAM_CONFIG.isPaused) {
                     if (pauseIcon) pauseIcon.style.display = 'none';
                     if (playIcon) playIcon.style.display = 'inline-block';
-                    toggleBtn.setAttribute('title', 'Resume 3D Motion');
-                    if (videoBackdrop && typeof videoBackdrop.pause === 'function') videoBackdrop.pause();
+                    if (video && typeof video.pause === 'function') video.pause();
                 } else {
                     if (pauseIcon) pauseIcon.style.display = 'inline-block';
                     if (playIcon) playIcon.style.display = 'none';
-                    toggleBtn.setAttribute('title', 'Pause 3D Motion');
-                    if (videoBackdrop && typeof videoBackdrop.play === 'function') videoBackdrop.play();
+                    if (video && typeof video.play === 'function') video.play().catch(()=>{});
                 }
             });
         }
 
-        // Run high-performance procedural Canvas 3D constellation engine
-        initFullsiteCanvas3D(container);
+        // Mount Canvas
+        mountCanvas(container);
     }
 
-    /**
-     * High-performance 3D Kinetic Neural Mesh & Cybernetic Core Engine
-     * Zero external dependencies • Full viewport • 60+ FPS
-     */
-    function initFullsiteCanvas3D(container) {
+    function mountCanvas(container) {
         container.innerHTML = '';
         const canvas = document.createElement('canvas');
         canvas.className = 'hero3d-canvas';
@@ -141,315 +127,259 @@
             ctx.scale(dpr, dpr);
         }
         resize();
-
         window.addEventListener('resize', () => {
             dpr = Math.min(window.devicePixelRatio || 1, 2);
             resize();
         });
 
-        // 3D Nodes Setup
-        const nodes = [];
-        const count = HERO3D_CONFIG.nodeCount;
-        const baseRadius = Math.min(width, height) * 0.34;
-
-        for (let i = 0; i < count; i++) {
-            const phi = Math.acos(-1 + (2 * i) / count);
-            const theta = Math.sqrt(count * Math.PI) * phi;
-            nodes.push({
-                x: baseRadius * Math.cos(theta) * Math.sin(phi),
-                y: baseRadius * Math.sin(theta) * Math.sin(phi),
-                z: baseRadius * Math.cos(phi),
-                baseX: baseRadius * Math.cos(theta) * Math.sin(phi),
-                baseY: baseRadius * Math.sin(theta) * Math.sin(phi),
-                baseZ: baseRadius * Math.cos(phi),
-                vx: (Math.random() - 0.5) * 0.35,
-                vy: (Math.random() - 0.5) * 0.35,
-                vz: (Math.random() - 0.5) * 0.35,
-                color: HERO3D_CONFIG.colors.particles[i % HERO3D_CONFIG.colors.particles.length],
-                pulse: Math.random() * Math.PI * 2
+        // Background Star Particles
+        const stars = [];
+        const starCount = window.innerWidth < 768 ? 45 : 110;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: (Math.random() - 0.5) * width * 1.8,
+                y: (Math.random() - 0.5) * height * 1.8,
+                z: (Math.random() - 0.5) * 800,
+                size: Math.random() * 2 + 0.8,
+                twinkle: Math.random() * Math.PI * 2,
+                color: ['#ffffff', '#cbd5e1', '#a78bfa', '#7dd3fc'][i % 4]
             });
         }
 
-        // Synaptic Energy Packets (Light packets traveling along network filaments)
-        const synapticPackets = [];
-        const packetCount = 8;
-        for (let p = 0; p < packetCount; p++) {
-            synapticPackets.push({
-                sourceIdx: Math.floor(Math.random() * count),
-                targetIdx: Math.floor(Math.random() * count),
+        // Energy light spark packets traveling between core and planets
+        const sparkPackets = [];
+        for (let i = 0; i < PLANETS.length; i++) {
+            sparkPackets.push({
+                planetIdx: i,
                 progress: Math.random(),
-                speed: 0.006 + Math.random() * 0.008,
-                color: '#FFFFFF'
+                speed: 0.008 + Math.random() * 0.006
             });
         }
 
-        // Ambient floating particles
-        const particles = [];
-        const pCount = HERO3D_CONFIG.particleCount;
-        for (let i = 0; i < pCount; i++) {
-            particles.push({
-                x: (Math.random() - 0.5) * width * 1.5,
-                y: (Math.random() - 0.5) * height * 1.5,
-                z: (Math.random() - 0.5) * 750,
-                vx: (Math.random() - 0.5) * 0.28,
-                vy: (Math.random() - 0.5) * 0.28,
-                color: HERO3D_CONFIG.colors.particles[i % HERO3D_CONFIG.colors.particles.length],
-                size: Math.random() * 2 + 0.8
-            });
-        }
-
-        let rotX = 0;
         let rotY = 0;
-        let curCx = width * 0.65;
-        let curCy = height * 0.45;
-        const fov = 480;
+        let rotX = 0;
+        const fov = 500;
 
         function render() {
             requestAnimationFrame(render);
-
-            if (!HERO3D_CONFIG.isVisible || HERO3D_CONFIG.isPaused) return;
+            if (!DIAGRAM_CONFIG.isVisible || DIAGRAM_CONFIG.isPaused) return;
 
             ctx.clearRect(0, 0, width, height);
 
-            // Smooth mouse follow
-            HERO3D_CONFIG.mouse.x += (HERO3D_CONFIG.mouse.targetX - HERO3D_CONFIG.mouse.x) * 0.05;
-            HERO3D_CONFIG.mouse.y += (HERO3D_CONFIG.mouse.targetY - HERO3D_CONFIG.mouse.y) * 0.05;
+            // Smooth mouse
+            DIAGRAM_CONFIG.mouse.x += (DIAGRAM_CONFIG.mouse.targetX - DIAGRAM_CONFIG.mouse.x) * 0.05;
+            DIAGRAM_CONFIG.mouse.y += (DIAGRAM_CONFIG.mouse.targetY - DIAGRAM_CONFIG.mouse.y) * 0.05;
 
-            // Decay scroll velocity smoothly
-            HERO3D_CONFIG.scrollVelocity *= 0.92;
+            // Rotation
+            DIAGRAM_CONFIG.scrollVelocity *= 0.92;
+            const scrollFactor = DIAGRAM_CONFIG.scrollVelocity * 0.0004;
+            rotY += 0.0018 + scrollFactor + DIAGRAM_CONFIG.mouse.x * 0.0008;
+            rotX += 0.0012 + scrollFactor * 0.6 + DIAGRAM_CONFIG.mouse.y * 0.0008;
 
-            // Rotation driven by time, scroll velocity, and mouse
-            const velFactor = HERO3D_CONFIG.scrollVelocity * 0.0004;
-            rotY += 0.0022 + velFactor + HERO3D_CONFIG.mouse.x * 0.0012;
-            rotX += 0.0015 + velFactor * 0.7 + HERO3D_CONFIG.mouse.y * 0.0012;
-
-            // Dynamic Constellation Center synced with scroll progress
-            const sp = HERO3D_CONFIG.scrollProgress;
-            const targetCx = width * (0.5 + Math.sin(sp * Math.PI * 2.5) * 0.22);
-            const targetCy = height * (0.48 + Math.cos(sp * Math.PI * 2.0) * 0.14);
-            curCx += (targetCx - curCx) * 0.05;
-            curCy += (targetCy - curCy) * 0.05;
+            // Constellation Center panning with scroll
+            const sp = DIAGRAM_CONFIG.scrollProgress;
+            const cx = width * (0.62 - Math.sin(sp * Math.PI * 2) * 0.18);
+            const cy = height * (0.45 + Math.cos(sp * Math.PI * 1.8) * 0.12);
 
             const timeNow = Date.now();
-            const clickAge = timeNow - HERO3D_CONFIG.mouse.clickTime;
+            const clickAge = timeNow - DIAGRAM_CONFIG.mouse.clickTime;
 
-            // 1. Draw Central Pulsating AI Core Sphere (Zero-Tech & ChainGPT style)
-            const corePulse = Math.sin(timeNow * 0.0025);
-            const coreR = Math.max(22, 28 + corePulse * 6);
+            // 1. Render Background Twinkling Starlight
+            for (let i = 0; i < stars.length; i++) {
+                const s = stars[i];
+                s.twinkle += 0.03;
+                const pScale = fov / (fov + s.z + 400);
+                const px = width * 0.5 + s.x * pScale;
+                const py = height * 0.5 + s.y * pScale;
+                const alpha = (0.2 + Math.sin(s.twinkle) * 0.18) * Math.min(1, pScale);
+
+                ctx.beginPath();
+                ctx.arc(px, py, s.size * pScale, 0, Math.PI * 2);
+                ctx.fillStyle = s.color;
+                ctx.globalAlpha = Math.max(0.08, alpha);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
 
             ctx.save();
-            ctx.translate(curCx, curCy);
+            ctx.translate(cx, cy);
 
-            // Volumetric Outer Corona Glow
-            const coronaGrad = ctx.createRadialGradient(0, 0, coreR * 0.2, 0, 0, coreR * 3.8);
-            coronaGrad.addColorStop(0, 'rgba(255, 255, 255, 0.55)');
-            coronaGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.25)');
-            coronaGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.15)');
-            coronaGrad.addColorStop(1, 'transparent');
+            // 2. Central Diagram AI Solar Core with Multi-Color Corona
+            const pulse = Math.sin(timeNow * 0.0028);
+            const coreR = Math.max(26, 34 + pulse * 6);
+
+            // Outer Volumetric Corona
+            const corona = ctx.createRadialGradient(0, 0, coreR * 0.3, 0, 0, coreR * 4.2);
+            corona.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
+            corona.addColorStop(0.25, 'rgba(139, 92, 246, 0.65)');
+            corona.addColorStop(0.55, 'rgba(236, 72, 153, 0.35)');
+            corona.addColorStop(0.85, 'rgba(56, 189, 248, 0.15)');
+            corona.addColorStop(1, 'transparent');
+
             ctx.beginPath();
-            ctx.arc(0, 0, coreR * 3.8, 0, Math.PI * 2);
-            ctx.fillStyle = coronaGrad;
+            ctx.arc(0, 0, coreR * 4.2, 0, Math.PI * 2);
+            ctx.fillStyle = corona;
             ctx.fill();
 
-            // Luminous Inner Core
+            // Inner Core
             const coreGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, coreR);
             coreGrad.addColorStop(0, '#FFFFFF');
-            coreGrad.addColorStop(0.3, 'rgba(255, 255, 255, 0.95)');
-            coreGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.4)');
-            coreGrad.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
+            coreGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.95)');
+            coreGrad.addColorStop(0.75, 'rgba(168, 85, 247, 0.95)');
+            coreGrad.addColorStop(1, 'rgba(99, 102, 241, 0.3)');
+
             ctx.beginPath();
             ctx.arc(0, 0, coreR, 0, Math.PI * 2);
             ctx.fillStyle = coreGrad;
+            ctx.shadowColor = '#8B5CF6';
+            ctx.shadowBlur = 30;
             ctx.fill();
+            ctx.shadowBlur = 0;
 
-            // 2. 3D Orbital Targeting Rings with Segmented Reticle Ticks
-            for (let ring = 0; ring < 3; ring++) {
+            // 3. Render 3D Dashed Orbital Tracks & Orbiting Celestial Planets
+            const cosY = Math.cos(rotY * 0.4);
+            const sinY = Math.sin(rotY * 0.4);
+
+            const projectedPlanets = [];
+
+            for (let i = 0; i < PLANETS.length; i++) {
+                const p = PLANETS[i];
+                if (!DIAGRAM_CONFIG.isReducedMotion) {
+                    p.angle += p.speed;
+                }
+
+                const orbitR = p.orbitR * (width < 768 ? 0.65 : 1);
+                const tilt = p.tilt + rotX * 0.3;
+
+                // Draw Dashed Orbit Track
+                ctx.save();
                 ctx.beginPath();
-                const ringRadius = (baseRadius * (0.65 + ring * 0.35));
-                const ringAngle = rotY * (ring % 2 === 0 ? 1 : -0.75);
-                const tilt = 0.42 + ring * 0.28;
-
-                for (let a = 0; a <= Math.PI * 2; a += 0.12) {
-                    const rx = ringRadius * Math.cos(a);
-                    const rz = ringRadius * Math.sin(a);
-                    const rxRot = rx * Math.cos(ringAngle) - rz * Math.sin(ringAngle);
-                    const rzRot = rz * Math.cos(ringAngle) + rx * Math.sin(ringAngle);
-                    const ryRot = rzRot * Math.sin(tilt);
-                    const zProj = rzRot * Math.cos(tilt);
-
-                    const scale = fov / (fov + zProj + 250);
-                    const px = rxRot * scale;
-                    const py = ryRot * scale;
+                ctx.setLineDash([8, 14]);
+                for (let a = 0; a <= Math.PI * 2; a += 0.08) {
+                    const ox = orbitR * Math.cos(a);
+                    const oz = orbitR * Math.sin(a);
+                    const rx = ox * cosY - oz * sinY;
+                    const rz = oz * cosY + ox * sinY;
+                    const ry = rz * Math.sin(tilt);
+                    const pz = rz * Math.cos(tilt);
+                    const scale = fov / (fov + pz + 300);
+                    const px = rx * scale;
+                    const py = ry * scale;
 
                     if (a === 0) ctx.moveTo(px, py);
                     else ctx.lineTo(px, py);
                 }
                 ctx.closePath();
-                ctx.save();
-                if (ring === 0) {
-                    ctx.setLineDash([12, 16]);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
-                } else if (ring === 1) {
-                    ctx.setLineDash([6, 12]);
-                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.45)';
-                } else {
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
-                }
+                ctx.strokeStyle = 'rgba(139, 92, 246, 0.22)';
                 ctx.lineWidth = 1;
                 ctx.stroke();
                 ctx.restore();
-            }
-            ctx.restore();
 
-            // 3. Project & Render 3D Nodes
-            const projectedNodes = [];
-            const cosY = Math.cos(rotY);
-            const sinY = Math.sin(rotY);
-            const cosX = Math.cos(rotX);
-            const sinX = Math.sin(rotX);
+                // Compute Planet 3D Coordinates
+                const planetX = orbitR * Math.cos(p.angle);
+                const planetZ = orbitR * Math.sin(p.angle);
+                const prx = planetX * cosY - planetZ * sinY;
+                const prz = planetZ * cosY + planetX * sinY;
+                const pry = prz * Math.sin(tilt);
+                const pz = prz * Math.cos(tilt);
+                const scale = fov / (fov + pz + 300);
+                const px = prx * scale;
+                const py = pry * scale;
 
-            for (let i = 0; i < nodes.length; i++) {
-                const n = nodes[i];
-                n.pulse += 0.035;
-
-                if (!HERO3D_CONFIG.isReducedMotion) {
-                    n.x += n.vx;
-                    n.y += n.vy;
-                    n.z += n.vz;
-                    if (Math.abs(n.x) > baseRadius * 1.3) n.vx *= -1;
-                    if (Math.abs(n.y) > baseRadius * 1.3) n.vy *= -1;
-                    if (Math.abs(n.z) > baseRadius * 1.3) n.vz *= -1;
-
-                    // Click shockwave expansion (Active Theory)
-                    if (clickAge < 800) {
-                        const waveProgress = clickAge / 800;
-                        const waveRadius = waveProgress * Math.max(width, height) * 0.8;
-                        const distToClick = Math.hypot(n.x + curCx - HERO3D_CONFIG.mouse.clickX, n.y + curCy - HERO3D_CONFIG.mouse.clickY);
-                        if (Math.abs(distToClick - waveRadius) < 100) {
-                            n.x += (Math.random() - 0.5) * 4;
-                            n.y += (Math.random() - 0.5) * 4;
-                        }
-                    }
-                }
-
-                // 3D rotation
-                const x1 = n.x * cosY - n.z * sinY;
-                const z1 = n.z * cosY + n.x * sinY;
-                const y2 = n.y * cosX - z1 * sinX;
-                const z2 = z1 * cosX + n.y * sinX;
-
-                // Perspective projection
-                const scale = fov / (fov + z2 + 250);
-                const px = curCx + x1 * scale;
-                const py = curCy + y2 * scale;
-                const alpha = Math.max(0.12, Math.min(0.9, (z2 + baseRadius) / (baseRadius * 2)));
-
-                projectedNodes.push({ px, py, z2, scale, alpha, color: n.color, pulse: n.pulse });
+                projectedPlanets.push({
+                    name: p.name,
+                    px, py, pz, scale,
+                    radius: p.radius * scale,
+                    color: p.color,
+                    aura: p.aura
+                });
             }
 
-            // 4. Connective Laser Filaments
-            const maxDist = 145;
-            const validConnections = [];
-            for (let i = 0; i < projectedNodes.length; i++) {
-                for (let j = i + 1; j < projectedNodes.length; j++) {
-                    const p1 = projectedNodes[i];
-                    const p2 = projectedNodes[j];
-                    const dx = p1.px - p2.px;
-                    const dy = p1.py - p2.py;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+            // Sort planets back-to-front for proper 3D depth
+            projectedPlanets.sort((a, b) => b.pz - a.pz);
 
-                    if (dist < maxDist) {
-                        validConnections.push({ i, j, p1, p2, dist });
-                        const lineAlpha = (1 - dist / maxDist) * Math.min(p1.alpha, p2.alpha) * 0.85;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.px, p1.py);
-                        ctx.lineTo(p2.px, p2.py);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha.toFixed(3)})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
+            // 4. Draw Connective Laser Filaments between Core and Planets
+            for (let i = 0; i < projectedPlanets.length; i++) {
+                const pl = projectedPlanets[i];
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(pl.px, pl.py);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
             }
 
-            // 5. Draw Traveling Synaptic Energy Packets (Synapses Firing)
-            for (let p = 0; p < synapticPackets.length; p++) {
-                const pkt = synapticPackets[p];
-                pkt.progress += pkt.speed;
-                if (pkt.progress >= 1) {
-                    pkt.progress = 0;
-                    pkt.sourceIdx = Math.floor(Math.random() * projectedNodes.length);
-                    pkt.targetIdx = (pkt.sourceIdx + 1 + Math.floor(Math.random() * 4)) % projectedNodes.length;
-                }
+            // 5. Draw Traveling Synaptic Energy Spark Packets
+            for (let i = 0; i < sparkPackets.length; i++) {
+                const spk = sparkPackets[i];
+                spk.progress += spk.speed;
+                if (spk.progress >= 1) spk.progress = 0;
 
-                const sNode = projectedNodes[pkt.sourceIdx];
-                const tNode = projectedNodes[pkt.targetIdx];
-                if (sNode && tNode) {
-                    const sparkX = sNode.px + (tNode.px - sNode.px) * pkt.progress;
-                    const sparkY = sNode.py + (tNode.py - sNode.py) * pkt.progress;
+                const targetPl = projectedPlanets[spk.planetIdx % projectedPlanets.length];
+                if (targetPl) {
+                    const sx = targetPl.px * spk.progress;
+                    const sy = targetPl.py * spk.progress;
 
                     ctx.beginPath();
-                    ctx.arc(sparkX, sparkY, 2.4, 0, Math.PI * 2);
+                    ctx.arc(sx, sy, 3, 0, Math.PI * 2);
                     ctx.fillStyle = '#FFFFFF';
-                    ctx.shadowColor = '#ffffff';
-                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = targetPl.color;
+                    ctx.shadowBlur = 12;
                     ctx.fill();
                     ctx.shadowBlur = 0;
                 }
             }
 
-            // 6. Draw Nodes with soft neon halos
-            for (let i = 0; i < projectedNodes.length; i++) {
-                const p = projectedNodes[i];
-                const r = Math.max(2.0, 3.6 * p.scale + Math.sin(p.pulse) * 0.7);
+            // 6. Render Celestial Planets with Volumetric Atmosphere
+            for (let i = 0; i < projectedPlanets.length; i++) {
+                const pl = projectedPlanets[i];
+                const r = Math.max(7, pl.radius);
 
-                // Halo
+                // Volumetric Atmosphere Halo
+                const auraGrad = ctx.createRadialGradient(pl.px, pl.py, r * 0.4, pl.px, pl.py, r * 2.8);
+                auraGrad.addColorStop(0, pl.color);
+                auraGrad.addColorStop(0.5, pl.aura);
+                auraGrad.addColorStop(1, 'transparent');
+
                 ctx.beginPath();
-                ctx.arc(p.px, p.py, r * 3.0, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${(p.alpha * 0.22).toFixed(3)})`;
+                ctx.arc(pl.px, pl.py, r * 2.8, 0, Math.PI * 2);
+                ctx.fillStyle = auraGrad;
                 ctx.fill();
 
-                // Solid Core
-                ctx.beginPath();
-                ctx.arc(p.px, p.py, r, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.alpha;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-            }
+                // Solid Planet Sphere
+                const sphereGrad = ctx.createRadialGradient(pl.px - r * 0.3, pl.py - r * 0.3, 1, pl.px, pl.py, r);
+                sphereGrad.addColorStop(0, '#FFFFFF');
+                sphereGrad.addColorStop(0.35, pl.color);
+                sphereGrad.addColorStop(1, '#05070f');
 
-            // 7. Draw Ambient Cyber Micro-Particles
-            for (let i = 0; i < particles.length; i++) {
-                const pt = particles[i];
-                if (!HERO3D_CONFIG.isReducedMotion) {
-                    pt.x += pt.vx;
-                    pt.y += pt.vy;
-                    if (pt.x < -width * 0.6) pt.x = width * 0.6;
-                    if (pt.x > width * 0.6) pt.x = -width * 0.6;
-                    if (pt.y < -height * 0.6) pt.y = height * 0.6;
-                    if (pt.y > height * 0.6) pt.y = -height * 0.6;
+                ctx.beginPath();
+                ctx.arc(pl.px, pl.py, r, 0, Math.PI * 2);
+                ctx.fillStyle = sphereGrad;
+                ctx.shadowColor = pl.color;
+                ctx.shadowBlur = 18;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Planet Name Label (Diagram Tool Tag)
+                if (width > 600) {
+                    ctx.font = '600 10px JetBrains Mono, monospace';
+                    ctx.fillStyle = 'rgba(241, 245, 249, 0.85)';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(pl.name, pl.px, pl.py + r + 14);
                 }
-
-                const px = width * 0.5 + pt.x;
-                const py = height * 0.5 + pt.y;
-                const pScale = fov / (fov + pt.z + 300);
-
-                ctx.beginPath();
-                ctx.arc(px, py, pt.size * pScale, 0, Math.PI * 2);
-                ctx.fillStyle = pt.color;
-                ctx.globalAlpha = Math.max(0.08, Math.min(0.4, pScale * 0.35));
-                ctx.fill();
-                ctx.globalAlpha = 1;
             }
+
+            ctx.restore();
         }
 
         render();
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHero3D);
+        document.addEventListener('DOMContentLoaded', initDiagram3D);
     } else {
-        initHero3D();
+        initDiagram3D();
     }
 
-    window.initHero3D = initHero3D;
+    window.initDiagram3D = initDiagram3D;
 })();
