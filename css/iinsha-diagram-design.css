@@ -411,6 +411,12 @@ body.iinsha-diagram-redesign .service-panel {
   gap: 12px;
 }
 body.iinsha-diagram-redesign .service-panel.search-visible { display: grid !important; }
+body.iinsha-diagram-redesign #services.service-searching .service-panel.active:not(.search-visible) { display: none !important; }
+body.iinsha-diagram-redesign .service-nav-tabs[hidden] { display: none !important; }
+body.iinsha-diagram-redesign .service-discovery-clear[hidden] { display: none !important; }
+body.iinsha-diagram-redesign #hero3d-container.diagram-webgl-fallback::before { content: ''; position: absolute; inset: 8% 20%; border: 1px solid rgba(145,130,255,.2); border-radius: 50%; box-shadow: 0 0 70px rgba(120,108,240,.12), inset 0 0 65px rgba(100,185,205,.07); }
+body.iinsha-diagram-redesign #hero3d-container.diagram-webgl-fallback::after { content: ''; position: absolute; inset: 23% 8%; border: 1px solid rgba(116,220,232,.13); border-radius: 50%; transform: rotate(-18deg); }
+body.iinsha-diagram-redesign #hero3d-container canvas { position: relative; z-index: 1; }
 body.iinsha-diagram-redesign .service-item-card[hidden] { display: none !important; }
 body.iinsha-diagram-redesign .service-discovery-bar {
   margin: 0 auto 22px;
@@ -509,7 +515,7 @@ body.iinsha-diagram-redesign.has-diagram-motion .diagram-bento-card:nth-child(4)
   body.iinsha-diagram-redesign .service-panel { grid-template-columns: minmax(0,1fr); }
   body.iinsha-diagram-redesign .service-discovery-bar { grid-template-columns: minmax(0,1fr); }
   body.iinsha-diagram-redesign .service-discovery-meta { white-space: normal; }
-  body.iinsha-diagram-redesign .service-founder-card .hero-founder-links { flex-wrap: wrap; }
+  body.iinsha-diagram-redesign .hero-founder-card .hero-founder-links { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
   body.iinsha-diagram-redesign *,

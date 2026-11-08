@@ -16,7 +16,10 @@ export function verifySiteSafety(){
  const wrangler=read('wrangler.toml'),version=read('functions/api/version.js');
  const routes=['portal','stats','track','convert','attribution','payout','fraud_radar'].map(n=>read('functions/api/affiliate/'+n+'.js'));
  need(index,'togglePrimaryNavigation(this)','mobile navigation control');
- need(index,'hero-network-visual','homepage hero visual');
+ need(index,'id="hero3d-container"','homepage WebGL hero container');
+ need(index,'id="iinsha-hero-canvas"','homepage WebGL canvas');
+ need(index,'id="bento-capabilities"','capability bento section');
+ need(index,'id="service-live-search"','instant service discovery');
  need(index,'sticky-mobile-cta-close','dismissible mobile contact bar');
  need(ux,'iinsha-toast-close','dismissible notification');
  need(ux,'initStickyCtaDismissal','mobile CTA dismissal handler');
