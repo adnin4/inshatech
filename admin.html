@@ -544,13 +544,9 @@
 
             <!-- STEP 1: PASSWORD AUTH -->
             <div id="auth-step-1">
-                <button type="button" onclick="instantOwnerBypass()" style="background: #ffffff; color: #020202; color:#000; font-weight:800; padding:14px 20px; border:none; border-radius:10px; cursor:pointer; width:100%; font-size:1rem; margin-bottom:16px; box-shadow:0 0 25px rgba(16, 185, 129, 0.4); display:flex; align-items:center; justify-content:center; gap:8px; transition:transform 0.2s;">
-                    ⚡ 1-Click Instant Owner Access (Auto-Login)
-                </button>
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.7rem; color:#64748b; font-family:monospace;">OR ENTER MASTER COMMANDER CREDENTIALS</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
                 <p style="font-size:0.8rem; color:#94a3b8; color:#94a3b8; margin-bottom:14px; line-height:1.4;">Step 1 of 2: Enter Master Commander Security Credentials to initiate session authentication.</p>
                 <input type="email" id="admin-email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
-                <input type="password" id="admin-password" placeholder="Enter Master Commander Password (or 123456)" value="123456" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
+                <input type="password" id="admin-password" placeholder="Enter Master Commander Password" value="" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
                 <button id="admin-login-btn" onclick="submitAdminStep1()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
             </div>
 
@@ -562,10 +558,7 @@
                     <div id="sms-toast-notify" style="font-size:0.73rem; color:#34d399; margin-top:4px;">⚡ Server Challenge Active — Enter 6-digit TOTP code.</div>
                 </div>
                 <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Step 2 of 2: Enter the 6-digit time-based code from your authenticator device:</p>
-                <input type="text" id="admin-otp-code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:8px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
-                <button type="button" onclick="document.getElementById('admin-otp-code').value='123456'; verifyAdminStep2();" style="background:rgba(0,242,254,0.1); border:1px solid rgba(0,242,254,0.3); color:var(--accent-cyan); font-size:0.75rem; border-radius:6px; padding:6px 10px; margin-bottom:12px; cursor:pointer; width:100%;">
-                    ⚡ Auto-Fill Emergency Owner Verification Key (123456)
-                </button>
+                <input type="text" id="admin-otp-code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:14px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
                 <button id="admin-verify-btn" onclick="verifyAdminStep2()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">🔐 Complete MFA Verification & Unlock C-Panel</button>
                 <button onclick="backToStep1()" style="background:none; border:none; color:#64748b; font-size:0.75rem; margin-top:10px; cursor:pointer; text-decoration:underline;">← Back to Credentials</button>
             </div>
@@ -574,28 +567,8 @@
         </div>
     </div>
     <script>
-
-        function instantOwnerBypass() {
-            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-            sessionStorage.setItem('iinsha_2fa_verified', 'true');
-            sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-            sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email: 'inshatech.dev@gmail.com', role: 'owner' }));
-            const overlay = document.getElementById('admin-auth-overlay');
-            if (overlay) overlay.style.display = 'none';
-            if (typeof loadAllAdminData === 'function') loadAllAdminData();
-            if (typeof renderKanbanInCockpit === 'function') renderKanbanInCockpit();
-            if (window.showToast) window.showToast('⚡ Owner Session Active: Master Control Plane Unlocked', 'success');
-        }
-    
-
         // Check for existing valid server session on page load
         (async function checkExistingAdminSession() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('bypass') === 'true' || urlParams.get('owner') === 'true') {
-                instantOwnerBypass();
-                return;
-            }
-
             const token = sessionStorage.getItem('iinsha_session_token');
             const overlay = document.getElementById('admin-auth-overlay');
             if (!token) {
@@ -1984,7 +1957,7 @@
             if (existing) existing.remove();
             const modal = document.createElement('div');
             modal.id = 'admin-universal-modal';
-            modal.style.css?v=20261109_v900_diagram_master_replicaText = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
+            modal.style.css?v=20261109_v900_diagram_master_replica = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
             modal.innerHTML = `
                 <div style="background: transparent; border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow: none; color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
                     <div style="padding:16px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display:flex; justify-content:space-between; align-items:center;">
@@ -2456,7 +2429,7 @@
             if (!modal) {
                 modal = document.createElement('div');
                 modal.id = 'admin-add-partner-modal';
-                modal.style.css?v=20261109_v900_diagram_master_replicaText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:9999999; padding:20px; box-sizing:border-box;';
+                modal.style.css?v=20261109_v900_diagram_master_replica = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:9999999; padding:20px; box-sizing:border-box;';
                 document.body.appendChild(modal);
             }
 
@@ -3174,7 +3147,7 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'admin-toast-el';
-                toast.style.css?v=20261109_v900_diagram_master_replicaText = 'position:fixed; bottom:24px; right:24px; background: transparent; border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow: none; display:none;';
+                toast.style.css?v=20261109_v900_diagram_master_replica = 'position:fixed; bottom:24px; right:24px; background: transparent; border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow: none; display:none;';
                 document.body.appendChild(toast);
             }
             toast.textContent = msg;

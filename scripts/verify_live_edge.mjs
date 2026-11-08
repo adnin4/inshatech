@@ -3,7 +3,7 @@ async function verifyLive() {
   console.log('Live Deploy SHA:', v.deploy_sha);
 
   const html = await fetch('https://inshatech-b6b.pages.dev/').then(r=>r.text());
-  console.log('Has v800 cache buster:', html.includes('20261109_v800_diagram_master'));
+  console.log('Has v900 cache buster:', html.includes('20261109_v900_diagram_master_replica'));
   console.log('Has WebGL2 Diagram Scene Canvas:', html.includes('id="iinsha-diagram-scene"'));
   console.log('Has Centered Hero Stage:', html.includes('hero-centered-stage'));
   console.log('Has Bento Capabilities Section:', html.includes('id="bento-capabilities"'));
@@ -19,7 +19,7 @@ async function verifyLive() {
   console.log('Has Section s6:', html.includes('data-diagram-section="s6"'));
 
   const aff = await fetch('https://inshatech-b6b.pages.dev/affiliate-dashboard.html').then(r=>r.text());
-  console.log('Affiliate dashboard has v800:', aff.includes('20261109_v800_diagram_master'));
+  console.log('Affiliate dashboard has v900:', aff.includes('20261109_v900_diagram_master_replica'));
 
   const admin = await fetch('https://inshatech-b6b.pages.dev/admin.html').then(r=>r.text());
   console.log('Admin has bypass logic:', admin.includes('instantOwnerBypass'));
