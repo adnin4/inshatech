@@ -147,14 +147,14 @@
                     }
                     #iinsha-copilot-trigger:hover {
                         transform: translateY(-4px) scale(1.03) !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(99, 102, 241, 0.55) !important;
                     }
                     .copilot-trigger-avatar {
                         width: 40px !important;
                         height: 40px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #a855f7 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -183,7 +183,7 @@
                     }
                     .copilot-trigger-subtitle {
                         font-size: 0.72rem !important;
-                        color: #38bdf8 !important;
+                        color: #ffffff !important;
                         font-weight: 500 !important;
                     }
                     #iinsha-copilot-window {
@@ -237,7 +237,7 @@
                         width: 36px !important;
                         height: 36px !important;
                         border-radius: 12px !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #a855f7 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -289,7 +289,7 @@
                     .copilot-ctrl-btn:hover {
                         background: rgba(255, 255, 255, 0.15) !important;
                         color: #ffffff !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                     }
                     .copilot-chips-bar {
                         padding: 10px 14px !important;
@@ -315,7 +315,7 @@
                     }
                     .copilot-chip:hover {
                         background: rgba(99, 102, 241, 0.2) !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                         color: #ffffff !important;
                         transform: translateY(-2px) !important;
                     }
@@ -350,7 +350,7 @@
                         width: 28px !important;
                         height: 28px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -427,7 +427,7 @@
                         width: 34px !important;
                         height: 34px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #ffffff 100%) !important;
                         border: none !important;
                         color: #ffffff !important;
                         display: flex !important;
@@ -499,7 +499,7 @@
                         <defs>
                             <linearGradient id="geminiGradTrig" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="50%" stop-color="#38bdf8" />
+                                <stop offset="50%" stop-color="#ffffff" />
                                 <stop offset="100%" stop-color="#818cf8" />
                             </linearGradient>
                         </defs>
@@ -518,7 +518,7 @@
             teaser.id = 'iinsha-copilot-teaser';
             teaser.innerHTML = `
                 <div style="flex:1;">
-                    <strong style="color:#38bdf8; display:block; margin-bottom:2px;">âœ¨ Deploy Enterprise AI for your Business</strong>
+                    <strong style="color:#ffffff; display:block; margin-bottom:2px;">âœ¨ Deploy Enterprise AI for your Business</strong>
                     Ask about 24/7 AI agents, pricing, or paste your website URL to build an automated product catalog in 20 mins!
                 </div>
                 <button class="teaser-close" title="Close">âœ•</button>
@@ -574,15 +574,15 @@
                 <!-- Mini Mission Console HUD -->
                 <div class="copilot-mission-mini-hud" style="background:rgba(15,23,42,0.9); padding:6px 14px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.72rem; font-family:'Inter',sans-serif; display:flex; justify-content:space-between; align-items:center;">
                     <div style="display:flex; align-items:center; gap:6px;">
-                        <span style="color:#38bdf8; font-family:monospace; font-weight:700;">MISSION: #8421</span>
+                        <span style="color:#ffffff; font-family:monospace; font-weight:700;">MISSION: #8421</span>
                         <span style="color:#94a3b8;">â€¢</span>
                         <span style="color:#34d399; font-size:0.68rem; font-weight:600;">5 AGENTS ACTIVE</span>
                     </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <div style="width:60px; height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden;">
-                            <div style="width:78%; height:100%; background:linear-gradient(90deg, #38bdf8, #34d399);"></div>
+                            <div style="width:78%; height:100%; background:linear-gradient(90deg, #ffffff, #34d399);"></div>
                         </div>
-                        <span style="color:#38bdf8; font-family:monospace; font-size:0.68rem;">78%</span>
+                        <span style="color:#ffffff; font-family:monospace; font-size:0.68rem;">78%</span>
                     </div>
                 </div>
 
@@ -660,7 +660,7 @@
                 ttsBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     this.ttsEnabled = !this.ttsEnabled;
-                    ttsBtn.style.color = this.ttsEnabled ? '#00f2fe' : '';
+                    ttsBtn.style.color = this.ttsEnabled ? '#ffffff' : '';
                     ttsBtn.innerHTML = this.ttsEnabled ? 'ðŸ”Š' : 'ðŸ”‡';
                     if (!this.ttsEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
                 });
@@ -884,7 +884,7 @@
         renderIngestionPrompt() {
             const html = `
                 <div class="copilot-ingestor-box">
-                    <strong style="color:#00f2fe; display:block; font-size:0.85rem;">âš¡ 20-Minute E-Commerce Database Builder</strong>
+                    <strong style="color:#ffffff; display:block; font-size:0.85rem;">âš¡ 20-Minute E-Commerce Database Builder</strong>
                     <p style="font-size:0.74rem; color:#cbd5e1; margin:4px 0 8px 0;">
                         à¦†à¦ªà¦¨à¦¾à¦° à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿ à¦¬à¦¾ à¦…à¦¨à¦²à¦¾à¦‡à¦¨ à¦¶à¦ªà§‡à¦° à¦²à¦¿à¦‚à¦• à¦¦à¦¿à¦¨à¥¤ à¦†à¦®à¦¾à¦¦à§‡à¦° AI à¦•à§à¦°à¦²à¦¾à¦° à¦•à§à¦¯à¦¾à¦Ÿà¦¾à¦²à¦— à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à§à¦Ÿ à¦•à¦°à§‡ 1536d à¦­à§‡à¦•à§à¦Ÿà¦° à¦à¦®à§à¦¬à§‡à¦¡à¦¿à¦‚ à¦¬à¦¾à¦¨à¦¾à¦¬à§‡ à¦à¦¬à¦‚ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª/à¦®à§‡à¦¸à§‡à¦žà§à¦œà¦¾à¦°à§‡ à¦…à¦Ÿà§‹-à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ à¦°à§‡à¦¡à¦¿ à¦•à¦°à§‡ à¦¦à§‡à¦¬à§‡!
                     </p>
@@ -920,7 +920,7 @@
                         </div>
 
                         <div style="margin-top:10px; padding:10px; background:rgba(0,0,0,0.4); border-radius:8px; border:1px dashed rgba(0,242,254,0.3);">
-                            <span style="font-size:0.7rem; color:#00f2fe; font-weight:700; display:block; margin-bottom:4px;">ðŸ¤– Test Live Ingested Bot:</span>
+                            <span style="font-size:0.7rem; color:#ffffff; font-weight:700; display:block; margin-bottom:4px;">ðŸ¤– Test Live Ingested Bot:</span>
                             <div style="font-size:0.75rem; color:#cbd5e1; font-style:italic;">
                                 "Customer: à¦­à¦¾à¦‡, à¦†à¦ªà¦¨à¦¾à¦¦à§‡à¦° à¦•à¦¾à¦›à§‡ à¦•à¦¿ Wireless ANC Headphones à¦¸à§à¦Ÿà¦• à¦†à¦›à§‡ à¦†à¦° à¦¢à¦¾à¦•à¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦šà¦¾à¦°à§à¦œ à¦•à¦¤?"<br>
                                 "AI Bot: à¦¹à§à¦¯à¦¾à¦ à¦­à¦¾à¦‡! à¦¬à§à¦²à§à¦¯à¦¾à¦• à¦“ à¦¸à¦¿à¦²à¦­à¦¾à¦° à¦•à¦¾à¦²à¦¾à¦°à§‡ à¦¸à§à¦Ÿà¦•à§‡ à¦†à¦›à§‡à¥¤ à¦¦à¦¾à¦® à§³à§ª,à§®à§«à§¦ ($39.60)à¥¤ à¦¢à¦¾à¦•à¦¾à¦° à¦­à§‡à¦¤à¦°à§‡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦šà¦¾à¦°à§à¦œ à¦®à¦¾à¦¤à§à¦° à§³à§­à§¦ à¦à¦¬à¦‚ à§¨à§ª à¦˜à¦£à§à¦Ÿà¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦•à§à¦¯à¦¾à¦¶ à¦…à¦¨ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦ªà¦¾à¦¬à§‡à¦¨à¥¤ à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ à¦à¦–à¦¨à¦‡ à¦…à¦°à§à¦¡à¦¾à¦°à¦Ÿà¦¿ à¦•à¦¨à¦«à¦¾à¦°à§à¦® à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?"
@@ -1087,7 +1087,7 @@
                     <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:4px;">
                         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
                             <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">âœ“ EXECUTION COMPLETE</span>
-                            <span style="font-size:0.7rem; color:#00f2fe; font-family:monospace;">Runtime: 1.84s â€¢ 0% Bounce</span>
+                            <span style="font-size:0.7rem; color:#ffffff; font-family:monospace;">Runtime: 1.84s â€¢ 0% Bounce</span>
                         </div>
 
                         <div style="font-size:0.8rem; line-height:1.6; color:#e2e8f0; margin-bottom:10px;">

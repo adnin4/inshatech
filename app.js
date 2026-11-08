@@ -258,7 +258,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                 <div class="ipc-card">
                     <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">⚡ Quick Command Shortcuts</h4>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">➕ Add New Service</button>
+                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0);">➕ Add New Service</button>
                         <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);"> Publish Blog Article</button>
                         <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">🤝 Approve Partner Sale</button>
                         <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">👥 Admin Credentials CMS</button>
@@ -277,7 +277,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;"> Marketplace Domain CMS (${services.length} Services Active)</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Single Source of Truth Service Registry Catalog.</p>
                     </div>
-                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">➕ Add New Service</button>
+                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:800;">➕ Add New Service</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -708,7 +708,7 @@ function renderAdminLoginFormCard(container) {
             </form>
 
             <div style="margin-top: 10px; text-align: center;">
-                <a href="admin.html" target="_blank" style="display: inline-block; font-size: 0.78rem; color: var(--accent-cyan); text-decoration: none; padding: 6px 14px; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 6px; background: rgba(0, 242, 254, 0.08);">🚀 Open Full-Screen Standalone C-Panel Studio ↗</a>
+                <a href="admin.html" target="_blank" style="display: inline-block; font-size: 0.78rem; color: var(--accent-cyan); text-decoration: none; padding: 6px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; background: rgba(255, 255, 255, 0.08);">🚀 Open Full-Screen Standalone C-Panel Studio ↗</a>
             </div>
 
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
@@ -1099,7 +1099,7 @@ function showIinshaModal({ title, subtitle, icon = '⚡', contentHtml = '', conf
             </div>
             <div style="padding:14px 20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
                 ${cancelText ? `<button id="iinsha-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
-                <button id="iinsha-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">${confirmText}</button>
+                <button id="iinsha-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">${confirmText}</button>
             </div>
         </div>
     `;
@@ -6297,7 +6297,7 @@ const OUTCOME_DEFINITIONS = {
         subtitle: "Automate outbound prospecting, LinkedIn engagement, enrichment, and cold email deliverability without human manual labor.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Autonomous SDR Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Multi-channel lead ingestion (LinkedIn, Apollo, Forms)</li>
@@ -6335,7 +6335,7 @@ const OUTCOME_DEFINITIONS = {
                         <li>Slack & Telegram alert dispatchers</li>
                     </ul>
                 </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">📈 Cost Optimization</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Monthly Savings:</strong> $300-$1,200/mo vs Zapier/Make</li>
@@ -6423,7 +6423,7 @@ const OUTCOME_DEFINITIONS = {
                         <li>Encrypted audit trail & multi-channel emergency alert dispatch</li>
                     </ul>
                 </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">🔒 Security SLA Guarantees</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Monitored Uptime:</strong> 99.98% production availability</li>
@@ -6472,7 +6472,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
         modal.className = 'modal-overlay';
         modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(2,6,23,0.96); backdrop-filter:blur(16px); z-index:10030; align-items:center; justify-content:center; padding:20px;';
         modal.innerHTML = `
-            <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary); border-radius:16px; background:#0f172a; border:1px solid #38bdf8;">
+            <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary); border-radius:16px; background:#0f172a; border:1px solid #ffffff;">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
                     <div>
                         <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:#10b981; font-weight:800; padding:4px 10px; border-radius:6px;">🚀 LIVE INSTANT CHECKOUT</span>
@@ -6484,7 +6484,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                 <div style="background:rgba(0,0,0,0.5); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); margin-bottom:20px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
                         <span style="color:#94a3b8; font-size:0.9rem;">Package Total (USD):</span>
-                        <strong id="checkout-setup-val" style="color:#38bdf8; font-family:monospace; font-size:1.2rem;">$100 USD</strong>
+                        <strong id="checkout-setup-val" style="color:#ffffff; font-family:monospace; font-size:1.2rem;">$100 USD</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between;">
                         <span style="color:#94a3b8; font-size:0.9rem;">Equivalent in BDT:</span>
@@ -6503,7 +6503,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                     </div>
                     <div>
                         <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
-                        <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #38bdf8; color:#fff; border-radius:8px; font-weight:bold;">
+                        <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #ffffff; color:#fff; border-radius:8px; font-weight:bold;">
                             <option value="lemonsqueezy">💳 Lemon Squeezy (Global Visa / Mastercard / Apple Pay)</option>
                             <option value="stripe">💳 Stripe Official Checkout (Global Credit/Debit Cards)</option>
                             <option value="bkash">📱 bKash Merchant / Direct Transfer (Bangladesh)</option>
@@ -6511,7 +6511,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                             <option value="bank">🏛️ City Bank PLC Wire Transfer</option>
                         </select>
                     </div>
-                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #0284c7, #0ea5e9); color:#fff; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
+                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #e2e8f0, #0ea5e9); color:#fff; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
                 </form>
 
                 <div style="text-align:center; font-size:0.75rem; color:#94a3b8;">

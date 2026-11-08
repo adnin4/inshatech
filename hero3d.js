@@ -18,12 +18,12 @@
         particleCount: window.innerWidth < 768 ? 36 : 84,
         nodeCount: window.innerWidth < 768 ? 18 : 36,
         colors: {
-            core: '#00F2FE',
-            cyan: '#00F2FE',
+            core: '#ffffff',
+            cyan: '#ffffff',
             violet: '#8B5CF6',
             gold: '#F59E0B',
             emerald: '#10B981',
-            particles: ['#00F2FE', '#38BDF8', '#818CF8', '#A78BFA', '#34D399', '#F59E0B']
+            particles: ['#ffffff', '#ffffff', '#818CF8', '#A78BFA', '#34D399', '#F59E0B']
         },
         mouse: { x: 0, y: 0, targetX: 0, targetY: 0, isHovered: false, clickX: 0, clickY: 0, clickTime: 0 },
         scrollY: 0,
@@ -241,9 +241,9 @@
 
             // Volumetric Outer Corona Glow
             const coronaGrad = ctx.createRadialGradient(0, 0, coreR * 0.2, 0, 0, coreR * 3.8);
-            coronaGrad.addColorStop(0, 'rgba(0, 242, 254, 0.55)');
+            coronaGrad.addColorStop(0, 'rgba(255, 255, 255, 0.55)');
             coronaGrad.addColorStop(0.35, 'rgba(139, 92, 246, 0.35)');
-            coronaGrad.addColorStop(0.7, 'rgba(0, 242, 254, 0.15)');
+            coronaGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.15)');
             coronaGrad.addColorStop(1, 'transparent');
             ctx.beginPath();
             ctx.arc(0, 0, coreR * 3.8, 0, Math.PI * 2);
@@ -253,9 +253,9 @@
             // Luminous Inner Core
             const coreGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, coreR);
             coreGrad.addColorStop(0, '#FFFFFF');
-            coreGrad.addColorStop(0.3, 'rgba(0, 242, 254, 0.95)');
+            coreGrad.addColorStop(0.3, 'rgba(255, 255, 255, 0.95)');
             coreGrad.addColorStop(0.7, 'rgba(139, 92, 246, 0.8)');
-            coreGrad.addColorStop(1, 'rgba(0, 242, 254, 0.1)');
+            coreGrad.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
             ctx.beginPath();
             ctx.arc(0, 0, coreR, 0, Math.PI * 2);
             ctx.fillStyle = coreGrad;
@@ -287,12 +287,12 @@
                 ctx.save();
                 if (ring === 0) {
                     ctx.setLineDash([12, 16]);
-                    ctx.strokeStyle = 'rgba(0, 242, 254, 0.45)';
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
                 } else if (ring === 1) {
                     ctx.setLineDash([6, 12]);
                     ctx.strokeStyle = 'rgba(139, 92, 246, 0.38)';
                 } else {
-                    ctx.strokeStyle = 'rgba(56, 189, 248, 0.28)';
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
                 }
                 ctx.lineWidth = 1;
                 ctx.stroke();
@@ -363,7 +363,7 @@
                         ctx.beginPath();
                         ctx.moveTo(p1.px, p1.py);
                         ctx.lineTo(p2.px, p2.py);
-                        ctx.strokeStyle = `rgba(0, 242, 254, ${lineAlpha.toFixed(3)})`;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha.toFixed(3)})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
@@ -389,7 +389,7 @@
                     ctx.beginPath();
                     ctx.arc(sparkX, sparkY, 2.4, 0, Math.PI * 2);
                     ctx.fillStyle = '#FFFFFF';
-                    ctx.shadowColor = '#00F2FE';
+                    ctx.shadowColor = '#ffffff';
                     ctx.shadowBlur = 8;
                     ctx.fill();
                     ctx.shadowBlur = 0;
@@ -404,7 +404,7 @@
                 // Halo
                 ctx.beginPath();
                 ctx.arc(p.px, p.py, r * 3.0, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 242, 254, ${(p.alpha * 0.22).toFixed(3)})`;
+                ctx.fillStyle = `rgba(255, 255, 255, ${(p.alpha * 0.22).toFixed(3)})`;
                 ctx.fill();
 
                 // Solid Core
