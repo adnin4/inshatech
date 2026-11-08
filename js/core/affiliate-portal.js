@@ -165,6 +165,63 @@
         localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(data));
     }
 
+    const DEFAULT_LINKS_HISTORY = [
+        {
+            id: 'lnk-seed-1',
+            serviceName: 'B2B SaaS 5-Agent Hunter Swarm',
+            target: 'store.html?product=b2b-lead-swarm',
+            subId: 'linkedin-direct',
+            fullUrl: 'https://inshatech-b6b.pages.dev/store.html?product=b2b-lead-swarm&ref=mahin10&subid=linkedin-direct',
+            commRate: '25% ($212.50 USD)',
+            commEst: '$212.50 USD (৳26,031 BDT)',
+            date: '2026-08-18',
+            clicks: 142,
+            leads: 18,
+            conversions: 5,
+            status: 'Active'
+        },
+        {
+            id: 'lnk-seed-2',
+            serviceName: 'Self-Hosted n8n VPS Cluster Deployment',
+            target: 'store.html?product=n8n-docker-cluster',
+            subId: 'whatsapp-outreach',
+            fullUrl: 'https://inshatech-b6b.pages.dev/store.html?product=n8n-docker-cluster&ref=mahin10&subid=whatsapp-outreach',
+            commRate: '25% ($124.25 USD)',
+            commEst: '$124.25 USD (৳15,220 BDT)',
+            date: '2026-08-19',
+            clicks: 96,
+            leads: 11,
+            conversions: 3,
+            status: 'Active'
+        },
+        {
+            id: 'lnk-seed-3',
+            serviceName: '24/7 E-Commerce WhatsApp Sales Agent',
+            target: 'store.html?product=ecommerce-ai-whatsapp',
+            subId: 'facebook-community',
+            fullUrl: 'https://inshatech-b6b.pages.dev/store.html?product=ecommerce-ai-whatsapp&ref=mahin10&subid=facebook-community',
+            commRate: '25% ($187.50 USD)',
+            commEst: '$187.50 USD (৳22,968 BDT)',
+            date: '2026-08-20',
+            clicks: 110,
+            leads: 14,
+            conversions: 4,
+            status: 'Active'
+        }
+    ];
+
+    function getLinksHistory() {
+        const saved = localStorage.getItem(LINKS_HISTORY_KEY);
+        if (saved) {
+            try { return JSON.parse(saved); } catch (e) {}
+        }
+        return DEFAULT_LINKS_HISTORY;
+    }
+
+    function saveLinksHistory(links) {
+        localStorage.setItem(LINKS_HISTORY_KEY, JSON.stringify(links));
+    }
+
     // Catalog of turnkey solutions
     const OFFERS = [
         { id: 'b2b-lead-swarm', name: 'B2B SaaS 5-Agent Hunter Swarm', priceUSD: 850, priceBDT: 104125, commUSD: 212.50, commBDT: 26031, epc: '$8.40', conversion: '3.4%', category: 'Lead Gen', tag: '🔥 Top Converting', target: 'store.html?product=b2b-lead-swarm' },
@@ -1516,7 +1573,6 @@
     } else {
         window.initAffiliatePortal();
     }
-})();
 
 
     // Generated Links & Campaign History Engine
@@ -1660,3 +1716,4 @@
         if (window.renderGeneratedLinksTable) window.renderGeneratedLinksTable();
         if (window.showAffiliateToast) window.showAffiliateToast('🔄 Campaign history reset to defaults.');
     };
+})();

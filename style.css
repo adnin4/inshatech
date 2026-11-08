@@ -215,22 +215,25 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 /* === PRIMARY TOP NAVBAR & PORTAL TABS (DESKTOP & GLOBAL) === */
 .navbar {
     position: sticky;
-    top: 0;
+    top: 14px;
     z-index: 1000;
-    width: 100%;
-    background: rgba(8, 10, 16, 0.9);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    width: min(94%, 1320px);
+    margin: 14px auto 0 auto;
+    background: rgba(6, 10, 20, 0.78);
+    backdrop-filter: blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border: 1px solid rgba(0, 242, 254, 0.22);
+    border-radius: 9999px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(0, 242, 254, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 62px;
-    padding: 0 24px;
-    max-width: var(--content-wide, 1400px);
+    height: 58px;
+    padding: 0 16px 0 22px;
+    max-width: 100%;
     margin: 0 auto;
 }
 .logo {
@@ -5016,4 +5019,98 @@ select:focus, textarea:focus, .form-input:focus, .dash-select:focus, .calc-selec
 .btn-primary:hover, .btn-primary-glow:hover, .btn-submit:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 0 30px rgba(0, 242, 254, 0.5) !important;
+}
+
+
+/* ==========================================================================
+   AWWWARDS LUXURY EDITORIAL FULLSITE FLOW (ALMA DIGITAL + LITTLEWEBSITE + CHRONICLE HQ)
+   ========================================================================== */
+
+main > section,
+main > div:not(.modal-overlay):not(#auth-overlay):not(.admin-modal-overlay) {
+    background: transparent !important;
+}
+
+/* Translucent Obsidian Glass Surfaces with Dynamic Chronicle HQ Cursor Spotlight */
+.glass-card,
+.ipc-card,
+.solution-card,
+.blueprint-card,
+.store-card,
+.tmpl-card,
+.hero-studio-card {
+    background: rgba(7, 12, 24, 0.65) !important;
+    backdrop-filter: blur(24px) saturate(1.6) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.6) !important;
+    border: 1px solid rgba(0, 242, 254, 0.18) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.glass-card:hover,
+.ipc-card:hover,
+.solution-card:hover,
+.blueprint-card:hover,
+.store-card:hover,
+.tmpl-card:hover,
+.hero-studio-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(0, 242, 254, 0.45) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Chronicle HQ Dynamic Cursor Spotlight */
+.glass-card::before,
+.ipc-card::before,
+.solution-card::before,
+.blueprint-card::before,
+.store-card::before,
+.tmpl-card::before,
+.hero-studio-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 242, 254, 0.12), transparent 45%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.glass-card:hover::before,
+.ipc-card:hover::before,
+.solution-card:hover::before,
+.blueprint-card:hover::before,
+.store-card:hover::before,
+.tmpl-card:hover::before,
+.hero-studio-card:hover::before {
+    opacity: 1;
+}
+
+/* Subtle AltLayer Cybernetic Corner Accents */
+.glass-card::after,
+.ipc-card::after,
+.hero-studio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    border-top: 2px solid rgba(0, 242, 254, 0.5);
+    border-right: 2px solid rgba(0, 242, 254, 0.5);
+    border-top-right-radius: 12px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        top: 8px !important;
+        width: calc(100% - 20px) !important;
+        margin: 8px auto 0 auto !important;
+        border-radius: 16px !important;
+    }
 }

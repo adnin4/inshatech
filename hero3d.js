@@ -40,11 +40,15 @@
         if (!container) return;
 
         // Check reduced motion
-        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        HERO3D_CONFIG.isReducedMotion = motionQuery.matches;
-        motionQuery.addEventListener('change', (e) => {
-            HERO3D_CONFIG.isReducedMotion = e.matches;
-        });
+        if (typeof window.matchMedia === 'function') {
+            const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            HERO3D_CONFIG.isReducedMotion = motionQuery.matches;
+            if (motionQuery.addEventListener) {
+                motionQuery.addEventListener('change', (e) => {
+                    HERO3D_CONFIG.isReducedMotion = e.matches;
+                });
+            }
+        }
 
         // Track visibility
         document.addEventListener('visibilitychange', () => {
