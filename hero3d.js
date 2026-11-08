@@ -25,10 +25,10 @@
 
     // 6 Iconic Celestial Planets (Diagram Tools: Magician, Automator, Genius, UI-AI, Prototyper, Enterprise)
     const PLANETS = [
-        { name: 'Magician', color: '#8B5CF6', aura: 'rgba(139, 92, 246, 0.45)', radius: 15, orbitR: 150, speed: 0.0022, angle: 0, tilt: 0.35 },
-        { name: 'Automator', color: '#38BDF8', aura: 'rgba(56, 189, 248, 0.45)', radius: 17, orbitR: 240, speed: -0.0016, angle: 1.2, tilt: -0.42 },
-        { name: 'Genius', color: '#EC4899', aura: 'rgba(236, 72, 153, 0.50)', radius: 19, orbitR: 330, speed: 0.0012, angle: 2.5, tilt: 0.28 },
-        { name: 'UI-AI', color: '#6366F1', aura: 'rgba(99, 102, 241, 0.45)', radius: 16, orbitR: 420, speed: -0.0009, angle: 3.8, tilt: -0.32 },
+        { name: 'Magician', color: '#8B5CF6', aura: 'rgba(139, 92, 246, 0.45)', radius: 17, orbitR: 160, speed: 0.0022, angle: 0, tilt: 0.35 },
+        { name: 'Automator', color: '#38BDF8', aura: 'rgba(56, 189, 248, 0.45)', radius: 19, orbitR: 260, speed: -0.0016, angle: 1.2, tilt: -0.42 },
+        { name: 'Genius', color: '#EC4899', aura: 'rgba(236, 72, 153, 0.50)', radius: 22, orbitR: 360, speed: 0.0012, angle: 2.5, tilt: 0.28 },
+        { name: 'UI-AI', color: '#6366F1', aura: 'rgba(99, 102, 241, 0.45)', radius: 18, orbitR: 460, speed: -0.0009, angle: 3.8, tilt: -0.32 },
         { name: 'Prototyper', color: '#10B981', aura: 'rgba(16, 185, 129, 0.45)', radius: 14, orbitR: 510, speed: 0.0007, angle: 4.9, tilt: 0.40 },
         { name: 'Enterprise', color: '#F59E0B', aura: 'rgba(245, 158, 11, 0.45)', radius: 16, orbitR: 600, speed: -0.0005, angle: 0.6, tilt: -0.25 }
     ];

@@ -5684,3 +5684,98 @@ table {
 .btn-primary, .btn-primary-glow, .ponder-pill-primary {
     animation: diagramPulseAura 4s ease-in-out infinite !important;
 }
+
+
+/* ==========================================================================
+   DIAGRAM CLEAN BENTO & CENTERED HERO (diagram.com / landing.love/sites/diagram)
+   ========================================================================== */
+
+.hero-centered-stage {
+    text-align: center !important;
+    max-width: 980px !important;
+    margin: 0 auto !important;
+    padding: 110px 24px 90px 24px !important;
+    position: relative !important;
+    z-index: 4 !important;
+}
+
+.hero-centered-stage .hero-awwwards-tag {
+    margin: 0 auto 24px auto !important;
+    display: inline-flex !important;
+}
+
+.hero-centered-stage .hero-title {
+    font-size: clamp(3.2rem, 7.5vw, 5.5rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1.05 !important;
+    margin: 0 auto 24px auto !important;
+    max-width: 900px !important;
+}
+
+.hero-centered-stage .hero-subtitle {
+    font-size: clamp(1.15rem, 2vw, 1.35rem) !important;
+    color: #94a3b8 !important;
+    max-width: 720px !important;
+    margin: 0 auto 36px auto !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+}
+
+.hero-centered-stage .hero-actions {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px !important;
+    flex-wrap: wrap !important;
+    margin: 0 auto 48px auto !important;
+}
+
+.hero-centered-stage .hero-trust-strip {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 32px !important;
+    flex-wrap: wrap !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    max-width: 780px !important;
+    margin: 0 auto !important;
+    padding-top: 30px !important;
+}
+
+/* DIAGRAM 4-CARD BENTO GRID */
+.diagram-bento-grid {
+    display: grid !important;
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 24px !important;
+    margin: 40px auto 80px auto !important;
+    max-width: 1240px !important;
+    padding: 0 24px !important;
+}
+
+.bento-card-large {
+    grid-column: span 7 !important;
+}
+
+.bento-card-medium {
+    grid-column: span 5 !important;
+}
+
+.bento-card-half {
+    grid-column: span 6 !important;
+}
+
+.bento-card-full {
+    grid-column: span 12 !important;
+}
+
+@media screen and (max-width: 992px) {
+    .bento-card-large, .bento-card-medium, .bento-card-half {
+        grid-column: span 12 !important;
+    }
+}
+
+/* SECTION BREATHING ROOM */
+section {
+    padding: clamp(80px, 12vh, 140px) 0 !important;
+}
