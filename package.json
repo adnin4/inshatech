@@ -15,7 +15,8 @@
     "e2e": "node scripts/public_site_e2e.mjs",
     "test:truth": "node scripts/verify_production_truth.js",
     "verify": "node scripts/verify_all_system_claims.mjs && node scripts/run_final_activation_mission.mjs",
-    "build": "node scripts/build_pages.mjs"
+    "build": "node scripts/build_pages.mjs",
+    "test:site-safety": "node scripts/verify_site_safety.mjs"
   },
   "keywords": [
     "ai-bos",
