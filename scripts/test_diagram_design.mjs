@@ -35,7 +35,7 @@ for (const [name, source] of [['index.html', html], ['live_index.html', liveHtml
   assert.match(source, /src\/js\/iinsha-diagram-motion\.js/, name + ' must load the motion engine');
 }
 assert.equal((html.match(/class="diagram-bento-card/g) || []).length, 4, 'exactly four capability bento cards');
-assert.ok((html.match(/class="service-item-card"/g) || []).length >= 40, 'existing detailed service catalogue must remain');
+assert.ok((html.match(/class="service-item-card"/g) || []).length >= 80, 'all 80 existing detailed service cards must remain');
 assert.match(motion, /getContext\('webgl'/, 'motion engine must attempt real WebGL');
 assert.match(motion, /diagram-webgl-fallback/, 'WebGL failure must have a fallback');
 assert.match(motion, /prefers-reduced-motion/, 'motion engine must respect reduced-motion settings');
@@ -49,4 +49,4 @@ assert.match(html, /id="architecture-builder"/, 'existing architecture builder m
 assert.match(html, /id="roi-calculator"/, 'existing ROI calculator must remain');
 assert.match(html, /id="sticky-mobile-cta-btn"/, 'existing mobile CTA must remain');
 
-console.log('Diagram design tests: PASS (23 pages themed, WebGL hero, 4-card bento, 80+ service catalogue structure, service search, reduced motion, core modules preserved).');
+console.log('Diagram design tests: PASS (23 pages themed, WebGL hero, 4-card bento, all 80 service cards, service search, reduced motion, core modules preserved).');
