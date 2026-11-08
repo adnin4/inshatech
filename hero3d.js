@@ -20,10 +20,10 @@
         colors: {
             core: '#ffffff',
             cyan: '#ffffff',
-            violet: '#8B5CF6',
-            gold: '#F59E0B',
-            emerald: '#10B981',
-            particles: ['#ffffff', '#ffffff', '#818CF8', '#A78BFA', '#34D399', '#F59E0B']
+            violet: '#ffffff',
+            gold: '#e2e8f0',
+            emerald: '#cbd5e1',
+            particles: ['#ffffff', '#ffffff', '#e2e8f0', '#cbd5e1', '#94a3b8', '#64748b']
         },
         mouse: { x: 0, y: 0, targetX: 0, targetY: 0, isHovered: false, clickX: 0, clickY: 0, clickTime: 0 },
         scrollY: 0,
@@ -242,7 +242,7 @@
             // Volumetric Outer Corona Glow
             const coronaGrad = ctx.createRadialGradient(0, 0, coreR * 0.2, 0, 0, coreR * 3.8);
             coronaGrad.addColorStop(0, 'rgba(255, 255, 255, 0.55)');
-            coronaGrad.addColorStop(0.35, 'rgba(139, 92, 246, 0.35)');
+            coronaGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.25)');
             coronaGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.15)');
             coronaGrad.addColorStop(1, 'transparent');
             ctx.beginPath();
@@ -254,7 +254,7 @@
             const coreGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, coreR);
             coreGrad.addColorStop(0, '#FFFFFF');
             coreGrad.addColorStop(0.3, 'rgba(255, 255, 255, 0.95)');
-            coreGrad.addColorStop(0.7, 'rgba(139, 92, 246, 0.8)');
+            coreGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.4)');
             coreGrad.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
             ctx.beginPath();
             ctx.arc(0, 0, coreR, 0, Math.PI * 2);
@@ -290,7 +290,7 @@
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
                 } else if (ring === 1) {
                     ctx.setLineDash([6, 12]);
-                    ctx.strokeStyle = 'rgba(139, 92, 246, 0.38)';
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
                 } else {
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
                 }

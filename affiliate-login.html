@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261108_v180_ponder_editorial_unlocked">
+    <link rel="stylesheet" href="style.css?v=20261108_v250_ponder_editorial_production">
 
     <style>
         body {
@@ -46,11 +46,11 @@
             max-width: 520px;
             width: 92%;
             margin: 40px auto;
-            background: rgba(15, 23, 42, 0.9);
+            background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 20px;
             padding: 36px 32px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 255, 255, 0.15);
+            box-shadow: none;
             backdrop-filter: blur(16px);
         }
 
@@ -182,7 +182,7 @@
             </div>
 
             <!-- 1. SIGN IN FORM -->
-            <button type="button" onclick="quickPartnerAccess()" style="background: linear-gradient(135deg, #ffffff, #e2e8f0); color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
+            <button type="button" onclick="quickPartnerAccess()" style="background: #ffffff; color: #020202; color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:var(--font-mono);">OR SIGN IN TO YOUR ACCOUNT</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
         <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
                 <div class="form-group">
@@ -207,7 +207,7 @@
                 </button>
 
                 <!-- SECURE ENTERPRISE AUTHENTICATION -->
-                <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center;">
+                <div style="margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center;">
                     <span style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono); text-transform: uppercase;">🔒 Zero-Trust Secured via Supabase Auth & RLS</span>
                 </div>
             </form>
@@ -236,7 +236,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Preferred Payout Method *</label>
-                    <select id="reg-payout-method" name="payout_method" aria-label="Preferred Payout Method" class="form-input" style="background: rgba(15,23,42,0.95);">
+                    <select id="reg-payout-method" name="payout_method" aria-label="Preferred Payout Method" class="form-input" style="background: transparent;">
                         <option value="bKash (Personal / Merchant)">📱 bKash (Personal / Merchant)</option>
                         <option value="Nagad">📱 Nagad</option>
                         <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire (USD/GBP/EUR)</option>
@@ -255,7 +255,7 @@
                     <input type="text" name="referral_code" id="reg-ref-code" aria-label="Custom Referral Code" autocomplete="off" required placeholder="e.g. tanvir10" style="color: var(--accent-cyan); font-weight: bold; font-family: var(--font-mono);" class="form-input">
                 </div>
 
-                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+                <button type="submit" class="btn-submit" style="background: #ffffff; color: #020202; font-weight: 700; border-radius: 9999px; border: 1px solid #ffffff;">
                     ✨ Create Account & Launch Dashboard →
                 </button>
             </form>
@@ -264,7 +264,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05);">
+    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255, 255, 255, 0.06);">
         © 2026 IINSHA AI-BOS. High-Performance Autonomous Growth Operating System.
     </footer>
 
@@ -455,8 +455,8 @@
             window.location.href = 'affiliate-dashboard.html';
         }
     </script>
-    <script src="src/js/ux_interactions.js?v=20261108_v180_ponder_editorial_unlocked"></script>
-    <script src="hero3d.js?v=20261108_v180_ponder_editorial_unlocked" defer></script>
+    <script src="src/js/ux_interactions.js?v=20261108_v250_ponder_editorial_production"></script>
+    <script src="hero3d.js?v=20261108_v250_ponder_editorial_production" defer></script>
 </body>
 </html>
 

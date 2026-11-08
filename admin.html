@@ -15,7 +15,7 @@
     <meta property="og:description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta property="og:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261108_v180_ponder_editorial_unlocked">
+    <link rel="stylesheet" href="style.css?v=20261108_v250_ponder_editorial_production">
     <style>
         :root {
             --bg-cockpit: #030712;
@@ -238,7 +238,7 @@
         .admin-kpi-card:hover {
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: none;
         }
 
         .kpi-title {
@@ -310,7 +310,7 @@
             border: 1px solid var(--accent-cyan);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+            box-shadow: none;
         }
 
         .cmd-search-input {
@@ -377,7 +377,7 @@
             color: #94a3b8;
             text-transform: uppercase;
             font-family: var(--font-mono);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 8px;
         }
 
@@ -396,7 +396,7 @@
         .kanban-card:hover {
             border-color: var(--accent-cyan);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            box-shadow: none;
         }
 
         /* Custom Scrollbars */
@@ -532,7 +532,7 @@
     <!-- SERVER-AUTHENTICATED 2-STEP VERIFICATION GUARDIAN OVERLAY -->
     <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
         <div style="background:#0f172a; padding:36px; border-radius:16px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:440px; width:90%; box-shadow: 0 0 60px rgba(0,242,254,0.2);">
-            <div style="width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg, #ffffff, #8B5CF6); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
+            <div style="width:52px; height:52px; border-radius:14px; background: #ffffff; color: #020202; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
             <h2 style="margin-bottom:4px; color:#ffffff; font-size:1.35rem;">IINSHA Control Plane</h2>
             <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; margin-bottom:18px;">
                 <span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
@@ -541,14 +541,14 @@
 
             <!-- STEP 1: PASSWORD AUTH -->
             <div id="auth-step-1">
-                <button type="button" onclick="instantOwnerBypass()" style="background:linear-gradient(135deg, #10B981, #059669); color:#000; font-weight:800; padding:14px 20px; border:none; border-radius:10px; cursor:pointer; width:100%; font-size:1rem; margin-bottom:16px; box-shadow:0 0 25px rgba(16, 185, 129, 0.4); display:flex; align-items:center; justify-content:center; gap:8px; transition:transform 0.2s;">
+                <button type="button" onclick="instantOwnerBypass()" style="background: #ffffff; color: #020202; color:#000; font-weight:800; padding:14px 20px; border:none; border-radius:10px; cursor:pointer; width:100%; font-size:1rem; margin-bottom:16px; box-shadow:0 0 25px rgba(16, 185, 129, 0.4); display:flex; align-items:center; justify-content:center; gap:8px; transition:transform 0.2s;">
                     ⚡ 1-Click Instant Owner Access (Auto-Login)
                 </button>
                 <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.7rem; color:#64748b; font-family:monospace;">OR ENTER MASTER COMMANDER CREDENTIALS</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
                 <p style="font-size:0.8rem; color:#94a3b8; color:#94a3b8; margin-bottom:14px; line-height:1.4;">Step 1 of 2: Enter Master Commander Security Credentials to initiate session authentication.</p>
                 <input type="email" id="admin-email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
                 <input type="password" id="admin-password" placeholder="Enter Master Commander Password (or 123456)" value="123456" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
-                <button id="admin-login-btn" onclick="submitAdminStep1()" style="background:linear-gradient(135deg, #ffffff, #e2e8f0); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
+                <button id="admin-login-btn" onclick="submitAdminStep1()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
             </div>
 
             <!-- STEP 2: 2-STEP TOTP VERIFICATION OTP -->
@@ -563,7 +563,7 @@
                 <button type="button" onclick="document.getElementById('admin-otp-code').value='123456'; verifyAdminStep2();" style="background:rgba(0,242,254,0.1); border:1px solid rgba(0,242,254,0.3); color:var(--accent-cyan); font-size:0.75rem; border-radius:6px; padding:6px 10px; margin-bottom:12px; cursor:pointer; width:100%;">
                     ⚡ Auto-Fill Emergency Owner Verification Key (123456)
                 </button>
-                <button id="admin-verify-btn" onclick="verifyAdminStep2()" style="background:linear-gradient(135deg, #10B981, #059669); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">🔐 Complete MFA Verification & Unlock C-Panel</button>
+                <button id="admin-verify-btn" onclick="verifyAdminStep2()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">🔐 Complete MFA Verification & Unlock C-Panel</button>
                 <button onclick="backToStep1()" style="background:none; border:none; color:#64748b; font-size:0.75rem; margin-top:10px; cursor:pointer; text-decoration:underline;">← Back to Credentials</button>
             </div>
 
@@ -872,7 +872,7 @@
                 📊 System Truth Center
             </button>
 
-            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
+            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #ffffff; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
                 <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
                 <span id="global-status-text">SYSTEM ONLINE (13 AGENTS)</span>
             </div>
@@ -1132,7 +1132,7 @@
                         <h1 class="workspace-title">🤝 28-Pillar Affiliate & Partner Command Center</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Approve payouts, manage tiers (Bronze ➔ Gold ➔ Legend), and audit fraud alerts.</p>
                     </div>
-                    <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: #ffffff; color: #020202; font-weight: 700; border-radius: 9999px; border: 1px solid #ffffff;">
                         ⚡ Batch Disburse Payouts ($2,450.00)
                     </button>
                 </div>
@@ -1303,7 +1303,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">ID</th>
                                     <th style="padding:10px;">CAPABILITY</th>
                                     <th style="padding:10px;">MODULE</th>
@@ -1382,7 +1382,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">AGENT</th>
                                     <th style="padding:10px;">TASKS</th>
                                     <th style="padding:10px;">TOKENS</th>
@@ -1429,7 +1429,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">AGENT</th>
                                     <th style="padding:10px;">READ (L0)</th>
                                     <th style="padding:10px;">WRITE / CRM (L2)</th>
@@ -1498,7 +1498,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">SERVICE</th>
                                     <th style="padding:10px;">KEY ALIAS</th>
                                     <th style="padding:10px;">STATUS</th>
@@ -1582,7 +1582,7 @@
                     • Stage: Stage 8 / 12 (UAT Sandbox)<br>
                     • Partner: Adnin Growth Partner
                 </div>
-                <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
                     <button onclick="openDealLifecycleModal('DEAL-9904')" class="btn btn-primary-sm" style="width: 100%; font-size: 0.75rem;">🔍 Full 12-Stage Audit</button>
                     <button onclick="showAffiliateToast('Dispatched WhatsApp update to client & partner!')" class="btn btn-glass-sm" style="width: 100%; font-size: 0.75rem;"> Dispatch Status Alert</button>
                 </div>
@@ -1601,7 +1601,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=20261108_v180_ponder_editorial_unlocked"></script>
+    <script src="app.js?v=20261108_v250_ponder_editorial_production"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -1695,7 +1695,7 @@
             if (!tableBody) return;
 
             tableBody.innerHTML = SYSTEM_CAPABILITIES.map(c => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:var(--accent-cyan); font-weight:bold;">${c.id}</td>
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.name}</td>
                     <td style="padding:10px; color:#94a3b8;">${c.module}</td>
@@ -1726,7 +1726,7 @@
             if (!root) return;
 
             root.innerHTML = AGENT_ACTIVITY_STREAM.map(e => `
-                <div class="glass-card" onclick="openAgentFlightRecorder('${e.id}')" style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <div class="glass-card" onclick="openAgentFlightRecorder('${e.id}')" style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                         <div style="display:flex; align-items:center; gap:8px;">
                             <span>${e.icon}</span>
@@ -1752,7 +1752,7 @@
             const modalHtml = `
                 <div id="flight-recorder-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:650px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom:12px; margin-bottom:16px;">
                             <h3 style="margin:0; font-size:1.15rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;">
                                 <span></span> Agent Flight Recorder & Causal Trace (${event.id})
                             </h3>
@@ -1805,7 +1805,7 @@
             if (!tableBody) return;
 
             tableBody.innerHTML = AGENT_ECONOMICS_DATA.map(a => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${a.agent}</td>
                     <td style="padding:10px; color:#cbd5e1;">${a.tasks.toLocaleString()}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${a.tokens}</td>
@@ -1834,7 +1834,7 @@
             if (!root) return;
 
             root.innerHTML = PENDING_APPROVALS.map(a => `
-                <div class="glass-card" id="appr-card-${a.id}" style="background:rgba(15,23,42,0.85); border:1px solid ${a.status === 'APPROVED' ? 'var(--accent-emerald)' : 'rgba(244,63,94,0.3)'}; border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div class="glass-card" id="appr-card-${a.id}" style="background: transparent; border:1px solid ${a.status === 'APPROVED' ? 'var(--accent-emerald)' : 'rgba(244,63,94,0.3)'}; border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
                     <div>
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
                             <span class="badge" style="background:rgba(244,63,94,0.15); color:var(--accent-rose); border:1px solid var(--accent-rose); font-family:var(--font-mono); font-size:0.7rem;">${a.type}</span>
@@ -1847,7 +1847,7 @@
                     <div style="display:flex; gap:8px;">
                         ${a.status === 'APPROVED' 
                             ? `<span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); padding:6px 14px;">✅ AUTHORIZED</span>`
-                            : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background:linear-gradient(135deg, #10b981, #059669); color:#000; font-weight:700;">✅ 1-Click Approve</button>
+                            : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background: #ffffff; color: #020202; color:#000; font-weight:700;">✅ 1-Click Approve</button>
                                <button onclick="rejectInboxItem('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">✕ Hold / Reject</button>`
                         }
                     </div>
@@ -1895,7 +1895,7 @@
             if (!root) return;
 
             root.innerHTML = PERMISSION_MATRIX_DATA.map(p => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${p.agent}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${p.read}</td>
                     <td style="padding:10px; color:#34d399;">${p.write}</td>
@@ -1925,7 +1925,7 @@
             if (!root) return;
 
             root.innerHTML = PIPELINE_NODES.map(n => `
-                <div class="glass-card" style="background:rgba(15,23,42,0.9); border:1px solid ${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.08)'}; border-radius:12px; padding:16px; text-align:center; box-shadow:${n.status === 'WORKING' ? '0 0 20px rgba(0,242,254,0.2)' : 'none'};">
+                <div class="glass-card" style="background: transparent; border:1px solid ${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.08)'}; border-radius:12px; padding:16px; text-align:center; box-shadow:${n.status === 'WORKING' ? '0 0 20px rgba(0,242,254,0.2)' : 'none'};">
                     <div style="font-size:1.8rem; margin-bottom:8px;">${n.icon}</div>
                     <strong style="display:block; color:#fff; font-size:0.88rem; margin-bottom:4px;">${n.step}. ${n.name}</strong>
                     <span class="badge" style="background:rgba(255,255,255,0.05); color:${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'var(--accent-gold)'}; font-family:var(--font-mono); font-size:0.7rem; padding:4px 8px; border-radius:6px; display:inline-block; margin-top:4px;">
@@ -1955,11 +1955,11 @@
             if (!root) return;
 
             root.innerHTML = INCIDENTS_DATA.map(inc => `
-                <div class="glass-card" style="background:rgba(15,23,42,0.85); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;">
+                <div class="glass-card" style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
                         <div>
                             <div style="display:flex; align-items:center; gap:8px;">
-                                <span class="badge" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;"> ${inc.status}</span>
+                                <span class="badge" style="background: rgba(255, 255, 255, 0.05); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;"> ${inc.status}</span>
                                 <strong style="color:#fff; font-size:0.92rem;">${inc.id}: ${inc.title}</strong>
                             </div>
                             <div style="font-size:0.78rem; color:#94a3b8; margin-top:4px;">
@@ -1983,8 +1983,8 @@
             modal.id = 'admin-universal-modal';
             modal.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
             modal.innerHTML = `
-                <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
-                    <div style="padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+                <div style="background: transparent; border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow: none; color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
+                    <div style="padding:16px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display:flex; justify-content:space-between; align-items:center;">
                         <div>
                             <h3 style="margin:0; font-size:1.1rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;"><span>${icon}</span> ${title}</h3>
                             ${subtitle ? `<p style="margin:4px 0 0; font-size:0.75rem; color:#94a3b8;">${subtitle}</p>` : ''}
@@ -1994,7 +1994,7 @@
                     <div style="padding:20px; max-height:70vh; overflow-y:auto;" id="admin-modal-body">
                         ${contentHtml}
                     </div>
-                    <div style="padding:14px 20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
+                    <div style="padding:14px 20px; border-top: 1px solid rgba(255, 255, 255, 0.06); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
                         ${cancelText ? `<button id="admin-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
                         <button id="admin-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">${confirmText}</button>
                     </div>
@@ -2058,7 +2058,7 @@
             if (!root) return;
 
             root.innerHTML = VAULT_CREDENTIALS.map(c => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.service}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${c.alias}</td>
                     <td style="padding:10px; color:var(--accent-emerald);">● ${c.status}</td>
@@ -2158,7 +2158,7 @@
 
                     <h4 style="font-size:0.85rem; color:#94a3b8; margin-bottom:10px; font-family:var(--font-mono);">ACTIVE MULTI-TURN CONVERSATIONS & EXECUTION LOGS</h4>
                     <div style="display:flex; flex-direction:column; gap:8px;">
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(59,130,246,0.3); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
+                        <div style="background: transparent; border:1px solid rgba(59,130,246,0.3); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
                             <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
                                 <strong style="color:var(--accent-cyan);">SESSION: B2B SaaS Lead Generation (<45s ICP Hunter)</strong>
                                 <span style="color:var(--accent-emerald);">STATUS: 100 VERIFIED LEADS DELIVERED</span>
@@ -2169,7 +2169,7 @@
                                 • Tools Executed: [company_search (8ms), lead_discovery (14ms)] | Verifier: 0.98 Score (PASS)
                             </div>
                         </div>
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
+                        <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
                             <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
                                 <strong style="color:var(--accent-gold);">SESSION: Real Estate Speed-to-Lead WhatsApp Qualifier ($750)</strong>
                                 <span style="color:var(--accent-emerald);">STATUS: SOW & CRM DISPATCHED</span>
@@ -2322,7 +2322,7 @@
                     <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
                             <thead>
-                                <tr style="background:rgba(255,255,255,0.03); color:#94a3b8; border-bottom:1px solid rgba(255,255,255,0.08);">
+                                <tr style="background:rgba(255,255,255,0.03); color:#94a3b8; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
                                     <th style="padding:12px 14px;">Partner Name</th>
                                     <th style="padding:12px 14px;">Referral Slug</th>
                                     <th style="padding:12px 14px;">Payout Destination</th>
@@ -2334,7 +2334,7 @@
                             </thead>
                             <tbody>
                                 ${partners.map(p => `
-                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                                    <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
                                         <td style="padding:12px 14px;">
                                             <strong style="color:#fff; display:block;">${p.name}</strong>
                                             <span style="font-size:0.72rem; color:#64748b;">${p.email}</span>
@@ -2359,7 +2359,7 @@
                                         <td style="padding:12px 14px; text-align:right;">
                                             <div style="display:inline-flex; gap:6px;">
                                                 ${p.unpaid > 0 ? `
-                                                    <button onclick="adminPaySinglePartner('${p.id || p.refCode}')" class="btn btn-primary-sm" style="font-size:0.72rem; padding:4px 10px; background:linear-gradient(135deg, #10b981, #059669); color:#fff;">
+                                                    <button onclick="adminPaySinglePartner('${p.id || p.refCode}')" class="btn btn-primary-sm" style="font-size:0.72rem; padding:4px 10px; background: #ffffff; color: #020202; color:#fff;">
                                                         Disburse Payout
                                                     </button>
                                                 ` : `
@@ -2494,7 +2494,7 @@
                         </div>
                     </div>
                     <div style="display:flex; gap:10px;">
-                        <button onclick="window.adminSaveNewPartnerModal()" class="btn btn-primary-sm" style="flex:1; background:linear-gradient(135deg, #10b981, #059669); color:#fff; font-weight:700;">💾 Register & Save</button>
+                        <button onclick="window.adminSaveNewPartnerModal()" class="btn btn-primary-sm" style="flex:1; background: #ffffff; color: #020202; color:#fff; font-weight:700;">💾 Register & Save</button>
                         <button onclick="document.getElementById('admin-add-partner-modal').style.display='none'" class="btn btn-glass-sm" style="flex:1;">Cancel</button>
                     </div>
                 </div>
@@ -2587,7 +2587,7 @@
                             const category = s.category || 'AI Services';
                             const delivery = s.deliveryDays ? `${s.deliveryDays}-Day Delivery` : (s.delivery || '3-Day Delivery');
                             return `
-                                <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px; display:flex; flex-direction:column; justify-content:space-between;">
+                                <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px; display:flex; flex-direction:column; justify-content:space-between;">
                                     <div>
                                         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:4px;">
                                             <strong style="color:#fff; font-size:1rem;">${s.title || s.name}</strong>
@@ -2596,7 +2596,7 @@
                                         <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.92rem; font-weight:bold;">$${priceUSD.toLocaleString()} USD (৳${priceBDT.toLocaleString()} BDT)</span>
                                         <p style="color:#94a3b8; font-size:0.78rem; margin:8px 0;">${delivery} • ${s.description || 'Verified autonomous AI solution'}</p>
                                     </div>
-                                    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px;">
+                                    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:10px;">
                                         <button onclick="editStudioServiceModal('${s.id}')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">✏️ Edit</button>
                                         <button onclick="deleteStudioServiceAction('${s.id}')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px; color:#ef4444; border-color:rgba(239,68,68,0.3);">🗑️ Delete</button>
                                     </div>
@@ -2721,7 +2721,7 @@
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <h3 style="margin:0 0 12px; font-size:1.2rem; color:var(--accent-cyan);">💬 Unified Omnichannel Live Inbox</h3>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">WhatsApp Cloud API, Website Copilot, and Lead Qualification messages in one feed.</p>
-                    <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
+                    <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
                         <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
                             <strong style="color:var(--accent-gold);">WhatsApp Lead: +8801629286887</strong>
                             <span style="color:#94a3b8; font-size:0.72rem;">2 mins ago</span>
@@ -2823,7 +2823,7 @@
                             </div>
                             <h4 style="margin:0 0 4px 0; color:#fff; font-size:1rem;">${a.name}</h4>
                             <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">${a.role}</p>
-                            <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:8px; font-size:0.72rem; display:flex; flex-direction:column; gap:4px;">
+                            <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:8px; font-size:0.72rem; display:flex; flex-direction:column; gap:4px;">
                                 <span style="color:#cbd5e1;">Autonomy: <strong style="color:var(--accent-gold);">${a.aut}</strong></span>
                                 <span style="color:#94a3b8;">Budget: ${a.budget} • ${a.audit}</span>
                             </div>
@@ -3049,7 +3049,7 @@
             const modalHtml = `
                 <div id="deal-lifecycle-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:620px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom:12px; margin-bottom:16px;">
                             <div>
                                 <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">12-STAGE CRM LIFECYCLE AUDIT</span>
                                 <h3 style="margin:4px 0 0 0; font-size:1.2rem; color:#fff;">${d.name} (${dealId})</h3>
@@ -3069,7 +3069,7 @@
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:14px;">
                             <button onclick="document.getElementById('deal-lifecycle-modal').remove()" class="btn btn-glass-sm">Close</button>
                             <button onclick="showAffiliateToast('⚡ Stage advanced & automated client webhook fired!'); document.getElementById('deal-lifecycle-modal').remove();" class="btn btn-primary-sm">⚡ Advance Stage →</button>
                         </div>
@@ -3171,7 +3171,7 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'admin-toast-el';
-                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:rgba(15,23,42,0.95); border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none;';
+                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background: transparent; border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow: none; display:none;';
                 document.body.appendChild(toast);
             }
             toast.textContent = msg;
@@ -3309,8 +3309,8 @@
     <script src="js/core/enterprise_experience.js?v=20260820"></script>
     <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
     <script src="src/whatsapp_concierge.js"></script>
-    <script src="src/js/ux_interactions.js?v=20261108_v180_ponder_editorial_unlocked"></script>
-    <script src="hero3d.js?v=20261108_v180_ponder_editorial_unlocked" defer></script>
+    <script src="src/js/ux_interactions.js?v=20261108_v250_ponder_editorial_production"></script>
+    <script src="hero3d.js?v=20261108_v250_ponder_editorial_production" defer></script>
 </body>
 </html>
 

@@ -8,11 +8,11 @@
     --accent-gold: #f59e0b;
     --accent-purple: #a855f7;
     /* Backgrounds — 80% dark neutral */
-    --bg-space: #050507;
-    --bg-deep: #08090D;
-    --bg-surface: #0B0D12;
-    --bg-card: rgba(12, 14, 20, 0.7);
-    --bg-card-hover: rgba(18, 22, 32, 0.85);
+    --bg-space: #020202;
+    --bg-deep: #050505;
+    --bg-surface: #080808;
+    --bg-card: rgba(10, 10, 10, 0.85);
+    --bg-card-hover: rgba(16, 16, 16, 0.92);
 
     /* WCAG 2.2 AA Keyboard Focus Indicator */
 }
@@ -25,16 +25,16 @@
     --accent-purple: #a855f7;
 
     /* Glass — 10% */
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-elevated: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-border-hover: rgba(255, 255, 255, 0.12);
+    --glass: rgba(255, 255, 255, 0.02);
+    --glass-elevated: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-hover: rgba(255, 255, 255, 0.2);
 
     /* Primary — Electric Violet (5%) */
-    --accent-primary: #8B5CF6;
-    --accent-primary-dim: #7C3AED;
-    --accent-primary-glow: rgba(139, 92, 246, 0.25);
-    --accent-primary-surface: rgba(139, 92, 246, 0.08);
+    --accent-primary: #ffffff;
+    --accent-primary-dim: #e8e8e8;
+    --accent-primary-glow: rgba(255, 255, 255, 0.15);
+    --accent-primary-surface: rgba(255, 255, 255, 0.04);
 
     /* Secondary — Cyber Cyan (3%) */
     --accent-cyan: #ffffff;
@@ -42,10 +42,10 @@
     --accent-cyan-surface: rgba(255, 255, 255, 0.06);
 
     /* Accent — Acid Green (2%) */
-    --accent-green: #00FF87;
-    --accent-green-dim: #10B981;
-    --accent-green-glow: rgba(0, 255, 135, 0.15);
-    --accent-emerald: #10B981;
+    --accent-green: #ffffff;
+    --accent-green-dim: #a0a0a0;
+    --accent-green-glow: rgba(255, 255, 255, 0.08);
+    --accent-emerald: #a0a0a0;
     --border-card: rgba(255, 255, 255, 0.08);
 
     /* Text */
@@ -59,15 +59,15 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
     /* Spacing */
-    --section-gap: clamp(80px, 10vh, 140px);
+    --section-gap: clamp(100px, 14vh, 180px);
     --content-max: 1200px;
     --content-wide: 1400px;
 
     /* Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-xl: 14px;
     --radius-full: 9999px;
 
     /* Transitions */
@@ -90,8 +90,8 @@ html {
 
 body {
     font-family: var(--font-body);
-    background: var(--bg-space);
-    color: var(--text-primary);
+    background: #020202;
+    color: #f1f1f1;
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
@@ -130,39 +130,38 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     content: '';
     width: 6px;
     height: 6px;
-    background: var(--accent-green);
+    background: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-green);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
     animation: pulse-dot 2s ease-in-out infinite;
 }
 
 .section-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: var(--text-primary);
-    margin-bottom: 20px;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    color: #f1f1f1;
+    margin-bottom: 24px;
 }
 
 .section-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    line-height: 1.65;
+    font-size: 1.05rem;
+    color: #888888;
+    max-width: 560px;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, #ffffff 10%, #e2e8f0 50%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #f1f1f1;
+    -webkit-text-fill-color: #f1f1f1;
 }
 
 /* === OS STATUS BAR & COMMAND CENTER TICKER === */
 .os-status-bar {
-    background: #06080d;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: #020202;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: 7px 16px;
     font-size: 0.76rem;
     font-family: var(--font-body);
@@ -197,18 +196,18 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     font-size: 0.72rem;
     font-weight: 700;
     font-family: var(--font-mono);
-    background: rgba(16, 185, 129, 0.12);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    color: #999999;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     letter-spacing: 0.04em;
 }
 .os-pulse-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #10b981;
+    background: #ffffff;
     display: inline-block;
-    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
     animation: pulse-dot 2s infinite ease-in-out;
 }
 
@@ -219,12 +218,12 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     z-index: 1000;
     width: min(94%, 1320px);
     margin: 14px auto 0 auto;
-    background: rgba(6, 10, 20, 0.78);
-    backdrop-filter: blur(28px) saturate(1.8);
-    -webkit-backdrop-filter: blur(28px) saturate(1.8);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(2, 2, 2, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 9999px;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(255, 255, 255, 0.08);
+    box-shadow: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-container {
@@ -281,11 +280,11 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .portal-tabs {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
-    background: rgba(255, 255, 255, 0.03);
+    gap: 2px;
+    background: transparent;
     padding: 3px 5px;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: none;
 }
 .portal-tab-btn {
     display: inline-flex;
@@ -294,7 +293,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     padding: 6px 14px;
     font-size: 0.82rem;
     font-weight: 500;
-    color: #94a3b8;
+    color: #666666;
     text-decoration: none;
     border-radius: 9999px;
     border: 1px solid transparent;
@@ -302,28 +301,29 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
     cursor: pointer;
+    letter-spacing: -0.01em;
 }
 .portal-tab-btn:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.06);
 }
 .portal-tab-btn.active {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: #020202;
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: none;
     font-weight: 600;
 }
 .portal-tab-admin-btn {
-    background: rgba(245, 158, 11, 0.1) !important;
-    color: #fbbf24 !important;
-    border: 1px solid rgba(245, 158, 11, 0.28) !important;
+    background: transparent !important;
+    color: #999999 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     font-weight: 600 !important;
 }
 .portal-tab-admin-btn:hover {
-    background: rgba(245, 158, 11, 0.2) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
     color: #ffffff !important;
-    border-color: rgba(245, 158, 11, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Hero Badge & Beacon */
@@ -790,7 +790,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     color: #ffffff;
 }
 .hero-title .accent {
-    background: linear-gradient(135deg, #ffffff 0%, #4facfe 50%, #00ff87 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -886,20 +886,22 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--accent-primary);
-    color: white;
+    background: #ffffff;
+    color: #020202;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 14px 32px;
     border-radius: var(--radius-full);
-    transition: all var(--duration-normal) var(--ease-out);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
+    border: 1px solid #ffffff;
+    letter-spacing: -0.01em;
 }
 .btn-primary:hover {
-    background: var(--accent-primary-dim);
-    box-shadow: 0 6px 30px var(--accent-primary-glow);
-    transform: translateY(-2px);
+    background: #e8e8e8;
+    box-shadow: none;
+    transform: translateY(-1px);
 }
 
 .btn-ghost {
@@ -907,13 +909,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: var(--text-secondary);
+    color: #888888;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 14px 28px;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-full);
-    transition: all var(--duration-normal) var(--ease-out);
+    transition: all 0.25s ease;
+    letter-spacing: -0.01em;
 }
 .btn-ghost:hover {
     color: var(--text-primary);
@@ -932,11 +935,11 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* === GLASS CARD === */
 .glass-card {
-    background: var(--bg-card);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     padding: 32px;
-    transition: all var(--duration-normal) var(--ease-out);
+    transition: border-color 0.25s ease;
     position: relative;
     overflow: hidden;
 }
@@ -952,9 +955,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     transition: opacity var(--duration-normal) var(--ease-smooth);
 }
 .glass-card:hover {
-    border-color: var(--glass-border-hover);
-    background: var(--bg-card-hover);
-    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(14, 14, 14, 0.92);
 }
 .glass-card:hover::before { opacity: 1; }
 
@@ -966,13 +968,11 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .solution-card {
-    background: var(--bg-card);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: 36px 28px;
-    transition: all var(--duration-normal) var(--ease-out);
-    position: relative;
-    overflow: hidden;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.25s ease;
     cursor: pointer;
 }
 .solution-card:hover {
@@ -2831,7 +2831,7 @@ button, .btn, .btn-primary, .btn-glass, .btn-primary-sm, .btn-glass-sm, .btn-gho
 }
 
 .chatbot-send-btn {
-    background: linear-gradient(135deg, #ffffff, #4facfe) !important;
+    background: linear-gradient(135deg, #ffffff, #ffffff) !important;
     color: #000000 !important;
     font-weight: 700 !important;
     border: none !important;
@@ -3271,7 +3271,7 @@ form input[type="tel"]:focus {
     width: 54px !important;
     height: 54px !important;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, #ffffff, #4facfe) !important;
+    background: linear-gradient(135deg, #ffffff, #ffffff) !important;
     border: none !important;
     font-size: 1.4rem !important;
     cursor: pointer !important;
@@ -3684,10 +3684,8 @@ form input[type="tel"]:focus {
    GLOWING BORDER — REFINED AMBIENT ACCENT (UNSLOP)
    ======================================================== */
 .glowing-border {
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .glowing-border:hover {
@@ -3778,7 +3776,7 @@ form input[type="tel"]:focus {
 
 .cat-service-list li::before {
     content: "✔" !important;
-    color: var(--accent-cyan, #06b6d4) !important;
+    color: var(--accent-cyan, #ffffff) !important;
     font-weight: 800 !important;
     font-size: 0.85rem !important;
     flex-shrink: 0 !important;
@@ -3850,7 +3848,7 @@ form input[type="tel"]:focus {
 }
 
 .service-item-card:hover {
-    border-color: var(--accent-cyan, #06b6d4) !important;
+    border-color: var(--accent-cyan, #ffffff) !important;
     transform: translateY(-4px) !important;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(6, 182, 212, 0.2) !important;
     background: rgba(30, 41, 59, 0.9) !important;
@@ -3902,7 +3900,7 @@ form input[type="tel"]:focus {
 
 .template-card:hover {
     transform: translateY(-5px) !important;
-    border-color: var(--accent-cyan, #06b6d4) !important;
+    border-color: var(--accent-cyan, #ffffff) !important;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.2) !important;
 }
 
@@ -3982,7 +3980,7 @@ form input[type="tel"]:focus {
 
 .model-cat-card:hover {
     transform: translateY(-5px) !important;
-    border-color: var(--accent-cyan, #06b6d4) !important;
+    border-color: var(--accent-cyan, #ffffff) !important;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.2) !important;
 }
 
@@ -4080,7 +4078,7 @@ form input[type="tel"]:focus {
 
 .blueprint-card:hover {
     transform: translateY(-5px) !important;
-    border-color: var(--accent-cyan, #06b6d4) !important;
+    border-color: var(--accent-cyan, #ffffff) !important;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.2) !important;
 }
 
@@ -4206,7 +4204,7 @@ form input[type="tel"]:focus {
     width: 56px !important;
     height: 56px !important;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, #ffffff, #4facfe) !important;
+    background: linear-gradient(135deg, #ffffff, #ffffff) !important;
     border: none !important;
     cursor: pointer !important;
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4) !important;
@@ -4252,7 +4250,7 @@ form input[type="tel"]:focus {
 .lead-magnet-book {
     width: 140px !important;
     height: 180px !important;
-    background: linear-gradient(135deg, #06b6d4, #8b5cf6) !important;
+    background: linear-gradient(135deg, #ffffff, #ffffff) !important;
     border-radius: 10px !important;
     box-shadow: 0 15px 35px rgba(6, 182, 212, 0.35), inset 2px 0 6px rgba(255, 255, 255, 0.4) !important;
     position: relative !important;
@@ -4492,7 +4490,8 @@ button:focus-visible {
 }
 
 .glowing-border {
-    animation: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 
@@ -4862,8 +4861,8 @@ body {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    opacity: 0.72 !important;
-    filter: contrast(1.18) brightness(0.98) saturate(1.5) !important;
+    opacity: 0.12 !important;
+    filter: grayscale(100%) contrast(1.4) brightness(0.5) !important;
     transition: opacity 0.6s ease !important;
     display: block !important;
 }
@@ -4967,35 +4966,36 @@ header, .navbar, .iinsha-navbar, .os-status-bar, main, section, .hero-section, f
 
 
 /* ==========================================================================
-   PONDER HIGH-CONTRAST MONOCHROMATIC & MOTION SYSTEM (AWWWARDS / PONDER.AI CLONE)
-   High-contrast stark monochromatic typography, deep obsidian glass, crisp white pill CTAs,
-   and dynamic cursor spotlight luminescence.
+   PONDER STRUCTURAL DESIGN SYSTEM — DEEP EDITORIAL OVERRIDE
+   True Ponder.ai aesthetic: deep black, 1px borders, no glow, editorial type
    ========================================================================== */
+
+/* Card universal — flat, 1px border, no glow shadows */
 .glass-card, .ipc-card, .blueprint-card, .store-card, .tmpl-card, 
 .solution-card, .category-card, .feature-card, .admin-card, .dash-card, 
 .hero-studio-card, .auth-container, .pricing-card, .pricing-tier-card,
 .lead-magnet-card, .newsletter-card, .trust-principle-card, .premium-card {
-    background: linear-gradient(165deg, rgba(14, 18, 30, 0.82), rgba(6, 8, 15, 0.94)) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 16px !important;
-    backdrop-filter: blur(24px) saturate(1.6) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(1.6) !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    background: rgba(8, 8, 8, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: none !important;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+    transition: border-color 0.3s ease !important;
 }
 
 .glass-card:hover, .ipc-card:hover, .blueprint-card:hover, .store-card:hover, .tmpl-card:hover, 
 .solution-card:hover, .category-card:hover, .feature-card:hover, .admin-card:hover, .dash-card:hover, 
 .hero-studio-card:hover, .auth-container:hover, .pricing-card:hover, .pricing-tier-card:hover,
 .lead-magnet-card:hover, .newsletter-card:hover, .trust-principle-card:hover, .premium-card:hover {
-    transform: translateY(-3px) !important;
-    border-color: rgba(255, 255, 255, 0.32) !important;
-    box-shadow: 0 26px 64px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+    transform: none !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
 }
 
-/* Ponder Dynamic White Luminescence Cursor Spotlight */
+/* Kill cursor spotlight — Ponder doesn't have radial gradient cursor effects */
 .glass-card::before,
 .ipc-card::before,
 .solution-card::before,
@@ -5007,189 +5007,221 @@ header, .navbar, .iinsha-navbar, .os-status-bar, main, section, .hero-section, f
 .newsletter-card::before,
 .trust-principle-card::before,
 .premium-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.09), transparent 42%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
+    display: none !important;
 }
 
-.glass-card:hover::before,
-.ipc-card:hover::before,
-.solution-card:hover::before,
-.blueprint-card:hover::before,
-.store-card:hover::before,
-.tmpl-card:hover::before,
-.hero-studio-card:hover::before,
-.lead-magnet-card:hover::before,
-.newsletter-card:hover::before,
-.trust-principle-card:hover::before,
-.premium-card:hover::before {
-    opacity: 1;
-}
-
-/* Ponder Minimal Subtle Corner Accent */
+/* Kill corner accent marks */
 .glass-card::after,
 .ipc-card::after,
 .hero-studio-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 24px;
-    height: 24px;
-    border-top: 2px solid rgba(255, 255, 255, 0.35);
-    border-right: 2px solid rgba(255, 255, 255, 0.35);
-    border-top-right-radius: 14px;
-    pointer-events: none;
-    opacity: 0.5;
+    display: none !important;
 }
 
-/* Ponder Form Controls & Inputs */
+/* Ponder Form Controls — darker, cleaner */
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], 
 select, textarea, .form-input, .dash-select, .calc-select {
-    background: rgba(5, 8, 16, 0.88) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    color: #f8fafc !important;
-    border-radius: 10px !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    background: rgba(5, 5, 5, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #f1f1f1 !important;
+    border-radius: 8px !important;
+    transition: border-color 0.2s ease !important;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="tel"]:focus, 
 select:focus, textarea:focus, .form-input:focus, .dash-select:focus, .calc-select:focus {
-    border-color: #ffffff !important;
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
     outline: none !important;
 }
 
-/* Ponder Signature Primary Pill CTA (Stark White Pill) */
+/* Ponder Primary CTA — solid white, no glow shadow */
 .btn-primary, .btn-primary-glow, .btn-submit, .ponder-pill-primary {
     background: #ffffff !important;
-    color: #030508 !important;
-    font-weight: 800 !important;
+    color: #020202 !important;
+    font-weight: 700 !important;
     border-radius: 9999px !important;
     border: 1px solid #ffffff !important;
-    box-shadow: 0 4px 22px rgba(255, 255, 255, 0.28), 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+    box-shadow: none !important;
     letter-spacing: -0.01em !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-primary:hover, .btn-primary-glow:hover, .btn-submit:hover, .ponder-pill-primary:hover {
-    background: #f1f5f9 !important;
-    color: #000000 !important;
-    transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.42), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+    background: #e0e0e0 !important;
+    color: #020202 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: none !important;
 }
 
-/* Ponder Secondary Frosted Ghost Pill CTA */
+/* Ponder Ghost CTA — transparent with thin white border */
 .btn-secondary, .btn-outline, .btn-ghost, .btn-glass-glow, .ponder-pill-secondary {
-    background: rgba(255, 255, 255, 0.05) !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
+    background: transparent !important;
+    color: #cccccc !important;
+    font-weight: 500 !important;
     border-radius: 9999px !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    transition: all 0.25s ease !important;
 }
 
 .btn-secondary:hover, .btn-outline:hover, .btn-ghost:hover, .btn-glass-glow:hover, .ponder-pill-secondary:hover {
-    background: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
     color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.45) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
-/* Ponder Amber Highlight Pill */
+/* Ponder Amber pill — very muted, editorial */
 .btn-gold-pill, .ponder-pill-amber {
-    background: rgba(245, 158, 11, 0.08) !important;
-    color: #fbbf24 !important;
-    font-weight: 700 !important;
+    background: transparent !important;
+    color: #999999 !important;
+    font-weight: 600 !important;
     border-radius: 9999px !important;
-    border: 1px solid rgba(245, 158, 11, 0.35) !important;
-    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: none !important;
+    transition: all 0.25s ease !important;
 }
 
 .btn-gold-pill:hover, .ponder-pill-amber:hover {
-    background: rgba(245, 158, 11, 0.18) !important;
-    color: #fde68a !important;
-    border-color: rgba(245, 158, 11, 0.6) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 24px rgba(245, 158, 11, 0.28) !important;
-}
-
-/* Ponder Floating Capsule Navbar & Tab States */
-.navbar {
-    background: rgba(6, 10, 20, 0.82) !important;
-    backdrop-filter: blur(28px) saturate(1.8) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(1.8) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 9999px !important;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
-}
-
-.portal-tab-btn {
-    border-radius: 9999px !important;
-    font-weight: 600 !important;
-    color: #94a3b8 !important;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.portal-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
     color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-}
-
-.portal-tab-btn.active {
-    background: #ffffff !important;
-    color: #030508 !important;
-    font-weight: 800 !important;
-    border-color: #ffffff !important;
-    box-shadow: 0 2px 14px rgba(255, 255, 255, 0.32) !important;
-}
-
-/* Ponder Editorial Typography & Headings */
-h1, .hero-title, .section-title {
-    letter-spacing: -0.04em !important;
-    font-weight: 900 !important;
-    color: #ffffff !important;
-}
-
-/* Ponder Numbered Pipeline & Step Items */
-.pipeline-step-item {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 10px !important;
-    padding: 10px 14px !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    cursor: pointer !important;
-}
-
-.pipeline-step-item:hover {
-    background: rgba(255, 255, 255, 0.07) !important;
     border-color: rgba(255, 255, 255, 0.25) !important;
-    transform: translateX(3px) !important;
+    box-shadow: none !important;
 }
 
-/* Section Transparency for Fullsite Backdrop Depth */
-main > section,
-main > div:not(.modal-overlay):not(#auth-overlay):not(.admin-modal-overlay) {
+/* Kill glowing-border class entirely */
+.glowing-border {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.glowing-border::before,
+.glowing-border::after {
+    display: none !important;
+}
+
+/* Section backgrounds — clean, no blue-tinted rgba */
+section[style*="background: rgba(15, 23, 42"],
+section[style*="background: rgba(8, 10, 25"],
+section[style*="background: rgba(10, 15, 30"] {
     background: transparent !important;
 }
 
-@media screen and (max-width: 768px) {
-    .navbar {
-        top: 8px !important;
-        width: calc(100% - 20px) !important;
-        margin: 8px auto 0 auto !important;
-        border-radius: 16px !important;
-    }
+/* Section borders — cleaner */
+section[style*="border-top: 1px solid"],
+section[style*="border-bottom: 1px solid"] {
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Hero section — more breathing room */
+.hero-section {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
+/* Hero title — Ponder editorial scale */
+.hero-title {
+    font-size: clamp(3rem, 6.5vw, 5rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 0.95 !important;
+    color: #f1f1f1 !important;
+}
+
+/* Hero subtitle — muted, editorial */
+.hero-subtitle {
+    font-size: 1.05rem !important;
+    color: #777777 !important;
+    font-weight: 400 !important;
+    line-height: 1.7 !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Hero gradient text — flat white, no gradient */
+.hero-gradient-silver {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #999999 !important;
+    color: #999999 !important;
+}
+
+/* Kill all box-shadow: glow patterns globally */
+[style*="box-shadow: 0 0 25px"],
+[style*="box-shadow: 0 16px 45px"] {
+    box-shadow: none !important;
+}
+
+/* Footer — minimal Ponder editorial */
+footer, .site-footer {
+    background: #020202 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Section header spacing — Ponder generous */
+.section-header {
+    margin-bottom: 48px !important;
+}
+
+/* All section tags — monochrome */
+.section-tag {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #777777 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+}
+
+/* Hero awwwards tag — Ponder style numbered badge */
+.hero-awwwards-tag {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+}
+
+/* Scrollbar — Ponder dark */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #020202;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Ponder typography overrides for all headings */
+h1, h2, h3 {
+    letter-spacing: -0.04em !important;
+    font-weight: 800 !important;
+}
+
+h4, h5, h6 {
+    letter-spacing: -0.02em !important;
+    font-weight: 700 !important;
+}
+
+/* Kill all text-shadow effects */
+[style*="text-shadow"] {
+    text-shadow: none !important;
+}
+
+/* Ponder navigation link color */
+.portal-tab-btn {
+    color: #555555 !important;
+}
+.portal-tab-btn:hover {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+.portal-tab-btn.active {
+    color: #020202 !important;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
 }
 
 /* ==========================================================================
@@ -5246,8 +5278,14 @@ embed {
 /* Global 3D Cinematic Stage Background Responsive Constraint */
 #global-cinematic-stage,
 .global-video-backdrop {
-    max-width: 100vw !important;
-    overflow: hidden !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.12 !important;
+    filter: grayscale(100%) contrast(1.4) brightness(0.5) !important;
+    transition: opacity 0.6s ease !important;
+    display: block !important;
 }
 
 /* 3. CODE & TABLES RESPONSIVE SCROLL CONTAINERS */
@@ -5619,4 +5657,42 @@ table {
     .hero-trust-strip {
         grid-template-columns: 1fr !important;
     }
+}
+
+
+/* PONDER CANONICAL PILL CTAS */
+.btn-primary, .btn-primary-glow, .btn-submit, .ponder-pill-primary {
+    background: #ffffff !important;
+    color: #020202 !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+    letter-spacing: -0.01em !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-primary:hover, .btn-primary-glow:hover, .btn-submit:hover, .ponder-pill-primary:hover {
+    background: #e2e8f0 !important;
+    color: #020202 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary, .btn-outline, .btn-ghost, .btn-glass-glow, .btn-glass, .btn-glass-sm, .ponder-pill-secondary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: none !important;
+    transition: all 0.25s ease !important;
+}
+
+.btn-secondary:hover, .btn-outline:hover, .btn-ghost:hover, .btn-glass-glow:hover, .btn-glass:hover, .btn-glass-sm:hover, .ponder-pill-secondary:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: none !important;
 }

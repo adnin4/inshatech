@@ -154,7 +154,7 @@
                         width: 40px !important;
                         height: 40px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -237,7 +237,7 @@
                         width: 36px !important;
                         height: 36px !important;
                         border-radius: 12px !important;
-                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
