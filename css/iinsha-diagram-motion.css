@@ -661,3 +661,253 @@ html[data-iinsha-design="diagram"] .hero-trust-strip,
   max-width: 860px !important;
   margin: 14px auto 0 auto !important;
 }
+
+/* ====================================================================
+   DIAGRAM.COM MASTER REPLICA STYLES (from demo.html)
+   Authentic cosmic backdrop, mini-orbit, terminal, node flow, process track & CTA
+   ==================================================================== */
+
+/* Global body cosmic atmosphere */
+html[data-iinsha-design="diagram"] body,
+body.iinsha-diagram-v700 {
+  background: var(--idg-bg, #070811) !important;
+  color: var(--idg-text, #f7f8ff) !important;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+}
+
+html[data-iinsha-design="diagram"] body::before,
+body.iinsha-diagram-v700::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(108, 95, 235, 0.25), transparent 48%),
+    radial-gradient(ellipse at 85% 24%, rgba(67, 112, 183, 0.12), transparent 38%),
+    radial-gradient(ellipse at 15% 75%, rgba(168, 85, 247, 0.10), transparent 42%),
+    linear-gradient(180deg, #080914 0%, #070811 58%, #080a13 100%) !important;
+}
+
+/* Authentic Hero Cosmic Backdrop */
+.idg-hero,
+#s1.idg-hero,
+.hero-section.idg-hero {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  min-height: clamp(680px, 85vh, 900px) !important;
+  padding: clamp(60px, 10vh, 120px) 0 clamp(40px, 6vh, 80px) !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+
+.idg-hero::before,
+#s1.idg-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(115, 95, 245, 0.22), transparent 50%),
+    radial-gradient(ellipse at 12% 20%, rgba(56, 189, 248, 0.10), transparent 30%),
+    radial-gradient(ellipse at 88% 30%, rgba(168, 85, 247, 0.12), transparent 32%) !important;
+}
+
+/* 3D WebGL Canvas in Hero */
+#iinsha-diagram-scene,
+[data-iinsha-motion-scene] {
+  display: block !important;
+  width: min(100%, 1040px) !important;
+  height: clamp(320px, 42vw, 460px) !important;
+  margin: 8px auto 18px auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 0.98 !important;
+}
+
+@media (max-width: 768px) {
+  #iinsha-diagram-scene,
+  [data-iinsha-motion-scene] {
+    height: clamp(240px, 46vw, 340px) !important;
+    margin: 6px auto 14px auto !important;
+  }
+}
+
+/* Proofline trust pills */
+.idg-proofline,
+.hero-trust-strip {
+  position: relative !important;
+  z-index: 3 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-top: 36px !important;
+  color: #a9aec4 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.02em !important;
+}
+.idg-proofline span,
+.hero-trust-strip > div {
+  border: 1px solid var(--idg-line, rgba(222, 229, 255, 0.11)) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  padding: 8px 16px !important;
+  border-radius: 9999px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Bento Card Graphics */
+.idg-card-graphic {
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-top: 14px !important;
+}
+.idg-mini-orbit {
+  position: relative !important;
+  width: 180px !important;
+  height: 130px !important;
+  border: 1px solid rgba(190, 188, 255, 0.25) !important;
+  border-radius: 50% !important;
+  transform: rotate(-18deg) !important;
+  animation: idg-orbit-spin 24s linear infinite !important;
+}
+.idg-mini-orbit::before,
+.idg-mini-orbit::after {
+  content: "" !important;
+  position: absolute !important;
+  border: 1px solid rgba(190, 188, 255, 0.18) !important;
+  border-radius: 50% !important;
+  inset: 16px -22px !important;
+}
+.idg-mini-orbit::after {
+  inset: 34px -38px !important;
+}
+.idg-mini-core {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 32% 25%, #fff, #9d91ff 45%, #4d4a9c 100%) !important;
+  box-shadow: 0 0 32px rgba(141, 126, 255, 0.75) !important;
+}
+@keyframes idg-orbit-spin {
+  from { transform: rotate(-18deg); }
+  to { transform: rotate(342deg); }
+}
+
+.idg-terminal {
+  border: 1px solid var(--idg-line, rgba(222, 229, 255, 0.11)) !important;
+  border-radius: 18px !important;
+  background: #080a13 !important;
+  padding: 18px 20px !important;
+  margin-top: 18px !important;
+  text-align: left !important;
+  color: #c9c9e9 !important;
+  font: 12px/1.9 ui-monospace, monospace !important;
+}
+.idg-terminal .dim { color: #757c9a !important; }
+.idg-terminal .ok { color: #83ddc6 !important; font-weight: 600 !important; }
+
+.idg-node-row {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  padding: 24px 10px !important;
+}
+.idg-node {
+  border: 1px solid var(--idg-line-strong, rgba(222, 229, 255, 0.19)) !important;
+  border-radius: 14px !important;
+  padding: 12px 16px !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  font-size: 12px !important;
+  color: #e9eaff !important;
+  min-width: 90px !important;
+  text-align: center !important;
+}
+.idg-node-arrow {
+  color: #8d87c4 !important;
+  font-size: 14px !important;
+}
+
+/* Process Flow Panel & Nodes (Section #s4) */
+.idg-process-panel {
+  position: relative !important;
+  padding: clamp(28px, 4vw, 42px) !important;
+  border: 1px solid var(--idg-line, rgba(222, 229, 255, 0.12)) !important;
+  border-radius: 28px !important;
+  background: radial-gradient(ellipse at 50% 0, rgba(140, 121, 255, 0.14), transparent 52%), rgba(14, 16, 30, 0.85) !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(20px) !important;
+}
+.idg-process-nodes {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  z-index: 1 !important;
+}
+.idg-process-node {
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 130px !important;
+  border: 1px solid var(--idg-line, rgba(222, 229, 255, 0.12)) !important;
+  border-radius: 18px !important;
+  background: rgba(8, 10, 20, 0.92) !important;
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: all 0.35s ease !important;
+}
+.idg-process-node.is-flow-active {
+  border-color: rgba(168, 85, 247, 0.75) !important;
+  background: rgba(18, 20, 42, 0.96) !important;
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.28) !important;
+  transform: translateY(-4px) !important;
+}
+.idg-flow-track {
+  position: absolute !important;
+  height: 2px !important;
+  left: 6% !important;
+  right: 6% !important;
+  top: 50% !important;
+  background: linear-gradient(90deg, transparent, rgba(168,85,247,0.8), rgba(56,189,248,0.8), transparent) !important;
+  opacity: 0.8 !important;
+}
+
+/* Final Conversion CTA (Section #s6) */
+.idg-final-cta {
+  text-align: center !important;
+  padding: clamp(55px, 8vw, 85px) clamp(20px, 4vw, 36px) !important;
+  border: 1px solid var(--idg-line, rgba(222, 229, 255, 0.14)) !important;
+  border-radius: 32px !important;
+  background: radial-gradient(ellipse at 50% 0, rgba(140, 121, 255, 0.24), transparent 58%), linear-gradient(145deg, #111428, #0b0d1b) !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45) !important;
+}
+
+@media (max-width: 768px) {
+  .idg-process-nodes {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .idg-flow-track {
+    display: none !important;
+  }
+}
+@media (max-width: 480px) {
+  .idg-process-nodes {
+    grid-template-columns: 1fr !important;
+  }
+}
