@@ -8,6 +8,7 @@ export const CANONICAL_RELEASE = Object.freeze({
     canonical_repository: 'https://github.com/adnin4/inshatech.git',
     canonical_branch: 'master',
     canonical_branches: ['master', 'main'],
+    canonical_sha: '8cac45c9eb24a4b3c0c66a3d81bbfa4ee13a42e6',
     canonical_db_ref: 'kitwadizsvjmuxkfewxj',
     canonical_production_url: 'https://inshatech.pages.dev',
     bdt_peg_rate: 122.50,

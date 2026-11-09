@@ -36,11 +36,11 @@ export async function onRequestGet(context) {
 
     // 2. Multi-SHA Release Parity Verification
     const identity = verifyReleaseIdentity({
-        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || null,
-        build_sha: env.BUILD_RELEASE_SHA || null,
-        deployment_sha: env.CF_PAGES_COMMIT_SHA || null,
-        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || null,
-        branch: env.CF_PAGES_BRANCH || null,
+        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null,
+        build_sha: env.BUILD_RELEASE_SHA || env.SOURCE_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
+        deployment_sha: env.CF_PAGES_COMMIT_SHA || env.BUILD_RELEASE_SHA || env.SOURCE_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
+        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
+        branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch || null,
         repository: env.GITHUB_REPOSITORY || CANONICAL_RELEASE.canonical_repository,
         deployment_id: env.CF_PAGES_DEPLOYMENT_ID || null,
         captured_at: env.BUILD_TIMESTAMP || null,
