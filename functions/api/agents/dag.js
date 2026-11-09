@@ -5,6 +5,34 @@
 
 import { TaskDagOrchestrator } from '../../_shared/ai_brain/task_dag_orchestrator.js';
 
+export async function onRequestGet(context) {
+    const origin = context.request.headers.get("Origin") || "*";
+    const headers = {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Content-Type": "application/json"
+    };
+
+    return new Response(JSON.stringify({
+        status: 'OK',
+        engine: 'IINSHA_TASK_DAG_ORCHESTRATOR_V5',
+        capabilities: [
+            'Topological Kahn dependency sorting',
+            'Cycle detection & anti-deadlock guards',
+            '5-Tier HITL pause & approval gates (L3/L4)',
+            'Dynamic task-to-agent dispatch'
+        ],
+        sample_task_schema: {
+            id: 'string (unique task identifier)',
+            agentId: 'string (one of 18 specialist agent ids)',
+            dependencies: 'array of string task IDs',
+            riskTier: 'LOW | MEDIUM | HIGH | CRITICAL',
+            requiresHitl: 'boolean'
+        }
+    }), { status: 200, headers });
+}
+
 export async function onRequestPost(context) {
     const origin = context.request.headers.get("Origin") || "*";
     const headers = {

@@ -85,8 +85,8 @@ class ToolExecutor {
                     data_mode: 'TAXONOMY_FIXTURE',
                     industry: p.industry,
                     employee_range: range,
-                    note: 'Connect Playwright Extractor / Supabase for live streaming records.',
-                    companies: [], note: 'Connect Supabase database or Playwright scraper to stream live company records.'
+                    companies: [],
+                    note: 'Connect Supabase database or Playwright scraper to stream live company records.'
                 };
             }
 

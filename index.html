@@ -114,8 +114,11 @@
         <section id="s1" data-diagram-section="s1" class="hero-section idg-hero" style="position: relative; overflow: hidden; padding: clamp(40px, 8vh, 80px) 0 clamp(60px, 10vh, 100px); text-align: center;">
             <div id="hero" style="position: absolute; top: 0; left: 0;"></div>
 
-            <!-- AUTHENTIC DIAGRAM.COM CELESTIAL ATMOSPHERE & AMBIENT AURA -->
+            <!-- AUTHENTIC DIAGRAM.COM CELESTIAL ATMOSPHERE, VIDEO & AMBIENT AURA -->
             <div class="hero-visual-backdrop" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
+                <video id="hero-celestial-video" class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-celestial-poster.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.32; mix-blend-mode: screen; pointer-events: none;">
+                    <source src="assets/hero-celestial-loop.webm" type="video/webm">
+                </video>
                 <div class="hero-celestial-glow" style="position: absolute; inset: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 55%, rgba(120, 100, 245, 0.22), transparent 52%), radial-gradient(ellipse at 15% 25%, rgba(56, 189, 248, 0.10), transparent 35%), radial-gradient(ellipse at 85% 35%, rgba(168, 85, 247, 0.14), transparent 36%);"></div>
             </div>
 
@@ -1931,6 +1934,39 @@
         } else {
             setupHls();
         }
+    })();
+    </script>
+
+    <!-- Celestial Hero Video Lifecycle & Reduced Motion Guard -->
+    <script>
+    (function initHeroCelestialVideo() {
+        var video = document.getElementById('hero-celestial-video');
+        if (!video) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            video.pause();
+            return;
+        }
+        if ('IntersectionObserver' in window) {
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        if (video.paused) video.play().catch(function() {});
+                    } else {
+                        if (!video.paused) video.pause();
+                    }
+                });
+            }, { threshold: 0.08 });
+            obs.observe(video);
+        }
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                if (!video.paused) video.pause();
+            } else {
+                if (video.paused && (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    video.play().catch(function() {});
+                }
+            }
+        });
     })();
     </script>
 </body>

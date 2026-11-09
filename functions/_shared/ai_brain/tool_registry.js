@@ -256,10 +256,8 @@ const TOOL_REGISTRY = [
     }
 ];
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TOOL_REGISTRY };
-} else if (typeof window !== 'undefined') {
-    window.TOOL_REGISTRY = TOOL_REGISTRY;
+if (typeof globalThis !== 'undefined') {
+    globalThis.TOOL_REGISTRY = TOOL_REGISTRY;
 }
 
 export { TOOL_REGISTRY };
