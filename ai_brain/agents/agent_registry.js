@@ -13,7 +13,10 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['unauthorized_funds_transfer', 'modifying_master_constitution', 'bypassing_hitl_gates']
     },
     memory: { context_tokens: 128000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['create_task_dag', 'delegate_task', 'evaluate_sla', 'get_analytics'], max_calls: 30 },
+    tools: { allowed: [
+      "deploy_production_release",
+      "knowledge_search",
+      "service_catalog_lookup",'create_task_dag', 'delegate_task', 'evaluate_sla', 'get_analytics'], max_calls: 30 },
     permissions: { autonomy_level: 'L2_SAFE_EXECUTE', risk_class: 'MEDIUM', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['REQUIREMENTS_AGENT', 'ARCHITECT_AGENT', 'DEVELOPER_AGENT'], requires_hitl: false },
     evaluation: { target_quality_score: 95, max_cost_usd: 5.00, revenue_attribution_model: 'overall_executive', sla_latency_ms: 2000 }
   },
@@ -52,7 +55,8 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['direct_production_database_dropping', 'committing_plaintext_secrets', 'untested_releases']
     },
     memory: { context_tokens: 128000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['synthesize_code', 'generate_n8n_workflow', 'run_tests', 'create_project'], max_calls: 50 },
+    tools: { allowed: [
+      "execute_docker_sandbox_task",'synthesize_code', 'generate_n8n_workflow', 'run_tests', 'create_project'], max_calls: 50 },
     permissions: { autonomy_level: 'L3_APPROVAL', risk_class: 'HIGH', permission_level: 'LEVEL_3_APPROVAL', can_delegate_to: ['REVIEWER_AGENT', 'QA_AGENT'], requires_hitl: true },
     evaluation: { target_quality_score: 98, max_cost_usd: 10.00, revenue_attribution_model: 'delivery_fulfillment', sla_latency_ms: 3500 }
   },
@@ -78,7 +82,8 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['passing_failing_tests', 'skipping_asserts']
     },
     memory: { context_tokens: 64000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['run_tests', 'run_browser_e2e', 'mutation_test', 'record_test_evidence'], max_calls: 30 },
+    tools: { allowed: [
+      "run_qa_test_suite",'run_tests', 'run_browser_e2e', 'mutation_test', 'record_test_evidence'], max_calls: 30 },
     permissions: { autonomy_level: 'L0_OBSERVE', risk_class: 'LOW', permission_level: 'LEVEL_0_READ', can_delegate_to: ['DEVELOPER_AGENT'], requires_hitl: false },
     evaluation: { target_quality_score: 99, max_cost_usd: 3.00, revenue_attribution_model: 'qa_gatekeeper', sla_latency_ms: 2200 }
   },
@@ -130,7 +135,9 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['scraping_pii_unlawfully', 'spamming_unverified_lists']
     },
     memory: { context_tokens: 32000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['search_web', 'get_leads', 'verify_corporate_mx', 'enrich_company_profile'], max_calls: 25 },
+    tools: { allowed: [
+      "create_crm_lead",
+      "knowledge_search",'search_web', 'get_leads', 'verify_corporate_mx', 'enrich_company_profile'], max_calls: 25 },
     permissions: { autonomy_level: 'L2_SAFE_EXECUTE', risk_class: 'MEDIUM', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['CRM_OUTREACH_AGENT'], requires_hitl: false },
     evaluation: { target_quality_score: 91, max_cost_usd: 2.00, revenue_attribution_model: 'lead_pipeline', sla_latency_ms: 1500 }
   },
@@ -156,7 +163,10 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['violating_margin_floor', 'misrepresenting_deliverables']
     },
     memory: { context_tokens: 64000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['calculate_roi', 'evaluate_margin_floor', 'generate_proposal', 'create_quote'], max_calls: 30 },
+    tools: { allowed: [
+      "generate_proposal_draft",
+      "create_checkout_session",
+      "service_catalog_lookup",'calculate_roi', 'evaluate_margin_floor', 'generate_proposal', 'create_quote'], max_calls: 30 },
     permissions: { autonomy_level: 'L2_SAFE_EXECUTE', risk_class: 'MEDIUM', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['PAYMENT_VERIFIER_AGENT'], requires_hitl: false },
     evaluation: { target_quality_score: 95, max_cost_usd: 3.00, revenue_attribution_model: 'sales_closing', sla_latency_ms: 1800 }
   },
@@ -182,7 +192,9 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['autonomous_wire_transfers', 'deleting_accounting_entries']
     },
     memory: { context_tokens: 32000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['get_revenue', 'get_expenses', 'record_ledger_entry', 'reconcile_payouts'], max_calls: 15 },
+    tools: { allowed: [
+      "process_refund_request",
+      "disburse_affiliate_payout",'get_revenue', 'get_expenses', 'record_ledger_entry', 'reconcile_payouts'], max_calls: 15 },
     permissions: { autonomy_level: 'L0_OBSERVE', risk_class: 'HIGH', permission_level: 'LEVEL_0_READ', can_delegate_to: [], requires_hitl: false },
     evaluation: { target_quality_score: 99, max_cost_usd: 1.00, revenue_attribution_model: 'financial_controller', sla_latency_ms: 1000 }
   },
@@ -234,7 +246,8 @@ export const AGENT_REGISTRY = {
       forbidden_objectives: ['unauthorized_production_push_without_hitl', 'ignoring_failed_smoke_tests']
     },
     memory: { context_tokens: 64000, persist_state: true, memory_store: 'ibos_memories' },
-    tools: { allowed: ['promote_to_staging', 'promote_to_production', 'trigger_smoke_test', 'rollback_release'], max_calls: 15 },
+    tools: { allowed: [
+      "deploy_production_release",'promote_to_staging', 'promote_to_production', 'trigger_smoke_test', 'rollback_release'], max_calls: 15 },
     permissions: { autonomy_level: 'L3_APPROVAL', risk_class: 'CRITICAL', permission_level: 'LEVEL_3_APPROVAL', can_delegate_to: [], requires_hitl: true },
     evaluation: { target_quality_score: 100, max_cost_usd: 2.00, revenue_attribution_model: 'release_gate_governance', sla_latency_ms: 2000 }
   }
@@ -282,5 +295,6 @@ export const ANTI_LOOP_CONFIG = {
   max_total_tool_calls: 100,
   max_runtime_seconds: 120,
   max_cost_usd: 20.00,
-  max_retries_per_tool: 3
+  max_retries_per_tool: 3,
+  circuit_breaker_on_error: true
 };

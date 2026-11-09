@@ -11,7 +11,7 @@ import { EvidenceSystem } from '../functions/_shared/ai_brain/evidence_system.js
 import { AgentRuntime } from '../functions/_shared/ai_brain/agent_runtime.js';
 
 console.log('================================================================================');
-console.log('🤖 IINSHA AI-BOS: 18 SPECIALIST AGENT & DAG WORKFLOW CERTIFICATION (V1300)');
+console.log('🤖 IINSHA AI-BOS: 18 SPECIALIST AGENT & DAG WORKFLOW CERTIFICATION (V1400)');
 console.log('================================================================================\n');
 
 let passedTests = 0;
@@ -96,7 +96,8 @@ async function main() {
 
     await runTest('GOV-02: Anti-loop configuration bounds delegation depth <= 5', () => {
         assert(ANTI_LOOP_CONFIG.max_delegation_depth <= 5, 'Delegation depth exceeds safe threshold');
-        assert(ANTI_LOOP_CONFIG.max_total_tool_calls > 0, 'Tool call budget must be positive');
+        assert(ANTI_LOOP_CONFIG.max_total_tool_calls > 0, 'Tool call ceiling must be positive');
+        assert(ANTI_LOOP_CONFIG.circuit_breaker_on_error === true, 'Circuit breaker must be active');
     });
 
     // -------------------------------------------------------------
@@ -128,13 +129,126 @@ async function main() {
         const runtime = new AgentRuntime();
         const highRisk = runtime.computeDynamicRisk({
             agent_id: 'FINANCE_CFO_AGENT',
-            action: 'disburse_payout',
+            action: 'disburse_affiliate_payout',
             amount_usd: 5000,
             recipient_count: 100,
             data_classification: 'CONFIDENTIAL'
         });
         assert.strictEqual(highRisk.requires_human_approval, true);
         assert(highRisk.risk_score >= 45, 'Risk score should exceed HITL threshold');
+    });
+
+    await runTest('RISK-01: Boundary tests for 0, negative, NaN, Infinity, and restricted data', () => {
+        const runtime = new AgentRuntime();
+        const rZero = runtime.computeDynamicRisk({ action: 'knowledge_search', amount_usd: 0 });
+        assert.strictEqual(rZero.requires_human_approval, false);
+        assert(Number.isFinite(rZero.risk_score), 'Zero amount must yield finite risk');
+
+        const rNeg = runtime.computeDynamicRisk({ action: 'knowledge_search', amount_usd: -100 });
+        assert(rNeg.risk_score > rZero.risk_score, 'Negative amount anomaly should elevate risk');
+
+        const rNaN = runtime.computeDynamicRisk({ action: 'knowledge_search', amount_usd: NaN });
+        assert(Number.isFinite(rNaN.risk_score), 'NaN amount must yield finite risk');
+
+        const rInf = runtime.computeDynamicRisk({ action: 'knowledge_search', amount_usd: Infinity });
+        assert(Number.isFinite(rInf.risk_score), 'Infinity amount must yield finite risk');
+
+        const rRestricted = runtime.computeDynamicRisk({ action: 'generate_proposal_draft', data_classification: 'RESTRICTED' });
+        assert.strictEqual(rRestricted.requires_human_approval, true);
+        assert.strictEqual(rRestricted.assigned_level, 'LEVEL_3_APPROVAL');
+    });
+
+    await runTest('RISK-02: Model confidence discount NEVER downgrades mandatory approval requirement', () => {
+        const runtime = new AgentRuntime();
+        const rDeployHighConf = runtime.computeDynamicRisk({
+            action: 'deploy_production_release',
+            confidence_score: 1.0
+        });
+        assert.strictEqual(rDeployHighConf.requires_human_approval, true);
+        assert(rDeployHighConf.risk_score >= 70, 'Critical action must retain critical risk regardless of confidence');
+
+        const rDrop = runtime.computeDynamicRisk({ action: 'drop_database_table', confidence_score: 1.0 });
+        assert.strictEqual(rDrop.is_blocked, true);
+        assert.strictEqual(rDrop.assigned_level, 'LEVEL_4_RESTRICTED');
+    });
+
+    await runTest('SEC-01: Constant-time token comparison with fixed-size digests eliminates RangeError across all lengths', async () => {
+        const runtime = new AgentRuntime();
+        process.env.IINSHA_OWNER_APPROVAL_TOKEN = 'secret_test_token_1234567890';
+
+        // 1. Shorter token
+        const resShort = await runtime.executeMissionStep('m_sec_01', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: 'short' });
+        assert.strictEqual(resShort.status, 'APPROVAL_REQUIRED');
+
+        // 2. Longer token (e.g. 500 chars)
+        const resLong = await runtime.executeMissionStep('m_sec_02', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: 'a'.repeat(500) });
+        assert.strictEqual(resLong.status, 'APPROVAL_REQUIRED');
+
+        // 3. Empty token
+        const resEmpty = await runtime.executeMissionStep('m_sec_03', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: '' });
+        assert.strictEqual(resEmpty.status, 'APPROVAL_REQUIRED');
+
+        // 4. Unicode token mismatch
+        const resUnicode = await runtime.executeMissionStep('m_sec_04', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: 'বাংলা_টোকেন' });
+        assert.strictEqual(resUnicode.status, 'APPROVAL_REQUIRED');
+
+        // 5. Exact match token -> Passes gateway approval check (returns NOT_CONFIGURED fail-closed because live Cloudflare adapter is not configured)
+        const resValid = await runtime.executeMissionStep('m_sec_05', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: 'secret_test_token_1234567890' });
+        assert.strictEqual(resValid.status, 'NOT_CONFIGURED');
+        assert.strictEqual(resValid.result.missing_env.includes('CLOUDFLARE_API_TOKEN'), true);
+    });
+
+    await runTest('SEC-02: Server-verified owner token propagated from executionContext to tool execution gateway', async () => {
+        const runtime = new AgentRuntime();
+        process.env.IINSHA_OWNER_APPROVAL_TOKEN = 'token_abc_xyz_999';
+
+        // Calling without executionContext.owner_token must return APPROVAL_REQUIRED
+        const unapproved = await runtime.executeMissionStep('m_unapp', 'CEO_AGENT', 'deploy_production_release', { owner_approved: true });
+        assert.strictEqual(unapproved.status, 'APPROVAL_REQUIRED');
+
+        // Calling with valid owner_token passes the approval gate
+        const approved = await runtime.executeMissionStep('m_app', 'CEO_AGENT', 'deploy_production_release', {}, { owner_token: 'token_abc_xyz_999' });
+        assert(approved.status !== 'APPROVAL_REQUIRED', 'Approved request must not return APPROVAL_REQUIRED');
+    });
+
+    await runTest('API-01: Orchestrator rejects unknown agent identifiers with 400 Bad Request UNKNOWN_AGENT', async () => {
+        const { onRequestPost } = await import('../functions/api/agents/orchestrate.js');
+
+        const mockContext = {
+            request: {
+                headers: new Map(),
+                json: async () => ({ agent_id: 'unknown_hacker_agent', prompt: 'test' })
+            },
+            env: {}
+        };
+        mockContext.request.headers.get = () => null;
+
+        const response = await onRequestPost(mockContext);
+        assert.strictEqual(response.status, 400);
+        const data = await response.json();
+        assert.strictEqual(data.status, 'DENIED');
+        assert.strictEqual(data.error, 'UNKNOWN_AGENT');
+    });
+
+    await runTest('API-02: Orchestrator routes tool execution truthfully to AgentRuntime without dummy success', async () => {
+        const { onRequestPost } = await import('../functions/api/agents/orchestrate.js');
+
+        // Safe tool execution: service_catalog_lookup
+        const mockContext = {
+            request: {
+                headers: new Map(),
+                json: async () => ({ agent_id: 'sales_proposal', tool_name: 'service_catalog_lookup' })
+            },
+            env: {}
+        };
+        mockContext.request.headers.get = () => null;
+
+        const response = await onRequestPost(mockContext);
+        assert.strictEqual(response.status, 200);
+        const data = await response.json();
+        assert.strictEqual(data.status, 'EXECUTED');
+        assert.strictEqual(data.production_verified, false);
+        assert.strictEqual(data.agent.id, 'sales_proposal');
     });
 
     // -------------------------------------------------------------
@@ -158,15 +272,19 @@ async function main() {
 
     await runTest('DAG-02: Detects circular dependency graphs and prevents infinite deadlock', () => {
         const orchestrator = new TaskDagOrchestrator();
-        const dagId = 'test_cyclic_dag';
+        const dagId = 'test_deadlock_dag';
         orchestrator.createDag(dagId);
 
-        orchestrator.addTask(dagId, { id: 'A', agentId: 'developer', dependencies: ['B'] });
-        orchestrator.addTask(dagId, { id: 'B', agentId: 'qa', dependencies: ['A'] });
+        orchestrator.addTask(dagId, { id: 'task_a', agentId: 'requirements', dependencies: ['task_c'] });
+        orchestrator.addTask(dagId, { id: 'task_b', agentId: 'architect', dependencies: ['task_a'] });
+        orchestrator.addTask(dagId, { id: 'task_c', agentId: 'developer', dependencies: ['task_b'] });
 
-        assert.throws(() => {
-            orchestrator.validateDag(dagId);
-        }, /Cycle detected/);
+        assert.throws(
+            () => {
+                orchestrator.validateDag(dagId);
+            },
+            /Cycle detected|circular/i
+        );
     });
 
     await runTest('DAG-03: State transitions enforce HITL approval gates for high-risk actions', async () => {

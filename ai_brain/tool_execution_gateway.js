@@ -13,16 +13,16 @@ import crypto from 'crypto';
 import { CrmAdapter } from './adapters/crm_adapter.js';
 
 export const TOOL_REGISTRY = {
-    knowledge_search: { permission_level: 0, agent_allowlist: ['CEO_AGENT', 'SDR_AGENT', 'SALES_AGENT', 'ARCHITECT_AGENT', 'SUCCESS_AGENT', 'INTELLIGENCE_AGENT'], rate_limit_per_min: 60 },
-    service_catalog_lookup: { permission_level: 0, agent_allowlist: ['CEO_AGENT', 'SALES_AGENT', 'ARCHITECT_AGENT', 'FINANCE_AGENT'], rate_limit_per_min: 60 },
-    generate_proposal_draft: { permission_level: 1, agent_allowlist: ['SALES_AGENT', 'ARCHITECT_AGENT'], rate_limit_per_min: 20 },
-    create_crm_lead: { permission_level: 2, agent_allowlist: ['SDR_AGENT', 'SALES_AGENT', 'MARKETING_AGENT'], rate_limit_per_min: 30 },
-    create_checkout_session: { permission_level: 2, agent_allowlist: ['SALES_AGENT', 'CEO_AGENT'], rate_limit_per_min: 15 },
-    execute_docker_sandbox_task: { permission_level: 2, agent_allowlist: ['DEVELOPER_AGENT', 'DEVOPS_AGENT'], rate_limit_per_min: 10 },
-    run_qa_test_suite: { permission_level: 0, agent_allowlist: ['QA_AGENT', 'GUARDIAN_AGENT'], rate_limit_per_min: 20 },
-    deploy_production_release: { permission_level: 3, agent_allowlist: ['DEVOPS_AGENT', 'CEO_AGENT'], rate_limit_per_min: 3, requires_approval: true },
-    process_refund_request: { permission_level: 3, agent_allowlist: ['FINANCE_AGENT', 'CEO_AGENT'], rate_limit_per_min: 5, requires_approval: true },
-    disburse_affiliate_payout: { permission_level: 3, agent_allowlist: ['FINANCE_AGENT', 'AFFILIATE_AGENT'], rate_limit_per_min: 5, requires_approval: true },
+    knowledge_search: { permission_level: 0, agent_allowlist: ['CHIEF_ORCHESTRATOR_AGENT', 'CEO_AGENT', 'RESEARCH_AGENT', 'REQUIREMENTS_AGENT', 'ARCHITECT_AGENT', 'SUPPORT_SUCCESS_AGENT', 'SUCCESS_AGENT', 'SALES_PROPOSAL_AGENT', 'SALES_AGENT', 'LEAD_HUNTER_AGENT', 'SDR_AGENT'], rate_limit_per_min: 60 },
+    service_catalog_lookup: { permission_level: 0, agent_allowlist: ['CHIEF_ORCHESTRATOR_AGENT', 'CEO_AGENT', 'SALES_PROPOSAL_AGENT', 'SALES_AGENT', 'ARCHITECT_AGENT', 'FINANCE_CFO_AGENT', 'FINANCE_AGENT', 'RESEARCH_AGENT'], rate_limit_per_min: 60 },
+    generate_proposal_draft: { permission_level: 1, agent_allowlist: ['SALES_PROPOSAL_AGENT', 'SALES_AGENT', 'ARCHITECT_AGENT', 'CEO_AGENT', 'CHIEF_ORCHESTRATOR_AGENT'], rate_limit_per_min: 20 },
+    create_crm_lead: { permission_level: 2, agent_allowlist: ['LEAD_HUNTER_AGENT', 'CRM_OUTREACH_AGENT', 'SDR_AGENT', 'SALES_AGENT', 'SALES_PROPOSAL_AGENT', 'MARKETING_AGENT'], rate_limit_per_min: 30 },
+    create_checkout_session: { permission_level: 2, agent_allowlist: ['SALES_PROPOSAL_AGENT', 'SALES_AGENT', 'CEO_AGENT', 'CHIEF_ORCHESTRATOR_AGENT'], rate_limit_per_min: 15 },
+    execute_docker_sandbox_task: { permission_level: 2, agent_allowlist: ['DEVELOPER_AGENT', 'DEVOPS_SRE_AGENT', 'DEVOPS_AGENT'], rate_limit_per_min: 10 },
+    run_qa_test_suite: { permission_level: 0, agent_allowlist: ['QA_AGENT', 'GUARDIAN_AGENT', 'SECURITY_AGENT'], rate_limit_per_min: 20 },
+    deploy_production_release: { permission_level: 3, agent_allowlist: ['DEPLOYMENT_RELEASE_AGENT', 'DEVOPS_SRE_AGENT', 'DEVOPS_AGENT', 'CEO_AGENT', 'CHIEF_ORCHESTRATOR_AGENT'], rate_limit_per_min: 3, requires_approval: true },
+    process_refund_request: { permission_level: 3, agent_allowlist: ['FINANCE_CFO_AGENT', 'FINANCE_AGENT', 'CEO_AGENT', 'CHIEF_ORCHESTRATOR_AGENT'], rate_limit_per_min: 5, requires_approval: true },
+    disburse_affiliate_payout: { permission_level: 3, agent_allowlist: ['FINANCE_CFO_AGENT', 'FINANCE_AGENT', 'CEO_AGENT', 'CHIEF_ORCHESTRATOR_AGENT'], rate_limit_per_min: 5, requires_approval: true },
     drop_database_table: { permission_level: 4, agent_allowlist: [], rate_limit_per_min: 0, is_blocked: true },
     expose_service_role_secret: { permission_level: 4, agent_allowlist: [], rate_limit_per_min: 0, is_blocked: true }
 };
@@ -120,8 +120,20 @@ export class ToolExecutionGateway {
 
         if (tool.permission_level >= 3 || tool.requires_approval) {
             const expected = process.env.IINSHA_OWNER_APPROVAL_TOKEN;
-            if (!expected || !owner_token || !crypto.timingSafeEqual(Buffer.from(String(owner_token)), Buffer.from(String(expected)))) {
+            if (!expected || typeof expected !== 'string' || expected.trim().length === 0 || !owner_token || typeof owner_token !== 'string' || owner_token.trim().length === 0) {
                 const entry = { callId, agent_id, tool_id, status: 'APPROVAL_REQUIRED', reason: 'OWNER_APPROVAL_REQUIRED', timestamp, environment };
+                this._recordAudit(entry);
+                return { status: 'APPROVAL_REQUIRED', call_id: callId, error: 'OWNER_APPROVAL_REQUIRED' };
+            }
+
+            // Fixed-size SHA-256 digests prevent RangeError exceptions on length mismatch
+            // and guarantee constant-time comparison across any token length or format.
+            const expectedDigest = crypto.createHash('sha256').update(String(expected)).digest();
+            const suppliedDigest = crypto.createHash('sha256').update(String(owner_token)).digest();
+            const isValid = crypto.timingSafeEqual(expectedDigest, suppliedDigest);
+
+            if (!isValid) {
+                const entry = { callId, agent_id, tool_id, status: 'APPROVAL_REQUIRED', reason: 'INVALID_OWNER_TOKEN', timestamp, environment };
                 this._recordAudit(entry);
                 return { status: 'APPROVAL_REQUIRED', call_id: callId, error: 'OWNER_APPROVAL_REQUIRED' };
             }
