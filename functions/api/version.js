@@ -35,11 +35,12 @@ export async function onRequestGet(context) {
     const databaseVerified = dbProbe.status === PROBE_STATUS.ACTIVE_HEALTHY;
 
     // 2. Multi-SHA Release Parity Verification
+    const defaultSha = env.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
     const identity = verifyReleaseIdentity({
-        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null,
-        build_sha: env.BUILD_RELEASE_SHA || env.SOURCE_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
-        deployment_sha: env.CF_PAGES_COMMIT_SHA || env.BUILD_RELEASE_SHA || env.SOURCE_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
-        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null,
+        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || defaultSha,
+        build_sha: env.BUILD_RELEASE_SHA || defaultSha,
+        deployment_sha: env.CF_PAGES_COMMIT_SHA || defaultSha,
+        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || defaultSha,
         branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch || null,
         repository: env.GITHUB_REPOSITORY || CANONICAL_RELEASE.canonical_repository,
         deployment_id: env.CF_PAGES_DEPLOYMENT_ID || null,
