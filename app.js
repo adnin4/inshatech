@@ -6668,9 +6668,14 @@ function initUniversalButtonBindings() {
 
                 const targetId = btn.getAttribute('data-target');
                 if (targetId) {
-                    document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+                    document.querySelectorAll('.service-panel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
                     const targetPanel = document.getElementById(targetId);
-                    if (targetPanel) targetPanel.classList.add('active');
+                    if (targetId === 'all') {
+                        document.querySelectorAll('.service-panel').forEach(p => { p.classList.add('active'); p.style.display = 'grid'; });
+                    } else if (targetPanel) {
+                        targetPanel.classList.add('active');
+                        targetPanel.style.display = 'grid';
+                    }
                 }
             });
         }

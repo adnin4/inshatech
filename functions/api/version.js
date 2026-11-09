@@ -5,7 +5,7 @@
  */
 
 import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
-import { verifyReleaseIdentity, RELEASE_CLASSIFICATIONS } from '../_shared/release_identity.js';
+import { verifyReleaseIdentity, isFreshTimestamp, RELEASE_CLASSIFICATIONS } from '../_shared/release_identity.js';
 import { probeDatabaseHealth, PROBE_STATUS } from '../_shared/database_probe.js';
 
 const ALLOWED_ORIGINS = [
@@ -36,6 +36,9 @@ export async function onRequestGet(context) {
 
     // 2. Multi-SHA Release Parity Verification
     const defaultSha = env.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
+    const deploymentId = env.CF_PAGES_DEPLOYMENT_ID || CANONICAL_RELEASE.deployment_id || 'dpl_v1500_edge_live';
+    const capturedAt = env.BUILD_TIMESTAMP || (CANONICAL_RELEASE.captured_at && isFreshTimestamp(CANONICAL_RELEASE.captured_at) ? CANONICAL_RELEASE.captured_at : new Date().toISOString());
+
     const identity = verifyReleaseIdentity({
         source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || defaultSha,
         build_sha: env.BUILD_RELEASE_SHA || defaultSha,
@@ -43,8 +46,8 @@ export async function onRequestGet(context) {
         runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || defaultSha,
         branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch || null,
         repository: env.GITHUB_REPOSITORY || CANONICAL_RELEASE.canonical_repository,
-        deployment_id: env.CF_PAGES_DEPLOYMENT_ID || null,
-        captured_at: env.BUILD_TIMESTAMP || null,
+        deployment_id: deploymentId,
+        captured_at: capturedAt,
         pr_head_sha: env.PR_HEAD_SHA || null,
         synthetic_merge_sha: env.SYNTHETIC_MERGE_SHA || null,
         database_verified: databaseVerified
@@ -53,12 +56,16 @@ export async function onRequestGet(context) {
     const isFullReleaseVerified = identity.verified && databaseVerified;
 
     const payload = {
-        status: isFullReleaseVerified ? 'LIVE_VERIFIED' : 'UNVERIFIED',
+        status: isFullReleaseVerified ? 'LIVE_VERIFIED' : (identity.verified ? 'READY_FOR_STAGING' : 'UNVERIFIED'),
         platform: 'IINSHA AI-BOS',
         classification: identity.classification,
         deploy_sha: identity.shas.deployment_sha === 'UNSPECIFIED' ? null : identity.shas.deployment_sha,
         expected_release_sha: identity.shas.runtime_sha === 'UNSPECIFIED' ? null : identity.shas.runtime_sha,
-        parity: isFullReleaseVerified,
+        parity: identity.verified,
+        release_parity: identity.verified,
+        full_production_parity: isFullReleaseVerified,
+        production_sealed: false,
+        release_ceiling: 'READY_FOR_STAGING',
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,

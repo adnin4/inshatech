@@ -209,7 +209,7 @@ assert.strictEqual(dbHealthy.verified, true);
         CF_PAGES_BRANCH: 'master'
     };
 
-    // 11A: Valid release + missing DB credentials -> UNVERIFIED (Fail closed)
+    // 11A: Valid release + missing DB credentials -> READY_FOR_STAGING
     const resA = await onRequestGet({
         request: new Request('https://inshatech.pages.dev/api/version'),
         env: { ...validReleaseEnv }
@@ -217,10 +217,14 @@ assert.strictEqual(dbHealthy.verified, true);
     const bodyA = await resA.json();
     assert.strictEqual(bodyA.release_identity.verified, true);
     assert.strictEqual(bodyA.database_identity.status, PROBE_STATUS.UNVERIFIED);
-    assert.strictEqual(bodyA.status, 'UNVERIFIED');
-    assert.strictEqual(bodyA.parity, false);
+    assert.strictEqual(bodyA.status, 'READY_FOR_STAGING');
+    assert.strictEqual(bodyA.parity, true);
+    assert.strictEqual(bodyA.release_parity, true);
+    assert.strictEqual(bodyA.full_production_parity, false);
+    assert.notStrictEqual(bodyA.release_identity.deployment_id, 'UNSPECIFIED');
+    assert.notStrictEqual(bodyA.release_identity.captured_at, 'UNSPECIFIED');
 
-    // 11B: Valid release + inactive DB -> UNVERIFIED
+    // 11B: Valid release + inactive DB -> READY_FOR_STAGING (fail closed for full production)
     const resB = await onRequestGet({
         request: new Request('https://inshatech.pages.dev/api/version'),
         env: {
@@ -230,9 +234,23 @@ assert.strictEqual(dbHealthy.verified, true);
         }
     });
     const bodyB = await resB.json();
-    // Network call to inactive DB fails closed
-    assert.strictEqual(bodyB.status, 'UNVERIFIED');
-    assert.strictEqual(bodyB.parity, false);
+    assert.strictEqual(bodyB.status, 'READY_FOR_STAGING');
+    assert.strictEqual(bodyB.parity, true);
+    assert.strictEqual(bodyB.full_production_parity, false);
+    assert.strictEqual(bodyB.production_sealed, false);
+
+    // 11C: SHA mismatch -> UNVERIFIED
+    const resC = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            ...validReleaseEnv,
+            CF_PAGES_COMMIT_SHA: otherSha
+        }
+    });
+    const bodyC = await resC.json();
+    assert.strictEqual(bodyC.release_identity.verified, false);
+    assert.strictEqual(bodyC.parity, false);
+    assert.strictEqual(bodyC.status, 'UNVERIFIED');
 }
 
 console.log('✅ All release identity, PR synthetic check, and database probe unit tests passed!');

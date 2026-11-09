@@ -3411,10 +3411,7 @@ form input[type="tel"]:focus {
     }
 
     .status-bar-right {
-        display: flex !important;
-        align-items: center !important;
-        gap: 6px !important;
-        margin-left: auto !important;
+        display: none !important;
     }
 
     .os-admin-btn {
@@ -5540,6 +5537,8 @@ table {
     }
 
     /* Collapse Metric Hubs to Single Column on Narrow Screens */
+    .idg-calculator-grid,
+    .idg-process-nodes,
     .finder-metrics-grid,
     .roi-results-metrics-grid,
     .engineering-stats-grid,
