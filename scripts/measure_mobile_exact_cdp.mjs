@@ -51,7 +51,12 @@ async function startLocalServer() {
 }
 
 async function measureMobile() {
-  const server = await startLocalServer();
+  const targetUrl = process.argv[2] || null;
+  let server = null;
+  if (!targetUrl) {
+    server = await startLocalServer();
+  }
+  const urlToLoad = targetUrl || 'http://127.0.0.1:8789/';
   const port = 9558;
   const chrome = spawn(CHROME_PATH, [
     '--headless=new',
@@ -94,8 +99,8 @@ async function measureMobile() {
       hasTouch: true
     });
 
-    console.log('Navigating to local server: http://127.0.0.1:8789/');
-    await send('Page.navigate', { url: 'http://127.0.0.1:8789/' });
+    console.log(`Navigating to target URL: ${urlToLoad}`);
+    await send('Page.navigate', { url: urlToLoad });
     await new Promise(r => setTimeout(r, 3500));
 
     const checkOverflow = await send('Runtime.evaluate', {
@@ -176,7 +181,7 @@ async function measureMobile() {
     ws.close();
   } finally {
     chrome.kill('SIGKILL');
-    server.close();
+    if (server) server.close();
   }
 }
 
