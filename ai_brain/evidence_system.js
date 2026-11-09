@@ -185,6 +185,76 @@ export class EvidenceSystem {
   }
 
   /**
+   * Verify the mathematical integrity of the entire internal ledger
+   */
+  verifyChainIntegrity() {
+    if (this.ledger.length === 0) return true;
+
+    for (let i = 0; i < this.ledger.length; i++) {
+      const entry = this.ledger[i];
+      const expectedPrevHash = i === 0
+        ? '0000000000000000000000000000000000000000000000000000000000000000'
+        : this.ledger[i - 1].recordHash;
+
+      if (entry.previousHash !== expectedPrevHash) {
+        return false;
+      }
+
+      const expectedRecordHash = EvidenceSystem.computeSha256({
+        index: entry.index,
+        taskId: entry.taskId,
+        stage: entry.stage,
+        actorAgent: entry.actorAgent,
+        sourceRevision: entry.sourceRevision,
+        inputHash: entry.inputHash,
+        outputHash: entry.outputHash,
+        testHash: entry.testHash,
+        approvalRecord: entry.approvalRecord,
+        previousHash: entry.previousHash,
+        timestamp: entry.timestamp
+      });
+
+      if (entry.recordHash !== expectedRecordHash) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Generate an alias completion certificate for compatibility
+   */
+  generateCompletionCertificate(projectId, metadata = {}) {
+    const cert = this.sealVerificationCertificate(projectId, metadata);
+    return {
+      ...cert,
+      tamperEvident: true,
+      finalLedgerRootHash: cert.rootDigest,
+      verificationStatus: 'MATHEMATICALLY_CERTIFIED'
+    };
+  }
+
+  /**
+   * Generate a comprehensive attestation report of the ledger
+   */
+  getAttestationReport() {
+    const isChainValid = this.verifyChainIntegrity();
+    const lastEntry = this.ledger[this.ledger.length - 1];
+    const rootDigest = this.ledger.length > 0
+      ? EvidenceSystem.computeSha256(this.ledger.map(s => s.recordHash).join(':'))
+      : '0000000000000000000000000000000000000000000000000000000000000000';
+
+    return {
+      totalRecords: this.ledger.length,
+      chainIntegrity: isChainValid ? 'VERIFIED' : 'COMPROMISED',
+      latestRecordHash: lastEntry ? lastEntry.recordHash : null,
+      rootDigest,
+      ledger: [...this.ledger]
+    };
+  }
+
+  /**
    * Get all entries in the ledger
    */
   getLedger() {

@@ -414,6 +414,19 @@ const SUITE_INVENTORY = [
     evidence_level: 'CODE_CONTRACT',
     upstream_dependencies: ['reality_boundary', 'system_claims']
   }
+  ,
+  {
+    id: 'agents_18_workflow',
+    name: '18-Specialist Agent & DAG Workflow Certification',
+    command: 'node',
+    args: ['scripts/test_18_agents_and_dag_workflow.mjs'],
+    domain: 'AI_AGENT',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-AGENT-18-01', 'REQ-DAG-01', 'REQ-EVIDENCE-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['copilot_e2e']
+  }
 ];
 
 console.log('================================================================================');
