@@ -1,16 +1,17 @@
 /**
  * IINSHA AI-BOS: 18-Specialist Agent & Task DAG Workflow Certification Suite
  * Validates the complete 18-agent autonomous organization, 5-tier HITL matrix,
- * DAG dependency orchestration, and cryptographic evidence hash-chaining.
+ * DAG dependency orchestration, zero-trust runtime execution, and cryptographic evidence hash-chaining.
  */
 
 import assert from 'node:assert';
 import { AGENT_REGISTRY, FIVE_TIER_HITL_MATRIX, ANTI_LOOP_CONFIG } from '../functions/_shared/ai_brain/agents/agent_registry.js';
 import { TaskDagOrchestrator } from '../functions/_shared/ai_brain/task_dag_orchestrator.js';
 import { EvidenceSystem } from '../functions/_shared/ai_brain/evidence_system.js';
+import { AgentRuntime } from '../functions/_shared/ai_brain/agent_runtime.js';
 
 console.log('================================================================================');
-console.log('🤖 IINSHA AI-BOS: 18 SPECIALIST AGENT & DAG WORKFLOW CERTIFICATION');
+console.log('🤖 IINSHA AI-BOS: 18 SPECIALIST AGENT & DAG WORKFLOW CERTIFICATION (V1300)');
 console.log('================================================================================\n');
 
 let passedTests = 0;
@@ -99,7 +100,45 @@ async function main() {
     });
 
     // -------------------------------------------------------------
-    // 3. Task DAG Orchestration Engine
+    // 3. Zero-Trust Runtime & Dynamic Risk Governance
+    // -------------------------------------------------------------
+    await runTest('EXEC-01: AgentRuntime enforces Zero-Trust tool scope allowlists', async () => {
+        const runtime = new AgentRuntime();
+        // REQUIREMENTS_AGENT is not allowed to drop database or disburse payout
+        await assert.rejects(
+            async () => {
+                await runtime.executeMissionStep('m_01', 'REQUIREMENTS_AGENT', 'disburse_affiliate_payout', {});
+            },
+            /Zero-Trust Violation/
+        );
+    });
+
+    await runTest('EXEC-02: AgentRuntime enforces Emergency Stop lockdown across all agents', async () => {
+        const runtime = new AgentRuntime();
+        runtime.systemState = 'EMERGENCY_STOP';
+        await assert.rejects(
+            async () => {
+                await runtime.executeMissionStep('m_02', 'CHIEF_ORCHESTRATOR_AGENT', 'create_task_dag', {});
+            },
+            /EMERGENCY STOP/
+        );
+    });
+
+    await runTest('EXEC-03: Dynamic Risk Engine gates high-value actions to APPROVAL_REQUIRED', () => {
+        const runtime = new AgentRuntime();
+        const highRisk = runtime.computeDynamicRisk({
+            agent_id: 'FINANCE_CFO_AGENT',
+            action: 'disburse_payout',
+            amount_usd: 5000,
+            recipient_count: 100,
+            data_classification: 'CONFIDENTIAL'
+        });
+        assert.strictEqual(highRisk.requires_human_approval, true);
+        assert(highRisk.risk_score >= 45, 'Risk score should exceed HITL threshold');
+    });
+
+    // -------------------------------------------------------------
+    // 4. Task DAG Orchestration Engine
     // -------------------------------------------------------------
     await runTest('DAG-01: Creates task DAG and validates topological dependencies without cycles', () => {
         const orchestrator = new TaskDagOrchestrator();
@@ -151,8 +190,28 @@ async function main() {
         assert.strictEqual(approvedDeploy.status, 'COMPLETED');
     });
 
+    await runTest('DAG-04: Complex fan-out DAG topology resolves parallel dependencies cleanly', () => {
+        const orchestrator = new TaskDagOrchestrator();
+        const dagId = 'test_fanout_dag';
+        orchestrator.createDag(dagId);
+
+        // Root
+        orchestrator.addTask(dagId, { id: 'root', agentId: 'requirements' });
+        // Fan-out to 3 parallel tracks
+        orchestrator.addTask(dagId, { id: 'track_fe', agentId: 'developer', dependencies: ['root'] });
+        orchestrator.addTask(dagId, { id: 'track_be', agentId: 'developer', dependencies: ['root'] });
+        orchestrator.addTask(dagId, { id: 'track_sec', agentId: 'security', dependencies: ['root'] });
+        // Join
+        orchestrator.addTask(dagId, { id: 'join_qa', agentId: 'qa', dependencies: ['track_fe', 'track_be', 'track_sec'] });
+
+        const isValid = orchestrator.validateDag(dagId);
+        assert.strictEqual(isValid, true);
+        const summary = orchestrator.getDagSummary(dagId);
+        assert.strictEqual(summary.taskCounts.total, 5);
+    });
+
     // -------------------------------------------------------------
-    // 4. Cryptographic Evidence & Hash Chaining
+    // 5. Cryptographic Evidence & Hash Chaining
     // -------------------------------------------------------------
     await runTest('EVIDENCE-01: Computes deterministic SHA-256 hashes and hash-chains steps', () => {
         const evidence = new EvidenceSystem();
