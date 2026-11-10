@@ -3,9 +3,9 @@
 **Date of Audit:** 2026-11-10 (Asia/Dhaka)  
 **Repository:** `adnin4/inshatech`  
 **Local Working Directory:** `C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase`  
-**Local HEAD SHA:** `49667b0d4f64f443ac0453809867efe43766bd1a`  
+**Local HEAD SHA:** `9b13d04f898daade55528541637c18f9b82e4d90`  
 **Live Deployed Staging URL:** `https://inshatech-b6b.pages.dev/`  
-**Latest Preview Deployment:** `https://654eb034.inshatech-b6b.pages.dev/`  
+**Latest Preview Deployment:** `https://b304bc15.inshatech-b6b.pages.dev/`  
 **Release Ceiling Verdict:** `READY_FOR_STAGING` (Zero False-Green Policy Strictly Enforced)
 
 ---
@@ -29,18 +29,19 @@ Every assertion, claim, and metric in this audit complies with the strict zero f
 
 ### 2.1 Commit Lineage & Branch Structure
 - **Local Branch:** `master`
-- **Local HEAD Commit:** `49667b0d4f64f443ac0453809867efe43766bd1a` (`fix(environment): prioritize host-based preview pattern over project-level ENVIRONMENT default`)
-- **Review Branch:** `release/v1500-browser-verified-20261110` pointing to `49667b0d4f64f443ac0453809867efe43766bd1a`
+- **Local HEAD Commit:** `9b13d04f898daade55528541637c18f9b82e4d90` (`fix(v1500): enforce robust hero video playback, anchor #services catalogue, and freeze deterministic evidence ledger`)
+- **Review Branch:** `release/v1500-browser-verified-20261110` pointing to `9b13d04f898daade55528541637c18f9b82e4d90`
 - **Preserved Safety Backup:** `backup/v1200-before-reconciliation-20261110` at `d044799a2b97131b0f6a2a672ada6f1f3659505a`
 - **Remote `origin/master` Commit:** `b3de7650b65e388514ca82674654c92241ea8811` (Dated 2026-09-10)
 - **Remote `origin/main` Commit:** `45ee4c1f90f699686c71912a7f22598cbe3b0a74` (Separate legacy branch)
-- **Commit Delta:** Local `master` is **103 commits ahead** of `origin/master`.
+- **Commit Delta:** Local `master` is **105 commits ahead** of `origin/master`.
 
 ### 2.2 SHA Provenance Reconciliation
 In V1500, all 40-character SHAs are deterministically derived, tracked, and verified across both disk and live Cloudflare edge Functions:
-- Disk Commit HEAD: `49667b0d4f64f443ac0453809867efe43766bd1a`
-- Live Edge Deployed SHA: `49667b0d4f64f443ac0453809867efe43766bd1a`
+- Disk Commit HEAD: `9b13d04f898daade55528541637c18f9b82e4d90`
+- Live Edge Deployed SHA: `9b13d04f898daade55528541637c18f9b82e4d90`
 - Multi-SHA Parity: `FULL_PARITY_VERIFIED` (`missing_fields: []`)
+- Deterministic Evidence Merkle Root: `f5e698f89a6a78cecd6469182749d73329cbee46ee75f560504493300faa9827` (Identical across Preview and Canonical edge deployments)
 
 ---
 
