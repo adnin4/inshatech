@@ -7,12 +7,12 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 
 1. GITHUB SOURCE & REPOSITORY LINEAGE
 --------------------------------------------------------------------------------
-• Current Local HEAD:       1a8adac760b29ceca4f6f7b7cb34a362bf7870ef
+• Current Local HEAD:       fa04f7df74179007235f84a16a9dc7a01b748e7f
 • Current GitHub master:    b3de7650b65e388514ca82674654c92241ea8811 (2026-09-10)
 • Current GitHub main:      45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy branch)
-• Local Commit Delta:       ahead 110, behind 0 (Local master is 110 commits ahead)
+• Local Commit Delta:       ahead 112, behind 0 (Local master is 112 commits ahead)
 • Review Branch:            release/v1500-browser-verified-20261110 (Synced to HEAD)
-• Backup Branch:            backup/v1500-final-forensics-20261110-1856
+• Backup Branch:            backup/v1500-final-forensics-20261110-2321 (Verified bundle created)
 • Workstation gh CLI:       UNAUTHENTICATED (gh auth status -> Not logged in)
 • Commit Publication:       BLOCKED_EXTERNAL [Gate G1]. Workstation cannot push
                             to GitHub without interactive owner authentication.
@@ -36,20 +36,22 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 • Active Account ID:        0eaa8aeb3e2ea628065da5c05b1368a7 (aaih.apon@gmail.com)
 • Assigned Pages Domain:    inshatech-b6b.pages.dev (Direct Upload mode)
 • Canonical URL:            https://inshatech-b6b.pages.dev/
-• Verified Preview URL:     https://2829f41c.inshatech-b6b.pages.dev/
-• Deployed Commit SHA:      1a8adac760b29ceca4f6f7b7cb34a362bf7870ef
+• Verified Preview URL:     https://c76f1f67.inshatech-b6b.pages.dev/
+• Deployed Commit SHA:      fa04f7df74179007235f84a16a9dc7a01b748e7f
 • Hostname Mismatch Fixed:  inshatech.pages.dev is a separate/legacy deployment
                             running old main (45ee4c1). The active deployment authority
                             is inshatech-b6b.pages.dev.
 
 4. RUNTIME API TELEMETRY (CANONICAL VS PREVIEW PARITY)
 --------------------------------------------------------------------------------
-Item                          Canonical (inshatech-b6b)       Preview (4b185508)
+Item                          Canonical (inshatech-b6b)       Preview (c76f1f67)
 --------------------------------------------------------------------------------
 /api/version HTTP             200 OK                          200 OK
 Release Status                READY_FOR_STAGING               READY_FOR_STAGING
+Classification                DEPLOYMENT_PARITY_VERIFIED      DEPLOYMENT_PARITY_VERIFIED
+System Readiness              READY_FOR_STAGING_DB_UNVERIFIED READY_FOR_STAGING_DB_UNVERIFIED
 Environment                   production                      preview
-Deploy SHA                    85aa4badb6f0f214398199fc431...  85aa4badb6f0f214398199fc431...
+Deploy SHA                    fa04f7df74179007235f84a1...     fa04f7df74179007235f84a1...
 Parity                        true                            true
 Release Parity                true                            true
 Full Production Parity        false                           false
@@ -73,16 +75,20 @@ Cross-Environment Parity:     100% IDENTICAL API SCHEMA, SHA & EVIDENCE ROOT
                             have been eliminated from /api/version.
 • Database Parity:          false (Until owner resumes database and supplies runtime secrets).
 
-6. CHROME HEADLESS CDP PROGRAMMATIC BROWSER QA
+6. CHROME HEADLESS CDP PROGRAMMATIC BROWSER QA (DESKTOP & MOBILE)
 --------------------------------------------------------------------------------
-• Hero Video Element:       #hero-celestial-video present
-• Active Playback:          PASS (paused: false, readyState: 4, currentTime progressed
-                            from 3.45s to 4.97s across 1.5s interval)
-• WebGL2 Planetary Canvas:  PASS (#iinsha-diagram-scene has active WebGL2RenderingContext,
-                            drawingBuffer 688x340)
-• Service Catalogue:        PASS (Section #s3 bound with role="region" aria-label="Services Catalogue"
-                            and <div id="services"></div> anchor)
-• Service Panels:           PASS (8 out of 8 panels rendered with display: grid)
+• Desktop (1280x900):       PASS
+  - Hero Video:             paused: false, readyState: 4, currentTime progressed 3.50s -> 5.00s
+  - Canvas Centerpiece:     HTML5 <canvas id="iinsha-diagram-scene">, WebGL2RenderingContext active,
+                            drawingBuffer 1472x736, aria-hidden="true" (eliminating crawler image confusion)
+  - Service Catalogue:      8 panels display:grid, 80/80 cards rendered and visible
+  - Semantic Anchors:       #services target anchor present; #s3 region landmark active
+• Mobile (390x844):          PASS
+  - Viewport Invariant:     docScrollWidth: 390px, winInnerWidth: 390px (Zero horizontal overflow)
+  - Hero Video:             paused: false, readyState: 4, currentTime progressed 3.55s -> 5.06s
+  - Canvas Centerpiece:     HTML5 <canvas>, WebGL2RenderingContext active, drawingBuffer 528x384
+  - Widget Collision:       hasWidgetCollision: false (Sticky CTA and Copilot trigger do not collide)
+  - DOM Byte Parity:        PASS (index.html == live_index.html, 100% exact SHA match)
 • Service Cards:            PASS (80 out of 80 unique cards rendered and visible to crawlers)
 • Mobile Viewport (390px):  PASS (docScrollWidth = 390px, bodyScrollWidth = 390px,
                             zeroHorizontalOverflow = true, hasOverlap = false)
@@ -114,13 +120,24 @@ Cross-Environment Parity:     100% IDENTICAL API SCHEMA, SHA & EVIDENCE ROOT
         disentangled code parity from database connectivity.
 5. File: functions/api/auth/session.js & scripts/test_admin_auth_security.mjs
    Root Cause: Plain SHA-256 hash check without salt or timing-attack mitigation.
-   Fix: Implemented adaptive PBKDF2 (100,000 iterations, 16-byte cryptographically
-        secure salt), portable constant-time character XOR comparison loop, and
-        HttpOnly SameSite=Strict session cookies. (12/12 security assertions pass).
+   Fix: Implemented adaptive PBKDF2 with OWASP-recommended 600,000 iterations default,
+        16-byte cryptographically secure salt, portable constant-time character XOR
+        comparison loop, and HttpOnly SameSite=Strict session cookies. (13/13 security assertions pass).
 6. File: .github/workflows/deploy.yml
    Root Cause: Post-deploy step targeted legacy inshatech.pages.dev directly.
    Fix: Configured base_url with fallback to authoritative canonical staging edge
         https://inshatech-b6b.pages.dev.
+7. File: index.html & live_index.html
+   Root Cause: Canonical and Open Graph meta tags hardcoded legacy inshatech.pages.dev;
+        #iinsha-diagram-scene carried role="img" which confused crawlers into assuming
+        it was an <img> tag without getContext; video element had no direct src attribute.
+   Fix: Updated canonical and Open Graph meta to https://inshatech-b6b.pages.dev/;
+        replaced role="img" with aria-hidden="true" per iinsha-diagram-motion.js spec;
+        added direct src on video tag and hardened multi-gesture user interaction triggers.
+8. File: functions/api/version.js & functions/_shared/release_identity.js
+   Root Cause: classification: RUNTIME_VERIFIED was overly broad while DB was unverified.
+   Fix: Clarified classification: DEPLOYMENT_PARITY_VERIFIED and added explicit
+        system_readiness: READY_FOR_STAGING_DB_UNVERIFIED and production_ready: false.
 
 9. AUTHORITATIVE OPERATIONS & ARCHITECTURE DOCUMENTATION
 --------------------------------------------------------------------------------
