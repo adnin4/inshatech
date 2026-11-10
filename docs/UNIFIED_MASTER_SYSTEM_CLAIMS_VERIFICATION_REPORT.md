@@ -1,13 +1,13 @@
 # IINSHA AI-BOS — System Claim Classification Report
 
-Generated: 2026-11-10T18:20:10.698Z
+Generated: 2026-11-10T19:01:41.536Z
 
 This report certifies static/structural invariants only. It is not production-runtime evidence.
 
 | # | Claim | Classification | Detail |
 |---:|---|---|---|
 | 1 | Zero-leak distribution invariant | VERIFIED_STATIC | .env.example present; no detected live-token pattern. |
-| 2 | Canonical service catalog structure | VERIFIED_STATIC | 5 catalog entries parsed. |
+| 2 | Canonical service catalog structure | VERIFIED_STATIC | 13 catalog entries parsed. |
 | 3 | Agent registry structure | VERIFIED_STATIC | 18 agent definitions detected. |
 | 4 | Copilot memory structure | VERIFIED_STATIC | loadMemory/saveMemory detected. |
 | 5 | Sales scoring structure | VERIFIED_STATIC | lead scoring and ROI calculators detected. |

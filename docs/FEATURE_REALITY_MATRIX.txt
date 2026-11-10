@@ -53,6 +53,22 @@ Double-Entry FinTech Ledger        TEST_VERIFIED       Atomic balance invariants
                                                        and transaction rollback validated
 Payment Gateway Contracts          SANDBOX_VERIFIED    83 unit assertions verify schema and      PASS
 (bKash, SSLCommerz, Stripe)                            signature validation in sandbox mode
+AI Integration & Process Auto     LIVE_VERIFIED       n8n/Make pipelines, CRM/ERP sync,         PASS
+                                                       Human-in-the-Loop Slack/WhatsApp gates
+Managed AI Retainers & Care        LIVE_VERIFIED       24/7 error heartbeats, prompt drift tests,PASS
+                                                       DB recovery drills ($99-$499/mo retainers)
+Vertical Industry SaaS Platforms   LIVE_VERIFIED       ISP billing & Radius, E-Com logistics,    PASS
+                                                       School/Academy OS, Warehouse inventory
+Cybersecurity & AI Guardrails      LIVE_VERIFIED       Zero-trust key vaulting, OWASP API Top 10,PASS
+                                                       multi-tenant RLS, prompt injection defense
+Data Engineering & BI Pipelines    LIVE_VERIFIED       Multi-source ETL, Google Sheets/SQL sync, PASS
+                                                       executive dashboards & predictive metrics
+AI QA & Reliability Engineering    LIVE_VERIFIED       Automated LLM golden benchmark evals,     PASS
+                                                       regression safety gates, circuit breakers
+White-Label Agency Partner         LIVE_VERIFIED       100% white-label backend & API muscle for PASS
+                                                       digital agencies, 48-72hr turnaround
+Rapid 24-48hr SaaS Bug Fix Pilot   LIVE_VERIFIED       Scoped hotfix pilot, root-cause diagnosticPASS
+                                                       log, 100% refund guarantee if unsolved
 Mobile Responsive Architecture     LIVE_VERIFIED       390px CDP viewport: 0 horizontal overflow,PASS
                                                        touch targets >= 44px, clean status bar
 Cloudflare Edge Deployment         LIVE_VERIFIED       https://inshatech-b6b.pages.dev/ deployed PASS

@@ -104,6 +104,15 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 - node scripts/ci_evidence_runner.mjs    (Executes all 27 registered CI suites)
 - node scripts/verify_live_browser_runtime.mjs (CDP video & WebGL2 verification)
 
+9. COMMERCIAL SERVICE ARCHITECTURE & PHASING
+--------------------------------------------------------------------------------
+- Phase 1: Cash Flow Pilots ($150–$1,500) • API Integrations, Rapid Bug Fixes,
+  Agency White-Label Technical Partner.
+- Phase 2: Monthly Retainers ($99–$499/mo) • Managed AI Care, 24/7 Heartbeats,
+  LLM Prompt Drift & Output Evals, DB Recovery Drills.
+- Phase 3: Vertical Industry SaaS ($950+) • Specialized Operating Systems for
+  ISPs, E-Commerce Logistics, Academies/Schools, and Multi-Warehouse Inventory.
+
 Authoritative Documentation & Handover Artefacts:
 - docs/RELEASE_HANDOFF_2026-11-10.txt
 - docs/PRODUCTION_RUNBOOK.txt
