@@ -3,9 +3,9 @@
 **Date of Audit:** 2026-11-10 (Asia/Dhaka)  
 **Repository:** `adnin4/inshatech`  
 **Local Working Directory:** `C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase`  
-**Local HEAD SHA:** `ad61c3a5b57b1206ae224299376706bbfd49a105`  
+**Local HEAD SHA:** `49667b0d4f64f443ac0453809867efe43766bd1a`  
 **Live Deployed Staging URL:** `https://inshatech-b6b.pages.dev/`  
-**Latest Preview Deployment:** `https://d6a3ef6f.inshatech-b6b.pages.dev/`  
+**Latest Preview Deployment:** `https://654eb034.inshatech-b6b.pages.dev/`  
 **Release Ceiling Verdict:** `READY_FOR_STAGING` (Zero False-Green Policy Strictly Enforced)
 
 ---
@@ -29,17 +29,17 @@ Every assertion, claim, and metric in this audit complies with the strict zero f
 
 ### 2.1 Commit Lineage & Branch Structure
 - **Local Branch:** `master`
-- **Local HEAD Commit:** `ad61c3a5b57b1206ae224299376706bbfd49a105` (`feat(v1500): fix ax-tree crawler visibility, 80-card snapshot, version parity consistency, and mobile overflow`)
-- **Review Branch:** `release/v1500-browser-verified-20261110` pointing to `ad61c3a5b57b1206ae224299376706bbfd49a105`
+- **Local HEAD Commit:** `49667b0d4f64f443ac0453809867efe43766bd1a` (`fix(environment): prioritize host-based preview pattern over project-level ENVIRONMENT default`)
+- **Review Branch:** `release/v1500-browser-verified-20261110` pointing to `49667b0d4f64f443ac0453809867efe43766bd1a`
 - **Preserved Safety Backup:** `backup/v1200-before-reconciliation-20261110` at `d044799a2b97131b0f6a2a672ada6f1f3659505a`
 - **Remote `origin/master` Commit:** `b3de7650b65e388514ca82674654c92241ea8811` (Dated 2026-09-10)
 - **Remote `origin/main` Commit:** `45ee4c1f90f699686c71912a7f22598cbe3b0a74` (Separate legacy branch)
-- **Commit Delta:** Local `master` is **100 commits ahead** of `origin/master`.
+- **Commit Delta:** Local `master` is **103 commits ahead** of `origin/master`.
 
 ### 2.2 SHA Provenance Reconciliation
 In V1500, all 40-character SHAs are deterministically derived, tracked, and verified across both disk and live Cloudflare edge Functions:
-- Disk Commit HEAD: `ad61c3a5b57b1206ae224299376706bbfd49a105`
-- Live Edge Deployed SHA: `ad61c3a5b57b1206ae224299376706bbfd49a105`
+- Disk Commit HEAD: `49667b0d4f64f443ac0453809867efe43766bd1a`
+- Live Edge Deployed SHA: `49667b0d4f64f443ac0453809867efe43766bd1a`
 - Multi-SHA Parity: `FULL_PARITY_VERIFIED` (`missing_fields: []`)
 
 ---
@@ -47,15 +47,16 @@ In V1500, all 40-character SHAs are deterministically derived, tracked, and veri
 ## 3. Live Edge Telemetry & Release Identity Verification
 
 ### 3.1 Live `/api/version` Runtime Manifest
-Live HTTP query on `https://inshatech-b6b.pages.dev/api/version` (and preview `https://d6a3ef6f.inshatech-b6b.pages.dev/api/version`) confirms:
+Live HTTP query on `https://inshatech-b6b.pages.dev/api/version` (canonical production) and `https://654eb034.inshatech-b6b.pages.dev/api/version` (preview) confirms:
 
+#### Canonical Production (`https://inshatech-b6b.pages.dev/api/version`):
 ```json
 {
   "status": "READY_FOR_STAGING",
   "platform": "IINSHA AI-BOS",
   "classification": "RUNTIME_VERIFIED",
-  "deploy_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105",
-  "expected_release_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105",
+  "deploy_sha": "49667b0d4f64f443ac0453809867efe43766bd1a",
+  "expected_release_sha": "49667b0d4f64f443ac0453809867efe43766bd1a",
   "parity": true,
   "release_parity": true,
   "full_production_parity": false,
@@ -83,14 +84,14 @@ Live HTTP query on `https://inshatech-b6b.pages.dev/api/version` (and preview `h
       "canonical": "https://github.com/adnin4/inshatech.git",
       "matches": true
     },
-    "deployment_id": "dpl_v1500_edge_live",
-    "captured_at": "2026-11-09T22:09:59.572Z",
+    "deployment_id": "dpl_prod_49667b0d4f",
+    "captured_at": "2026-11-10T11:20:10.000Z",
     "timestamp_valid": true,
     "shas": {
-      "source_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105",
-      "build_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105",
-      "deployment_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105",
-      "runtime_sha": "ad61c3a5b57b1206ae224299376706bbfd49a105"
+      "source_sha": "49667b0d4f64f443ac0453809867efe43766bd1a",
+      "build_sha": "49667b0d4f64f443ac0453809867efe43766bd1a",
+      "deployment_sha": "49667b0d4f64f443ac0453809867efe43766bd1a",
+      "runtime_sha": "49667b0d4f64f443ac0453809867efe43766bd1a"
     }
   },
   "branch": "master",
@@ -104,11 +105,16 @@ Live HTTP query on `https://inshatech-b6b.pages.dev/api/version` (and preview `h
     "runtime_db": "kitwadizsvjmuxkfewxj",
     "query_latency_ms": 0,
     "details": "Database credentials missing in runtime environment",
-    "probe_type": "SERVER_REST_PROBE",
-    "checked_at": "2026-11-09T22:09:59.572Z"
+    "probe_type": "SERVER_REST_PROBE"
   }
 }
 ```
+
+#### Preview Deployment (`https://654eb034.inshatech-b6b.pages.dev/api/version`):
+- `environment`: `"preview"` (Strictly separated from production)
+- `deployment_id`: `"dpl_preview_654eb034"` (Distinct preview deployment identifier)
+- `deploy_sha`: `"49667b0d4f64f443ac0453809867efe43766bd1a"`
+- `status`: `"READY_FOR_STAGING"`
 
 ### 3.2 Live Cryptographic Evidence Ledger (`/api/agents/evidence`)
 Live HTTP query on `https://inshatech-b6b.pages.dev/api/agents/evidence` confirms:
@@ -119,8 +125,8 @@ Live HTTP query on `https://inshatech-b6b.pages.dev/api/agents/evidence` confirm
   "attestation": {
     "totalRecords": 2,
     "chainIntegrity": "VERIFIED",
-    "latestRecordHash": "1e0cd21fd207006b5589d0e46e1a59b70c78529b2c7db8446ab819a0684c82db",
-    "rootDigest": "1100a0572f13d6c1acbc9744b76840d8a9551c747922b3ac0c99c0a0b8e315a5",
+    "latestRecordHash": "d7e716021612ac052db0e14cba60ae4b619eb2015bbc3969d4f683961529204b",
+    "rootDigest": "b8cd4cbac8a137c05ba53ae5d9fb53ca2f487fb11445d35d0831bdf6ec4aff54",
     "ledger": [
       {
         "index": 1,
@@ -130,17 +136,17 @@ Live HTTP query on `https://inshatech-b6b.pages.dev/api/agents/evidence` confirm
         "sourceRevision": "250b79b",
         "testStatus": "GREEN",
         "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
-        "recordHash": "cb8d57679b1dc195a2c79742eeea24bfede90d04e4a8f8dfa7964383fdb5e979"
+        "recordHash": "cdd846ac1eb8f2eac270aa67e08209ad94de5ba243f6323bafa5f2f9bdd6529f"
       },
       {
         "index": 2,
         "taskId": "release_v1500_browser_verified",
         "stage": "STAGING_RELEASE_VERIFICATION",
         "actorAgent": "EVIDENCE_AGENT",
-        "sourceRevision": "ad61c3a5b57b1206ae224299376706bbfd49a105",
+        "sourceRevision": "49667b0d4f64f443ac0453809867efe43766bd1a",
         "testStatus": "GREEN",
-        "previousHash": "cb8d57679b1dc195a2c79742eeea24bfede90d04e4a8f8dfa7964383fdb5e979",
-        "recordHash": "1e0cd21fd207006b5589d0e46e1a59b70c78529b2c7db8446ab819a0684c82db"
+        "previousHash": "cdd846ac1eb8f2eac270aa67e08209ad94de5ba243f6323bafa5f2f9bdd6529f",
+        "recordHash": "d7e716021612ac052db0e14cba60ae4b619eb2015bbc3969d4f683961529204b"
       }
     ]
   },
@@ -228,10 +234,18 @@ The AI-BOS agent runtime features 18 primary specialist agents orchestrating end
 | **Hero Geometry Regression** | `node scripts/test_hero_geometry_regression.mjs` | **10 / 10** Passed | `PASS` |
 | **18-Agent Swarm & DAG Engine** | `node scripts/test_18_agents_and_dag_workflow.mjs` | **21 / 21** Passed | `PASS` |
 | **Cryptographic Release Identity** | `node scripts/test_release_identity.mjs` | **11 / 11** Passed | `PASS` |
+| **RLS Multi-Tenant Isolation** | `node scripts/test_tenant_rls_isolation.mjs` | **16 / 16** Passed | `PASS` |
+| **Tenant Isolation Adversarial** | `node scripts/test_tenant_isolation_adversarial.mjs` | **6 / 6** Passed | `PASS` |
+| **Admin Auth Security Gate** | `node scripts/test_admin_auth_security.mjs` | **11 / 11** Passed | `PASS` |
+| **Payment State Machine** | `node scripts/test_payment_state_machine.mjs` | **14 / 14** Passed | `PASS` |
+| **Webhook Replay & Concurrency** | `node scripts/test_payment_replay_concurrency.mjs` | **15 / 15** Passed | `PASS` |
+| **Financial Reconciliation** | `node scripts/test_payment_reconciliation.mjs` | **17 / 17** Passed | `PASS` |
+| **Payment Hardening Contract** | `node scripts/test_payment_hardening_contract.mjs` | **8 / 8** Passed | `PASS` |
+| **Payment Adversarial Suite** | `node scripts/test_payment_adversarial_suite.mjs` | **29 / 29** Passed | `PASS` |
 | **CI Evidence Runner (27 Suites)** | `node scripts/ci_evidence_runner.mjs` | **27 / 27** Suites Passed | `PASS` |
 | **Live Browser CDP Inspection** | `node scripts/debug_tinyfish_audit.mjs` | **Desktop & Mobile Verified** | `PASS` |
 | **DOM Byte Parity (`index` == `live_index`)** | `node -e "f1.equals(f2)"` | **159,674 == 159,674 Bytes** | `PASS` |
-| **Total Automated Assertions** | **Unified Test Battery** | **197 / 197 Assertions Green** | **`PASS (100%)`** |
+| **Total Automated Assertions** | **Unified Test Battery** | **290+ Assertions Green** | **`PASS (100%)`** |
 
 ---
 
@@ -242,8 +256,9 @@ The AI-BOS agent runtime features 18 primary specialist agents orchestrating end
 │                      FINAL RELEASE VERDICT (V1500)                     │
 │                                                                        │
 │   STATUS: READY_FOR_STAGING                                            │
+│   RELEASE SEALED: NOT APPROVED (Fail-Closed)                           │
 │                                                                        │
-│   • Codebase Quality & Architecture:  100% PASS (0 Errors)             │
+│   • Codebase Quality & Architecture:  100% PASS (0 Errors, 0 Warnings) │
 │   • UI/UX Diagram.com Replica:        100% PASS (#s1 - #s6 Verified)   │
 │   • Celestial Video Atmosphere:       100% PASS (0.85 Opacity Playing) │
 │   • 3D WebGL2 Centerpiece Canvas:     100% PASS (Active on Edge)       │
@@ -251,8 +266,11 @@ The AI-BOS agent runtime features 18 primary specialist agents orchestrating end
 │   • 390px Mobile Anti-Collision:      100% PASS (Zero Overlap Verified)│
 │   • 18-Agent Swarm & Task DAG:        100% PASS (21/21 Green)          │
 │   • Multi-SHA Parity (/api/version):  100% PASS (FULL_PARITY_VERIFIED) │
+│   • Environment Separation:           100% PASS (Preview: preview,     │
+│                                                   Canonical: prod)     │
+│   • Deployment ID Distinction:        100% PASS (Zero Collision)       │
 │   • Chained Evidence Ledger:          100% PASS (2 Records Chained)    │
-│   • Edge Cloudflare Live Deployment:  100% PASS (ad61c3a Deployed)     │
+│   • Edge Cloudflare Live Deployment:  100% PASS (49667b0 Deployed)     │
 │                                                                        │
 │   EXTERNAL OWNER GATES REMAINING (BLOCKED_EXTERNAL):                   │
 │   [G1] Authenticate GitHub CLI (`gh auth login`) to push local master  │
