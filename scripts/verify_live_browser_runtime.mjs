@@ -101,7 +101,7 @@ async function main() {
   console.log('=== CANONICAL LIVE RUNTIME VERIFICATION ===');
   console.log(JSON.stringify(prod, null, 2));
 
-  const prev = await verifyUrl('https://fe71deb2.inshatech-b6b.pages.dev/');
+  const prev = await verifyUrl('https://2829f41c.inshatech-b6b.pages.dev/');
   console.log('=== PREVIEW LIVE RUNTIME VERIFICATION ===');
   console.log(JSON.stringify(prev, null, 2));
 }

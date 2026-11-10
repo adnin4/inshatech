@@ -7,10 +7,10 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 
 1. GITHUB SOURCE & REPOSITORY LINEAGE
 --------------------------------------------------------------------------------
-• Current Local HEAD:       b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
+• Current Local HEAD:       1a8adac760b29ceca4f6f7b7cb34a362bf7870ef
 • Current GitHub master:    b3de7650b65e388514ca82674654c92241ea8811 (2026-09-10)
 • Current GitHub main:      45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy branch)
-• Local Commit Delta:       ahead 108, behind 0 (Local master is 108 commits ahead)
+• Local Commit Delta:       ahead 110, behind 0 (Local master is 110 commits ahead)
 • Review Branch:            release/v1500-browser-verified-20261110 (Synced to HEAD)
 • Backup Branch:            backup/v1500-final-forensics-20261110-1856
 • Workstation gh CLI:       UNAUTHENTICATED (gh auth status -> Not logged in)
@@ -36,8 +36,8 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 • Active Account ID:        0eaa8aeb3e2ea628065da5c05b1368a7 (aaih.apon@gmail.com)
 • Assigned Pages Domain:    inshatech-b6b.pages.dev (Direct Upload mode)
 • Canonical URL:            https://inshatech-b6b.pages.dev/
-• Verified Preview URL:     https://fe71deb2.inshatech-b6b.pages.dev/
-• Deployed Commit SHA:      b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
+• Verified Preview URL:     https://2829f41c.inshatech-b6b.pages.dev/
+• Deployed Commit SHA:      1a8adac760b29ceca4f6f7b7cb34a362bf7870ef
 • Hostname Mismatch Fixed:  inshatech.pages.dev is a separate/legacy deployment
                             running old main (45ee4c1). The active deployment authority
                             is inshatech-b6b.pages.dev.
@@ -112,12 +112,30 @@ Cross-Environment Parity:     100% IDENTICAL API SCHEMA, SHA & EVIDENCE ROOT
    Root Cause: Historical code defaulted missing DB variables to ACTIVE_HEALTHY_DECLARED.
    Fix: Implemented real server REST probe, fail-closed UNVERIFIED status, and
         disentangled code parity from database connectivity.
+5. File: functions/api/auth/session.js & scripts/test_admin_auth_security.mjs
+   Root Cause: Plain SHA-256 hash check without salt or timing-attack mitigation.
+   Fix: Implemented adaptive PBKDF2 (100,000 iterations, 16-byte cryptographically
+        secure salt), portable constant-time character XOR comparison loop, and
+        HttpOnly SameSite=Strict session cookies. (12/12 security assertions pass).
+6. File: .github/workflows/deploy.yml
+   Root Cause: Post-deploy step targeted legacy inshatech.pages.dev directly.
+   Fix: Configured base_url with fallback to authoritative canonical staging edge
+        https://inshatech-b6b.pages.dev.
 
-9. EXTERNAL OWNER GATES REQUIRED FOR PRODUCTION COMMISSIONING
+9. AUTHORITATIVE OPERATIONS & ARCHITECTURE DOCUMENTATION
+--------------------------------------------------------------------------------
+• Production Runbook:              docs/PRODUCTION_RUNBOOK.txt
+• Database Recovery Plan:          docs/DATABASE_RECOVERY_AND_MIGRATION_PLAN.txt
+• Security & Tenant Matrix:        docs/SECURITY_AND_TENANT_ISOLATION_MATRIX.txt
+• Feature Reality Matrix:          docs/FEATURE_REALITY_MATRIX.txt
+• Root Architecture Context:       ANTIGRAVITY_PROJECT_CONTEXT.txt
+
+10. EXTERNAL OWNER GATES REQUIRED FOR PRODUCTION COMMISSIONING
 --------------------------------------------------------------------------------
 [G1] Run `gh auth login` on the local machine to authenticate GitHub CLI and push master.
 [G2] Log into Supabase Dashboard and click "Resume Project" for kitwadizsvjmuxkfewxj.
 [G3] Add production payment secrets (bKash, SSLCommerz, Nagad) to Cloudflare Dashboard.
+[G4] Configure custom domain DNS CNAME cutover for inshatech.com -> inshatech-b6b.pages.dev.
 
 FINAL RELEASE VERDICT: READY_FOR_STAGING (Zero False-Green Standard Fully Maintained)
 ================================================================================
