@@ -28,8 +28,8 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 - Local Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 - GitHub Default Branch: master (Remote tip: b3de7650b65e388514ca82674654c92241ea8811)
 - Remote main Branch: 45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy/separated)
-- Local master Branch: 85aa4badb6f0f214398199fc431ea3ba6fb51afc
-- Local Commit Delta: Local master is ahead of origin/master by 106 commits.
+- Local master Branch: b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
+- Local Commit Delta: Local master is ahead of origin/master by 108 commits.
 - Review Branch: release/v1500-browser-verified-20261110 (Synced to local HEAD)
 - Safety Backup Branch: backup/v1500-final-forensics-20261110-1856 (Created)
 - Remote GitHub Push Status: BLOCKED_EXTERNAL (Owner Gate G1). The workstation
@@ -44,7 +44,7 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 3. ARCHITECTURE & CLOUDFLARE ENVIRONMENT SEPARATION
 --------------------------------------------------------------------------------
 - Canonical Production Host: https://inshatech-b6b.pages.dev/
-- Verified Preview Host: https://4b185508.inshatech-b6b.pages.dev/
+- Verified Preview Host: https://fe71deb2.inshatech-b6b.pages.dev/
 - Legacy URL Note: Older CI workflows tested https://inshatech.pages.dev, which
   serves the old main branch commit 45ee4c1. The active Pages project in
   Cloudflare account 0eaa8aeb3e2ea628065da5c05b1368a7 is named 'inshatech'

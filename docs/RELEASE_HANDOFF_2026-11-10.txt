@@ -7,10 +7,10 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 
 1. GITHUB SOURCE & REPOSITORY LINEAGE
 --------------------------------------------------------------------------------
-• Current Local HEAD:       85aa4badb6f0f214398199fc431ea3ba6fb51afc
+• Current Local HEAD:       b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
 • Current GitHub master:    b3de7650b65e388514ca82674654c92241ea8811 (2026-09-10)
 • Current GitHub main:      45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy branch)
-• Local Commit Delta:       ahead 106, behind 0 (Local master is 106 commits ahead)
+• Local Commit Delta:       ahead 108, behind 0 (Local master is 108 commits ahead)
 • Review Branch:            release/v1500-browser-verified-20261110 (Synced to HEAD)
 • Backup Branch:            backup/v1500-final-forensics-20261110-1856
 • Workstation gh CLI:       UNAUTHENTICATED (gh auth status -> Not logged in)
@@ -36,8 +36,8 @@ Release Ceiling: READY_FOR_STAGING | Production Sealed: NOT APPROVED (Fail-Close
 • Active Account ID:        0eaa8aeb3e2ea628065da5c05b1368a7 (aaih.apon@gmail.com)
 • Assigned Pages Domain:    inshatech-b6b.pages.dev (Direct Upload mode)
 • Canonical URL:            https://inshatech-b6b.pages.dev/
-• Verified Preview URL:     https://4b185508.inshatech-b6b.pages.dev/
-• Deployed Commit SHA:      85aa4badb6f0f214398199fc431ea3ba6fb51afc
+• Verified Preview URL:     https://fe71deb2.inshatech-b6b.pages.dev/
+• Deployed Commit SHA:      b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
 • Hostname Mismatch Fixed:  inshatech.pages.dev is a separate/legacy deployment
                             running old main (45ee4c1). The active deployment authority
                             is inshatech-b6b.pages.dev.
