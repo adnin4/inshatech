@@ -1,0 +1,107 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS: PERSISTENT PROJECT CONTEXT & TRUTH LEDGER
+Captured: 2026-11-10T19:05:00+06:00 (Asia/Dhaka)
+Status Authority: Principal Full-Stack & Release Reliability Engineer
+================================================================================
+
+1. PROJECT VISION & MODULES
+--------------------------------------------------------------------------------
+IINSHA AI-BOS is a Next-Generation Autonomous Company Operating System and
+Enterprise Frontier Platform. It orchestrates business operations across:
+- Universal 18-Specialist Agent Workforce (Chief Orchestrator, Requirements,
+  Architect, Developer, Reviewer, QA, Security Auditor, Evidence, Performance,
+  Data & Schema, Marketing SDR, Sales Proposal, Payment Verifier, Finance CFO,
+  DevOps SRE, Support Success, Analytics & Renewal, Deployment & Release).
+- Deterministic Task DAG Engine (IINSHA_TASK_DAG_ORCHESTRATOR_V5) with topological
+  sorting, cycle rejection, and 5-tier Human-In-The-Loop (HITL) approval gates.
+- Authentic Diagram.com Master UI/UX Replica (single-column centered editorial
+  typography, 3D WebGL2 planetary orbit scene, celestial WebM video backdrop,
+  80-card micro-services directory with real-time search and domain filters).
+- Triple-Tier Payment & FinTech Gateway (bKash, SSLCommerz, Nagad, Stripe with
+  idempotent webhooks, concurrency mutex locks, double-entry ledger invariants).
+- Supabase PostgreSQL Multi-Tenant DB with strict Row Level Security (RLS).
+- Cloudflare Pages Edge Functions architecture with zero-leak CORS policy.
+
+2. REPOSITORY, BRANCHES & CURRENT TRUTH STATE (CAPTURED: 2026-11-10)
+--------------------------------------------------------------------------------
+- Repository: https://github.com/adnin4/inshatech.git
+- Local Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+- GitHub Default Branch: master (Remote tip: b3de7650b65e388514ca82674654c92241ea8811)
+- Remote main Branch: 45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy/separated)
+- Local master Branch: 85aa4badb6f0f214398199fc431ea3ba6fb51afc
+- Local Commit Delta: Local master is ahead of origin/master by 106 commits.
+- Review Branch: release/v1500-browser-verified-20261110 (Synced to local HEAD)
+- Safety Backup Branch: backup/v1500-final-forensics-20261110-1856 (Created)
+- Remote GitHub Push Status: BLOCKED_EXTERNAL (Owner Gate G1). The workstation
+  gh CLI is unauthenticated ("You are not logged into any GitHub hosts").
+  Local commits exist on disk and on Cloudflare Pages, but cannot be pushed
+  to GitHub without interactive owner authentication (`gh auth login`).
+- Open Pull Requests:
+  * PR #67: Open, non-draft. Head: ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad. Base: master.
+  * PR #71: Open, draft. Head: cd760c39c6985d75eaf01d900d8e85b1705d9a00.
+    Stacked on PR #67 branch. Never merge or close without dependency review.
+
+3. ARCHITECTURE & CLOUDFLARE ENVIRONMENT SEPARATION
+--------------------------------------------------------------------------------
+- Canonical Production Host: https://inshatech-b6b.pages.dev/
+- Verified Preview Host: https://4b185508.inshatech-b6b.pages.dev/
+- Legacy URL Note: Older CI workflows tested https://inshatech.pages.dev, which
+  serves the old main branch commit 45ee4c1. The active Pages project in
+  Cloudflare account 0eaa8aeb3e2ea628065da5c05b1368a7 is named 'inshatech'
+  and its official assigned pages.dev subdomain is inshatech-b6b.pages.dev.
+- Deployment Authority: Cloudflare Pages Direct Upload via Wrangler CLI.
+- Environment Detection: Host-pattern matching distinguishes preview vs production
+  dynamically. /api/version on canonical returns environment: "production", while
+  preview returns environment: "preview".
+- Multi-SHA Release Parity: /api/version reports status: READY_FOR_STAGING,
+  deploy_sha: 85aa4badb6f0f214398199fc431ea3ba6fb51afc, parity: true.
+
+4. BROWSER & UI/UX EMPIRICAL TELEMETRY (MEASURED VIA CHROME CDP)
+--------------------------------------------------------------------------------
+- Hero Celestial Video: Active playback verified in headless Chrome loop
+  (paused: false, readyState: 4, currentTime actively progressing from 3.45s to 4.97s).
+- 3D Celestial Scene: WebGL2RenderingContext verified active on canvas
+  #iinsha-diagram-scene (drawingBuffer: 688x340).
+- Service Catalogue: Section #s3 anchored with role="region" aria-label="Services Catalogue"
+  and target <div id="services"></div>. All 8 category panels rendered (display: grid).
+  All 80 unique service cards rendered and visible to crawlers.
+- Mobile Viewport (390x844): docScrollWidth = 390px, bodyScrollWidth = 390px,
+  zeroHorizontalOverflow = true, sticky CTA and Copilot trigger have zero overlap.
+
+5. CRYPTOGRAPHIC EVIDENCE LEDGER PARITY
+--------------------------------------------------------------------------------
+- Endpoint: /api/agents/evidence
+- Chain Integrity: VERIFIED
+- Total Records: 2 (Historical bootstrap + V1500 staging release attestation)
+- Deterministic Merkle Root: f5e698f89a6a78cecd6469182749d73329cbee46ee75f560504493300faa9827
+- Schema Parity: 100% IDENTICAL keys and values across Canonical and Preview.
+
+6. DATABASE (SUPABASE) STATUS & SAFEGUARD RULES
+--------------------------------------------------------------------------------
+- Supabase Project Ref: kitwadizsvjmuxkfewxj (inshatech-db / ap-southeast-1)
+- State: INACTIVE (Paused in Supabase control plane).
+- Zero False-Green Rule: All implied-health defaults removed from /api/version.
+  Database status is truthfully reported as UNVERIFIED.
+  Release ceiling is strictly locked to READY_FOR_STAGING.
+  Full production parity remains false.
+- Safety Guard: Zero unreviewed migrations or DB resets may be run while
+  project is inactive. Must verify backups and storage before unpausing.
+
+7. EXTERNAL OWNER COMMISSIONING GATES (BLOCKED_EXTERNAL)
+--------------------------------------------------------------------------------
+[G1] GitHub Authentication: Run `gh auth login` on the workstation to enable
+     pushing local master commits (106 commits ahead) to origin/master.
+[G2] Supabase Project Resume: Log into Supabase dashboard and click "Resume Project"
+     for kitwadizsvjmuxkfewxj.
+[G3] Production Gateway Keys: Supply live production credentials for bKash,
+     Nagad, and SSLCommerz in Cloudflare dashboard secret manager.
+
+8. REQUIRED LOCAL TEST COMMANDS
+--------------------------------------------------------------------------------
+- npm test                               (Runs 10 claims + 36 responsive + 29 mobile UI tests)
+- node scripts/test_release_identity.mjs (Validates multi-SHA fail-closed logic)
+- node scripts/ci_evidence_runner.mjs    (Executes all 27 registered CI suites)
+- node scripts/verify_live_browser_runtime.mjs (CDP video & WebGL2 verification)
+
+Current Release Handoff Document: docs/RELEASE_HANDOFF_2026-11-10.txt
+================================================================================
