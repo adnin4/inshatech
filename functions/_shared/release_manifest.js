@@ -8,10 +8,9 @@ export const CANONICAL_RELEASE = Object.freeze({
     canonical_repository: 'https://github.com/adnin4/inshatech.git',
     canonical_branch: 'master',
     canonical_branches: ['master', 'main'],
-    canonical_sha: 'aa19ecf097af345adb2040f133a38b91e4a93fd2',
+    canonical_sha: 'cee7adbbc399bd6898be43674a52f05d626caf40',
     canonical_db_ref: 'kitwadizsvjmuxkfewxj',
     canonical_production_url: 'https://inshatech.pages.dev',
-    deployment_id: 'dpl_v1500_edge_live',
     bdt_peg_rate: 122.50,
     slo_availability_target: '99.95%'
 });

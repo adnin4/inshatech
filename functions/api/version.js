@@ -25,6 +25,34 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
+export function resolveEnvironment(request, env = {}) {
+    if (env.ENVIRONMENT) return env.ENVIRONMENT;
+    try {
+        const url = new URL(request.url);
+        const host = url.hostname || request.headers.get('host') || '';
+        if (host.includes('localhost') || host.includes('127.0.0.1')) return 'development';
+        const previewMatch = host.match(/^([a-z0-9-]+)\.([a-z0-9-]+)\.pages\.dev$/i);
+        if (previewMatch && previewMatch[1] !== previewMatch[2]) {
+            return 'preview';
+        }
+    } catch (_) {}
+    return 'production';
+}
+
+export function resolveDeploymentId(request, env = {}, defaultSha = null) {
+    if (env.CF_PAGES_DEPLOYMENT_ID) return env.CF_PAGES_DEPLOYMENT_ID;
+    try {
+        const url = new URL(request.url);
+        const host = url.hostname || request.headers.get('host') || '';
+        const previewMatch = host.match(/^([a-z0-9-]+)\.([a-z0-9-]+)\.pages\.dev$/i);
+        if (previewMatch && previewMatch[1] !== previewMatch[2]) {
+            return `dpl_preview_${previewMatch[1]}`;
+        }
+    } catch (_) {}
+    const shaSlice = (defaultSha || 'live').slice(0, 10);
+    return `dpl_prod_${shaSlice}`;
+}
+
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
     const origin = request.headers.get('Origin') || '';
@@ -36,7 +64,8 @@ export async function onRequestGet(context) {
 
     // 2. Multi-SHA Release Parity Verification
     const defaultSha = env.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
-    const deploymentId = env.CF_PAGES_DEPLOYMENT_ID || CANONICAL_RELEASE.deployment_id || 'dpl_v1500_edge_live';
+    const deploymentId = resolveDeploymentId(request, env, defaultSha);
+    const environment = resolveEnvironment(request, env);
     const capturedAt = env.BUILD_TIMESTAMP || (CANONICAL_RELEASE.captured_at && isFreshTimestamp(CANONICAL_RELEASE.captured_at) ? CANONICAL_RELEASE.captured_at : new Date().toISOString());
 
     const identity = verifyReleaseIdentity({
@@ -69,7 +98,7 @@ export async function onRequestGet(context) {
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,
-        environment: env.ENVIRONMENT || 'production',
+        environment: environment,
         database_identity: {
             status: dbProbe.status,
             verified: dbProbe.verified,

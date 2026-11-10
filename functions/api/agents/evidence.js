@@ -29,7 +29,7 @@ export async function onRequestGet(context) {
     });
 
     // 2. V1500 live browser verified release attestation
-    const releaseSha = context.env?.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || 'aa19ecf';
+    const releaseSha = context.env?.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || 'cee7adbbc399bd6898be43674a52f05d626caf40';
     evidenceSystem.recordStepEvidence({
         taskId: 'release_v1500_browser_verified',
         stage: 'STAGING_RELEASE_VERIFICATION',

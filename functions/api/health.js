@@ -4,6 +4,8 @@
  * Reports infrastructure facts only; measured SLO metrics must come from telemetry.
  */
 
+import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
+
 const ALLOWED_ORIGINS = [
     'https://inshatech.pages.dev',
     'https://inshatech.com',
@@ -21,18 +23,33 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
 }
 
+function resolveEnvironment(request, env = {}) {
+    if (env.ENVIRONMENT) return env.ENVIRONMENT;
+    try {
+        const url = new URL(request.url);
+        const host = url.hostname || request.headers.get('host') || '';
+        if (host.includes('localhost') || host.includes('127.0.0.1')) return 'development';
+        const previewMatch = host.match(/^([a-z0-9-]+)\.([a-z0-9-]+)\.pages\.dev$/i);
+        if (previewMatch && previewMatch[1] !== previewMatch[2]) {
+            return 'preview';
+        }
+    } catch (_) {}
+    return 'production';
+}
+
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
     const origin = request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
     const startedAt = Date.now();
     const hasSupabaseConfig = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
-    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
+    const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
+    const environment = resolveEnvironment(request, env);
 
     const payload = {
         status: 'EDGE_HEALTHY',
         database_pool: hasSupabaseConfig ? 'CONFIGURED_UNVERIFIED' : 'NOT_CONFIGURED',
-        environment: env.ENVIRONMENT || 'unknown',
+        environment: environment,
         edge_region: request.cf?.colo || 'EDGE',
         edge_country: request.cf?.country || 'GLOBAL',
         git_sha: gitSha,
