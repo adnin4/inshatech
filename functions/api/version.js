@@ -26,7 +26,6 @@ function isOriginAllowed(origin) {
 }
 
 export function resolveEnvironment(request, env = {}) {
-    if (env.ENVIRONMENT) return env.ENVIRONMENT;
     try {
         const url = new URL(request.url);
         const host = url.hostname || request.headers.get('host') || '';
@@ -36,6 +35,7 @@ export function resolveEnvironment(request, env = {}) {
             return 'preview';
         }
     } catch (_) {}
+    if (env.ENVIRONMENT) return env.ENVIRONMENT;
     return 'production';
 }
 
