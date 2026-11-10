@@ -3,7 +3,7 @@ import fs from 'node:fs';
 async function main() {
   const [prodRes, prevRes] = await Promise.all([
     fetch('https://inshatech-b6b.pages.dev/'),
-    fetch('https://4b185508.inshatech-b6b.pages.dev/')
+    fetch('https://fe71deb2.inshatech-b6b.pages.dev/')
   ]);
 
   const prodHtml = await prodRes.text();
@@ -27,7 +27,7 @@ async function main() {
   }
 
   analyze('CANONICAL (inshatech-b6b.pages.dev)', prodHtml);
-  analyze('PREVIEW (4b185508.inshatech-b6b.pages.dev)', prevHtml);
+  analyze('PREVIEW (fe71deb2.inshatech-b6b.pages.dev)', prevHtml);
 }
 
 main().catch(console.error);

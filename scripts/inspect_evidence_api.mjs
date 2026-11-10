@@ -1,7 +1,7 @@
 async function checkEvidence() {
   const [prodRes, prevRes] = await Promise.all([
     fetch('https://inshatech-b6b.pages.dev/api/agents/evidence'),
-    fetch('https://4b185508.inshatech-b6b.pages.dev/api/agents/evidence')
+    fetch('https://fe71deb2.inshatech-b6b.pages.dev/api/agents/evidence')
   ]);
 
   const prodJson = await prodRes.json();
