@@ -110,7 +110,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          url='https://inshatech.pages.dev/api/version'
+          base_url="${CLOUDFLARE_PAGES_URL:-https://inshatech-b6b.pages.dev}"
+          url="${base_url}/api/version"
           expected='${{ github.sha }}'
           echo "Waiting for production runtime ($url) to serve target release: $expected"
           for attempt in $(seq 1 60); do
@@ -167,7 +168,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          body=$(curl -fsSL --max-time 15 'https://inshatech.pages.dev/api/health')
+          base_url="${CLOUDFLARE_PAGES_URL:-https://inshatech-b6b.pages.dev}"
+          body=$(curl -fsSL --max-time 15 "${base_url}/api/health")
           echo "$body"
           status=$(printf '%s' "$body" | jq -r '.status // empty')
           test "$status" = 'EDGE_HEALTHY' || { echo "Unexpected health status: $status"; exit 1; }
@@ -176,7 +178,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          body=$(curl -fsSL --max-time 15 'https://inshatech.pages.dev/api/sre/health')
+          base_url="${CLOUDFLARE_PAGES_URL:-https://inshatech-b6b.pages.dev}"
+          body=$(curl -fsSL --max-time 15 "${base_url}/api/sre/health")
           echo "$body"
           status=$(printf '%s' "$body" | jq -r '.status // empty')
           git_sha=$(printf '%s' "$body" | jq -r '.git_sha // empty')
@@ -187,10 +190,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          base_url="${CLOUDFLARE_PAGES_URL:-https://inshatech-b6b.pages.dev}"
           cat <<EOF
           PRODUCTION_RUNTIME_EVIDENCE=PASS
           RELEASE_SHA=${{ github.sha }}
-          PRODUCTION_URL=https://inshatech.pages.dev
+          PRODUCTION_URL=${base_url}
           VERSION_STATUS=$(jq -r '.status' /tmp/version.json)
           DB_PARITY=$(jq -r '.database_identity.db_parity' /tmp/version.json)
           EOF

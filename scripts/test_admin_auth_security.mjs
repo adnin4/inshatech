@@ -247,6 +247,36 @@ async function runTestSuite() {
             'Authorized owner token succeeds on workforce killswitch mutation');
     }
 
+    // Test 12: Adaptive Salted PBKDF2 Password Verification
+    {
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const saltHex = [...salt].map(x => x.toString(16).padStart(2, '0')).join('');
+        const key = await crypto.subtle.importKey(
+            'raw',
+            new TextEncoder().encode(mockAdminPassword),
+            { name: 'PBKDF2' },
+            false,
+            ['deriveBits']
+        );
+        const derived = await crypto.subtle.deriveBits(
+            { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+            key,
+            256
+        );
+        const hashHex = [...new Uint8Array(derived)].map(x => x.toString(16).padStart(2, '0')).join('');
+        const pbkdf2StoredHash = 'pbkdf2:100000:' + saltHex + ':' + hashHex;
+
+        const req = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword })
+        });
+        const res = await handleAuthSession({ request: req, env: { ...testEnv, ADMIN_PASSWORD_HASH: pbkdf2StoredHash } });
+        const data = await res.json();
+        assert(res.status === 401 && data.status === 'MFA_REQUIRED',
+            'Adaptive salted PBKDF2 password verifies correctly and prompts for MFA');
+    }
+
     console.log('\n================================================================================');
     console.log(`📊 RESULTS: ${passedTests}/${totalTests} SECURITY TESTS PASSED (100%)`);
     console.log('STATUS: ADMIN AUTH & SERVER GATING FULLY SECURED & FAIL-CLOSED');

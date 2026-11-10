@@ -100,8 +100,14 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 --------------------------------------------------------------------------------
 - npm test                               (Runs 10 claims + 36 responsive + 29 mobile UI tests)
 - node scripts/test_release_identity.mjs (Validates multi-SHA fail-closed logic)
+- node scripts/test_admin_auth_security.mjs (Validates PBKDF2, TOTP, and Admin Gate security)
 - node scripts/ci_evidence_runner.mjs    (Executes all 27 registered CI suites)
 - node scripts/verify_live_browser_runtime.mjs (CDP video & WebGL2 verification)
 
-Current Release Handoff Document: docs/RELEASE_HANDOFF_2026-11-10.txt
+Authoritative Documentation & Handover Artefacts:
+- docs/RELEASE_HANDOFF_2026-11-10.txt
+- docs/PRODUCTION_RUNBOOK.txt
+- docs/DATABASE_RECOVERY_AND_MIGRATION_PLAN.txt
+- docs/SECURITY_AND_TENANT_ISOLATION_MATRIX.txt
+- docs/FEATURE_REALITY_MATRIX.txt
 ================================================================================
