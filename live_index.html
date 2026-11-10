@@ -8,24 +8,24 @@
     <meta name="keywords" content="Autonomous AI, AI Workforce, AI Company Operating System, n8n Automation, Multi-Agent Swarms, Playwright Scraping, AI SaaS MVP, Adnin Sadat Mahin, IINSHA AI Automation Lab">
     <meta name="author" content="Adnin Sadat Mahin, Insha Tech">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://inshatech.pages.dev/">
+    <link rel="canonical" href="https://inshatech-b6b.pages.dev/">
 
     <!-- OPEN GRAPH / FACEBOOK META TAGS -->
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#070811">
     <meta name="application-name" content="Insha Tech">
     <meta name="apple-mobile-web-app-title" content="Insha Tech">
-    <meta property="og:url" content="https://inshatech.pages.dev">
+    <meta property="og:url" content="https://inshatech-b6b.pages.dev">
     <meta property="og:title" content="Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform">
     <meta property="og:description" content="Insha Tech — Autonomous AI Company Operating System & Enterprise Agent Workforce. Deploy multi-agent swarms, n8n workflows, and custom AI architectures.">
-    <meta property="og:image" content="https://inshatech.pages.dev/real_n8n_canvas_screenshot.jpg">
+    <meta property="og:image" content="https://inshatech-b6b.pages.dev/real_n8n_canvas_screenshot.jpg">
 
     <!-- TWITTER CARD META TAGS -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://inshatech.pages.dev">
+    <meta name="twitter:url" content="https://inshatech-b6b.pages.dev">
     <meta name="twitter:title" content="Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform">
     <meta name="twitter:description" content="Insha Tech — Autonomous AI Company Operating System & Enterprise Agent Workforce. Founded by Lead AI Engineer Adnin Sadat Mahin.">
-    <meta name="twitter:image" content="https://inshatech.pages.dev/real_n8n_canvas_screenshot.jpg">
+    <meta name="twitter:image" content="https://inshatech-b6b.pages.dev/real_n8n_canvas_screenshot.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,7 +116,7 @@
 
             <!-- AUTHENTIC DIAGRAM.COM CELESTIAL ATMOSPHERE, VIDEO & AMBIENT AURA -->
             <div class="hero-visual-backdrop" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
-                <video id="hero-celestial-video" class="hero-bg-video" autoplay muted defaultMuted loop playsinline preload="auto" poster="assets/hero-celestial-poster.jpg" aria-label="Diagram Celestial Atmospheric Motion" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: contrast(1.15) brightness(1.02); pointer-events: none;">
+                <video id="hero-celestial-video" class="hero-bg-video" src="assets/hero-celestial-loop.webm" autoplay muted loop playsinline preload="auto" poster="assets/hero-celestial-poster.jpg" aria-label="Diagram Celestial Atmospheric Motion" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: contrast(1.15) brightness(1.02); pointer-events: none;">
                     <source src="assets/hero-celestial-loop.webm" type="video/webm">
                 </video>
                 <div class="hero-celestial-glow" style="position: absolute; inset: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 55%, rgba(120, 100, 245, 0.22), transparent 52%), radial-gradient(ellipse at 15% 25%, rgba(56, 189, 248, 0.10), transparent 35%), radial-gradient(ellipse at 85% 35%, rgba(168, 85, 247, 0.14), transparent 36%);"></div>
@@ -160,7 +160,7 @@
                     </div>
 
                     <!-- REAL 3D WEBGL2 PLANETARY ORBIT CANVAS (Prominent Centerpiece) -->
-                    <canvas id="iinsha-diagram-scene" data-iinsha-motion-scene role="img" aria-label="3D WebGL2 Planetary Orbit Canvas" style="display: block; width: min(100%, 1040px); height: clamp(320px, 42vw, 460px); margin: 8px auto 18px auto; position: relative; z-index: 2; pointer-events: none;"></canvas>
+                    <canvas id="iinsha-diagram-scene" data-iinsha-motion-scene aria-hidden="true" style="display: block; width: min(100%, 1040px); height: clamp(320px, 42vw, 460px); margin: 8px auto 18px auto; position: relative; z-index: 2; pointer-events: none;"></canvas>
 
                     <!-- 4-METRIC TRUST STRIP -->
                     <div class="idg-proofline hero-trust-strip" style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(14px, 3vw, 36px); margin-top: 14px; width: 100%;">
@@ -1945,59 +1945,77 @@
         if (!video) return;
         video.muted = true;
         video.defaultMuted = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             video.pause();
             return;
         }
 
-        function triggerPlayback() {
+        if (!video.src && video.querySelector('source')) {
+            video.src = video.querySelector('source').getAttribute('src');
+        }
+
+        function doPlay() {
             if (video.paused && (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-                var playPromise = video.play();
-                if (playPromise !== undefined && typeof playPromise.catch === 'function') {
-                    playPromise.catch(function() {
-                        var fallbackPlay = function() {
-                            video.play().catch(function() {});
-                            window.removeEventListener('click', fallbackPlay);
-                            window.removeEventListener('touchstart', fallbackPlay);
-                            window.removeEventListener('keydown', fallbackPlay);
-                        };
-                        window.addEventListener('click', fallbackPlay, { once: true, passive: true });
-                        window.addEventListener('touchstart', fallbackPlay, { once: true, passive: true });
-                        window.addEventListener('keydown', fallbackPlay, { once: true, passive: true });
+                var p = video.play();
+                if (p && typeof p.catch === 'function') {
+                    p.catch(function() {
+                        video.muted = true;
+                        video.setAttribute('muted', '');
                     });
                 }
             }
         }
 
-        // 1. Immediate execution
-        triggerPlayback();
+        // 1. Force load and immediate play
+        try {
+            if (video.readyState === 0) {
+                video.load();
+            }
+        } catch (e) {}
+        doPlay();
 
         // 2. Lifecycle triggers on media readiness
-        video.addEventListener('canplay', triggerPlayback);
-        video.addEventListener('loadeddata', triggerPlayback);
-        video.addEventListener('loadedmetadata', triggerPlayback);
-        window.addEventListener('load', triggerPlayback);
+        ['canplay', 'canplaythrough', 'loadeddata', 'loadedmetadata'].forEach(function(ev) {
+            video.addEventListener(ev, doPlay, { passive: true });
+        });
+        window.addEventListener('load', doPlay, { passive: true });
 
-        // 3. Viewport intersection tracking
+        // 3. User interaction fallback (scroll, touch, click, mousemove, keydown)
+        var userEvents = ['click', 'touchstart', 'scroll', 'pointermove', 'mousemove', 'keydown'];
+        var onUserInteraction = function() {
+            doPlay();
+            userEvents.forEach(function(ev) {
+                window.removeEventListener(ev, onUserInteraction);
+            });
+        };
+        userEvents.forEach(function(ev) {
+            window.addEventListener(ev, onUserInteraction, { once: true, passive: true });
+        });
+
+        // 4. Viewport intersection tracking
         if ('IntersectionObserver' in window) {
             var obs = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        triggerPlayback();
+                        doPlay();
                     } else {
                         if (!video.paused) video.pause();
                     }
                 });
-            }, { threshold: 0.08 });
+            }, { threshold: 0.05 });
             obs.observe(video);
         }
 
-        // 4. Tab visibility guard
+        // 5. Tab visibility guard
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 if (!video.paused) video.pause();
             } else {
-                triggerPlayback();
+                doPlay();
             }
         });
     })();

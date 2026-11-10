@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 
 const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
-async function verifyUrl(targetUrl) {
+async function verifyUrl(targetUrl, viewport = { width: 1280, height: 900, isMobile: false }) {
   const port = 9446;
   const chrome = spawn(CHROME_PATH, [
     '--headless=new',
@@ -36,10 +36,16 @@ async function verifyUrl(targetUrl) {
     });
 
     await send('Page.enable');
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: viewport.width,
+      height: viewport.height,
+      deviceScaleFactor: 2,
+      mobile: viewport.isMobile
+    });
     await send('Page.navigate', { url: targetUrl });
     await new Promise(r => setTimeout(r, 4000));
 
-    // Capture initial video currentTime
+    // Capture initial metrics
     const eval1 = await send('Runtime.evaluate', {
       expression: `(() => {
         const v = document.getElementById('hero-celestial-video');
@@ -51,6 +57,7 @@ async function verifyUrl(targetUrl) {
           vDuration: v ? v.duration : null,
           vReadyState: v ? v.readyState : null,
           canvasId: c ? c.id : null,
+          canvasTagName: c ? c.tagName : null,
           hasGlContext: Boolean(gl),
           glType: gl ? gl.constructor.name : null,
           drawingBufferWidth: gl ? gl.drawingBufferWidth : null,
@@ -70,6 +77,18 @@ async function verifyUrl(targetUrl) {
         const s3Section = document.getElementById('s3');
         const panels = Array.from(document.querySelectorAll('.service-panel'));
         const cards = Array.from(document.querySelectorAll('.service-item-card'));
+        const docScrollWidth = document.documentElement.scrollWidth;
+        const winInnerWidth = window.innerWidth;
+        const stickyCta = document.getElementById('sticky-mobile-cta');
+        const copilot = document.getElementById('iinsha-copilot-trigger');
+        const ctaRect = stickyCta ? stickyCta.getBoundingClientRect() : null;
+        const copilotRect = copilot ? copilot.getBoundingClientRect() : null;
+        const hasCollision = Boolean(ctaRect && copilotRect &&
+          !(ctaRect.right < copilotRect.left ||
+            ctaRect.left > copilotRect.right ||
+            ctaRect.bottom < copilotRect.top ||
+            ctaRect.top > copilotRect.bottom));
+
         return {
           vPaused: v ? v.paused : null,
           vTime2: v ? v.currentTime : null,
@@ -78,7 +97,11 @@ async function verifyUrl(targetUrl) {
           s3AriaLabel: s3Section ? s3Section.getAttribute('aria-label') : null,
           totalPanels: panels.length,
           totalCards: cards.length,
-          visibleCards: cards.filter(c => c.offsetParent !== null).length
+          visibleCards: cards.filter(c => c.offsetParent !== null).length,
+          docScrollWidth: docScrollWidth,
+          winInnerWidth: winInnerWidth,
+          zeroHorizontalOverflow: docScrollWidth <= winInnerWidth,
+          hasWidgetCollision: hasCollision
         };
       })()`,
       returnByValue: true
@@ -87,6 +110,7 @@ async function verifyUrl(targetUrl) {
     ws.close();
     return {
       url: targetUrl,
+      viewport: `${viewport.width}x${viewport.height}`,
       initial: eval1.result.value,
       afterWait: eval2.result.value,
       playbackProgressed: eval2.result.value.vTime2 > eval1.result.value.vTime1 || (eval2.result.value.vPaused === false)
@@ -97,13 +121,13 @@ async function verifyUrl(targetUrl) {
 }
 
 async function main() {
-  const prod = await verifyUrl('https://inshatech-b6b.pages.dev/');
-  console.log('=== CANONICAL LIVE RUNTIME VERIFICATION ===');
-  console.log(JSON.stringify(prod, null, 2));
+  console.log('=== 1. CANONICAL DESKTOP (1280x900) VERIFICATION ===');
+  const prodDesktop = await verifyUrl('https://inshatech-b6b.pages.dev/', { width: 1280, height: 900, isMobile: false });
+  console.log(JSON.stringify(prodDesktop, null, 2));
 
-  const prev = await verifyUrl('https://2829f41c.inshatech-b6b.pages.dev/');
-  console.log('=== PREVIEW LIVE RUNTIME VERIFICATION ===');
-  console.log(JSON.stringify(prev, null, 2));
+  console.log('\n=== 2. CANONICAL MOBILE (390x844) VERIFICATION ===');
+  const prodMobile = await verifyUrl('https://inshatech-b6b.pages.dev/', { width: 390, height: 844, isMobile: true });
+  console.log(JSON.stringify(prodMobile, null, 2));
 }
 
 main().catch(console.error);

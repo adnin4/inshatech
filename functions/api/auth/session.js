@@ -57,7 +57,7 @@ async function verifyPassword(password, storedHash) {
     if (storedHash.startsWith('pbkdf2:')) {
         const parts = storedHash.split(':');
         if (parts.length === 4) {
-            const iterations = parseInt(parts[1], 10) || 100000;
+            const iterations = parseInt(parts[1], 10) || 600000;
             const saltHex = parts[2];
             const expectedHashHex = parts[3];
             const salt = new Uint8Array(saltHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
