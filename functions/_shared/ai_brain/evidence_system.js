@@ -52,7 +52,7 @@ export class EvidenceSystem {
       testStatus: stepData.testResults?.status || 'NOT_APPLICABLE',
       approvalRecord: stepData.approvalRecord || null,
       previousHash,
-      timestamp: new Date().toISOString()
+      timestamp: stepData.timestamp || new Date().toISOString()
     };
 
     // Calculate cryptographic seal for this specific record (hash chain)

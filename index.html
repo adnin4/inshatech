@@ -116,7 +116,7 @@
 
             <!-- AUTHENTIC DIAGRAM.COM CELESTIAL ATMOSPHERE, VIDEO & AMBIENT AURA -->
             <div class="hero-visual-backdrop" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
-                <video id="hero-celestial-video" class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-celestial-poster.jpg" aria-label="Diagram Celestial Atmospheric Motion" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: contrast(1.15) brightness(1.02); pointer-events: none;">
+                <video id="hero-celestial-video" class="hero-bg-video" autoplay muted defaultMuted loop playsinline preload="auto" poster="assets/hero-celestial-poster.jpg" aria-label="Diagram Celestial Atmospheric Motion" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: contrast(1.15) brightness(1.02); pointer-events: none;">
                     <source src="assets/hero-celestial-loop.webm" type="video/webm">
                 </video>
                 <div class="hero-celestial-glow" style="position: absolute; inset: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 55%, rgba(120, 100, 245, 0.22), transparent 52%), radial-gradient(ellipse at 15% 25%, rgba(56, 189, 248, 0.10), transparent 35%), radial-gradient(ellipse at 85% 35%, rgba(168, 85, 247, 0.14), transparent 36%);"></div>
@@ -335,7 +335,8 @@
              SECTION 3 (#s3): FRICTION-FREE SERVICE DISCOVERY & CATALOGUE
              80+ Production AI Micro-Services in High-Polished Obsidian Cards
              ==================================================================== -->
-        <section id="s3" data-diagram-section="s3" class="idg-section" style="padding: clamp(80px, 11vh, 130px) 0; position: relative;">
+        <section id="s3" data-diagram-section="s3" class="idg-section" role="region" aria-label="Services Catalogue" style="padding: clamp(80px, 11vh, 130px) 0; position: relative;">
+            <div id="services" style="position: absolute; top: 0; left: 0;" aria-hidden="true"></div>
             <div class="idg-demo-wrap container" style="max-width: 1180px; margin: 0 auto; padding: 0 24px;">
                 <header class="idg-section-header" data-idg-reveal style="text-align: center; max-width: 820px; margin: 0 auto clamp(36px, 5vh, 56px) auto;">
                     <span class="idg-eyebrow section-tag">02 / Service catalogue</span>
@@ -1942,15 +1943,47 @@
     (function initHeroCelestialVideo() {
         var video = document.getElementById('hero-celestial-video');
         if (!video) return;
+        video.muted = true;
+        video.defaultMuted = true;
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             video.pause();
             return;
         }
+
+        function triggerPlayback() {
+            if (video.paused && (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                var playPromise = video.play();
+                if (playPromise !== undefined && typeof playPromise.catch === 'function') {
+                    playPromise.catch(function() {
+                        var fallbackPlay = function() {
+                            video.play().catch(function() {});
+                            window.removeEventListener('click', fallbackPlay);
+                            window.removeEventListener('touchstart', fallbackPlay);
+                            window.removeEventListener('keydown', fallbackPlay);
+                        };
+                        window.addEventListener('click', fallbackPlay, { once: true, passive: true });
+                        window.addEventListener('touchstart', fallbackPlay, { once: true, passive: true });
+                        window.addEventListener('keydown', fallbackPlay, { once: true, passive: true });
+                    });
+                }
+            }
+        }
+
+        // 1. Immediate execution
+        triggerPlayback();
+
+        // 2. Lifecycle triggers on media readiness
+        video.addEventListener('canplay', triggerPlayback);
+        video.addEventListener('loadeddata', triggerPlayback);
+        video.addEventListener('loadedmetadata', triggerPlayback);
+        window.addEventListener('load', triggerPlayback);
+
+        // 3. Viewport intersection tracking
         if ('IntersectionObserver' in window) {
             var obs = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        if (video.paused) video.play().catch(function() {});
+                        triggerPlayback();
                     } else {
                         if (!video.paused) video.pause();
                     }
@@ -1958,13 +1991,13 @@
             }, { threshold: 0.08 });
             obs.observe(video);
         }
+
+        // 4. Tab visibility guard
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 if (!video.paused) video.pause();
             } else {
-                if (video.paused && (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-                    video.play().catch(function() {});
-                }
+                triggerPlayback();
             }
         });
     })();

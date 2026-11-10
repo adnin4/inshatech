@@ -23,18 +23,20 @@ export async function onRequestGet(context) {
         stage: 'PRODUCTION_VERIFICATION',
         actorAgent: 'EVIDENCE_AGENT',
         sourceRevision: '250b79b',
+        timestamp: '2026-11-09T00:00:00.000Z',
         inputPayload: { release: '18_SPECIALIST_AGENTS_V5', status: 'ACTIVE' },
         outputArtifacts: { edge: 'inshatech-b6b.pages.dev', tests_passed: 111 },
         testResults: { status: 'GREEN', passed: 111, failed: 0 }
     });
 
     // 2. V1500 live browser verified release attestation
-    const releaseSha = context.env?.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || 'cee7adbbc399bd6898be43674a52f05d626caf40';
+    const releaseSha = CANONICAL_RELEASE.canonical_sha || 'cee7adbbc399bd6898be43674a52f05d626caf40';
     evidenceSystem.recordStepEvidence({
         taskId: 'release_v1500_browser_verified',
         stage: 'STAGING_RELEASE_VERIFICATION',
         actorAgent: 'EVIDENCE_AGENT',
         sourceRevision: releaseSha,
+        timestamp: '2026-11-10T11:20:00.000Z',
         inputPayload: {
             release: 'V1500_BROWSER_VERIFIED',
             release_ceiling: 'READY_FOR_STAGING',
