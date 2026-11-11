@@ -6,6 +6,7 @@ const REQUIRED_FILES = [
   'docs/IINSHA_LIVE_AUDIT_SNAPSHOT_2026-11-11.txt',
   'docs/IINSHA_OWNER_GATES_CHECKLIST.txt',
   'docs/IINSHA_TEST_EVIDENCE_2026-11-11.txt',
+  'docs/IINSHA_WEBSITE_AUDIT_2026-11-11.txt',
   'ANTIGRAVITY_PROJECT_CONTEXT.txt'
 ];
 
@@ -77,5 +78,5 @@ if (!allPassed) {
   process.exit(1);
 }
 
-console.log('\n[PASS] All 5 handoff documents verified: existence, >0 bytes, UTF-8 clean, non-empty.');
+console.log('\n[PASS] All 6 handoff documents verified: existence, >0 bytes, UTF-8 clean, non-empty.');
 process.exit(0);

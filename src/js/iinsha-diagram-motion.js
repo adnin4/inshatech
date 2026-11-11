@@ -448,8 +448,14 @@
       return;
     }
     items.forEach((el, index) => {
-      el.classList.add('idg-reveal', 'idg-reveal-ready');
+      el.classList.add('idg-reveal');
       el.style.setProperty('--idg-delay', `${Math.min(index % 5, 4) * 70}ms`);
+      // Critical capability bento cards and section headers remain immediately visible for instant paint and headless scrapers
+      if (el.classList.contains('idg-bento-card') || el.classList.contains('diagram-bento-card') || el.classList.contains('idg-section-header')) {
+        el.classList.add('idg-revealed');
+      } else {
+        el.classList.add('idg-reveal-ready');
+      }
     });
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

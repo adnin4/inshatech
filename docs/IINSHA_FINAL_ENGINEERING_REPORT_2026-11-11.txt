@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
 Document Identifier: DOC-IINSHA-FINAL-REPORT-20261111-REVISED-V2
-Audit Timestamp: 2026-11-11T23:30:00+06:00 (Asia/Dhaka)
+Audit Timestamp: 2026-11-12T00:01:12.506+06:00 (Asia/Dhaka — Machine Clock)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 Release Boundary & Ceiling: READY_FOR_STAGING
@@ -11,8 +11,8 @@ Zero False-Green Policy: STRICTLY ENFORCED
 
 1. AUDIT TIMESTAMP & TIMEZONE
 --------------------------------------------------------------------------------
-- Execution Timestamp: 2026-11-11T23:30:00+06:00
-- UTC Timestamp:       2026-11-11T17:30:00Z
+- Execution Timestamp: 2026-11-12T00:01:12.506+06:00
+- UTC Timestamp:       2026-11-11T18:01:12.506Z
 - Local Timezone:      Asia/Dhaka (UTC+6)
 - Engineering Role:    Principal Full-Stack, Application Security, Database Reliability,
                        and Release Manager for IINSHA TECH / IINSHA AI-BOS.
@@ -179,10 +179,10 @@ Zero False-Green Policy: STRICTLY ENFORCED
   * Service Cards:     Exactly 80 granular cards (.service-item-card)
   * Bento Cards:       Exactly 4 bento cards (.diagram-bento-card and .idg-bento-card)
   * Semantic H1:       Exactly 1 H1 element present ("Autonomous AI Workforce & Enterprise Operations Platform")
-  * Canonical Link:    Present (https://inshatech.com/)
+  * Canonical Link:    Present (https://inshatech-b6b.pages.dev/ with preview X-Robots-Tag: noindex)
   * Celestial Video:   #hero-celestial-video active (readyState 4, playing, loop)
 - Real Chrome CDP Telemetry (scripts/verify_final_release_browser.mjs):
-  * Tested 5 Viewports: 1440x900, 1280x900, 1024x768, 390x844 (Mobile), 360x800 (Mobile)
+  * Tested 6 Viewports: 1440x900, 1280x900, 1024x768, 768x1024, 390x844 (Mobile), 360x800 (Mobile)
   * Desktop 1280x900:
     - Video Progressed: 2.94s -> 4.96s (Active rendering)
     - WebGL2 Buffer:    1472x736 (WebGL2RenderingContext)
@@ -238,8 +238,8 @@ Zero False-Green Policy: STRICTLY ENFORCED
   6. node scripts/golden_e2e_master_certification.mjs:   12/12 PASS (~0.3s)
   7. node scripts/all_surface_reliability_audit.mjs:     46/46 PASS (~2.1s)
   8. node scripts/public_site_e2e.mjs:                   12/12 PASS (~0.3s)
-  9. node scripts/verify_handoff_docs.mjs:                5/5  PASS (~0.1s)
-  10. node scripts/verify_final_release_browser.mjs:      CDP 5/5 PASS (~30s)
+  9. node scripts/verify_handoff_docs.mjs:                6/6  PASS (~0.1s)
+  10. node scripts/verify_final_release_browser.mjs:      CDP 6/6 PASS (~30s)
 - Skipped / Quarantined: 0 tests skipped. 100% execution across all suites.
 
 
@@ -275,7 +275,7 @@ WP-12 Agent Registry, DAG Orchestrator, Kill-Switch:
 WP-13 Public Website UI/UX, 80 Cards, WebGL Hero, Search:
       - Overall: PASS | Code: PASS | Staging HTML: PASS
 WP-14 Responsive / Mobile, Accessibility, Chrome CDP:
-      - Overall: PASS | CDP 5 Viewports: PASS | Screenshots: PASS
+      - Overall: PASS | CDP 6 Viewports: PASS | Screenshots: PASS
 WP-15 Observability, SLOs, Backup Verification, Rollback:
       - Overall: PASS | Code: PASS | SRE Health: PASS
 WP-16 Owner Commissioning, Production DNS, Release Seal:
@@ -322,4 +322,29 @@ No mixed package is counted as overall PASS. 100% transparent and mathematically
   2. GitHub remote master tip (b3de765) is 118 commits behind local HEAD (9e418ec).
   3. Live payments operating in sandbox verification mode until merchant keys provisioned.
   4. Public domain inshatech.com serves legacy IT website until DNS cutover performed.
+
+18. V1500+ EXTERNAL BROWSER QA DISCREPANCY RESOLUTION (SYNCHRONIZED)
+--------------------------------------------------------------------------------
+- Canonical & OG Metadata: Updated all JSON-LD structured data and social URLs in
+  index.html and live_index.html to https://inshatech-b6b.pages.dev; added preview
+  X-Robots-Tag: noindex, nofollow in functions/_middleware.js for *.pages.dev.
+- Semantic H1 Hierarchy & Hero Stage Guard: Normalized admin.html from 19 <h1> tags
+  to 1 <h1> + 18 <h2> tags; patched hero3d.js mountCanvas() so it never overwrites
+  #hero3d-container when #iinsha-diagram-scene is present. Verified h1Count === 1
+  and WebGL2 canvas across all 6 viewports via Chrome CDP.
+- Service Catalog 92 vs. 80 Reconciliation: Documented the 3 layers inside #s3
+  (4 Commercial Strategy Pills + 8 Domain Overview Cards + 80 Granular Micro-Service
+  Cards = 92 items). Assigned unique data-service-id (svc-01..svc-80) and slugs to
+  all 80 .service-item-card elements, added the missing AI Agents (10) tab pill,
+  synchronized initial 80-card visibility, and added empty-state search feedback.
+- 4 Bento Cards Immediate Visibility: Updated setupReveal() in
+  src/js/iinsha-diagram-motion.js so .idg-bento-card and .diagram-bento-card receive
+  .idg-revealed (opacity: 1) immediately on load without requiring scroll.
+- Agent Registry Zero-Trust Permissions: Updated chief_orchestrator,
+  payment_verifier, and finance_cfo to LEVEL_3_APPROVAL with requires_hitl: true
+  in both ai_brain/agents/agent_registry.js and
+  functions/_shared/ai_brain/agents/agent_registry.js. Verified by 22/22 tests in
+  scripts/test_18_agents_and_dag_workflow.mjs.
+- Handoff Manifest: All 6 required handoff documents verified by
+  scripts/verify_handoff_docs.mjs (6/6 PASS).
 ================================================================================

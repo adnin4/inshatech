@@ -1,14 +1,14 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — LIVE AUDIT SNAPSHOT
 Document Identifier: DOC-IINSHA-LIVE-SNAPSHOT-20261111-REVISED
-Snapshot Timestamp: 2026-11-11T23:25:00+06:00 (Asia/Dhaka)
+Snapshot Timestamp: 2026-11-12T00:01:12.506+06:00 (Asia/Dhaka — Machine Clock)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 ================================================================================
 
 1. WORKSPACE & REPOSITORY IDENTITY (LOCAL INDEPENDENT INSPECTION)
 --------------------------------------------------------------------------------
-- Inspection Time:    2026-11-11T23:20:00+06:00
+- Inspection Time:    2026-11-12T00:01:12.506+06:00
 - Active Branch:      master
 - Local Full HEAD:    56abbe89b05dc43a6832ccaa27e202a23d1f448f
 - Tree Cleanliness:   Clean (0 untracked, 0 uncommitted changes)

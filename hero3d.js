@@ -106,6 +106,10 @@
     }
 
     function mountCanvas(container) {
+        // If the primary WebGL2 diagram scene canvas is already inside the hero stage, preserve the hero DOM!
+        if (document.getElementById('iinsha-diagram-scene')) {
+            return;
+        }
         container.innerHTML = '';
         const canvas = document.createElement('canvas');
         canvas.className = 'hero3d-canvas';

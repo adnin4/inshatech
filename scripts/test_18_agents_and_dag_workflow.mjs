@@ -100,6 +100,27 @@ async function main() {
         assert(ANTI_LOOP_CONFIG.circuit_breaker_on_error === true, 'Circuit breaker must be active');
     });
 
+    await runTest('GOV-03: Zero-Trust tool permission & HITL alignment invariants across all 18 agents', () => {
+        // 1. chief_orchestrator has deploy_production_release -> must require HITL and LEVEL_3_APPROVAL
+        const orchestrator = AGENT_REGISTRY.CHIEF_ORCHESTRATOR_AGENT;
+        assert(orchestrator.tools.allowed.includes('deploy_production_release'));
+        assert.strictEqual(orchestrator.permissions.requires_hitl, true, 'chief_orchestrator must require HITL when holding deploy_production_release');
+        assert.strictEqual(orchestrator.permissions.permission_level, 'LEVEL_3_APPROVAL', 'chief_orchestrator must be LEVEL_3_APPROVAL');
+
+        // 2. payment_verifier has HIGH risk -> must require HITL and LEVEL_3_APPROVAL
+        const paymentVerifier = AGENT_REGISTRY.PAYMENT_VERIFIER_AGENT;
+        assert.strictEqual(paymentVerifier.permissions.risk_class, 'HIGH');
+        assert.strictEqual(paymentVerifier.permissions.requires_hitl, true, 'payment_verifier HIGH risk must require HITL');
+        assert.strictEqual(paymentVerifier.permissions.permission_level, 'LEVEL_3_APPROVAL');
+
+        // 3. finance_cfo has disburse_affiliate_payout / process_refund_request -> must require HITL and LEVEL_3_APPROVAL (never LEVEL_0_READ)
+        const financeCfo = AGENT_REGISTRY.FINANCE_CFO_AGENT;
+        assert(financeCfo.tools.allowed.includes('disburse_affiliate_payout'));
+        assert.notStrictEqual(financeCfo.permissions.permission_level, 'LEVEL_0_READ', 'finance_cfo with payout tool must never be LEVEL_0_READ');
+        assert.strictEqual(financeCfo.permissions.permission_level, 'LEVEL_3_APPROVAL');
+        assert.strictEqual(financeCfo.permissions.requires_hitl, true, 'finance_cfo must require HITL');
+    });
+
     // -------------------------------------------------------------
     // 3. Zero-Trust Runtime & Dynamic Risk Governance
     // -------------------------------------------------------------

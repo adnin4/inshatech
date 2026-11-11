@@ -1,0 +1,71 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — WEBSITE & LIVE DOM RECONCILIATION AUDIT
+================================================================================
+Audit Timestamp (Machine Clock): 2026-11-12T00:01:12.506+06:00 (Asia/Dhaka)
+Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Candidate Staging Host: https://inshatech-b6b.pages.dev/
+Legacy Production Host: https://inshatech.pages.dev/
+Target Custom Domain: https://inshatech.com/ (Cutover Pending — Owner Gate G6)
+
+--------------------------------------------------------------------------------
+1. ROOT-CAUSE RESOLUTION OF EXTERNAL LIVE BROWSER QA DISCREPANCIES
+--------------------------------------------------------------------------------
+A. Canonical & Open Graph Metadata (P0 — RESOLVED: PASS)
+   - Finding: JSON-LD structured data (@graph Organization.url, Organization.logo, WebSite.url) and the floating WhatsApp CTA in index.html / live_index.html previously referenced the legacy host `https://inshatech.pages.dev`.
+   - Fix Applied: Updated all JSON-LD URLs and metadata in `index.html` and `live_index.html` to `https://inshatech-b6b.pages.dev` (matching `<link rel="canonical" href="https://inshatech-b6b.pages.dev/">` and `<meta property="og:url" content="https://inshatech-b6b.pages.dev">`).
+   - Preview Robot Protection: Updated `functions/_middleware.js` to inject `X-Robots-Tag: noindex, nofollow` whenever the request hostname ends with `.pages.dev`.
+
+B. Semantic Heading Hierarchy & Hero Stage Preservation (P0 — RESOLVED: PASS)
+   - Finding 1: `admin.html` contained 19 `<h1 class="workspace-title">` elements (1 per dashboard tab panel), and `app.js` contained 1 `<h1>` inside the print-window SoW template, which caused multi-file/workspace heading scanners to flag 20–27 `<h1>` tags across the app.
+   - Fix 1 Applied: Normalized `admin.html` so only the primary executive command view (`#view-overview`) uses `<h1>`, and converted the remaining 18 panel headings to `<h2 class="workspace-title">`.
+   - Finding 2 (Critical Runtime Bug Caught via Local CDP): When `#hero3d-container` was added to the hero wrapper in `index.html`, legacy `hero3d.js` executed `container.innerHTML = ''` on `#hero3d-container`, wiping out the hero `<h1>` and `#iinsha-diagram-scene` WebGL2 canvas at runtime!
+   - Fix 2 Applied: Patched `mountCanvas()` in `hero3d.js` to return early without clearing `container.innerHTML` whenever `#iinsha-diagram-scene` is present in the DOM.
+   - Verification: Real Chrome CDP (`scripts/verify_final_release_browser.mjs`) verified `h1Count === 1` and `canvasId === "iinsha-diagram-scene"` (`WebGL2RenderingContext`) across all 6 viewports (`1440x900`, `1280x900`, `1024x768`, `768x1024`, `390x844`, `360x800`).
+
+C. Service Catalog Count Discrepancy — 92 vs. 80 (P1 — RESOLVED: PASS)
+   - Root Cause of 92 vs. 80: Section `#s3` contains 3 distinct architectural layers:
+     1. 4 Commercial Strategy Pills (`Phase 1: Cash Flow Pilots`, `Phase 2: Monthly Retainers`, `Phase 3: Vertical SaaS`, `White-Label Partner`) linking to `services/*.html`
+     2. 8 Domain Overview Cards (`.cat-overview-card`) linking to `services/*.html`
+     3. 80 Granular Micro-Service Cards (`.service-item-card` across 8 `.service-panel` category grids, 10 per category)
+     Total items inside `#s3`: 4 + 8 + 80 = 92 items (or 80 `.service-item-card` + 8 `.cat-overview-card` + 4 `.idg-bento-card` = 92 cards).
+   - Fix Applied:
+     * Assigned deterministic unique `data-service-id="svc-01"` .. `"svc-80"`, `data-service-slug`, and `data-service-category` attributes to all 80 `.service-item-card` elements in `src/js/ux_interactions.js`.
+     * Added the missing `AI Agents (10)` tab pill and explicit counts `(10)` on all 8 category tabs in `index.html` and `live_index.html`, with `role="tablist"` and `aria-selected` state synchronization.
+     * Synchronized initial load state so when `All Categories (80 Services)` is active, all 8 `.service-panel` grids are visible (`80` visible cards) and `#service-active-counter` dynamically displays the exact count of visible cards.
+     * Added `#service-search-empty` empty-state feedback when a search query matches 0 services.
+
+D. 4 Bento Capability Cards Visibility (P1 — RESOLVED: PASS)
+   - Root Cause: `setupReveal()` in `src/js/iinsha-diagram-motion.js` added `.idg-reveal-ready` (`opacity: 0; transform: translate3d(0, 24px, 0)`) to `[data-idg-reveal]` elements below the fold until scrolled into view, causing non-scrolling headless scrapers to report 0 visible cards inside `.idg-bento-grid`.
+   - Fix Applied: Updated `setupReveal()` in `src/js/iinsha-diagram-motion.js` so `.idg-bento-card`, `.diagram-bento-card`, and `.idg-section-header` immediately receive `.idg-revealed` (`opacity: 1`) on initial load.
+   - Verification: CDP browser audit confirmed `bentoCount: 4` and `bentoVisibleCount: 4` (`opacity > 0`, bounding box width/height > 0) across all 6 viewports without scrolling.
+
+E. Public Trust & Marketing Claims Audit (P1 — RESOLVED: PASS)
+   - Hero 4-Metric Strip (`index.html`, `live_index.html`): Relabeled `85% Labor Saved` -> `Up to 85% Target Labor Reduction`, `<45s Speed to Lead` -> `<45s Target Webhook SLA`, `24/7 Self-Operating` -> `24/7 Automated Execution`, `100% Data Sovereignty` -> `100% Code Handover` with `aria-label="Architecture Design Benchmarks"`.
+   - ROI Calculator (`#s5`): Relabeled `NET 1-YEAR ROI MULTIPLIER:` -> `ILLUSTRATIVE 1-YR ROI MODEL:`.
+   - Data Sovereignty Card (`#enterprise-guarantees`): Replaced absolute claim ("never stored on external third-party servers") with accurate architectural scope ("For self-hosted VPS deployments, your workflow runtime and customer records reside inside your dedicated cloud infrastructure, using only the LLM/API providers you explicitly authorize.").
+
+--------------------------------------------------------------------------------
+2. 6-VIEWPORT CHROME CDP EMPIRICAL VERIFICATION MATRIX
+--------------------------------------------------------------------------------
+Runner: `node scripts/verify_final_release_browser.mjs`
+Evidence JSON: `docs/evidence/browser/cdp_browser_audit.json`
+Screenshots:
+  - `docs/evidence/browser/desktop_1280x900.png`
+  - `docs/evidence/browser/mobile_390x844.png`
+
+| Viewport | Mode | H1 Count | Canvas (`WebGL2`) | Bento Visible | Unique Services | Overflow | Dup IDs | Status |
+|---|---|---|---|---|---|---|---|---|
+| `1440x900` | Desktop | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`1440<=1440`) | 0 | PASS |
+| `1280x900` | Desktop | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`1280<=1280`) | 0 | PASS |
+| `1024x768` | Desktop | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`1024<=1024`) | 0 | PASS |
+| `768x1024` | Tablet/Mobile | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`768<=768`) | 0 | PASS |
+| `390x844`  | Mobile | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`390<=390`) | 0 | PASS |
+| `360x800`  | Mobile | 1 | `iinsha-diagram-scene` | 4 / 4 | 80 / 80 | 0px (`360<=360`) | 0 | PASS |
+
+Interactive Tab & Search Verification (`1440x900`):
+  - `All Categories` tab click: 80 visible cards (`PASS`)
+  - Individual category tab clicks (`cat-agents` .. `cat-security`): 10 visible cards each (`PASS`)
+  - Search input `"Playwright"`: 1 matching card visible, counter updates to `1 Verified Solution Active` (`PASS`)
+  - Search input `"zzzz_nonexistent_service_999"`: 0 cards visible, `#service-search-empty` message displayed (`PASS`)
+  - Search input cleared `""`: 80 cards restored (`PASS`)
+================================================================================

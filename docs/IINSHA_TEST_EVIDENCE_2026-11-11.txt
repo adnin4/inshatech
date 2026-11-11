@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — TEST EVIDENCE & RUNTIME TELEMETRY LEDGER
 Document Identifier: DOC-IINSHA-TEST-EVIDENCE-20261111-REVISED
-Audit Timestamp: 2026-11-11T23:25:00+06:00 (Asia/Dhaka)
+Audit Timestamp: 2026-11-12T00:01:12.506+06:00 (Asia/Dhaka — Machine Clock)
 Target Commit SHA: 56abbe89b05dc43a6832ccaa27e202a23d1f448f
 Node.js Version: v26.7.0
 Operating System: Windows 11 (win32-x64)
@@ -50,17 +50,20 @@ node scripts/all_surface_reliability_audit.mjs  0          ~2.1s       46/46    
 node scripts/public_site_e2e.mjs                0          ~0.3s       12/12       PASS
   - 12/12 core public pages asset integrity     0          ~280ms      12/12       PASS
 
-node scripts/verify_handoff_docs.mjs            0          ~0.1s       5/5 files   PASS
-  - 5 handoff documents existence, >0 bytes, UTF-8 clean
+node scripts/verify_handoff_docs.mjs            0          ~0.1s       6/6 files   PASS
+  - 6 handoff documents existence, >0 bytes, UTF-8 clean
 
-node scripts/verify_final_release_browser.mjs   0          ~30.0s      5/5 vports  PASS
+node scripts/test_18_agents_and_dag_workflow.mjs 0         ~0.1s       22/22       PASS
+  - 18-agent registry, GOV-03 HITL permission alignment & DAG workflow
+
+node scripts/verify_final_release_browser.mjs   0          ~35.0s      6/6 vports  PASS
   - Headless Chrome CDP evaluation across 5 viewports
   - Desktop 1440x900, 1280x900, 1024x768
   - Mobile 390x844, 360x800
   - Saved desktop and mobile screenshots & JSON metrics
 
 
-2. CHROMIUM CDP MEASUREMENT LEDGER (5 VIEWPORTS)
+2. CHROMIUM CDP MEASUREMENT LEDGER (6 VIEWPORTS: 1440x900, 1280x900, 1024x768, 768x1024, 390x844, 360x800)
 --------------------------------------------------------------------------------
 Host: https://inshatech-b6b.pages.dev/
 Tested: 2026-11-11T17:18:00Z / 2026-11-11T23:18:00+06:00
@@ -68,7 +71,7 @@ Evidence Directory: docs/evidence/browser/
 
 A. Viewport 1440x900 (Large Desktop):
    - Title: "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform"
-   - Canonical: YES (https://inshatech.com/)
+   - Canonical: YES (https://inshatech-b6b.pages.dev/)
    - H1: Exactly 1 H1 ("Autonomous AI Workforce & Enterprise Operations Platform")
    - Structure: 8 Panels, 80 Cards, 4 Bento Cards
    - Canvas: #iinsha-diagram-scene (WebGL2RenderingContext, buffer 1472x736)

@@ -17,7 +17,7 @@ export const AGENT_REGISTRY = {
       "deploy_production_release",
       "knowledge_search",
       "service_catalog_lookup",'create_task_dag', 'delegate_task', 'evaluate_sla', 'get_analytics'], max_calls: 30 },
-    permissions: { autonomy_level: 'L2_SAFE_EXECUTE', risk_class: 'MEDIUM', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['REQUIREMENTS_AGENT', 'ARCHITECT_AGENT', 'DEVELOPER_AGENT'], requires_hitl: false },
+    permissions: { autonomy_level: 'L3_APPROVAL', risk_class: 'HIGH', permission_level: 'LEVEL_3_APPROVAL', can_delegate_to: ['REQUIREMENTS_AGENT', 'ARCHITECT_AGENT', 'DEVELOPER_AGENT'], requires_hitl: true },
     evaluation: { target_quality_score: 95, max_cost_usd: 5.00, revenue_attribution_model: 'overall_executive', sla_latency_ms: 2000 }
   },
 
@@ -180,7 +180,7 @@ export const AGENT_REGISTRY = {
     },
     memory: { context_tokens: 32000, persist_state: true, memory_store: 'ibos_memories' },
     tools: { allowed: ['verify_webhook_hmac', 'validate_idempotency', 'check_fx_peg', 'confirm_order'], max_calls: 20 },
-    permissions: { autonomy_level: 'L2_SAFE_EXECUTE', risk_class: 'HIGH', permission_level: 'LEVEL_2_EXECUTE', can_delegate_to: ['FINANCE_CFO_AGENT'], requires_hitl: false },
+    permissions: { autonomy_level: 'L3_APPROVAL', risk_class: 'HIGH', permission_level: 'LEVEL_3_APPROVAL', can_delegate_to: ['FINANCE_CFO_AGENT'], requires_hitl: true },
     evaluation: { target_quality_score: 100, max_cost_usd: 0.50, revenue_attribution_model: 'payment_security', sla_latency_ms: 800 }
   },
 
@@ -195,7 +195,7 @@ export const AGENT_REGISTRY = {
     tools: { allowed: [
       "process_refund_request",
       "disburse_affiliate_payout",'get_revenue', 'get_expenses', 'record_ledger_entry', 'reconcile_payouts'], max_calls: 15 },
-    permissions: { autonomy_level: 'L0_OBSERVE', risk_class: 'HIGH', permission_level: 'LEVEL_0_READ', can_delegate_to: [], requires_hitl: false },
+    permissions: { autonomy_level: 'L3_APPROVAL', risk_class: 'HIGH', permission_level: 'LEVEL_3_APPROVAL', can_delegate_to: [], requires_hitl: true },
     evaluation: { target_quality_score: 99, max_cost_usd: 1.00, revenue_attribution_model: 'financial_controller', sla_latency_ms: 1000 }
   },
 

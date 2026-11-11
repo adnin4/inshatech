@@ -1,6 +1,7 @@
 import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { pathToFileURL } from 'url';
 
 const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const EVIDENCE_DIR = path.resolve(process.cwd(), 'docs/evidence/browser');
@@ -9,13 +10,14 @@ if (!fs.existsSync(EVIDENCE_DIR)) {
   fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
 }
 
-async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
+async function runBrowserAudit(targetUrl, viewport, screenshotName = null, runInteractiveSearchAndTabs = false) {
   const port = 9450 + Math.floor(Math.random() * 50);
   const chrome = spawn(CHROME_PATH, [
     '--headless=new',
     `--remote-debugging-port=${port}`,
     '--disable-gpu',
     '--no-first-run',
+    '--allow-file-access-from-files',
     'about:blank'
   ]);
 
@@ -45,7 +47,6 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
       ws.send(JSON.stringify({ id: curId, method, params }));
     });
 
-    // Listen to Console and Network events
     ws.addEventListener('message', (e) => {
       try {
         const msg = JSON.parse(e.data);
@@ -70,9 +71,9 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
     });
 
     await send('Page.navigate', { url: targetUrl });
-    await new Promise(r => setTimeout(r, 3500));
+    await new Promise(r => setTimeout(r, 2500));
 
-    // Capture initial evaluation
+    // Initial evaluation
     const initialEval = await send('Runtime.evaluate', {
       expression: `(() => {
         const v = document.getElementById('hero-celestial-video');
@@ -81,6 +82,7 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
         return {
           title: document.title,
           canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') || null,
+          ogUrl: document.querySelector('meta[property="og:url"]')?.getAttribute('content') || null,
           h1Count: document.querySelectorAll('h1').length,
           h1Text: document.querySelector('h1')?.textContent?.trim() || null,
           vPaused: v ? v.paused : null,
@@ -96,8 +98,7 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
       returnByValue: true
     });
 
-    // Wait 2 seconds to check video progression and interaction
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 1500));
 
     const finalEval = await send('Runtime.evaluate', {
       expression: `(() => {
@@ -105,6 +106,11 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
         const panels = Array.from(document.querySelectorAll('.service-panel'));
         const cards = Array.from(document.querySelectorAll('.service-item-card'));
         const bentoCards = Array.from(document.querySelectorAll('.diagram-bento-card, .idg-bento-card'));
+        const bentoVisibleCount = bentoCards.filter(el => {
+          const st = window.getComputedStyle(el);
+          const rect = el.getBoundingClientRect();
+          return parseFloat(st.opacity) > 0 && st.display !== 'none' && rect.width > 0 && rect.height > 0;
+        }).length;
         const docScrollWidth = document.documentElement.scrollWidth;
         const winInnerWidth = window.innerWidth;
         const stickyCta = document.getElementById('sticky-mobile-cta');
@@ -117,7 +123,6 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
             ctaRect.bottom < copilotRect.top ||
             ctaRect.top > copilotRect.bottom));
 
-        // Check duplicate IDs across DOM
         const allElements = Array.from(document.querySelectorAll('[id]'));
         const idMap = {};
         const duplicateIds = [];
@@ -126,15 +131,17 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
           else idMap[el.id] = true;
         });
 
-        // Tabs test: check total category buttons
         const tabButtons = Array.from(document.querySelectorAll('.service-tab-btn, [role="tab"]'));
+        const uniqueServiceIds = new Set(cards.map(c => c.getAttribute('data-service-id')).filter(Boolean)).size;
 
         return {
           vTime2: v ? v.currentTime : null,
           vProgressed: v ? (v.currentTime > 0) : null,
           panelsCount: panels.length,
           cardsCount: cards.length,
+          uniqueServiceIds: uniqueServiceIds,
           bentoCount: bentoCards.length,
+          bentoVisibleCount: bentoVisibleCount,
           tabCount: tabButtons.length,
           docScrollWidth: docScrollWidth,
           winInnerWidth: winInnerWidth,
@@ -147,7 +154,67 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
       returnByValue: true
     });
 
-    // Capture screenshot if requested
+    // Optional interactive tab & search verification
+    let interactiveAudit = null;
+    if (runInteractiveSearchAndTabs) {
+      const tabEval = await send('Runtime.evaluate', {
+        expression: `(() => {
+          const tabs = Array.from(document.querySelectorAll('.service-tab-btn'));
+          const searchInput = document.getElementById('service-live-search');
+          const counter = document.getElementById('service-active-counter');
+          const emptyEl = document.getElementById('service-search-empty');
+          const cards = Array.from(document.querySelectorAll('.service-item-card'));
+
+          const countVisible = () => cards.filter(c => c.style.display !== 'none' && c.closest('.service-panel')?.style.display !== 'none').length;
+
+          // 1. Click each tab and record visible cards
+          const tabCounts = {};
+          tabs.forEach(t => {
+            t.click();
+            const target = t.getAttribute('data-target');
+            tabCounts[target] = countVisible();
+          });
+
+          // Restore 'all' tab
+          const allTab = tabs.find(t => t.getAttribute('data-target') === 'all') || tabs[0];
+          if (allTab) allTab.click();
+          const allVisible = countVisible();
+
+          // 2. Search for "Playwright"
+          let searchMatchCount = null;
+          let searchZeroCount = null;
+          let searchZeroEmptyVisible = false;
+          let searchRestoredCount = null;
+          if (searchInput) {
+            searchInput.value = 'Playwright';
+            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+            searchMatchCount = countVisible();
+
+            searchInput.value = 'zzzz_nonexistent_service_999';
+            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+            searchZeroCount = countVisible();
+            searchZeroEmptyVisible = Boolean(emptyEl && emptyEl.style.display !== 'none');
+
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+            searchRestoredCount = countVisible();
+          }
+
+          return {
+            tabCounts,
+            allVisible,
+            searchMatchCount,
+            searchZeroCount,
+            searchZeroEmptyVisible,
+            searchRestoredCount,
+            counterText: counter ? counter.textContent : null
+          };
+        })()`,
+        returnByValue: true
+      });
+      interactiveAudit = tabEval.result.value;
+    }
+
     let screenshotPath = null;
     if (screenshotName) {
       const shot = await send('Page.captureScreenshot', { format: 'png' });
@@ -161,6 +228,7 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
       viewport: `${viewport.width}x${viewport.height}${viewport.isMobile ? ' (Mobile)' : ' (Desktop)'}`,
       initial: initialEval.result.value,
       final: finalEval.result.value,
+      interactive: interactiveAudit,
       screenshot: screenshotPath ? path.basename(screenshotPath) : null,
       consoleErrors: consoleLogs.filter(l => l.level === 'error'),
       networkFailures: networkFailures
@@ -172,44 +240,53 @@ async function runBrowserAudit(targetUrl, viewport, screenshotName = null) {
 
 async function main() {
   console.log('================================================================================');
-  console.log('IINSHA AI-BOS — CDP REAL BROWSER RUNTIME VERIFICATION');
+  console.log('IINSHA AI-BOS — CDP REAL BROWSER RUNTIME VERIFICATION (6 VIEWPORTS)');
   console.log('================================================================================');
 
-  const TARGET_URL = 'https://inshatech-b6b.pages.dev/';
-  console.log(`Target URL: ${TARGET_URL}\n`);
+  const localIndexUrl = pathToFileURL(path.resolve(process.cwd(), 'index.html')).href;
+  const liveStagingUrl = 'https://inshatech-b6b.pages.dev/';
 
   const viewports = [
-    { width: 1440, height: 900, isMobile: false, shot: null },
-    { width: 1280, height: 900, isMobile: false, shot: 'desktop_1280x900.png' },
-    { width: 1024, height: 768, isMobile: false, shot: null },
-    { width: 390, height: 844, isMobile: true, shot: 'mobile_390x844.png' },
-    { width: 360, height: 800, isMobile: true, shot: null }
+    { width: 1440, height: 900, isMobile: false, shot: null, interactive: true },
+    { width: 1280, height: 900, isMobile: false, shot: 'desktop_1280x900.png', interactive: false },
+    { width: 1024, height: 768, isMobile: false, shot: null, interactive: false },
+    { width: 768, height: 1024, isMobile: true, shot: null, interactive: false },
+    { width: 390, height: 844, isMobile: true, shot: 'mobile_390x844.png', interactive: false },
+    { width: 360, height: 800, isMobile: true, shot: null, interactive: false }
   ];
 
-  const results = [];
+  console.log(`\n--- PHASE A: Auditing Local Candidate (${localIndexUrl}) across 6 viewports ---`);
+  const localResults = [];
   for (const vp of viewports) {
-    console.log(`Auditing viewport: ${vp.width}x${vp.height} (${vp.isMobile ? 'Mobile' : 'Desktop'})...`);
-    const r = await runBrowserAudit(TARGET_URL, vp, vp.shot);
-    results.push(r);
-    console.log(`  -> Title: "${r.initial.title}"`);
-    console.log(`  -> H1 Count: ${r.initial.h1Count}, Canonical: ${r.initial.canonical ? 'YES' : 'NO'}`);
-    console.log(`  -> Panels: ${r.final.panelsCount}, Cards: ${r.final.cardsCount}, Bento: ${r.final.bentoCount}`);
-    console.log(`  -> Overflow: ${r.final.zeroOverflow ? '0px (PASS)' : 'OVERFLOW FAIL'}`);
+    console.log(`Auditing local viewport: ${vp.width}x${vp.height} (${vp.isMobile ? 'Mobile' : 'Desktop'})...`);
+    const r = await runBrowserAudit(localIndexUrl, vp, vp.shot, vp.interactive);
+    localResults.push(r);
+    console.log(`  -> H1 Count: ${r.initial.h1Count} | Canonical: ${r.initial.canonical} | og:url: ${r.initial.ogUrl}`);
+    console.log(`  -> Panels: ${r.final.panelsCount} | Cards: ${r.final.cardsCount} (Unique IDs: ${r.final.uniqueServiceIds}) | Bento: ${r.final.bentoCount} (Visible: ${r.final.bentoVisibleCount})`);
+    console.log(`  -> Overflow: ${r.final.zeroOverflow ? '0px (PASS)' : 'OVERFLOW FAIL'} | Duplicate IDs: ${r.final.duplicateIdCount}`);
     console.log(`  -> Canvas: ${r.initial.canvasId} (${r.initial.glType})`);
-    console.log(`  -> Video Progressed: ${r.final.vProgressed ? 'YES' : 'NO'} (${r.initial.vTime1}s -> ${r.final.vTime2}s)`);
+    if (r.interactive) {
+      console.log(`  -> Interactive Tabs: all=${r.interactive.allVisible}, agents=${r.interactive.tabCounts['cat-agents']}, workflow=${r.interactive.tabCounts['cat-workflow']}`);
+      console.log(`  -> Interactive Search: match("Playwright")=${r.interactive.searchMatchCount}, zero=${r.interactive.searchZeroCount} (emptyMsg=${r.interactive.searchZeroEmptyVisible}), restored=${r.interactive.searchRestoredCount}`);
+    }
     if (r.screenshot) console.log(`  -> Screenshot saved: docs/evidence/browser/${r.screenshot}`);
-    console.log('');
   }
+
+  console.log(`\n--- PHASE B: Auditing Live Staging Host (${liveStagingUrl}) at 1440x900 ---`);
+  const liveResult = await runBrowserAudit(liveStagingUrl, { width: 1440, height: 900, isMobile: false }, null, false);
+  console.log(`  -> Live H1 Count: ${liveResult.initial.h1Count} | Live Cards: ${liveResult.final.cardsCount} | Live Bento: ${liveResult.final.bentoCount} | Video Progressed: ${liveResult.final.vProgressed}`);
 
   const reportPath = path.join(EVIDENCE_DIR, 'cdp_browser_audit.json');
   fs.writeFileSync(reportPath, JSON.stringify({
     timestamp: new Date().toISOString(),
-    url: TARGET_URL,
-    totalViewportsTested: results.length,
-    viewports: results
+    localCandidateUrl: localIndexUrl,
+    liveStagingUrl: liveStagingUrl,
+    totalViewportsTested: localResults.length,
+    localViewports: localResults,
+    liveStagingBaseline: liveResult
   }, null, 2), 'utf8');
 
-  console.log(`[PASS] Complete CDP telemetry JSON saved to: docs/evidence/browser/cdp_browser_audit.json`);
+  console.log(`\n[PASS] Complete 6-viewport CDP telemetry JSON saved to: docs/evidence/browser/cdp_browser_audit.json`);
 }
 
 main().catch(err => {

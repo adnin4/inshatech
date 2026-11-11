@@ -235,39 +235,84 @@
     // Live Real-Time Service Search & Filter across all 80+ Micro-Services
     function initServiceLiveSearch() {
         const searchInput = document.getElementById('service-live-search');
-        if (!searchInput) return;
+        const counterEl = document.getElementById('service-active-counter');
+        const emptyEl = document.getElementById('service-search-empty');
+        const panels = document.querySelectorAll('.service-panel');
+        const tabs = document.querySelectorAll('.service-tab-btn');
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            const panels = document.querySelectorAll('.service-panel');
-            const tabs = document.querySelectorAll('.service-tab-btn');
-
-            if (!query) {
-                // Restore currently selected tab view
-                const activeTab = document.querySelector('.service-tab-btn.active') || tabs[0];
-                const targetId = activeTab ? activeTab.getAttribute('data-target') : 'cat-agents';
-                panels.forEach(p => {
-                    p.classList.toggle('active', p.id === targetId);
-                    p.querySelectorAll('.service-item-card').forEach(c => {
-                        c.style.display = '';
-                        c.style.opacity = '1';
-                    });
-                });
-                return;
-            }
-
-            // Search active: Reveal matching cards across all categories
-            panels.forEach(p => {
-                let hasMatchInPanel = false;
-                p.querySelectorAll('.service-item-card').forEach(c => {
-                    const text = c.textContent.toLowerCase();
-                    const isMatch = text.includes(query);
-                    c.style.display = isMatch ? 'flex' : 'none';
-                    if (isMatch) hasMatchInPanel = true;
-                });
-                p.classList.toggle('active', hasMatchInPanel);
+        // Assign stable unique data-service-id and data-service-slug to all 80 cards
+        let cardIdx = 0;
+        panels.forEach(p => {
+            const cat = p.id || 'cat';
+            p.querySelectorAll('.service-item-card').forEach(c => {
+                cardIdx++;
+                const titleEl = c.querySelector('.service-item-title');
+                const rawTitle = titleEl ? titleEl.textContent.replace(/[^\w\s-]/g, '').trim() : `service-${cardIdx}`;
+                const slug = rawTitle.toLowerCase().replace(/\s+/g, '-');
+                c.setAttribute('data-service-id', `svc-${String(cardIdx).padStart(2, '0')}`);
+                c.setAttribute('data-service-slug', slug);
+                c.setAttribute('data-service-category', cat);
             });
         });
+
+        function applyTabOrSearch() {
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const activeTab = document.querySelector('.service-tab-btn.active') || tabs[0];
+            const targetId = activeTab ? activeTab.getAttribute('data-target') : 'all';
+
+            let visibleCount = 0;
+            panels.forEach(p => {
+                const isTargetPanel = (targetId === 'all' || p.id === targetId);
+                let hasMatchInPanel = false;
+
+                p.querySelectorAll('.service-item-card').forEach(c => {
+                    const text = c.textContent.toLowerCase();
+                    const matchesSearch = !query || text.includes(query);
+                    const shouldShow = query ? matchesSearch : isTargetPanel;
+
+                    c.style.display = shouldShow ? '' : 'none';
+                    c.style.opacity = shouldShow ? '1' : '0';
+                    if (shouldShow) {
+                        hasMatchInPanel = true;
+                        visibleCount++;
+                    }
+                });
+
+                if (hasMatchInPanel) {
+                    p.classList.add('active');
+                    p.style.display = 'grid';
+                } else {
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                }
+            });
+
+            if (counterEl) {
+                counterEl.textContent = `${visibleCount} Verified Solution${visibleCount === 1 ? '' : 's'} Active`;
+            }
+            if (emptyEl) {
+                emptyEl.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(b => {
+                    const isSelected = b === btn;
+                    b.classList.toggle('active', isSelected);
+                    b.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+                });
+                applyTabOrSearch();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applyTabOrSearch);
+            searchInput.addEventListener('search', applyTabOrSearch);
+        }
+
+        // Initial render synchronization (ensures all 80 cards visible when "All Categories" is active)
+        applyTabOrSearch();
     }
 
     function initUX() {

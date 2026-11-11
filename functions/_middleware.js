@@ -94,6 +94,9 @@ export async function onRequest(context) {
   const rewritten = rewriteHtml(original);
   const headers = new Headers(response.headers);
   headers.set('x-iinsha-truth-guard', 'enabled');
+  if (url.hostname.endsWith('.pages.dev')) {
+    headers.set('X-Robots-Tag', 'noindex, nofollow');
+  }
   headers.delete('content-length');
 
   return new Response(rewritten, {
