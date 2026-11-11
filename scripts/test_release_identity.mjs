@@ -45,6 +45,23 @@ assert.deepStrictEqual(fullParity.missing_fields, []);
 assert.strictEqual(fullParity.branch.matches, true);
 assert.strictEqual(fullParity.repository.matches, true);
 
+// 2b. Deployment parity check when database is UNVERIFIED (must NOT claim RUNTIME_VERIFIED)
+const stagingParity = verifyReleaseIdentity({
+    source_sha: testSha1,
+    build_sha: testSha1,
+    deployment_sha: testSha1,
+    runtime_sha: testSha1,
+    branch: 'master',
+    repository: 'https://github.com/adnin4/inshatech.git',
+    deployment_id: 'dep_12345',
+    captured_at: new Date().toISOString(),
+    database_verified: false
+});
+assert.strictEqual(stagingParity.verified, true);
+assert.strictEqual(stagingParity.parity_status, 'FULL_PARITY_VERIFIED');
+assert.strictEqual(stagingParity.classification, RELEASE_CLASSIFICATIONS.DEPLOYMENT_VERIFIED, 'Unverified DB must yield DEPLOYMENT_VERIFIED, not RUNTIME_VERIFIED');
+assert.strictEqual(stagingParity.classifications.includes(RELEASE_CLASSIFICATIONS.RUNTIME_VERIFIED), false, 'RUNTIME_VERIFIED must never be claimed without verified DB');
+
 // 3. Mismatch detection between SHAs
 const mismatch = verifyReleaseIdentity({
     source_sha: testSha1,

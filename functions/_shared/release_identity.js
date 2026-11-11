@@ -129,7 +129,7 @@ export function verifyReleaseIdentity(context = {}) {
     if (source_sha && !isSyntheticMergeConfusion) classifications.push(RELEASE_CLASSIFICATIONS.SOURCE_VERIFIED);
     if (build_sha && source_sha && build_sha === source_sha) classifications.push(RELEASE_CLASSIFICATIONS.BUILD_VERIFIED);
     if (deployment_sha && build_sha && deployment_sha === build_sha) classifications.push(RELEASE_CLASSIFICATIONS.DEPLOYMENT_VERIFIED);
-    if (runtime_sha && deployment_sha && runtime_sha === deployment_sha) classifications.push(RELEASE_CLASSIFICATIONS.RUNTIME_VERIFIED);
+    if (runtime_sha && deployment_sha && runtime_sha === deployment_sha && database_verified) classifications.push(RELEASE_CLASSIFICATIONS.RUNTIME_VERIFIED);
     if (database_verified) classifications.push(RELEASE_CLASSIFICATIONS.DATABASE_VERIFIED);
 
     let classification = RELEASE_CLASSIFICATIONS.UNVERIFIED;
@@ -157,7 +157,7 @@ export function verifyReleaseIdentity(context = {}) {
         parity_status = 'FULL_PARITY_VERIFIED';
         classification = database_verified
             ? RELEASE_CLASSIFICATIONS.FULL_RELEASE_VERIFIED
-            : RELEASE_CLASSIFICATIONS.RUNTIME_VERIFIED;
+            : RELEASE_CLASSIFICATIONS.DEPLOYMENT_VERIFIED;
     }
 
     const verified = parity_status === 'FULL_PARITY_VERIFIED';

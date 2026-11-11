@@ -1,6 +1,6 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS: PERSISTENT PROJECT CONTEXT & TRUTH LEDGER
-Captured: 2026-11-10T19:05:00+06:00 (Asia/Dhaka)
+Captured: 2026-11-11T20:55:00+06:00 (Asia/Dhaka)
 Status Authority: Principal Full-Stack & Release Reliability Engineer
 ================================================================================
 
@@ -17,21 +17,26 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 - Authentic Diagram.com Master UI/UX Replica (single-column centered editorial
   typography, 3D WebGL2 planetary orbit scene, celestial WebM video backdrop,
   80-card micro-services directory with real-time search and domain filters).
+- 13 High-Value Commercial Packages & 3-Tier Monetization Model (Phase 1 Cash Flow
+  Pilots, Phase 2 Recurring Retainers $99-$499/mo, Phase 3 Turnkey Vertical SaaS $950+,
+  and White-Label Silent Agency Execution Muscle).
+- Dedicated responsive landing pages in services/ for each commercial pillar.
 - Triple-Tier Payment & FinTech Gateway (bKash, SSLCommerz, Nagad, Stripe with
   idempotent webhooks, concurrency mutex locks, double-entry ledger invariants).
 - Supabase PostgreSQL Multi-Tenant DB with strict Row Level Security (RLS).
 - Cloudflare Pages Edge Functions architecture with zero-leak CORS policy.
 
-2. REPOSITORY, BRANCHES & CURRENT TRUTH STATE (CAPTURED: 2026-11-10)
+2. REPOSITORY, BRANCHES & CURRENT TRUTH STATE (CAPTURED: 2026-11-11)
 --------------------------------------------------------------------------------
 - Repository: https://github.com/adnin4/inshatech.git
 - Local Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 - GitHub Default Branch: master (Remote tip: b3de7650b65e388514ca82674654c92241ea8811)
 - Remote main Branch: 45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy/separated)
-- Local master Branch: b031fe2a3e0f9b3ec832a8e84aee2d99d375d0b9
-- Local Commit Delta: Local master is ahead of origin/master by 108 commits.
+- Local master Branch HEAD: 4d35561e6323396dfafcb0e78824f8f5817ca354
 - Review Branch: release/v1500-browser-verified-20261110 (Synced to local HEAD)
-- Safety Backup Branch: backup/v1500-final-forensics-20261110-1856 (Created)
+- Local Commit Delta: Ahead of origin/master by 115 commits (Direct descendant).
+- Cold Backup Bundle: inshatech-master-backup-20261111.bundle (77,983,636 bytes)
+- Backup Verification: git bundle verify -> 119 refs, OK; SHA256 verified.
 - Remote GitHub Push Status: BLOCKED_EXTERNAL (Owner Gate G1). The workstation
   gh CLI is unauthenticated ("You are not logged into any GitHub hosts").
   Local commits exist on disk and on Cloudflare Pages, but cannot be pushed
@@ -43,8 +48,7 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 
 3. ARCHITECTURE & CLOUDFLARE ENVIRONMENT SEPARATION
 --------------------------------------------------------------------------------
-- Canonical Production Host: https://inshatech-b6b.pages.dev/
-- Verified Preview Host: https://fe71deb2.inshatech-b6b.pages.dev/
+- Canonical Staging Host: https://inshatech-b6b.pages.dev/
 - Legacy URL Note: Older CI workflows tested https://inshatech.pages.dev, which
   serves the old main branch commit 45ee4c1. The active Pages project in
   Cloudflare account 0eaa8aeb3e2ea628065da5c05b1368a7 is named 'inshatech'
@@ -54,69 +58,26 @@ Enterprise Frontier Platform. It orchestrates business operations across:
   dynamically. /api/version on canonical returns environment: "production", while
   preview returns environment: "preview".
 - Multi-SHA Release Parity: /api/version reports status: READY_FOR_STAGING,
-  deploy_sha: 85aa4badb6f0f214398199fc431ea3ba6fb51afc, parity: true.
+  deploy_sha: 5b599f96c2c88bde4a42dbffa213cbefc6714038, parity: true.
 
 4. BROWSER & UI/UX EMPIRICAL TELEMETRY (MEASURED VIA CHROME CDP)
 --------------------------------------------------------------------------------
-- Hero Celestial Video: Active playback verified in headless Chrome loop
-  (paused: false, readyState: 4, currentTime actively progressing from 3.45s to 4.97s).
-- 3D Celestial Scene: WebGL2RenderingContext verified active on canvas
-  #iinsha-diagram-scene (drawingBuffer: 688x340).
-- Service Catalogue: Section #s3 anchored with role="region" aria-label="Services Catalogue"
-  and target <div id="services"></div>. All 8 category panels rendered (display: grid).
-  All 80 unique service cards rendered and visible to crawlers.
-- Mobile Viewport (390x844): docScrollWidth = 390px, bodyScrollWidth = 390px,
-  zeroHorizontalOverflow = true, sticky CTA and Copilot trigger have zero overlap.
+- Desktop 1280x900:
+  * Hero celestial video active (currentTime 3.43s -> 4.94s, readyState: 4).
+  * 3D WebGL2 orbital canvas active (1472x736 buffer, glType: WebGL2RenderingContext).
+  * Section 3: 8 category panels, 80 granular cards rendered in DOM.
+  * 0 horizontal overflow (docScrollWidth: 1272px <= winInnerWidth: 1280px).
+- Mobile 390x844:
+  * Hero celestial video active (currentTime 3.48s -> 4.98s, readyState: 4).
+  * 3D WebGL2 canvas active (528x384 buffer).
+  * 0 horizontal overflow (docScrollWidth: 390px == winInnerWidth: 390px).
+  * 0 widget collision (sticky mobile CTA & Copilot trigger safely spaced).
 
-5. CRYPTOGRAPHIC EVIDENCE LEDGER PARITY
+5. OPERATIONAL READINESS & OWNER GATES
 --------------------------------------------------------------------------------
-- Endpoint: /api/agents/evidence
-- Chain Integrity: VERIFIED
-- Total Records: 2 (Historical bootstrap + V1500 staging release attestation)
-- Deterministic Merkle Root: f5e698f89a6a78cecd6469182749d73329cbee46ee75f560504493300faa9827
-- Schema Parity: 100% IDENTICAL keys and values across Canonical and Preview.
-
-6. DATABASE (SUPABASE) STATUS & SAFEGUARD RULES
---------------------------------------------------------------------------------
-- Supabase Project Ref: kitwadizsvjmuxkfewxj (inshatech-db / ap-southeast-1)
-- State: INACTIVE (Paused in Supabase control plane).
-- Zero False-Green Rule: All implied-health defaults removed from /api/version.
-  Database status is truthfully reported as UNVERIFIED.
-  Release ceiling is strictly locked to READY_FOR_STAGING.
-  Full production parity remains false.
-- Safety Guard: Zero unreviewed migrations or DB resets may be run while
-  project is inactive. Must verify backups and storage before unpausing.
-
-7. EXTERNAL OWNER COMMISSIONING GATES (BLOCKED_EXTERNAL)
---------------------------------------------------------------------------------
-[G1] GitHub Authentication: Run `gh auth login` on the workstation to enable
-     pushing local master commits (106 commits ahead) to origin/master.
-[G2] Supabase Project Resume: Log into Supabase dashboard and click "Resume Project"
-     for kitwadizsvjmuxkfewxj.
-[G3] Production Gateway Keys: Supply live production credentials for bKash,
-     Nagad, and SSLCommerz in Cloudflare dashboard secret manager.
-
-8. REQUIRED LOCAL TEST COMMANDS
---------------------------------------------------------------------------------
-- npm test                               (Runs 10 claims + 36 responsive + 29 mobile UI tests)
-- node scripts/test_release_identity.mjs (Validates multi-SHA fail-closed logic)
-- node scripts/test_admin_auth_security.mjs (Validates PBKDF2, TOTP, and Admin Gate security)
-- node scripts/ci_evidence_runner.mjs    (Executes all 27 registered CI suites)
-- node scripts/verify_live_browser_runtime.mjs (CDP video & WebGL2 verification)
-
-9. COMMERCIAL SERVICE ARCHITECTURE & PHASING
---------------------------------------------------------------------------------
-- Phase 1: Cash Flow Pilots ($150–$1,500) • API Integrations, Rapid Bug Fixes,
-  Agency White-Label Technical Partner.
-- Phase 2: Monthly Retainers ($99–$499/mo) • Managed AI Care, 24/7 Heartbeats,
-  LLM Prompt Drift & Output Evals, DB Recovery Drills.
-- Phase 3: Vertical Industry SaaS ($950+) • Specialized Operating Systems for
-  ISPs, E-Commerce Logistics, Academies/Schools, and Multi-Warehouse Inventory.
-
-Authoritative Documentation & Handover Artefacts:
-- docs/RELEASE_HANDOFF_2026-11-10.txt
-- docs/PRODUCTION_RUNBOOK.txt
-- docs/DATABASE_RECOVERY_AND_MIGRATION_PLAN.txt
-- docs/SECURITY_AND_TENANT_ISOLATION_MATRIX.txt
-- docs/FEATURE_REALITY_MATRIX.txt
+- Automated Suites: 75/75 in npm test, 27/27 in ci_evidence_runner, 13/13 admin security,
+  9/9 service pricing, 12/12 golden e2e, 46/46 surface reliability, 12/12 public pages.
+- Release Verdict: READY_FOR_STAGING (Fail-Closed, Zero False-Green standard).
+- External Blockers: Owner Gates G1 (GitHub CLI login), G2 (Cloudflare authority),
+  G3 (Supabase unpause), G4 (Payment keys), G5 (Owner session), G6 (DNS cutover).
 ================================================================================

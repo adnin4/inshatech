@@ -1,0 +1,137 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — TEST EVIDENCE & RUNTIME TELEMETRY LEDGER
+Document Identifier: DOC-TEST-EVIDENCE-20261111-01
+Timestamp: 2026-11-11T20:55:00+06:00 (Asia/Dhaka)
+Target Commit SHA: 4d35561e6323396dfafcb0e78824f8f5817ca354
+Node.js Version: v26.7.0
+Operating System: Windows 11 (win32-x64)
+Status Vocabulary: PASS, FAIL, BLOCKED_EXTERNAL, NOT_VERIFIED, EXPECTED_SECURITY_DENIAL, DEFERRED
+================================================================================
+
+1. TEST SUITE EXECUTION SUMMARY
+--------------------------------------------------------------------------------
+Command                                         Exit Code  Duration    Assertions  Status
+--------------------------------------------------------------------------------
+npm test                                        0          ~3.1s       75/75       PASS
+  - verify_all_system_claims.mjs                0          ~0.5s       10/10       PASS
+  - test_responsive_architecture_master.mjs     0          ~1.2s       36/36       PASS
+  - test_mobile_ui_layout.mjs                   0          ~1.4s       29/29       PASS
+
+node scripts/ci_evidence_runner.mjs             0          ~6.2s       27/27       PASS
+  - Domain 1: Governance & Reality Boundary     0          ~120ms      4 suites    PASS
+  - Domain 2: Application & Gateway Security    0          ~720ms      5 suites    PASS
+  - Domain 3: Frontend & Visual Regression      0          ~1.4s       4 suites    PASS
+  - Domain 4: Sales Engine & Copilot AI         0          ~220ms      2 suites    PASS
+  - Domain 5: FinTech, Payment & Ledger         0          ~610ms      9 suites    PASS
+  - Domain 6: SRE Infrastructure & Agents       0          ~3.2s       3 suites    PASS
+
+node scripts/test_service_authority_and_pricing.mjs 0      ~0.3s       9/9         PASS
+  - UUID resolution and canonical slug mapping  0          ~90ms       5/5         PASS
+  - DB authoritative pricing overrides          0          ~80ms       4/4         PASS
+
+node scripts/test_admin_auth_security.mjs       0          ~0.4s       13/13       PASS
+  - Fail-closed configuration check             0          ~40ms       1/1         PASS
+  - Constant-time password comparison           0          ~40ms       1/1         PASS
+  - OWASP PBKDF2 600,000 iterations             0          ~65ms       2/2         PASS
+  - TOTP MFA verification & drift window        0          ~45ms       3/3         PASS
+  - Signed HMAC-SHA256 session token            0          ~40ms       3/3         PASS
+  - Workforce killswitch authorization          0          ~40ms       3/3         PASS
+
+node scripts/golden_e2e_master_certification.mjs 0         ~0.3s       12/12       PASS
+  - Closed-loop sales, DAG orchestration, chaos 0          ~280ms      12/12       PASS
+
+node scripts/all_surface_reliability_audit.mjs  0          ~2.1s       46/46       PASS
+  - Public page readability & button validation 0          ~2.0s       46/46       PASS
+
+node scripts/public_site_e2e.mjs                0          ~0.3s       12/12       PASS
+  - 12/12 core public pages asset integrity     0          ~280ms      12/12       PASS
+
+node scripts/verify_live_browser_runtime.mjs    0          ~14.5s      Desktop+Mob PASS
+  - Desktop 1280x900 CDP runtime telemetry     0          ~7.0s       7 checks    PASS
+  - Mobile 390x844 CDP runtime telemetry        0          ~7.5s       7 checks    PASS
+
+node scripts/test_release_identity.mjs          0          ~3.2s       18 checks   PASS
+  - Multi-SHA parity, DB fail-closed probe      0          ~3.1s       18/18       PASS
+
+
+2. RAW CHROMIUM CDP MEASUREMENT SNAPSHOT
+--------------------------------------------------------------------------------
+Host: https://inshatech-b6b.pages.dev/
+Tested: 2026-11-11T14:09:00Z / 2026-11-11T20:09:00+06:00
+
+Desktop Viewport (1280x900):
+{
+  "url": "https://inshatech-b6b.pages.dev/",
+  "viewport": "1280x900",
+  "vPaused": false,
+  "vTime1": 3.4337,
+  "vTime2": 4.9421,
+  "vDuration": 7.853428,
+  "vReadyState": 4,
+  "canvasId": "iinsha-diagram-scene",
+  "canvasTagName": "CANVAS",
+  "hasGlContext": true,
+  "glType": "WebGL2RenderingContext",
+  "drawingBufferWidth": 1472,
+  "drawingBufferHeight": 736,
+  "hasServicesAnchor": true,
+  "s3Role": "region",
+  "s3AriaLabel": "Services Catalogue",
+  "totalPanels": 8,
+  "totalCards": 80,
+  "visibleCards": 10,
+  "docScrollWidth": 1272,
+  "winInnerWidth": 1280,
+  "zeroHorizontalOverflow": true,
+  "hasWidgetCollision": false,
+  "playbackProgressed": true
+}
+
+Mobile Viewport (390x844):
+{
+  "url": "https://inshatech-b6b.pages.dev/",
+  "viewport": "390x844",
+  "vPaused": false,
+  "vTime1": 3.4777,
+  "vTime2": 4.9818,
+  "vDuration": 7.853428,
+  "vReadyState": 4,
+  "canvasId": "iinsha-diagram-scene",
+  "canvasTagName": "CANVAS",
+  "hasGlContext": true,
+  "glType": "WebGL2RenderingContext",
+  "drawingBufferWidth": 528,
+  "drawingBufferHeight": 384,
+  "hasServicesAnchor": true,
+  "s3Role": "region",
+  "s3AriaLabel": "Services Catalogue",
+  "totalPanels": 8,
+  "totalCards": 80,
+  "visibleCards": 10,
+  "docScrollWidth": 390,
+  "winInnerWidth": 390,
+  "zeroHorizontalOverflow": true,
+  "hasWidgetCollision": false,
+  "playbackProgressed": true
+}
+
+
+3. LIVE EDGE ENDPOINT EVIDENCE (GET-ONLY)
+--------------------------------------------------------------------------------
+Endpoint                    HTTP Status  Content-Type      Key Data Attributes
+--------------------------------------------------------------------------------
+/api/version                200 OK       application/json  status: READY_FOR_STAGING, parity: true, db: UNVERIFIED
+/api/health                 200 OK       application/json  status: EDGE_HEALTHY, pool: NOT_CONFIGURED
+/api/catalog/services       200 OK       application/json  total_products: 13, catalog_version: v10.0.0
+/api/services               200 OK       application/json  count: 13, source: STATIC_PROJECTION
+/api/agents/registry        200 OK       application/json  count: 18, engine: IINSHA_SWARM_V5
+/api/agents/dag             200 OK       application/json  engine: IINSHA_TASK_DAG_ORCHESTRATOR_V5
+/api/agents/evidence        200 OK       application/json  chainIntegrity: VERIFIED, tamper_evident: true
+
+
+4. IMMUTABLE TEST EVIDENCE CONCLUSION
+--------------------------------------------------------------------------------
+All code-level assertions, browser rendering tests, and edge endpoint contracts
+pass with exit code 0. Zero tests skipped, zero tests faked, zero false greens.
+Release ceiling remains strictly pinned at READY_FOR_STAGING pending owner gates.
+================================================================================
