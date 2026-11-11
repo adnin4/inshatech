@@ -546,7 +546,7 @@
     const root=opts.root||document;
     const html=document.documentElement;
     if(opts.enableTheme!==false) html.setAttribute('data-iinsha-design','diagram');
-    const canvases=Array.from(root.querySelectorAll('[data-iinsha-motion-scene], #iinsha-diagram-scene'));
+    const canvases=Array.from(root.querySelectorAll('[data-iinsha-motion-scene], #iinsha-diagram-scene, #iinsha-hero-canvas'));
     const scenes=canvases.map(canvas=>{
       const existing=sceneRegistry.get(canvas);
       if(existing && !existing.destroyed) return existing;

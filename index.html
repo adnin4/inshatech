@@ -123,7 +123,7 @@
             </div>
 
             <!-- CENTERED SINGLE-COLUMN EDITORIAL STAGE -->
-            <div class="idg-demo-wrap container hero-centered-stage" style="max-width: 1080px; width: 100%; margin: 0 auto; position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; box-sizing: border-box;">
+            <div id="hero3d-container" class="idg-demo-wrap container hero-centered-stage hero3d-container" style="max-width: 1080px; width: 100%; margin: 0 auto; position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; box-sizing: border-box;">
                 <div class="hero-centered-content" style="width: 100%; max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; box-sizing: border-box;">
                     <!-- MEMORY BANNER -->
                     <div id="os-memory-banner" class="os-memory-banner" style="display: none; margin-bottom: 18px;"></div>
@@ -160,7 +160,7 @@
                     </div>
 
                     <!-- REAL 3D WEBGL2 PLANETARY ORBIT CANVAS (Prominent Centerpiece) -->
-                    <canvas id="iinsha-diagram-scene" data-iinsha-motion-scene aria-hidden="true" style="display: block; width: min(100%, 1040px); height: clamp(320px, 42vw, 460px); margin: 8px auto 18px auto; position: relative; z-index: 2; pointer-events: none;"></canvas>
+                    <canvas id="iinsha-diagram-scene" class="iinsha-hero-canvas diagram-hero-canvas" data-iinsha-motion-scene aria-hidden="true" style="display: block; width: min(100%, 1040px); height: clamp(320px, 42vw, 460px); margin: 8px auto 18px auto; position: relative; z-index: 2; pointer-events: none;"></canvas>
 
                     <!-- 4-METRIC TRUST STRIP -->
                     <div class="idg-proofline hero-trust-strip" style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(14px, 3vw, 36px); margin-top: 14px; width: 100%;">
@@ -212,7 +212,7 @@
 
                 <div id="bento-capabilities" class="idg-bento-grid diagram-bento-grid" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; margin-bottom: 48px;">
                     <!-- Bento Card 1: AI Agent Swarms (Span 7) -->
-                    <article class="idg-bento-card idg-bento-card--wide iinsha-bento-panel bento-card-large" data-idg-reveal data-idg-tilt style="grid-column: span 7; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
+                    <article class="idg-bento-card diagram-bento-card idg-bento-card--wide iinsha-bento-panel bento-card-large" data-idg-reveal data-idg-tilt style="grid-column: span 7; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <span class="idg-card-index" style="color: #a855f7; font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;">01 — AGENT SYSTEMS</span>
                             <h3 style="font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 750; color: #fff; margin: 12px 0 10px 0; letter-spacing: -0.03em;">Autonomous agents, with clear boundaries.</h3>
@@ -226,7 +226,7 @@
                     </article>
 
                     <!-- Bento Card 2: Workflow Pipelines (Span 5) -->
-                    <article class="idg-bento-card idg-bento-card--narrow iinsha-bento-panel bento-card-small" data-idg-reveal data-idg-tilt style="grid-column: span 5; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
+                    <article class="idg-bento-card diagram-bento-card idg-bento-card--narrow iinsha-bento-panel bento-card-small" data-idg-reveal data-idg-tilt style="grid-column: span 5; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <span class="idg-card-index" style="color: #38bdf8; font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;">02 — WORKFLOW AUTOMATION</span>
                             <h3 style="font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 750; color: #fff; margin: 12px 0 10px 0; letter-spacing: -0.03em;">Workflows that move work forward.</h3>
@@ -238,7 +238,7 @@
                     </article>
 
                     <!-- Bento Card 3: Document Intelligence (Span 5) -->
-                    <article class="idg-bento-card idg-bento-card--narrow iinsha-bento-panel bento-card-small" data-idg-reveal data-idg-tilt style="grid-column: span 5; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
+                    <article class="idg-bento-card diagram-bento-card idg-bento-card--narrow iinsha-bento-panel bento-card-small" data-idg-reveal data-idg-tilt style="grid-column: span 5; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <span class="idg-card-index" style="color: #f472b6; font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;">03 — DOCUMENT INTELLIGENCE</span>
                             <h3 style="font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 750; color: #fff; margin: 12px 0 10px 0; letter-spacing: -0.03em;">Turn documents into usable data.</h3>
@@ -256,7 +256,7 @@
                     </article>
 
                     <!-- Bento Card 4: Enterprise Foundations (Span 7) -->
-                    <article class="idg-bento-card idg-bento-card--wide iinsha-bento-panel bento-card-large" data-idg-reveal data-idg-tilt style="grid-column: span 7; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
+                    <article class="idg-bento-card diagram-bento-card idg-bento-card--wide iinsha-bento-panel bento-card-large" data-idg-reveal data-idg-tilt style="grid-column: span 7; min-height: 320px; padding: clamp(24px, 3.5vw, 38px); border-radius: 24px; border: 1px solid rgba(222, 229, 255, 0.11); background: linear-gradient(145deg, rgba(21, 24, 43, 0.92), rgba(11, 13, 25, 0.94)); display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <span class="idg-card-index" style="color: #34d399; font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;">04 — DIGITAL INFRASTRUCTURE</span>
                             <h3 style="font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 750; color: #fff; margin: 12px 0 10px 0; letter-spacing: -0.03em;">Secure foundations for real operations.</h3>

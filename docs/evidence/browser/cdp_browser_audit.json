@@ -1,0 +1,222 @@
+{
+  "timestamp": "2026-11-11T17:18:32.252Z",
+  "url": "https://inshatech-b6b.pages.dev/",
+  "totalViewportsTested": 5,
+  "viewports": [
+    {
+      "viewport": "1440x900 (Desktop)",
+      "initial": {
+        "title": "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform",
+        "canonical": "https://inshatech-b6b.pages.dev/",
+        "h1Count": 1,
+        "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
+        "vPaused": false,
+        "vTime1": 3.0097,
+        "vReadyState": 4,
+        "canvasFound": true,
+        "canvasId": "iinsha-diagram-scene",
+        "glType": "WebGL2RenderingContext",
+        "glDrawingBufferWidth": 1472,
+        "glDrawingBufferHeight": 736
+      },
+      "final": {
+        "vTime2": 5.0144,
+        "vProgressed": true,
+        "panelsCount": 8,
+        "cardsCount": 80,
+        "bentoCount": 4,
+        "tabCount": 8,
+        "docScrollWidth": 1432,
+        "winInnerWidth": 1440,
+        "zeroOverflow": true,
+        "hasCollision": false,
+        "duplicateIdCount": 0,
+        "duplicateIds": []
+      },
+      "screenshot": null,
+      "consoleErrors": [],
+      "networkFailures": [
+        {
+          "requestId": "23712.24",
+          "timestamp": 12629.004607,
+          "type": "Script",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "csp"
+        }
+      ]
+    },
+    {
+      "viewport": "1280x900 (Desktop)",
+      "initial": {
+        "title": "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform",
+        "canonical": "https://inshatech-b6b.pages.dev/",
+        "h1Count": 1,
+        "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
+        "vPaused": false,
+        "vTime1": 2.9475,
+        "vReadyState": 4,
+        "canvasFound": true,
+        "canvasId": "iinsha-diagram-scene",
+        "glType": "WebGL2RenderingContext",
+        "glDrawingBufferWidth": 1472,
+        "glDrawingBufferHeight": 736
+      },
+      "final": {
+        "vTime2": 4.9631,
+        "vProgressed": true,
+        "panelsCount": 8,
+        "cardsCount": 80,
+        "bentoCount": 4,
+        "tabCount": 8,
+        "docScrollWidth": 1272,
+        "winInnerWidth": 1280,
+        "zeroOverflow": true,
+        "hasCollision": false,
+        "duplicateIdCount": 0,
+        "duplicateIds": []
+      },
+      "screenshot": "desktop_1280x900.png",
+      "consoleErrors": [],
+      "networkFailures": [
+        {
+          "requestId": "35512.24",
+          "timestamp": 12636.215882,
+          "type": "Script",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "csp"
+        }
+      ]
+    },
+    {
+      "viewport": "1024x768 (Desktop)",
+      "initial": {
+        "title": "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform",
+        "canonical": "https://inshatech-b6b.pages.dev/",
+        "h1Count": 1,
+        "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
+        "vPaused": false,
+        "vTime1": 3.0511,
+        "vReadyState": 4,
+        "canvasFound": true,
+        "canvasId": "iinsha-diagram-scene",
+        "glType": "WebGL2RenderingContext",
+        "glDrawingBufferWidth": 1472,
+        "glDrawingBufferHeight": 688
+      },
+      "final": {
+        "vTime2": 5.055,
+        "vProgressed": true,
+        "panelsCount": 8,
+        "cardsCount": 80,
+        "bentoCount": 4,
+        "tabCount": 8,
+        "docScrollWidth": 1016,
+        "winInnerWidth": 1024,
+        "zeroOverflow": true,
+        "hasCollision": false,
+        "duplicateIdCount": 0,
+        "duplicateIds": []
+      },
+      "screenshot": null,
+      "consoleErrors": [],
+      "networkFailures": [
+        {
+          "requestId": "39280.24",
+          "timestamp": 12644.112831,
+          "type": "Script",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "csp"
+        }
+      ]
+    },
+    {
+      "viewport": "390x844 (Mobile)",
+      "initial": {
+        "title": "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform",
+        "canonical": "https://inshatech-b6b.pages.dev/",
+        "h1Count": 1,
+        "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
+        "vPaused": false,
+        "vTime1": 3.0407,
+        "vReadyState": 4,
+        "canvasFound": true,
+        "canvasId": "iinsha-diagram-scene",
+        "glType": "WebGL2RenderingContext",
+        "glDrawingBufferWidth": 528,
+        "glDrawingBufferHeight": 384
+      },
+      "final": {
+        "vTime2": 5.0433,
+        "vProgressed": true,
+        "panelsCount": 8,
+        "cardsCount": 80,
+        "bentoCount": 4,
+        "tabCount": 8,
+        "docScrollWidth": 390,
+        "winInnerWidth": 390,
+        "zeroOverflow": true,
+        "hasCollision": false,
+        "duplicateIdCount": 0,
+        "duplicateIds": []
+      },
+      "screenshot": "mobile_390x844.png",
+      "consoleErrors": [],
+      "networkFailures": [
+        {
+          "requestId": "20312.24",
+          "timestamp": 12651.273794,
+          "type": "Script",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "csp"
+        }
+      ]
+    },
+    {
+      "viewport": "360x800 (Mobile)",
+      "initial": {
+        "title": "Insha Tech | IINSHA AI-BOS: Autonomous AI Workforce & Enterprise Operations Platform",
+        "canonical": "https://inshatech-b6b.pages.dev/",
+        "h1Count": 1,
+        "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
+        "vPaused": false,
+        "vTime1": 3.0797,
+        "vReadyState": 4,
+        "canvasFound": true,
+        "canvasId": "iinsha-diagram-scene",
+        "glType": "WebGL2RenderingContext",
+        "glDrawingBufferWidth": 480,
+        "glDrawingBufferHeight": 384
+      },
+      "final": {
+        "vTime2": 5.0821,
+        "vProgressed": true,
+        "panelsCount": 8,
+        "cardsCount": 80,
+        "bentoCount": 4,
+        "tabCount": 8,
+        "docScrollWidth": 360,
+        "winInnerWidth": 360,
+        "zeroOverflow": true,
+        "hasCollision": false,
+        "duplicateIdCount": 0,
+        "duplicateIds": []
+      },
+      "screenshot": null,
+      "consoleErrors": [],
+      "networkFailures": [
+        {
+          "requestId": "28024.13",
+          "timestamp": 12658.664963,
+          "type": "Script",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "csp"
+        }
+      ]
+    }
+  ]
+}

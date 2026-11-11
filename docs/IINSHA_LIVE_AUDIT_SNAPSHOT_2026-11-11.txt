@@ -1,26 +1,27 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — LIVE AUDIT SNAPSHOT
-Document Identifier: DOC-IINSHA-LIVE-SNAPSHOT-20261111
-Snapshot Timestamp: 2026-11-11T22:45:00+06:00 (Asia/Dhaka)
+Document Identifier: DOC-IINSHA-LIVE-SNAPSHOT-20261111-REVISED
+Snapshot Timestamp: 2026-11-11T23:25:00+06:00 (Asia/Dhaka)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 ================================================================================
 
 1. WORKSPACE & REPOSITORY IDENTITY (LOCAL INDEPENDENT INSPECTION)
 --------------------------------------------------------------------------------
-- Inspection Time:    2026-11-11T22:39:37+06:00
+- Inspection Time:    2026-11-11T23:20:00+06:00
 - Active Branch:      master
-- Local Full HEAD:    532fc9158fe9e6f61487cd5d2da6ede46881620b
+- Local Full HEAD:    56abbe89b05dc43a6832ccaa27e202a23d1f448f
 - Tree Cleanliness:   Clean (0 untracked, 0 uncommitted changes)
-- Review Branch:      release/v1500-browser-verified-20261110 (Synced to HEAD 532fc91)
+- Review Branch:      release/v1500-browser-verified-20261110 (Synced to local HEAD)
 - Remote Fetch URL:   https://github.com/adnin4/inshatech.git
 - Remote Push URL:    https://github.com/adnin4/inshatech.git
 - Remote Master SHA:  b3de7650b65e388514ca82674654c92241ea8811
 - Remote Main SHA:    45ee4c1f90f699686c71912a7f22598cbe3b0a74
-- Delta (Master):     116 commits ahead of origin/master (0 behind)
-- Delta (Main):       118 commits ahead of origin/main (0 behind)
+- Delta (Master):     117 commits ahead of origin/master (0 behind)
+- Delta (Main):       119 commits ahead of origin/main (0 behind)
 - Merge-Base (Master): b3de7650b65e388514ca82674654c92241ea8811 (Direct ancestor)
 - Merge-Base (Main):   45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Direct ancestor)
+- Commit Inventory:   docs/LOCAL_COMMIT_AUDIT_2026-11-11.txt (Full 117 commits listed)
 - Workstation GH CLI: Unauthenticated (`gh auth status` returns exit code 1:
                       "You are not logged into any GitHub hosts")
 
@@ -28,8 +29,10 @@ Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 2. COLD BACKUP RECOVERY SNAPSHOT
 --------------------------------------------------------------------------------
 - Bundle Path:        C:\Users\mahin khan\.gemini\antigravity\scratch\inshatech-master-backup-20261111.bundle
-- File Byte Size:     78,095,860 bytes (~74.48 MB)
-- SHA-256 Hash:       DD74C64470C1483251D7CBE5A6E82F39D5B3F1FEB6895A3E9952622FDD1C4D91
+- File Byte Size:     78,109,516 bytes (~74.49 MB)
+- Complete SHA-256:   B386653D4EB032F742A67C560DD1DB2237A20855A307DD3ED4972D59230804FD
+                      (Full 64-character cryptographic hash verified)
+- Ref Inventory:      120 refs tracked and verified
 - Verification:       git bundle verify -> 120 refs, complete history OK
 - Object Database:    git fsck --full -> 0 corrupt objects, repository 100% clean
 
@@ -108,21 +111,24 @@ Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 --------------------------------------------------------------------------------
 - Tool:               Chrome DevTools Protocol (CDP) via headless Chrome
 - Host Tested:        https://inshatech-b6b.pages.dev/
+- Audit Viewports:    1440x900, 1280x900, 1024x768, 390x844 (Mobile), 360x800 (Mobile)
 - Desktop (1280x900):
-  * Video:            #hero-celestial-video active (readyState 4, currentTime 3.43s -> 4.94s)
+  * Video:            #hero-celestial-video active (readyState 4, currentTime 2.94s -> 4.96s)
   * WebGL2 Canvas:    #iinsha-diagram-scene active (1472x736 buffer, glType: WebGL2RenderingContext)
   * Service Panels:   8 panels present (.service-panel)
   * Service Cards:    80 cards present (.service-item-card)
-  * Active Cards:     10 visible in active panel, 70 accessible via tabs
+  * Bento Cards:      4 cards present (.diagram-bento-card, .idg-bento-card)
   * Horizontal Scroll: 0px overflow (docScrollWidth 1272px <= winInnerWidth 1280px)
   * Collisions:       0 widget collisions detected
+  * Screenshot:       docs/evidence/browser/desktop_1280x900.png (2.2 MB)
 - Mobile (390x844):
-  * Video:            #hero-celestial-video active (readyState 4, currentTime 3.48s -> 4.98s)
+  * Video:            #hero-celestial-video active (readyState 4, currentTime 3.04s -> 5.04s)
   * WebGL2 Canvas:    #iinsha-diagram-scene active (528x384 buffer)
   * Service Cards:    80 cards present in DOM
   * Horizontal Scroll: 0px overflow (docScrollWidth 390px == winInnerWidth 390px)
   * Collisions:       0 widget collisions detected
-- Console Errors:     0 uncaught errors, 0 failed network requests for critical assets.
+  * Screenshot:       docs/evidence/browser/mobile_390x844.png (500 KB)
+- JSON Report:        docs/evidence/browser/cdp_browser_audit.json
 
 
 7. CRITICAL BLOCKERS & OWNER DEPENDENCIES (SUMMARY)
