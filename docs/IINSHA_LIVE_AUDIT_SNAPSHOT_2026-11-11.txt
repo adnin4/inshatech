@@ -1,0 +1,136 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — LIVE AUDIT SNAPSHOT
+Document Identifier: DOC-IINSHA-LIVE-SNAPSHOT-20261111
+Snapshot Timestamp: 2026-11-11T22:45:00+06:00 (Asia/Dhaka)
+Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
+================================================================================
+
+1. WORKSPACE & REPOSITORY IDENTITY (LOCAL INDEPENDENT INSPECTION)
+--------------------------------------------------------------------------------
+- Inspection Time:    2026-11-11T22:39:37+06:00
+- Active Branch:      master
+- Local Full HEAD:    532fc9158fe9e6f61487cd5d2da6ede46881620b
+- Tree Cleanliness:   Clean (0 untracked, 0 uncommitted changes)
+- Review Branch:      release/v1500-browser-verified-20261110 (Synced to HEAD 532fc91)
+- Remote Fetch URL:   https://github.com/adnin4/inshatech.git
+- Remote Push URL:    https://github.com/adnin4/inshatech.git
+- Remote Master SHA:  b3de7650b65e388514ca82674654c92241ea8811
+- Remote Main SHA:    45ee4c1f90f699686c71912a7f22598cbe3b0a74
+- Delta (Master):     116 commits ahead of origin/master (0 behind)
+- Delta (Main):       118 commits ahead of origin/main (0 behind)
+- Merge-Base (Master): b3de7650b65e388514ca82674654c92241ea8811 (Direct ancestor)
+- Merge-Base (Main):   45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Direct ancestor)
+- Workstation GH CLI: Unauthenticated (`gh auth status` returns exit code 1:
+                      "You are not logged into any GitHub hosts")
+
+
+2. COLD BACKUP RECOVERY SNAPSHOT
+--------------------------------------------------------------------------------
+- Bundle Path:        C:\Users\mahin khan\.gemini\antigravity\scratch\inshatech-master-backup-20261111.bundle
+- File Byte Size:     78,095,860 bytes (~74.48 MB)
+- SHA-256 Hash:       DD74C64470C1483251D7CBE5A6E82F39D5B3F1FEB6895A3E9952622FDD1C4D91
+- Verification:       git bundle verify -> 120 refs, complete history OK
+- Object Database:    git fsck --full -> 0 corrupt objects, repository 100% clean
+
+
+3. GITHUB REMOTE AUDIT & CI RUN SNAPSHOT
+--------------------------------------------------------------------------------
+- Repository:         https://github.com/adnin4/inshatech
+- Numeric Repo ID:    1324580119
+- Default Branch:     master
+- Latest Master SHA:  b3de7650b65e388514ca82674654c92241ea8811 ("revert: remove release evidence schema from master", 2026-09-10)
+- Latest Main SHA:    45ee4c1f90f699686c71912a7f22598cbe3b0a74 (2026-09-10)
+- Combined Statuses:  NOT_VERIFIED (GitHub API returned 0 status records for b3de765 and 45ee4c1)
+- Latest PR #71 CI:   Run #42506647860 on cd760c39c6985d75eaf01d900d8e85b1705d9a00
+                      Conclusion: SUCCESS (1 job "Source, Safety and Pages Build", 14/14 steps PASS)
+- PR Stack:
+  * PR #67: Head ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad, Base master (45ee4c1f90). OPEN, unmerged.
+  * PR #71: Head cd760c39c6985d75eaf01d900d8e85b1705d9a00, Base PR #67 head (ddf90cfe10). OPEN, draft.
+
+
+4. CLOUDFLARE PAGES LIVE ENDPOINTS & TELEMETRY
+--------------------------------------------------------------------------------
+- Account ID:         0eaa8aeb3e2ea628065da5c05b1368a7
+- Candidate Host:     https://inshatech-b6b.pages.dev/
+  * Endpoint /api/version:
+    HTTP/2 200 OK
+    {
+      "version": "1.0.0",
+      "environment": "production",
+      "source_sha": "5b599f96c2c88bde4a42dbffa213cbefc6714038",
+      "build_sha": "5b599f96c2c88bde4a42dbffa213cbefc6714038",
+      "deploy_sha": "5b599f96c2c88bde4a42dbffa213cbefc6714038",
+      "runtime_sha": "5b599f96c2c88bde4a42dbffa213cbefc6714038",
+      "full_sha_match": true,
+      "deployment_parity": true,
+      "full_production_parity": false,
+      "production_ready": false,
+      "production_sealed": false,
+      "status": "READY_FOR_STAGING",
+      "system_readiness": "READY_FOR_STAGING_DB_UNVERIFIED",
+      "databaseIdentity": {
+        "configured_ref": "kitwadizsvjmuxkfewxj",
+        "canonical_ref": "kitwadizsvjmuxkfewxj",
+        "ref_match": true,
+        "status": "UNVERIFIED"
+      }
+    }
+  * Endpoint /api/health:
+    HTTP/2 200 OK
+    {
+      "status": "EDGE_HEALTHY",
+      "database_pool": "NOT_CONFIGURED",
+      "timestamp": "2026-11-11T14:09:12.456Z"
+    }
+  * Endpoint /api/sre/health:
+    HTTP/2 200 OK (Fail-closed reporting, zero secrets exposed)
+- Legacy Host:        https://inshatech.pages.dev/ (Serves stale main branch SHA 45ee4c1)
+- PR #71 Preview:     https://f7678e7e.inshatech.pages.dev/ (Deployed from cd760c3)
+- Custom Domain:      https://inshatech.com/ (Serves legacy static IT agency website)
+
+
+5. SUPABASE POSTGRESQL LIVE AUDIT
+--------------------------------------------------------------------------------
+- Project Ref:        kitwadizsvjmuxkfewxj
+- Project Name:       inshatech-db
+- Organization:       yfcweupkolrfizcfqhhj
+- Region:             ap-southeast-1
+- Engine:             PostgreSQL 17.6.1.155
+- Management State:   INACTIVE (Paused)
+- Migration Query:    Failed with connection timeout (`list_migrations` timed out)
+- Remote DB Query:    UNVERIFIED (Postgres process stopped on platform)
+- Storage Buckets:    Inaccessible while project is paused
+- Recovery Window:    Must be unpaused via Supabase Dashboard (Owner Gate G3)
+
+
+6. WEBSITE REAL BROWSER CDP AUDIT (CANDIDATE STAGING)
+--------------------------------------------------------------------------------
+- Tool:               Chrome DevTools Protocol (CDP) via headless Chrome
+- Host Tested:        https://inshatech-b6b.pages.dev/
+- Desktop (1280x900):
+  * Video:            #hero-celestial-video active (readyState 4, currentTime 3.43s -> 4.94s)
+  * WebGL2 Canvas:    #iinsha-diagram-scene active (1472x736 buffer, glType: WebGL2RenderingContext)
+  * Service Panels:   8 panels present (.service-panel)
+  * Service Cards:    80 cards present (.service-item-card)
+  * Active Cards:     10 visible in active panel, 70 accessible via tabs
+  * Horizontal Scroll: 0px overflow (docScrollWidth 1272px <= winInnerWidth 1280px)
+  * Collisions:       0 widget collisions detected
+- Mobile (390x844):
+  * Video:            #hero-celestial-video active (readyState 4, currentTime 3.48s -> 4.98s)
+  * WebGL2 Canvas:    #iinsha-diagram-scene active (528x384 buffer)
+  * Service Cards:    80 cards present in DOM
+  * Horizontal Scroll: 0px overflow (docScrollWidth 390px == winInnerWidth 390px)
+  * Collisions:       0 widget collisions detected
+- Console Errors:     0 uncaught errors, 0 failed network requests for critical assets.
+
+
+7. CRITICAL BLOCKERS & OWNER DEPENDENCIES (SUMMARY)
+--------------------------------------------------------------------------------
+- G1: GitHub Workstation CLI Login & Publication (`gh auth login`) -> BLOCKED_EXTERNAL
+- G2: Cloudflare Authority Confirmation & Legacy Redirect        -> BLOCKED_EXTERNAL
+- G3: Supabase Database Unpause & Remote Migration Sync          -> BLOCKED_EXTERNAL
+- G4: Production Live Payment Merchant Credentials Provisioning  -> BLOCKED_EXTERNAL
+- G5: Physical TOTP Multi-Factor Authentication on Admin UI      -> BLOCKED_EXTERNAL
+- G6: Production Custom Domain & DNS CNAME Cutover               -> BLOCKED_EXTERNAL
+================================================================================

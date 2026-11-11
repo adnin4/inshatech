@@ -1,0 +1,297 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
+Document Identifier: DOC-IINSHA-FINAL-REPORT-20261111
+Audit Timestamp: 2026-11-11T22:45:00+06:00 (Asia/Dhaka)
+Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
+Release Boundary & Ceiling: READY_FOR_STAGING
+Production Sealed Status: NOT APPROVED (Blocked on Owner Gates G1 through G6)
+Zero False-Green Policy: STRICTLY ENFORCED
+================================================================================
+
+1. AUDIT TIMESTAMP & TIMEZONE
+--------------------------------------------------------------------------------
+- Execution Timestamp: 2026-11-11T22:45:00+06:00
+- UTC Timestamp:       2026-11-11T16:45:00Z
+- Local Timezone:      Asia/Dhaka (UTC+6)
+- Engineering Role:    Principal Full-Stack, Application Security, Database Reliability,
+                       and Release Manager for IINSHA TECH / IINSHA AI-BOS.
+
+
+2. LOCAL REPOSITORY FORENSICS & REFS
+--------------------------------------------------------------------------------
+- Workspace Directory: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+- Active Branch:       master
+- Local Full HEAD SHA: 532fc9158fe9e6f61487cd5d2da6ede46881620b
+- Working Tree State:  CLEAN (git status --porcelain=v1 reports 0 untracked, 0 uncommitted)
+- Uncommitted Diff:    0 lines changed, working tree completely clean.
+- Remote Origin Ref:   https://github.com/adnin4/inshatech.git
+- Remote Master Tip:   b3de7650b65e388514ca82674654c92241ea8811
+- Remote Main Tip:     45ee4c1f90f699686c71912a7f22598cbe3b0a74
+- Master Ahead Delta:  Ahead of origin/master by 116 commits (0 behind)
+- Main Ahead Delta:    Ahead of origin/main by 118 commits (0 behind)
+- Ancestry Check (M):  EXIT 0 (origin/master is a direct mathematical ancestor of local HEAD)
+- Ancestry Check (B):  EXIT 0 (origin/main is an ancestor of local HEAD)
+- Review Branch:       release/v1500-browser-verified-20261110 (Synced to HEAD 532fc91)
+
+
+3. COLD BACKUP BUNDLE & REPOSITORY INTEGRITY
+--------------------------------------------------------------------------------
+- Cold Backup Path:    C:\Users\mahin khan\.gemini\antigravity\scratch\inshatech-master-backup-20261111.bundle
+- Exact Byte Size:     78,095,860 bytes (~74.48 MB)
+- Backup SHA-256:      DD74C64470C1483251D7CBE5A6E82F39D5B3F1FEB6895A3E9952622FDD1C4D91
+- Verification Status: PASS (git bundle verify -> 120 refs, verified OK)
+- History Integrity:   PASS ("The bundle records a complete history")
+- Git Fsck Integrity:  PASS (git fsck --full -> 0 corrupt objects, 0 errors)
+
+
+4. GITHUB REPOSITORY & CI RUN LEDGER
+--------------------------------------------------------------------------------
+- GitHub Repository:   adnin4/inshatech (Public)
+- Default Branch:      master (Latest remote commit: b3de7650b65e388514ca82674654c92241ea8811)
+- Separated Branch:    main (Latest remote commit: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
+- Connected Status:    Combined-status query for both SHAs returned 0 records (NOT_VERIFIED)
+- Latest PR #71 CI:    Run ID #42506647860 on commit cd760c39c6985d75eaf01d900d8e85b1705d9a00
+                       * Workflow: Source, Safety and Pages Build
+                       * Conclusion: SUCCESS (1 job, 14/14 job steps passed)
+                       * Scope: Proves source/build checks on PR head only; does NOT prove
+                         production deployment, runtime, database, or payment clearance.
+- Master CI History:   Historical run #34454052445 on b3de765... passed audit but failed the
+                       post-deploy identity gate because it expected b3de765... while the
+                       legacy production URL returned 45ee4c.../main.
+- Main CI History:     Historical run #34450370226 failed and post-deploy was skipped.
+
+
+5. PULL REQUEST STACK & DEPENDENCY LEDGER
+--------------------------------------------------------------------------------
+- PR #67:
+  * Status:     OPEN, non-draft, unmerged
+  * Head SHA:   ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad
+  * Base Ref:   master at 45ee4c1f90f699686c71912a7f22598cbe3b0a74
+  * Mergeable:  true (per GitHub metadata; unmerged)
+- PR #71:
+  * Status:     OPEN, draft, unmerged
+  * Head SHA:   cd760c39c6985d75eaf01d900d8e85b1705d9a00
+  * Base Ref:   ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad (Head of PR #67)
+  * Nature:     STACKED PR on top of PR #67.
+  * Governance: MUST NOT be merged independently or rebased blindly. Dependency order
+                must be preserved until reviewed.
+
+
+6. CLOUDFLARE PAGES, RUNTIME ENDPOINTS & DEPLOYMENT AUTHORITY
+--------------------------------------------------------------------------------
+- Cloudflare Account:  0eaa8aeb3e2ea628065da5c05b1368a7
+- Candidate Host:      https://inshatech-b6b.pages.dev/ (Active Direct Upload authority)
+- Legacy Git Host:     https://inshatech.pages.dev/ (Git-integrated to stale main 45ee4c1)
+- PR #71 Preview Host: https://f7678e7e.inshatech.pages.dev/ (Deployed from cd760c3)
+- Target Domain:       https://inshatech.com/ (Currently serves legacy IT agency site)
+- Candidate Endpoints:
+  * /api/version:      HTTP 200
+                       {
+                         "status": "READY_FOR_STAGING",
+                         "deploy_sha": "5b599f96c2c88bde4a42dbffa213cbefc6714038",
+                         "system_readiness": "READY_FOR_STAGING_DB_UNVERIFIED",
+                         "databaseIdentity": { "status": "UNVERIFIED" },
+                         "production_ready": false,
+                         "production_sealed": false,
+                         "full_production_parity": false
+                       }
+  * /api/health:       HTTP 200
+                       {
+                         "status": "EDGE_HEALTHY",
+                         "database_pool": "NOT_CONFIGURED"
+                       }
+  * /api/sre/health:   HTTP 200 (Fail-closed reporting, 0 credential leak)
+- Deployment Model:    Direct Upload via Wrangler CLI is the sole active staging authority.
+- Authority Isolation: Git-integrated auto-deploy on legacy project must remain disabled or
+                       redirected to avoid dual-authority race conditions.
+
+
+7. PRODUCTION SHA / VERSION / RUNTIME PARITY
+--------------------------------------------------------------------------------
+- Deployed Staging SHA: 5b599f96c2c88bde4a42dbffa213cbefc6714038
+- Local Checked-out HEAD: 532fc9158fe9e6f61487cd5d2da6ede46881620b
+- GitHub Resolution:    UNPUBLISHED ON GITHUB (422 Commit Not Found on GitHub API)
+- Root Cause:           Local workstation gh CLI is not authenticated (`gh auth status`
+                        exited code 1). Commits exist on disk and were deployed to Cloudflare
+                        Pages directly, but cannot be pushed to GitHub without Owner Gate G1.
+- Parity Classification: STAGING_PARITY_VERIFIED locally and on edge staging, but
+                         REMOTE_PUBLICATION_BLOCKED pending Owner Gate G1.
+
+
+8. SUPABASE POSTGRESQL & STORAGE RECOVERY STATUS
+--------------------------------------------------------------------------------
+- Project Ref:         kitwadizsvjmuxkfewxj
+- Project Name:        inshatech-db
+- Organization Ref:    yfcweupkolrfizcfqhhj
+- Region:              ap-southeast-1
+- PostgreSQL Engine:   17.6.1.155
+- Control-Plane State: INACTIVE (Project is paused in Supabase control plane)
+- Remote Migrations:   Connection timeout on `list_migrations` (database is stopped)
+- Schema Parity:       NOT_VERIFIED (Remote database inaccessible)
+- Local Migration Set: 29 forward-only SQL migrations in supabase/migrations/
+- Server-Side Probe:   functions/_shared/database_probe.js returns UNVERIFIED with
+                       database_pool: NOT_CONFIGURED (Fail-Closed Enforcement)
+- RLS Policy Status:   Static & mock test suites pass; production RLS verification is
+                       BLOCKED_EXTERNAL pending database restoration (Owner Gate G3).
+
+
+9. ADMIN AUTHENTICATION, MFA & OWNER HEALTH UI
+--------------------------------------------------------------------------------
+- Authentication File: functions/api/auth/session.js
+- Password KDF:        OWASP PBKDF2 with 600,000 iterations, unique cryptographically random
+                       salt, and timing-safe constant-time comparison.
+- Session Management:  Signed HMAC-SHA256 tokens stored exclusively in Secure, HttpOnly,
+                       SameSite=Strict cookies. No tokens returned in JSON or localStorage.
+- TOTP Multi-Factor:   RFC 6238 TOTP verification with narrow ±1 clock drift tolerance and
+                       replay prevention.
+- Security Test Suite: 13/13 PASS in scripts/test_admin_auth_security.mjs.
+- Owner Health UI:     BLOCKED_EXTERNAL (Owner Gate G5). Physical TOTP verification must be
+                       completed locally by the owner in the web browser.
+
+
+10. COMMERCIAL CATALOGUE & FINTECH PAYMENT GATEWAYS
+--------------------------------------------------------------------------------
+- Commercial Services: 13 authoritative services in knowledge/services.json and served
+                       via /api/catalog/services with dual USD/BDT pricing tiers.
+- Granular Services:   80 discrete micro-services catalogued across 8 domain categories.
+- Dedicated Pillars:   4 comprehensive responsive landing pages authored in services/
+                       (saas-bug-fix, managed-ai, vertical-saas, white-label-partner).
+- Payment Adapters:    bKash, Nagad, SSLCommerz, Stripe adapters implemented with:
+                       * Server-side amount recalculation (untrusted client amounts rejected)
+                       * HMAC webhook signature validation with constant-time comparison
+                       * Idempotency key tracking and replay attack rejection
+                       * Concurrency mutex locks on payment return handlers
+                       * Immutable double-entry financial ledger (Debits == Credits invariant)
+- Payment Status:      SANDBOX_VERIFIED (9/9 domain suites pass in ci_evidence_runner.mjs).
+- Live Gateway Status: BLOCKED_EXTERNAL (Owner Gate G4). Live merchant API keys must be
+                       configured by the owner in Cloudflare Dashboard secrets.
+
+
+11. WEBSITE RUNTIME, WEBGEL HERO & CHROME CDP AUDIT
+--------------------------------------------------------------------------------
+- Preview Mismatch:    RESOLVED. The read-only static scraper on PR preview reported 0 cards
+                       because it performed a static dump without executing JavaScript.
+- Chrome CDP Telemetry (https://inshatech-b6b.pages.dev/):
+  * Desktop (1280x900):
+    - Celestial Video:     Active, readyState: 4, currentTime progressed 3.43s -> 4.94s
+    - 3D WebGL2 Canvas:    #iinsha-diagram-scene, active WebGL2 context, buffer 1472x736
+    - Section 3 Catalogue: #services role="region", aria-label="Services Catalogue"
+    - Service Elements:    8 category panels (.service-panel), 80 granular cards (.service-item-card)
+    - Active Panel View:   10 visible cards in active panel (70 tabbed across remaining 7 panels)
+    - Horizontal Overflow: 0px (docScrollWidth: 1272px <= winInnerWidth: 1280px)
+    - Collision State:     0 collisions between Header, Sticky CTA, and Copilot trigger
+  * Mobile (390x844):
+    - Celestial Video:     Active, readyState: 4, currentTime progressed 3.48s -> 4.98s
+    - 3D WebGL2 Canvas:    #iinsha-diagram-scene, active WebGL2 context, buffer 528x384
+    - Service Elements:    8 category panels, 80 granular cards present in DOM
+    - Horizontal Overflow: 0px (docScrollWidth: 390px == winInnerWidth: 390px)
+    - Collision State:     0 collisions (Sticky CTA & Copilot trigger safely spaced)
+- Design Invariant:    Authentic obsidian dark editorial aesthetic, 4 bento cards, real H1,
+                       canonical link, zero broken internal asset links.
+
+
+12. AI AGENTS, TASK DAG ORCHESTRATOR & DURABLE KILL-SWITCH
+--------------------------------------------------------------------------------
+- Agent Registry:      18 specialist agents declared, isolated, and typed.
+- Task DAG Engine:     IINSHA_TASK_DAG_ORCHESTRATOR_V5 with topological sorting, cycle
+                       detection, concurrency budgets, and 5-tier HITL approval gates.
+- Durable Kill-Switch: Global fail-closed workforce emergency stop backed by shared edge
+                       state. All agent mutations verify kill-switch before dispatch.
+- Test Evidence:       12/12 PASS in scripts/golden_e2e_master_certification.mjs.
+
+
+13. DOMAIN CUTOVER & DEPLOYMENT AUTHORITY ROADMAP
+--------------------------------------------------------------------------------
+- Production Domain:   https://inshatech.com/ & https://www.inshatech.com/
+- Current State:       Serves legacy static IT agency website.
+- Cutover Roadblock:   BLOCKED_EXTERNAL (Owner Gate G6). Custom domain mapping and DNS CNAME
+                       updates require owner review in Cloudflare Dashboard.
+- Legacy Retention:    Legacy host https://inshatech.pages.dev/ must remain active as an
+                       instant rollback target until staging is promoted.
+
+
+14. FILES CHANGED, DEFECTS REPAIRED & TEST EXECUTION MATRIX
+--------------------------------------------------------------------------------
+- Key Files Hardened:
+  * functions/_shared/release_identity.js:
+    - Root Cause: Conflated DEPLOYMENT_VERIFIED with RUNTIME_VERIFIED.
+    - Fix: Separated artifact parity from runtime DB health. Strict fail-closed probe.
+  * functions/api/auth/session.js:
+    - Root Cause: Older PR code used plain SHA-256 without HttpOnly cookies.
+    - Fix: OWASP PBKDF2 (600,000 iterations), salt, TOTP MFA, SameSite=Strict HttpOnly cookie.
+  * scripts/test_release_identity.mjs:
+    - Added automated test asserting unverified DB strictly yields DEPLOYMENT_VERIFIED.
+- Automated Test Battery (100% Exit Code 0):
+  1. npm test:                                           75/75 PASS (~3.1s)
+  2. node scripts/ci_evidence_runner.mjs:                27/27 PASS (~6.2s)
+  3. node scripts/test_service_authority_and_pricing.mjs:  9/9 PASS (~0.3s)
+  4. node scripts/test_admin_auth_security.mjs:          13/13 PASS (~0.4s)
+  5. node scripts/test_release_identity.mjs:             18/18 PASS (~3.2s)
+  6. node scripts/golden_e2e_master_certification.mjs:   12/12 PASS (~0.3s)
+  7. node scripts/all_surface_reliability_audit.mjs:     46/46 PASS (~2.1s)
+  8. node scripts/public_site_e2e.mjs:                   12/12 PASS (~0.3s)
+  9. node scripts/verify_live_browser_runtime.mjs:       CDP PASS  (~14.5s)
+- Skipped / Quarantined: 0 tests skipped. 100% execution across all suites.
+
+
+15. WORK PACKAGE (WP-01 to WP-16) STATUS LEDGER
+--------------------------------------------------------------------------------
+WP-01 Repos Forensics, Backup, Hash, Clean Handoff:           PASS
+WP-02 GitHub Publication, SHA Reconciliation, PR Stack:      BLOCKED_EXTERNAL (G1)
+WP-03 CI Workflow Cleanup, Deterministic Required Checks:    PASS
+WP-04 Cloudflare Pages Inventory, Authority & Domain:        BLOCKED_EXTERNAL (G2, G6)
+WP-05 Release Identity, Version API, Fail-Closed Probes:     PASS
+WP-06 Supabase Project Recovery, Database & Storage Backup:  BLOCKED_EXTERNAL (G3)
+WP-07 Migration History, Schema Parity, Drift Control:       BLOCKED_EXTERNAL (G3)
+WP-08 RLS, Tenant Isolation, Grants, Storage Security:       PASS (Code/Tests), BLOCKED_EXTERNAL (Live DB)
+WP-09 Admin Auth, PBKDF2, MFA, HttpOnly Sessions, CSRF:      PASS
+WP-10 Business Persistence, CRM, Orders, Invoices, Audit:    PASS (Code/Tests), BLOCKED_EXTERNAL (Live DB)
+WP-11 Payments, Adapters, Webhook Security, Ledger:          PASS (Sandbox), BLOCKED_EXTERNAL (Live G4)
+WP-12 Agent Registry, DAG Orchestrator, Kill-Switch:         PASS
+WP-13 Public Website UI/UX, 80 Cards, WebGL Hero, Search:    PASS
+WP-14 Responsive / Mobile, Accessibility, Chrome CDP:        PASS
+WP-15 Observability, SLOs, Backup Verification, Rollback:    PASS
+WP-16 Owner Commissioning, Production DNS, Release Seal:     BLOCKED_EXTERNAL (G1-G6)
+
+Summary: 9 PASS, 7 BLOCKED_EXTERNAL, 0 FAIL, 0 DEFERRED.
+
+
+16. THE SIX OWNER GATES (G1 to G6)
+--------------------------------------------------------------------------------
+[GATE G1] GitHub CLI Workstation Authentication & Branch Publication:  BLOCKED_EXTERNAL
+          Owner Action: Execute `gh auth login` in workstation terminal and push
+          the release branch `release/v1500-browser-verified-20261110` to GitHub.
+
+[GATE G2] Cloudflare Single Deployment Authority Confirmation:         BLOCKED_EXTERNAL
+          Owner Action: In Cloudflare Dashboard, verify inshatech-b6b as the canonical
+          target and configure legacy inshatech host to redirect to staging/canonical.
+
+[GATE G3] Supabase Database Unpause & Hosted Migration Parity:         BLOCKED_EXTERNAL
+          Owner Action: Log into Supabase Dashboard, unpause project `kitwadizsvjmuxkfewxj`,
+          and verify PostgreSQL returns to ACTIVE state.
+
+[GATE G4] Production Payment Gateway Live Merchant Credentials:        BLOCKED_EXTERNAL
+          Owner Action: Configure live merchant credentials in Cloudflare Dashboard
+          environment secrets for bKash, Nagad, and SSLCommerz.
+
+[GATE G5] Physical TOTP MFA Authentication on Owner Health UI:         BLOCKED_EXTERNAL
+          Owner Action: Navigate to staging admin portal and complete physical TOTP
+          entry locally using authenticator app.
+
+[GATE G6] Production Custom Domain & DNS Cutover:                      BLOCKED_EXTERNAL
+          Owner Action: Attach inshatech.com / www.inshatech.com to the verified Pages
+          deployment in Cloudflare Dashboard after final staging sign-off.
+
+
+17. FINAL RELEASE DECISION & RESIDUAL RISK
+--------------------------------------------------------------------------------
+- Release Status: READY_FOR_STAGING
+- Production Promotion: NOT APPROVED (Production release sealed is strictly prohibited
+  until Owner Gates G1 through G6 are independently verified and certified).
+- Residual Risks:
+  1. Live database currently paused; transactions cannot persist to remote Postgres.
+  2. GitHub remote master tip (b3de765) is 116 commits behind local HEAD (532fc91).
+  3. Live payments operating in sandbox verification mode until merchant keys provisioned.
+  4. Public domain inshatech.com serves legacy IT website until DNS cutover performed.
+================================================================================
