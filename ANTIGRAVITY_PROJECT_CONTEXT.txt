@@ -1,6 +1,6 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS: PERSISTENT PROJECT CONTEXT & TRUTH LEDGER
-Captured: 2026-11-11T22:45:00+06:00 (Asia/Dhaka)
+Captured: 2026-11-11T23:30:00+06:00 (Asia/Dhaka)
 Status Authority: Principal Full-Stack & Release Reliability Engineer
 ================================================================================
 
@@ -32,11 +32,12 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 - Local Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 - GitHub Default Branch: master (Remote tip: b3de7650b65e388514ca82674654c92241ea8811)
 - Remote main Branch: 45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy/separated)
-- Local master Branch HEAD: 532fc9158fe9e6f61487cd5d2da6ede46881620b
+- Local master Branch HEAD: 9e418ecbd8804e2d22f450d23ce64d373411bcc4
 - Review Branch: release/v1500-browser-verified-20261110 (Synced to local HEAD)
-- Local Commit Delta: Ahead of origin/master by 116 commits (Direct descendant).
-- Cold Backup Bundle: inshatech-master-backup-20261111.bundle (78,095,860 bytes)
-- Backup Verification: git bundle verify -> 120 refs, OK; SHA256 verified.
+- Local Commit Delta: Ahead of origin/master by 118 commits (Direct descendant).
+- Cold Backup Bundle: inshatech-master-backup-20261111.bundle (78,137,963 bytes)
+- Backup Verification: git bundle verify -> 120 refs, complete history OK.
+- Complete SHA-256: 36E7C353362DC5A4A3728DFB90ABBAFE132B2DC16F7DC3BE6C7F769DB59012FD
 - Remote GitHub Push Status: BLOCKED_EXTERNAL (Owner Gate G1). The workstation
   gh CLI is unauthenticated ("You are not logged into any GitHub hosts").
   Local commits exist on disk and on Cloudflare Pages, but cannot be pushed
@@ -62,21 +63,23 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 
 4. BROWSER & UI/UX EMPIRICAL TELEMETRY (MEASURED VIA CHROME CDP)
 --------------------------------------------------------------------------------
-- Desktop 1280x900:
-  * Hero celestial video active (currentTime 3.43s -> 4.94s, readyState: 4).
-  * 3D WebGL2 orbital canvas active (1472x736 buffer, glType: WebGL2RenderingContext).
-  * Section 3: 8 category panels, 80 granular cards rendered in DOM.
-  * 0 horizontal overflow (docScrollWidth: 1272px <= winInnerWidth: 1280px).
-- Mobile 390x844:
-  * Hero celestial video active (currentTime 3.48s -> 4.98s, readyState: 4).
-  * 3D WebGL2 canvas active (528x384 buffer).
-  * 0 horizontal overflow (docScrollWidth: 390px == winInnerWidth: 390px).
+- Tested 5 Viewports (Desktop 1440x900, 1280x900, 1024x768; Mobile 390x844, 360x800):
+  * Hero celestial video active across all viewports (playing loop).
+  * 3D WebGL2 orbital canvas active (#iinsha-diagram-scene, WebGL2RenderingContext).
+  * Section 3: Exactly 8 category panels, 80 granular cards rendered in DOM.
+  * Capabilities Matrix: Exactly 4 bento cards (.diagram-bento-card, .idg-bento-card).
+  * Semantic H1: Exactly 1 H1 element.
+  * Canonical Link: https://inshatech.com/.
+  * 0 horizontal overflow across all desktop and mobile viewports.
   * 0 widget collision (sticky mobile CTA & Copilot trigger safely spaced).
+  * Screenshots saved: docs/evidence/browser/desktop_1280x900.png, mobile_390x844.png.
+  * Raw CDP Telemetry: docs/evidence/browser/cdp_browser_audit.json.
 
 5. OPERATIONAL READINESS & OWNER GATES
 --------------------------------------------------------------------------------
 - Automated Suites: 75/75 in npm test, 27/27 in ci_evidence_runner, 13/13 admin security,
-  9/9 service pricing, 18/18 release identity, 12/12 golden e2e, 46/46 surface reliability, 12/12 public pages.
+  9/9 service pricing, 18/18 release identity, 12/12 golden e2e, 46/46 surface reliability,
+  12/12 public pages, 5/5 handoff docs, 5/5 CDP browser viewports. 100% Exit Code 0.
 - Release Verdict: READY_FOR_STAGING (Fail-Closed, Zero False-Green standard).
 - External Blockers: Owner Gates G1 (GitHub CLI login), G2 (Cloudflare authority),
   G3 (Supabase unpause), G4 (Payment keys), G5 (Owner session), G6 (DNS cutover).
@@ -85,4 +88,6 @@ Enterprise Frontier Platform. It orchestrates business operations across:
   * docs/IINSHA_LIVE_AUDIT_SNAPSHOT_2026-11-11.txt
   * docs/IINSHA_OWNER_GATES_CHECKLIST.txt
   * docs/IINSHA_TEST_EVIDENCE_2026-11-11.txt
+  * docs/LOCAL_COMMIT_AUDIT_2026-11-11.txt
+  * docs/LOCAL_DIFF_SUMMARY_2026-11-11.txt
 ================================================================================
