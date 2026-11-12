@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
 Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V1500
-Audit Timestamp: 2026-11-12T17:55:00.000+06:00 (Asia/Dhaka — Machine Clock)
+Audit Timestamp: 2026-11-12T19:20:00.000+06:00 (Asia/Dhaka — Machine Clock)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 Release Boundary & Ceiling: READY_FOR_STAGING
@@ -14,9 +14,10 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - Release Ceiling:           READY_FOR_STAGING
 - Production Sealed:         NOT APPROVED (Requires external owner action on G1–G6)
 - Actual Deployment URL:     https://inshatech-b6b.pages.dev/
-- Staging Preview URLs:      https://dfa58d0c.inshatech-b6b.pages.dev / https://staging-438aff1.inshatech-b6b.pages.dev
+- Staging Preview URLs:      https://c049a5fd.inshatech-b6b.pages.dev / https://da8d5331.inshatech-b6b.pages.dev
 - Production Domains State:  inshatech.com & www.inshatech.com currently serve legacy agency site (Cutover pending Owner Gate G6)
-- Application Health:        EDGE_HEALTHY (Edge routing 100% active; Database pool: NOT_CONFIGURED pending Supabase unpause)
+- Application Health:        Liveness: HEALTHY (Edge active at DAC); Readiness: NOT_READY (503 fail-closed pending Supabase unpause)
+- Staging Environment:       staging (Verified: pages.dev host correctly resolved as staging, never falsely claiming production)
 
 
 2. GITHUB IDENTITY & SOURCE TRACEABILITY
@@ -24,10 +25,13 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - GitHub Repository:         adnin4/inshatech (Public)
 - Canonical Default Branch:  master (Latest remote commit: b3de7650b65e388514ca82674654c92241ea8811)
 - Separated Remote Branch:   main (Latest remote commit: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
-- Local Checked-out HEAD:    4e6ae14b72aa62f796a56e50ba68e27c1b52ff13
-- Master Ahead Delta:        Ahead of origin/master by 129 commits (0 behind)
-- Main Ahead Delta:          Ahead of origin/main by 131 commits (0 behind)
-- Local Review Branch:       release/v1500-browser-verified-20261110 (Synced to HEAD 4e6ae14)
+- Local Checked-out HEAD:    31e95f796b86ce6ad7c3c68779300a2a28cae538
+- Master Ahead Delta:        Ahead of origin/master by 131 commits (0 behind, direct linear descendant)
+- Main Ahead Delta:          Ahead of origin/main by 133 commits (0 behind)
+- Local Review Branches:     release/v1500-browser-verified-20261110 & release/iinsha-ai-bos-verified-20261112 (Synced to HEAD 31e95f7)
+- Cold Backup Bundle:        inshatech-master-backup-20261112.bundle (78,217,010 bytes)
+- Backup Verification:       git bundle verify -> 121 refs, complete history OK.
+- Complete SHA-256:          9F76C16F6D83A56E8C84E5431E0C2D58D6ECABED8452498A197281E37289C6CB
 - Latest General CI Run ID:  #42506647860 on cd760c39c6985d75eaf01d900d8e85b1705d9a00 (Conclusion: SUCCESS, PR #71 Validation)
 - Latest Master CI Run:      #34454052436 on b3de765... (Conclusion: SUCCESS)
 - Historical Master Gate:    Run #34454052445 failed deployment identity verification because it expected b3de765... while legacy URL returned 45ee4c.../main.

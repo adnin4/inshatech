@@ -30,6 +30,25 @@ async function sha256(str) {
     return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+async function generatePbkdf2Hash(password, iterations = 600000) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const saltHex = [...salt].map(x => x.toString(16).padStart(2, '0')).join('');
+    const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(password),
+        { name: 'PBKDF2' },
+        false,
+        ['deriveBits']
+    );
+    const derived = await crypto.subtle.deriveBits(
+        { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
+        key,
+        256
+    );
+    const hashHex = [...new Uint8Array(derived)].map(x => x.toString(16).padStart(2, '0')).join('');
+    return `pbkdf2:${iterations}:${saltHex}:${hashHex}`;
+}
+
 function b64(str) {
     return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
@@ -73,7 +92,8 @@ async function runTestSuite() {
 
     const mockAdminEmail = 'admin@inshatech.com';
     const mockAdminPassword = 'TestSuperAdminKey2026!';
-    const mockPasswordHash = await sha256(mockAdminPassword);
+    const mockPasswordHash = await generatePbkdf2Hash(mockAdminPassword, 600000);
+    const mockLegacySha256Hash = await sha256(mockAdminPassword);
     const mockJwtSecret = 'mock-jwt-secret-key-for-test-suite-minimum-32-chars';
     const mockMfaSecret = 'TESTMFASECRET123';
 
@@ -308,6 +328,19 @@ async function runTestSuite() {
         const data = await res.json();
         assert(res.status === 401 && data.status === 'MFA_REQUIRED',
             'OWASP-recommended 600,000 iterations PBKDF2 verifies correctly and prompts for MFA');
+    }
+
+    // Test 13B: Legacy Fast-Hash SHA-256 strictly rejected (Zero Legacy Fast-Hash Fallback)
+    {
+        const req = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword })
+        });
+        const res = await handleAuthSession({ request: req, env: { ...testEnv, ADMIN_PASSWORD_HASH: mockLegacySha256Hash } });
+        const data = await res.json();
+        assert(res.status === 401 && data.status === 'INVALID_CREDENTIALS',
+            'Legacy unsalted SHA-256 hash is rejected with HTTP 401 INVALID_CREDENTIALS');
     }
 
     // Test 14: Cookie-Based Session Authentication on /api/admin/gate -> 200 AUTHORIZED

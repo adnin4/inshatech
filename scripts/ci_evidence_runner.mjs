@@ -379,6 +379,18 @@ const SUITE_INVENTORY = [
     upstream_dependencies: ['reality_boundary', 'system_claims']
   },
   {
+    id: 'release_identity_immutable',
+    name: 'Immutable Release Identity & Audit Engine',
+    command: 'node',
+    args: ['scripts/test_release_identity_immutable.mjs'],
+    domain: 'GOVERNANCE',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-REL-01', 'REQ-IDENTITY-02', 'REQ-IMMUTABLE-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['reality_boundary', 'release_identity']
+  },
+  {
     id: 'admin_auth_security',
     name: 'Admin Auth & Fail-Closed Session Gate Security',
     command: 'node',

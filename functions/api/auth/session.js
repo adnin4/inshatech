@@ -52,34 +52,30 @@ async function sha256Hex(s) {
 }
 
 async function verifyPassword(password, storedHash) {
-    if (!password || !storedHash) return false;
-    // Format 1: PBKDF2 -> pbkdf2:<iterations>:<saltHex>:<hashHex>
-    if (storedHash.startsWith('pbkdf2:')) {
-        const parts = storedHash.split(':');
-        if (parts.length === 4) {
-            const iterations = parseInt(parts[1], 10) || 600000;
-            const saltHex = parts[2];
-            const expectedHashHex = parts[3];
-            const salt = new Uint8Array(saltHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-            const key = await crypto.subtle.importKey(
-                'raw',
-                new TextEncoder().encode(password),
-                { name: 'PBKDF2' },
-                false,
-                ['deriveBits']
-            );
-            const derived = await crypto.subtle.deriveBits(
-                { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
-                key,
-                256
-            );
-            const derivedHex = [...new Uint8Array(derived)].map(x => x.toString(16).padStart(2, '0')).join('');
-            return constantTimeEqual(derivedHex, expectedHashHex);
-        }
+    if (!password || !storedHash || !storedHash.startsWith('pbkdf2:')) return false;
+    // Format: PBKDF2 -> pbkdf2:<iterations>:<saltHex>:<hashHex>
+    const parts = storedHash.split(':');
+    if (parts.length === 4) {
+        const iterations = parseInt(parts[1], 10) || 600000;
+        const saltHex = parts[2];
+        const expectedHashHex = parts[3];
+        const salt = new Uint8Array(saltHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        const key = await crypto.subtle.importKey(
+            'raw',
+            new TextEncoder().encode(password),
+            { name: 'PBKDF2' },
+            false,
+            ['deriveBits']
+        );
+        const derived = await crypto.subtle.deriveBits(
+            { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
+            key,
+            256
+        );
+        const derivedHex = [...new Uint8Array(derived)].map(x => x.toString(16).padStart(2, '0')).join('');
+        return constantTimeEqual(derivedHex, expectedHashHex);
     }
-    // Format 2: Constant-Time SHA-256 verification (legacy transition path)
-    const computedSha = await sha256Hex(password);
-    return constantTimeEqual(computedSha, storedHash);
+    return false;
 }
 
 async function signJwt(payload, secret) {

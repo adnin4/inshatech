@@ -1,6 +1,6 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS: PERSISTENT PROJECT CONTEXT & TRUTH LEDGER
-Captured: 2026-11-12T17:55:00.000+06:00 (Asia/Dhaka — Machine Clock)
+Captured: 2026-11-12T19:20:00.000+06:00 (Asia/Dhaka — Machine Clock)
 Status Authority: Principal Full-Stack & Release Reliability Engineer
 ================================================================================
 
@@ -32,12 +32,12 @@ Enterprise Frontier Platform. It orchestrates business operations across:
 - Local Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 - GitHub Default Branch: master (Remote tip: b3de7650b65e388514ca82674654c92241ea8811)
 - Remote main Branch: 45ee4c1f90f699686c71912a7f22598cbe3b0a74 (Legacy/separated)
-- Local master Branch HEAD: 4e6ae14b72aa62f796a56e50ba68e27c1b52ff13
-- Review Branch: release/v1500-browser-verified-20261110 (Synced to local HEAD)
-- Local Commit Delta: Ahead of origin/master by 129 commits (Direct descendant).
-- Cold Backup Bundle: inshatech-master-backup-20261112.bundle (78,175,811 bytes)
-- Backup Verification: git bundle verify -> 120 refs, complete history OK.
-- Complete SHA-256: B57AA74A450D5DF55403AAF8A69381E693F4525EF2C66EB9C6F4131AD95FC245
+- Local master Branch HEAD: 31e95f796b86ce6ad7c3c68779300a2a28cae538
+- Review Branches: release/v1500-browser-verified-20261110 and release/iinsha-ai-bos-verified-20261112 (Synced to local HEAD)
+- Local Commit Delta: Ahead of origin/master by 131 commits (Direct descendant).
+- Cold Backup Bundle: inshatech-master-backup-20261112.bundle (78,217,010 bytes)
+- Backup Verification: git bundle verify -> 121 refs, complete history OK.
+- Complete SHA-256: 9F76C16F6D83A56E8C84E5431E0C2D58D6ECABED8452498A197281E37289C6CB
 - Remote GitHub Push Status: BLOCKED_EXTERNAL (Owner Gate G1). The workstation
   gh CLI is unauthenticated ("You are not logged into any GitHub hosts").
   Local commits exist on disk and on Cloudflare Pages, but cannot be pushed
@@ -48,6 +48,14 @@ Enterprise Frontier Platform. It orchestrates business operations across:
     Stacked on PR #67 branch. Never merge or close without dependency review.
 
 3. ARCHITECTURE & CLOUDFLARE ENVIRONMENT SEPARATION
+--------------------------------------------------------------------------------
+- Cloudflare Pages Project: inshatech (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
+- Active Staging Host: https://inshatech-b6b.pages.dev/
+- Immutable Staging Preview: https://c049a5fd.inshatech-b6b.pages.dev
+- Staging /api/version: reports environment: "staging", deploy_sha: 31e95f796b..., parity: true
+- Staging /api/health: reports environment: "staging", liveness: HEALTHY, readiness: NOT_READY
+- Target Production Custom Domains: https://inshatech.com and https://www.inshatech.com
+  (Currently serving legacy website. Cutover requires Owner Gate G6).
 --------------------------------------------------------------------------------
 - Canonical Staging Host: https://inshatech-b6b.pages.dev/
 - Legacy URL Note: Older CI workflows tested https://inshatech.pages.dev, which
