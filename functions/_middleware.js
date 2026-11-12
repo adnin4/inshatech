@@ -91,12 +91,30 @@ export async function onRequest(context) {
   if (!contentType.includes('text/html')) return response;
 
   const original = await response.text();
-  const rewritten = rewriteHtml(original);
+  let rewritten = rewriteHtml(original);
   const headers = new Headers(response.headers);
   headers.set('x-iinsha-truth-guard', 'enabled');
+
   if (url.hostname.endsWith('.pages.dev')) {
     headers.set('X-Robots-Tag', 'noindex, nofollow');
+    headers.set('Link', '<https://inshatech-b6b.pages.dev/>; rel="canonical"');
+    // Ensure HTML meta tag matches HTTP header on staging environment
+    rewritten = rewritten.replace(
+      '<meta name="robots" content="index, follow">',
+      '<meta name="robots" content="noindex, nofollow">'
+    );
+  } else if (url.hostname === 'inshatech.com' || url.hostname === 'www.inshatech.com') {
+    headers.set('Link', '<https://inshatech.com/>; rel="canonical"');
+    // When served from custom production domain, update canonical & og:url to production
+    rewritten = rewritten.replace(
+      'href="https://inshatech-b6b.pages.dev/"',
+      'href="https://inshatech.com/"'
+    ).replace(
+      'content="https://inshatech-b6b.pages.dev"',
+      'content="https://inshatech.com"'
+    );
   }
+
   headers.delete('content-length');
 
   return new Response(rewritten, {
