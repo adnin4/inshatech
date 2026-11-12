@@ -8,6 +8,9 @@
 import { onRequestPost as handleAuthSession } from '../functions/api/auth/session.js';
 import { onRequestGet as handleAdminGate } from '../functions/api/admin/gate.js';
 import { onRequestPost as handleKillswitch } from '../functions/api/workforce/killswitch.js';
+import { onRequestPost as handleAuthLogout } from '../functions/api/auth/logout.js';
+import { onRequestPost as handleAdminKillswitch } from '../functions/api/admin/killswitch.js';
+import { onRequestGet as handleAdminIntegrations } from '../functions/api/admin/integrations.js';
 
 let passedTests = 0;
 let totalTests = 0;
@@ -305,6 +308,112 @@ async function runTestSuite() {
         const data = await res.json();
         assert(res.status === 401 && data.status === 'MFA_REQUIRED',
             'OWASP-recommended 600,000 iterations PBKDF2 verifies correctly and prompts for MFA');
+    }
+
+    // Test 14: Cookie-Based Session Authentication on /api/admin/gate -> 200 AUTHORIZED
+    {
+        const req = new Request('https://inshatech.pages.dev/api/admin/gate', {
+            method: 'GET',
+            headers: { 'Cookie': `__Host-iinsha_admin_session=${validSessionToken}` }
+        });
+        const res = await handleAdminGate({ request: req, env: testEnv });
+        const data = await res.json();
+        assert(res.status === 200 && data.authenticated === true && data.status === 'AUTHORIZED',
+            'HttpOnly Cookie-based session token grants HTTP 200 AUTHORIZED on /api/admin/gate');
+    }
+
+    // Test 15: Session Revocation via /api/auth/logout -> Subsequent Requests Blocked with TOKEN_REVOKED
+    {
+        const logoutReq = new Request('https://inshatech.pages.dev/api/auth/logout', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${validSessionToken}` }
+        });
+        const logoutRes = await handleAuthLogout({ request: logoutReq, env: testEnv });
+        const logoutData = await logoutRes.json();
+        assert(logoutRes.status === 200 && logoutData.status === 'LOGGED_OUT',
+            '/api/auth/logout invalidates session and clears cookies');
+
+        // Subsequent call with the revoked token must fail
+        const postRevokeReq = new Request('https://inshatech.pages.dev/api/admin/gate', {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${validSessionToken}` }
+        });
+        const postRevokeRes = await handleAdminGate({ request: postRevokeReq, env: testEnv });
+        const postRevokeData = await postRevokeRes.json();
+        assert(postRevokeRes.status === 401 && postRevokeData.status === 'TOKEN_REVOKED',
+            'Revoked session token is rejected with HTTP 401 TOKEN_REVOKED');
+    }
+
+    // Test 16: Admin Killswitch Endpoint (/api/admin/killswitch) Enforces Session Auth
+    {
+        const unauthReq = new Request('https://inshatech.pages.dev/api/admin/killswitch', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'ENGAGE_KILL_SWITCH' })
+        });
+        const unauthRes = await handleAdminKillswitch({ request: unauthReq, env: testEnv });
+        const unauthData = await unauthRes.json();
+        assert(unauthRes.status === 401 && unauthData.status === 'UNAUTHORIZED',
+            'Unauthenticated /api/admin/killswitch fails closed with HTTP 401 UNAUTHORIZED');
+
+        // Generate fresh valid session token
+        const freshTotp = await computeTotp(mockMfaSecret);
+        const loginReq = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: freshTotp })
+        });
+        const loginRes = await handleAuthSession({ request: loginReq, env: testEnv });
+        const loginData = await loginRes.json();
+        const freshToken = loginData.session_token;
+
+        const authReq = new Request('https://inshatech.pages.dev/api/admin/killswitch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${freshToken}`
+            },
+            body: JSON.stringify({ action: 'STATUS' })
+        });
+        const authRes = await handleAdminKillswitch({ request: authReq, env: testEnv });
+        const authData = await authRes.json();
+        assert(authRes.status === 200 && authData.status === 'KILLSWITCH_STATUS',
+            'Authenticated /api/admin/killswitch succeeds with HTTP 200 KILLSWITCH_STATUS');
+    }
+
+    // Test 17: Admin Integrations Endpoint (/api/admin/integrations) Enforces Session Auth & Truthful State
+    {
+        const unauthReq = new Request('https://inshatech.pages.dev/api/admin/integrations', {
+            method: 'GET'
+        });
+        const unauthRes = await handleAdminIntegrations({ request: unauthReq, env: testEnv });
+        const unauthData = await unauthRes.json();
+        assert(unauthRes.status === 401 && unauthData.status === 'UNAUTHORIZED',
+            'Unauthenticated /api/admin/integrations fails closed with HTTP 401 UNAUTHORIZED');
+
+        // Generate fresh token
+        const freshTotp = await computeTotp(mockMfaSecret);
+        const loginReq = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: freshTotp })
+        });
+        const loginRes = await handleAuthSession({ request: loginReq, env: testEnv });
+        const loginData = await loginRes.json();
+        const freshToken = loginData.session_token;
+
+        const authReq = new Request('https://inshatech.pages.dev/api/admin/integrations', {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${freshToken}` }
+        });
+        const authRes = await handleAdminIntegrations({ request: authReq, env: testEnv });
+        const authData = await authRes.json();
+        assert(authRes.status === 200 && authData.status === 'SUCCESS' && Array.isArray(authData.integrations),
+            'Authenticated /api/admin/integrations succeeds with HTTP 200 and truthful provider array');
+        
+        // Ensure no provider falsely claims LIVE_VERIFIED without credentials
+        const falseVerified = authData.integrations.find(i => i.status === 'LIVE_VERIFIED');
+        assert(!falseVerified, 'Zero unverified integrations claim LIVE_VERIFIED without live credentials');
     }
 
     console.log('\n================================================================================');

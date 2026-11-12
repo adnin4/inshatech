@@ -58,8 +58,8 @@ class VerifierEngine {
         // 4. COMPLETENESS_CHECK
         const userRequest = (context.current_user_request || '').toLowerCase();
         if (userRequest.includes('price') || userRequest.includes('cost') || userRequest.includes('dam')) {
-            if (!text.includes('$') && !text.includes('à§³') && !text.includes('BDT') && !text.includes('USD')) {
-                issues.push(`User asked for pricing, but dual currency breakdown ($ USD / à§³ BDT) was omitted.`);
+            if (!text.includes('$') && !text.includes('৳') && !text.includes('BDT') && !text.includes('USD')) {
+                issues.push(`User asked for pricing, but dual currency breakdown ($ USD / ৳ BDT) was omitted.`);
             }
         }
 

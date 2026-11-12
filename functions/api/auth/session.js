@@ -174,7 +174,7 @@ export async function onRequestPost({ request, env = {} }) {
         }, env.JWT_SECRET);
 
         // Append HttpOnly SameSite=Strict cookie for hardened browser session defense
-        headers['Set-Cookie'] = `iinsha_admin_jwt=${sessionToken}; Path=/api/; Max-Age=3600; Secure; HttpOnly; SameSite=Strict`;
+        headers['Set-Cookie'] = `__Host-iinsha_admin_session=${sessionToken}; Path=/; Max-Age=3600; Secure; HttpOnly; SameSite=Strict`;
 
         return new Response(JSON.stringify({
             status: 'AUTHENTICATED',

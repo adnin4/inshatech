@@ -31,9 +31,54 @@ function unb64(str) {
     return atob(str.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - str.length % 4) % 4));
 }
 
+export function constantTimeEqual(a, b) {
+    if (typeof a !== 'string' || typeof b !== 'string') return false;
+    if (a.length !== b.length) return false;
+    let diff = 0;
+    for (let i = 0; i < a.length; i++) {
+        diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    }
+    return diff === 0;
+}
+
+function getCookie(request, name) {
+    const cookieHeader = request.headers?.get('Cookie') || '';
+    if (!cookieHeader) return null;
+    const cookies = cookieHeader.split(';').map(c => c.trim());
+    for (const cookie of cookies) {
+        const [k, ...v] = cookie.split('=');
+        if (k === name) return v.join('=');
+    }
+    return null;
+}
+
+const IN_MEMORY_REVOKED_JTIS = new Set();
+
+export async function revokeSessionToken(jti, env = {}) {
+    if (!jti) return;
+    IN_MEMORY_REVOKED_JTIS.add(jti);
+    if (env.REVOCATION_KV && typeof env.REVOCATION_KV.put === 'function') {
+        try {
+            await env.REVOCATION_KV.put(`revoked:${jti}`, 'true', { expirationTtl: 86400 });
+        } catch (_) {}
+    }
+}
+
+export async function isSessionRevoked(jti, env = {}) {
+    if (!jti) return false;
+    if (IN_MEMORY_REVOKED_JTIS.has(jti)) return true;
+    if (env.REVOCATION_KV && typeof env.REVOCATION_KV.get === 'function') {
+        try {
+            const val = await env.REVOCATION_KV.get(`revoked:${jti}`);
+            if (val) return true;
+        } catch (_) {}
+    }
+    return false;
+}
+
 /**
- * Verifies signed Bearer token against environment JWT_SECRET.
- * Enforces signature, expiration, required role, and MFA status.
+ * Verifies signed Bearer token or session cookie against environment JWT_SECRET.
+ * Enforces signature (constant-time), expiration, revocation, required role, and MFA status.
  *
  * @param {Request} request
  * @param {Object} env
@@ -59,13 +104,19 @@ export async function verifyServerSession(request, env = {}, options = {}) {
     }
 
     const authHeader = request.headers.get('Authorization') || request.headers.get('X-Admin-Token') || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : authHeader.trim();
+    let token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : authHeader.trim();
+
+    if (!token) {
+        token = getCookie(request, '__Host-iinsha_admin_session') ||
+                getCookie(request, 'iinsha_admin_jwt') ||
+                getCookie(request, 'iinsha_session') || '';
+    }
 
     if (!token) {
         return {
             authorized: false,
             status: 'UNAUTHORIZED',
-            error: 'Missing Authorization Bearer token'
+            error: 'Missing Authorization Bearer token or session cookie'
         };
     }
 
@@ -95,7 +146,7 @@ export async function verifyServerSession(request, env = {}, options = {}) {
             )
         ).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 
-        if (expectedSig !== signature) {
+        if (!constantTimeEqual(expectedSig, signature)) {
             return {
                 authorized: false,
                 status: 'FORGERY_REJECTED',
@@ -111,6 +162,14 @@ export async function verifyServerSession(request, env = {}, options = {}) {
                 authorized: false,
                 status: 'TOKEN_EXPIRED',
                 error: 'Session token has expired'
+            };
+        }
+
+        if (payload.jti && await isSessionRevoked(payload.jti, env)) {
+            return {
+                authorized: false,
+                status: 'TOKEN_REVOKED',
+                error: 'Session token has been revoked'
             };
         }
 
@@ -145,7 +204,8 @@ export async function verifyServerSession(request, env = {}, options = {}) {
                 email: payload.sub,
                 role: payload.role,
                 hierarchy_level: payload.hierarchy_level,
-                mfa_verified: payload.mfa_verified
+                mfa_verified: payload.mfa_verified,
+                jti: payload.jti || null
             },
             expires_at: new Date(payload.exp * 1000).toISOString()
         };

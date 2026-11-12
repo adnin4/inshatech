@@ -31,7 +31,7 @@ class MemorySystem {
             sops: [
                 "Always verify ICP company size and industry before executing lead discovery.",
                 "Never trigger external outbound messaging or email send without Level 2 HITL approval.",
-                "Always present dual currency ($ USD and à§³ BDT @ 122.50) for all pricing inquiries.",
+                "Always present dual currency ($ USD and ৳ BDT @ 122.50) for all pricing inquiries.",
                 "Never hallucinate lead numbers or mock search data â€” execute real tools and report exact counts."
             ]
         };
