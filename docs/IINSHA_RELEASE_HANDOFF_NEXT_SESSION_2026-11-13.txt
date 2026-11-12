@@ -1,0 +1,43 @@
+================================================================================
+IINSHA AI-BOS — RELEASE HANDOFF & OPERATIONAL BRIEF (13 NOVEMBER 2026)
+================================================================================
+Timestamp:               2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+Workspace Path:          C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Active Branch:           master (synced with release/iinsha-ai-bos-verified-20261112)
+Target Release Boundary: READY_FOR_STAGING
+Production Sealed:       NOT APPROVED (Blocked on Owner Gates G1–G6)
+
+1. SYSTEM INTEGRITY LEDGER
+--------------------------------------------------------------------------------
+- Code & Syntax:         100% verified (node --check, build, ESLint clean)
+- Security & Auth:       33/33 tests pass (PBKDF2 600k iter, TOTP replay protection, DO 503 fail-closed)
+- Payments & Ledger:     42/42 adversarial assertions pass, 17/17 financial reconciliation assertions pass
+- Functions & Imports:   175 Cloudflare Pages Functions verified with valid onRequest exports, 0 broken imports
+- Deploy Artifact:       401 clean publishable files in dist-pages/, 0 forbidden files, release-manifest.json verified
+- Browser CDP Audit:     6/6 viewports pass (0px overflow, 80 unique service IDs, WebGL2 active, unlabeledInputs: 0)
+- Total Defect Scanner:  0 defects across 175 functions, 30 HTML files, 175 JSON configuration files
+
+2. CRITICAL ROOT-CAUSE REVELATION (SUPABASE DATABASE)
+--------------------------------------------------------------------------------
+- In previous audits, Supabase project `kitwadizsvjmuxkfewxj` was reported INACTIVE.
+- Investigation of the owner's authenticated Supabase CLI reveals an ACTIVE project in the same account (`aaih.apon@gmail.com`):
+  * Active Project Ref: `iuhtzahuszdkdarhxobx` (status: ACTIVE_HEALTHY, Postgres 17.6.1.166, region: ap-southeast-1).
+  * This active project already contains applied remote schema migrations up to October 2026.
+  * Local repository currently points to the inactive ref `kitwadizsvjmuxkfewxj` in `wrangler.toml`.
+  * Recommendation for Next Session: Owner should review whether to link the active project `iuhtzahuszdkdarhxobx` or unpause `kitwadizsvjmuxkfewxj`, run dry-run migration checks, and update `wrangler.toml` accordingly.
+
+3. IMMEDIATE OWNER ACTION STEPS FOR PROMOTION
+--------------------------------------------------------------------------------
+Step 1: Authenticate GitHub CLI (`gh auth login`) and publish the verified review branch:
+  `git push origin release/iinsha-ai-bos-verified-20261112`
+
+Step 2: Deploy the standalone Security Coordinator Durable Object Worker:
+  `npx wrangler deploy --config workers/security-coordinator/wrangler.toml --env staging`
+  And configure required Cloudflare Pages secrets.
+
+Step 3: Resolve Supabase database ref authority (`kitwadizsvjmuxkfewxj` vs `iuhtzahuszdkdarhxobx`), run dry-run migrations, and confirm `/api/health?type=readiness` returns 200.
+
+Step 4: Provision payment sandbox credentials and complete owner TOTP enrollment.
+
+Step 5: Cut over DNS for `inshatech.com` and `www.inshatech.com` in Cloudflare Pages.
+================================================================================

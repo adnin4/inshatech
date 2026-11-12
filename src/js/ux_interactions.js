@@ -288,10 +288,12 @@
             });
 
             if (counterEl) {
-                counterEl.textContent = `${visibleCount} Verified Solution${visibleCount === 1 ? '' : 's'} Active`;
+                counterEl.textContent = `${visibleCount} Modular Solution${visibleCount === 1 ? '' : 's'} Catalogued`;
             }
             if (emptyEl) {
-                emptyEl.style.display = visibleCount === 0 ? 'block' : 'none';
+                const isEmpty = visibleCount === 0;
+                emptyEl.style.display = isEmpty ? 'block' : 'none';
+                emptyEl.hidden = !isEmpty;
             }
         }
 

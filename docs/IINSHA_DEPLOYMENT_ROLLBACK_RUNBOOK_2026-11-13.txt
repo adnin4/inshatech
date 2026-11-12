@@ -1,0 +1,50 @@
+================================================================================
+IINSHA AI-BOS — DEPLOYMENT & ROLLBACK RUNBOOK (13 NOVEMBER 2026)
+================================================================================
+Updated:             2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+Target Project:      Cloudflare Pages `inshatech` (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
+Primary Staging Host: https://inshatech-b6b.pages.dev/
+Production Domains:  https://inshatech.com / https://www.inshatech.com (Pending Gate G6)
+
+1. CANONICAL RELEASE WORKFLOW (GITHUB ACTIONS DIRECT UPLOAD)
+--------------------------------------------------------------------------------
+Git auto-deploy on Cloudflare Pages MUST remain disabled (`Git Provider: No`) to
+prevent legacy `main` branch race conditions. All future staging and production
+deployments must promote from the reviewed commit via `.github/workflows/release-direct-upload.yml`:
+
+Step 1 (Gate G1): Push audited commits from workstation after `gh auth login`:
+  git push origin release/iinsha-ai-bos-verified-20261112
+  # After PR approval, merge/publish to master
+
+Step 2 (CI Staging Direct Upload + DO Worker):
+  Deploy Durable Object authority worker (staging):
+    npx wrangler deploy --config workers/security-coordinator/wrangler.toml --env staging
+  Stage & verify Pages deploy artifact via `node scripts/verify_deploy_artifact.mjs`
+  (stages clean files into `dist-pages/`, enforces 0 forbidden files via `.assetsignore`,
+  generates SHA-256 `release-manifest.json`), then deploys via pinned `wrangler@4.16.1`:
+    npx wrangler pages deploy dist-pages --project-name=inshatech --branch=master --commit-hash=<40-char SHA> --commit-dirty=false
+  Then validate `/api/version` reports `environment: "staging"`, `dpl_staging_`,
+  and `/api/health?type=readiness` returns HTTP 503 (while DB unlinked) or 200 (once DB active).
+
+Step 3 (Gate G6 Manual Production Promotion):
+  Requires passing Gates G1–G5 + GitHub `production` environment manual approval
+  + DO Worker production deploy (`--env production`) + verified HTTP 200 database readiness
+  before uploading the identical staged artifact with `--branch=production`.
+
+2. INSTANT STAGING ROLLBACK PROCEDURE
+--------------------------------------------------------------------------------
+Target Known-Good Fallback SHAs:
+- Live deployed baseline prior to v4.0/v5.0 fixes: 74d90b14143e936587153464557a7e6d0f35fb9c
+- Earlier verified fallback baseline:            4d3c043130d2208d1685bc0fc878a23075c3b169
+
+CLI / Dashboard Rollback:
+- Via Cloudflare Dashboard: Workers & Pages -> Pages -> `inshatech` -> Deployments -> Rollback to target deployment.
+- Or via CI workflow dispatch / clean git checkout of the fallback SHA staging artifact (`dist-pages/`).
+
+3. DATABASE ROLLBACK POLICY (SEPARATED FROM FRONTEND)
+--------------------------------------------------------------------------------
+- Frontend rollbacks NEVER roll back Supabase PostgreSQL schema changes.
+- Always run `npx supabase db push --dry-run --remote=<ref>` before schema changes.
+- Revert schema changes only via tested forward-only compensating migrations or
+  Supabase Point-In-Time Recovery (PITR).
+================================================================================

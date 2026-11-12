@@ -1,0 +1,37 @@
+================================================================================
+IINSHA AI-BOS — AUTOMATED TEST EVIDENCE (13 NOVEMBER 2026)
+================================================================================
+Test Execution Time: 2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+Target Environment:  Node.js v26.7.0 / npm 11.19.0 on Windows 11 / Headless Chrome CDP
+Test Execution Status: ALL LOCAL & STAGING-SAFE SUITES PASS (0 Failures)
+
+SUITE EXECUTION LEDGER (OBSERVED AFTER V5.0 AUDIT & CLOSURES)
+--------------------------------------------------------------------------------
+1.  `node --check app.js`                             | PASS (Exit 0)
+2.  `npm run build` (`scripts/build_pages.mjs`)       | PASS (22 sections verified, Exit 0)
+3.  `npm test` (chained):
+    - `verify_all_system_claims.mjs`                  | PASS (10/10 claims; payment boundary CONFIGURED_UNVERIFIED / cycle SIMULATION)
+    - `test_responsive_architecture_master.mjs`       | PASS (36/36 invariants, DOM-PARITY-01 100%)
+    - `test_mobile_ui_layout.mjs`                     | PASS (29/29 assertions, zero hardcoded bypasses verified)
+4.  `node scripts/test_admin_auth_security.mjs`       | PASS (33/33 assertions — includes GET 405, PBKDF2 bounds, TOTP replay, DO fail-closed 503/401 distinction, CORS strictness)
+5.  `node scripts/test_payment_adversarial_suite.mjs` | PASS (42/42 assertions — concurrency, coupons, IPN risk/amount checks, refunds, state machine, host injection, legacy bypasses)
+6.  `node scripts/test_release_identity.mjs`          | PASS (Release parity, PR synthetic checks, DB fail-closed probe)
+7.  `node scripts/test_sslcommerz_native_adapter.mjs` | PASS (3/3 assertions against relocated `functions/_shared/payments/sslcommerz.js`)
+8.  `node scripts/test_payment_hardening_contract.mjs` | PASS (8/8 assertions)
+9.  `node scripts/test_service_authority_and_pricing.mjs` | PASS (Canonical `ibos_services` price authority)
+10. `node scripts/verify_payment_reconciliation.mjs`    | PASS (17/17 triple-source ledger assertions)
+11. `node scripts/check_functions_imports.mjs`        | PASS (0 broken ES relative imports across 175 functions)
+12. `node scripts/total_defect_scanner.mjs`           | PASS (175 Functions valid, 30 HTML files valid, 175 JSON files valid, 0 defects)
+13. `node scripts/verify_deploy_artifact.mjs`         | PASS (401 clean files staged, 0 forbidden, 15/15 required runtime files, release-manifest.json generated)
+14. `npm run security:gate`                           | PASS (753 files audited, 0 P0/P1 defects)
+15. `npm run e2e` (`scripts/public_site_e2e.mjs`)     | PASS (12/12 public pages verified)
+16. `node scripts/ci_evidence_runner.mjs`             | PASS (28/28 CI suites passed, exit 0)
+17. Headless Chrome CDP (`cdp_qa_audit.mjs`)          | PASS (6 viewports: 1440x900, 1280x900, 1024x768, 768x1024, 390x844, 360x800 — 0px overflow, 80 unique IDs, WebGL2 active, video progressing, unlabeledInputs: 0)
+18. `node scripts/verify_handoff_docs.mjs`            | PASS (Verified post doc additions)
+
+EXTERNAL / BLOCKED TESTS
+--------------------------------------------------------------------------------
+- Live Supabase remote push on active DB: BLOCKED_EXTERNAL / DEFERRED (Owner decision on project ref authority required)
+- Live payment gateway real transaction: DEFERRED (Requires explicit owner sandbox commissioning)
+- Physical owner TOTP enrollment: BLOCKED_EXTERNAL (Requires owner physical authenticator)
+================================================================================
