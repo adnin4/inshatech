@@ -1,0 +1,71 @@
+================================================================================
+IINSHA AI-BOS — OWNER GATES CHECKLIST (12 NOVEMBER 2026)
+================================================================================
+The following 6 Owner Gates require external credentials, management console
+authority, or physical MFA action from the repository/account owner.
+Antigravity cannot complete these actions without owner execution.
+
+GATE G1: GITHUB CLI AUTHENTICATION & BRANCH PUBLICATION
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Problem:           Workstation GitHub CLI is unauthenticated (`gh auth status` -> code 1).
+- Risk:              129 commits exist on disk and in cold backup, but are not yet on GitHub.
+- Owner Action:
+  1. Open terminal on this workstation.
+  2. Run: `gh auth login` and follow the web browser prompt.
+  3. Run: `git push origin release/v1500-browser-verified-20261110` to publish the review branch.
+  4. Run: `git push origin master` once ready to update the default branch.
+
+GATE G2: CLOUDFLARE DEPLOYMENT AUTHORITY CONFIRMATION
+--------------------------------------------------------------------------------
+- Status:            RESOLVED_ON_STAGING / PENDING_PRODUCTION_LOCK
+- Context:           Cloudflare Pages project `inshatech` uses Wrangler Direct Upload.
+                     Do not re-enable legacy Git auto-deploy on main (commit 45ee4c1) to avoid race conditions.
+- Owner Action:      Maintain Wrangler CLI Direct Upload as canonical release pipeline.
+
+GATE G3: SUPABASE DATABASE RECOVERY & MIGRATIONS
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Problem:           Supabase project `kitwadizsvjmuxkfewxj` is INACTIVE (paused in control plane).
+- Risk:              Database cannot be queried; migrations cannot be listed or applied.
+- Owner Action:
+  1. Log in to https://supabase.com/dashboard/project/kitwadizsvjmuxkfewxj.
+  2. Click "Restore project" / "Unpause project".
+  3. Once ACTIVE, verify local migrations with:
+     `npx supabase migration list --remote=kitwadizsvjmuxkfewxj`
+  4. Perform dry run before applying:
+     `npx supabase db push --dry-run --remote=kitwadizsvjmuxkfewxj`
+  5. Apply migrations with owner confirmation.
+
+GATE G4: PRODUCTION PAYMENT GATEWAY MERCHANT CREDENTIALS
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Problem:           bKash, Nagad, SSLCommerz live API credentials are not yet configured in Cloudflare secrets.
+- Current Mode:      Sandbox / Stub verification active.
+- Owner Action:
+  1. Securely bind live credentials via Wrangler secret command:
+     `npx wrangler pages secret put BKASH_APP_KEY --project-name=inshatech`
+     `npx wrangler pages secret put BKASH_APP_SECRET --project-name=inshatech`
+     `npx wrangler pages secret put BKASH_USERNAME --project-name=inshatech`
+     `npx wrangler pages secret put BKASH_PASSWORD --project-name=inshatech`
+
+GATE G5: OWNER PHYSICAL TOTP/MFA ENROLLMENT
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Problem:           Admin authentication requires physical MFA device enrollment by the human owner.
+- Owner Action:
+  1. Navigate to https://inshatech-b6b.pages.dev/admin.html.
+  2. Log in with owner credentials and navigate to Security Settings.
+  3. Scan the TOTP QR code into your Google Authenticator or 1Password app.
+  4. Enter the 6-digit verification code to lock your account with physical 2FA.
+
+GATE G6: PRODUCTION DOMAIN DNS CUTOVER (INSHATECH.COM)
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Problem:           https://inshatech.com and https://www.inshatech.com currently point to old IT agency site.
+- Owner Action:
+  1. In Cloudflare Dashboard -> Pages -> `inshatech` -> Custom domains.
+  2. Add `inshatech.com` and `www.inshatech.com`.
+  3. Verify Cloudflare SSL certificate provisioning.
+  4. Test full application routing on the custom domain before decommissioning old host.
+================================================================================

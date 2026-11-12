@@ -1,0 +1,49 @@
+================================================================================
+IINSHA AI-BOS — LIVE AUDIT SNAPSHOT (12 NOVEMBER 2026)
+================================================================================
+Target URL:                  https://inshatech-b6b.pages.dev/
+Evaluated Commit SHA:        bea755b1fcc060852c359af745dbf8de699e0e1f
+Evaluation Mode:             Headless Chrome CDP + Direct Fetch Instrumentation
+Timestamp:                   2026-11-12T17:55:00.000+06:00 (Asia/Dhaka)
+
+1. RAW HTTP RESPONSE INSPECTION
+--------------------------------------------------------------------------------
+- HTTP Status:               200 OK
+- Content-Type:              text/html; charset=utf-8
+- X-Robots-Tag Header:       noindex, nofollow (PASS)
+- Link Header:               <https://inshatech-b6b.pages.dev/>; rel="canonical" (PASS)
+- Raw HTML Canonical:        <link rel="canonical" href="https://inshatech-b6b.pages.dev/"> (PASS)
+- Raw HTML Robots:           <meta name="robots" content="noindex, nofollow"> (PASS)
+- Raw HTML Canvas:           <canvas id="iinsha-diagram-scene" class="... hero3d-canvas" ...> (PASS)
+- Raw HTML data-service-id:  80 unique occurrences (svc-01 to svc-80) (PASS)
+
+2. BROWSER RUNTIME DOM INSPECTION (REAL CHROME CDP)
+--------------------------------------------------------------------------------
+- Semantic H1 Count:         1
+- Canvas Elements Found:     1
+- Canvas ID:                 iinsha-diagram-scene
+- Canvas Class:              iinsha-hero-canvas diagram-hero-canvas hero3d-canvas
+- Active GL Context:         WebGL2RenderingContext
+- Service Item Cards:        80
+- Cards With data-service-id: 80 (100% complete)
+- Category Overview Cards:   8 (all visible)
+- Capability Bento Cards:    4 (all visible)
+- Category Tab Controls:     9 (.service-tab-btn buttons)
+- Video Playback:            Advanced (currentTime > 0)
+- JavaScript Console Errors: 0
+- Network Loading Failures:  0
+- CSP Violations:            0
+
+3. SIX VIEWPORT RESPONSIVE METRICS
+--------------------------------------------------------------------------------
+| Viewport | Device Class | Width | ScrollWidth | Overflow | H1 | Canvas | Cards | Unique IDs | Bento | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1440x900 | Desktop Large | 1440px | 1432px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+| 1280x900 | Desktop Standard | 1280px | 1280px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+| 1024x768 | Desktop Compact | 1024px | 1024px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+| 768x1024 | Tablet Portrait | 768px | 768px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+| 390x844 | Mobile Modern | 390px | 390px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+| 360x800 | Mobile Narrow | 360px | 360px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
+
+Conclusion: All 6 viewports enforce 0px horizontal overflow with zero console/network defects.
+================================================================================

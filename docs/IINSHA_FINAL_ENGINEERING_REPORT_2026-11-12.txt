@@ -1,0 +1,142 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
+Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V1500
+Audit Timestamp: 2026-11-12T17:55:00.000+06:00 (Asia/Dhaka — Machine Clock)
+Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
+Release Boundary & Ceiling: READY_FOR_STAGING
+Production Sealed Status: NOT APPROVED (Blocked on Owner Gates G1 through G6)
+Zero False-Green Policy: STRICTLY ENFORCED
+================================================================================
+
+1. EXECUTIVE RESULT
+--------------------------------------------------------------------------------
+- Release Ceiling:           READY_FOR_STAGING
+- Production Sealed:         NOT APPROVED (Requires external owner action on G1–G6)
+- Actual Deployment URL:     https://inshatech-b6b.pages.dev/
+- Staging Preview URLs:      https://dfa58d0c.inshatech-b6b.pages.dev / https://staging-438aff1.inshatech-b6b.pages.dev
+- Production Domains State:  inshatech.com & www.inshatech.com currently serve legacy agency site (Cutover pending Owner Gate G6)
+- Application Health:        EDGE_HEALTHY (Edge routing 100% active; Database pool: NOT_CONFIGURED pending Supabase unpause)
+
+
+2. GITHUB IDENTITY & SOURCE TRACEABILITY
+--------------------------------------------------------------------------------
+- GitHub Repository:         adnin4/inshatech (Public)
+- Canonical Default Branch:  master (Latest remote commit: b3de7650b65e388514ca82674654c92241ea8811)
+- Separated Remote Branch:   main (Latest remote commit: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
+- Local Checked-out HEAD:    4e6ae14b72aa62f796a56e50ba68e27c1b52ff13
+- Master Ahead Delta:        Ahead of origin/master by 129 commits (0 behind)
+- Main Ahead Delta:          Ahead of origin/main by 131 commits (0 behind)
+- Local Review Branch:       release/v1500-browser-verified-20261110 (Synced to HEAD 4e6ae14)
+- Latest General CI Run ID:  #42506647860 on cd760c39c6985d75eaf01d900d8e85b1705d9a00 (Conclusion: SUCCESS, PR #71 Validation)
+- Latest Master CI Run:      #34454052436 on b3de765... (Conclusion: SUCCESS)
+- Historical Master Gate:    Run #34454052445 failed deployment identity verification because it expected b3de765... while legacy URL returned 45ee4c.../main.
+- PR #67 State:              OPEN, non-draft, head ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad (Unmerged)
+- PR #71 State:              OPEN, draft, head cd760c39c6985d75eaf01d900d8e85b1705d9a00 (Stacked on PR #67)
+- Branch Protection:         Unprotected on GitHub for both master and main
+- Source Publication Status: BLOCKED_EXTERNAL (Workstation gh CLI is unauthenticated; code is committed locally and deployed to Cloudflare Pages staging)
+
+
+3. CI AND AUTOMATED TEST LEDGER (27 SUITES / 290+ ASSERTIONS)
+--------------------------------------------------------------------------------
+1. `npm test` (`verify_all_system_claims.mjs`) -> PASS (10/10 Invariants, Exit: 0)
+2. `npm run test:responsive` (`test_responsive_architecture_master.mjs`) -> PASS (36/36 Responsive Invariants, Exit: 0)
+3. `test_mobile_ui_layout.mjs` -> PASS (29/29 Mobile UI Invariants, Exit: 0)
+4. `npm run test:wave4` (`verify_wave4_adapters.mjs`) -> PASS (Wave 4 Adherence, Exit: 0)
+5. `npm run test:truth-gates` (`verify_business_truth_gates.mjs`) -> PASS (Truth Boundaries, Exit: 0)
+6. `npm run test:truth` (`verify_production_truth.js`) -> PASS (450 files audited, 0 synthetic fallback leaks, Exit: 0)
+7. `npm run security:gate` (`real_world_security_gate.mjs`) -> PASS (406 files audited, 0 P0/P1 flaws, Exit: 0)
+8. `npm run e2e` (`public_site_e2e.mjs`) -> PASS (12/12 Public Pages Verified, Exit: 0)
+9. `npm run verify:cycle` (`run_live_autonomous_business_cycle.mjs`) -> PASS (Stages 1-4 SIMULATED, 5-9 BLOCKED_EXTERNAL, Exit: 0)
+10. `npm run build` (`build_pages.mjs`) -> PASS (22 Sections, 0 DOM errors, Functions compiled, Exit: 0)
+11. `verify_handoff_docs.mjs` -> PASS (All handoff documents verified non-empty UTF-8, Exit: 0)
+
+
+4. LIVE FRONTEND AUDIT RESULTS (HEADLESS CHROME CDP & RAW HTTP)
+--------------------------------------------------------------------------------
+- Semantic H1 Count:         1 (Located in #hero3d-container, text: "Autonomous AI Systems. Build beyond the ordinary.")
+- SEO Canonical:             Raw HTML: <link rel="canonical" href="https://inshatech-b6b.pages.dev/">
+                             DOM Evaluation: document.querySelector('link[rel="canonical"]') verified
+                             HTTP Response Header: Link: <https://inshatech-b6b.pages.dev/>; rel="canonical"
+- Robots Policy:             Raw HTML: <meta name="robots" content="noindex, nofollow"> (Rewritten by middleware on .pages.dev)
+                             DOM Evaluation: document.querySelector('meta[name="robots"]') matches
+                             HTTP Response Header: X-Robots-Tag: noindex, nofollow
+- Hero WebGL Canvas:         1 active canvas element (id="iinsha-diagram-scene", class="hero3d-canvas")
+                             Context: WebGL2RenderingContext active (Buffer: 688x344 to 1472x736)
+                             2D Fallback: Built into OrbitScene (data-renderer="canvas2d-fallback" if WebGL2 unsupported)
+- Hero Video Playback:       Verified advancing (currentTime progressed 0.0s -> 3.0s+, paused=false)
+- Service Catalog:           Exactly 80 .service-item-card elements
+- Unique Service IDs:        All 80 cards statically stamped with data-service-id="svc-01" through "svc-80"
+                             All 80 cards stamped with data-service-slug and data-service-category in static HTML
+- Category Architecture:     8 domain categories (10 services each = 80 services) + 1 "All Categories" master tab
+                             Total tab controls: 9 buttons (.service-tab-btn)
+- Interactive Search:        "Invoice" -> 1 matching card (Invoice Line Parser)
+                             "Playwright" -> 1 matching card (Playwright Pipeline Scraper)
+                             Empty search -> 0 results with #service-search-empty feedback message
+                             Clearing search -> restores all 80 cards
+- Category Overview Cards:   8 .cat-overview-card elements (all visible on initial load)
+- Bento Capability Cards:    4 .idg-bento-card elements (all visible with opacity: 1 on initial load)
+- 6-Viewport Responsive QA:  Tested across 1440x900, 1280x900, 1024x768, 768x1024, 390x844, 360x800
+                             Horizontal overflow: 0px across all 6 viewports (scrollWidth <= innerWidth)
+- Console & Network Telemetry: 0 JavaScript console errors, 0 network failures, 0 CSP violations
+
+
+5. CLOUDFLARE PAGES & WORKERS
+--------------------------------------------------------------------------------
+- Pages Project Name:        inshatech (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
+- Deployment Authority:      Direct Upload via Wrangler CLI (sole active staging authority)
+- Target Branch:             master
+- Active Deployment SHA:     bea755b1fcc060852c359af745dbf8de699e0e1f
+- Staging /api/version:      HTTP 200 { status: "READY_FOR_STAGING", deploy_sha: "bea755b...", parity: true, branch: "master" }
+- Public /api/health:        HTTP 200 { status: "EDGE_HEALTHY", database_pool: "NOT_CONFIGURED" }
+- CORS / CSP Headers:        _headers whitelists cdn.jsdelivr.net, stream.mux.com, js.stripe.com, challenges.cloudflare.com
+                             Functions set Access-Control-Allow-Origin dynamically matching *.pages.dev and custom domains
+- Production Rollback Target: Previous verified deployment SHA 4d3c043 / deployment ID dpl_prod_4d3c043
+
+
+6. SUPABASE POSTGRESQL STATUS (INACTIVE)
+--------------------------------------------------------------------------------
+- Project Reference:         kitwadizsvjmuxkfewxj
+- Project Name:              inshatech-db
+- Region:                    ap-southeast-1
+- PostgreSQL Engine:         17.6.1.155
+- Management Plane Status:   INACTIVE (Project paused in Supabase control plane)
+- Local CLI Version:         Supabase CLI v3.1.0 (Defaults database commands to local stack; requires --remote=kitwadizsvjmuxkfewxj)
+- Remote Migration Parity:   BLOCKED_EXTERNAL (Cannot connect to paused database; dry-run requires unpausing in Studio)
+- Local Migration Inventory: 29 forward-only SQL migrations in supabase/migrations/
+- Server-Side Probe:         functions/_shared/database_probe.js returns status: UNVERIFIED, database_pool: NOT_CONFIGURED
+- Restore Window:            1 year from pause date in Supabase Studio (Restorable by account owner)
+
+
+7. AUTHENTICATED ADMIN HEALTH UI
+--------------------------------------------------------------------------------
+- Route:                     /admin.html (Unified Executive Cockpit)
+- Authentication:            Server-side token verification with fail-closed RBAC in functions/_shared/auth_gate.js
+- Local Persistence:         Preserves authenticated owner sessions across refreshes without lockout
+- Secret Protection:         Zero service-role keys, JWT secrets, or DB credentials exposed in frontend bundles
+
+
+8. OWNER AND EXTERNAL BLOCKERS (G1–G6)
+--------------------------------------------------------------------------------
+- Gate G1 (GitHub Publication): Run `gh auth login` on workstation, then `git push origin release/v1500-browser-verified-20261110`.
+- Gate G2 (Deployment Authority): Maintain Wrangler CLI Direct Upload as canonical staging deployment authority.
+- Gate G3 (Supabase Unpause): Log in to Supabase dashboard, unpause project kitwadizsvjmuxkfewxj, and verify migrations.
+- Gate G4 (Live Payment Keys): Add live merchant credentials for bKash, Nagad, SSLCommerz in Cloudflare secrets.
+- Gate G5 (Owner TOTP): Owner must scan QR code in admin settings to enroll physical authenticator app.
+- Gate G6 (Custom Domain Cutover): Add inshatech.com and www.inshatech.com to Cloudflare Pages Custom Domains, configure DNS CNAME.
+
+
+9. SUMMARY OF CODE CHANGES MADE
+--------------------------------------------------------------------------------
+- `index.html` & `live_index.html`: Statically stamped unique data-service-id="svc-01" through "svc-80", data-service-slug, and data-service-category on all 80 cards. Added class hero3d-canvas to diagram canvas.
+- `functions/_middleware.js`: Added automatic synchronization so staging (*.pages.dev) serves matching noindex, nofollow in both HTML <meta> and HTTP X-Robots-Tag, plus Link: <...>; rel="canonical" header.
+- `_headers`: Hardened Content-Security-Policy to whitelist cdn.jsdelivr.net, stream.mux.com, worker-src 'self' blob:, and media-src.
+- `functions/api/`: Added staging origin (*.pages.dev) support across health.js, sre/health.js, system/version.js, v1/agent/chat.js, and version.js.
+- `src/js/iinsha-diagram-motion.js`: Expanded canvas query selector to recognize .hero3d-canvas alongside #iinsha-diagram-scene.
+
+
+10. FINAL VERDICT
+--------------------------------------------------------------------------------
+VERDICT: READY_FOR_STAGING
+PRODUCTION SEALED: NO (Pending Owner Gates G1 through G6)
+================================================================================

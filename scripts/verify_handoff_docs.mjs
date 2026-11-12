@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 const REQUIRED_FILES = [
+  'docs/IINSHA_FINAL_ENGINEERING_REPORT_2026-11-12.txt',
+  'docs/IINSHA_LIVE_AUDIT_SNAPSHOT_2026-11-12.txt',
+  'docs/IINSHA_OWNER_GATES_CHECKLIST_2026-11-12.txt',
+  'docs/IINSHA_TEST_EVIDENCE_2026-11-12.txt',
+  'docs/IINSHA_DEPLOYMENT_ROLLBACK_RUNBOOK_2026-11-12.txt',
   'docs/IINSHA_FINAL_ENGINEERING_REPORT_2026-11-11.txt',
   'docs/IINSHA_LIVE_AUDIT_SNAPSHOT_2026-11-11.txt',
   'docs/IINSHA_OWNER_GATES_CHECKLIST.txt',
@@ -78,5 +83,5 @@ if (!allPassed) {
   process.exit(1);
 }
 
-console.log('\n[PASS] All 6 handoff documents verified: existence, >0 bytes, UTF-8 clean, non-empty.');
+console.log(`\n[PASS] All ${REQUIRED_FILES.length} handoff documents verified: existence, >0 bytes, UTF-8 clean, non-empty.`);
 process.exit(0);

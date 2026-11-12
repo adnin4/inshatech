@@ -1,0 +1,53 @@
+================================================================================
+IINSHA AI-BOS — DEPLOYMENT & ROLLBACK RUNBOOK (12 NOVEMBER 2026)
+================================================================================
+Target Project:      Cloudflare Pages `inshatech` (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
+Primary Staging Host: https://inshatech-b6b.pages.dev/
+Production Domains:  https://inshatech.com / https://www.inshatech.com
+
+1. DEPLOYMENT INSTRUCTIONS (CANONICAL DIRECT UPLOAD)
+--------------------------------------------------------------------------------
+To deploy a new verified commit to Cloudflare Pages staging:
+```bash
+# 1. Ensure working directory is clean and tests pass
+npm test
+npm run build
+
+# 2. Deploy to master branch on Cloudflare Pages
+npx wrangler pages deploy . --project-name=inshatech --branch=master --commit-hash=<FULL_40_CHAR_SHA> --commit-message="release: <message>" --commit-dirty=false
+
+# 3. Verify deployment identity live
+curl -s https://inshatech-b6b.pages.dev/api/version
+```
+
+2. INSTANT ROLLBACK PROCEDURE
+--------------------------------------------------------------------------------
+If a regression or critical incident occurs on live staging:
+
+Step A: Identify Last Known Good Deployment
+- Target Deployment SHA: 4d3c043130d2208d1685bc0fc878a23075c3b169
+- Previous Deployment SHA: 16c812503ea29fc96105ce3df739ef51a70c3267
+
+Step B: Instant Wrangler CLI Rollback
+Run from local repository:
+```bash
+git checkout 4d3c043130d2208d1685bc0fc878a23075c3b169
+npm run build
+npx wrangler pages deploy . --project-name=inshatech --branch=master --commit-hash=4d3c043130d2208d1685bc0fc878a23075c3b169 --commit-message="rollback: restore known good 4d3c043" --commit-dirty=false
+git checkout master
+```
+
+Step C: Cloudflare Dashboard Rollback (GUI Fallback)
+1. Navigate to Cloudflare Dashboard -> Workers & Pages -> Pages -> `inshatech`.
+2. Go to the "Deployments" tab.
+3. Locate deployment with hash `4d3c043` or `3882b675.inshatech-b6b.pages.dev`.
+4. Click the three dots (...) and select "Rollback to this deployment".
+
+3. DATABASE ROLLBACK PROCEDURE (SEPARATED FROM FRONTEND)
+--------------------------------------------------------------------------------
+Note: A frontend rollback does NOT roll back PostgreSQL database migrations!
+- Always inspect `supabase/migrations/` before running any rollback migration.
+- If a migration must be reverted, author a forward-only compensating migration.
+- Point-in-time recovery (PITR) must be executed from the Supabase Studio dashboard.
+- Always retain daily cold backups of the repository and database exports.
+================================================================================
