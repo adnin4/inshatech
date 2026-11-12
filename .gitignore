@@ -36,3 +36,5 @@ ci-failure-evidence/
 # CLI temp files
 .temp/
 supabase/.temp/
+
+*.bundle

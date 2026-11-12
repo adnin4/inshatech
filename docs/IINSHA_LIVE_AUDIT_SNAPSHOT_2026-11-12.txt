@@ -2,9 +2,9 @@
 IINSHA AI-BOS — LIVE AUDIT SNAPSHOT (12 NOVEMBER 2026)
 ================================================================================
 Target URL:                  https://inshatech-b6b.pages.dev/
-Evaluated Commit SHA:        bea755b1fcc060852c359af745dbf8de699e0e1f
+Evaluated Commit SHA:        6d74b0a584e33b4e3649d35d4b09146311a631a9
 Evaluation Mode:             Headless Chrome CDP + Direct Fetch Instrumentation
-Timestamp:                   2026-11-12T17:55:00.000+06:00 (Asia/Dhaka)
+Timestamp:                   2026-11-12T20:25:00.000+06:00 (Asia/Dhaka)
 
 1. RAW HTTP RESPONSE INSPECTION
 --------------------------------------------------------------------------------

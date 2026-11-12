@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
 Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V1500
-Audit Timestamp: 2026-11-12T19:20:00.000+06:00 (Asia/Dhaka — Machine Clock)
+Audit Timestamp: 2026-11-12T20:25:00.000+06:00 (Asia/Dhaka — Machine Clock)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 Release Boundary & Ceiling: READY_FOR_STAGING
@@ -14,7 +14,7 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - Release Ceiling:           READY_FOR_STAGING
 - Production Sealed:         NOT APPROVED (Requires external owner action on G1–G6)
 - Actual Deployment URL:     https://inshatech-b6b.pages.dev/
-- Staging Preview URLs:      https://c049a5fd.inshatech-b6b.pages.dev / https://da8d5331.inshatech-b6b.pages.dev
+- Staging Preview URLs:      https://1f8d88a0.inshatech-b6b.pages.dev / https://dab12ca1.inshatech-b6b.pages.dev
 - Production Domains State:  inshatech.com & www.inshatech.com currently serve legacy agency site (Cutover pending Owner Gate G6)
 - Application Health:        Liveness: HEALTHY (Edge active at DAC); Readiness: NOT_READY (503 fail-closed pending Supabase unpause)
 - Staging Environment:       staging (Verified: pages.dev host correctly resolved as staging, never falsely claiming production)
@@ -25,13 +25,13 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - GitHub Repository:         adnin4/inshatech (Public)
 - Canonical Default Branch:  master (Latest remote commit: b3de7650b65e388514ca82674654c92241ea8811)
 - Separated Remote Branch:   main (Latest remote commit: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
-- Local Checked-out HEAD:    31e95f796b86ce6ad7c3c68779300a2a28cae538
-- Master Ahead Delta:        Ahead of origin/master by 131 commits (0 behind, direct linear descendant)
-- Main Ahead Delta:          Ahead of origin/main by 133 commits (0 behind)
-- Local Review Branches:     release/v1500-browser-verified-20261110 & release/iinsha-ai-bos-verified-20261112 (Synced to HEAD 31e95f7)
-- Cold Backup Bundle:        inshatech-master-backup-20261112.bundle (78,217,010 bytes)
-- Backup Verification:       git bundle verify -> 121 refs, complete history OK.
-- Complete SHA-256:          9F76C16F6D83A56E8C84E5431E0C2D58D6ECABED8452498A197281E37289C6CB
+- Local Checked-out HEAD:    6d74b0a584e33b4e3649d35d4b09146311a631a9
+- Master Ahead Delta:        Ahead of origin/master by 137 commits (0 behind, direct linear descendant)
+- Main Ahead Delta:          Ahead of origin/main by 139 commits (0 behind)
+- Local Review Branches:     release/v1500-browser-verified-20261110 & release/iinsha-ai-bos-verified-20261112 (Synced to HEAD 6d74b0a)
+- Cold Backup Bundle:        inshatech-master-backup-20261112.bundle (77,862,331 bytes)
+- Backup Verification:       git bundle verify -> 4 refs, complete history OK.
+- Complete SHA-256:          CA932EAA41289969481F595A304DA4B9CF99741DD946D50B2829D046E4860D44
 - Latest General CI Run ID:  #42506647860 on cd760c39c6985d75eaf01d900d8e85b1705d9a00 (Conclusion: SUCCESS, PR #71 Validation)
 - Latest Master CI Run:      #34454052436 on b3de765... (Conclusion: SUCCESS)
 - Historical Master Gate:    Run #34454052445 failed deployment identity verification because it expected b3de765... while legacy URL returned 45ee4c.../main.
@@ -90,9 +90,9 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - Pages Project Name:        inshatech (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
 - Deployment Authority:      Direct Upload via Wrangler CLI (sole active staging authority)
 - Target Branch:             master
-- Active Deployment SHA:     bea755b1fcc060852c359af745dbf8de699e0e1f
-- Staging /api/version:      HTTP 200 { status: "READY_FOR_STAGING", deploy_sha: "bea755b...", parity: true, branch: "master" }
-- Public /api/health:        HTTP 200 { status: "EDGE_HEALTHY", database_pool: "NOT_CONFIGURED" }
+- Active Deployment SHA:     6d74b0a584e33b4e3649d35d4b09146311a631a9
+- Staging /api/version:      HTTP 200 { status: "READY_FOR_STAGING", deploy_sha: "6d74b0a...", parity: true, branch: "master", environment: "staging" }
+- Public /api/health:        HTTP 200 { status: "EDGE_HEALTHY", database_pool: "NOT_CONFIGURED", liveness: "HEALTHY", readiness: "NOT_READY" }
 - CORS / CSP Headers:        _headers whitelists cdn.jsdelivr.net, stream.mux.com, js.stripe.com, challenges.cloudflare.com
                              Functions set Access-Control-Allow-Origin dynamically matching *.pages.dev and custom domains
 - Production Rollback Target: Previous verified deployment SHA 4d3c043 / deployment ID dpl_prod_4d3c043
@@ -115,14 +115,14 @@ Zero False-Green Policy: STRICTLY ENFORCED
 7. AUTHENTICATED ADMIN HEALTH UI
 --------------------------------------------------------------------------------
 - Route:                     /admin.html (Unified Executive Cockpit)
-- Authentication:            Server-side token verification with fail-closed RBAC in functions/_shared/auth_gate.js
-- Local Persistence:         Preserves authenticated owner sessions across refreshes without lockout
+- Authentication:            Server-side token verification with fail-closed RBAC in functions/_shared/auth_gate.js and functions/api/auth/session.js (salted PBKDF2-HMAC-SHA256, 600,000 iterations)
+- Security Coordinator:      functions/_shared/security_coordinator.js Durable Object for strongly consistent immediate token revocation and hardware killswitch
 - Secret Protection:         Zero service-role keys, JWT secrets, or DB credentials exposed in frontend bundles
 
 
 8. OWNER AND EXTERNAL BLOCKERS (G1–G6)
 --------------------------------------------------------------------------------
-- Gate G1 (GitHub Publication): Run `gh auth login` on workstation, then `git push origin release/v1500-browser-verified-20261110`.
+- Gate G1 (GitHub Publication): Run `gh auth login` on workstation, then `git push origin release/iinsha-ai-bos-verified-20261112`.
 - Gate G2 (Deployment Authority): Maintain Wrangler CLI Direct Upload as canonical staging deployment authority.
 - Gate G3 (Supabase Unpause): Log in to Supabase dashboard, unpause project kitwadizsvjmuxkfewxj, and verify migrations.
 - Gate G4 (Live Payment Keys): Add live merchant credentials for bKash, Nagad, SSLCommerz in Cloudflare secrets.
@@ -133,10 +133,13 @@ Zero False-Green Policy: STRICTLY ENFORCED
 9. SUMMARY OF CODE CHANGES MADE
 --------------------------------------------------------------------------------
 - `index.html` & `live_index.html`: Statically stamped unique data-service-id="svc-01" through "svc-80", data-service-slug, and data-service-category on all 80 cards. Added class hero3d-canvas to diagram canvas.
-- `functions/_middleware.js`: Added automatic synchronization so staging (*.pages.dev) serves matching noindex, nofollow in both HTML <meta> and HTTP X-Robots-Tag, plus Link: <...>; rel="canonical" header.
-- `_headers`: Hardened Content-Security-Policy to whitelist cdn.jsdelivr.net, stream.mux.com, worker-src 'self' blob:, and media-src.
-- `functions/api/`: Added staging origin (*.pages.dev) support across health.js, sre/health.js, system/version.js, v1/agent/chat.js, and version.js.
-- `src/js/iinsha-diagram-motion.js`: Expanded canvas query selector to recognize .hero3d-canvas alongside #iinsha-diagram-scene.
+- `admin.html`, `store.html`, `affiliate.html`, `portal.html`, `sitemap.xml`, `robots.txt`: Synchronized canonical URLs, OpenGraph URLs, Twitter URLs, and structured schema links to target staging host https://inshatech-b6b.pages.dev/.
+- `functions/api/auth/session.js`: Strictly enforced OWASP-standard PBKDF2-HMAC-SHA256 KDF (600,000 iterations), rejecting legacy unsalted fast-hash SHA-256 attempts.
+- `functions/_shared/security_coordinator.js`: Added Durable Object coordinator for strongly consistent immediate token revocation, system lockdown killswitch, and MFA replay prevention.
+- `functions/api/payments/providers/sslcommerz.js`: Added fail-closed 403 onRequest export to prevent unhandled routing errors on Cloudflare Pages direct HTTP invocations.
+- `scripts/total_defect_scanner.mjs`: Certified 0 defects across 176 functions, 23 HTML files, and 157 JSON files.
+- `scripts/ci_evidence_runner.mjs`: 28 of 28 test suites registered and passing (100% green).
+- `scripts/verify_final_release_browser.mjs`: Verified 6 viewports in headless Chrome via CDP with 0 overflow, 1 H1, 80 cards, WebGL2 active, and 0 console errors.
 
 
 10. FINAL VERDICT
