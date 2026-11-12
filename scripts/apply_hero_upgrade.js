@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const baseDir = path.resolve('C:/Users/mahin khan/.gemini/antigravity/scratch/portfolio-showcase');
+const baseDir = process.env.GITHUB_WORKSPACE || process.cwd();
 
 // 1. UPDATE style.css
 const cssToAdd = `

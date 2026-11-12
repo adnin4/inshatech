@@ -8,7 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import { JSDOM } from 'jsdom';
 
-const baseDir = path.resolve('C:/Users/mahin khan/.gemini/antigravity/scratch/portfolio-showcase');
+const baseDir = process.env.GITHUB_WORKSPACE || process.cwd();
 
 let passedTests = 0;
 let totalTests = 0;
