@@ -6424,24 +6424,26 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 
                 <form onsubmit="handleCheckoutFormSubmit(event)" style="display:flex; flex-direction:column; gap:14px; margin-bottom:16px;">
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR FULL NAME</label>
+                        <label for="chk-name" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR FULL NAME</label>
                         <input type="text" id="chk-name" required placeholder="e.g. Adnin Sadat Mahin" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
                     </div>
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR WORK EMAIL</label>
+                        <label for="chk-email" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR WORK EMAIL</label>
                         <input type="email" id="chk-email" required placeholder="name@company.com" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
                     </div>
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
+                        <label for="chk-method" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
                         <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #ffffff; color:#fff; border-radius:8px; font-weight:bold;">
+                            <option value="sslcommerz">🏦 SSLCommerz BD (bKash, Nagad, Rocket & Cards)</option>
                             <option value="lemonsqueezy">💳 Lemon Squeezy (Global Visa / Mastercard / Apple Pay)</option>
                             <option value="stripe">💳 Stripe Official Checkout (Global Credit/Debit Cards)</option>
-                            <option value="bkash">📱 bKash Merchant / Direct Transfer (Bangladesh)</option>
-                            <option value="nagad">📱 Nagad Direct Transfer (Bangladesh)</option>
-                            <option value="bank">🏛️ City Bank PLC Wire Transfer</option>
+                            <option value="bkash">📱 bKash Tokenized Checkout (Bangladesh)</option>
+                            <option value="nagad-manual">📱 Nagad Manual Transfer (WhatsApp Confirmation)</option>
+                            <option value="bank-manual">🏛️ City Bank PLC Wire Transfer (Manual Verification)</option>
                         </select>
                     </div>
-                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #e2e8f0, #0ea5e9); color:#fff; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
+                    <div id="chk-status-banner" style="display:none; padding:10px 12px; border-radius:8px; font-size:0.82rem; line-height:1.45; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.45); color:#fde68a;"></div>
+                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #e2e8f0, #0ea5e9); color:#020617; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
                 </form>
 
                 <div style="text-align:center; font-size:0.75rem; color:#94a3b8;">
@@ -6467,17 +6469,30 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 async function handleCheckoutFormSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('chk-submit-btn');
+    const banner = document.getElementById('chk-status-banner');
+    const showBanner = (msg) => {
+        if (banner) {
+            banner.textContent = msg;
+            banner.style.display = 'block';
+        }
+    };
+    if (banner) banner.style.display = 'none';
     if (btn) { btn.disabled = true; btn.innerText = '⏳ Initializing Secure Gateway...'; }
 
     const name = document.getElementById('chk-name') ? (document.getElementById('chk-name').value || 'Valued Client') : 'Valued Client';
     const email = document.getElementById('chk-email') ? (document.getElementById('chk-email').value || 'client@inshatech.com') : 'client@inshatech.com';
-    const method = document.getElementById('chk-method') ? document.getElementById('chk-method').value : 'lemonsqueezy';
+    const method = document.getElementById('chk-method') ? document.getElementById('chk-method').value : 'sslcommerz';
     const pkgEl = document.getElementById('checkout-pkg-title');
     const pkg = pkgEl ? pkgEl.textContent : 'AI Automation Package';
-    
+
     const priceEl = document.getElementById('checkout-setup-val');
     const priceTxt = priceEl ? priceEl.textContent : '100';
     const numPrice = parseInt(priceTxt.replace(/[^0-9]/g, ''), 10) || 100;
+
+    if (method === 'nagad-manual' || method === 'bank-manual') {
+        window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to arrange manual transfer (${method}) for ${pkg} ($${numPrice} USD). Email: ${email}`)}`;
+        return;
+    }
 
     try {
         const res = await fetch('/api/payments/checkout', {
@@ -6486,34 +6501,28 @@ async function handleCheckoutFormSubmit(e) {
             body: JSON.stringify({
                 service_id: 'b2b-lead-swarm',
                 package_name: pkg,
-                amount: numPrice,
                 customer_name: name,
                 customer_email: email,
                 payment_provider: method
             })
         });
 
-        const data = await res.json();
-        if (data.redirect_url) {
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.redirect_url) {
             window.location.href = data.redirect_url;
             return;
-        } else if (data.gateway && data.gateway.checkout_url) {
+        }
+        if (res.ok && data.gateway && data.gateway.checkout_url) {
             window.location.href = data.gateway.checkout_url;
             return;
-        } else if (method === 'lemonsqueezy') {
-            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
-            return;
-        } else if (data.whatsapp_instant_order) {
-            window.location.href = data.whatsapp_instant_order;
-            return;
-        } else {
-            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I created order for ${pkg} ($${numPrice} USD via ${method}). Please confirm payment.`)}`;
         }
-    } catch (err) {
-        if (method === 'lemonsqueezy') {
-            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
-        } else {
-            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to order ${pkg} ($${numPrice} USD via ${method}).`)}`;
+        showBanner(data.message || `Gateway initialization paused (${res.status}). Use SSLCommerz or contact support after gateway secrets and database readiness are active.`);
+    } catch (_) {
+        showBanner('Unable to reach /api/payments/checkout right now. Please verify connectivity or select manual WhatsApp confirmation.');
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = '⚡ Proceed to Instant Secure Payment';
         }
     }
 }

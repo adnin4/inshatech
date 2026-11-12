@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA AI-BOS — DEPLOYMENT & ROLLBACK RUNBOOK (12 NOVEMBER 2026)
 ================================================================================
-Updated:             2026-11-12T21:50:00+06:00 (Asia/Dhaka)
+Updated:             2026-11-12T23:20:00+06:00 (Asia/Dhaka)
 Target Project:      Cloudflare Pages `inshatech` (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
 Primary Staging Host: https://inshatech-b6b.pages.dev/
 Production Domains:  https://inshatech.com / https://www.inshatech.com (Pending Gate G6)
@@ -16,23 +16,26 @@ Step 1 (Gate G1): Push audited commits from workstation after `gh auth login`:
   git push origin release/iinsha-ai-bos-verified-20261112
   # After PR approval, merge/publish to master
 
-Step 2 (CI Staging Direct Upload):
-  Workflow stages `dist-pages/` using exact exclusions (`.assetsignore`), generates
-  SHA-256 `release-manifest.json`, deploys via pinned `wrangler@4.16.1`:
+Step 2 (CI Staging Direct Upload + DO Worker):
+  Deploy Durable Object authority worker (staging):
+    npx wrangler deploy --config workers/security-coordinator/wrangler.toml --env staging
+  Stage & verify Pages deploy artifact via `node scripts/verify_deploy_artifact.mjs`
+  (stages clean files into `dist-pages/`, enforces 0 forbidden files via `.assetsignore`,
+  generates SHA-256 `release-manifest.json`), then deploys via pinned `wrangler@4.16.1`:
     npx wrangler pages deploy dist-pages --project-name=inshatech --branch=master --commit-hash=<40-char SHA> --commit-dirty=false
-  Then validates `/api/version` reports `environment: "staging"`, `dpl_staging_`,
+  Then validate `/api/version` reports `environment: "staging"`, `dpl_staging_`,
   and `/api/health?type=readiness` returns HTTP 503 (while DB inactive) or 200 (once DB active).
 
 Step 3 (Gate G6 Manual Production Promotion):
   Requires passing Gates G1–G5 + GitHub `production` environment manual approval
-  + verified HTTP 200 database readiness before uploading the identical staged
-  artifact with `--branch=production`.
+  + DO Worker production deploy (`--env production`) + verified HTTP 200 database readiness
+  before uploading the identical staged artifact with `--branch=production`.
 
 2. INSTANT STAGING ROLLBACK PROCEDURE
 --------------------------------------------------------------------------------
 Target Known-Good Fallback SHAs:
-- Live deployed baseline prior to v3.0 fixes: 74d90b14143e936587153464557a7e6d0f35fb9c
-- Earlier verified fallback baseline:       4d3c043130d2208d1685bc0fc878a23075c3b169
+- Live deployed baseline prior to v3.0/v4.0 fixes: 74d90b14143e936587153464557a7e6d0f35fb9c
+- Earlier verified fallback baseline:            4d3c043130d2208d1685bc0fc878a23075c3b169
 
 CLI / Dashboard Rollback:
 - Via Cloudflare Dashboard: Workers & Pages -> Pages -> `inshatech` -> Deployments -> Rollback to target deployment.

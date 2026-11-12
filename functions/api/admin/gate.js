@@ -3,7 +3,7 @@
  * Serves /api/admin/gate to verify server-side session validity before allowing UI or privileged access.
  */
 
-import { getCorsHeaders, verifyServerSession } from '../../_shared/auth_gate.js';
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
@@ -17,8 +17,7 @@ export async function onRequestGet(context) {
         });
 
         if (!auth.authorized) {
-            const httpStatus = auth.status === 'CONFIGURATION_ERROR' ? 503 :
-                               auth.status === 'PRIVILEGE_REJECTED' || auth.status === 'HIERARCHY_REJECTED' ? 403 : 401;
+            const httpStatus = httpStatusForAuthError(auth.status);
             return new Response(JSON.stringify({
                 authenticated: false,
                 status: auth.status,

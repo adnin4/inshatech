@@ -1,5 +1,12 @@
 import { onRequestPost as checkoutPost } from '../functions/api/payments/checkout.js';
-import { onRequestPost as webhookPost } from '../functions/api/payments/webhook.js';
+import { onRequestGet as webhookGet, onRequestPost as webhookPost } from '../functions/api/payments/webhook.js';
+import { onRequestGet as returnGet } from '../functions/api/payments/return.js';
+import { onRequest as paymentMiddleware } from '../functions/api/payments/_middleware.js';
+import { onRequest as sslValidateHandler } from '../functions/api/payments/sslcommerz/validate.js';
+import { onRequestPost as legacyStripePost } from '../functions/api/payments/stripe.js';
+import { onRequestPost as legacyBkashExecutePost } from '../functions/api/payments/bkash/execute.js';
+import { onRequestPost as lemonWebhookPost } from '../functions/api/payments/lemonsqueezy/webhook.js';
+import { resolveTrustedBaseUrl, resolveRuntimeEnvironment, isApprovedProductionHost } from '../functions/_shared/origin_policy.js';
 import { SSLCommerzAdapter, computeMd5 } from '../functions/_shared/payments/sslcommerz.js';
 
 let passed = 0;
@@ -721,6 +728,135 @@ async function runAdversarialSuite() {
         } finally {
             globalThis.fetch = originalFetch;
         }
+    }
+
+    // -------------------------------------------------------------------------
+    // SUITE 6: Callback Host Injection, Environment Isolation & Legacy Bypass
+    // -------------------------------------------------------------------------
+    {
+        console.log('\n--- SUITE 6: Host Injection & Legacy Bypass Guardrails ---');
+
+        const forgedHostReq = new Request('https://evil-attacker.com/api/payments/checkout');
+        assert(
+            resolveTrustedBaseUrl(forgedHostReq, {}) === 'https://inshatech-b6b.pages.dev',
+            'Untrusted Request origin fails closed to https://inshatech-b6b.pages.dev'
+        );
+
+        const forgedPagesReq = new Request('https://evil-tenant.pages.dev/api/payments/checkout');
+        assert(
+            resolveTrustedBaseUrl(forgedPagesReq, {}) === 'https://inshatech-b6b.pages.dev',
+            'Arbitrary third-party *.pages.dev origin fails closed'
+        );
+
+        const forgedEnvAppUrl = resolveTrustedBaseUrl(
+            new Request('https://inshatech-b6b.pages.dev/api/payments/checkout'),
+            { APP_URL: 'https://evil-redirect.example' }
+        );
+        assert(
+            forgedEnvAppUrl === 'https://inshatech-b6b.pages.dev',
+            'Untrusted APP_URL env override cannot hijack callback base URL'
+        );
+
+        const trustedPreviewReq = new Request('https://abc123.inshatech-b6b.pages.dev/api/payments/return?order_id=ORD-1');
+        assert(
+            resolveTrustedBaseUrl(trustedPreviewReq, {}) === 'https://abc123.inshatech-b6b.pages.dev',
+            'Valid preview deployment origin is preserved cleanly'
+        );
+
+        const prodReqWithStagingEnv = new Request('https://inshatech.com/api/version');
+        assert(
+            resolveRuntimeEnvironment(prodReqWithStagingEnv, { ENVIRONMENT: 'staging' }) === 'production',
+            'Verified custom production host resolves to production even if static ENVIRONMENT=staging leaks'
+        );
+        assert(
+            isApprovedProductionHost(prodReqWithStagingEnv) === true &&
+            isApprovedProductionHost(new Request('https://inshatech-b6b.pages.dev/api/checkout')) === false,
+            'isApprovedProductionHost strictly separates inshatech.com from staging .pages.dev'
+        );
+
+        // Open-redirect protection on return, webhook GET, middleware, and sslcommerz validate
+        const evilReturnRes = await returnGet({
+            request: new Request('https://attacker.com/api/payments/return?order_id=ORD-REDIRECT-01&status=success', {
+                method: 'GET',
+                headers: { Accept: 'text/html' }
+            }),
+            env: {}
+        });
+        assert(
+            evilReturnRes.status === 302 && (evilReturnRes.headers.get('Location') || '').startsWith('https://inshatech-b6b.pages.dev/portal'),
+            '/api/payments/return rejects forged host origin on 302 Location redirect'
+        );
+
+        const evilWebhookGetRes = await webhookGet({
+            request: new Request('https://attacker.com/api/payments/webhook?order_id=ORD-12345678&status=success', {
+                method: 'GET'
+            }),
+            env: {}
+        });
+        assert(
+            evilWebhookGetRes.status === 303 && (evilWebhookGetRes.headers.get('Location') || '').startsWith('https://inshatech-b6b.pages.dev/api/payments/return'),
+            '/api/payments/webhook GET rejects forged host origin on 303 Location redirect'
+        );
+
+        const evilMwRes = await paymentMiddleware({
+            request: new Request('https://attacker.com/api/payments/webhook?order_id=ORD12345678', { method: 'GET' }),
+            env: {},
+            next: () => new Response('UNEXPECTED')
+        });
+        assert(
+            evilMwRes.status === 302 && (evilMwRes.headers.get('Location') || '').startsWith('https://inshatech-b6b.pages.dev/api/payments/return'),
+            '/api/payments/_middleware rejects forged host origin'
+        );
+
+        const sslValRes = await sslValidateHandler({
+            request: new Request('https://attacker.com/api/payments/sslcommerz/validate?tran_id=ORD-1', { method: 'GET' }),
+            env: {}
+        });
+        assert(
+            sslValRes.status === 302 && (sslValRes.headers.get('Location') || '').startsWith('https://inshatech-b6b.pages.dev/api/payments/return'),
+            '/api/payments/sslcommerz/validate rejects forged host origin'
+        );
+
+        // Legacy direct/simulated routes must refuse client amounts and forged origins
+        const legacyStripeRes = await legacyStripePost({
+            request: new Request('https://inshatech-b6b.pages.dev/api/payments/stripe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Origin: 'https://evil-attacker.com' },
+                body: JSON.stringify({ action: 'confirm_intent', amount_usd: 1 })
+            })
+        });
+        const legacyStripeJson = await legacyStripeRes.json();
+        assert(
+            legacyStripeRes.status === 400 && legacyStripeJson.status === 'DIRECT_AMOUNT_DISABLED' &&
+            legacyStripeRes.headers.get('Access-Control-Allow-Origin') === 'https://inshatech-b6b.pages.dev',
+            'Legacy /api/payments/stripe rejects simulated confirmation with 400 DIRECT_AMOUNT_DISABLED & strict CORS'
+        );
+
+        const legacyBkashRes = await legacyBkashExecutePost({
+            request: new Request('https://inshatech-b6b.pages.dev/api/payments/bkash/execute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ paymentID: 'FAKE' })
+            })
+        });
+        assert(
+            legacyBkashRes.status === 400,
+            'Legacy /api/payments/bkash/execute rejects simulated completion with 400 DIRECT_AMOUNT_DISABLED'
+        );
+
+        // Lemon Squeezy webhook fails closed when secret is missing
+        const lemonNoSecretRes = await lemonWebhookPost({
+            request: new Request('https://inshatech-b6b.pages.dev/api/payments/lemonsqueezy/webhook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ meta: { event_name: 'order_paid', custom_data: { order_id: 'ORD-1' } } })
+            }),
+            env: {}
+        });
+        assert(
+            lemonNoSecretRes.status === 503,
+            'Lemon Squeezy webhook fails closed (HTTP 503) when LEMONSQUEEZY_WEBHOOK_SECRET is missing'
+        );
     }
 
     console.log('\n================================================================================');

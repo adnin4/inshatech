@@ -198,9 +198,9 @@
                     </div>
                 </div>
                 <form id="chk-form" onsubmit="window.IINSHA_ENTERPRISE.submitCheckout(event)" style="display: flex; flex-direction: column; gap: 10px;">
-                    <input type="text" id="chk-name" placeholder="Your Full Name / Company" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
-                    <input type="email" id="chk-email" placeholder="Your Work Email (for deliverables)" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
-                    <input type="text" id="chk-phone" placeholder="WhatsApp / Phone Number" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
+                    <input type="text" id="chk-name" aria-label="Full Name or Company" placeholder="Your Full Name / Company" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
+                    <input type="email" id="chk-email" aria-label="Work Email Address" placeholder="Your Work Email (for deliverables)" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
+                    <input type="text" id="chk-phone" aria-label="WhatsApp or Phone Number" placeholder="WhatsApp / Phone Number" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
                     <button type="submit" id="chk-submit-btn" style="margin-top: 6px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-weight: 800; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.95rem;">
                         🚀 Confirm & Complete Order →
                     </button>
@@ -228,11 +228,11 @@
                 <form onsubmit="window.IINSHA_ENTERPRISE.submitAuth(event)" style="display: flex; flex-direction: column; gap: 12px;">
                     <div>
                         <label style="font-size: 0.75rem; color: #94a3b8; display: block; margin-bottom: 4px;">AUTHORIZED EMAIL / IDENTIFIER:</label>
-                        <input type="email" id="auth-email" placeholder="client@company.com" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
+                        <input type="email" id="auth-email" aria-label="Authorized Email or Identifier" placeholder="client@company.com" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
                     </div>
                     <div>
                         <label style="font-size: 0.75rem; color: #94a3b8; display: block; margin-bottom: 4px;">ACCESS KEY / SECRET PASSWORD:</label>
-                        <input type="password" id="auth-password" placeholder="••••••••••••" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
+                        <input type="password" id="auth-password" aria-label="Access Key or Secret Password" placeholder="••••••••••••" required style="width: 100%; background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 12px; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box;">
                     </div>
                     <button type="submit" style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; color: #fff; font-weight: 800; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; margin-top: 4px;">
                         Authenticate Session →

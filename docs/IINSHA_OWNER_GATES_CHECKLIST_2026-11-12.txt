@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA AI-BOS — OWNER GATES CHECKLIST (12 NOVEMBER 2026)
 ================================================================================
-Baseline Timestamp: 2026-11-12T21:50:00+06:00 (Asia/Dhaka)
+Baseline Timestamp: 2026-11-12T23:20:00+06:00 (Asia/Dhaka)
 The following 6 Owner Gates require external credentials, control-plane access,
 or physical MFA confirmation from the owner before production promotion can proceed.
 
@@ -15,14 +15,14 @@ GATE G1: GITHUB CLI AUTHENTICATION & BRANCH PUBLICATION
      `git push origin release/iinsha-ai-bos-verified-20261112`
   3. After PR review/merge approval, publish `master` and configure GitHub Actions secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`).
 
-GATE G2: CLOUDFLARE DEPLOYMENT AUTHORITY & SECRETS BINDING
+GATE G2: CLOUDFLARE DEPLOYMENT AUTHORITY, DO WORKER & SECRETS BINDING
 --------------------------------------------------------------------------------
-- Status:            BLOCKED_EXTERNAL (CI workflow added locally; staging secrets empty)
-- Evidence:          `npx wrangler pages project list` confirms project `inshatech` (`Git Provider: No`, Direct Upload). `npx wrangler pages secret list --project-name=inshatech` shows ZERO secrets configured. Local `.github/workflows/release-direct-upload.yml` & `.assetsignore` added.
+- Status:            BLOCKED_EXTERNAL (CI workflow & DO Worker added locally; staging secrets empty)
+- Evidence:          `npx wrangler pages project list` confirms project `inshatech` (`Git Provider: No`, Direct Upload). `npx wrangler pages secret list --project-name=inshatech` shows ZERO secrets configured. Local `workers/security-coordinator/`, `.github/workflows/release-direct-upload.yml`, `scripts/verify_deploy_artifact.mjs`, & `.assetsignore` added.
 - Owner Action:
   1. Keep Git auto-deploy disabled; run Direct Upload via `.github/workflows/release-direct-upload.yml`.
   2. Configure required runtime secrets via Wrangler (`ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET`, `MFA_SECRET`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`).
-  3. Optionally deploy/bind a standalone Cloudflare Worker DO if cross-isolate Durable Object `SECURITY_COORDINATOR` persistence or `REVOCATION_KV` binding is required.
+  3. Deploy standalone Durable Object Worker (`workers/security-coordinator/wrangler.toml`) for staging/production (`npx wrangler deploy --env staging` / `--env production`) and bind `SECURITY_COORDINATOR` DO namespace in Cloudflare Pages settings.
 
 GATE G3: SUPABASE DATABASE RECOVERY & MIGRATION PARITY
 --------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ GATE G3: SUPABASE DATABASE RECOVERY & MIGRATION PARITY
 GATE G4: PAYMENT GATEWAY MERCHANT CREDENTIALS & SANDBOX TESTS
 --------------------------------------------------------------------------------
 - Status:            BLOCKED_EXTERNAL
-- Evidence:          All 4 active providers (`sslcommerz`, `lemonsqueezy`, `bkash`, `stripe`) lack live merchant secrets in Cloudflare (`GATEWAY_CREDENTIALS_REQUIRED` 422). Nagad is NOT implemented in `SUPPORTED_PROVIDERS` and must stay unadvertised as an active gateway until implemented and tested.
+- Evidence:          All 4 active providers (`sslcommerz`, `lemonsqueezy`, `bkash`, `stripe`) lack live merchant secrets in Cloudflare (`GATEWAY_CREDENTIALS_REQUIRED` 422; `LEMONSQUEEZY_WEBHOOK_SECRET` fail-closed 503). Nagad is NOT implemented in `SUPPORTED_PROVIDERS` and must stay unadvertised as an active gateway until implemented and tested.
 - Owner Action:
   1. Provision sandbox credentials first in staging (`SSLCOMMERZ_STORE_ID`, `SSLCOMMERZ_STORE_PASSWORD`, `SSLCOMMERZ_IS_LIVE=false`, plus Stripe/LemonSqueezy/bKash keys).
   2. Run end-to-end sandbox checkout + signed IPN webhook verification against live staging DB before enabling `SSLCOMMERZ_IS_LIVE=true` on custom production domain.

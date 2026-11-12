@@ -676,7 +676,7 @@
                     </p>
 
                     <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
-                        <input type="text" id="terminal-target-url" value="https://example-ecom-store.com/products" class="dash-select" style="flex: 1; min-width: 260px; font-family: var(--font-mono, monospace); font-size: 0.9rem; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #fff; outline: none;" placeholder="https://target-website.com">
+                        <input type="text" id="terminal-target-url" aria-label="Terminal Target Website URL" value="https://example-ecom-store.com/products" class="dash-select" style="flex: 1; min-width: 260px; font-family: var(--font-mono, monospace); font-size: 0.9rem; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #fff; outline: none;" placeholder="https://target-website.com">
                         <button id="btn-run-terminal-test" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981, #047857); font-weight: 800; padding: 12px 24px; border-radius: 9999px; color: #fff; border: 1px solid rgba(16, 185, 129, 0.4); cursor: pointer;">▶ Execute Pipeline Test</button>
                         <button id="canvas-run-test-btn" class="btn btn-glass-sm" style="display:none;">Run Canvas</button>
                     </div>
@@ -736,7 +736,7 @@
                                 <span style="color:#a7adc4;">Team Members on Repetitive Tasks:</span>
                                 <strong id="calc-clients-val" style="color:#38bdf8; font-family:var(--font-mono, monospace);">5 People</strong>
                             </div>
-                            <input type="range" id="calc-clients-slider" min="1" max="50" value="5" style="width:100%; accent-color:#38bdf8;">
+                            <input type="range" id="calc-clients-slider" aria-label="Team Members on Repetitive Tasks" min="1" max="50" value="5" style="width:100%; accent-color:#38bdf8;">
                         </div>
 
                         <div style="margin-bottom: 18px;">
@@ -744,7 +744,7 @@
                                 <span style="color:#a7adc4;">Manual Hours Spent Per Week / Person:</span>
                                 <strong id="calc-retainer-val" style="color:#c084fc; font-family:var(--font-mono, monospace);">15 hrs / wk</strong>
                             </div>
-                            <input type="range" id="calc-retainer-slider" min="2" max="40" value="15" style="width:100%; accent-color:#c084fc;">
+                            <input type="range" id="calc-retainer-slider" aria-label="Manual Hours Spent Per Week Per Person" min="2" max="40" value="15" style="width:100%; accent-color:#c084fc;">
                         </div>
 
                         <div style="margin-bottom: 22px;">
@@ -752,7 +752,7 @@
                                 <span style="color:#a7adc4;">Average Hourly Team Cost ($ / hr):</span>
                                 <strong id="calc-deal-val" style="color:#34d399; font-family:var(--font-mono, monospace);">$35 / hr</strong>
                             </div>
-                            <input type="range" id="calc-deal-slider" min="15" max="150" value="35" style="width:100%; accent-color:#34d399;">
+                            <input type="range" id="calc-deal-slider" aria-label="Average Hourly Team Cost in USD" min="15" max="150" value="35" style="width:100%; accent-color:#34d399;">
                         </div>
 
                         <button id="calculate-roi-btn" class="btn btn-primary idg-button-primary" style="width:100%; padding:12px; font-weight:750; border-radius:9999px;">
@@ -1166,7 +1166,7 @@
 
                 <span style="font-size:1.2rem;">🔍 </span>
 
-                <input type="text" id="cmd-search-input" placeholder="Type a command or search services, blueprints, marketplace... (Esc to close)" class="cmd-search-input">
+                <input type="text" id="cmd-search-input" aria-label="Command and service search" placeholder="Type a command or search services, blueprints, marketplace... (Esc to close)" class="cmd-search-input">
 
                 <span class="cmd-kbd">ESC</span>
 
@@ -1385,9 +1385,9 @@
 
                 </p>
 
-                <input type="text" id="pay-bkash-num" placeholder="Your bKash / Nagad Number (+880...)" class="dash-select" style="margin-bottom: 10px; width: 100%;">
+                <input type="text" id="pay-bkash-num" aria-label="bKash or Nagad Phone Number" placeholder="Your bKash / Nagad Number (+880...)" class="dash-select" style="margin-bottom: 10px; width: 100%;">
 
-                <input type="text" id="pay-bkash-trxid" placeholder="Transaction ID (TrxID)" class="dash-select" style="margin-bottom: 14px; width: 100%;">
+                <input type="text" id="pay-bkash-trxid" aria-label="Transaction ID (TrxID)" placeholder="Transaction ID (TrxID)" class="dash-select" style="margin-bottom: 14px; width: 100%;">
 
             </div>
 
@@ -1397,9 +1397,9 @@
 
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Pay securely via Visa / MasterCard:</p>
 
-                <input type="text" id="pay-card-name" placeholder="Cardholder Name" class="dash-select" style="margin-bottom: 10px; width: 100%;">
+                <input type="text" id="pay-card-name" aria-label="Cardholder Name" placeholder="Cardholder Name" class="dash-select" style="margin-bottom: 10px; width: 100%;">
 
-                <input type="text" id="pay-card-num" placeholder="Card Number (4000 1234 5678 9010)" class="dash-select" style="margin-bottom: 10px; width: 100%;">
+                <input type="text" id="pay-card-num" aria-label="Card Number" placeholder="Card Number (4000 1234 5678 9010)" class="dash-select" style="margin-bottom: 10px; width: 100%;">
 
             </div>
 
@@ -1455,7 +1455,7 @@
 
                 <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Primary Technical Barrier:</label>
 
-                <select id="readiness-barrier-select" class="dash-select" style="width: 100%;">
+                <select id="readiness-barrier-select" aria-label="Primary Technical Barrier" class="dash-select" style="width: 100%;">
 
                     <option value="manual">Manual Data Entry & Copy-Pasting</option>
 
@@ -1519,7 +1519,7 @@
 
                 <label style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Enter Automation Prompt:</label>
 
-                <input type="text" id="playground-prompt-input" value="Scrape product listings from e-commerce sites and push price drop alerts to Telegram" class="dash-select" style="width: 100%;">
+                <input type="text" id="playground-prompt-input" aria-label="Automation Prompt" value="Scrape product listings from e-commerce sites and push price drop alerts to Telegram" class="dash-select" style="width: 100%;">
 
             </div>
 
@@ -1527,9 +1527,9 @@
 
             <div style="margin-bottom: 16px;">
 
-                <label style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Select LLM Model / Engine:</label>
+                <label for="playground-model-select" style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Select LLM Model / Engine:</label>
 
-                <select id="playground-model-select" class="dash-select" style="width: 100%;">
+                <select id="playground-model-select" aria-label="Select LLM Model or Engine" class="dash-select" style="width: 100%;">
 
                     <option value="gemini">Gemini 2.5 Flash Vision (Google)</option>
 
@@ -1669,7 +1669,7 @@
 
         <div class="chatbot-input-area">
 
-            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Type your message...">
+            <input type="text" id="chatbot-input" aria-label="Chatbot Message Input" class="chatbot-input" placeholder="Type your message...">
 
             <button id="chatbot-send-btn" class="chatbot-send-btn">Send</button>
 

@@ -4,7 +4,7 @@
  * Protected by server session authorization and enforces idempotency.
  */
 
-import { getCorsHeaders, verifyServerSession } from '../../_shared/auth_gate.js';
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
 
 export const VALID_ORDER_TRANSITIONS = {
     'DRAFT': ['PENDING_PAYMENT', 'CANCELLED'],
@@ -42,7 +42,7 @@ export async function onRequestPost(context) {
         });
 
         if (!auth.authorized) {
-            const httpStatus = auth.status === 'CONFIGURATION_ERROR' ? 503 : 401;
+            const httpStatus = httpStatusForAuthError(auth.status);
             return new Response(JSON.stringify({
                 status: auth.status,
                 error: auth.error || 'Authorization required for order state mutation'

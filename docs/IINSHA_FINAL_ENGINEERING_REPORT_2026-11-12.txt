@@ -1,7 +1,7 @@
 ================================================================================
 IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
-Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V30
-Audit Timestamp: 2026-11-12T21:50:00+06:00 (Asia/Dhaka — Machine Clock)
+Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V40
+Audit Timestamp: 2026-11-12T23:20:00+06:00 (Asia/Dhaka — Machine Clock)
 Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
 Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
 Release Boundary & Ceiling: READY_FOR_STAGING (Local RC Pending G1 Publication)
@@ -23,59 +23,56 @@ Zero False-Green Policy: STRICTLY ENFORCED
 - GitHub Repository:         adnin4/inshatech (Public)
 - Canonical Default Branch:  master (origin/master: b3de7650b65e388514ca82674654c92241ea8811)
 - Separated Remote Branch:   main (origin/main: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
-- Prior Baseline HEAD:       74d90b14143e936587153464557a7e6d0f35fb9c (138 commits ahead of origin/master)
+- Local RC Baseline:         18d447a87530a99064f86e71ed8c1fb4ec4f5e20 (139 commits ahead of origin/master prior to V4 commit)
 - Master Ahead Delta:        Linear descendant of origin/master (0 behind); PR #67 (head ddf90cfe...) and stacked draft PR #71 (head cd760c39...) remain open/unmerged
 - Cold Backup Bundles:
   1. ..\inshatech-master-backup-20261112.bundle (77,862,331 bytes, SHA-256: CA932EAA41289969481F595A304DA4B9CF99741DD946D50B2829D046E4860D44) [Preserved]
-  2. ..\inshatech-master-backup-20261112-2126.bundle (78,228,275 bytes, SHA-256: 1E43EFA6744428DA60725B12719BB7D52DD57136731778E23C50DFA2278D6088) [Verified pre-edit]
-  3. Final post-commit release candidate bundle verified alongside SHA-256 checksum
+  2. ..\inshatech-master-backup-20261112-2126.bundle (78,228,275 bytes, SHA-256: 1E43EFA6744428DA60725B12719BB7D52DD57136731778E23C50DFA2278D6088) [Preserved]
+  3. ..\inshatech-master-backup-20261112-2151.bundle (78,309,772 bytes, SHA-256: 274E6FF9065B50E5B12E26411BF7181B65E3C7733139E02187BB06CC8B0828F5) [Verified pre-V4 edit]
+  4. Final V4 post-commit release candidate bundle verified alongside SHA-256 checksum
 - Source Publication Status: BLOCKED_EXTERNAL (`gh auth status` exit code 1; workstation cannot push without owner authentication)
 
-3. REMEDIATIONS IMPLEMENTED IN RELEASE CANDIDATE
+3. REMEDIATIONS IMPLEMENTED IN V4.0 RELEASE CANDIDATE
 --------------------------------------------------------------------------------
-- Removed Hardcoded Frontend Admin Bypasses (`app.js`, `admin.html`):
-  * Deleted `window.instantOwnerModalBypass`, `ALLOWED_EMAILS`, `ALLOWED_PASSES`, `'123456'` autofill, and `local_owner_session_` bypasses.
-  * Updated `scripts/test_mobile_ui_layout.mjs` to enforce zero hardcoded credential bypasses (`APP-JS-03`, `ADMIN-01`).
-  * Labeled static KPI/economic/ledger figures in `admin.html` explicitly as `[DEMO SAMPLE DATA]`.
-- Hardened Auth, Session & DO Fail-Closed Boundaries (`functions/api/auth/session.js`, `logout.js`, `functions/_shared/auth_gate.js`):
-  * Added `GET /api/auth/session` and `GET /api/auth/logout` HTTP 405 handlers so GETs never fall through to static 200 HTML.
-  * Tightened CORS origin regex to strict `^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$` (eliminating arbitrary `.pages.dev` reflection).
-  * Bounded PBKDF2 iterations (`100000..1000000`) and hex validation; returned `{ valid, matchedStep }` on TOTP; fail-closed 503 when `SECURITY_COORDINATOR` errors on login/logout (`skipRevocationCheck: true` in `logout.js`) and fail-closed 401 `TOKEN_REVOKED` on `/api/admin/gate`.
-  * Note: Pages Functions do not provision native DO storage without a separate DO Worker binding (`wrangler.toml` has no `[durable_objects]` binding); without a bound `SECURITY_COORDINATOR`, revocation remains per-isolate in-memory unless `REVOCATION_KV` or DO Worker is bound.
-- Environment Truth, Routes, SEO & Canonicals (`wrangler.toml`, `version.js`, `system/version.js`, `orchestrate.js`, `_routes.json`, `functions/_middleware.js`, `admin.html`, `privacy.html`, `terms.html`, `sitemap.xml`):
-  * Updated `wrangler.toml` `[vars] ENVIRONMENT = "staging"` so Direct Upload never labels staging as production.
-  * Updated `functions/api/version.js` `resolveDeploymentId` to emit `dpl_staging_<sha>` / `dpl_preview_<id>` / `dpl_dev_<sha>` / `dpl_prod_<sha>` dynamically.
-  * Expanded `_routes.json` to `["/*"]` excluding static assets and updated `functions/_middleware.js` so `X-Robots-Tag: noindex, nofollow`, `<meta name="robots" content="noindex, nofollow">`, and clean canonical `Link` headers apply across ALL HTML routes (`/store`, `/admin`, `/marketplace`, `/services/*`, etc.) on `.pages.dev` and rewrite cleanly for `inshatech.com` upon cutover.
-  * Fixed `/admin` canonical & `og:url` (no `.html` 308 redirect), added canonical/robots to `privacy.html` & `terms.html`, updated `sitemap.xml` URLs to clean extensionless routes.
-- Payments & Sandbox Hardening (`functions/_shared/payments/sslcommerz.js`, `checkout.js`, `sslcommerz/init.js`, `return.js`, `webhook.js`, `index.html`):
-  * Relocated `functions/api/payments/providers/sslcommerz.js` -> `functions/_shared/payments/sslcommerz.js` so no internal adapter lives under routable `functions/api/`.
-  * Defaulted SSLCommerz in `checkout.js` to sandbox outside verified custom production domain (`SSLCOMMERZ_IS_LIVE === 'true'`), used request origin instead of legacy `inshatech.pages.dev`, and disabled direct client amount bypass in `/api/payments/sslcommerz/init` (`400 DIRECT_AMOUNT_DISABLED`).
-  * Synchronized `index.html` and `live_index.html` with explicit simulated demo wording on the terminal preview card.
-- CI/CD Direct Upload & Hygiene (`.assetsignore`, `.github/workflows/release-direct-upload.yml`, `.github/workflows/deploy-ci.yml`, `scripts/check_functions_imports.mjs`, `scripts/total_defect_scanner.mjs`):
-  * Added `.assetsignore` excluding bundles, SQL dumps, `.env*`, keys, OneDrive `*-DESKTOP-*` conflict files, `supabase/`, `docs/`, `scripts/`, `tests/`.
-  * Added `.github/workflows/release-direct-upload.yml` with pinned Wrangler `4.16.1`, SHA-256 `release-manifest.json`, staging deployment + verification, and manual-approval `environment: production` gate.
-  * Hardened `check_functions_imports.mjs` and `total_defect_scanner.mjs` to exit non-zero on defects.
+- Standalone Security Coordinator DO Worker & Auth Separation (`workers/security-coordinator/`, `functions/_shared/auth_gate.js`, `functions/api/admin/*.js`, `functions/api/workforce/killswitch.js`, `functions/api/control/emergency.js`, `functions/api/finance/invoice.js`, `functions/api/orders/state_machine.js`):
+  * Created standalone Cloudflare Durable Object Worker (`workers/security-coordinator/src/index.js`, `wrangler.toml`) hosting `SecurityCoordinator` with SQLite migration `v1-sqlite-security-coordinator` across staging and production environments.
+  * Refactored `auth_gate.js` with `checkSessionRevocationState` and `httpStatusForAuthError`, separating DO communication errors (`503 SECURITY_AUTHORITY_UNAVAILABLE`) from genuine revoked sessions (`401 TOKEN_REVOKED`).
+- Centralized Origin & Environment Policy (`functions/_shared/origin_policy.js`, `health.js`, `version.js`, `system/version.js`, `auth/session.js`):
+  * Consolidated canonical origin checks (`isOriginAllowed`, `resolveCorsOrigin`), trusted callback base resolution (`resolveTrustedBaseUrl`), and runtime environment resolution (`resolveRuntimeEnvironment`, `isApprovedProductionHost`).
+  * Verified host-header / untrusted `APP_URL` injection fail closed to `https://inshatech-b6b.pages.dev`, while allowing matching preview deployments and approved custom production domains.
+- Payment Host-Injection Hardening & Legacy Bypass Elimination (`functions/_shared/payments/legacy_route_guard.js`, `checkout.js`, `return.js`, `webhook.js`, `_middleware.js`, `sslcommerz/*.js`, `lemonsqueezy/*.js`, `bkash/*.js`, `stripe/*.js`):
+  * Refactored all payment return/webhook/checkout paths to use `resolveTrustedBaseUrl` and `isApprovedProductionHost`.
+  * Standardized 9 legacy/simulated direct endpoints under explicit `onRequestPost`/`onRequestOptions` exports wired to `createDirectBypassDisabledHandlers` returning `400 DIRECT_AMOUNT_DISABLED` with strict CORS.
+  * Hardened `functions/api/payments/lemonsqueezy/webhook.js` to fail closed (HTTP 503) when `LEMONSQUEEZY_WEBHOOK_SECRET` is absent.
+- Deploy Artifact Staging & Exclusion Hygiene (`.assetsignore`, `scripts/verify_deploy_artifact.mjs`, `.github/workflows/release-direct-upload.yml`):
+  * Hardened `.assetsignore` to strip `.git/`, `.github/`, `docs/`, `scripts/`, `supabase/`, `tests/`, `workers/`, `backups/`, `dist-pages/`, bundles, SQL, secrets, and OneDrive conflict copies.
+  * Added `scripts/verify_deploy_artifact.mjs` staging 401 clean publishable files into `dist-pages/` (0 forbidden files, 15/15 required runtime files, auto-generated `release-manifest.json`) and integrated it into CI workflow `.github/workflows/release-direct-upload.yml`.
+- Form Accessibility & Permanent Multi-Viewport CDP Suite (`index.html`, `live_index.html`, `app.js`, `js/core/enterprise_experience.js`, `src/whatsapp_concierge.js`, `universal_ai_copilot.js`, `scripts/cdp_qa_audit.mjs`):
+  * Added explicit `aria-label` / `label[for]` attributes across all modal and overlay inputs (`unlabeledInputs: 0` across all 6 viewports).
+  * Committed permanent headless Chrome CDP test script (`scripts/cdp_qa_audit.mjs`) auditing 6 viewports (`1440x900` to `360x800`), WebGL2 active state, video progression, 9 category filters, live search, and unauthenticated `/admin` barrier.
 
-4. VERIFICATION SUMMARY (POST-EDIT)
+4. VERIFICATION SUMMARY (POST-V4 EDIT)
 --------------------------------------------------------------------------------
-- `npm run build`                         : PASS
-- `npm test` (claims, responsive, mobile) : PASS (10/10 claims, 36/36 responsive, 29/29 mobile)
-- `node scripts/test_admin_auth_security.mjs`: PASS (31/31 security tests)
-- `node scripts/test_release_identity.mjs`   : PASS
-- `node scripts/test_sslcommerz_native_adapter.mjs`: PASS (3/3)
-- `node scripts/test_payment_adversarial_suite.mjs`: PASS (29/29)
-- `node scripts/test_service_authority_and_pricing.mjs`: PASS
-- `node scripts/verify_payment_reconciliation.mjs`: PASS (17/17)
-- `node scripts/ci_evidence_runner.mjs`      : PASS (28/28 CI suites)
-- `node scripts/check_functions_imports.mjs` : PASS (0 broken imports)
-- `node scripts/total_defect_scanner.mjs`    : PASS (175 functions, 30 HTML files, 157 JSON files)
-- `npm run security:gate`                    : PASS (407 files, 0 P0/P1)
-- `npm run e2e`                              : PASS (12/12 public pages)
-- 6-Viewport Chrome CDP QA (local + live `/`): PASS (0 overflow, 1 H1, 80 cards & 80 unique IDs, WebGL2 active, video advancing, 0 console/network errors)
-- `BLOCKED_EXTERNAL` Items: GitHub push/sync (`G1`), live DB parity across 29 SQL migrations (`G3`), live bKash/SSLCommerz/LemonSqueezy/Stripe/Nagad gateway secrets (`G4`), Owner MFA enrollment (`G5`), custom domain DNS cutover (`G6`).
+- `node --check app.js`                         : PASS (Exit 0)
+- `npm run build`                               : PASS (22 sections verified)
+- `npm test` (claims, responsive, mobile)       : PASS (10/10 claims, 36/36 responsive, 29/29 mobile)
+- `node scripts/test_admin_auth_security.mjs`   : PASS (33/33 security tests)
+- `node scripts/test_payment_adversarial_suite.mjs`: PASS (42/42 assertions including Suite 6 host-injection & legacy bypass)
+- `node scripts/test_release_identity.mjs`      : PASS
+- `node scripts/test_sslcommerz_native_adapter.mjs`: PASS (3/3 assertions)
+- `node scripts/test_payment_hardening_contract.mjs`: PASS (8/8 assertions)
+- `node scripts/verify_payment_reconciliation.mjs`: PASS (17/17 assertions)
+- `node scripts/check_functions_imports.mjs`    : PASS (0 broken imports)
+- `node scripts/total_defect_scanner.mjs`       : PASS (175 Functions, 30 HTML files, 157 JSON files, 0 defects)
+- `node scripts/verify_deploy_artifact.mjs`     : PASS (401 clean files, 0 forbidden, 15/15 required runtime files)
+- `npm run security:gate`                       : PASS (752 files audited, 0 P0/P1 defects)
+- `npm run e2e`                                 : PASS (12/12 public pages verified)
+- `node scripts/ci_evidence_runner.mjs`         : PASS (28/28 CI suites passed)
+- `node scripts/cdp_qa_audit.mjs` (6 viewports) : PASS (0px overflow, 80 unique IDs, WebGL2 active, video progressing, unlabeledInputs: 0)
+- `BLOCKED_EXTERNAL` Items: GitHub push/sync (`G1`), live DO Worker deploy & CF Pages secrets (`G2`), live DB parity across 29 SQL migrations (`G3`), live bKash/SSLCommerz/LemonSqueezy/Stripe merchant keys (`G4`), Owner MFA enrollment (`G5`), custom domain DNS cutover (`G6`).
 
 5. FINAL VERDICT
 --------------------------------------------------------------------------------
-VERDICT: READY_FOR_STAGING (Pending G1 GitHub push & G2 CI staging deploy for new local RC)
+VERDICT: READY_FOR_STAGING (Pending G1 GitHub push & G2 CI staging deploy for V4 RC)
 PRODUCTION SEALED: NO (Blocked on Owner Gates G1–G6)
 ================================================================================

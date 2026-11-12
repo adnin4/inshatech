@@ -541,7 +541,8 @@ async function runTestSuite() {
         const replayData = await replayRes.json();
         assert(replayRes.status === 401 && replayData.status === 'REPLAY_DETECTED', 'Immediate TOTP code reuse rejected with 401 REPLAY_DETECTED');
 
-        // Unreachable SECURITY_COORDINATOR fails closed on login, logout, and gate check
+        // Unreachable SECURITY_COORDINATOR fails closed on gate check (503 SECURITY_AUTHORITY_UNAVAILABLE),
+        // login (503), and logout (503), distinct from an actually revoked session (401 TOKEN_REVOKED).
         const brokenCoordinatorEnv = {
             ...testEnv,
             SECURITY_COORDINATOR: {
@@ -549,6 +550,19 @@ async function runTestSuite() {
                 get: () => ({ fetch: async () => new Response('DO error', { status: 500 }) })
             }
         };
+
+        const brokenGateRes = await handleAdminGate({
+            request: new Request('https://inshatech-b6b.pages.dev/api/admin/gate', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${firstData.session_token}` }
+            }),
+            env: brokenCoordinatorEnv
+        });
+        const brokenGateData = await brokenGateRes.json();
+        assert(
+            brokenGateRes.status === 503 && brokenGateData.status === 'SECURITY_AUTHORITY_UNAVAILABLE',
+            'Broken SECURITY_COORDINATOR fails closed on gate check with HTTP 503 SECURITY_AUTHORITY_UNAVAILABLE (distinct from TOKEN_REVOKED)'
+        );
 
         const brokenLoginRes = await handleAuthSession({
             request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
@@ -569,14 +583,28 @@ async function runTestSuite() {
         });
         assert(brokenLogoutRes.status === 503, 'Broken SECURITY_COORDINATOR fails closed on logout with HTTP 503');
 
-        const brokenGateRes = await handleAdminGate({
+        // Actual revoked session via working coordinator returns 401 TOKEN_REVOKED
+        const workingLogoutRes = await handleAuthLogout({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/logout', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${firstData.session_token}` }
+            }),
+            env: mockCoordinatorEnv
+        });
+        assert(workingLogoutRes.status === 200, 'Logout succeeds via working SECURITY_COORDINATOR');
+
+        const revokedGateRes = await handleAdminGate({
             request: new Request('https://inshatech-b6b.pages.dev/api/admin/gate', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${firstData.session_token}` }
             }),
-            env: brokenCoordinatorEnv
+            env: mockCoordinatorEnv
         });
-        assert(brokenGateRes.status === 401, 'Broken SECURITY_COORDINATOR fails closed on gate check with HTTP 401');
+        const revokedGateData = await revokedGateRes.json();
+        assert(
+            revokedGateRes.status === 401 && revokedGateData.status === 'TOKEN_REVOKED',
+            'Revoked session token rejected with HTTP 401 TOKEN_REVOKED (distinct from 503 DO outage)'
+        );
     }
 
     // -------------------------------------------------------------------------

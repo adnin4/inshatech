@@ -608,7 +608,7 @@
                 <!-- Input Footer -->
                 <div class="copilot-footer">
                     <div class="copilot-input-container">
-                        <textarea id="copilot-text-input" class="copilot-textarea" placeholder="Ask anything in English, বাংলা, or Banglish..." rows="1"></textarea>
+                        <textarea id="copilot-text-input" aria-label="Copilot Message Input" class="copilot-textarea" placeholder="Ask anything in English, বাংলা, or Banglish..." rows="1"></textarea>
                         <button class="copilot-icon-btn" id="copilot-mic-btn" title="Voice Input (Bangla / English)">
                             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
                         </button>
@@ -903,7 +903,7 @@
                         আপনার ওয়েবসাইট বা অনলাইন শপের লিংক দিন। আমাদের AI ক্রলার ক্যাটালগ এক্সট্র্যাক্ট করে 1536d ভেক্টর এম্বেডিং বানাবে এবং সরাসরি হোয়াটসঅ্যাপ/মেসেঞ্জারে অটো-সেলস বট রেডি করে দেবে!
                     </p>
                     <div class="copilot-ingestor-input-group">
-                        <input type="url" id="copilot-ingest-url" class="copilot-ingestor-input" placeholder="https://yourshop.com" value="https://techshop-bd.com">
+                        <input type="url" id="copilot-ingest-url" aria-label="Website URL to Ingest" class="copilot-ingestor-input" placeholder="https://yourshop.com" value="https://techshop-bd.com">
                         <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.executeIngestionDemo()">⚡ Ingest & Build DB</button>
                     </div>
                 </div>

@@ -48,40 +48,19 @@ jobs:
           npm run build
           npm test
           node scripts/test_admin_auth_security.mjs
+          node scripts/test_payment_adversarial_suite.mjs
           node scripts/test_release_identity.mjs
           node scripts/test_mobile_ui_layout.mjs
           node scripts/check_functions_imports.mjs
           node scripts/total_defect_scanner.mjs
+          node scripts/verify_deploy_artifact.mjs
           npm run security:gate
 
       - name: Stage clean publish artifact without dev/secret/backup files
         run: |
-          rm -rf dist-pages
-          mkdir -p dist-pages
-          rsync -a \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='node_modules/' \
-            --exclude='docs/' \
-            --exclude='scripts/' \
-            --exclude='supabase/' \
-            --exclude='tests/' \
-            --exclude='backups/' \
-            --exclude='scratch/' \
-            --exclude='ci-failure-evidence/' \
-            --exclude='security-gate-report/' \
-            --exclude='test-results/' \
-            --exclude='playwright-report/' \
-            --exclude='*.bundle' \
-            --exclude='*.backup' \
-            --exclude='*.sql' \
-            --exclude='*.env*' \
-            --exclude='*.pem' \
-            --exclude='*.key' \
-            --exclude='*-DESKTOP-*' \
-            ./ dist-pages/
-
-          FORBIDDEN=$(find dist-pages -type f \( -name '*.bundle' -o -name '*.sql' -o -name '*.env*' -o -name '*.pem' -o -name '*.key' -o -name '*-DESKTOP-*' \) -print)
+          node scripts/verify_deploy_artifact.mjs
+          rm -rf dist-pages/release-manifest.json
+          FORBIDDEN=$(find dist-pages -type f \( -name '*.bundle' -o -name '*.sql' -o -name '*.env*' -o -name '*.pem' -o -name '*.key' -o -name '*.py' -o -name '*-DESKTOP-*' \) -print)
           if [ -n "$FORBIDDEN" ]; then
             echo "ERROR: Forbidden files present in staged artifact:"
             echo "$FORBIDDEN"

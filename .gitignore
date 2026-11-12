@@ -38,3 +38,5 @@ ci-failure-evidence/
 supabase/.temp/
 
 *.bundle
+
+dist-pages/

@@ -12,42 +12,17 @@
  * - Public response fields remain compatible with existing payment UI consumers.
  */
 
-const ORIGINS = new Set([
-    'https://inshatech-b6b.pages.dev',
-    'https://inshatech.pages.dev',
-    'https://inshatech.com',
-    'https://www.inshatech.com',
-    'https://admin.inshatech.com'
-]);
-
 const SUPPORTED_PROVIDERS = new Set(['sslcommerz', 'lemonsqueezy', 'bkash', 'stripe']);
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
 import { evaluateCoupon, evaluateCouponWithDb } from '../../_shared/payments/coupon_policy.js';
 import { resolveFxRate, convertUsdToBdt } from '../../_shared/payments/fx_policy.js';
-
-function isOriginAllowed(origin) {
-    if (!origin) return false;
-    if (ORIGINS.has(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
-}
-
-function resolveAppBaseUrl(request, env = {}) {
-    if (env.APP_URL) return String(env.APP_URL).replace(/\/+$/, '');
-    try {
-        const url = new URL(request.url);
-        if (url.origin && (url.protocol === 'https:' || url.hostname === 'localhost' || url.hostname === '127.0.0.1')) {
-            return url.origin;
-        }
-    } catch (_) {}
-    return 'https://inshatech-b6b.pages.dev';
-}
+import { resolveCorsOrigin, resolveTrustedBaseUrl, isApprovedProductionHost } from '../../_shared/origin_policy.js';
 
 const cors = r => {
-    const o = r.headers.get('Origin') || '';
     return {
-        'Access-Control-Allow-Origin': isOriginAllowed(o) ? o : 'https://inshatech-b6b.pages.dev',
+        'Access-Control-Allow-Origin': resolveCorsOrigin(r),
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Content-Type': 'application/json',
@@ -357,7 +332,7 @@ export async function onRequestPost({ request, env = {} }) {
             body: JSON.stringify(dbOrderPayload)
         });
 
-        const appBaseUrl = resolveAppBaseUrl(request, env);
+        const appBaseUrl = resolveTrustedBaseUrl(request, env);
 
         if (!dbRes.ok) {
             if (dbRes.status === 409) {
@@ -411,12 +386,7 @@ export async function onRequestPost({ request, env = {} }) {
                     amount_bdt: bdtForGateway
                 }, 422, h);
             }
-            const sslIsLive = env.SSLCOMMERZ_IS_LIVE === 'true' && (() => {
-                try {
-                    const host = new URL(request.url).hostname.toLowerCase();
-                    return host === 'inshatech.com' || host === 'www.inshatech.com';
-                } catch (_) { return false; }
-            })();
+            const sslIsLive = env.SSLCOMMERZ_IS_LIVE === 'true' && isApprovedProductionHost(request);
             const sslEndpoint = sslIsLive
                 ? 'https://securepay.sslcommerz.com/gwprocess/v4/api.php'
                 : 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php';
@@ -507,7 +477,11 @@ export async function onRequestPost({ request, env = {} }) {
                     amount_bdt: bdtForGateway
                 }, 422, h);
             }
-            const tokenRes = await fetch('https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant', {
+            const bkashIsLive = env.BKASH_IS_LIVE === 'true' && isApprovedProductionHost(request);
+            const bkashApiBase = bkashIsLive
+                ? 'https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout'
+                : 'https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout';
+            const tokenRes = await fetch(`${bkashApiBase}/token/grant`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', username, password },
                 body: JSON.stringify({ app_key: appKey, app_secret: appSecret })
@@ -516,7 +490,7 @@ export async function onRequestPost({ request, env = {} }) {
             if (!tokenData.id_token) {
                 return json({ status: 'GATEWAY_ERROR', gateway: 'bKash Tokenized Merchant', order_id: orderId }, 502, h);
             }
-            const createRes = await fetch('https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/create', {
+            const createRes = await fetch(`${bkashApiBase}/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

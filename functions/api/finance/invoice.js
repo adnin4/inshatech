@@ -4,7 +4,7 @@
  * Invariant: Never fabricate storage URLs when object storage bindings are unconfigured.
  */
 
-import { getCorsHeaders, verifyServerSession } from '../../_shared/auth_gate.js';
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
 
 export async function onRequestPost(context) {
     const { request, env = {} } = context;
@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
         });
 
         if (!auth.authorized) {
-            const httpStatus = auth.status === 'CONFIGURATION_ERROR' ? 503 : 401;
+            const httpStatus = httpStatusForAuthError(auth.status);
             return new Response(JSON.stringify({
                 status: auth.status,
                 error: auth.error || 'Server authorization required to generate invoices'

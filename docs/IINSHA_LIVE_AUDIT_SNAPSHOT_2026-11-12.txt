@@ -5,7 +5,7 @@ Target Staging URL:          https://inshatech-b6b.pages.dev/
 Target Production Domains:   https://inshatech.com/ , https://www.inshatech.com/
 Live Deployed Commit SHA:    74d90b14143e936587153464557a7e6d0f35fb9c (Deployed before local RC fixes; workstation deploy stopped at Owner Gate G1)
 Local Candidate Evaluated:   127.0.0.1 ephemeral static server + headless Chrome CDP (6 viewports)
-Evaluation Timestamp:        2026-11-12T21:50:00+06:00 (Asia/Dhaka)
+Evaluation Timestamp:        2026-11-12T23:20:00+06:00 (Asia/Dhaka)
 
 1. LIVE HTTP ENDPOINT PROBES (OBSERVED ON STAGE & CUSTOM DOMAINS)
 --------------------------------------------------------------------------------
@@ -42,16 +42,16 @@ Tested both local static release candidate (6 viewports) and live staging https:
 - Console Errors / Exceptions / Failed Network Requests: 0 / 0 / 0 across all viewports (PASS)
 - Images missing alt attribute:  0 (PASS)
 - Cumulative Layout Shift (CLS): 0 across all viewports (PASS)
-- Accessibility Note:            6 form inputs rely on placeholder/adjacent label without explicit `for` or `aria-label` (logged for UI polish).
+- Form Accessibility:           All interactive form controls across modals, overlay concierge, copilot, and pages carry explicit aria-label / label[for] (unlabeledInputs: 0 across all 6 viewports) (PASS)
 
 3. SIX-VIEWPORT METRIC MATRIX (LOCAL CANDIDATE VIA CHROME CDP)
 --------------------------------------------------------------------------------
-| Viewport | Width | ScrollWidth | Overflow | H1 | Canvas (WebGL2) | Cards | Unique IDs | CLS | TTFB | DCL | Status |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1440x900 | 1440 | 1432 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 9ms | 2608ms | PASS |
-| 1280x900 | 1280 | 1272 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 4ms | 678ms | PASS |
-| 1024x768 | 1024 | 1016 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 11ms | 987ms | PASS |
-| 768x1024 | 768 | 768 | 0px | 1 | 1120x560 (true) | 80 | 80 | 0 | 4ms | 736ms | PASS |
-| 390x844 | 390 | 390 | 0px | 1 | 528x264 (true) | 80 | 80 | 0 | 10ms | 419ms | PASS |
-| 360x800 | 360 | 360 | 0px | 1 | 480x240 (true) | 80 | 80 | 0 | 4ms | 494ms | PASS |
+| Viewport | Width | ScrollWidth | Overflow | H1 | Canvas (WebGL2) | Cards | Unique IDs | Unlabeled Inputs | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| 1440x900 | 1440 | 1432 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | PASS |
+| 1280x900 | 1280 | 1272 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | PASS |
+| 1024x768 | 1024 | 1016 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | PASS |
+| 768x1024 | 768 | 768 | 0px | 1 | 1120x560 (true) | 80 | 80 | 0 | PASS |
+| 390x844 | 390 | 390 | 0px | 1 | 528x264 (true) | 80 | 80 | 0 | PASS |
+| 360x800 | 360 | 360 | 0px | 1 | 480x240 (true) | 80 | 80 | 0 | PASS |
 ================================================================================

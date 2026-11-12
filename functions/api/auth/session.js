@@ -5,25 +5,10 @@
  * Emits HttpOnly Secure session cookies and strict CORS boundaries.
  */
 
-const ALLOWED_ORIGINS = new Set([
-    'https://inshatech-b6b.pages.dev',
-    'https://inshatech.pages.dev',
-    'https://inshatech.com',
-    'https://www.inshatech.com',
-    'https://admin.inshatech.com',
-    'http://localhost:8788',
-    'http://localhost:8080'
-]);
-
-function isOriginAllowed(origin) {
-    if (!origin) return false;
-    if (ALLOWED_ORIGINS.has(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
-}
+import { resolveCorsOrigin } from '../../_shared/origin_policy.js';
 
 function corsHeaders(request) {
-    const origin = request.headers.get('Origin') || '';
-    const allowOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
+    const allowOrigin = resolveCorsOrigin(request);
     return {
         'Access-Control-Allow-Origin': allowOrigin,
         'Access-Control-Allow-Methods': 'POST, OPTIONS',

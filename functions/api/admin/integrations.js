@@ -5,7 +5,7 @@
  * Protected by server-side authorization: requires valid owner session.
  */
 
-import { getCorsHeaders, verifyServerSession } from '../../_shared/auth_gate.js';
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
@@ -19,8 +19,7 @@ export async function onRequestGet(context) {
     });
 
     if (!auth.authorized) {
-        const httpStatus = auth.status === 'CONFIGURATION_ERROR' ? 503 :
-                           auth.status === 'PRIVILEGE_REJECTED' || auth.status === 'HIERARCHY_REJECTED' ? 403 : 401;
+        const httpStatus = httpStatusForAuthError(auth.status);
         return new Response(JSON.stringify({
             status: auth.status,
             error: auth.error || 'Server authorization required to view integrations'
@@ -127,8 +126,7 @@ export async function onRequestPost(context) {
     });
 
     if (!auth.authorized) {
-        const httpStatus = auth.status === 'CONFIGURATION_ERROR' ? 503 :
-                           auth.status === 'PRIVILEGE_REJECTED' || auth.status === 'HIERARCHY_REJECTED' ? 403 : 401;
+        const httpStatus = httpStatusForAuthError(auth.status);
         return new Response(JSON.stringify({
             status: auth.status,
             error: auth.error || 'Server authorization required to test integrations'

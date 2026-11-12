@@ -7,43 +7,10 @@
 import { CANONICAL_RELEASE } from '../_shared/release_manifest.js';
 import { verifyReleaseIdentity, isFreshTimestamp, RELEASE_CLASSIFICATIONS } from '../_shared/release_identity.js';
 import { probeDatabaseHealth, PROBE_STATUS } from '../_shared/database_probe.js';
-
-const ALLOWED_ORIGINS = [
-    'https://inshatech-b6b.pages.dev',
-    'https://inshatech.pages.dev',
-    'https://inshatech.com',
-    'https://www.inshatech.com',
-    'https://admin.inshatech.com',
-    'http://localhost:8080',
-    'http://localhost:8788',
-    'http://127.0.0.1:8080',
-    'http://127.0.0.1:8788'
-];
-
-function isOriginAllowed(origin) {
-    if (!origin) return false;
-    if (ALLOWED_ORIGINS.includes(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
-}
+import { resolveCorsOrigin, resolveRuntimeEnvironment } from '../_shared/origin_policy.js';
 
 export function resolveEnvironment(request, env = {}) {
-    try {
-        const url = new URL(request.url);
-        const host = (url.hostname || request.headers.get('host') || '').toLowerCase();
-        if (host.includes('localhost') || host.includes('127.0.0.1')) return 'development';
-        if (host.endsWith('.pages.dev')) {
-            const parts = host.split('.');
-            if (parts.length > 3) {
-                return 'preview';
-            }
-            return 'staging';
-        }
-        if (host === 'inshatech.com' || host === 'www.inshatech.com') {
-            return 'production';
-        }
-    } catch (_) {}
-    if (env.ENVIRONMENT) return env.ENVIRONMENT;
-    return 'staging';
+    return resolveRuntimeEnvironment(request, env);
 }
 
 export function resolveDeploymentId(request, env = {}, defaultSha = null) {
@@ -65,8 +32,7 @@ export function resolveDeploymentId(request, env = {}, defaultSha = null) {
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
-    const origin = request.headers.get('Origin') || '';
-    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
+    const corsOrigin = resolveCorsOrigin(request);
 
     // 1. Live Authenticated Database Probe (no static fallback illusions)
     const dbProbe = await probeDatabaseHealth(env);
@@ -140,8 +106,7 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestOptions(context) {
-    const origin = context.request?.headers?.get('Origin') || '';
-    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
+    const corsOrigin = resolveCorsOrigin(context.request);
 
     return new Response(null, {
         status: 204,
