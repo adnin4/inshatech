@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-11T17:58:39.424Z",
+  "timestamp": "2026-11-12T11:12:02.635Z",
   "localCandidateUrl": "file:///C:/Users/mahin%20khan/.gemini/antigravity/scratch/portfolio-showcase/index.html",
   "liveStagingUrl": "https://inshatech-b6b.pages.dev/",
   "totalViewportsTested": 6,
@@ -13,7 +13,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.8913,
+        "vTime1": 1.9359,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -22,7 +22,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.4091,
+        "vTime2": 3.4383,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -69,7 +69,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.7027,
+        "vTime1": 1.9069,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -78,7 +78,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.2098,
+        "vTime2": 3.4194,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -107,7 +107,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.8567,
+        "vTime1": 1.881,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -116,7 +116,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.3662,
+        "vTime2": 3.3902,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -145,7 +145,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9338,
+        "vTime1": 1.8712,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -154,7 +154,7 @@
         "glDrawingBufferHeight": 560
       },
       "final": {
-        "vTime2": 3.4358,
+        "vTime2": 3.3747,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -183,7 +183,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9316,
+        "vTime1": 1.9631,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -192,7 +192,7 @@
         "glDrawingBufferHeight": 264
       },
       "final": {
-        "vTime2": 3.4485,
+        "vTime2": 3.4731,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -221,7 +221,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.982,
+        "vTime1": 1.9634,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -230,7 +230,7 @@
         "glDrawingBufferHeight": 240
       },
       "final": {
-        "vTime2": 3.4858,
+        "vTime2": 3.4656,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -260,7 +260,7 @@
       "h1Count": 1,
       "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
       "vPaused": false,
-      "vTime1": 1.9331,
+      "vTime1": 1.9212,
       "vReadyState": 4,
       "canvasFound": true,
       "canvasId": "iinsha-diagram-scene",
@@ -269,7 +269,7 @@
       "glDrawingBufferHeight": 736
     },
     "final": {
-      "vTime2": 3.4494,
+      "vTime2": 3.4255,
       "vProgressed": true,
       "panelsCount": 8,
       "cardsCount": 80,
@@ -289,8 +289,8 @@
     "consoleErrors": [],
     "networkFailures": [
       {
-        "requestId": "40412.24",
-        "timestamp": 15067.31102,
+        "requestId": "34496.23",
+        "timestamp": 1609.52665,
         "type": "Script",
         "errorText": "",
         "canceled": false,
