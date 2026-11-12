@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-12T11:18:16.837Z",
+  "timestamp": "2026-11-12T11:55:09.494Z",
   "localCandidateUrl": "file:///C:/Users/mahin%20khan/.gemini/antigravity/scratch/portfolio-showcase/index.html",
   "liveStagingUrl": "https://inshatech-b6b.pages.dev/",
   "totalViewportsTested": 6,
@@ -13,7 +13,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9477,
+        "vTime1": 1.9527,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -22,7 +22,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.4511,
+        "vTime2": 3.4648,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -69,7 +69,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9463,
+        "vTime1": 1.942,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -78,7 +78,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.4521,
+        "vTime2": 3.4605,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -107,7 +107,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9472,
+        "vTime1": 1.9162,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -116,7 +116,7 @@
         "glDrawingBufferHeight": 736
       },
       "final": {
-        "vTime2": 3.452,
+        "vTime2": 3.4233,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -145,7 +145,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9862,
+        "vTime1": 1.9755,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -154,7 +154,7 @@
         "glDrawingBufferHeight": 560
       },
       "final": {
-        "vTime2": 3.5016,
+        "vTime2": 3.4859,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -183,7 +183,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9518,
+        "vTime1": 1.9911,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -192,7 +192,7 @@
         "glDrawingBufferHeight": 264
       },
       "final": {
-        "vTime2": 3.4542,
+        "vTime2": 3.4943,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -221,7 +221,7 @@
         "h1Count": 1,
         "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
         "vPaused": false,
-        "vTime1": 1.9852,
+        "vTime1": 1.9444,
         "vReadyState": 4,
         "canvasFound": true,
         "canvasId": "iinsha-diagram-scene",
@@ -230,7 +230,7 @@
         "glDrawingBufferHeight": 240
       },
       "final": {
-        "vTime2": 3.4873,
+        "vTime2": 3.4503,
         "vProgressed": true,
         "panelsCount": 8,
         "cardsCount": 80,
@@ -260,7 +260,7 @@
       "h1Count": 1,
       "h1Text": "Autonomous AI Systems.\n                        Build beyond the ordinary.",
       "vPaused": false,
-      "vTime1": 1.926,
+      "vTime1": 1.9494,
       "vReadyState": 4,
       "canvasFound": true,
       "canvasId": "iinsha-diagram-scene",
@@ -269,7 +269,7 @@
       "glDrawingBufferHeight": 736
     },
     "final": {
-      "vTime2": 3.4291,
+      "vTime2": 3.4525,
       "vProgressed": true,
       "panelsCount": 8,
       "cardsCount": 80,
