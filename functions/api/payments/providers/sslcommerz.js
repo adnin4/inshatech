@@ -401,4 +401,19 @@ export function computeMd5(string) {
     return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
 }
 
+/**
+ * Cloudflare Pages Functions Handler
+ * Fails closed on direct HTTP invocation because SSLCommerzAdapter is an internal module.
+ */
+export async function onRequest(context) {
+    return new Response(JSON.stringify({
+        status: 'PROVIDER_ADAPTER',
+        provider: 'sslcommerz',
+        message: 'SSLCommerzAdapter is an internal adapter module. Direct HTTP invocation is disabled.'
+    }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+
 
