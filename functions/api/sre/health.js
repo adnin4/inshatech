@@ -22,18 +22,39 @@ function isOriginAllowed(origin) {
     return /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
 }
 
+function resolveEnvironment(request, env = {}) {
+    try {
+        const url = new URL(request.url);
+        const host = (url.hostname || request.headers.get('host') || '').toLowerCase();
+        if (host.includes('localhost') || host.includes('127.0.0.1')) return 'development';
+        if (host.endsWith('.pages.dev')) {
+            const parts = host.split('.');
+            if (parts.length > 3) {
+                return 'preview';
+            }
+            return 'staging';
+        }
+        if (host === 'inshatech.com' || host === 'www.inshatech.com') {
+            return 'production';
+        }
+    } catch (_) {}
+    if (env.ENVIRONMENT) return env.ENVIRONMENT;
+    return 'staging';
+}
+
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
     const origin = request.headers.get('Origin') || '';
-    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
+    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
     const startedAt = Date.now();
     const hasSupabaseConfig = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
     const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
+    const environment = resolveEnvironment(request, env);
 
     const payload = {
         status: 'SRE_HEALTHY',
         observability_level: 'FAIL_CLOSED',
-        environment: env.ENVIRONMENT || 'production',
+        environment: environment,
         edge_region: request.cf?.colo || 'EDGE',
         edge_country: request.cf?.country || 'GLOBAL',
         git_sha: gitSha,

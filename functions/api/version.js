@@ -29,15 +29,21 @@ function isOriginAllowed(origin) {
 export function resolveEnvironment(request, env = {}) {
     try {
         const url = new URL(request.url);
-        const host = url.hostname || request.headers.get('host') || '';
+        const host = (url.hostname || request.headers.get('host') || '').toLowerCase();
         if (host.includes('localhost') || host.includes('127.0.0.1')) return 'development';
-        const previewMatch = host.match(/^([a-z0-9-]+)\.([a-z0-9-]+)\.pages\.dev$/i);
-        if (previewMatch && previewMatch[1] !== previewMatch[2]) {
-            return 'preview';
+        if (host.endsWith('.pages.dev')) {
+            const parts = host.split('.');
+            if (parts.length > 3) {
+                return 'preview';
+            }
+            return 'staging';
+        }
+        if (host === 'inshatech.com' || host === 'www.inshatech.com') {
+            return 'production';
         }
     } catch (_) {}
     if (env.ENVIRONMENT) return env.ENVIRONMENT;
-    return 'production';
+    return 'staging';
 }
 
 export function resolveDeploymentId(request, env = {}, defaultSha = null) {
