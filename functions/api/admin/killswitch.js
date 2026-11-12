@@ -9,6 +9,20 @@ import { getCorsHeaders, verifyServerSession } from '../../_shared/auth_gate.js'
 let SYSTEM_LOCKDOWN = false;
 
 async function getLockdownState(env = {}) {
+    // 1. Strongly Consistent Durable Objects Authority
+    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+        try {
+            const id = env.SECURITY_COORDINATOR.idFromName('system-lockdown-coordinator');
+            const stub = env.SECURITY_COORDINATOR.get(id);
+            const res = await stub.fetch('https://coordinator/killswitch');
+            if (res.ok) {
+                const data = await res.json().catch(() => ({}));
+                return Boolean(data.killswitch_active);
+            }
+        } catch (_) {}
+    }
+
+    // 2. Eventually Consistent KV Cache
     if (env.KV_STATE && typeof env.KV_STATE.get === 'function') {
         try {
             const val = await env.KV_STATE.get('system_lockdown');
@@ -20,6 +34,21 @@ async function getLockdownState(env = {}) {
 
 async function setLockdownState(active, env = {}) {
     SYSTEM_LOCKDOWN = Boolean(active);
+
+    // 1. Strongly Consistent Durable Objects Authority
+    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+        try {
+            const id = env.SECURITY_COORDINATOR.idFromName('system-lockdown-coordinator');
+            const stub = env.SECURITY_COORDINATOR.get(id);
+            await stub.fetch('https://coordinator/killswitch', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: active ? 'ENGAGE_KILL_SWITCH' : 'DISENGAGE_KILL_SWITCH' })
+            });
+        } catch (_) {}
+    }
+
+    // 2. Eventually Consistent KV Cache
     if (env.KV_STATE && typeof env.KV_STATE.put === 'function') {
         try {
             await env.KV_STATE.put('system_lockdown', active ? 'true' : 'false');

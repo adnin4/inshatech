@@ -158,6 +158,26 @@ export async function onRequestPost({ request, env = {} }) {
             }), { status: 401, headers });
         }
 
+        // Anti-Replay check via SecurityCoordinator if configured
+        if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+            try {
+                const step = Math.floor(Date.now() / 30000);
+                const id = env.SECURITY_COORDINATOR.idFromName('mfa-replay-guard');
+                const stub = env.SECURITY_COORDINATOR.get(id);
+                const replayRes = await stub.fetch('https://coordinator/mfa-verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: body.mfa_token, step })
+                });
+                if (replayRes.status === 409) {
+                    return new Response(JSON.stringify({
+                        status: 'REPLAY_DETECTED',
+                        error: 'MFA TOTP code already used in this time step'
+                    }), { status: 401, headers });
+                }
+            } catch (_) {}
+        }
+
         const now = Math.floor(Date.now() / 1000);
         const sessionToken = await signJwt({
             sub: env.ADMIN_EMAIL,

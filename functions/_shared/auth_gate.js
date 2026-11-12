@@ -57,6 +57,22 @@ const IN_MEMORY_REVOKED_JTIS = new Set();
 export async function revokeSessionToken(jti, env = {}) {
     if (!jti) return;
     IN_MEMORY_REVOKED_JTIS.add(jti);
+
+    // 1. Strongly Consistent Durable Objects Authority (Zero Eventual Consistency Delay)
+    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+        try {
+            const partitionKey = 'revocation:' + String(jti).slice(0, 8);
+            const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
+            const stub = env.SECURITY_COORDINATOR.get(id);
+            await stub.fetch('https://coordinator/revoke', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ jti })
+            });
+        } catch (_) {}
+    }
+
+    // 2. Eventually Consistent KV Cache (Secondary read acceleration)
     if (env.REVOCATION_KV && typeof env.REVOCATION_KV.put === 'function') {
         try {
             await env.REVOCATION_KV.put(`revoked:${jti}`, 'true', { expirationTtl: 86400 });
@@ -67,6 +83,25 @@ export async function revokeSessionToken(jti, env = {}) {
 export async function isSessionRevoked(jti, env = {}) {
     if (!jti) return false;
     if (IN_MEMORY_REVOKED_JTIS.has(jti)) return true;
+
+    // 1. Strongly Consistent Durable Objects Authority
+    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+        try {
+            const partitionKey = 'revocation:' + String(jti).slice(0, 8);
+            const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
+            const stub = env.SECURITY_COORDINATOR.get(id);
+            const res = await stub.fetch(`https://coordinator/is-revoked?jti=${encodeURIComponent(jti)}`);
+            if (res.ok) {
+                const data = await res.json().catch(() => ({}));
+                if (data.is_revoked) return true;
+            }
+        } catch (_) {
+            // Fail closed on security authority communication error
+            return true;
+        }
+    }
+
+    // 2. Eventually Consistent KV Cache
     if (env.REVOCATION_KV && typeof env.REVOCATION_KV.get === 'function') {
         try {
             const val = await env.REVOCATION_KV.get(`revoked:${jti}`);
