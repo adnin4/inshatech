@@ -6,11 +6,11 @@
     <title>Insha Tech | Autonomous C-Panel OS | IINSHA AI Automation Lab</title>
     <meta name="description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://inshatech-b6b.pages.dev/admin.html">
+    <link rel="canonical" href="https://inshatech-b6b.pages.dev/admin">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://inshatech-b6b.pages.dev/admin.html">
+    <meta property="og:url" content="https://inshatech-b6b.pages.dev/admin">
     <meta property="og:title" content="Autonomous C-Panel OS | IINSHA AI Automation Lab">
     <meta property="og:description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta property="og:image" content="https://inshatech-b6b.pages.dev/portfolio_hermes_ai_agent.jpg">
@@ -576,17 +576,6 @@
                 return;
             }
 
-            // Local owner session safeguard: keep active across tabs and refreshes
-            if (token.startsWith('local_owner_session_')) {
-                const adminUser = JSON.parse(sessionStorage.getItem('iinsha_admin_user') || '{}');
-                if (adminUser.role === 'owner') {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    if (overlay) overlay.style.display = 'none';
-                    return;
-                }
-            }
-
             try {
                 const res = await fetch('/api/admin/gate', {
                     method: 'GET',
@@ -664,23 +653,8 @@
 
                 const data = await res.json().catch(() => ({}));
 
-                if (res.status === 503 || data.status === 'CONFIGURATION_ERROR') {
-                    const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com']; const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026']; const isOwner = ALLOWED_EMAILS.includes(email.toLowerCase()) && ALLOWED_PASSES.includes(pwd);
-                    if (isOwner) {
-                        pendingAdminEmail = email;
-                        pendingAdminPassword = pwd;
-                        document.getElementById('auth-step-1').style.display = 'none';
-                        document.getElementById('auth-step-2').style.display = 'block';
-                        const toastNotify = document.getElementById('sms-toast-notify');
-                        if (toastNotify) toastNotify.textContent = '⚡ Edge Offline / Fallback Mode — Enter TOTP or 123456.';
-                        const otpInput = document.getElementById('admin-otp-code');
-                        if (otpInput) {
-                            otpInput.value = '123456';
-                            otpInput.focus();
-                        }
-                        return;
-                    }
-                    throw new Error(`Server Auth Not Configured: ${data.error || 'Server secrets missing'}`);
+                if (res.status === 503 || data.status === 'CONFIGURATION_ERROR' || data.status === 'SECURITY_AUTHORITY_UNAVAILABLE') {
+                    throw new Error(`Fail-Closed Server Auth (${res.status}): ${data.message || data.error || 'Configure ADMIN_EMAIL, ADMIN_PASSWORD_HASH, JWT_SECRET, and MFA_SECRET in Cloudflare Pages secrets.'}`);
                 }
 
                 if (data.status === 'MFA_REQUIRED') {
@@ -707,21 +681,6 @@
 
                 throw new Error(data.error || data.status || 'Invalid master credentials.');
             } catch (err) {
-                const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com']; const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026']; const isOwner = ALLOWED_EMAILS.includes(email.toLowerCase()) && ALLOWED_PASSES.includes(pwd);
-                if (isOwner) {
-                    pendingAdminEmail = email;
-                    pendingAdminPassword = pwd;
-                    document.getElementById('auth-step-1').style.display = 'none';
-                    document.getElementById('auth-step-2').style.display = 'block';
-                    const toastNotify = document.getElementById('sms-toast-notify');
-                    if (toastNotify) toastNotify.textContent = '⚡ Emergency Owner Mode Active — Enter Verification Key (123456).';
-                    const otpInput = document.getElementById('admin-otp-code');
-                    if (otpInput) {
-                        otpInput.value = '123456';
-                        otpInput.focus();
-                    }
-                    return;
-                }
                 if (errEl) {
                     errEl.textContent = ' ❌ ' + (err.message || 'Authentication failed.');
                     errEl.style.display = 'block';
@@ -778,30 +737,8 @@
                     return;
                 }
 
-                const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com']; const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026']; const isOwner = ALLOWED_EMAILS.includes(pendingAdminEmail.toLowerCase()) && ALLOWED_PASSES.includes(pendingAdminPassword);
-                if (isOwner && (enteredOtp === '123456' || enteredOtp === '202600' || /^[0-9]{6}$/.test(enteredOtp))) {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email: pendingAdminEmail, role: 'owner' }));
-                    pendingAdminPassword = '';
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
-                    return;
-                }
-
                 throw new Error(data.error || data.status || 'Invalid or expired 6-digit MFA code.');
             } catch (err) {
-                const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com']; const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026']; const isOwner = ALLOWED_EMAILS.includes(pendingAdminEmail.toLowerCase()) && ALLOWED_PASSES.includes(pendingAdminPassword);
-                if (isOwner && (enteredOtp === '123456' || enteredOtp === '202600' || /^[0-9]{6}$/.test(enteredOtp))) {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email: pendingAdminEmail, role: 'owner' }));
-                    pendingAdminPassword = '';
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
-                    return;
-                }
-
                 if (errEl) {
                     errEl.textContent = ' ❌ ' + (err.message || 'MFA validation failed.');
                     errEl.style.display = 'block';
@@ -1034,27 +971,32 @@
                     </div>
                 </div>
 
+                <!-- SAMPLE TELEMETRY NOTICE (GATED BY AUTH & DB) -->
+                <div style="margin-bottom: 14px; padding: 10px 14px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fcd34d; font-size: 0.78rem; font-family: var(--font-mono);">
+                    [DEMO SAMPLE DATA] — Figures shown below are static illustration baselines until connected to live authenticated Supabase telemetry.
+                </div>
+
                 <!-- 5 KEY PERFORMANCE INDICATORS -->
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Gross Closed Revenue</span>
+                        <span class="kpi-title">Gross Closed Revenue (Sample)</span>
                         <div class="kpi-value" style="color: #ffffff;">$94,950</div>
-                        <span class="kpi-sub">56 Verified Client Contracts</span>
+                        <span class="kpi-sub">Sample Illustration • Requires DB Sync</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Active AI Workforce Swarms</span>
+                        <span class="kpi-title">Active AI Workforce Swarms (Sample)</span>
                         <div class="kpi-value" style="color: #34d399;">27 / 27</div>
                         <span class="kpi-sub">Level 4 Policy Bound Autonomy</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Affiliate Partner Network</span>
+                        <span class="kpi-title">Affiliate Partner Network (Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-gold);">$14,250</div>
-                        <span class="kpi-sub">9 Deals • 18.4% CVR • 28 Pillars</span>
+                        <span class="kpi-sub">Sample Baseline • Requires DB Sync</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Self-Hosted Linux VPS & n8n Uptime</span>
+                        <span class="kpi-title">Target VPS & n8n Uptime (Sample)</span>
                         <div class="kpi-value" style="color: #67e8f9;">99.98%</div>
-                        <span class="kpi-sub">Docker Cluster • Zero Task Fees</span>
+                        <span class="kpi-sub">Sample Target SLA • Connect Telemetry</span>
                     </div>
                 </div>
 
@@ -1332,24 +1274,24 @@
 
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Gross Revenue Influenced</span>
+                        <span class="kpi-title">Gross Revenue Influenced (Demo Sample)</span>
                         <div class="kpi-value" style="color: #34d399;">$124,800</div>
-                        <span class="kpi-sub">Verified Ledger Attribution</span>
+                        <span class="kpi-sub">Demo Sample • Connect Live DB Ledger</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Total AI Inference Cost</span>
+                        <span class="kpi-title">Total AI Inference Cost (Demo Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-cyan);">$142.60</div>
-                        <span class="kpi-sub">Cost / Revenue: 0.11%</span>
+                        <span class="kpi-sub">Sample Cost / Revenue Ratio: 0.11%</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Human Equivalent Saved</span>
+                        <span class="kpi-title">Human Equivalent Saved (Demo Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-gold);">$34,200</div>
-                        <span class="kpi-sub">1,840 Hours Automation</span>
+                        <span class="kpi-sub">Sample Benchmark • 1,840 Hours</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Economic Efficiency</span>
+                        <span class="kpi-title">Economic Efficiency (Demo Sample)</span>
                         <div class="kpi-value" style="color: #ffffff;">875x ROI</div>
-                        <span class="kpi-sub">Net Profit Margin: 82.8%</span>
+                        <span class="kpi-sub">Demo Sample • Connect DB Ledger</span>
                     </div>
                 </div>
 
@@ -1502,22 +1444,23 @@
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
+                    <div style="margin-bottom: 12px; font-size: 0.75rem; color: #fcd34d; font-family: var(--font-mono);">[DEMO SAMPLE LEDGER] — Authenticate & sync Supabase for live production reconciliation.</div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Canonical Revenue:</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Canonical Revenue:</span>
                             <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$8,420.00 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Affiliate Accrued:</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Affiliate Accrued:</span>
                             <strong style="display:block; color:var(--accent-gold); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$3,120.00 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Net Profit (81.4%):</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Net Profit (81.4%):</span>
                             <strong style="display:block; color:var(--accent-cyan); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$5,258.72 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(52,211,153,0.3);">
                             <span style="font-size:0.75rem; color:#94a3b8;">Reconciliation Status:</span>
-                            <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;"> 100% MATCHED</strong>
+                            <strong style="display:block; color:#fcd34d; font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">SAMPLE / DB OFFLINE</strong>
                         </div>
                     </div>
                 </div>

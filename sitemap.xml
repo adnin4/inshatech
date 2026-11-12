@@ -14,48 +14,48 @@
 
     <!-- Turnkey Store -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/store.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/store</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
 
     <!-- AI Marketplace -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/marketplace.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/marketplace</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.90</priority>
     </url>
 
     <!-- Compare n8n vs Zapier -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/compare.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/compare</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
 
     <!-- Affiliate Network -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/affiliate.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/affiliate</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
 
     <!-- Client Portal -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/portal.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/portal</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
 
     <!-- Blog & Whitepapers -->
     <url>
-        <loc>https://inshatech-b6b.pages.dev/blog.html</loc>
-        <lastmod>2026-08-23T10:00:00+00:00</lastmod>
+        <loc>https://inshatech-b6b.pages.dev/blog</loc>
+        <lastmod>2026-11-12T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>

@@ -85,34 +85,34 @@ export async function onRequest(context) {
   const response = await context.next();
   const url = new URL(context.request.url);
 
-  if (url.pathname !== '/') return response;
-
   const contentType = response.headers.get('content-type') || '';
   if (!contentType.includes('text/html')) return response;
 
   const original = await response.text();
-  let rewritten = rewriteHtml(original);
+  let rewritten = (url.pathname === '/' || url.pathname === '/index.html') ? rewriteHtml(original) : original;
   const headers = new Headers(response.headers);
   headers.set('x-iinsha-truth-guard', 'enabled');
 
+  const cleanPath = url.pathname === '/' || url.pathname === '/index.html'
+    ? '/'
+    : url.pathname.replace(/\.html$/i, '');
+
   if (url.hostname.endsWith('.pages.dev')) {
     headers.set('X-Robots-Tag', 'noindex, nofollow');
-    headers.set('Link', '<https://inshatech-b6b.pages.dev/>; rel="canonical"');
-    // Ensure HTML meta tag matches HTTP header on staging environment
-    rewritten = rewritten.replace(
-      '<meta name="robots" content="index, follow">',
-      '<meta name="robots" content="noindex, nofollow">'
-    );
+    headers.set('Link', `<https://${url.hostname}${cleanPath}>; rel="canonical"`);
+    if (/<meta\s+name=["']robots["'][^>]*>/i.test(rewritten)) {
+      rewritten = rewritten.replace(
+        /<meta\s+name=["']robots["'][^>]*>/gi,
+        '<meta name="robots" content="noindex, nofollow">'
+      );
+    } else if (rewritten.includes('<head>')) {
+      rewritten = rewritten.replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow">');
+    }
   } else if (url.hostname === 'inshatech.com' || url.hostname === 'www.inshatech.com') {
-    headers.set('Link', '<https://inshatech.com/>; rel="canonical"');
-    // When served from custom production domain, update canonical & og:url to production
-    rewritten = rewritten.replace(
-      'href="https://inshatech-b6b.pages.dev/"',
-      'href="https://inshatech.com/"'
-    ).replace(
-      'content="https://inshatech-b6b.pages.dev"',
-      'content="https://inshatech.com"'
-    );
+    headers.set('Link', `<https://inshatech.com${cleanPath}>; rel="canonical"`);
+    rewritten = rewritten
+      .replace(/https:\/\/inshatech-b6b\.pages\.dev/g, 'https://inshatech.com')
+      .replace(/https:\/\/inshatech\.pages\.dev/g, 'https://inshatech.com');
   }
 
   headers.delete('content-length');

@@ -1,0 +1,205 @@
+name: IINSHA AI-BOS Release Pipeline (Direct Upload Staging -> Production Gate)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: "Deployment target (staging only; production requires manual approval gate)"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - preview
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  verify-and-stage-artifact:
+    name: Build, Security Gate, Tests & Stage Artifact
+    runs-on: ubuntu-latest
+    outputs:
+      release_sha: ${{ steps.meta.outputs.release_sha }}
+      manifest_sha256: ${{ steps.manifest.outputs.manifest_sha256 }}
+
+    steps:
+      - name: Checkout exact reviewed commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies cleanly
+        run: npm ci
+
+      - name: Run build, test suite, security gate, and defect scanners
+        run: |
+          npm run build
+          npm test
+          node scripts/test_admin_auth_security.mjs
+          node scripts/test_release_identity.mjs
+          node scripts/test_mobile_ui_layout.mjs
+          node scripts/check_functions_imports.mjs
+          node scripts/total_defect_scanner.mjs
+          npm run security:gate
+
+      - name: Stage clean publish artifact without dev/secret/backup files
+        run: |
+          rm -rf dist-pages
+          mkdir -p dist-pages
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='node_modules/' \
+            --exclude='docs/' \
+            --exclude='scripts/' \
+            --exclude='supabase/' \
+            --exclude='tests/' \
+            --exclude='backups/' \
+            --exclude='scratch/' \
+            --exclude='ci-failure-evidence/' \
+            --exclude='security-gate-report/' \
+            --exclude='test-results/' \
+            --exclude='playwright-report/' \
+            --exclude='*.bundle' \
+            --exclude='*.backup' \
+            --exclude='*.sql' \
+            --exclude='*.env*' \
+            --exclude='*.pem' \
+            --exclude='*.key' \
+            --exclude='*-DESKTOP-*' \
+            ./ dist-pages/
+
+          FORBIDDEN=$(find dist-pages -type f \( -name '*.bundle' -o -name '*.sql' -o -name '*.env*' -o -name '*.pem' -o -name '*.key' -o -name '*-DESKTOP-*' \) -print)
+          if [ -n "$FORBIDDEN" ]; then
+            echo "ERROR: Forbidden files present in staged artifact:"
+            echo "$FORBIDDEN"
+            exit 1
+          fi
+
+      - name: Capture release SHA & generate SHA-256 manifest
+        id: meta
+        run: echo "release_sha=${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Compute release-manifest.json
+        id: manifest
+        run: |
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            const crypto = require("crypto");
+            const root = "dist-pages";
+            const files = [];
+            function walk(dir) {
+              for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+                const full = path.join(dir, ent.name);
+                if (ent.isDirectory()) walk(full);
+                else files.push(full);
+              }
+            }
+            walk(root);
+            files.sort();
+            const entries = files.map((f) => ({
+              path: path.relative(root, f).replace(/\\/g, "/"),
+              sha256: crypto.createHash("sha256").update(fs.readFileSync(f)).digest("hex"),
+              bytes: fs.statSync(f).size
+            }));
+            const manifest = {
+              repository: "${{ github.repository }}",
+              ref: "${{ github.ref_name }}",
+              release_sha: "${{ github.sha }}",
+              workflow_run_id: "${{ github.run_id }}",
+              generated_at: new Date().toISOString(),
+              file_count: entries.length,
+              files: entries
+            };
+            fs.writeFileSync("dist-pages/release-manifest.json", JSON.stringify(manifest, null, 2));
+          '
+          MANIFEST_HASH=$(sha256sum dist-pages/release-manifest.json | awk '{print $1}')
+          echo "manifest_sha256=${MANIFEST_HASH}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload verified Pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iinsha-pages-release-${{ github.sha }}
+          path: dist-pages/
+          retention-days: 30
+
+  deploy-staging:
+    name: Deploy to Staging (inshatech-b6b.pages.dev)
+    needs: verify-and-stage-artifact
+    environment:
+      name: staging
+      url: https://inshatech-b6b.pages.dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download verified release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: iinsha-pages-release-${{ github.sha }}
+          path: dist-pages/
+
+      - name: Deploy Direct Upload to Cloudflare Pages Staging
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.16.1"
+          command: pages deploy dist-pages --project-name=inshatech --branch=master --commit-hash=${{ github.sha }} --commit-dirty=false
+
+      - name: Post-deploy staging parity & fail-closed checks
+        run: |
+          curl -fsSL https://inshatech-b6b.pages.dev/api/version | tee version.json
+          node -e '
+            const fs = require("fs");
+            const v = JSON.parse(fs.readFileSync("version.json", "utf8"));
+            if (v.environment !== "staging") throw new Error("Expected environment=staging, got " + v.environment);
+            if (!String(v.release_identity?.deployment_id || "").startsWith("dpl_staging_")) {
+              throw new Error("Expected dpl_staging_ prefix, got " + v.release_identity?.deployment_id);
+            }
+          '
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://inshatech-b6b.pages.dev/api/health?type=readiness)
+          echo "Readiness HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ] && [ "$STATUS" != "503" ]; then
+            exit 1
+          fi
+
+  deploy-production:
+    name: Production Promotion (Owner Gate G1-G6 Required)
+    needs: [verify-and-stage-artifact, deploy-staging]
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://inshatech.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download identical staged release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: iinsha-pages-release-${{ github.sha }}
+          path: dist-pages/
+
+      - name: Verify live database health before production upload
+        run: |
+          curl -fsSL https://inshatech-b6b.pages.dev/api/health?type=readiness
+
+      - name: Deploy exact verified artifact to Cloudflare Pages Production branch
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.16.1"
+          command: pages deploy dist-pages --project-name=inshatech --branch=production --commit-hash=${{ github.sha }} --commit-dirty=false

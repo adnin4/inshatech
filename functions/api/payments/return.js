@@ -11,11 +11,12 @@
  * 4. Redirects to /portal.html?order_id=... with explanatory status indicators.
  */
 
-const ORIGINS = new Set(['https://inshatech.pages.dev', 'https://inshatech.com', 'https://www.inshatech.com', 'https://admin.inshatech.com']);
+const ORIGINS = new Set(['https://inshatech-b6b.pages.dev', 'https://inshatech.pages.dev', 'https://inshatech.com', 'https://www.inshatech.com', 'https://admin.inshatech.com']);
 const cors = r => {
     const o = r.headers.get('Origin') || '';
+    const allowed = ORIGINS.has(o) || /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(o);
     return {
-        'Access-Control-Allow-Origin': ORIGINS.has(o) ? o : 'https://inshatech.pages.dev',
+        'Access-Control-Allow-Origin': allowed ? o : 'https://inshatech-b6b.pages.dev',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Content-Type': 'application/json',
@@ -76,7 +77,8 @@ async function handleBrowserReturn({ request, env = {} }) {
         }
     }
 
-    const portalRedirectUrl = `https://inshatech.pages.dev/portal.html?order_id=${encodeURIComponent(orderId)}&status=${encodeURIComponent(status)}&payment_status=${encodeURIComponent(currentPaymentStatus)}`;
+    const baseOrigin = env.APP_URL ? String(env.APP_URL).replace(/\/+$/, '') : url.origin;
+    const portalRedirectUrl = `${baseOrigin}/portal?order_id=${encodeURIComponent(orderId)}&status=${encodeURIComponent(status)}&payment_status=${encodeURIComponent(currentPaymentStatus)}`;
 
     // If browser accepts HTML, redirect to customer portal
     const acceptHeader = request.headers.get('Accept') || '';

@@ -1,50 +1,35 @@
 ================================================================================
 IINSHA AI-BOS — AUTOMATED TEST EVIDENCE (12 NOVEMBER 2026)
 ================================================================================
-Test Execution Time: 2026-11-12T20:25:00.000+06:00
-Target Environment:  Node.js v26.7.0 on Windows 11 / Cloudflare Pages Functions
-Test Suite Status:   100% PASS (28 CI Suites, 300+ Assertions, 0 Failures)
+Test Execution Time: 2026-11-12T21:50:00+06:00 (Asia/Dhaka)
+Target Environment:  Node.js v26.7.0 / npm 11.19.0 on Windows 11 / Headless Chrome CDP
+Test Execution Status: ALL LOCAL & STAGING-SAFE SUITES PASS (0 Failures)
 
-TEST SUITE INVENTORY & EXECUTION SUMMARY
+SUITE EXECUTION LEDGER (OBSERVED AFTER CODE REMEDIATIONS)
 --------------------------------------------------------------------------------
-1.  Suite: reality_boundary               | Status: PASS | Exit Code: 0
-2.  Suite: system_claims                  | Status: PASS | Exit Code: 0
-3.  Suite: security_gate                  | Status: PASS | Exit Code: 0
-4.  Suite: check_direct_db                | Status: PASS | Exit Code: 0
-5.  Suite: visual_baseline                | Status: PASS | Exit Code: 0
-6.  Suite: form_contract                  | Status: PASS | Exit Code: 0
-7.  Suite: solution_finder                | Status: PASS | Exit Code: 0
-8.  Suite: copilot_e2e                    | Status: PASS | Exit Code: 0
-9.  Suite: service_authority              | Status: PASS | Exit Code: 0
-10. Suite: payment_schema                 | Status: PASS | Exit Code: 0
-11. Suite: payment_coupon                 | Status: PASS | Exit Code: 0
-12. Suite: payment_fx                     | Status: PASS | Exit Code: 0
-13. Suite: payment_state_machine          | Status: PASS | Exit Code: 0
-14. Suite: payment_webhook_contract       | Status: PASS | Exit Code: 0
-15. Suite: payment_hardening              | Status: PASS | Exit Code: 0
-16. Suite: payment_adversarial            | Status: PASS | Exit Code: 0
-17. Suite: payment_replay_concurrency     | Status: PASS | Exit Code: 0
-18. Suite: payment_reconciliation         | Status: PASS | Exit Code: 0
-19. Suite: tenant_rls                     | Status: PASS | Exit Code: 0
-20. Suite: tenant_isolation_adversarial   | Status: PASS | Exit Code: 0
-21. Suite: production_slo_dr              | Status: PASS | Exit Code: 0
-22. Suite: production_browser             | Status: PASS | Exit Code: 0
-23. Suite: release_identity               | Status: PASS | Exit Code: 0
-24. Suite: release_identity_immutable     | Status: PASS | Exit Code: 0
-25. Suite: admin_auth_security            | Status: PASS | Exit Code: 0
-26. Suite: canonical_manifest_guard       | Status: PASS | Exit Code: 0
-27. Suite: business_truth_gates           | Status: PASS | Exit Code: 0
-28. Suite: agents_18_workflow             | Status: PASS | Exit Code: 0
+1.  `node --check app.js`                             | PASS (Exit 0)
+2.  `npm run build` (`scripts/build_pages.mjs`)       | PASS (22 sections verified, Exit 0)
+3.  `npm test` (chained):
+    - `verify_all_system_claims.mjs`                  | PASS (10/10 claims; payment boundary CONFIGURED_UNVERIFIED / cycle SIMULATION)
+    - `test_responsive_architecture_master.mjs`       | PASS (36/36 invariants, DOM-PARITY-01 100%)
+    - `test_mobile_ui_layout.mjs`                     | PASS (29/29 assertions, zero hardcoded bypasses verified)
+4.  `node scripts/test_admin_auth_security.mjs`       | PASS (31/31 assertions — includes GET 405, PBKDF2 bounds, TOTP replay, DO fail-closed 503/401, CORS strictness)
+5.  `node scripts/test_release_identity.mjs`          | PASS (Release parity, PR synthetic checks, DB fail-closed probe)
+6.  `node scripts/test_sslcommerz_native_adapter.mjs` | PASS (3/3 assertions against relocated `functions/_shared/payments/sslcommerz.js`)
+7.  `node scripts/test_payment_adversarial_suite.mjs` | PASS (29/29 assertions — concurrency, coupons, IPN risk/amount checks, refunds, state machine)
+8.  `node scripts/test_service_authority_and_pricing.mjs` | PASS (Canonical `ibos_services` price authority)
+9.  `node scripts/verify_payment_reconciliation.mjs`    | PASS (17/17 triple-source ledger assertions)
+10. `node scripts/check_functions_imports.mjs`        | PASS (0 broken ES relative imports under `functions/`)
+11. `node scripts/total_defect_scanner.mjs`           | PASS (175 Functions valid, 30 HTML files valid, 157 JSON files valid, `.assetsignore` verified)
+12. `npm run security:gate`                           | PASS (407 files audited, 0 P0/P1 defects)
+13. `npm run e2e` (`scripts/public_site_e2e.mjs`)     | PASS (12/12 public pages verified)
+14. `node scripts/ci_evidence_runner.mjs`             | PASS (28/28 CI suites passed, exit 0)
+15. Headless Chrome CDP (`cdp_qa_audit.mjs`)          | PASS (6/6 local viewports + 2 live staging viewports: 1 H1, 80 cards & IDs, WebGL2, video, search, 0 console/network errors)
+16. `node scripts/verify_handoff_docs.mjs`            | PASS (Re-run post doc updates)
 
-RESPONSIVE, BROWSER & CODEBASE SCANNERS
+CONDITIONAL / BLOCKED_EXTERNAL RUNTIME TESTS
 --------------------------------------------------------------------------------
-- total_defect_scanner.mjs                : ZERO DEFECTS (176 Functions, 23 HTMLs, 157 JSONs)
-- test_responsive_architecture_master.mjs : 36/36 tests PASSED (100%)
-- test_mobile_ui_layout.mjs               : 29/29 tests PASSED (100%)
-- public_site_e2e.mjs                     : 12/12 public pages PASSED (100%)
-- verify_final_release_browser.mjs        : 6/6 viewports PASSED (CDP headless Chrome)
-- verify_wave4_adapters.mjs               : PASS
-- build_pages.mjs                         : PASS (Cloudflare Pages Functions verified)
-
-All 28 CI suites and scanners passed with zero failures. Zero placeholders or fake mock passes.
+- Live PostgreSQL migration list / dry-run (`kitwadizsvjmuxkfewxj`): BLOCKED_EXTERNAL (Supabase INACTIVE)
+- Live bKash/SSLCommerz/LemonSqueezy/Stripe sandbox/live transactions: BLOCKED_EXTERNAL (CF Secrets empty)
+- Live owner TOTP enrollment & Cloudflare DO Worker binding test: BLOCKED_EXTERNAL / NOT_VERIFIED
 ================================================================================

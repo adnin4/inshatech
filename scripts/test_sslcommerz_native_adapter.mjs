@@ -1,5 +1,5 @@
 import assert from 'node:assert';
-import { SSLCommerzAdapter } from '../functions/api/payments/providers/sslcommerz.js';
+import { SSLCommerzAdapter } from '../functions/_shared/payments/sslcommerz.js';
 
 async function runSSLCommerzTests() {
     console.log("================================================================================");

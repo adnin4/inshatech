@@ -4,6 +4,7 @@
  */
 
 const ORIGINS = new Set([
+    'https://inshatech-b6b.pages.dev',
     'https://inshatech.pages.dev',
     'https://inshatech.com',
     'https://www.inshatech.com',
@@ -16,14 +17,16 @@ const ORIGINS = new Set([
 
 export function getCorsHeaders(request) {
     const origin = request.headers.get('Origin') || '';
-    const isAllowed = ORIGINS.has(origin) || origin.endsWith('.pages.dev');
+    const isAllowed = ORIGINS.has(origin) || /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
     return {
-        'Access-Control-Allow-Origin': isAllowed ? origin : 'https://inshatech.pages.dev',
+        'Access-Control-Allow-Origin': isAllowed ? origin : 'https://inshatech-b6b.pages.dev',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With, X-Agent-ID, X-Admin-Token',
         'Access-Control-Allow-Credentials': 'true',
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
+        'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin'
     };
 }
 
@@ -58,25 +61,24 @@ export async function revokeSessionToken(jti, env = {}) {
     if (!jti) return;
     IN_MEMORY_REVOKED_JTIS.add(jti);
 
-    // 1. Strongly Consistent Durable Objects Authority (Zero Eventual Consistency Delay)
+    // 1. Strongly Consistent Durable Objects Authority (fail closed on coordinator error)
     if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
-        try {
-            const partitionKey = 'revocation:' + String(jti).slice(0, 8);
-            const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
-            const stub = env.SECURITY_COORDINATOR.get(id);
-            await stub.fetch('https://coordinator/revoke', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ jti })
-            });
-        } catch (_) {}
+        const partitionKey = 'revocation:' + String(jti).slice(0, 8);
+        const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
+        const stub = env.SECURITY_COORDINATOR.get(id);
+        const res = await stub.fetch('https://coordinator/revoke', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ jti })
+        });
+        if (!res.ok) {
+            throw new Error(`SecurityCoordinator revocation failed with HTTP ${res.status}`);
+        }
     }
 
     // 2. Eventually Consistent KV Cache (Secondary read acceleration)
     if (env.REVOCATION_KV && typeof env.REVOCATION_KV.put === 'function') {
-        try {
-            await env.REVOCATION_KV.put(`revoked:${jti}`, 'true', { expirationTtl: 86400 });
-        } catch (_) {}
+        await env.REVOCATION_KV.put(`revoked:${jti}`, 'true', { expirationTtl: 86400 });
     }
 }
 
@@ -91,10 +93,12 @@ export async function isSessionRevoked(jti, env = {}) {
             const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
             const stub = env.SECURITY_COORDINATOR.get(id);
             const res = await stub.fetch(`https://coordinator/is-revoked?jti=${encodeURIComponent(jti)}`);
-            if (res.ok) {
-                const data = await res.json().catch(() => ({}));
-                if (data.is_revoked) return true;
+            if (!res.ok) {
+                // Fail closed when security coordinator returns error status
+                return true;
             }
+            const data = await res.json().catch(() => ({}));
+            if (data.is_revoked) return true;
         } catch (_) {
             // Fail closed on security authority communication error
             return true;
@@ -106,7 +110,9 @@ export async function isSessionRevoked(jti, env = {}) {
         try {
             const val = await env.REVOCATION_KV.get(`revoked:${jti}`);
             if (val) return true;
-        } catch (_) {}
+        } catch (_) {
+            return true;
+        }
     }
     return false;
 }
@@ -127,7 +133,8 @@ export async function verifyServerSession(request, env = {}, options = {}) {
     const {
         requiredRole = 'owner',
         minHierarchyLevel = 1,
-        requireMfa = true
+        requireMfa = true,
+        skipRevocationCheck = false
     } = options;
 
     if (!env.JWT_SECRET) {
@@ -200,7 +207,7 @@ export async function verifyServerSession(request, env = {}, options = {}) {
             };
         }
 
-        if (payload.jti && await isSessionRevoked(payload.jti, env)) {
+        if (!skipRevocationCheck && payload.jti && await isSessionRevoked(payload.jti, env)) {
             return {
                 authorized: false,
                 status: 'TOKEN_REVOKED',

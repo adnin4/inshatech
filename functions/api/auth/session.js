@@ -30,7 +30,9 @@ function corsHeaders(request) {
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Credentials': 'true',
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
+        'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin'
     };
 }
 
@@ -51,15 +53,34 @@ async function sha256Hex(s) {
     return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+const MIN_PBKDF2_ITERATIONS = 100000;
+const MAX_PBKDF2_ITERATIONS = 1000000;
+
 async function verifyPassword(password, storedHash) {
-    if (!password || !storedHash || !storedHash.startsWith('pbkdf2:')) return false;
+    if (typeof password !== 'string' || !password || typeof storedHash !== 'string' || !storedHash.startsWith('pbkdf2:')) {
+        return false;
+    }
     // Format: PBKDF2 -> pbkdf2:<iterations>:<saltHex>:<hashHex>
     const parts = storedHash.split(':');
-    if (parts.length === 4) {
-        const iterations = parseInt(parts[1], 10) || 600000;
-        const saltHex = parts[2];
-        const expectedHashHex = parts[3];
-        const salt = new Uint8Array(saltHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    if (parts.length !== 4) return false;
+
+    const iterStr = parts[1];
+    const saltHex = parts[2];
+    const expectedHashHex = parts[3];
+
+    if (!/^[0-9]+$/.test(iterStr)) return false;
+    const iterations = Number(iterStr);
+    if (!Number.isSafeInteger(iterations) || iterations < MIN_PBKDF2_ITERATIONS || iterations > MAX_PBKDF2_ITERATIONS) {
+        return false;
+    }
+
+    if (!/^[0-9a-f]{32,}$/i.test(saltHex) || saltHex.length % 2 !== 0) return false;
+    if (!/^[0-9a-f]{64}$/i.test(expectedHashHex)) return false;
+
+    try {
+        const saltBytes = saltHex.match(/.{2}/g);
+        if (!saltBytes) return false;
+        const salt = new Uint8Array(saltBytes.map(byte => parseInt(byte, 16)));
         const key = await crypto.subtle.importKey(
             'raw',
             new TextEncoder().encode(password),
@@ -73,9 +94,10 @@ async function verifyPassword(password, storedHash) {
             256
         );
         const derivedHex = [...new Uint8Array(derived)].map(x => x.toString(16).padStart(2, '0')).join('');
-        return constantTimeEqual(derivedHex, expectedHashHex);
+        return constantTimeEqual(derivedHex.toLowerCase(), expectedHashHex.toLowerCase());
+    } catch (_) {
+        return false;
     }
-    return false;
 }
 
 async function signJwt(payload, secret) {
@@ -95,7 +117,9 @@ async function signJwt(payload, secret) {
 }
 
 async function verifyTotp(token, secret) {
-    if (!secret || !/^[0-9]{6}$/.test(String(token || ''))) return false;
+    if (!secret || !/^[0-9]{6}$/.test(String(token || ''))) {
+        return { valid: false, matchedStep: null };
+    }
     const key = await crypto.subtle.importKey(
         'raw',
         new TextEncoder().encode(secret),
@@ -106,14 +130,17 @@ async function verifyTotp(token, secret) {
     const counter = Math.floor(Date.now() / 30000);
     // Allow 1 step clock drift (-30s, 0s, +30s)
     for (let drift = -1; drift <= 1; drift++) {
+        const step = counter + drift;
         const ab = new ArrayBuffer(8);
-        new DataView(ab).setBigUint64(0, BigInt(counter + drift));
+        new DataView(ab).setBigUint64(0, BigInt(step));
         const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, ab));
         const offset = sig[sig.length - 1] & 15;
         const code = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]) % 1000000;
-        if (String(code).padStart(6, '0') === String(token)) return true;
+        if (constantTimeEqual(String(code).padStart(6, '0'), String(token))) {
+            return { valid: true, matchedStep: step };
+        }
     }
-    return false;
+    return { valid: false, matchedStep: null };
 }
 
 export async function onRequestPost({ request, env = {} }) {
@@ -125,7 +152,7 @@ export async function onRequestPost({ request, env = {} }) {
             if (!env[key]) {
                 return new Response(JSON.stringify({
                     status: 'CONFIGURATION_ERROR',
-                    error: `${key} is required`
+                    error: 'Required authentication secrets are not configured'
                 }), { status: 503, headers });
             }
         }
@@ -151,23 +178,22 @@ export async function onRequestPost({ request, env = {} }) {
             }), { status: 401, headers });
         }
 
-        const mfaValid = await verifyTotp(body.mfa_token, env.MFA_SECRET);
-        if (!mfaValid) {
+        const mfaResult = await verifyTotp(body.mfa_token, env.MFA_SECRET);
+        if (!mfaResult.valid) {
             return new Response(JSON.stringify({
                 status: 'MFA_REQUIRED'
             }), { status: 401, headers });
         }
 
-        // Anti-Replay check via SecurityCoordinator if configured
+        // Anti-Replay check via SecurityCoordinator (fail closed on coordinator unavailability)
         if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
             try {
-                const step = Math.floor(Date.now() / 30000);
                 const id = env.SECURITY_COORDINATOR.idFromName('mfa-replay-guard');
                 const stub = env.SECURITY_COORDINATOR.get(id);
                 const replayRes = await stub.fetch('https://coordinator/mfa-verify', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ code: body.mfa_token, step })
+                    body: JSON.stringify({ code: String(body.mfa_token), step: mfaResult.matchedStep })
                 });
                 if (replayRes.status === 409) {
                     return new Response(JSON.stringify({
@@ -175,7 +201,18 @@ export async function onRequestPost({ request, env = {} }) {
                         error: 'MFA TOTP code already used in this time step'
                     }), { status: 401, headers });
                 }
-            } catch (_) {}
+                if (!replayRes.ok) {
+                    return new Response(JSON.stringify({
+                        status: 'SECURITY_AUTHORITY_UNAVAILABLE',
+                        error: 'MFA anti-replay coordinator returned non-200 status'
+                    }), { status: 503, headers });
+                }
+            } catch (_) {
+                return new Response(JSON.stringify({
+                    status: 'SECURITY_AUTHORITY_UNAVAILABLE',
+                    error: 'MFA anti-replay coordinator unavailable'
+                }), { status: 503, headers });
+            }
         }
 
         const now = Math.floor(Date.now() / 1000);
@@ -204,12 +241,21 @@ export async function onRequestPost({ request, env = {} }) {
             }
         }), { status: 200, headers });
 
-    } catch (err) {
+    } catch (_) {
         return new Response(JSON.stringify({
             status: 'ERROR',
-            details: err.message
+            error: 'Authentication processing error'
         }), { status: 500, headers });
     }
+}
+
+export function onRequestGet({ request }) {
+    const headers = corsHeaders(request);
+    headers['Allow'] = 'POST, OPTIONS';
+    return new Response(JSON.stringify({
+        status: 'METHOD_NOT_ALLOWED',
+        error: 'Use POST /api/auth/session'
+    }), { status: 405, headers });
 }
 
 export function onRequestOptions({ request }) {

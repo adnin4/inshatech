@@ -1,49 +1,57 @@
 ================================================================================
 IINSHA AI-BOS — LIVE AUDIT SNAPSHOT (12 NOVEMBER 2026)
 ================================================================================
-Target URL:                  https://inshatech-b6b.pages.dev/
-Evaluated Commit SHA:        6d74b0a584e33b4e3649d35d4b09146311a631a9
-Evaluation Mode:             Headless Chrome CDP + Direct Fetch Instrumentation
-Timestamp:                   2026-11-12T20:25:00.000+06:00 (Asia/Dhaka)
+Target Staging URL:          https://inshatech-b6b.pages.dev/
+Target Production Domains:   https://inshatech.com/ , https://www.inshatech.com/
+Live Deployed Commit SHA:    74d90b14143e936587153464557a7e6d0f35fb9c (Deployed before local RC fixes; workstation deploy stopped at Owner Gate G1)
+Local Candidate Evaluated:   127.0.0.1 ephemeral static server + headless Chrome CDP (6 viewports)
+Evaluation Timestamp:        2026-11-12T21:50:00+06:00 (Asia/Dhaka)
 
-1. RAW HTTP RESPONSE INSPECTION
+1. LIVE HTTP ENDPOINT PROBES (OBSERVED ON STAGE & CUSTOM DOMAINS)
 --------------------------------------------------------------------------------
-- HTTP Status:               200 OK
-- Content-Type:              text/html; charset=utf-8
-- X-Robots-Tag Header:       noindex, nofollow (PASS)
-- Link Header:               <https://inshatech-b6b.pages.dev/>; rel="canonical" (PASS)
-- Raw HTML Canonical:        <link rel="canonical" href="https://inshatech-b6b.pages.dev/"> (PASS)
-- Raw HTML Robots:           <meta name="robots" content="noindex, nofollow"> (PASS)
-- Raw HTML Canvas:           <canvas id="iinsha-diagram-scene" class="... hero3d-canvas" ...> (PASS)
-- Raw HTML data-service-id:  80 unique occurrences (svc-01 to svc-80) (PASS)
+- https://inshatech-b6b.pages.dev/ -> HTTP 200
+  * X-Robots-Tag: noindex, nofollow
+  * Link: <https://inshatech-b6b.pages.dev/>; rel="canonical"
+  * HTML canonical: https://inshatech-b6b.pages.dev/ | meta robots: noindex, nofollow
+- https://inshatech-b6b.pages.dev/store -> HTTP 200 (Pre-RC middleware bug reproduced live; fixed locally in _routes.json + _middleware.js)
+  * Observed live X-Robots-Tag: null | Link: null | robots meta: index, follow...
+- https://inshatech-b6b.pages.dev/admin -> HTTP 200 (Pre-RC canonical bug reproduced live; fixed locally)
+  * Observed live canonical: https://inshatech-b6b.pages.dev/admin.html | X-Robots-Tag: null
+- https://inshatech-b6b.pages.dev/api/version -> HTTP 200
+  * environment: staging, deploy_sha: 74d90b14143e936587153464557a7e6d0f35fb9c, full_production_parity: false, production_sealed: false
+  * Pre-RC bug observed live: release_identity.deployment_id returned dpl_prod_74d90b1414 (fixed locally to emit dpl_staging_)
+- https://inshatech-b6b.pages.dev/api/health -> HTTP 200 (liveness: HEALTHY, edge_region: DAC, readiness: NOT_READY)
+- https://inshatech-b6b.pages.dev/api/health?type=readiness -> HTTP 503 (NOT_READY, database_pool: NOT_CONFIGURED) [PASS fail-closed]
+- https://inshatech-b6b.pages.dev/api/admin/gate -> HTTP 503 (CONFIGURATION_ERROR — zero Cloudflare secrets configured) [PASS fail-closed]
+- https://inshatech.com/ -> HTTP 200 | title="Insha Technologies | Home" | Legacy site still live (Owner Gate G6 pending)
+- https://www.inshatech.com/ -> Network fetch failed (DNS/TLS cutover pending Owner Gate G6)
 
-2. BROWSER RUNTIME DOM INSPECTION (REAL CHROME CDP)
+2. CHROME CDP BROWSER RUNTIME VERIFICATION
 --------------------------------------------------------------------------------
-- Semantic H1 Count:         1
-- Canvas Elements Found:     1
-- Canvas ID:                 iinsha-diagram-scene
-- Canvas Class:              iinsha-hero-canvas diagram-hero-canvas hero3d-canvas
-- Active GL Context:         WebGL2RenderingContext
-- Service Item Cards:        80
-- Cards With data-service-id: 80 (100% complete)
-- Category Overview Cards:   8 (all visible)
-- Capability Bento Cards:    4 (all visible)
-- Category Tab Controls:     9 (.service-tab-btn buttons)
-- Video Playback:            Advanced (currentTime > 0)
-- JavaScript Console Errors: 0
-- Network Loading Failures:  0
-- CSP Violations:            0
+Tested both local static release candidate (6 viewports) and live staging https://inshatech-b6b.pages.dev/ (1440x900, 390x844):
+- Semantic H1 Count:             1 (PASS)
+- Hero WebGL Canvas:             #iinsha-diagram-scene WebGL2 active on all 6 viewports (PASS)
+- Hero Video Progression:        paused=false; currentTime progressed > 1.2s over 1.4s sample window (PASS)
+- Service Catalog Cards:         80 .service-item-card elements, 80 unique data-service-id (svc-01..svc-80) (PASS)
+- Category Overview / Bento:     8 visible .cat-overview-card, 4 visible .idg-bento-card (PASS)
+- Interactive Search (#service-live-search):
+  * "Invoice" -> 1 visible card, #service-search-empty display: none (PASS)
+  * "Playwright" -> 1 visible card, #service-search-empty display: none (PASS)
+  * "zzznonexistentquery999" -> 0 visible cards, #service-search-empty display: block (1066x90 desktop, 308x139 mobile) (PASS)
+  * "" cleared -> 80 visible cards restored (PASS)
+- Console Errors / Exceptions / Failed Network Requests: 0 / 0 / 0 across all viewports (PASS)
+- Images missing alt attribute:  0 (PASS)
+- Cumulative Layout Shift (CLS): 0 across all viewports (PASS)
+- Accessibility Note:            6 form inputs rely on placeholder/adjacent label without explicit `for` or `aria-label` (logged for UI polish).
 
-3. SIX VIEWPORT RESPONSIVE METRICS
+3. SIX-VIEWPORT METRIC MATRIX (LOCAL CANDIDATE VIA CHROME CDP)
 --------------------------------------------------------------------------------
-| Viewport | Device Class | Width | ScrollWidth | Overflow | H1 | Canvas | Cards | Unique IDs | Bento | Status |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1440x900 | Desktop Large | 1440px | 1432px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-| 1280x900 | Desktop Standard | 1280px | 1280px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-| 1024x768 | Desktop Compact | 1024px | 1024px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-| 768x1024 | Tablet Portrait | 768px | 768px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-| 390x844 | Mobile Modern | 390px | 390px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-| 360x800 | Mobile Narrow | 360px | 360px | 0px | 1 | WebGL2 | 80 | 80 | 4 | PASS |
-
-Conclusion: All 6 viewports enforce 0px horizontal overflow with zero console/network defects.
+| Viewport | Width | ScrollWidth | Overflow | H1 | Canvas (WebGL2) | Cards | Unique IDs | CLS | TTFB | DCL | Status |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1440x900 | 1440 | 1432 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 9ms | 2608ms | PASS |
+| 1280x900 | 1280 | 1272 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 4ms | 678ms | PASS |
+| 1024x768 | 1024 | 1016 | 0px | 1 | 920x460 (true) | 80 | 80 | 0 | 11ms | 987ms | PASS |
+| 768x1024 | 768 | 768 | 0px | 1 | 1120x560 (true) | 80 | 80 | 0 | 4ms | 736ms | PASS |
+| 390x844 | 390 | 390 | 0px | 1 | 528x264 (true) | 80 | 80 | 0 | 10ms | 419ms | PASS |
+| 360x800 | 360 | 360 | 0px | 1 | 480x240 (true) | 80 | 80 | 0 | 4ms | 494ms | PASS |
 ================================================================================

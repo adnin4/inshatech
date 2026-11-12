@@ -1,15 +1,3 @@
-
-window.instantOwnerModalBypass = function() {
-    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-    sessionStorage.setItem('iinsha_2fa_verified', 'true');
-    sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-    sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email: 'inshatech.dev@gmail.com', role: 'owner' }));
-    const rootContainer = document.getElementById('index-admin-cms-root');
-    if (rootContainer && typeof renderAdminModalCmsStudio === 'function') {
-        renderAdminModalCmsStudio(rootContainer);
-    }
-};
-
 /* Global Observability & Diagnostic Guard */
 window.onerror = function(msg, url, lineNo, columnNo, error) {
     const errorDetails = {
@@ -686,8 +674,6 @@ function renderAdminLoginFormCard(container) {
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (Server-Enforced 2FA)</p>
 
-            <button type="button" onclick="window.instantOwnerModalBypass()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 16px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);">⚡ 1-Click Instant Owner Access (Auto-Login)</button>
-        <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:var(--font-mono);">OR SIGN IN WITH EMAIL</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
         <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
                 <input type="email" id="admin-input-email" placeholder="admin@inshatech.pages.dev" required autocomplete="username" style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
@@ -757,38 +743,8 @@ async function handleAdminLoginSubmit(e) {
 
         const data = await res.json().catch(() => ({}));
 
-        const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com'];
-        const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026', 'admin'];
-        const isOwner = ALLOWED_EMAILS.includes(email.toLowerCase()) && ALLOWED_PASSES.includes(pass);
-
-        if (res.status === 503 || res.status === 404 || data.status === 'CONFIGURATION_ERROR') {
-            if (isOwner) {
-                if (mfaToken && /^[0-9]{6}$/.test(mfaToken)) {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email, role: 'owner' }));
-                    const rootContainer = document.getElementById('index-admin-cms-root');
-                    if (rootContainer) renderAdminModalCmsStudio(rootContainer);
-                    return;
-                }
-                if (mfaGroup) mfaGroup.style.display = 'block';
-                if (mfaEl) {
-                    mfaEl.value = '123456';
-                    mfaEl.focus();
-                }
-                if (errEl) {
-                    errEl.textContent = '🔐 Edge Offline / Verified Owner Key: Enter 6-digit Emergency Key (123456).';
-                    errEl.style.display = 'block';
-                    errEl.style.color = 'var(--accent-cyan)';
-                }
-                if (btn) {
-                    btn.disabled = false;
-                    btn.textContent = '🔐 Verify Key & Open Studio →';
-                }
-                return;
-            }
-            throw new Error(`Server Auth Not Configured: ${data.error || 'Edge service offline'}`);
+        if (res.status === 503 || res.status === 404 || data.status === 'CONFIGURATION_ERROR' || data.status === 'SECURITY_AUTHORITY_UNAVAILABLE') {
+            throw new Error(`Fail-Closed Server Auth (${res.status}): ${data.message || data.error || 'Configure ADMIN_EMAIL, ADMIN_PASSWORD_HASH, JWT_SECRET, and MFA_SECRET in Cloudflare Pages secrets.'}`);
         }
 
         if (data.status === 'MFA_REQUIRED') {
@@ -821,32 +777,6 @@ async function handleAdminLoginSubmit(e) {
 
         throw new Error(data.error || data.status || 'Invalid email or password');
     } catch (err) {
-        const ALLOWED_EMAILS = ['inshatech.dev@gmail.com', 'admin@inshatech.pages.dev', 'admin@inshatech.com', 'adnin4@gmail.com'];
-        const ALLOWED_PASSES = ['iinsha_admin_2026', 'admin123456', '123456', 'inshatech2026'];
-        const isOwner = ALLOWED_EMAILS.includes(email.toLowerCase()) && ALLOWED_PASSES.includes(pass);
-        if (isOwner) {
-            if (mfaToken && /^[0-9]{6}$/.test(mfaToken)) {
-                sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                sessionStorage.setItem('iinsha_session_token', 'local_owner_session_' + Date.now());
-                sessionStorage.setItem('iinsha_admin_user', JSON.stringify({ email, role: 'owner' }));
-                const rootContainer = document.getElementById('index-admin-cms-root');
-                if (rootContainer) renderAdminModalCmsStudio(rootContainer);
-                return;
-            }
-            if (mfaGroup) mfaGroup.style.display = 'block';
-            if (mfaEl) {
-                mfaEl.value = '123456';
-                mfaEl.focus();
-            }
-            if (errEl) {
-                errEl.textContent = '🔐 Emergency Owner Authentication: Enter 6-digit Key (123456).';
-                errEl.style.display = 'block';
-                errEl.style.color = 'var(--accent-cyan)';
-            }
-            return;
-        }
-
         if (errEl) {
             errEl.textContent = '❌ ' + (err.message || 'Authentication failed');
             errEl.style.display = 'block';

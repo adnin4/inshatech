@@ -9,7 +9,7 @@
  * 5) only verified payment-success events may move an order to paid.
  */
 
-import { SSLCommerzAdapter } from './providers/sslcommerz.js';
+import { SSLCommerzAdapter } from '../../_shared/payments/sslcommerz.js';
 import { canTransition, PAYMENT_STATES } from '../../_shared/payments/payment_state_machine.js';
 
 async function hmac(raw, secret) {
@@ -59,7 +59,7 @@ export async function onRequestGet({ request }) {
         return json(400, { status: 'INVALID_RETURN' });
     }
 
-    const destination = new URL('https://inshatech.pages.dev/api/payments/return');
+    const destination = new URL('/api/payments/return', url.origin);
     destination.searchParams.set('order_id', orderId);
     destination.searchParams.set('status', status);
     if (provider) destination.searchParams.set('provider', provider);

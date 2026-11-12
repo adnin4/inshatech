@@ -5,10 +5,10 @@
  * token expiry, and endpoint gating.
  */
 
-import { onRequestPost as handleAuthSession } from '../functions/api/auth/session.js';
+import { onRequestPost as handleAuthSession, onRequestGet as handleAuthSessionGet } from '../functions/api/auth/session.js';
 import { onRequestGet as handleAdminGate } from '../functions/api/admin/gate.js';
 import { onRequestPost as handleKillswitch } from '../functions/api/workforce/killswitch.js';
-import { onRequestPost as handleAuthLogout } from '../functions/api/auth/logout.js';
+import { onRequestPost as handleAuthLogout, onRequestGet as handleAuthLogoutGet } from '../functions/api/auth/logout.js';
 import { onRequestPost as handleAdminKillswitch } from '../functions/api/admin/killswitch.js';
 import { onRequestGet as handleAdminIntegrations } from '../functions/api/admin/integrations.js';
 
@@ -447,6 +447,149 @@ async function runTestSuite() {
         // Ensure no provider falsely claims LIVE_VERIFIED without credentials
         const falseVerified = authData.integrations.find(i => i.status === 'LIVE_VERIFIED');
         assert(!falseVerified, 'Zero unverified integrations claim LIVE_VERIFIED without live credentials');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 18: GET /api/auth/session and GET /api/auth/logout -> 405 METHOD_NOT_ALLOWED
+    // -------------------------------------------------------------------------
+    {
+        const getSessionRes = await handleAuthSessionGet({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', { method: 'GET' })
+        });
+        assert(getSessionRes.status === 405, 'GET /api/auth/session returns 405 METHOD_NOT_ALLOWED instead of HTML 200');
+
+        const getLogoutRes = await handleAuthLogoutGet({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/logout', { method: 'GET' })
+        });
+        assert(getLogoutRes.status === 405, 'GET /api/auth/logout returns 405 METHOD_NOT_ALLOWED');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 19: Out-of-bounds PBKDF2 iteration count fails safely with 401
+    // -------------------------------------------------------------------------
+    {
+        const badIterEnv = {
+            ...testEnv,
+            ADMIN_PASSWORD_HASH: 'pbkdf2:99999999:00112233445566778899aabbccddeeff:00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff'
+        };
+        const req = new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword })
+        });
+        const res = await handleAuthSession({ request: req, env: badIterEnv });
+        assert(res.status === 401, 'Out-of-bounds PBKDF2 iteration hash rejects with 401 INVALID_CREDENTIALS');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 20: TOTP Replay Protection & Fail-Closed SECURITY_COORDINATOR
+    // -------------------------------------------------------------------------
+    {
+        const seenTotp = new Set();
+        const revokedJtis = new Set();
+        const mockCoordinatorEnv = {
+            ...testEnv,
+            SECURITY_COORDINATOR: {
+                idFromName: (name) => name,
+                get: () => ({
+                    fetch: async (url, init = {}) => {
+                        const pathname = new URL(url).pathname;
+                        if (pathname === '/mfa-verify') {
+                            const body = JSON.parse(init.body || '{}');
+                            const key = `${body.step}:${body.code}`;
+                            if (seenTotp.has(key)) {
+                                return new Response(JSON.stringify({ verified: false }), { status: 409 });
+                            }
+                            seenTotp.add(key);
+                            return new Response(JSON.stringify({ verified: true }), { status: 200 });
+                        }
+                        if (pathname === '/revoke') {
+                            const body = JSON.parse(init.body || '{}');
+                            revokedJtis.add(body.jti);
+                            return new Response(JSON.stringify({ revoked: true }), { status: 200 });
+                        }
+                        if (pathname === '/is-revoked') {
+                            const jti = new URL(url).searchParams.get('jti');
+                            return new Response(JSON.stringify({ is_revoked: revokedJtis.has(jti) }), { status: 200 });
+                        }
+                        return new Response('Not found', { status: 404 });
+                    }
+                })
+            }
+        };
+
+        const validTotp = await computeTotp(mockMfaSecret);
+        const firstRes = await handleAuthSession({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: validTotp })
+            }),
+            env: mockCoordinatorEnv
+        });
+        assert(firstRes.status === 200, 'First TOTP claim succeeds with 200');
+        const firstData = await firstRes.json();
+
+        const replayRes = await handleAuthSession({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: validTotp })
+            }),
+            env: mockCoordinatorEnv
+        });
+        const replayData = await replayRes.json();
+        assert(replayRes.status === 401 && replayData.status === 'REPLAY_DETECTED', 'Immediate TOTP code reuse rejected with 401 REPLAY_DETECTED');
+
+        // Unreachable SECURITY_COORDINATOR fails closed on login, logout, and gate check
+        const brokenCoordinatorEnv = {
+            ...testEnv,
+            SECURITY_COORDINATOR: {
+                idFromName: () => 'global',
+                get: () => ({ fetch: async () => new Response('DO error', { status: 500 }) })
+            }
+        };
+
+        const brokenLoginRes = await handleAuthSession({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: validTotp })
+            }),
+            env: brokenCoordinatorEnv
+        });
+        assert(brokenLoginRes.status === 503, 'Broken SECURITY_COORDINATOR fails closed on login with HTTP 503');
+
+        const brokenLogoutRes = await handleAuthLogout({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/logout', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${firstData.session_token}` }
+            }),
+            env: brokenCoordinatorEnv
+        });
+        assert(brokenLogoutRes.status === 503, 'Broken SECURITY_COORDINATOR fails closed on logout with HTTP 503');
+
+        const brokenGateRes = await handleAdminGate({
+            request: new Request('https://inshatech-b6b.pages.dev/api/admin/gate', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${firstData.session_token}` }
+            }),
+            env: brokenCoordinatorEnv
+        });
+        assert(brokenGateRes.status === 401, 'Broken SECURITY_COORDINATOR fails closed on gate check with HTTP 401');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 21: Arbitrary *.pages.dev Origin Rejected in CORS
+    // -------------------------------------------------------------------------
+    {
+        const evilOriginReq = new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+            method: 'GET',
+            headers: { 'Origin': 'https://evil-attacker.pages.dev' }
+        });
+        const evilRes = await handleAuthSessionGet({ request: evilOriginReq });
+        assert(evilRes.headers.get('Access-Control-Allow-Origin') !== 'https://evil-attacker.pages.dev',
+            'CORS never reflects arbitrary third-party *.pages.dev origins');
     }
 
     console.log('\n================================================================================');

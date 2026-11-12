@@ -1,53 +1,48 @@
 ================================================================================
 IINSHA AI-BOS — DEPLOYMENT & ROLLBACK RUNBOOK (12 NOVEMBER 2026)
 ================================================================================
+Updated:             2026-11-12T21:50:00+06:00 (Asia/Dhaka)
 Target Project:      Cloudflare Pages `inshatech` (Account: 0eaa8aeb3e2ea628065da5c05b1368a7)
 Primary Staging Host: https://inshatech-b6b.pages.dev/
-Production Domains:  https://inshatech.com / https://www.inshatech.com
+Production Domains:  https://inshatech.com / https://www.inshatech.com (Pending Gate G6)
 
-1. DEPLOYMENT INSTRUCTIONS (CANONICAL DIRECT UPLOAD)
+1. CANONICAL RELEASE WORKFLOW (GITHUB ACTIONS DIRECT UPLOAD)
 --------------------------------------------------------------------------------
-To deploy a new verified commit to Cloudflare Pages staging:
-```bash
-# 1. Ensure working directory is clean and tests pass
-npm test
-npm run build
+Git auto-deploy on Cloudflare Pages MUST remain disabled (`Git Provider: No`) to
+prevent legacy `main` branch race conditions. All future staging and production
+deployments must promote from the reviewed commit via `.github/workflows/release-direct-upload.yml`:
 
-# 2. Deploy to master branch on Cloudflare Pages
-npx wrangler pages deploy . --project-name=inshatech --branch=master --commit-hash=<FULL_40_CHAR_SHA> --commit-message="release: <message>" --commit-dirty=false
+Step 1 (Gate G1): Push audited commits from workstation after `gh auth login`:
+  git push origin release/iinsha-ai-bos-verified-20261112
+  # After PR approval, merge/publish to master
 
-# 3. Verify deployment identity live
-curl -s https://inshatech-b6b.pages.dev/api/version
-```
+Step 2 (CI Staging Direct Upload):
+  Workflow stages `dist-pages/` using exact exclusions (`.assetsignore`), generates
+  SHA-256 `release-manifest.json`, deploys via pinned `wrangler@4.16.1`:
+    npx wrangler pages deploy dist-pages --project-name=inshatech --branch=master --commit-hash=<40-char SHA> --commit-dirty=false
+  Then validates `/api/version` reports `environment: "staging"`, `dpl_staging_`,
+  and `/api/health?type=readiness` returns HTTP 503 (while DB inactive) or 200 (once DB active).
 
-2. INSTANT ROLLBACK PROCEDURE
+Step 3 (Gate G6 Manual Production Promotion):
+  Requires passing Gates G1–G5 + GitHub `production` environment manual approval
+  + verified HTTP 200 database readiness before uploading the identical staged
+  artifact with `--branch=production`.
+
+2. INSTANT STAGING ROLLBACK PROCEDURE
 --------------------------------------------------------------------------------
-If a regression or critical incident occurs on live staging:
+Target Known-Good Fallback SHAs:
+- Live deployed baseline prior to v3.0 fixes: 74d90b14143e936587153464557a7e6d0f35fb9c
+- Earlier verified fallback baseline:       4d3c043130d2208d1685bc0fc878a23075c3b169
 
-Step A: Identify Last Known Good Deployment
-- Target Deployment SHA: 4d3c043130d2208d1685bc0fc878a23075c3b169
-- Previous Deployment SHA: 16c812503ea29fc96105ce3df739ef51a70c3267
+CLI / Dashboard Rollback:
+- Via Cloudflare Dashboard: Workers & Pages -> Pages -> `inshatech` -> Deployments -> Rollback to target deployment.
+- Or via CI workflow dispatch / clean git checkout of the fallback SHA staging artifact (`dist-pages/`).
 
-Step B: Instant Wrangler CLI Rollback
-Run from local repository:
-```bash
-git checkout 4d3c043130d2208d1685bc0fc878a23075c3b169
-npm run build
-npx wrangler pages deploy . --project-name=inshatech --branch=master --commit-hash=4d3c043130d2208d1685bc0fc878a23075c3b169 --commit-message="rollback: restore known good 4d3c043" --commit-dirty=false
-git checkout master
-```
-
-Step C: Cloudflare Dashboard Rollback (GUI Fallback)
-1. Navigate to Cloudflare Dashboard -> Workers & Pages -> Pages -> `inshatech`.
-2. Go to the "Deployments" tab.
-3. Locate deployment with hash `4d3c043` or `3882b675.inshatech-b6b.pages.dev`.
-4. Click the three dots (...) and select "Rollback to this deployment".
-
-3. DATABASE ROLLBACK PROCEDURE (SEPARATED FROM FRONTEND)
+3. DATABASE ROLLBACK POLICY (SEPARATED FROM FRONTEND)
 --------------------------------------------------------------------------------
-Note: A frontend rollback does NOT roll back PostgreSQL database migrations!
-- Always inspect `supabase/migrations/` before running any rollback migration.
-- If a migration must be reverted, author a forward-only compensating migration.
-- Point-in-time recovery (PITR) must be executed from the Supabase Studio dashboard.
-- Always retain daily cold backups of the repository and database exports.
+- Frontend rollbacks NEVER roll back Supabase PostgreSQL schema changes.
+- Always run `npx supabase migration list --remote=kitwadizsvjmuxkfewxj` and
+  `npx supabase db push --dry-run --remote=kitwadizsvjmuxkfewxj` after unpausing.
+- Revert schema changes only via tested forward-only compensating migrations or
+  Supabase Point-In-Time Recovery (PITR).
 ================================================================================

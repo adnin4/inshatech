@@ -48,6 +48,7 @@ export function resolveEnvironment(request, env = {}) {
 
 export function resolveDeploymentId(request, env = {}, defaultSha = null) {
     if (env.CF_PAGES_DEPLOYMENT_ID) return env.CF_PAGES_DEPLOYMENT_ID;
+    const environment = resolveEnvironment(request, env);
     try {
         const url = new URL(request.url);
         const host = url.hostname || request.headers.get('host') || '';
@@ -57,13 +58,15 @@ export function resolveDeploymentId(request, env = {}, defaultSha = null) {
         }
     } catch (_) {}
     const shaSlice = (defaultSha || 'live').slice(0, 10);
-    return `dpl_prod_${shaSlice}`;
+    if (environment === 'production') return `dpl_prod_${shaSlice}`;
+    if (environment === 'development') return `dpl_dev_${shaSlice}`;
+    return `dpl_staging_${shaSlice}`;
 }
 
 export async function onRequestGet(context) {
     const { request, env = {} } = context;
     const origin = request.headers.get('Origin') || '';
-    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
+    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
 
     // 1. Live Authenticated Database Probe (no static fallback illusions)
     const dbProbe = await probeDatabaseHealth(env);
@@ -129,14 +132,16 @@ export async function onRequestGet(context) {
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             'Content-Type': 'application/json',
-            'Cache-Control': 'no-store, no-cache, must-revalidate'
+            'Cache-Control': 'no-store, no-cache, must-revalidate',
+            'X-Content-Type-Options': 'nosniff',
+            'Referrer-Policy': 'strict-origin-when-cross-origin'
         }
     });
 }
 
 export async function onRequestOptions(context) {
     const origin = context.request?.headers?.get('Origin') || '';
-    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech.pages.dev';
+    const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
 
     return new Response(null, {
         status: 204,

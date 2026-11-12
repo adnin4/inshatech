@@ -50,5 +50,5 @@ jobs:
       - name: Execute PR #7 Ordered Staging Preview & Parity Gate
         run: node scripts/verify-preview-deployment.mjs
         env:
-          LIVE_URL: https://inshatech.pages.dev
+          LIVE_URL: https://inshatech-b6b.pages.dev
           EXPECTED_SHA: ${{ github.sha }}

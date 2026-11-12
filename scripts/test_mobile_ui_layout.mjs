@@ -68,15 +68,15 @@ const copilotJs = fs.readFileSync(path.join(baseDir, 'universal_ai_copilot.js'),
 assert(copilotJs.includes('sessionStorage.getItem(\'iinsha_teaser_dismissed\')'), 'COPILOT-JS-01', 'Copilot teaser respects dismissal in sessionStorage');
 assert(copilotJs.includes('teaser.style.display = \'none\''), 'COPILOT-JS-02', 'Teaser hides cleanly on mobile and on close click');
 
-// 4. Verify Zero Raw Browser Dialogs in app.js
+// 4. Verify Zero Raw Browser Dialogs & Zero Hardcoded Credential Bypasses in app.js
 const appJs = fs.readFileSync(path.join(baseDir, 'app.js'), 'utf8');
 assert(!appJs.includes('window.alert(') && !appJs.includes('alert('), 'APP-JS-01', 'Zero raw alert() dialogs in app.js');
 assert(appJs.includes('dismissMobileStickyCta'), 'APP-JS-02', 'dismissMobileStickyCta handler present in app.js');
-assert(appJs.includes('ALLOWED_EMAILS') && appJs.includes('ALLOWED_PASSES'), 'APP-JS-03', 'Owner credentials resiliency active in app.js');
+assert(!appJs.includes('ALLOWED_PASSES') && !appJs.includes('instantOwnerModalBypass') && !appJs.includes('local_owner_session_'), 'APP-JS-03', 'Zero hardcoded credential or modal bypasses in app.js');
 
-// 5. Verify admin.html local owner session safeguard
+// 5. Verify admin.html enforces fail-closed server authentication with zero local session bypasses
 const adminHtml = fs.readFileSync(path.join(baseDir, 'admin.html'), 'utf8');
-assert(adminHtml.includes('local_owner_session_'), 'ADMIN-01', 'admin.html preserves local owner sessions across refreshes without lockout');
+assert(!adminHtml.includes('local_owner_session_') && !adminHtml.includes('ALLOWED_PASSES'), 'ADMIN-01', 'admin.html enforces fail-closed server sessions without hardcoded password bypasses');
 
 console.log('================================================================================');
 console.log(`📊 MOBILE UI/UX CERTIFICATION SUMMARY: ${passedTests}/${totalTests} TESTS PASSED (100%)`);

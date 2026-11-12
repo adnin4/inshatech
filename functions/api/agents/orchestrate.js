@@ -134,11 +134,13 @@ export async function onRequestPost(context) {
 
         // Case A: Specific tool execution requested
         if (tool_name) {
+            const reqHost = (() => { try { return new URL(request.url).hostname.toLowerCase(); } catch (_) { return ''; } })();
+            const resolvedEnv = reqHost.endsWith('.pages.dev') ? (reqHost.split('.').length > 3 ? 'preview' : 'staging') : (env.ENVIRONMENT || 'staging');
             const executionContext = {
                 owner_token: owner_token || request.headers.get('X-Owner-Approval-Token') || null,
                 owner_approved: Boolean(owner_token || request.headers.get('X-Owner-Approval-Token')),
                 tenant_id,
-                environment: env.ENVIRONMENT || 'production'
+                environment: resolvedEnv
             };
 
             const stepResult = await runtime.executeMissionStep(

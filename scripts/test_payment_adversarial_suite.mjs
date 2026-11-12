@@ -1,6 +1,6 @@
 import { onRequestPost as checkoutPost } from '../functions/api/payments/checkout.js';
 import { onRequestPost as webhookPost } from '../functions/api/payments/webhook.js';
-import { SSLCommerzAdapter, computeMd5 } from '../functions/api/payments/providers/sslcommerz.js';
+import { SSLCommerzAdapter, computeMd5 } from '../functions/_shared/payments/sslcommerz.js';
 
 let passed = 0;
 let total = 0;
@@ -89,7 +89,7 @@ async function runAdversarialSuite() {
                 return new Response(JSON.stringify([{ status: 'ok' }]), { status: 200 });
             }
 
-            if (urlStr.includes('securepay.sslcommerz.com/gwprocess/v4/api.php')) {
+            if (urlStr.includes('securepay.sslcommerz.com/gwprocess/v4/api.php') || urlStr.includes('sandbox.sslcommerz.com/gwprocess/v4/api.php')) {
                 return new Response(JSON.stringify({
                     status: 'SUCCESS',
                     sessionkey: 'MOCK_SESSION_KEY_123',

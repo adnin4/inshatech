@@ -1,0 +1,27 @@
+# Cloudflare Pages Direct Upload Exclusion List
+# Prevents publishing bundles, backups, SQL dumps, secrets, docs, tests, or OneDrive conflict files.
+*.bundle
+*.backup
+*.sql
+*.env
+*.env.*
+*.pem
+*.key
+*.log
+*-DESKTOP-*
+.git/
+.github/
+.vscode/
+.idea/
+backups/
+scratch/
+docs/
+scripts/
+supabase/
+tests/
+node_modules/
+ci-failure-evidence/
+security-gate-report/
+test-results/
+playwright-report/
+package-lock.json
