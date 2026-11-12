@@ -1,0 +1,35 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "iinsha-engineering-ops",
+  "displayName": "IINSHA Engineering Ops",
+  "version": "1.0.0",
+  "description": "Project-aware engineering orchestration for IINSHA: safe GitHub release audits, Supabase and Cloudflare diagnostics, security reviews, and browser QA.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Run an evidence-based IINSHA release readiness audit without changing production.",
+    "Reconcile the local V7 candidate with GitHub master, PR #67, PR #71, and the latest exact-SHA CI runs.",
+    "Audit Supabase project identity, migration history, RLS, and tenant isolation using read-only access first.",
+    "Run a full Playwright regression audit of IINSHA public routes, service search, forms, checkout validation, and six responsive viewports.",
+    "Prepare a safe Cloudflare Pages and Durable Objects deployment plan with explicit owner approval gates."
+  ],
+  "category": "Developer Tools",
+  "keywords": [
+    "iinsha",
+    "engineering",
+    "release",
+    "github",
+    "supabase",
+    "cloudflare",
+    "playwright",
+    "security",
+    "qa",
+    "devops"
+  ],
+  "author": {
+    "name": "IINSHA Engineering",
+    "url": "https://github.com/adnin4/inshatech"
+  },
+  "homepage": "https://github.com/adnin4/inshatech",
+  "repository": "https://github.com/adnin4/inshatech",
+  "license": "MIT"
+}

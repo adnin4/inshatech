@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "github-readonly": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "-e",
+        "GITHUB_TOOLSETS=repos,issues,pull_requests,actions,code_security",
+        "-e",
+        "GITHUB_READ_ONLY=1",
+        "-e",
+        "GITHUB_LOCKDOWN_MODE=1",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "variables": [
+        {
+          "name": "GITHUB_PERSONAL_ACCESS_TOKEN",
+          "title": "GitHub read-only fine-grained token",
+          "description": "Use a fine-grained PAT limited to adnin4/inshatech with Metadata: Read, Contents: Read, Issues: Read, Pull requests: Read, Actions: Read, and Security events: Read. Do not use a classic all-repositories token.",
+          "link": "https://github.com/settings/personal-access-tokens/new"
+        }
+      ]
+    },
+    "supabase-readonly": {
+      "serverUrl": "https://mcp.supabase.com/mcp?project_ref=${SUPABASE_PROJECT_REF}&read_only=true&features=docs,database,debugging",
+      "variables": [
+        {
+          "name": "SUPABASE_PROJECT_REF",
+          "title": "Owner-confirmed canonical Supabase project ref",
+          "description": "Enter only the ACTIVE project ref explicitly confirmed as canonical for IINSHA. The historically observed kitwadizsvjmuxkfewxj project was INACTIVE; do not enter it unless the owner has recovered and reverified it.",
+          "link": "https://supabase.com/dashboard/projects"
+        }
+      ]
+    },
+    "cloudflare-docs": {
+      "serverUrl": "https://docs.mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-account-control": {
+      "serverUrl": "https://mcp.cloudflare.com/mcp",
+      "disabled": true
+    }
+  }
+}
