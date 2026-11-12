@@ -6,7 +6,7 @@
 
     <!-- Homepage: IINSHA AI-BOS Autonomous Operating System -->
     <url>
-        <loc>https://inshatech.pages.dev/</loc>
+        <loc>https://inshatech-b6b.pages.dev/</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
@@ -14,7 +14,7 @@
 
     <!-- Turnkey Store -->
     <url>
-        <loc>https://inshatech.pages.dev/store.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/store.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
@@ -22,7 +22,7 @@
 
     <!-- AI Marketplace -->
     <url>
-        <loc>https://inshatech.pages.dev/marketplace.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/marketplace.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.90</priority>
@@ -30,7 +30,7 @@
 
     <!-- Compare n8n vs Zapier -->
     <url>
-        <loc>https://inshatech.pages.dev/compare.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/compare.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
@@ -38,7 +38,7 @@
 
     <!-- Affiliate Network -->
     <url>
-        <loc>https://inshatech.pages.dev/affiliate.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/affiliate.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
@@ -46,7 +46,7 @@
 
     <!-- Client Portal -->
     <url>
-        <loc>https://inshatech.pages.dev/portal.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/portal.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>
@@ -54,7 +54,7 @@
 
     <!-- Blog & Whitepapers -->
     <url>
-        <loc>https://inshatech.pages.dev/blog.html</loc>
+        <loc>https://inshatech-b6b.pages.dev/blog.html</loc>
         <lastmod>2026-08-23T10:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.80</priority>

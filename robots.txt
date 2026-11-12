@@ -1,5 +1,5 @@
 # Robots.txt for IINSHA AI-BOS
-# https://inshatech.pages.dev/
+# https://inshatech-b6b.pages.dev/
 
 User-agent: *
 Allow: /
@@ -23,4 +23,4 @@ User-agent: facebookexternalhit
 Allow: /
 
 # Canonical Sitemap Location
-Sitemap: https://inshatech.pages.dev/sitemap.xml
+Sitemap: https://inshatech-b6b.pages.dev/sitemap.xml
