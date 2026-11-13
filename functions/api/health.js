@@ -21,7 +21,7 @@ export async function onRequestGet(context) {
     // Real server-side DB probe (bounds timeout to 3000ms max)
     const dbProbe = await probeDatabaseHealth(env);
     const databaseVerified = dbProbe.status === PROBE_STATUS.ACTIVE_HEALTHY;
-    const hasSupabaseConfig = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
+    const hasSupabaseConfig = Boolean(env.SUPABASE_URL && (env.SUPABASE_ANON_KEY || env.SUPABASE_SERVICE_ROLE_KEY));
 
     const liveness = {
         status: 'HEALTHY',

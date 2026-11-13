@@ -5,7 +5,7 @@
  * token expiry, and endpoint gating.
  */
 
-import { onRequestPost as handleAuthSession, onRequestGet as handleAuthSessionGet } from '../functions/api/auth/session.js';
+import { onRequestPost as handleAuthSession, onRequestGet as handleAuthSessionGet, base32Decode, verifyTotp } from '../functions/api/auth/session.js';
 import { onRequestGet as handleAdminGate } from '../functions/api/admin/gate.js';
 import { onRequestPost as handleKillswitch } from '../functions/api/workforce/killswitch.js';
 import { onRequestPost as handleAuthLogout, onRequestGet as handleAuthLogoutGet } from '../functions/api/auth/logout.js';
@@ -618,6 +618,95 @@ async function runTestSuite() {
         const evilRes = await handleAuthSessionGet({ request: evilOriginReq });
         assert(evilRes.headers.get('Access-Control-Allow-Origin') !== 'https://evil-attacker.pages.dev',
             'CORS never reflects arbitrary third-party *.pages.dev origins');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 22: RFC 6238 Base32 Google Authenticator Key Interoperability
+    // -------------------------------------------------------------------------
+    {
+        // Standard RFC 4648 Base32 Secret used in Google Authenticator provisioning
+        const base32Secret = 'JBSWY3DPEHPK3PXP'; // Base32 for 'Hello!\xde\xad\xbe\xef'
+        const base32Bytes = base32Decode(base32Secret);
+        assert(base32Bytes instanceof Uint8Array && base32Bytes.length === 10,
+            'Base32 decoder converts standard RFC 4648 authenticator string to exact Uint8Array bytes');
+
+        // Verify invalid Base32 strings return null safely
+        assert(base32Decode('INVALID890!') === null, 'Malformed Base32 characters rejected cleanly');
+        assert(base32Decode('') === null, 'Empty Base32 rejected cleanly');
+
+        // Test TOTP generation and verification against decoded binary key
+        const key = await crypto.subtle.importKey(
+            'raw',
+            base32Bytes,
+            { name: 'HMAC', hash: 'SHA-1' },
+            false,
+            ['sign']
+        );
+        const counter = Math.floor(Date.now() / 30000);
+        const ab = new ArrayBuffer(8);
+        new DataView(ab).setBigUint64(0, BigInt(counter));
+        const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, ab));
+        const offset = sig[sig.length - 1] & 15;
+        const code = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]) % 1000000;
+        const validBase32Totp = String(code).padStart(6, '0');
+
+        const verifyResult = await verifyTotp(validBase32Totp, base32Secret);
+        assert(verifyResult.valid === true && verifyResult.matchedStep === counter,
+            'Standard Base32 Google Authenticator TOTP token verified with 100% cryptographic accuracy');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 23: Fail-Closed Security Coordinator Enforcement in Staging/Production
+    // -------------------------------------------------------------------------
+    {
+        // When ENVIRONMENT is staging or production, missing coordinator MUST return HTTP 503
+        const prodEnvWithoutCoordinator = {
+            ...testEnv,
+            ENVIRONMENT: 'staging'
+        };
+        const currentTotp = await computeTotp(mockMfaSecret);
+        const res = await handleAuthSession({
+            request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: mockAdminEmail, password: mockAdminPassword, mfa_token: currentTotp })
+            }),
+            env: prodEnvWithoutCoordinator
+        });
+        const data = await res.json();
+        assert(res.status === 503 && data.status === 'SECURITY_AUTHORITY_UNAVAILABLE',
+            'Missing SecurityCoordinator binding in staging environment strictly fails closed with HTTP 503');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 24: Fail-Closed Shared Session Revocation Authority in Staging/Production
+    // -------------------------------------------------------------------------
+    {
+        // Gate check in staging environment without DO or KV must return 503 SECURITY_AUTHORITY_UNAVAILABLE
+        const stagingEnvWithoutRevocationAuthority = {
+            ...testEnv,
+            ENVIRONMENT: 'staging'
+        };
+        const freshUnrevokedToken = await generateSignedToken({
+            sub: mockAdminEmail,
+            role: 'owner',
+            hierarchy_level: 1,
+            mfa_verified: true,
+            iat: Math.floor(Date.now() / 1000),
+            exp: Math.floor(Date.now() / 1000) + 3600,
+            jti: crypto.randomUUID()
+        }, mockJwtSecret);
+
+        const res = await handleAdminGate({
+            request: new Request('https://inshatech-b6b.pages.dev/api/admin/gate', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${freshUnrevokedToken}` }
+            }),
+            env: stagingEnvWithoutRevocationAuthority
+        });
+        const data = await res.json();
+        assert(res.status === 503 && data.status === 'SECURITY_AUTHORITY_UNAVAILABLE',
+            'Missing shared revocation authority in staging strictly fails closed with HTTP 503 SECURITY_AUTHORITY_UNAVAILABLE');
     }
 
     console.log('\n================================================================================');

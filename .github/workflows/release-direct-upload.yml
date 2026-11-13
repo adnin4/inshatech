@@ -8,13 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       target_environment:
-        description: "Deployment target (staging only; production requires manual approval gate)"
+        description: "Deployment target (production requires verified G1-G6 owner gates)"
         required: true
         default: "staging"
         type: choice
         options:
           - staging
           - preview
+          - production
 
 permissions:
   contents: read
@@ -158,7 +159,7 @@ jobs:
   deploy-production:
     name: Production Promotion (Owner Gate G1-G6 Required)
     needs: [verify-and-stage-artifact, deploy-staging]
-    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.target_environment == 'production'
     environment:
       name: production
       url: https://inshatech.com

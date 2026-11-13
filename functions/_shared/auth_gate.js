@@ -60,8 +60,16 @@ export async function revokeSessionToken(jti, env = {}) {
     if (!jti) return;
     IN_MEMORY_REVOKED_JTIS.add(jti);
 
+    const hasCoordinator = env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function';
+    const hasKv = env.REVOCATION_KV && typeof env.REVOCATION_KV.put === 'function';
+    const requiresSharedAuthority = env.REQUIRE_SHARED_REVOCATION === 'true' || env.ENVIRONMENT === 'production' || env.ENVIRONMENT === 'staging';
+
+    if (requiresSharedAuthority && !hasCoordinator && !hasKv) {
+        throw new Error('Shared revocation authority (Durable Object / KV) is not configured in runtime environment');
+    }
+
     // 1. Strongly Consistent Durable Objects Authority (fail closed on coordinator error)
-    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+    if (hasCoordinator) {
         const partitionKey = 'revocation:' + String(jti).slice(0, 8);
         const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
         const stub = env.SECURITY_COORDINATOR.get(id);
@@ -76,7 +84,7 @@ export async function revokeSessionToken(jti, env = {}) {
     }
 
     // 2. Eventually Consistent KV Cache (Secondary read acceleration)
-    if (env.REVOCATION_KV && typeof env.REVOCATION_KV.put === 'function') {
+    if (hasKv) {
         await env.REVOCATION_KV.put(`revoked:${jti}`, 'true', { expirationTtl: 86400 });
     }
 }
@@ -85,8 +93,19 @@ export async function checkSessionRevocationState(jti, env = {}) {
     if (!jti) return { status: 'ACTIVE' };
     if (IN_MEMORY_REVOKED_JTIS.has(jti)) return { status: 'REVOKED' };
 
+    const hasCoordinator = env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function';
+    const hasKv = env.REVOCATION_KV && typeof env.REVOCATION_KV.get === 'function';
+    const requiresSharedAuthority = env.REQUIRE_SHARED_REVOCATION === 'true' || env.ENVIRONMENT === 'production' || env.ENVIRONMENT === 'staging';
+
+    if (requiresSharedAuthority && !hasCoordinator && !hasKv) {
+        return {
+            status: 'UNAVAILABLE',
+            error: 'Shared revocation authority (Durable Object / KV) is not configured in runtime environment'
+        };
+    }
+
     // 1. Strongly Consistent Durable Objects Authority
-    if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+    if (hasCoordinator) {
         try {
             const partitionKey = 'revocation:' + String(jti).slice(0, 8);
             const id = env.SECURITY_COORDINATOR.idFromName(partitionKey);
@@ -109,7 +128,7 @@ export async function checkSessionRevocationState(jti, env = {}) {
     }
 
     // 2. Eventually Consistent KV Cache
-    if (env.REVOCATION_KV && typeof env.REVOCATION_KV.get === 'function') {
+    if (hasKv) {
         try {
             const val = await env.REVOCATION_KV.get(`revoked:${jti}`);
             if (val) return { status: 'REVOKED' };

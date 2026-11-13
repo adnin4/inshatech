@@ -101,13 +101,40 @@ async function signJwt(payload, secret) {
     return `${body}.${sig}`;
 }
 
-async function verifyTotp(token, secret) {
+export function base32Decode(str) {
+    if (typeof str !== 'string') return null;
+    const cleaned = str.replace(/[\s=-]/g, '').toUpperCase();
+    if (!cleaned || !/^[A-Z2-7]+$/.test(cleaned)) return null;
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    let bits = 0;
+    let value = 0;
+    const output = [];
+    for (let i = 0; i < cleaned.length; i++) {
+        const idx = alphabet.indexOf(cleaned[i]);
+        if (idx === -1) return null;
+        value = (value << 5) | idx;
+        bits += 5;
+        if (bits >= 8) {
+            output.push((value >>> (bits - 8)) & 255);
+            bits -= 8;
+        }
+    }
+    return new Uint8Array(output);
+}
+
+export async function verifyTotp(token, secret) {
     if (!secret || !/^[0-9]{6}$/.test(String(token || ''))) {
         return { valid: false, matchedStep: null };
     }
+    // Attempt standard RFC 4648 Base32 decode for Google Authenticator interoperability
+    let keyBytes = base32Decode(secret);
+    if (!keyBytes || keyBytes.length === 0) {
+        // Fallback to UTF-8 bytes for legacy non-Base32 test strings
+        keyBytes = new TextEncoder().encode(secret);
+    }
     const key = await crypto.subtle.importKey(
         'raw',
-        new TextEncoder().encode(secret),
+        keyBytes,
         { name: 'HMAC', hash: 'SHA-1' },
         false,
         ['sign']
@@ -171,7 +198,17 @@ export async function onRequestPost({ request, env = {} }) {
         }
 
         // Anti-Replay check via SecurityCoordinator (fail closed on coordinator unavailability)
-        if (env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function') {
+        const hasCoordinator = env.SECURITY_COORDINATOR && typeof env.SECURITY_COORDINATOR.idFromName === 'function';
+        const requiresCoordinator = env.REQUIRE_SECURITY_COORDINATOR === 'true' || env.ENVIRONMENT === 'production' || env.ENVIRONMENT === 'staging';
+
+        if (requiresCoordinator && !hasCoordinator) {
+            return new Response(JSON.stringify({
+                status: 'SECURITY_AUTHORITY_UNAVAILABLE',
+                error: 'Required MFA anti-replay coordinator binding is missing in runtime environment'
+            }), { status: 503, headers });
+        }
+
+        if (hasCoordinator) {
             try {
                 const id = env.SECURITY_COORDINATOR.idFromName('mfa-replay-guard');
                 const stub = env.SECURITY_COORDINATOR.get(id);
@@ -195,7 +232,7 @@ export async function onRequestPost({ request, env = {} }) {
             } catch (_) {
                 return new Response(JSON.stringify({
                     status: 'SECURITY_AUTHORITY_UNAVAILABLE',
-                    error: 'MFA anti-replay coordinator unavailable'
+                    error: 'MFA anti-replay coordinator communication failure'
                 }), { status: 503, headers });
             }
         }
