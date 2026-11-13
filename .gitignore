@@ -18,6 +18,7 @@ __pycache__/
 
 # Root python scratch scripts & logs & temporary images
 *.py
+!scripts/validate_wrangler_config.py
 *.zip
 *.log
 *.png

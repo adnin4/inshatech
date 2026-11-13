@@ -119,6 +119,7 @@ jobs:
   deploy-staging:
     name: Deploy to Staging (inshatech-b6b.pages.dev)
     needs: verify-and-stage-artifact
+    if: github.repository == 'adnin4/inshatech'
     environment:
       name: staging
       url: https://inshatech-b6b.pages.dev

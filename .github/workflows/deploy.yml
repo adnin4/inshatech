@@ -100,7 +100,7 @@ jobs:
   runtime-evidence:
     name: Post-Deploy Edge Runtime Evidence Gate
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.repository == 'adnin4/inshatech' && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
     timeout-minutes: 12
     needs: audit
     permissions:

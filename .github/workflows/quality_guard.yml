@@ -19,20 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Validate Wrangler Pages Specification
-        run: |
-          python -c "
-          import sys
-          with open('wrangler.toml', 'r', encoding='utf-8') as f:
-              content = f.read()
-          errors = []
-          if 'main =' in content: errors.append('main = key present')
-          if '[assets]' in content: errors.append('[assets] section present')
-          if 'pages_build_output_dir = \".\"' not in content: errors.append('output dir is not .')
-          if errors:
-              print('INVALID WRANGLER CONFIG:', errors)
-              sys.exit(1)
-          print('Wrangler config valid for Cloudflare Pages!')
-          "
+        run: python scripts/validate_wrangler_config.py
 
       - name: Validate JS DOM Isolation Protocol
         run: |

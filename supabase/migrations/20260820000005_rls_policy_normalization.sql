@@ -81,7 +81,15 @@ USING (category != 'internal_restricted' OR category IS NULL);
 CREATE POLICY "public_read_dynamic_pages" 
 ON ibos_dynamic_pages FOR SELECT 
 TO public 
-USING (true);
+USING (is_published = true);
+
+CREATE POLICY "authenticated_admin_read_all_pages"
+ON ibos_dynamic_pages FOR SELECT
+TO authenticated
+USING (EXISTS (
+    SELECT 1 FROM ibos_users u 
+    WHERE u.id = auth.uid() AND u.role IN ('super_admin', 'owner', 'admin')
+));
 
 CREATE POLICY "public_read_page_blocks" 
 ON ibos_page_blocks FOR SELECT 
@@ -130,7 +138,20 @@ USING (auth.uid() = customer_id);
 CREATE POLICY "authenticated_read_own_projects" 
 ON ibos_projects FOR SELECT 
 TO authenticated 
-USING (auth.uid() = order_id);
+USING (
+    EXISTS (
+        SELECT 1 FROM ibos_orders o 
+        WHERE o.id = ibos_projects.order_id 
+          AND (
+              o.client_email = (SELECT email FROM auth.users WHERE id = auth.uid())
+              OR (o.metadata->>'customer_id')::text = auth.uid()::text
+          )
+    )
+    OR EXISTS (
+        SELECT 1 FROM ibos_users u 
+        WHERE u.id = auth.uid() AND u.role IN ('super_admin', 'owner', 'admin')
+    )
+);
 
 CREATE POLICY "authenticated_read_own_conversations" 
 ON ibos_conversations FOR SELECT 

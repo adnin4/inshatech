@@ -43,21 +43,61 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 5. 14-Role MakerKit RBAC Rules Engine
-CREATE OR REPLACE FUNCTION public.check_user_role_permission(user_role VARCHAR, required_permission VARCHAR)
+-- 5. 14-Role MakerKit RBAC Rules Engine (Hardened against caller role spoofing)
+CREATE OR REPLACE FUNCTION public.check_user_role_permission(required_permission VARCHAR)
 RETURNS BOOLEAN AS $$
+DECLARE
+    v_user_role VARCHAR;
 BEGIN
-    IF user_role = 'super_admin' OR user_role = 'sovereign_owner' THEN
+    -- Securely derive role from authenticated user context (table lookup or verified JWT claim)
+    SELECT role INTO v_user_role FROM public.ibos_users WHERE id = auth.uid();
+    IF v_user_role IS NULL THEN
+        v_user_role := COALESCE(auth.jwt()->>'user_role', auth.jwt()->>'role', 'anonymous');
+    END IF;
+
+    IF v_user_role IN ('super_admin', 'sovereign_owner') THEN
         RETURN TRUE;
-    ELSIF user_role = 'admin' AND required_permission IN ('READ_ALL', 'WRITE_ALL', 'DEPLOY_STAGING') THEN
+    ELSIF v_user_role = 'admin' AND required_permission IN ('READ_ALL', 'WRITE_ALL', 'DEPLOY_STAGING') THEN
         RETURN TRUE;
-    ELSIF user_role = 'developer' AND required_permission IN ('READ_PROJECTS', 'EXECUTE_SANDBOX_BUILD') THEN
+    ELSIF v_user_role = 'developer' AND required_permission IN ('READ_PROJECTS', 'EXECUTE_SANDBOX_BUILD') THEN
         RETURN TRUE;
-    ELSIF user_role = 'customer' AND required_permission IN ('READ_OWN_ORDERS', 'SUBMIT_TICKET') THEN
+    ELSIF v_user_role = 'customer' AND required_permission IN ('READ_OWN_ORDERS', 'SUBMIT_TICKET') THEN
         RETURN TRUE;
     ELSE
         RETURN FALSE;
     END IF;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER
-SET search_path = '';
+SET search_path = pg_catalog, public;
+
+-- Backwards-compatible 2-argument signature: validates that caller-provided role matches verified session role
+CREATE OR REPLACE FUNCTION public.check_user_role_permission(user_role VARCHAR, required_permission VARCHAR)
+RETURNS BOOLEAN AS $$
+DECLARE
+    v_actual_role VARCHAR;
+BEGIN
+    -- Service role bypass for backend jobs
+    IF (SELECT current_setting('role', true)) = 'service_role' THEN
+        IF user_role IN ('super_admin', 'sovereign_owner') THEN
+            RETURN TRUE;
+        ELSIF user_role = 'admin' AND required_permission IN ('READ_ALL', 'WRITE_ALL', 'DEPLOY_STAGING') THEN
+            RETURN TRUE;
+        ELSIF user_role = 'developer' AND required_permission IN ('READ_PROJECTS', 'EXECUTE_SANDBOX_BUILD') THEN
+            RETURN TRUE;
+        ELSIF user_role = 'customer' AND required_permission IN ('READ_OWN_ORDERS', 'SUBMIT_TICKET') THEN
+            RETURN TRUE;
+        ELSE
+            RETURN FALSE;
+        END IF;
+    END IF;
+
+    -- For user requests: Verify claimed role against database records (prevent spoofing)
+    SELECT role INTO v_actual_role FROM public.ibos_users WHERE id = auth.uid();
+    IF v_actual_role IS NULL OR v_actual_role != user_role THEN
+        RETURN FALSE;
+    END IF;
+
+    RETURN public.check_user_role_permission(required_permission);
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER
+SET search_path = pg_catalog, public;

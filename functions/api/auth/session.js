@@ -141,10 +141,14 @@ export function base32Decode(str) {
     return new Uint8Array(output);
 }
 
-export async function computeTotp(secret, timeSec, digits = 6, hash = 'SHA-1') {
+export async function computeTotp(secret, timeSec, digits = 6, hash = 'SHA-1', options = {}) {
     let keyBytes = base32Decode(secret);
     if (!keyBytes || keyBytes.length === 0) {
-        keyBytes = new TextEncoder().encode(secret);
+        if (options.allowLegacyUtf8 === true) {
+            keyBytes = new TextEncoder().encode(secret);
+        } else {
+            throw new Error('INVALID_BASE32_SECRET: computeTotp requires valid RFC 4648 Base32 seed');
+        }
     }
     const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash }, false, ['sign']);
     const counter = Math.floor(timeSec / 30);
@@ -245,7 +249,7 @@ export async function onRequestPost({ request, env = {} }) {
             }), { status: 401, headers });
         }
 
-        const allowLegacy = env.ALLOW_LEGACY_TOTP_SECRET === 'true' || (env.ENVIRONMENT !== 'production' && env.ENVIRONMENT !== 'staging');
+        const allowLegacy = env.ENVIRONMENT !== 'production' && env.ENVIRONMENT !== 'staging' && env.ALLOW_LEGACY_TOTP_SECRET === 'true';
         const mfaResult = await verifyTotp(body.mfa_token, env.MFA_SECRET, { allowLegacyUtf8: allowLegacy });
         if (!mfaResult.valid) {
             return new Response(JSON.stringify({
@@ -311,6 +315,7 @@ export async function onRequestPost({ request, env = {} }) {
             body.cookie_only === true ||
             request.headers.get('Sec-Fetch-Mode') ||
             request.headers.get('Sec-Fetch-Dest') ||
+            request.headers.get('Sec-Fetch-Site') ||
             (request.headers.get('User-Agent') && request.headers.get('User-Agent').includes('Mozilla'))
         );
 
@@ -327,8 +332,11 @@ export async function onRequestPost({ request, env = {} }) {
             }
         };
 
-        // Enforce HttpOnly Cookie-Only architecture for browsers (never leak long-lived token to DOM/sessionStorage)
-        if (!isBrowserSession || env.ENVIRONMENT === 'test' || request.headers.get('X-Client-Type') === 'cli') {
+        // Enforce HttpOnly Cookie-Only architecture:
+        // Browser sessions NEVER receive a session_token in JSON under any circumstance,
+        // even if caller attempts to send a spoofed X-Client-Type header.
+        // session_token in JSON is strictly permitted ONLY for verified non-browser automation test harnesses.
+        if (!isBrowserSession && (env.ENVIRONMENT === 'test' || request.headers.get('X-Client-Type') === 'cli')) {
             responseData.session_token = sessionToken;
         }
 

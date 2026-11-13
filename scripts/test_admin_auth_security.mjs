@@ -70,20 +70,8 @@ async function generateSignedToken(payload, secret) {
 }
 
 async function computeTotp(secret, offsetSeconds = 0) {
-    const key = await crypto.subtle.importKey(
-        'raw',
-        new TextEncoder().encode(secret),
-        { name: 'HMAC', hash: 'SHA-1' },
-        false,
-        ['sign']
-    );
-    const counter = Math.floor((Date.now() + (offsetSeconds * 1000)) / 30000);
-    const ab = new ArrayBuffer(8);
-    new DataView(ab).setBigUint64(0, BigInt(counter));
-    const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, ab));
-    const offset = sig[sig.length - 1] & 15;
-    const code = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]) % 1000000;
-    return String(code).padStart(6, '0');
+    const timeSec = Math.floor((Date.now() + (offsetSeconds * 1000)) / 1000);
+    return computeSessionTotp(secret, timeSec, 6, 'SHA-1');
 }
 
 async function runTestSuite() {
@@ -96,13 +84,14 @@ async function runTestSuite() {
     const mockPasswordHash = await generatePbkdf2Hash(mockAdminPassword, 600000);
     const mockLegacySha256Hash = await sha256(mockAdminPassword);
     const mockJwtSecret = 'mock-jwt-secret-key-for-test-suite-minimum-32-chars';
-    const mockMfaSecret = 'TESTMFASECRET123';
+    const mockMfaSecret = 'JBSWY3DPEHPK3PXP'; // Canonical RFC 4648 Base32 Secret
 
     const testEnv = {
         ADMIN_EMAIL: mockAdminEmail,
         ADMIN_PASSWORD_HASH: mockPasswordHash,
         JWT_SECRET: mockJwtSecret,
-        MFA_SECRET: mockMfaSecret
+        MFA_SECRET: mockMfaSecret,
+        ENVIRONMENT: 'test'
     };
 
     // Test 1: Missing Server Configuration -> 503 CONFIGURATION_ERROR
@@ -382,6 +371,31 @@ async function runTestSuite() {
             'Browser session response strictly omits session_token from JSON (zero DOM storage exposure)');
         assert(setCookieHeader.includes('__Host-iinsha_admin_session=') && setCookieHeader.includes('HttpOnly') && setCookieHeader.includes('SameSite=Strict'),
             'Browser session response sets __Host-iinsha_admin_session HttpOnly SameSite=Strict cookie');
+    }
+
+    // Test 14C: Browser request spoofing X-Client-Type: cli is strictly rejected from receiving JSON token
+    {
+        const currentTotp = await computeTotp(mockMfaSecret);
+        const spoofedReq = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Sec-Fetch-Mode': 'cors',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'X-Client-Type': 'cli'
+            },
+            body: JSON.stringify({
+                email: mockAdminEmail,
+                password: mockAdminPassword,
+                mfa_token: currentTotp
+            })
+        });
+        const spoofedRes = await handleAuthSession({ request: spoofedReq, env: testEnv });
+        const spoofedData = await spoofedRes.json();
+        assert(spoofedRes.status === 200 && spoofedData.status === 'AUTHENTICATED',
+            'Spoofed header request still authenticates with HTTP 200');
+        assert(spoofedData.session_token === undefined,
+            'Browser request spoofing X-Client-Type: cli is strictly DENIED session_token in JSON');
     }
 
     // Test 15: Session Revocation via /api/auth/logout -> Subsequent Requests Blocked with TOKEN_REVOKED
