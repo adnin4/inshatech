@@ -103,14 +103,28 @@ async function signJwt(payload, secret) {
 
 export function base32Decode(str) {
     if (typeof str !== 'string') return null;
-    const cleaned = str.replace(/[\s=-]/g, '').toUpperCase();
-    if (!cleaned || !/^[A-Z2-7]+$/.test(cleaned)) return null;
+    let s = str.trim().toUpperCase().replace(/[\s-]/g, '');
+    if (!s) return null;
+    let padCount = 0;
+    while (s.endsWith('=')) {
+        padCount++;
+        s = s.slice(0, -1);
+    }
+    // RFC 4648 padding constraint: padded strings must have total length as multiple of 8
+    // and valid padding counts in Base32 are only 1, 3, 4, 6
+    if (padCount > 0) {
+        if ((s.length + padCount) % 8 !== 0) return null;
+        if (![1, 3, 4, 6].includes(padCount % 8)) return null;
+    }
+    // Unpadded strings with length % 8 of 1, 3, or 6 cannot form complete octets
+    if ([1, 3, 6].includes(s.length % 8)) return null;
+    if (!/^[A-Z2-7]+$/.test(s)) return null;
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     let bits = 0;
     let value = 0;
     const output = [];
-    for (let i = 0; i < cleaned.length; i++) {
-        const idx = alphabet.indexOf(cleaned[i]);
+    for (let i = 0; i < s.length; i++) {
+        const idx = alphabet.indexOf(s[i]);
         if (idx === -1) return null;
         value = (value << 5) | idx;
         bits += 5;
@@ -122,33 +136,69 @@ export function base32Decode(str) {
     return new Uint8Array(output);
 }
 
-export async function verifyTotp(token, secret) {
-    if (!secret || !/^[0-9]{6}$/.test(String(token || ''))) {
-        return { valid: false, matchedStep: null };
-    }
-    // Attempt standard RFC 4648 Base32 decode for Google Authenticator interoperability
+export async function computeTotp(secret, timeSec, digits = 6, hash = 'SHA-1') {
     let keyBytes = base32Decode(secret);
     if (!keyBytes || keyBytes.length === 0) {
-        // Fallback to UTF-8 bytes for legacy non-Base32 test strings
         keyBytes = new TextEncoder().encode(secret);
     }
+    const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash }, false, ['sign']);
+    const counter = Math.floor(timeSec / 30);
+    const ab = new ArrayBuffer(8);
+    new DataView(ab).setBigUint64(0, BigInt(counter));
+    const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, ab));
+    const offset = sig[sig.length - 1] & 15;
+    const binCode = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]);
+    const otp = binCode % (10 ** digits);
+    return String(otp).padStart(digits, '0');
+}
+
+export async function verifyTotp(token, secret, options = {}) {
+    const digits = options.digits || 6;
+    const hash = options.algorithm || 'SHA-1';
+    const stepSec = options.step || 30;
+    const timestamp = typeof options.timestamp === 'number' ? options.timestamp : Date.now();
+    const allowDrift = options.allowDrift !== false; // default true (+/- 1 step)
+
+    if (!secret) {
+        return { valid: false, matchedStep: null };
+    }
+
+    const tokenStr = String(token || '').trim();
+    if (!new RegExp(`^[0-9]{${digits}}$`).test(tokenStr)) {
+        return { valid: false, matchedStep: null };
+    }
+
+    // Standard RFC 4648 Base32 decode
+    let keyBytes = base32Decode(secret);
+    if (!keyBytes || keyBytes.length === 0) {
+        if (options.allowLegacyUtf8 === true) {
+            keyBytes = new TextEncoder().encode(secret);
+        } else {
+            return { valid: false, matchedStep: null, error: 'INVALID_BASE32_SECRET' };
+        }
+    }
+
     const key = await crypto.subtle.importKey(
         'raw',
         keyBytes,
-        { name: 'HMAC', hash: 'SHA-1' },
+        { name: 'HMAC', hash },
         false,
         ['sign']
     );
-    const counter = Math.floor(Date.now() / 30000);
-    // Allow 1 step clock drift (-30s, 0s, +30s)
-    for (let drift = -1; drift <= 1; drift++) {
+
+    const counter = Math.floor(Math.floor(timestamp / 1000) / stepSec);
+    const minDrift = allowDrift ? -1 : 0;
+    const maxDrift = allowDrift ? 1 : 0;
+
+    for (let drift = minDrift; drift <= maxDrift; drift++) {
         const step = counter + drift;
         const ab = new ArrayBuffer(8);
         new DataView(ab).setBigUint64(0, BigInt(step));
         const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, ab));
         const offset = sig[sig.length - 1] & 15;
-        const code = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]) % 1000000;
-        if (constantTimeEqual(String(code).padStart(6, '0'), String(token))) {
+        const binCode = ((sig[offset] & 127) << 24 | (sig[offset + 1] << 16) | (sig[offset + 2] << 8) | sig[offset + 3]);
+        const code = binCode % (10 ** digits);
+        if (constantTimeEqual(String(code).padStart(digits, '0'), tokenStr)) {
             return { valid: true, matchedStep: step };
         }
     }
@@ -190,7 +240,8 @@ export async function onRequestPost({ request, env = {} }) {
             }), { status: 401, headers });
         }
 
-        const mfaResult = await verifyTotp(body.mfa_token, env.MFA_SECRET);
+        const allowLegacy = env.ALLOW_LEGACY_TOTP_SECRET === 'true' || (env.ENVIRONMENT !== 'production' && env.ENVIRONMENT !== 'staging');
+        const mfaResult = await verifyTotp(body.mfa_token, env.MFA_SECRET, { allowLegacyUtf8: allowLegacy });
         if (!mfaResult.valid) {
             return new Response(JSON.stringify({
                 status: 'MFA_REQUIRED'

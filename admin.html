@@ -533,10 +533,10 @@
 
 
     <!-- SERVER-AUTHENTICATED 2-STEP VERIFICATION GUARDIAN OVERLAY -->
-    <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
+    <div id="admin-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-dialog-title" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
         <div style="background:#0f172a; padding:36px; border-radius:16px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:440px; width:90%; box-shadow: 0 0 60px rgba(0,242,254,0.2);">
             <div style="width:52px; height:52px; border-radius:14px; background: #ffffff; color: #020202; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
-            <h2 style="margin-bottom:4px; color:#ffffff; font-size:1.35rem;">IINSHA Control Plane</h2>
+            <h2 id="admin-dialog-title" style="margin-bottom:4px; color:#ffffff; font-size:1.35rem;">IINSHA Control Plane</h2>
             <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; margin-bottom:18px;">
                 <span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
                 <span style="font-size:0.72rem; color:#34d399; font-weight:700; font-family:var(--font-mono, monospace);">2-STEP VERIFICATION ACTIVE</span>
@@ -545,8 +545,8 @@
             <!-- STEP 1: PASSWORD AUTH -->
             <div id="auth-step-1">
                 <p style="font-size:0.8rem; color:#94a3b8; color:#94a3b8; margin-bottom:14px; line-height:1.4;">Step 1 of 2: Enter Master Commander Security Credentials to initiate session authentication.</p>
-                <input type="email" id="admin-email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
-                <input type="password" id="admin-password" placeholder="Enter Master Commander Password" value="" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
+                <input type="email" id="admin-email" aria-label="Commander Email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
+                <input type="password" id="admin-password" aria-label="Master Commander Password" placeholder="Enter Master Commander Password" value="" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
                 <button id="admin-login-btn" onclick="submitAdminStep1()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
             </div>
 
@@ -558,7 +558,7 @@
                     <div id="sms-toast-notify" style="font-size:0.73rem; color:#34d399; margin-top:4px;">⚡ Server Challenge Active — Enter 6-digit TOTP code.</div>
                 </div>
                 <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Step 2 of 2: Enter the 6-digit time-based code from your authenticator device:</p>
-                <input type="text" id="admin-otp-code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:14px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
+                <input type="text" id="admin-otp-code" aria-label="6-Digit Time-Based Authentication Code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:14px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
                 <button id="admin-verify-btn" onclick="verifyAdminStep2()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">🔐 Complete MFA Verification & Unlock C-Panel</button>
                 <button onclick="backToStep1()" style="background:none; border:none; color:#64748b; font-size:0.75rem; margin-top:10px; cursor:pointer; text-decoration:underline;">← Back to Credentials</button>
             </div>
@@ -567,12 +567,48 @@
         </div>
     </div>
     <script>
+        function unlockAdminUI() {
+            const overlay = document.getElementById('admin-auth-overlay');
+            const mainContent = document.getElementById('admin-main-content');
+            if (overlay) overlay.style.display = 'none';
+            if (mainContent) {
+                mainContent.removeAttribute('inert');
+                mainContent.removeAttribute('aria-hidden');
+            }
+        }
+
+        function lockAdminUI() {
+            const overlay = document.getElementById('admin-auth-overlay');
+            const mainContent = document.getElementById('admin-main-content');
+            if (overlay) overlay.style.display = 'flex';
+            if (mainContent) {
+                mainContent.setAttribute('inert', '');
+                mainContent.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        // Focus trapping for accessible login dialog
+        document.getElementById('admin-auth-overlay')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                const focusable = Array.from(this.querySelectorAll('input:not([style*="display:none"]), button:not([style*="display:none"])')).filter(el => el.offsetParent !== null);
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
         // Check for existing valid server session on page load
         (async function checkExistingAdminSession() {
             const token = sessionStorage.getItem('iinsha_session_token');
-            const overlay = document.getElementById('admin-auth-overlay');
             if (!token) {
-                if (overlay) overlay.style.display = 'flex';
+                lockAdminUI();
                 return;
             }
 
@@ -585,16 +621,16 @@
                 if (res.ok && data.authenticated === true) {
                     sessionStorage.setItem('iinsha_admin_authenticated', 'true');
                     sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    if (overlay) overlay.style.display = 'none';
+                    unlockAdminUI();
                 } else {
                     sessionStorage.removeItem('iinsha_admin_authenticated');
                     sessionStorage.removeItem('iinsha_2fa_verified');
                     sessionStorage.removeItem('iinsha_session_token');
                     sessionStorage.removeItem('iinsha_admin_user');
-                    if (overlay) overlay.style.display = 'flex';
+                    lockAdminUI();
                 }
             } catch (e) {
-                if (overlay) overlay.style.display = 'flex';
+                lockAdminUI();
             }
         })();
 
@@ -675,7 +711,7 @@
                     sessionStorage.setItem('iinsha_2fa_verified', 'true');
                     sessionStorage.setItem('iinsha_session_token', data.session_token);
                     sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email }));
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
+                    unlockAdminUI();
                     return;
                 }
 
@@ -733,7 +769,7 @@
                     sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email: pendingAdminEmail }));
 
                     pendingAdminPassword = '';
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
+                    unlockAdminUI();
                     return;
                 }
 
@@ -761,6 +797,9 @@
             window.location.reload();
         };
     </script>
+
+    <!-- PROTECTED ADMIN MAIN CONTENT (INERT AND ARIA-HIDDEN UNTIL SERVER AUTHENTICATED) -->
+    <div id="admin-main-content" inert aria-hidden="true">
 
     <!-- TOP COCKPIT HEADER BAR -->
     <header class="cockpit-header" role="banner">
@@ -3257,6 +3296,8 @@
         }
     })();
     </script>
+    </div><!-- /#admin-main-content -->
+
     <!-- Dedicated Static Admin Modal Roots for Structural DOM Integrity -->
     <div id="admin-universal-modal" class="hidden" style="display:none;" aria-hidden="true"></div>
     <div id="admin-add-partner-modal" class="hidden" style="display:none;" aria-hidden="true"></div>

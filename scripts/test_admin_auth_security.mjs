@@ -5,7 +5,8 @@
  * token expiry, and endpoint gating.
  */
 
-import { onRequestPost as handleAuthSession, onRequestGet as handleAuthSessionGet, base32Decode, verifyTotp } from '../functions/api/auth/session.js';
+import fs from 'fs';
+import { onRequestPost as handleAuthSession, onRequestGet as handleAuthSessionGet, base32Decode, verifyTotp, computeTotp as computeSessionTotp } from '../functions/api/auth/session.js';
 import { onRequestGet as handleAdminGate } from '../functions/api/admin/gate.js';
 import { onRequestPost as handleKillswitch } from '../functions/api/workforce/killswitch.js';
 import { onRequestPost as handleAuthLogout, onRequestGet as handleAuthLogoutGet } from '../functions/api/auth/logout.js';
@@ -660,11 +661,13 @@ async function runTestSuite() {
     // -------------------------------------------------------------------------
     {
         // When ENVIRONMENT is staging or production, missing coordinator MUST return HTTP 503
+        const base32Secret = 'JBSWY3DPEHPK3PXP';
         const prodEnvWithoutCoordinator = {
             ...testEnv,
-            ENVIRONMENT: 'staging'
+            ENVIRONMENT: 'staging',
+            MFA_SECRET: base32Secret
         };
-        const currentTotp = await computeTotp(mockMfaSecret);
+        const currentTotp = await computeSessionTotp(base32Secret, Math.floor(Date.now() / 1000));
         const res = await handleAuthSession({
             request: new Request('https://inshatech-b6b.pages.dev/api/auth/session', {
                 method: 'POST',
@@ -707,6 +710,116 @@ async function runTestSuite() {
         const data = await res.json();
         assert(res.status === 503 && data.status === 'SECURITY_AUTHORITY_UNAVAILABLE',
             'Missing shared revocation authority in staging strictly fails closed with HTTP 503 SECURITY_AUTHORITY_UNAVAILABLE');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 25: RFC 6238 Appendix B Official Known-Answer Test Vectors (SHA-1)
+    // -------------------------------------------------------------------------
+    {
+        const rfcSecret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ'; // ASCII '12345678901234567890'
+        const rfcVectors = [
+            { timeSec: 59, expected8: '94287082', expected6: '287082' },
+            { timeSec: 1111111109, expected8: '07081804', expected6: '081804' },
+            { timeSec: 1111111111, expected8: '14050471', expected6: '050471' },
+            { timeSec: 1234567890, expected8: '89005924', expected6: '005924' },
+            { timeSec: 2000000000, expected8: '69279037', expected6: '279037' },
+            { timeSec: 20000000000, expected8: '65353130', expected6: '353130' }
+        ];
+
+        for (const vec of rfcVectors) {
+            const computed8 = await computeSessionTotp(rfcSecret, vec.timeSec, 8);
+            const computed6 = await computeSessionTotp(rfcSecret, vec.timeSec, 6);
+            assert(computed8 === vec.expected8,
+                `RFC 6238 Appendix B vector t=${vec.timeSec}s 8-digit OTP matches: ${computed8}`);
+            assert(computed6 === vec.expected6,
+                `RFC 6238 Appendix B vector t=${vec.timeSec}s 6-digit OTP matches: ${computed6}`);
+
+            // Independent verification via verifyTotp
+            const res6 = await verifyTotp(vec.expected6, rfcSecret, {
+                timestamp: vec.timeSec * 1000,
+                digits: 6,
+                allowDrift: false
+            });
+            assert(res6.valid === true,
+                `RFC 6238 verifyTotp accepts exact expected OTP ${vec.expected6} at t=${vec.timeSec}s`);
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 26: Strict RFC 4648 Base32 Padding and Alphabet Validation
+    // -------------------------------------------------------------------------
+    {
+        // Valid RFC 4648 decode
+        const decoded = base32Decode('GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ');
+        assert(decoded instanceof Uint8Array && decoded.length === 20,
+            'RFC 4648 valid Base32 decodes to exact 20-byte seed');
+
+        // Invalid characters outside A-Z, 2-7
+        assert(base32Decode('GEZDGNBV123') === null, 'Base32 rejects digit 1');
+        assert(base32Decode('GEZDGNBV890') === null, 'Base32 rejects digits 8, 9, 0');
+        assert(base32Decode('GEZD$NBV') === null, 'Base32 rejects special symbol $');
+
+        // Invalid padding constraints (only 0, 1, 3, 4, 6 '=' allowed in Base32)
+        assert(base32Decode('MZXW6Y==') === null, 'Base32 rejects invalid 2-pad format');
+        assert(base32Decode('MZX=====') === null, 'Base32 rejects invalid 5-pad format');
+        assert(base32Decode('MZX=W6==') === null, 'Base32 rejects padding inside character string');
+        assert(base32Decode('M') === null, 'Base32 rejects incomplete 1-char unpadded block');
+        assert(base32Decode('MZX') === null, 'Base32 rejects incomplete 3-char unpadded block');
+        assert(base32Decode('MZXW6Y') === null, 'Base32 rejects incomplete 6-char unpadded block');
+
+        // Valid padding
+        const paddedVal = base32Decode('MZXW6YTB'); // "foobar" (6 chars = 48 bits = 6 bytes = 8 Base32 chars, no pad)
+        assert(paddedVal instanceof Uint8Array && paddedVal.length === 5,
+            'Base32 decodes standard 8-character block to 5 bytes');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 27: Authoritative Durable Object Enforcement (KV Cache Cannot Replace Missing DO in Production)
+    // -------------------------------------------------------------------------
+    {
+        // In staging/production, having KV cache without DO must strictly fail closed with 503
+        const stagingEnvWithKvOnly = {
+            ...testEnv,
+            ENVIRONMENT: 'staging',
+            SECURITY_COORDINATOR: null,
+            REVOCATION_KV: {
+                get: async () => null,
+                put: async () => {}
+            }
+        };
+        const freshToken = await generateSignedToken({
+            sub: mockAdminEmail,
+            role: 'owner',
+            hierarchy_level: 1,
+            mfa_verified: true,
+            iat: Math.floor(Date.now() / 1000),
+            exp: Math.floor(Date.now() / 1000) + 3600,
+            jti: crypto.randomUUID()
+        }, mockJwtSecret);
+
+        const res = await handleAdminGate({
+            request: new Request('https://inshatech-b6b.pages.dev/api/admin/gate', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${freshToken}` }
+            }),
+            env: stagingEnvWithKvOnly
+        });
+        const data = await res.json();
+        assert(res.status === 503 && data.status === 'SECURITY_AUTHORITY_UNAVAILABLE',
+            'KV cache without Durable Object in staging strictly fails closed with HTTP 503 (Durable Object required for strong consistency)');
+    }
+
+    // -------------------------------------------------------------------------
+    // TEST 28: Admin UI Accessible Dialog Semantics & Inert DOM Isolation
+    // -------------------------------------------------------------------------
+    {
+        const adminHtml = fs.readFileSync('admin.html', 'utf-8');
+        assert(adminHtml.includes('id="admin-auth-overlay" role="dialog" aria-modal="true"'),
+            'admin.html enforces accessible role="dialog" and aria-modal="true" on auth guardian');
+        assert(adminHtml.includes('id="admin-main-content" inert aria-hidden="true"'),
+            'admin.html enforces inert and aria-hidden="true" on unauthenticated background controls');
+        assert(adminHtml.includes('aria-label="Commander Email"') && adminHtml.includes('aria-label="Master Commander Password"'),
+            'admin.html provides explicit accessible labels for credential inputs');
     }
 
     console.log('\n================================================================================');

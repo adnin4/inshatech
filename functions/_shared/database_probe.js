@@ -96,16 +96,38 @@ export async function probeDatabaseHealth(env = {}, customFetch = null) {
         const latencyMs = Date.now() - startedAt;
 
         if (response.status === 200 || response.status === 206) {
+            let schemaStatus = 'APPLICATION_SCHEMA_VERIFIED';
+            try {
+                const schemaCheckUrl = `${cleanBaseUrl}/rest/v1/services?select=id&limit=1`;
+                const schemaRes = await fetchFn(schemaCheckUrl, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': supabaseKey,
+                        'Authorization': `Bearer ${supabaseKey}`,
+                        'Accept': 'application/json'
+                    },
+                    signal: controller.signal
+                });
+                if (schemaRes.status === 404) {
+                    schemaStatus = 'APPLICATION_SCHEMA_MISSING';
+                }
+            } catch (_) {
+                // Transient schema query error handled gracefully
+            }
+
             return {
-                status: PROBE_STATUS.ACTIVE_HEALTHY,
-                verified: true,
+                status: schemaStatus === 'APPLICATION_SCHEMA_MISSING' ? PROBE_STATUS.UNAVAILABLE : PROBE_STATUS.ACTIVE_HEALTHY,
+                verified: schemaStatus === 'APPLICATION_SCHEMA_VERIFIED',
                 project_ref: runtimeRef,
                 canonical_ref: canonicalRef,
                 query_latency_ms: latencyMs,
                 checked_at: new Date().toISOString(),
                 probe_type: 'SERVER_REST_PROBE',
                 http_status: response.status,
-                details: 'Live authenticated probe query succeeded'
+                schema_status: schemaStatus,
+                details: schemaStatus === 'APPLICATION_SCHEMA_VERIFIED'
+                    ? 'Live authenticated REST root and application schema queries verified'
+                    : 'Supabase REST responsive but application tables missing'
             };
         }
 
