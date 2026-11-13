@@ -92,11 +92,10 @@ export async function probeDatabaseHealth(env = {}, customFetch = null) {
             signal: controller.signal
         });
 
-        clearTimeout(timer);
         const latencyMs = Date.now() - startedAt;
 
         if (response.status === 200 || response.status === 206) {
-            let schemaStatus = 'APPLICATION_SCHEMA_VERIFIED';
+            let schemaStatus = 'APPLICATION_SCHEMA_UNVERIFIED';
             try {
                 const schemaCheckUrl = `${cleanBaseUrl}/rest/v1/services?select=id&limit=1`;
                 const schemaRes = await fetchFn(schemaCheckUrl, {
@@ -108,28 +107,37 @@ export async function probeDatabaseHealth(env = {}, customFetch = null) {
                     },
                     signal: controller.signal
                 });
-                if (schemaRes.status === 404) {
+                if (schemaRes.status === 200 || schemaRes.status === 206) {
+                    schemaStatus = 'APPLICATION_SCHEMA_VERIFIED';
+                } else if (schemaRes.status === 404) {
                     schemaStatus = 'APPLICATION_SCHEMA_MISSING';
+                } else {
+                    schemaStatus = 'APPLICATION_SCHEMA_UNAVAILABLE';
                 }
             } catch (_) {
-                // Transient schema query error handled gracefully
+                schemaStatus = 'APPLICATION_SCHEMA_ERROR';
             }
 
+            clearTimeout(timer);
+            const totalLatencyMs = Date.now() - startedAt;
+
             return {
-                status: schemaStatus === 'APPLICATION_SCHEMA_MISSING' ? PROBE_STATUS.UNAVAILABLE : PROBE_STATUS.ACTIVE_HEALTHY,
+                status: schemaStatus === 'APPLICATION_SCHEMA_VERIFIED' ? PROBE_STATUS.ACTIVE_HEALTHY : PROBE_STATUS.UNAVAILABLE,
                 verified: schemaStatus === 'APPLICATION_SCHEMA_VERIFIED',
                 project_ref: runtimeRef,
                 canonical_ref: canonicalRef,
-                query_latency_ms: latencyMs,
+                query_latency_ms: totalLatencyMs,
                 checked_at: new Date().toISOString(),
                 probe_type: 'SERVER_REST_PROBE',
                 http_status: response.status,
                 schema_status: schemaStatus,
                 details: schemaStatus === 'APPLICATION_SCHEMA_VERIFIED'
                     ? 'Live authenticated REST root and application schema queries verified'
-                    : 'Supabase REST responsive but application tables missing'
+                    : `Supabase REST responsive but application tables check returned: ${schemaStatus}`
             };
         }
+
+        clearTimeout(timer);
 
         if (response.status === 401 || response.status === 403) {
             return {

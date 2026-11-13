@@ -4,6 +4,8 @@
  * Enforces fail-closed reporting of runtime facts only.
  */
 
+import { probeDatabaseHealth, PROBE_STATUS } from '../../_shared/database_probe.js';
+
 const ALLOWED_ORIGINS = [
     'https://inshatech-b6b.pages.dev',
     'https://inshatech.pages.dev',
@@ -47,12 +49,26 @@ export async function onRequestGet(context) {
     const origin = request.headers.get('Origin') || '';
     const corsOrigin = isOriginAllowed(origin) ? origin : 'https://inshatech-b6b.pages.dev';
     const startedAt = Date.now();
-    const hasSupabaseConfig = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
     const gitSha = env.CF_PAGES_COMMIT_SHA || env.GIT_COMMIT_SHA || null;
     const environment = resolveEnvironment(request, env);
 
+    const dbProbe = await probeDatabaseHealth(env);
+    let sreStatus = 'DEGRADED';
+    let poolStatus = dbProbe.status;
+
+    if (dbProbe.status === PROBE_STATUS.ACTIVE_HEALTHY) {
+        sreStatus = 'SRE_HEALTHY';
+        poolStatus = 'ACTIVE_HEALTHY';
+    } else if (dbProbe.status === PROBE_STATUS.UNVERIFIED) {
+        sreStatus = 'DEPENDENCY_UNAVAILABLE';
+        poolStatus = 'NOT_CONFIGURED';
+    } else {
+        sreStatus = 'DEGRADED';
+        poolStatus = dbProbe.status;
+    }
+
     const payload = {
-        status: 'SRE_HEALTHY',
+        status: sreStatus,
         observability_level: 'FAIL_CLOSED',
         environment: environment,
         edge_region: request.cf?.colo || 'EDGE',
@@ -61,7 +77,9 @@ export async function onRequestGet(context) {
         runtime_identity: {
             platform: 'Cloudflare Pages Functions',
             canonical_db_ref: 'kitwadizsvjmuxkfewxj',
-            database_pool: hasSupabaseConfig ? 'CONFIGURED_UNVERIFIED' : 'NOT_CONFIGURED'
+            database_pool: poolStatus,
+            database_probe_status: dbProbe.status,
+            database_verified: dbProbe.verified
         },
         slo: {
             availability_target: '99.95%',

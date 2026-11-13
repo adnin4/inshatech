@@ -188,6 +188,12 @@ export function verifyReleaseIdentity(context = {}) {
             deployment_sha: deployment_sha || 'UNSPECIFIED',
             runtime_sha: runtime_sha || 'UNSPECIFIED'
         },
+        provenance: {
+            source_provenance: context.source_provenance || (source_sha ? 'PROVIDED' : 'UNVERIFIED'),
+            build_provenance: context.build_provenance || (build_sha ? 'PROVIDED' : 'UNVERIFIED'),
+            deployment_provenance: context.deployment_provenance || (deployment_sha ? 'PROVIDED' : 'UNVERIFIED'),
+            runtime_provenance: context.runtime_provenance || (runtime_sha ? 'PROVIDED' : 'UNVERIFIED')
+        },
         synthetic_check: {
             confused: isSyntheticMergeConfusion,
             pr_head_sha: pr_head_sha || 'N/A',

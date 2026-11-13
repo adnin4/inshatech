@@ -38,17 +38,38 @@ export async function onRequestGet(context) {
     const dbProbe = await probeDatabaseHealth(env);
     const databaseVerified = dbProbe.status === PROBE_STATUS.ACTIVE_HEALTHY;
 
-    // 2. Multi-SHA Release Parity Verification
-    const defaultSha = env.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
-    const deploymentId = resolveDeploymentId(request, env, defaultSha);
+    // 2. Multi-SHA Release Parity Verification (independent provenance tracking)
+    const sourceProvenance = env.SOURCE_RELEASE_SHA ? 'ENV_SOURCE_RELEASE_SHA'
+        : (env.GIT_COMMIT_SHA ? 'ENV_GIT_COMMIT_SHA'
+        : (CANONICAL_RELEASE.canonical_sha ? 'CANONICAL_MANIFEST' : 'UNVERIFIED'));
+    const sourceSha = env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
+
+    const buildProvenance = env.BUILD_RELEASE_SHA ? 'ENV_BUILD_RELEASE_SHA'
+        : (CANONICAL_RELEASE.canonical_sha ? 'CANONICAL_MANIFEST' : 'UNVERIFIED');
+    const buildSha = env.BUILD_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null;
+
+    const deploymentProvenance = env.CF_PAGES_COMMIT_SHA ? 'ENV_CF_PAGES_COMMIT_SHA'
+        : (CANONICAL_RELEASE.canonical_sha ? 'CANONICAL_MANIFEST' : 'UNVERIFIED');
+    const deploymentSha = env.CF_PAGES_COMMIT_SHA || CANONICAL_RELEASE.canonical_sha || null;
+
+    const runtimeProvenance = env.RUNTIME_RELEASE_SHA ? 'ENV_RUNTIME_RELEASE_SHA'
+        : (env.EXPECTED_RELEASE_SHA ? 'ENV_EXPECTED_RELEASE_SHA'
+        : (CANONICAL_RELEASE.canonical_sha ? 'CANONICAL_MANIFEST' : 'UNVERIFIED'));
+    const runtimeSha = env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || CANONICAL_RELEASE.canonical_sha || null;
+
+    const deploymentId = resolveDeploymentId(request, env, deploymentSha);
     const environment = resolveEnvironment(request, env);
     const capturedAt = env.BUILD_TIMESTAMP || (CANONICAL_RELEASE.captured_at && isFreshTimestamp(CANONICAL_RELEASE.captured_at) ? CANONICAL_RELEASE.captured_at : new Date().toISOString());
 
     const identity = verifyReleaseIdentity({
-        source_sha: env.SOURCE_RELEASE_SHA || env.GIT_COMMIT_SHA || defaultSha,
-        build_sha: env.BUILD_RELEASE_SHA || defaultSha,
-        deployment_sha: env.CF_PAGES_COMMIT_SHA || defaultSha,
-        runtime_sha: env.RUNTIME_RELEASE_SHA || env.EXPECTED_RELEASE_SHA || defaultSha,
+        source_sha: sourceSha,
+        source_provenance: sourceProvenance,
+        build_sha: buildSha,
+        build_provenance: buildProvenance,
+        deployment_sha: deploymentSha,
+        deployment_provenance: deploymentProvenance,
+        runtime_sha: runtimeSha,
+        runtime_provenance: runtimeProvenance,
         branch: env.CF_PAGES_BRANCH || CANONICAL_RELEASE.canonical_branch || null,
         repository: env.GITHUB_REPOSITORY || CANONICAL_RELEASE.canonical_repository,
         deployment_id: deploymentId,
@@ -73,6 +94,7 @@ export async function onRequestGet(context) {
         production_sealed: false,
         release_ceiling: 'READY_FOR_STAGING',
         system_readiness: isFullReleaseVerified ? 'PRODUCTION_VERIFIED' : (identity.verified ? 'READY_FOR_STAGING_DB_UNVERIFIED' : 'UNVERIFIED'),
+        provenance: identity.provenance,
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,
         canonical_repository: CANONICAL_RELEASE.canonical_repository,

@@ -604,18 +604,16 @@
             }
         });
 
-        // Check for existing valid server session on page load
+        // Check for existing valid server session on page load (Cookie-first with Bearer fallback)
         (async function checkExistingAdminSession() {
-            const token = sessionStorage.getItem('iinsha_session_token');
-            if (!token) {
-                lockAdminUI();
-                return;
-            }
-
             try {
+                const token = sessionStorage.getItem('iinsha_session_token');
+                const headers = {};
+                if (token) headers['Authorization'] = 'Bearer ' + token;
                 const res = await fetch('/api/admin/gate', {
                     method: 'GET',
-                    headers: { 'Authorization': 'Bearer ' + token }
+                    credentials: 'same-origin',
+                    headers: headers
                 });
                 const data = await res.json().catch(() => ({}));
                 if (res.ok && data.authenticated === true) {
@@ -683,6 +681,7 @@
             try {
                 const res = await fetch('/api/auth/session', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password: pwd })
                 });
@@ -752,6 +751,7 @@
             try {
                 const res = await fetch('/api/auth/session', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         email: pendingAdminEmail,
@@ -787,7 +787,13 @@
             }
         }
 
-        window.adminLogout = function() {
+        window.adminLogout = async function() {
+            try {
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    credentials: 'same-origin'
+                });
+            } catch (_) {}
             sessionStorage.removeItem('iinsha_admin_authenticated');
             sessionStorage.removeItem('iinsha_2fa_verified');
             sessionStorage.removeItem('iinsha_session_token');

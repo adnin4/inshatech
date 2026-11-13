@@ -182,4 +182,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.16.1"
-          command: pages deploy dist-pages --project-name=inshatech --branch=production --commit-hash=${{ github.sha }} --commit-dirty=false
+          command: pages deploy dist-pages --project-name=inshatech --branch=main --commit-hash=${{ github.sha }} --commit-dirty=false

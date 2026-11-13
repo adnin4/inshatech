@@ -68,13 +68,16 @@ export class SecurityCoordinator {
                 const jti = url.searchParams.get('jti');
                 if (!jti) return new Response(JSON.stringify({ error: 'Missing jti' }), { status: 400 });
 
+                const nowSec = Math.floor(Date.now() / 1000);
                 let isRevoked = false;
                 if (this.sql) {
-                    const cursor = this.sql.exec('SELECT 1 FROM revoked_tokens WHERE jti = ?', jti);
+                    // Actively enforce expires_at during lookup and prune expired records
+                    const cursor = this.sql.exec('SELECT 1 FROM revoked_tokens WHERE jti = ? AND expires_at > ?', jti, nowSec);
                     isRevoked = cursor.toArray().length > 0;
+                    this.sql.exec('DELETE FROM revoked_tokens WHERE expires_at <= ?', nowSec);
                 } else {
                     const val = await this.state.storage.get(`revoked:${jti}`);
-                    isRevoked = Boolean(val);
+                    isRevoked = Boolean(val && (!val.expires_at || val.expires_at > nowSec));
                 }
 
                 return new Response(JSON.stringify({ jti, is_revoked: isRevoked }), { status: 200 });
@@ -129,6 +132,8 @@ export class SecurityCoordinator {
 
                 let alreadyUsed = false;
                 if (this.sql) {
+                    // Safe retention cleanup: prune MFA replay tokens older than 5 minutes (300s)
+                    this.sql.exec('DELETE FROM mfa_used_tokens WHERE used_at < ?', now - 300);
                     const cursor = this.sql.exec('SELECT 1 FROM mfa_used_tokens WHERE code = ?', key);
                     alreadyUsed = cursor.toArray().length > 0;
                     if (!alreadyUsed) {

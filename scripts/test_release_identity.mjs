@@ -214,6 +214,32 @@ const dbHealthy = await probeDatabaseHealth({
 assert.strictEqual(dbHealthy.status, PROBE_STATUS.ACTIVE_HEALTHY);
 assert.strictEqual(dbHealthy.verified, true);
 
+// 10G: REST root 200 but schema 404 (Missing application schema) -> UNAVAILABLE
+const mockSchema404Fetch = async (url) => {
+    if (url.includes('/services')) return new Response(JSON.stringify({ error: 'table not found' }), { status: 404 });
+    return new Response(JSON.stringify({ definitions: {} }), { status: 200 });
+};
+const dbSchema404 = await probeDatabaseHealth({
+    SUPABASE_URL: 'https://kitwadizsvjmuxkfewxj.supabase.co',
+    SUPABASE_ANON_KEY: 'valid-key'
+}, mockSchema404Fetch);
+assert.strictEqual(dbSchema404.status, PROBE_STATUS.UNAVAILABLE);
+assert.strictEqual(dbSchema404.verified, false);
+assert.strictEqual(dbSchema404.schema_status, 'APPLICATION_SCHEMA_MISSING');
+
+// 10H: REST root 200 but schema query throws error -> UNAVAILABLE (no false-green)
+const mockSchemaThrowFetch = async (url) => {
+    if (url.includes('/services')) throw new Error('Network reset on schema check');
+    return new Response(JSON.stringify({ definitions: {} }), { status: 200 });
+};
+const dbSchemaThrow = await probeDatabaseHealth({
+    SUPABASE_URL: 'https://kitwadizsvjmuxkfewxj.supabase.co',
+    SUPABASE_ANON_KEY: 'valid-key'
+}, mockSchemaThrowFetch);
+assert.strictEqual(dbSchemaThrow.status, PROBE_STATUS.UNAVAILABLE);
+assert.strictEqual(dbSchemaThrow.verified, false);
+assert.strictEqual(dbSchemaThrow.schema_status, 'APPLICATION_SCHEMA_ERROR');
+
 // 11. /api/version integration testing
 {
     const { onRequestGet } = await import('../functions/api/version.js');
@@ -233,6 +259,10 @@ assert.strictEqual(dbHealthy.verified, true);
     });
     const bodyA = await resA.json();
     assert.strictEqual(bodyA.release_identity.verified, true);
+    assert.strictEqual(bodyA.provenance.source_provenance, 'ENV_SOURCE_RELEASE_SHA');
+    assert.strictEqual(bodyA.provenance.build_provenance, 'ENV_BUILD_RELEASE_SHA');
+    assert.strictEqual(bodyA.provenance.deployment_provenance, 'ENV_CF_PAGES_COMMIT_SHA');
+    assert.strictEqual(bodyA.provenance.runtime_provenance, 'ENV_RUNTIME_RELEASE_SHA');
     assert.strictEqual(bodyA.database_identity.status, PROBE_STATUS.UNVERIFIED);
     assert.strictEqual(bodyA.status, 'READY_FOR_STAGING');
     assert.strictEqual(bodyA.parity, true);
@@ -268,6 +298,51 @@ assert.strictEqual(dbHealthy.verified, true);
     assert.strictEqual(bodyC.release_identity.verified, false);
     assert.strictEqual(bodyC.parity, false);
     assert.strictEqual(bodyC.status, 'UNVERIFIED');
+}
+
+// 12. /api/sre/health integration testing
+{
+    const { onRequestGet: sreHealthGet } = await import('../functions/api/sre/health.js');
+
+    // 12A: Missing credentials -> DEPENDENCY_UNAVAILABLE, NOT_CONFIGURED
+    const resA = await sreHealthGet({
+        request: new Request('https://inshatech.pages.dev/api/sre/health'),
+        env: {}
+    });
+    const bodyA = await resA.json();
+    assert.strictEqual(bodyA.status, 'DEPENDENCY_UNAVAILABLE');
+    assert.strictEqual(bodyA.runtime_identity.database_pool, 'NOT_CONFIGURED');
+
+    // 12B: Inactive database -> DEGRADED
+    const origFetch = globalThis.fetch;
+    try {
+        globalThis.fetch = async () => new Response(JSON.stringify({ error: 'paused' }), { status: 503 });
+        const resB = await sreHealthGet({
+            request: new Request('https://inshatech.pages.dev/api/sre/health'),
+            env: {
+                SUPABASE_URL: 'https://kitwadizsvjmuxkfewxj.supabase.co',
+                SUPABASE_ANON_KEY: 'test-key'
+            }
+        });
+        const bodyB = await resB.json();
+        assert.strictEqual(bodyB.status, 'DEGRADED');
+        assert.strictEqual(bodyB.runtime_identity.database_pool, 'INACTIVE');
+
+        // 12C: Active Healthy database -> SRE_HEALTHY
+        globalThis.fetch = async () => new Response(JSON.stringify({ definitions: {} }), { status: 200 });
+        const resC = await sreHealthGet({
+            request: new Request('https://inshatech.pages.dev/api/sre/health'),
+            env: {
+                SUPABASE_URL: 'https://kitwadizsvjmuxkfewxj.supabase.co',
+                SUPABASE_ANON_KEY: 'test-key'
+            }
+        });
+        const bodyC = await resC.json();
+        assert.strictEqual(bodyC.status, 'SRE_HEALTHY');
+        assert.strictEqual(bodyC.runtime_identity.database_pool, 'ACTIVE_HEALTHY');
+    } finally {
+        globalThis.fetch = origFetch;
+    }
 }
 
 console.log('✅ All release identity, PR synthetic check, and database probe unit tests passed!');

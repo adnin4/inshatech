@@ -133,6 +133,11 @@ export function base32Decode(str) {
             bits -= 8;
         }
     }
+    // RFC 4648 Section 3.5: Any unused bits in the final quantum MUST be zero.
+    // Non-zero unused bits indicate non-canonical encoding and must be rejected.
+    if (bits > 0 && (value & ((1 << bits) - 1)) !== 0) {
+        return null;
+    }
     return new Uint8Array(output);
 }
 
@@ -154,7 +159,7 @@ export async function computeTotp(secret, timeSec, digits = 6, hash = 'SHA-1') {
 
 export async function verifyTotp(token, secret, options = {}) {
     const digits = options.digits || 6;
-    const hash = options.algorithm || 'SHA-1';
+    const hash = options.algorithm || options.hash || 'SHA-1';
     const stepSec = options.step || 30;
     const timestamp = typeof options.timestamp === 'number' ? options.timestamp : Date.now();
     const allowDrift = options.allowDrift !== false; // default true (+/- 1 step)

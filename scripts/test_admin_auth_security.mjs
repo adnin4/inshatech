@@ -713,11 +713,12 @@ async function runTestSuite() {
     }
 
     // -------------------------------------------------------------------------
-    // TEST 25: RFC 6238 Appendix B Official Known-Answer Test Vectors (SHA-1)
+    // TEST 25: RFC 6238 Appendix B Official Known-Answer Test Vectors (SHA-1, SHA-256, SHA-512)
     // -------------------------------------------------------------------------
     {
-        const rfcSecret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ'; // ASCII '12345678901234567890'
-        const rfcVectors = [
+        // SHA-1 (20-byte key)
+        const rfcSecret1 = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ'; // ASCII '12345678901234567890'
+        const rfcVectors1 = [
             { timeSec: 59, expected8: '94287082', expected6: '287082' },
             { timeSec: 1111111109, expected8: '07081804', expected6: '081804' },
             { timeSec: 1111111111, expected8: '14050471', expected6: '050471' },
@@ -726,22 +727,80 @@ async function runTestSuite() {
             { timeSec: 20000000000, expected8: '65353130', expected6: '353130' }
         ];
 
-        for (const vec of rfcVectors) {
-            const computed8 = await computeSessionTotp(rfcSecret, vec.timeSec, 8);
-            const computed6 = await computeSessionTotp(rfcSecret, vec.timeSec, 6);
+        for (const vec of rfcVectors1) {
+            const computed8 = await computeSessionTotp(rfcSecret1, vec.timeSec, 8, 'SHA-1');
+            const computed6 = await computeSessionTotp(rfcSecret1, vec.timeSec, 6, 'SHA-1');
             assert(computed8 === vec.expected8,
-                `RFC 6238 Appendix B vector t=${vec.timeSec}s 8-digit OTP matches: ${computed8}`);
+                `RFC 6238 Appendix B SHA-1 vector t=${vec.timeSec}s 8-digit OTP matches: ${computed8}`);
             assert(computed6 === vec.expected6,
-                `RFC 6238 Appendix B vector t=${vec.timeSec}s 6-digit OTP matches: ${computed6}`);
+                `RFC 6238 Appendix B SHA-1 vector t=${vec.timeSec}s 6-digit OTP matches: ${computed6}`);
 
-            // Independent verification via verifyTotp
-            const res6 = await verifyTotp(vec.expected6, rfcSecret, {
+            const res6 = await verifyTotp(vec.expected6, rfcSecret1, {
                 timestamp: vec.timeSec * 1000,
                 digits: 6,
+                hash: 'SHA-1',
                 allowDrift: false
             });
             assert(res6.valid === true,
-                `RFC 6238 verifyTotp accepts exact expected OTP ${vec.expected6} at t=${vec.timeSec}s`);
+                `RFC 6238 verifyTotp accepts SHA-1 expected OTP ${vec.expected6} at t=${vec.timeSec}s`);
+        }
+
+        // SHA-256 (32-byte key)
+        const rfcSecret256 = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA====';
+        const rfcVectors256 = [
+            { timeSec: 59, expected8: '46119246', expected6: '119246' },
+            { timeSec: 1111111109, expected8: '68084774', expected6: '084774' },
+            { timeSec: 1111111111, expected8: '67062674', expected6: '062674' },
+            { timeSec: 1234567890, expected8: '91819424', expected6: '819424' },
+            { timeSec: 2000000000, expected8: '90698825', expected6: '698825' },
+            { timeSec: 20000000000, expected8: '77737706', expected6: '737706' }
+        ];
+
+        for (const vec of rfcVectors256) {
+            const computed8 = await computeSessionTotp(rfcSecret256, vec.timeSec, 8, 'SHA-256');
+            const computed6 = await computeSessionTotp(rfcSecret256, vec.timeSec, 6, 'SHA-256');
+            assert(computed8 === vec.expected8,
+                `RFC 6238 Appendix B SHA-256 vector t=${vec.timeSec}s 8-digit OTP matches: ${computed8}`);
+            assert(computed6 === vec.expected6,
+                `RFC 6238 Appendix B SHA-256 vector t=${vec.timeSec}s 6-digit OTP matches: ${computed6}`);
+
+            const res6 = await verifyTotp(vec.expected6, rfcSecret256, {
+                timestamp: vec.timeSec * 1000,
+                digits: 6,
+                hash: 'SHA-256',
+                allowDrift: false
+            });
+            assert(res6.valid === true,
+                `RFC 6238 verifyTotp accepts SHA-256 expected OTP ${vec.expected6} at t=${vec.timeSec}s`);
+        }
+
+        // SHA-512 (64-byte key)
+        const rfcSecret512 = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA=';
+        const rfcVectors512 = [
+            { timeSec: 59, expected8: '90693936', expected6: '693936' },
+            { timeSec: 1111111109, expected8: '25091201', expected6: '091201' },
+            { timeSec: 1111111111, expected8: '99943326', expected6: '943326' },
+            { timeSec: 1234567890, expected8: '93441116', expected6: '441116' },
+            { timeSec: 2000000000, expected8: '38618901', expected6: '618901' },
+            { timeSec: 20000000000, expected8: '47863826', expected6: '863826' }
+        ];
+
+        for (const vec of rfcVectors512) {
+            const computed8 = await computeSessionTotp(rfcSecret512, vec.timeSec, 8, 'SHA-512');
+            const computed6 = await computeSessionTotp(rfcSecret512, vec.timeSec, 6, 'SHA-512');
+            assert(computed8 === vec.expected8,
+                `RFC 6238 Appendix B SHA-512 vector t=${vec.timeSec}s 8-digit OTP matches: ${computed8}`);
+            assert(computed6 === vec.expected6,
+                `RFC 6238 Appendix B SHA-512 vector t=${vec.timeSec}s 6-digit OTP matches: ${computed6}`);
+
+            const res6 = await verifyTotp(vec.expected6, rfcSecret512, {
+                timestamp: vec.timeSec * 1000,
+                digits: 6,
+                hash: 'SHA-512',
+                allowDrift: false
+            });
+            assert(res6.valid === true,
+                `RFC 6238 verifyTotp accepts SHA-512 expected OTP ${vec.expected6} at t=${vec.timeSec}s`);
         }
     }
 
@@ -766,6 +825,10 @@ async function runTestSuite() {
         assert(base32Decode('M') === null, 'Base32 rejects incomplete 1-char unpadded block');
         assert(base32Decode('MZX') === null, 'Base32 rejects incomplete 3-char unpadded block');
         assert(base32Decode('MZXW6Y') === null, 'Base32 rejects incomplete 6-char unpadded block');
+
+        // RFC 4648 Section 3.5: Canonical zero unused pad bits
+        assert(base32Decode('MY======') !== null, 'Base32 accepts valid canonical zero unused pad bits');
+        assert(base32Decode('MZ======') === null, 'RFC 4648 Section 3.5 rejects non-zero unused pad bits (non-canonical)');
 
         // Valid padding
         const paddedVal = base32Decode('MZXW6YTB'); // "foobar" (6 chars = 48 bits = 6 bytes = 8 Base32 chars, no pad)
