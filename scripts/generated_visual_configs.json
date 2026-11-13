@@ -1,0 +1,1814 @@
+{
+  "ai-video-studio": {
+    "id": "ai-video-studio",
+    "color": "#f472b6",
+    "accent": "#ec4899",
+    "geometry": "video-reel",
+    "rings": 3,
+    "nodes": 12,
+    "label": "3D Video Timeline Reel"
+  },
+  "ai-saas-engineering": {
+    "id": "ai-saas-engineering",
+    "color": "#38bdf8",
+    "accent": "#0284c7",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Distributed SaaS Architecture"
+  },
+  "ai-governance-operations": {
+    "id": "ai-governance-operations",
+    "color": "#c084fc",
+    "accent": "#9333ea",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Zero-Trust Governance Ring"
+  },
+  "ecommerce-growth-operations": {
+    "id": "ecommerce-growth-operations",
+    "color": "#10b981",
+    "accent": "#059669",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 12,
+    "label": "Commerce Fulfillment Lattice"
+  },
+  "ai-finance-automation": {
+    "id": "ai-finance-automation",
+    "color": "#f59e0b",
+    "accent": "#d97706",
+    "geometry": "ledger-orbit",
+    "rings": 3,
+    "nodes": 10,
+    "label": "3-Way Financial Ledger Orbit"
+  },
+  "ai-data-operations": {
+    "id": "ai-data-operations",
+    "color": "#6366f1",
+    "accent": "#4f46e5",
+    "geometry": "point-cloud",
+    "rings": 2,
+    "nodes": 24,
+    "label": "Semantic Vector Point Cloud"
+  },
+  "enterprise-knowledge-search": {
+    "id": "enterprise-knowledge-search",
+    "color": "#0ea5e9",
+    "accent": "#0284c7",
+    "geometry": "neural-book",
+    "rings": 3,
+    "nodes": 14,
+    "label": "Knowledge Graph Lattice"
+  },
+  "software-qa-release": {
+    "id": "software-qa-release",
+    "color": "#14b8a6",
+    "accent": "#0d9488",
+    "geometry": "test-gate",
+    "rings": 4,
+    "nodes": 10,
+    "label": "Automated CI/CD Quality Gate"
+  },
+  "cloud-finops-reliability": {
+    "id": "cloud-finops-reliability",
+    "color": "#06b6d4",
+    "accent": "#0891b2",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 12,
+    "label": "Edge SRE Observability Ring"
+  },
+  "computer-vision-systems": {
+    "id": "computer-vision-systems",
+    "color": "#a855f7",
+    "accent": "#7c3aed",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Computer Vision Scanner"
+  },
+  "cat-agents": {
+    "id": "cat-agents",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 3,
+    "nodes": 12,
+    "label": "Agent Swarm Coordination"
+  },
+  "cat-workflow": {
+    "id": "cat-workflow",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Observable Workflow Pipeline"
+  },
+  "cat-web": {
+    "id": "cat-web",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 3,
+    "nodes": 14,
+    "label": "Headless Browser Mesh"
+  },
+  "cat-conv": {
+    "id": "cat-conv",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Conversational RAG Core"
+  },
+  "cat-vision": {
+    "id": "cat-vision",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 12,
+    "label": "Multimodal OCR Matrix"
+  },
+  "cat-software": {
+    "id": "cat-software",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 12,
+    "label": "Full-Stack Software Architecture"
+  },
+  "cat-infra": {
+    "id": "cat-infra",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Docker VPS Infrastructure"
+  },
+  "cat-security": {
+    "id": "cat-security",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Managed Zero-Trust Care"
+  },
+  "svc-01": {
+    "id": "svc-01",
+    "slug": "ai-agent-development",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 8,
+    "label": "AI Agent Development"
+  },
+  "ai-agent-development": {
+    "id": "svc-01",
+    "slug": "ai-agent-development",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 8,
+    "label": "AI Agent Development"
+  },
+  "svc-02": {
+    "id": "svc-02",
+    "slug": "multi-agent-systems",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Multi-Agent Systems"
+  },
+  "multi-agent-systems": {
+    "id": "svc-02",
+    "slug": "multi-agent-systems",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Multi-Agent Systems"
+  },
+  "svc-03": {
+    "id": "svc-03",
+    "slug": "autonomous-workflows",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Autonomous Workflows"
+  },
+  "autonomous-workflows": {
+    "id": "svc-03",
+    "slug": "autonomous-workflows",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Autonomous Workflows"
+  },
+  "svc-04": {
+    "id": "svc-04",
+    "slug": "ai-executive-assistant",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 14,
+    "label": "AI Executive Assistant"
+  },
+  "ai-executive-assistant": {
+    "id": "svc-04",
+    "slug": "ai-executive-assistant",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 14,
+    "label": "AI Executive Assistant"
+  },
+  "svc-05": {
+    "id": "svc-05",
+    "slug": "customer-support-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Customer Support Agent"
+  },
+  "customer-support-agent": {
+    "id": "svc-05",
+    "slug": "customer-support-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Customer Support Agent"
+  },
+  "svc-06": {
+    "id": "svc-06",
+    "slug": "sales-intelligence-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Sales Intelligence Agent"
+  },
+  "sales-intelligence-agent": {
+    "id": "svc-06",
+    "slug": "sales-intelligence-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Sales Intelligence Agent"
+  },
+  "svc-07": {
+    "id": "svc-07",
+    "slug": "research-analyst-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Research & Analyst Agent"
+  },
+  "research-analyst-agent": {
+    "id": "svc-07",
+    "slug": "research-analyst-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Research & Analyst Agent"
+  },
+  "svc-08": {
+    "id": "svc-08",
+    "slug": "ai-content-operator",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 22,
+    "label": "AI Content Operator"
+  },
+  "ai-content-operator": {
+    "id": "svc-08",
+    "slug": "ai-content-operator",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 22,
+    "label": "AI Content Operator"
+  },
+  "svc-09": {
+    "id": "svc-09",
+    "slug": "ai-code-review-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 8,
+    "label": "AI Code Review Agent"
+  },
+  "ai-code-review-agent": {
+    "id": "svc-09",
+    "slug": "ai-code-review-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 8,
+    "label": "AI Code Review Agent"
+  },
+  "svc-10": {
+    "id": "svc-10",
+    "slug": "custom-task-automation",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Custom Task Automation"
+  },
+  "custom-task-automation": {
+    "id": "svc-10",
+    "slug": "custom-task-automation",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Custom Task Automation"
+  },
+  "svc-11": {
+    "id": "svc-11",
+    "slug": "n8n-workflow-automation",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 8,
+    "label": "n8n Workflow Automation"
+  },
+  "n8n-workflow-automation": {
+    "id": "svc-11",
+    "slug": "n8n-workflow-automation",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 8,
+    "label": "n8n Workflow Automation"
+  },
+  "svc-12": {
+    "id": "svc-12",
+    "slug": "business-process-auto",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Business Process Auto"
+  },
+  "business-process-auto": {
+    "id": "svc-12",
+    "slug": "business-process-auto",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Business Process Auto"
+  },
+  "svc-13": {
+    "id": "svc-13",
+    "slug": "crm-sync-pipeline",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 12,
+    "label": "CRM Sync & Pipeline"
+  },
+  "crm-sync-pipeline": {
+    "id": "svc-13",
+    "slug": "crm-sync-pipeline",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 12,
+    "label": "CRM Sync & Pipeline"
+  },
+  "svc-14": {
+    "id": "svc-14",
+    "slug": "human-in-the-loop-gate",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Human-in-the-Loop Gate"
+  },
+  "human-in-the-loop-gate": {
+    "id": "svc-14",
+    "slug": "human-in-the-loop-gate",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Human-in-the-Loop Gate"
+  },
+  "svc-15": {
+    "id": "svc-15",
+    "slug": "custom-api-connectors",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Custom API Connectors"
+  },
+  "custom-api-connectors": {
+    "id": "svc-15",
+    "slug": "custom-api-connectors",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Custom API Connectors"
+  },
+  "svc-16": {
+    "id": "svc-16",
+    "slug": "lead-routing-scoring",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "cube-lattice",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Lead Routing & Scoring"
+  },
+  "lead-routing-scoring": {
+    "id": "svc-16",
+    "slug": "lead-routing-scoring",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "cube-lattice",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Lead Routing & Scoring"
+  },
+  "svc-17": {
+    "id": "svc-17",
+    "slug": "omnichannel-alerting",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Omnichannel Alerting"
+  },
+  "omnichannel-alerting": {
+    "id": "svc-17",
+    "slug": "omnichannel-alerting",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Omnichannel Alerting"
+  },
+  "svc-18": {
+    "id": "svc-18",
+    "slug": "auto-report-generation",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Auto Report Generation"
+  },
+  "auto-report-generation": {
+    "id": "svc-18",
+    "slug": "auto-report-generation",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Auto Report Generation"
+  },
+  "svc-19": {
+    "id": "svc-19",
+    "slug": "error-handling-retry",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Error Handling & Retry"
+  },
+  "error-handling-retry": {
+    "id": "svc-19",
+    "slug": "error-handling-retry",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Error Handling & Retry"
+  },
+  "svc-20": {
+    "id": "svc-20",
+    "slug": "inventory-auto-sync",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Inventory Auto-Sync"
+  },
+  "inventory-auto-sync": {
+    "id": "svc-20",
+    "slug": "inventory-auto-sync",
+    "color": "#38bdf8",
+    "accent": "#7dd3fc",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Inventory Auto-Sync"
+  },
+  "svc-21": {
+    "id": "svc-21",
+    "slug": "playwright-pipeline-scraper",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Playwright Pipeline Scraper"
+  },
+  "playwright-pipeline-scraper": {
+    "id": "svc-21",
+    "slug": "playwright-pipeline-scraper",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Playwright Pipeline Scraper"
+  },
+  "svc-22": {
+    "id": "svc-22",
+    "slug": "proxy-mesh-integration",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Proxy Mesh Integration"
+  },
+  "proxy-mesh-integration": {
+    "id": "svc-22",
+    "slug": "proxy-mesh-integration",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Proxy Mesh Integration"
+  },
+  "svc-23": {
+    "id": "svc-23",
+    "slug": "price-intelligence-engine",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Price Intelligence Engine"
+  },
+  "price-intelligence-engine": {
+    "id": "svc-23",
+    "slug": "price-intelligence-engine",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Price Intelligence Engine"
+  },
+  "svc-24": {
+    "id": "svc-24",
+    "slug": "lead-harvesting-pipeline",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "point-cloud",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Lead Harvesting Pipeline"
+  },
+  "lead-harvesting-pipeline": {
+    "id": "svc-24",
+    "slug": "lead-harvesting-pipeline",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "point-cloud",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Lead Harvesting Pipeline"
+  },
+  "svc-25": {
+    "id": "svc-25",
+    "slug": "content-aggregation-bot",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Content Aggregation Bot"
+  },
+  "content-aggregation-bot": {
+    "id": "svc-25",
+    "slug": "content-aggregation-bot",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Content Aggregation Bot"
+  },
+  "svc-26": {
+    "id": "svc-26",
+    "slug": "visual-screenshot-qa",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Visual Screenshot QA"
+  },
+  "visual-screenshot-qa": {
+    "id": "svc-26",
+    "slug": "visual-screenshot-qa",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Visual Screenshot QA"
+  },
+  "svc-27": {
+    "id": "svc-27",
+    "slug": "real-estate-scraper",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Real Estate Scraper"
+  },
+  "real-estate-scraper": {
+    "id": "svc-27",
+    "slug": "real-estate-scraper",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Real Estate Scraper"
+  },
+  "svc-28": {
+    "id": "svc-28",
+    "slug": "e-commerce-product-sync",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "point-cloud",
+    "rings": 3,
+    "nodes": 22,
+    "label": "E-Commerce Product Sync"
+  },
+  "e-commerce-product-sync": {
+    "id": "svc-28",
+    "slug": "e-commerce-product-sync",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "point-cloud",
+    "rings": 3,
+    "nodes": 22,
+    "label": "E-Commerce Product Sync"
+  },
+  "svc-29": {
+    "id": "svc-29",
+    "slug": "site-uptime-change-alert",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Site Uptime & Change Alert"
+  },
+  "site-uptime-change-alert": {
+    "id": "svc-29",
+    "slug": "site-uptime-change-alert",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Site Uptime & Change Alert"
+  },
+  "svc-30": {
+    "id": "svc-30",
+    "slug": "batch-asset-downloader",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Batch Asset Downloader"
+  },
+  "batch-asset-downloader": {
+    "id": "svc-30",
+    "slug": "batch-asset-downloader",
+    "color": "#10b981",
+    "accent": "#34d399",
+    "geometry": "crawler-mesh",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Batch Asset Downloader"
+  },
+  "svc-31": {
+    "id": "svc-31",
+    "slug": "web-ai-chatbot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Web AI Chatbot"
+  },
+  "web-ai-chatbot": {
+    "id": "svc-31",
+    "slug": "web-ai-chatbot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Web AI Chatbot"
+  },
+  "svc-32": {
+    "id": "svc-32",
+    "slug": "whatsapp-business-bot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 10,
+    "label": "WhatsApp Business Bot"
+  },
+  "whatsapp-business-bot": {
+    "id": "svc-32",
+    "slug": "whatsapp-business-bot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 10,
+    "label": "WhatsApp Business Bot"
+  },
+  "svc-33": {
+    "id": "svc-33",
+    "slug": "telegram-assistant-bot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Telegram Assistant Bot"
+  },
+  "telegram-assistant-bot": {
+    "id": "svc-33",
+    "slug": "telegram-assistant-bot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Telegram Assistant Bot"
+  },
+  "svc-34": {
+    "id": "svc-34",
+    "slug": "slack-discord-ai",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Slack & Discord AI"
+  },
+  "slack-discord-ai": {
+    "id": "svc-34",
+    "slug": "slack-discord-ai",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Slack & Discord AI"
+  },
+  "svc-35": {
+    "id": "svc-35",
+    "slug": "ai-voice-receptionist",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "neural-book",
+    "rings": 3,
+    "nodes": 16,
+    "label": "AI Voice Receptionist"
+  },
+  "ai-voice-receptionist": {
+    "id": "svc-35",
+    "slug": "ai-voice-receptionist",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "neural-book",
+    "rings": 3,
+    "nodes": 16,
+    "label": "AI Voice Receptionist"
+  },
+  "svc-36": {
+    "id": "svc-36",
+    "slug": "multi-doc-rag-grounding",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Multi-Doc RAG Grounding"
+  },
+  "multi-doc-rag-grounding": {
+    "id": "svc-36",
+    "slug": "multi-doc-rag-grounding",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Multi-Doc RAG Grounding"
+  },
+  "svc-37": {
+    "id": "svc-37",
+    "slug": "human-handoff-gateway",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Human Handoff Gateway"
+  },
+  "human-handoff-gateway": {
+    "id": "svc-37",
+    "slug": "human-handoff-gateway",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Human Handoff Gateway"
+  },
+  "svc-38": {
+    "id": "svc-38",
+    "slug": "multilingual-auto-detect",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Multilingual Auto-Detect"
+  },
+  "multilingual-auto-detect": {
+    "id": "svc-38",
+    "slug": "multilingual-auto-detect",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Multilingual Auto-Detect"
+  },
+  "svc-39": {
+    "id": "svc-39",
+    "slug": "in-chat-checkout-flow",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "neural-book",
+    "rings": 4,
+    "nodes": 8,
+    "label": "In-Chat Checkout Flow"
+  },
+  "in-chat-checkout-flow": {
+    "id": "svc-39",
+    "slug": "in-chat-checkout-flow",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "neural-book",
+    "rings": 4,
+    "nodes": 8,
+    "label": "In-Chat Checkout Flow"
+  },
+  "svc-40": {
+    "id": "svc-40",
+    "slug": "chat-sentiment-analytics",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Chat Sentiment Analytics"
+  },
+  "chat-sentiment-analytics": {
+    "id": "svc-40",
+    "slug": "chat-sentiment-analytics",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Chat Sentiment Analytics"
+  },
+  "svc-41": {
+    "id": "svc-41",
+    "slug": "gemini-ocr-extraction",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Gemini OCR Extraction"
+  },
+  "gemini-ocr-extraction": {
+    "id": "svc-41",
+    "slug": "gemini-ocr-extraction",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Gemini OCR Extraction"
+  },
+  "svc-42": {
+    "id": "svc-42",
+    "slug": "invoice-line-parser",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Invoice Line Parser"
+  },
+  "invoice-line-parser": {
+    "id": "svc-42",
+    "slug": "invoice-line-parser",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Invoice Line Parser"
+  },
+  "svc-43": {
+    "id": "svc-43",
+    "slug": "pdf-document-analyzer",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 12,
+    "label": "PDF Document Analyzer"
+  },
+  "pdf-document-analyzer": {
+    "id": "svc-43",
+    "slug": "pdf-document-analyzer",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 12,
+    "label": "PDF Document Analyzer"
+  },
+  "svc-44": {
+    "id": "svc-44",
+    "slug": "hr-resume-classifier",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 14,
+    "label": "HR Resume Classifier"
+  },
+  "hr-resume-classifier": {
+    "id": "svc-44",
+    "slug": "hr-resume-classifier",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 14,
+    "label": "HR Resume Classifier"
+  },
+  "svc-45": {
+    "id": "svc-45",
+    "slug": "id-passport-ocr",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "test-gate",
+    "rings": 3,
+    "nodes": 16,
+    "label": "ID & Passport OCR"
+  },
+  "id-passport-ocr": {
+    "id": "svc-45",
+    "slug": "id-passport-ocr",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "test-gate",
+    "rings": 3,
+    "nodes": 16,
+    "label": "ID & Passport OCR"
+  },
+  "svc-46": {
+    "id": "svc-46",
+    "slug": "multi-source-data-etl",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Multi-Source Data ETL"
+  },
+  "multi-source-data-etl": {
+    "id": "svc-46",
+    "slug": "multi-source-data-etl",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Multi-Source Data ETL"
+  },
+  "svc-47": {
+    "id": "svc-47",
+    "slug": "executive-bi-dashboards",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Executive BI Dashboards"
+  },
+  "executive-bi-dashboards": {
+    "id": "svc-47",
+    "slug": "executive-bi-dashboards",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Executive BI Dashboards"
+  },
+  "svc-48": {
+    "id": "svc-48",
+    "slug": "document-diff-scanner",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "neural-polyhedron",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Document Diff Scanner"
+  },
+  "document-diff-scanner": {
+    "id": "svc-48",
+    "slug": "document-diff-scanner",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "neural-polyhedron",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Document Diff Scanner"
+  },
+  "svc-49": {
+    "id": "svc-49",
+    "slug": "form-field-auto-fill",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Form-Field Auto Fill"
+  },
+  "form-field-auto-fill": {
+    "id": "svc-49",
+    "slug": "form-field-auto-fill",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Form-Field Auto Fill"
+  },
+  "svc-50": {
+    "id": "svc-50",
+    "slug": "sensitive-pii-redactor",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Sensitive PII Redactor"
+  },
+  "sensitive-pii-redactor": {
+    "id": "svc-50",
+    "slug": "sensitive-pii-redactor",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Sensitive PII Redactor"
+  },
+  "svc-51": {
+    "id": "svc-51",
+    "slug": "ai-saas-mvp-engine",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 8,
+    "label": "AI SaaS MVP Engine"
+  },
+  "ai-saas-mvp-engine": {
+    "id": "svc-51",
+    "slug": "ai-saas-mvp-engine",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 8,
+    "label": "AI SaaS MVP Engine"
+  },
+  "svc-52": {
+    "id": "svc-52",
+    "slug": "vertical-isp-billing-saas",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Vertical ISP Billing SaaS"
+  },
+  "vertical-isp-billing-saas": {
+    "id": "svc-52",
+    "slug": "vertical-isp-billing-saas",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Vertical ISP Billing SaaS"
+  },
+  "svc-53": {
+    "id": "svc-53",
+    "slug": "e-commerce-logistics-os",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 4,
+    "nodes": 12,
+    "label": "E-Commerce Logistics OS"
+  },
+  "e-commerce-logistics-os": {
+    "id": "svc-53",
+    "slug": "e-commerce-logistics-os",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 4,
+    "nodes": 12,
+    "label": "E-Commerce Logistics OS"
+  },
+  "svc-54": {
+    "id": "svc-54",
+    "slug": "academy-school-os",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Academy & School OS"
+  },
+  "academy-school-os": {
+    "id": "svc-54",
+    "slug": "academy-school-os",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Academy & School OS"
+  },
+  "svc-55": {
+    "id": "svc-55",
+    "slug": "rapid-24-48hr-bug-fix",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Rapid 24-48hr Bug Fix"
+  },
+  "rapid-24-48hr-bug-fix": {
+    "id": "svc-55",
+    "slug": "rapid-24-48hr-bug-fix",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Rapid 24-48hr Bug Fix"
+  },
+  "svc-56": {
+    "id": "svc-56",
+    "slug": "admin-control-panels",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Admin Control Panels"
+  },
+  "admin-control-panels": {
+    "id": "svc-56",
+    "slug": "admin-control-panels",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "pipeline-flow",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Admin Control Panels"
+  },
+  "svc-57": {
+    "id": "svc-57",
+    "slug": "internal-operations-tools",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Internal Operations Tools"
+  },
+  "internal-operations-tools": {
+    "id": "svc-57",
+    "slug": "internal-operations-tools",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "test-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "Internal Operations Tools"
+  },
+  "svc-58": {
+    "id": "svc-58",
+    "slug": "progressive-web-apps",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Progressive Web Apps"
+  },
+  "progressive-web-apps": {
+    "id": "svc-58",
+    "slug": "progressive-web-apps",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Progressive Web Apps"
+  },
+  "svc-59": {
+    "id": "svc-59",
+    "slug": "multi-tenant-rls-systems",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Multi-Tenant RLS Systems"
+  },
+  "multi-tenant-rls-systems": {
+    "id": "svc-59",
+    "slug": "multi-tenant-rls-systems",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Multi-Tenant RLS Systems"
+  },
+  "svc-60": {
+    "id": "svc-60",
+    "slug": "serverless-edge-workers",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Serverless Edge Workers"
+  },
+  "serverless-edge-workers": {
+    "id": "svc-60",
+    "slug": "serverless-edge-workers",
+    "color": "#38bdf8",
+    "accent": "#818cf8",
+    "geometry": "cube-lattice",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Serverless Edge Workers"
+  },
+  "svc-61": {
+    "id": "svc-61",
+    "slug": "llm-provider-gateway",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 2,
+    "nodes": 8,
+    "label": "LLM Provider Gateway"
+  },
+  "llm-provider-gateway": {
+    "id": "svc-61",
+    "slug": "llm-provider-gateway",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 2,
+    "nodes": 8,
+    "label": "LLM Provider Gateway"
+  },
+  "svc-62": {
+    "id": "svc-62",
+    "slug": "agency-white-label-pod",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Agency White-Label Pod"
+  },
+  "agency-white-label-pod": {
+    "id": "svc-62",
+    "slug": "agency-white-label-pod",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Agency White-Label Pod"
+  },
+  "svc-63": {
+    "id": "svc-63",
+    "slug": "docker-vps-deployment",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Docker VPS Deployment"
+  },
+  "docker-vps-deployment": {
+    "id": "svc-63",
+    "slug": "docker-vps-deployment",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Docker VPS Deployment"
+  },
+  "svc-64": {
+    "id": "svc-64",
+    "slug": "zero-trust-key-vaulting",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Zero-Trust Key Vaulting"
+  },
+  "zero-trust-key-vaulting": {
+    "id": "svc-64",
+    "slug": "zero-trust-key-vaulting",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Zero-Trust Key Vaulting"
+  },
+  "svc-65": {
+    "id": "svc-65",
+    "slug": "automated-db-backups",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Automated DB Backups"
+  },
+  "automated-db-backups": {
+    "id": "svc-65",
+    "slug": "automated-db-backups",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cube-lattice",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Automated DB Backups"
+  },
+  "svc-66": {
+    "id": "svc-66",
+    "slug": "observability-logging",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Observability & Logging"
+  },
+  "observability-logging": {
+    "id": "svc-66",
+    "slug": "observability-logging",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Observability & Logging"
+  },
+  "svc-67": {
+    "id": "svc-67",
+    "slug": "cicd-github-workflows",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 20,
+    "label": "CI/CD GitHub Workflows"
+  },
+  "cicd-github-workflows": {
+    "id": "svc-67",
+    "slug": "cicd-github-workflows",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "pipeline-flow",
+    "rings": 2,
+    "nodes": 20,
+    "label": "CI/CD GitHub Workflows"
+  },
+  "svc-68": {
+    "id": "svc-68",
+    "slug": "latency-cache-tuning",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Latency & Cache Tuning"
+  },
+  "latency-cache-tuning": {
+    "id": "svc-68",
+    "slug": "latency-cache-tuning",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Latency & Cache Tuning"
+  },
+  "svc-69": {
+    "id": "svc-69",
+    "slug": "token-cost-guardrails",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Token Cost Guardrails"
+  },
+  "token-cost-guardrails": {
+    "id": "svc-69",
+    "slug": "token-cost-guardrails",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 4,
+    "nodes": 8,
+    "label": "Token Cost Guardrails"
+  },
+  "svc-70": {
+    "id": "svc-70",
+    "slug": "multi-region-failover",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Multi-Region Failover"
+  },
+  "multi-region-failover": {
+    "id": "svc-70",
+    "slug": "multi-region-failover",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Multi-Region Failover"
+  },
+  "svc-71": {
+    "id": "svc-71",
+    "slug": "bronze-uptime-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Bronze Uptime Retainer"
+  },
+  "bronze-uptime-retainer": {
+    "id": "svc-71",
+    "slug": "bronze-uptime-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Bronze Uptime Retainer"
+  },
+  "svc-72": {
+    "id": "svc-72",
+    "slug": "silver-systems-care",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Silver Systems Care"
+  },
+  "silver-systems-care": {
+    "id": "svc-72",
+    "slug": "silver-systems-care",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Silver Systems Care"
+  },
+  "svc-73": {
+    "id": "svc-73",
+    "slug": "gold-operations-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Gold Operations Retainer"
+  },
+  "gold-operations-retainer": {
+    "id": "svc-73",
+    "slug": "gold-operations-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 12,
+    "label": "Gold Operations Retainer"
+  },
+  "svc-74": {
+    "id": "svc-74",
+    "slug": "247-error-heartbeats",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "ledger-orbit",
+    "rings": 2,
+    "nodes": 14,
+    "label": "24/7 Error Heartbeats"
+  },
+  "247-error-heartbeats": {
+    "id": "svc-74",
+    "slug": "247-error-heartbeats",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "ledger-orbit",
+    "rings": 2,
+    "nodes": 14,
+    "label": "24/7 Error Heartbeats"
+  },
+  "svc-75": {
+    "id": "svc-75",
+    "slug": "prompt-drift-evals",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Prompt Drift & Evals"
+  },
+  "prompt-drift-evals": {
+    "id": "svc-75",
+    "slug": "prompt-drift-evals",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 16,
+    "label": "Prompt Drift & Evals"
+  },
+  "svc-76": {
+    "id": "svc-76",
+    "slug": "prompt-injection-defense",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Prompt Injection Defense"
+  },
+  "prompt-injection-defense": {
+    "id": "svc-76",
+    "slug": "prompt-injection-defense",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Prompt Injection Defense"
+  },
+  "svc-77": {
+    "id": "svc-77",
+    "slug": "gdpr-privacy-auditing",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "GDPR & Privacy Auditing"
+  },
+  "gdpr-privacy-auditing": {
+    "id": "svc-77",
+    "slug": "gdpr-privacy-auditing",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 20,
+    "label": "GDPR & Privacy Auditing"
+  },
+  "svc-78": {
+    "id": "svc-78",
+    "slug": "hotfix-sla-target",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Hotfix SLA Target"
+  },
+  "hotfix-sla-target": {
+    "id": "svc-78",
+    "slug": "hotfix-sla-target",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 3,
+    "nodes": 22,
+    "label": "Hotfix SLA Target"
+  },
+  "svc-79": {
+    "id": "svc-79",
+    "slug": "dr-rollback-drills",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "DR Rollback Drills"
+  },
+  "dr-rollback-drills": {
+    "id": "svc-79",
+    "slug": "dr-rollback-drills",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 4,
+    "nodes": 8,
+    "label": "DR Rollback Drills"
+  },
+  "svc-80": {
+    "id": "svc-80",
+    "slug": "lead-engineer-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Lead Engineer Retainer"
+  },
+  "lead-engineer-retainer": {
+    "id": "svc-80",
+    "slug": "lead-engineer-retainer",
+    "color": "#a855f7",
+    "accent": "#e879f9",
+    "geometry": "shield-gate",
+    "rings": 2,
+    "nodes": 10,
+    "label": "Lead Engineer Retainer"
+  },
+  "b2b-lead-swarm": {
+    "id": "svc-06",
+    "slug": "sales-intelligence-agent",
+    "color": "#a855f7",
+    "accent": "#c084fc",
+    "geometry": "neural-polyhedron",
+    "rings": 4,
+    "nodes": 18,
+    "label": "Sales Intelligence Agent"
+  },
+  "ecommerce-ai-whatsapp": {
+    "id": "svc-32",
+    "slug": "whatsapp-business-bot",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 3,
+    "nodes": 10,
+    "label": "WhatsApp Business Bot"
+  },
+  "voice-ai-receptionist": {
+    "id": "svc-34",
+    "slug": "slack-discord-ai",
+    "color": "#f472b6",
+    "accent": "#fb7185",
+    "geometry": "dialog-rings",
+    "rings": 2,
+    "nodes": 14,
+    "label": "Slack & Discord AI"
+  },
+  "n8n-docker-cluster": {
+    "id": "svc-62",
+    "slug": "agency-white-label-pod",
+    "color": "#34d399",
+    "accent": "#6ee7b7",
+    "geometry": "cloud-orbit",
+    "rings": 3,
+    "nodes": 10,
+    "label": "Agency White-Label Pod"
+  },
+  "invoice-ocr-pipeline": {
+    "id": "svc-41",
+    "slug": "gemini-ocr-extraction",
+    "color": "#f59e0b",
+    "accent": "#fbbf24",
+    "geometry": "ocular-scan",
+    "rings": 2,
+    "nodes": 8,
+    "label": "Gemini OCR Extraction"
+  }
+}

@@ -1,0 +1,78 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
+Document Identifier: DOC-IINSHA-FINAL-REPORT-20261112-V40
+Audit Timestamp: 2026-11-12T23:20:00+06:00 (Asia/Dhaka — Machine Clock)
+Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
+Release Boundary & Ceiling: READY_FOR_STAGING (Local RC Pending G1 Publication)
+Production Sealed Status: NOT APPROVED (Blocked on Owner Gates G1 through G6)
+Zero False-Green Policy: STRICTLY ENFORCED
+================================================================================
+
+1. EXECUTIVE RESULT
+--------------------------------------------------------------------------------
+- Release Ceiling:           READY_FOR_STAGING
+- Production Sealed:         NOT APPROVED (Blocked on Owner Gates G1–G6)
+- Active Staging URL:        https://inshatech-b6b.pages.dev/ (Currently serving prior commit 74d90b14143e936587153464557a7e6d0f35fb9c; workstation Direct Upload stopped cleanly because Owner Gate G1 blocks GitHub publication)
+- Production Domains State:  https://inshatech.com/ serves legacy "Insha Technologies | Home" (noindex/canonical absent); https://www.inshatech.com/ failed TLS/fetch on probe (Cutover pending Owner Gate G6)
+- Staging Liveness / Read:   /api/health -> HTTP 200 (EDGE_HEALTHY, DAC); /api/health?type=readiness -> HTTP 503 (NOT_READY, database_pool: NOT_CONFIGURED, fail-closed)
+- Admin Gate Fail-Closed:    /api/admin/gate -> HTTP 503 (CONFIGURATION_ERROR — server auth secrets missing on CF Pages)
+
+2. GITHUB IDENTITY & SOURCE TRACEABILITY
+--------------------------------------------------------------------------------
+- GitHub Repository:         adnin4/inshatech (Public)
+- Canonical Default Branch:  master (origin/master: b3de7650b65e388514ca82674654c92241ea8811)
+- Separated Remote Branch:   main (origin/main: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
+- Local V4.0 RC HEAD:        dd6707b9d147e9b604704ef8b441f27f1ef6cdd2 (141 commits ahead of origin/master, 0 behind)
+- Master Ahead Delta:        Linear descendant of origin/master (0 behind); PR #67 (head ddf90cfe...) and stacked draft PR #71 (head cd760c39...) remain open/unmerged
+- Cold Backup Bundles:
+  1. ..\inshatech-master-backup-20261112.bundle (77,862,331 bytes, SHA-256: CA932EAA41289969481F595A304DA4B9CF99741DD946D50B2829D046E4860D44) [Preserved]
+  2. ..\inshatech-master-backup-20261112-2126.bundle (78,228,275 bytes, SHA-256: 1E43EFA6744428DA60725B12719BB7D52DD57136731778E23C50DFA2278D6088) [Preserved]
+  3. ..\inshatech-master-backup-20261112-2151.bundle (78,309,772 bytes, SHA-256: 274E6FF9065B50E5B12E26411BF7181B65E3C7733139E02187BB06CC8B0828F5) [Preserved]
+  4. ..\inshatech-master-backup-20261112-2323.bundle (78,323,250 bytes, SHA-256: 26F3FB8F93FA292511D688E956CA38FB2AE80F45CB7FA5E6DE40D82D2E0CE5C2) [Verified V4 RC bundle]
+- Source Publication Status: BLOCKED_EXTERNAL (`gh auth status` exit code 1; workstation cannot push without owner authentication)
+
+3. REMEDIATIONS IMPLEMENTED IN V4.0 RELEASE CANDIDATE
+--------------------------------------------------------------------------------
+- Standalone Security Coordinator DO Worker & Auth Separation (`workers/security-coordinator/`, `functions/_shared/auth_gate.js`, `functions/api/admin/*.js`, `functions/api/workforce/killswitch.js`, `functions/api/control/emergency.js`, `functions/api/finance/invoice.js`, `functions/api/orders/state_machine.js`):
+  * Created standalone Cloudflare Durable Object Worker (`workers/security-coordinator/src/index.js`, `wrangler.toml`) hosting `SecurityCoordinator` with SQLite migration `v1-sqlite-security-coordinator` across staging and production environments.
+  * Refactored `auth_gate.js` with `checkSessionRevocationState` and `httpStatusForAuthError`, separating DO communication errors (`503 SECURITY_AUTHORITY_UNAVAILABLE`) from genuine revoked sessions (`401 TOKEN_REVOKED`).
+- Centralized Origin & Environment Policy (`functions/_shared/origin_policy.js`, `health.js`, `version.js`, `system/version.js`, `auth/session.js`):
+  * Consolidated canonical origin checks (`isOriginAllowed`, `resolveCorsOrigin`), trusted callback base resolution (`resolveTrustedBaseUrl`), and runtime environment resolution (`resolveRuntimeEnvironment`, `isApprovedProductionHost`).
+  * Verified host-header / untrusted `APP_URL` injection fail closed to `https://inshatech-b6b.pages.dev`, while allowing matching preview deployments and approved custom production domains.
+- Payment Host-Injection Hardening & Legacy Bypass Elimination (`functions/_shared/payments/legacy_route_guard.js`, `checkout.js`, `return.js`, `webhook.js`, `_middleware.js`, `sslcommerz/*.js`, `lemonsqueezy/*.js`, `bkash/*.js`, `stripe/*.js`):
+  * Refactored all payment return/webhook/checkout paths to use `resolveTrustedBaseUrl` and `isApprovedProductionHost`.
+  * Standardized 9 legacy/simulated direct endpoints under explicit `onRequestPost`/`onRequestOptions` exports wired to `createDirectBypassDisabledHandlers` returning `400 DIRECT_AMOUNT_DISABLED` with strict CORS.
+  * Hardened `functions/api/payments/lemonsqueezy/webhook.js` to fail closed (HTTP 503) when `LEMONSQUEEZY_WEBHOOK_SECRET` is absent.
+- Deploy Artifact Staging & Exclusion Hygiene (`.assetsignore`, `scripts/verify_deploy_artifact.mjs`, `.github/workflows/release-direct-upload.yml`):
+  * Hardened `.assetsignore` to strip `.git/`, `.github/`, `docs/`, `scripts/`, `supabase/`, `tests/`, `workers/`, `backups/`, `dist-pages/`, bundles, SQL, secrets, and OneDrive conflict copies.
+  * Added `scripts/verify_deploy_artifact.mjs` staging 401 clean publishable files into `dist-pages/` (0 forbidden files, 15/15 required runtime files, auto-generated `release-manifest.json`) and integrated it into CI workflow `.github/workflows/release-direct-upload.yml`.
+- Form Accessibility & Permanent Multi-Viewport CDP Suite (`index.html`, `live_index.html`, `app.js`, `js/core/enterprise_experience.js`, `src/whatsapp_concierge.js`, `universal_ai_copilot.js`, `scripts/cdp_qa_audit.mjs`):
+  * Added explicit `aria-label` / `label[for]` attributes across all modal and overlay inputs (`unlabeledInputs: 0` across all 6 viewports).
+  * Committed permanent headless Chrome CDP test script (`scripts/cdp_qa_audit.mjs`) auditing 6 viewports (`1440x900` to `360x800`), WebGL2 active state, video progression, 9 category filters, live search, and unauthenticated `/admin` barrier.
+
+4. VERIFICATION SUMMARY (POST-V4 EDIT)
+--------------------------------------------------------------------------------
+- `node --check app.js`                         : PASS (Exit 0)
+- `npm run build`                               : PASS (22 sections verified)
+- `npm test` (claims, responsive, mobile)       : PASS (10/10 claims, 36/36 responsive, 29/29 mobile)
+- `node scripts/test_admin_auth_security.mjs`   : PASS (33/33 security tests)
+- `node scripts/test_payment_adversarial_suite.mjs`: PASS (42/42 assertions including Suite 6 host-injection & legacy bypass)
+- `node scripts/test_release_identity.mjs`      : PASS
+- `node scripts/test_sslcommerz_native_adapter.mjs`: PASS (3/3 assertions)
+- `node scripts/test_payment_hardening_contract.mjs`: PASS (8/8 assertions)
+- `node scripts/verify_payment_reconciliation.mjs`: PASS (17/17 assertions)
+- `node scripts/check_functions_imports.mjs`    : PASS (0 broken imports)
+- `node scripts/total_defect_scanner.mjs`       : PASS (175 Functions, 30 HTML files, 157 JSON files, 0 defects)
+- `node scripts/verify_deploy_artifact.mjs`     : PASS (401 clean files, 0 forbidden, 15/15 required runtime files)
+- `npm run security:gate`                       : PASS (752 files audited, 0 P0/P1 defects)
+- `npm run e2e`                                 : PASS (12/12 public pages verified)
+- `node scripts/ci_evidence_runner.mjs`         : PASS (28/28 CI suites passed)
+- `node scripts/cdp_qa_audit.mjs` (6 viewports) : PASS (0px overflow, 80 unique IDs, WebGL2 active, video progressing, unlabeledInputs: 0)
+- `BLOCKED_EXTERNAL` Items: GitHub push/sync (`G1`), live DO Worker deploy & CF Pages secrets (`G2`), live DB parity across 29 SQL migrations (`G3`), live bKash/SSLCommerz/LemonSqueezy/Stripe merchant keys (`G4`), Owner MFA enrollment (`G5`), custom domain DNS cutover (`G6`).
+
+5. FINAL VERDICT
+--------------------------------------------------------------------------------
+VERDICT: READY_FOR_STAGING (Pending G1 GitHub push & G2 CI staging deploy for V4 RC)
+PRODUCTION SEALED: NO (Blocked on Owner Gates G1–G6)
+================================================================================

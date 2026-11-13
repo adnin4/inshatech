@@ -1,23 +1,36 @@
 ﻿/**
  * Cloudflare Pages Function: /api/control/emergency
  * Emergency Command Center API (1-Click Action Dispatcher)
+ * Protected by server-side authorization: requires valid owner session.
  */
 
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
+
 export async function onRequestPost(context) {
-    const origin = context.request.headers.get("Origin") || "*";
-    const headers = {
-        "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Admin-Role",
-        "Content-Type": "application/json"
-    };
+    const { request, env = {} } = context;
+    const headers = getCorsHeaders(request);
+
+    // Require Level 1 Owner Authentication
+    const auth = await verifyServerSession(request, env, {
+        requiredRole: 'owner',
+        minHierarchyLevel: 1,
+        requireMfa: true
+    });
+
+    if (!auth.authorized) {
+        const httpStatus = httpStatusForAuthError(auth.status);
+        return new Response(JSON.stringify({
+            status: auth.status,
+            error: auth.error || 'Server authorization required for emergency action'
+        }), { status: httpStatus, headers });
+    }
 
     try {
-        const body = await context.request.json().catch(() => ({}));
+        const body = await request.json().catch(() => ({}));
         const { action, target_id, reason = 'Owner Emergency Intervention' } = body;
 
         const EMERGENCY_ACTIONS = {
-            'pause_all_ai': 'All 13 AI Agent Swarms and active Mission DAGs immediately paused.',
+            'pause_all_ai': 'All active AI Agent Swarms and execution DAGs immediately paused.',
             'resume_all_ai': 'AI Swarms and execution pipelines resumed.',
             'kill_agent': `Agent ${target_id || 'SPECIFIED'} terminated immediately and active runs aborted.`,
             'disable_tool': `Tool ${target_id || 'SPECIFIED'} disabled across all permission levels.`,
@@ -43,7 +56,7 @@ export async function onRequestPost(context) {
             target_id: target_id || null,
             reason,
             message: EMERGENCY_ACTIONS[action],
-            dispatched_by: 'Owner (Level 1)',
+            dispatched_by: auth.user.email || 'Owner (Level 1)',
             timestamp: new Date().toISOString()
         }), { headers, status: 200 });
 
@@ -55,3 +68,6 @@ export async function onRequestPost(context) {
     }
 }
 
+export function onRequestOptions(context) {
+    return new Response(null, { status: 204, headers: getCorsHeaders(context.request) });
+}

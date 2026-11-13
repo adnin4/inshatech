@@ -174,7 +174,7 @@ async function runStagingVerification() {
         if (route.path === '/api/version' && res.status === 200) {
             try {
                 const json = JSON.parse(res.body);
-                const liveSha = json.git_sha || json.version || '';
+                const liveSha = json.deploy_sha || json.git_sha || json.version || '';
                 console.log(`      📁 Live Deployment SHA: ${liveSha}`);
                 if (EXPECTED_SHA && liveSha) {
                     if (liveSha === EXPECTED_SHA) {

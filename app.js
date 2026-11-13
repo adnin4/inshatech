@@ -87,9 +87,9 @@ function getBlogPosts() {
 
 function getAdminUsers() {
     try {
-        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"adnansadatmahin5@gmail.com","name":"Adnin Sadat","role":"owner"}]');
+        return JSON.parse(localStorage.getItem('iinsha_ibos_admins') || '[{"email":"inshatech.dev@gmail.com","name":"Adnin Sadat","role":"owner"}]');
     } catch(e) {
-        return [{ email: "adnansadatmahin5@gmail.com", name: "Adnin Sadat", role: "owner" }];
+        return [{ email: "inshatech.dev@gmail.com", name: "Adnin Sadat", role: "owner" }];
     }
 }
 
@@ -166,7 +166,7 @@ function renderAdminModalCmsStudio(container) {
                 </div>
                 <div style="display:flex; gap:10px; align-items:center;">
                     <span class="badge-gold" style="font-size:0.72rem; padding:4px 10px; background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid var(--accent-gold);">Super Admin Mode</span>
-                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
+                    <button onclick="sessionStorage.removeItem('iinsha_admin_authenticated'); sessionStorage.removeItem('iinsha_2fa_verified'); sessionStorage.removeItem('iinsha_session_token'); sessionStorage.removeItem('iinsha_admin_user'); renderAdminModalContent();" class="btn btn-glass-sm" style="color:#fca5a5; border-color:#ef4444;">🔒 Lock OS</button>
                 </div>
             </div>
 
@@ -246,7 +246,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                 <div class="ipc-card">
                     <h4 style="color:#fff; font-size:1rem; margin-bottom:10px;">⚡ Quick Command Shortcuts</h4>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7);">➕ Add New Service</button>
+                        <button onclick="ibosSwitchTab('market')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0);">➕ Add New Service</button>
                         <button onclick="ibosSwitchTab('blog')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #047857);"> Publish Blog Article</button>
                         <button onclick="ibosSwitchTab('affiliate')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-purple), #7c3aed);">🤝 Approve Partner Sale</button>
                         <button onclick="ibosSwitchTab('rbac')" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-gold), #d97706); color:#000; font-weight:800;">👥 Admin Credentials CMS</button>
@@ -265,7 +265,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                         <h3 style="color:var(--accent-cyan); font-size:1.15rem; margin:0;"> Marketplace Domain CMS (${services.length} Services Active)</h3>
                         <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0;">Single Source of Truth Service Registry Catalog.</p>
                     </div>
-                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:800;">➕ Add New Service</button>
+                    <button id="ibos-btn-add-service" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:800;">➕ Add New Service</button>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
@@ -358,7 +358,7 @@ function renderIBOSViewportContent(tab, data, clients, projects, briefing) {
                                 <span class="badge-pro" style="margin-left:8px; font-size:0.7rem;">${sanitize(agent.model)}</span>
                                 <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">Domain: ${sanitize(agent.domain)}</div>
                             </div>
-                            <button class="btn btn-glass-sm" onclick="alert('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">⚙️ Config Prompt & RAG</button>
+                            <button class="btn btn-glass-sm" onclick="showIinshaToast('Configuring ${sanitize(agent.name)}')" style="font-size:0.75rem; color:var(--accent-purple); border-color:var(--accent-purple);">⚙️ Config Prompt & RAG</button>
                         </div>
                     `).join('')}
                 </div>
@@ -452,7 +452,7 @@ function bindIBOSModuleListeners() {
             if (heroTitleEl && heroTitle) heroTitleEl.innerHTML = sanitize(heroTitle);
             if (heroSubEl && heroSub) heroSubEl.innerHTML = sanitize(heroSub);
 
-            alert('✅ Global CMS Headlines & Words saved successfully!');
+            showIinshaToast('✅ Global CMS Headlines & Words saved successfully!');
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -463,7 +463,7 @@ function bindIBOSModuleListeners() {
         btnUpdateRate.addEventListener('click', () => {
             const inputRate = parseFloat(document.getElementById('ibos-bdt-rate-input')?.value);
             if (isNaN(inputRate) || inputRate <= 0) {
-                alert('  Please enter a valid exchange rate (e.g. 120)');
+                showIinshaToast('  Please enter a valid exchange rate (e.g. 120)');
                 return;
             }
             const words = getSiteWords();
@@ -473,7 +473,7 @@ function bindIBOSModuleListeners() {
             // Update currency elements across page
             document.querySelectorAll('.currency-toggle-btn.active').forEach(b => b.click());
 
-            alert(`✅ Exchange Rate saved! 1 USD = ৳${inputRate} BDT across all services.`);
+            showIinshaToast(`✅ Exchange Rate saved! 1 USD = ৳${inputRate} BDT across all services.`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -507,7 +507,7 @@ function bindIBOSModuleListeners() {
             });
 
             saveServiceRegistry(registry);
-            alert(`🎉 New Service "${title}" ($${price}) added to Single Source Registry!`);
+            showIinshaToast(`🎉 New Service "${title}" ($${price}) added to Single Source Registry!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -530,7 +530,7 @@ function bindIBOSModuleListeners() {
             svc.commission_rate = !isNaN(newComm) ? newComm : svc.commission_rate;
 
             saveServiceRegistry(registry);
-            alert(`✅ Service "${svc.title}" updated successfully!`);
+            showIinshaToast(`✅ Service "${svc.title}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -545,7 +545,7 @@ function bindIBOSModuleListeners() {
             if (confirm(`  Are you sure you want to delete service "${svc.title}"?`)) {
                 registry.splice(idx, 1);
                 saveServiceRegistry(registry);
-                alert(` Service deleted from OS Registry.`);
+                showIinshaToast(` Service deleted from OS Registry.`);
                 renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
             }
         });
@@ -565,7 +565,7 @@ function bindIBOSModuleListeners() {
             admins.push({ email, password, name: email.split('@')[0], role });
             saveAdminUsers(admins);
 
-            alert(`🛡️ New Admin User "${email}" created!`);
+            showIinshaToast(`🛡️ New Admin User "${email}" created!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -586,7 +586,7 @@ function bindIBOSModuleListeners() {
             adm.password = newPass || adm.password;
 
             saveAdminUsers(admins);
-            alert(`✅ Admin Credentials for "${adm.email}" updated successfully!`);
+            showIinshaToast(`✅ Admin Credentials for "${adm.email}" updated successfully!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     });
@@ -614,7 +614,7 @@ function bindIBOSModuleListeners() {
                 sales_total: 0
             });
             localStorage.setItem('iinsha_ibos_affiliates', JSON.stringify(affs));
-            alert(`🤝 Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
+            showIinshaToast(`🤝 Partner "${name}" (${code}) added to Affiliate BOS 5.0!`);
             renderAdminModalCmsStudio(document.getElementById('index-admin-cms-root'));
         });
     }
@@ -628,20 +628,20 @@ function openProtectedAdminPanel() {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'admin-control-modal';
-        modal.className = 'modal hidden';
+        modal.className = 'admin-modal-overlay';
         modal.innerHTML = `
             <div class="admin-modal-box" style="background: #030712; border: 1px solid var(--accent-gold); border-radius: 16px; width: 95%; max-width: 1100px; max-height: 90vh; overflow-y: auto; padding: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95); color: #fff;">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️</span>
+                        <span style="font-size:1.8rem; color:var(--accent-gold);">🛡️ </span>
                         <div>
                             <h2 style="font-family:var(--font-heading); font-size:1.25rem; color:#fff; margin:0;">IINSHA TECH OS v1000 Master Control Panel</h2>
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">● Active Super Admin Session | 20 Enterprise Modules</p>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">●  Active Super Admin Session | 20 Enterprise Modules</p>
                         </div>
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
                         <span style="background:rgba(217,119,6,0.2); color:var(--accent-gold); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(217,119,6,0.3);">Super Admin Mode</span>
-                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'" class="btn btn-glass-sm" style="font-weight:700; })();">✕ Close</button>
+                        <button onclick="(function(){ const _el = document.getElementById('admin-control-modal'); if (_el) _el.style.display = 'none'; })();" class="btn btn-glass-sm" style="font-weight:700;">✕ Close</button>
                     </div>
                 </div>
                 <div id="index-admin-cms-root"></div>
@@ -650,101 +650,158 @@ function openProtectedAdminPanel() {
         document.body.appendChild(modal);
     }
 
-    // Move modal to body root to ensure position:fixed works correctly
-    if (modal.parentElement !== document.body) {
-        document.body.appendChild(modal);
-    }
-    
     modal.classList.remove('hidden');
-    modal.style.cssText = 'display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; opacity:1; visibility:visible; background:rgba(2,6,23,0.95); overflow-y:auto;';
-    window.scrollTo(0, 0);
+    modal.style.display = 'flex';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
 
     const rootContainer = document.getElementById('index-admin-cms-root');
-    if (!rootContainer) return;
-
-    const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
-
-    if (isAuthenticated) {
-        renderAdminModalCmsStudio(rootContainer);
-    } else {
-        renderAdminLoginFormCard(rootContainer);
+    if (rootContainer) {
+        const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
+        if (isAuthenticated) {
+            renderAdminModalCmsStudio(rootContainer);
+        } else {
+            renderAdminLoginFormCard(rootContainer);
+        }
     }
 }
 
 function renderAdminLoginFormCard(container) {
     container.innerHTML = `
         <div id="admin-login-card" style="max-width: 500px; margin: 20px auto; padding: 32px; background: rgba(15, 23, 42, 0.98); border: 1px solid var(--accent-gold); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); color: #fff; text-align: center;">
-            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️‘</div>
+            <div style="font-size: 2.8rem; margin-bottom: 8px;">🏛️</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 4px; color: #fff;">IINSHA TECH OS Control Studio</h3>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (15 Domains & CMS)</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Super Admin Authentication Gateway (Server-Enforced 2FA)</p>
 
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 14px; text-align: left; margin-bottom: 18px; font-size: 0.82rem;">
-                <div style="color: var(--accent-gold); font-weight: 700; margin-bottom: 4px;">🔑 Authorized Master Credentials:</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Email: <strong style="color:#fff;">admin@inshatech.pages.dev</strong> (or adnansadatmahin5@gmail.com)</div>
-                <div style="color: #cbd5e1; font-family: var(--font-mono); font-size: 0.78rem;">Pass: <strong style="color:#fff;">admin123456</strong> (or any 6+ chars)</div>
-            </div>
-
-            <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
+        <form id="admin-modal-login-form" onsubmit="handleAdminLoginSubmit(event)" style="text-align: left;">
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">ADMIN EMAIL</label>
-                <input type="email" id="admin-input-email" value="admin@inshatech.pages.dev" required style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="email" id="admin-input-email" placeholder="admin@inshatech.pages.dev" required autocomplete="username" style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
                 <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-mono);">SECRET PASSPHRASE</label>
-                <input type="password" id="admin-input-pass" value="admin123456" required style="width: 100%; padding: 10px 14px; margin-bottom: 16px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="password" id="admin-input-pass" placeholder="••••••••••••" required autocomplete="current-password" style="width: 100%; padding: 10px 14px; margin-bottom: 12px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border-card); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none;">
 
-                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;">  Passphrase must be at least 6 characters.</div>
+                <div id="admin-modal-mfa-group" style="display: none; margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 4px; font-family: var(--font-mono);">6-DIGIT MFA / TOTP TOKEN</label>
+                    <input type="text" id="admin-input-mfa" maxlength="6" placeholder="123456" autocomplete="one-time-code" style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.9); border: 1px solid var(--accent-cyan); border-radius: 8px; color: var(--accent-cyan); font-size: 1.1rem; letter-spacing: 4px; text-align: center; outline: none; font-family: var(--font-mono);">
+                </div>
+
+                <div id="admin-login-error" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 12px; display: none;"></div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">🔍“ Authenticate & Open Studio →</button>
+                    <button type="submit" id="admin-modal-submit-btn" class="btn btn-primary" style="flex: 1; padding: 12px; background: linear-gradient(135deg, var(--accent-gold), #d97706); color: #000; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 8px; cursor: pointer;">⚡ Authenticate & Open Studio →</button>
                 </div>
             </form>
 
+            <div style="margin-top: 10px; text-align: center;">
+                <a href="admin.html" target="_blank" style="display: inline-block; font-size: 0.78rem; color: var(--accent-cyan); text-decoration: none; padding: 6px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 6px; background: rgba(255, 255, 255, 0.08);">🚀 Open Full-Screen Standalone C-Panel Studio ↗</a>
+            </div>
+
             <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding-top: 10px;">
-                🔒 Single Source Kernel ● 15 Domains ● RBAC Active
+                🔒 Fail-Closed Server Verification ● Zero Hardcoded Passwords ● MFA Protected
             </div>
         </div>
     `;
 }
 
-function handleAdminLoginSubmit(e) {
-    if (e) e.preventDefault();
+async function handleAdminLoginSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
     const emailEl = document.getElementById('admin-input-email');
     const passEl = document.getElementById('admin-input-pass');
+    const mfaEl = document.getElementById('admin-input-mfa');
+    const mfaGroup = document.getElementById('admin-modal-mfa-group');
+    const errEl = document.getElementById('admin-login-error');
+    const btn = document.getElementById('admin-modal-submit-btn');
+
     const email = emailEl ? emailEl.value.trim() : '';
     const pass = passEl ? passEl.value : '';
+    const mfaToken = mfaEl ? mfaEl.value.trim() : '';
 
-    if (email && pass && pass.length >= 6) {
-        sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-        sessionStorage.setItem('iinsha_admin_user', email);
-        const rootContainer = document.getElementById('index-admin-cms-root');
-        if (rootContainer) {
-            renderAdminModalCmsStudio(rootContainer);
-        }
-    } else {
-        const errEl = document.getElementById('admin-login-error');
+    if (!email || !pass) {
         if (errEl) {
+            errEl.textContent = '⚠️ Please enter admin email and password.';
             errEl.style.display = 'block';
-            errEl.textContent = '  Invalid credentials. Passphrase must be at least 6 characters.';
+        }
+        return;
+    }
+
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Verifying Server Credentials...';
+    }
+    if (errEl) errEl.style.display = 'none';
+
+    try {
+        const payload = { email, password: pass };
+        if (mfaToken) payload.mfa_token = mfaToken;
+
+        const res = await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.status === 503 || res.status === 404 || data.status === 'CONFIGURATION_ERROR' || data.status === 'SECURITY_AUTHORITY_UNAVAILABLE') {
+            throw new Error(`Fail-Closed Server Auth (${res.status}): ${data.message || data.error || 'Configure ADMIN_EMAIL, ADMIN_PASSWORD_HASH, JWT_SECRET, and MFA_SECRET in Cloudflare Pages secrets.'}`);
+        }
+
+        if (data.status === 'MFA_REQUIRED') {
+            if (mfaGroup) mfaGroup.style.display = 'block';
+            if (mfaEl) mfaEl.focus();
+            if (errEl) {
+                errEl.textContent = '🔐 Multi-factor Authentication Required. Enter your 6-digit TOTP code.';
+                errEl.style.display = 'block';
+                errEl.style.color = 'var(--accent-cyan)';
+            }
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = '🔐 Verify MFA Code & Open Studio →';
+            }
+            return;
+        }
+
+        if (res.ok && data.status === 'AUTHENTICATED' && data.session_token) {
+            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+            sessionStorage.setItem('iinsha_2fa_verified', 'true');
+            sessionStorage.setItem('iinsha_session_token', data.session_token);
+            sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email }));
+
+            const rootContainer = document.getElementById('index-admin-cms-root');
+            if (rootContainer) {
+                renderAdminModalCmsStudio(rootContainer);
+            }
+            return;
+        }
+
+        throw new Error(data.error || data.status || 'Invalid email or password');
+    } catch (err) {
+        if (errEl) {
+            errEl.textContent = '❌ ' + (err.message || 'Authentication failed');
+            errEl.style.display = 'block';
+            errEl.style.color = '#ef4444';
+        }
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = mfaGroup && mfaGroup.style.display !== 'none'
+                ? '🔐 Verify MFA Code & Open Studio →'
+                : '⚡ Authenticate & Open Studio →';
         }
     }
 }
+window.handleAdminLoginSubmit = handleAdminLoginSubmit;
 
 function handleAdminMasterUnlock() {
-    alert("🔒 Zero-Trust Security Policy: 1-Click bypass is disabled in Production. Please authenticate with your admin credentials.");
+    showIinshaToast("🔒 Zero-Trust Security Policy: Offline bypass is permanently disabled. Server authentication via /api/auth/session is required.");
 }
+window.handleAdminMasterUnlock = handleAdminMasterUnlock;
 
 function initAdminModalLoginForm() {
     const form = document.getElementById('admin-modal-login-form');
     if (form) {
-        form.onsubmit = function(e) {
-            if (e) e.preventDefault();
-            sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-            const errEl = document.getElementById('admin-login-error');
-            if (errEl) errEl.style.display = 'none';
-            const modal = document.getElementById('admin-control-modal');
-            if (modal) modal.style.display = 'flex';
-            renderAdminModalContent();
-            return false;
-        };
+        form.onsubmit = handleAdminLoginSubmit;
     }
 }
 
@@ -913,16 +970,92 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-/* Live FOMO Activity Stream Notification Toast Engine */
-function initFomoToasts() {
-    const notifications = [
-        "🛒 Tanvir A. (Dhaka) just ordered Playwright Pipeline Resilient Scraper ($599)",
-        "⚡ Rifat H. (Chittagong) deployed Gemini Customer Support RAG Bot",
-        "🤝 Partner #1042 earned $150.00 recurring affiliate commission!",
-        "📄 New Client Quote generated for Invoice OCR Pipeline ($249)",
-        "🚀 Self-Hosted Linux VPS Docker Container #04 deployed successfully"
-    ];
+/* Live FOMO Activity Stream Notification Toast Engine & Zero-Raw-Dialog Handler */
+function showFomoToast(msg, type = 'info') {
+    let toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toastContainer';
+        toastContainer.style.cssText = 'position:fixed; bottom:20px; left:20px; z-index:99999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
+        document.body.appendChild(toastContainer);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'glass-toast';
+    let borderColor = 'var(--accent-cyan)';
+    let badgeColor = 'var(--accent-emerald)';
+    let badgeLabel = '● LIVE';
+    if (type === 'error' || type === 'danger') {
+        borderColor = '#ef4444';
+        badgeColor = '#ef4444';
+        badgeLabel = '● ALERT';
+    } else if (type === 'warning') {
+        borderColor = '#f59e0b';
+        badgeColor = '#f59e0b';
+        badgeLabel = '● NOTICE';
+    } else if (type === 'success') {
+        borderColor = '#10b981';
+        badgeColor = '#10b981';
+        badgeLabel = '● SUCCESS';
+    }
+    toast.style.cssText = `background:rgba(15,23,42,0.95); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid ${borderColor}; font-size:0.84rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.6); backdrop-filter:blur(12px); animation:slideUp 0.3s ease; pointer-events:auto; max-width:420px; word-break:break-word;`;
+    toast.innerHTML = `<span style="color:${badgeColor}; font-weight:bold; margin-right:6px;">${badgeLabel}</span> ${msg}`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => toast.remove(), 400);
+    }, 4500);
+}
+window.showFomoToast = showFomoToast;
+window.showIinshaToast = showFomoToast;
 
+function showIinshaModal({ title, subtitle, icon = '⚡', contentHtml = '', confirmText = 'OK', cancelText = '', onConfirm = null }) {
+    const existing = document.getElementById('iinsha-universal-modal');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'iinsha-universal-modal';
+    modal.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
+    modal.innerHTML = `
+        <div style="background:rgba(15,23,42,0.98); border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.8); color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
+            <div style="padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h3 style="margin:0; font-size:1.1rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;"><span>${icon}</span> ${title}</h3>
+                    ${subtitle ? `<p style="margin:4px 0 0; font-size:0.75rem; color:#94a3b8;">${subtitle}</p>` : ''}
+                </div>
+                <button id="iinsha-modal-close-btn" style="background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer; line-height:1;">&times;</button>
+            </div>
+            <div style="padding:20px; max-height:70vh; overflow-y:auto;" id="iinsha-modal-body">
+                ${contentHtml}
+            </div>
+            <div style="padding:14px 20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
+                ${cancelText ? `<button id="iinsha-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
+                <button id="iinsha-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">${confirmText}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    const close = () => modal.remove();
+    modal.querySelector('#iinsha-modal-close-btn').onclick = close;
+    const cancelBtn = modal.querySelector('#iinsha-modal-cancel-btn');
+    if (cancelBtn) cancelBtn.onclick = close;
+    modal.querySelector('#iinsha-modal-confirm-btn').onclick = () => {
+        if (onConfirm) onConfirm(modal);
+        else close();
+    };
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) close();
+    });
+    return modal;
+}
+window.showIinshaModal = showIinshaModal;
+
+// Zero-Alert Interceptor for Complete WCAG / Enterprise UX Compliance
+window.alert = function(msg) {
+    showFomoToast(String(msg || ''), 'info');
+};
+
+/* Clean Enterprise Notification System (Zero Fake FOMO Popups) */
+function initFomoToasts() {
     let toastContainer = document.getElementById('toastContainer');
     if (!toastContainer) {
         toastContainer = document.createElement('div');
@@ -930,21 +1063,7 @@ function initFomoToasts() {
         toastContainer.style.cssText = 'position:fixed; bottom:20px; left:20px; z-index:9999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
         document.body.appendChild(toastContainer);
     }
-
-    setInterval(() => {
-        const randomMsg = notifications[Math.floor(Math.random() * notifications.length)];
-        const toast = document.createElement('div');
-        toast.className = 'glass-toast';
-        toast.style.cssText = 'background:rgba(15,23,42,0.92); color:#fff; padding:12px 18px; border-radius:10px; border:1px solid var(--accent-cyan); font-size:0.82rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); backdrop-filter:blur(10px); animation:slideUp 0.4s ease; pointer-events:auto;';
-        toast.innerHTML = `<span style="color:var(--accent-emerald);">● LIVE</span> ${randomMsg}`;
-        toastContainer.appendChild(toast);
-
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => toast.remove(), 500);
-        }, 5000);
-    }, 25000);
+    // Fake automated timers permanently disabled for authentic enterprise UX.
 }
 
 if (document.readyState === 'loading') {
@@ -957,15 +1076,20 @@ if (document.readyState === 'loading') {
 
 function renderAdminModalContent() {
     const modal = document.getElementById('admin-control-modal');
-    if (modal) modal.style.display = 'flex';
-    const loginCard = document.getElementById('admin-login-card');
-    if (loginCard) loginCard.style.display = 'none';
-    const dashContent = document.getElementById('admin-dashboard-content');
-    if (dashContent) dashContent.style.display = 'block';
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.style.visibility = 'visible';
+        modal.style.opacity = '1';
+    }
 
     const rootContainer = document.getElementById('index-admin-cms-root');
     if (rootContainer) {
-        renderAdminModalCmsStudio(rootContainer);
+        const isAuthenticated = sessionStorage.getItem('iinsha_admin_authenticated') === 'true';
+        if (isAuthenticated) {
+            renderAdminModalCmsStudio(rootContainer);
+        } else {
+            renderAdminLoginFormCard(rootContainer);
+        }
     }
 }
 
@@ -992,7 +1116,7 @@ function initVoiceAssistant() {
         micBtn.addEventListener('click', () => {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                alert('  Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
+                showIinshaToast('  Voice recognition is not supported in your current browser. Please use Chrome, Edge, or Brave.');
                 return;
             }
 
@@ -1387,7 +1511,7 @@ function initInteractiveDiagramVisualizer() {
                 <defs>
                     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stop-color="#10b981" />
-                        <stop offset="100%" stop-color="#06b6d4" />
+                        <stop offset="100%" stop-color="#8b5cf6" />
                     </linearGradient>
                 </defs>
                 <rect x="20" y="70" width="160" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
@@ -1400,16 +1524,16 @@ function initInteractiveDiagramVisualizer() {
 
                 <path d="M 460 100 L 560 100" stroke="url(#grad1)" stroke-width="3" stroke-dasharray="5,5"/>
 
-                <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#8b5cf6" stroke-width="2"/>
+                <rect x="560" y="70" width="210" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(139,92,246,0.6)" stroke-width="2"/>
                 <text x="665" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">⚡ n8n Pipeline & Supabase</text>
             </svg>
         `,
         scraper: `
             <svg viewBox="0 0 800 200" style="width:100%; height:auto; background:rgba(3,7,18,0.8); border-radius:12px; padding:16px;">
-                <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#06b6d4" stroke-width="2"/>
+                <rect x="20" y="70" width="180" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="rgba(139,92,246,0.6)" stroke-width="2"/>
                 <text x="110" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🌐 E-Commerce Target Site</text>
 
-                <line x1="200" y1="100" x2="300" y2="100" stroke="#06b6d4" stroke-width="3"/>
+                <line x1="200" y1="100" x2="300" y2="100" stroke="rgba(139,92,246,0.6)" stroke-width="3"/>
 
                 <rect x="300" y="70" width="200" height="60" rx="10" fill="rgba(30,41,59,0.8)" stroke="#10b981" stroke-width="2"/>
                 <text x="400" y="105" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">🕷️ Playwright Pipeline Resilient Scraper</text>
@@ -1515,7 +1639,7 @@ function initInteractiveAiAgentBuilder() {
                         <pre style="margin:0;">${n8nWorkflowJSON.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="navigator.clipboard.writeText(this.getAttribute('data-json')); alert('n8n Workflow JSON copied to clipboard!');" data-json="${encodeURIComponent(n8nWorkflowJSON)}" class="btn btn-glass-sm" style="flex:1;">
+                        <button onclick="navigator.clipboard.writeText(this.getAttribute('data-json')); showIinshaToast('n8n Workflow JSON copied to clipboard!');" data-json="${encodeURIComponent(n8nWorkflowJSON)}" class="btn btn-glass-sm" style="flex:1;">
                             📋 Copy n8n Workflow JSON
                         </button>
                         <a href="https://wa.me/8801629286887?text=${encodeURIComponent('Hi Adnin, I built an AI Agent blueprint on your website using ' + model + ' and n8n. Please deploy this to Self-Hosted Linux VPS Docker for me.')}" target="_blank" class="btn btn-primary-sm" style="flex:1; text-align:center; font-weight:bold;">
@@ -1548,7 +1672,7 @@ function initAiAgentCommandSwarm() {
                     <p style="margin:4px 0 0 0; font-size:0.8rem; color:var(--text-muted);">Autonomous Business Operating System (AI-BOS) Control Matrix</p>
                 </div>
                 <div style="display:flex; gap:10px;">
-                    <button onclick="alert('🏭¸ 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
+                    <button onclick="showIinshaToast('🏭¸ 1-Click Financial Approval Executed! All verified affiliate commissions & payouts disbursed safely.');" class="btn btn-emerald-sm" style="font-weight:bold;">
                         🏭¸ 1-Click Approve Payouts ($1,240)
                     </button>
                 </div>
@@ -1567,7 +1691,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">💼 Sales Agent</span>
-                        <span style="font-size:0.65rem; color:#06b6d4; font-weight:bold;">● 12 LEADS</span>
+                        <span style="font-size:0.65rem; color:#ffffff; font-weight:bold;">● 12 LEADS</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Auto-Quoting Dubai & USA Clients</p>
                 </div>
@@ -1583,7 +1707,7 @@ function initAiAgentCommandSwarm() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:14px; border-radius:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.85rem; font-weight:bold; color:#fff;">🤝 Affiliate AI</span>
-                        <span style="font-size:0.65rem; color:#8b5cf6; font-weight:bold;">● 98% TRUST</span>
+                        <span style="font-size:0.65rem; color:#c084fc; font-weight:bold;">● 98% TRUST</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:6px 0 0 0;">Fraud Shield Active | 54 Active Partners</p>
                 </div>
@@ -1654,7 +1778,7 @@ function initAiVoiceSimulator() {
                         <div style="width:4px; height:12px; background:var(--accent-cyan); border-radius:2px; animation:wave 0.9s infinite ease-in-out;"></div>
                     </div>
 
-                    <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e2e8f0; background:#000; padding:10px; border-radius:8px;">
+                    <div style="font-size:0.8rem; font-family:var(--font-mono); color:#e0e7ff; background:#000; padding:10px; border-radius:8px;">
                         <p style="margin:0 0 6px 0; color:#94a3b8;"><strong>[CLIENT]:</strong> "Hi, I need an automated AI customer support agent for my e-commerce store."</p>
                         <p style="margin:0; color:#10b981;"><strong>[IINSHA AI VOICE]:</strong> "Welcome to IINSHA TECH! I can deploy a RAG Gemini 3.0 Pro support bot on your Self-Hosted Linux VPS within 24 hours. Would you like me to send the $499 Proposal to your WhatsApp?"</p>
                     </div>
@@ -1835,7 +1959,7 @@ function openAddNewServiceModal() {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("✅ New Service Added and Synced to Live Site!");
+    showIinshaToast("✅ New Service Added and Synced to Live Site!");
 }
 
 function editServiceInline(id) {
@@ -1857,7 +1981,7 @@ function editServiceInline(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-    alert("✅ Service Updated Successfully!");
+    showIinshaToast("✅ Service Updated Successfully!");
 }
 
 function deleteServiceAction(id) {
@@ -1868,7 +1992,7 @@ function deleteServiceAction(id) {
     initUltraStrongPortfolio();
     initSecurityAuditTerminal();
     initLanguageSwitcher();
-        alert(" Service Deleted Successfully!");
+        showIinshaToast(" Service Deleted Successfully!");
     }
 }
 
@@ -1899,7 +2023,7 @@ function initGoogleAiN8nPortfolio() {
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">WhatsApp AI Customer Support</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Google AI Studio (Gemini 3.0 Pro) + n8n Webhook Pipeline handling 5,000+ daily chats on WhatsApp Business API.</p>
-                    <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4;">
+                    <div style="background:#000; padding:10px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ffffff;">
                         <code>Stack: Gemini 3.0 Pro Flash → n8n → Supabase → Meta API</code>
                     </div>
                 </div>
@@ -1908,7 +2032,7 @@ function initGoogleAiN8nPortfolio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(6,182,212,0.3); padding:20px; border-radius:14px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
                         <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold; font-family:var(--font-mono);">PROD CASE #102</span>
-                        <span style="font-size:0.75rem; color:#06b6d4; font-weight:bold;">● LIVE ON VPS</span>
+                        <span style="font-size:0.75rem; color:#ffffff; font-weight:bold;">● LIVE ON VPS</span>
                     </div>
                     <h4 style="margin:0 0 8px 0; color:#fff; font-size:1.1rem;">Playwright Pipeline B2B Lead Scraper</h4>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">Automated resilient data scraper running on Self-Hosted Linux VPS Docker, enriching leads with Gemini API and storing in Vector DB.</p>
@@ -1967,7 +2091,7 @@ function initUltraStrongPortfolio() {
                             <code>Stack: Gemini 3.0 Pro OCR ➔ n8n ➔ Supabase ➔ Wise API</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #1: Processed $1.2M+ across 12 countries with 99.8% automated reconciliation accuracy.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -1981,11 +2105,11 @@ function initUltraStrongPortfolio() {
                         </div>
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Playwright Pipeline B2B Lead Intelligence Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Autonomous resilient data scraper collecting and enriching verified decision-maker emails, achieving a 38% cold outreach reply rate.</p>
-                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ffffff; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
                             <code>Stack: Playwright Pipeline ➔ Gemini 3.0 Pro ➔ n8n ➔ SendGrid</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #2: Generated $145,000 in new qualified sales pipeline in 60 days.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -2003,7 +2127,7 @@ function initUltraStrongPortfolio() {
                             <code>Stack: Pinecone Vector ➔ Gemini 3.0 Pro ➔ Meta API</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #3: Reduced support ticket cost by 92% with <2s response time.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -2012,16 +2136,16 @@ function initUltraStrongPortfolio() {
                 <div class="glass-card glowing-border" style="padding:24px; border-radius:16px; background:rgba(15,23,42,0.85); border:1px solid rgba(139,92,246,0.3); display:flex; flex-direction:column; justify:space-between;">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#8b5cf6; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
+                            <span style="font-size:0.75rem; background:rgba(139,92,246,0.2); color:#c084fc; border:1px solid #8b5cf6; padding:2px 10px; border-radius:12px; font-weight:bold;">DEVOPS & INFRA</span>
                             <span style="font-size:0.85rem; color:#c4b5fd; font-weight:bold; font-family:var(--font-mono);">99.999% Uptime</span>
                         </div>
                         <h3 style="margin:0 0 10px 0; color:#fff; font-size:1.2rem;">Self-Healing Self-Hosted Linux VPS Docker Swarm</h3>
                         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">Automated CI/CD failover and container recovery system ensuring continuous deployment with zero downtime during traffic spikes.</p>
-                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8b5cf6; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
+                        <div style="background:#000; padding:10px 12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#c084fc; margin-bottom:16px; border:1px solid rgba(255,255,255,0.08);">
                             <code>Stack: Docker Compose ➔ Self-Hosted Linux VPS ➔ Telegram Bot</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #4: Maintained 99.999% server availability through automated failover.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -2039,7 +2163,7 @@ function initUltraStrongPortfolio() {
                             <code>Stack: Next.js SSG ➔ Gemini 3.0 Pro ➔ Cloudflare CDN</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #5: Achieved #1 rank across 450+ target AI search queries.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -2057,7 +2181,7 @@ function initUltraStrongPortfolio() {
                             <code>Stack: Custom Cookie Engine ➔ Anti-Bot Shield ➔ Wise</code>
                         </div>
                     </div>
-                    <button onclick="alert('📊 Case Study #6: Generated $340,000 in referral sales with zero fraud clicks.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
+                    <button onclick="showIinshaToast('📊 Case Study #6: Generated $340,000 in referral sales with zero fraud clicks.')" class="btn btn-glass-sm" style="width:100%; text-align:center;">
                         📋 View Execution Case Blueprint →
                     </button>
                 </div>
@@ -2104,7 +2228,7 @@ function initLanguageSwitcher() {
         currentLang = currentLang === 'EN' ? 'BN' : 'EN';
         langBtn.innerHTML = currentLang === 'EN' ? '🌐 BN / EN' : '🌐 EN / BN';
 
-        alert(currentLang === 'BN' ? '🇧🇩 à¦¬à¦¾à¦‚à¦²à¦¾ à¦­à¦¾à¦·à¦¾ à¦®à§‹à¦¡ à¦¸à¦•à§à¦°à¦¿à§Ÿ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!' : '🇺🇸 Switched to English Language Mode!');
+        showIinshaToast(currentLang === 'BN' ? '🇧🇩 à¦¬à¦¾à¦‚à¦²à¦¾ à¦­à¦¾à¦·à¦¾ à¦®à§‹à¦¡ à¦¸à¦•à§à¦°à¦¿à§Ÿ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!' : '🇺🇸 Switched to English Language Mode!');
     };
 }
 
@@ -2306,7 +2430,7 @@ function confirmOrderAndSyncToWhatsApp() {
     const email = emailInput ? emailInput.value.trim() : '';
 
     if (!name || !phone) {
-        alert("Please enter your Name and WhatsApp phone number to confirm your order!");
+        showFomoToast("⚠️ Please enter your Name and WhatsApp phone number to confirm your order!", "warning");
         return;
     }
 
@@ -2345,7 +2469,7 @@ function confirmOrderAndSyncToWhatsApp() {
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    showFomoToast(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`, 'success');
     window.open(whatsappUrl, '_blank');
 }
 
@@ -2659,7 +2783,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
     const email = emailInput ? emailInput.value.trim() : '';
 
     if (!name || !phone) {
-        alert("Please enter your Name and WhatsApp phone number to confirm your order!");
+        showFomoToast("⚠️ Please enter your Name and WhatsApp phone number to confirm your order!", "warning");
         return;
     }
 
@@ -2698,7 +2822,7 @@ window.sendUserMessageToAiOrderAgent = sendUserMessageToAiOrderAgent;
 
     closeAiOrderConsultationModal();
 
-    alert(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`);
+    showFomoToast(`🎉 Order Confirmed! Opening WhatsApp to send the full AI transcript & order summary to Admin (+8801629286887)...`, 'success');
     window.open(whatsappUrl, '_blank');
 }
 window.confirmOrderAndSyncToWhatsApp = confirmOrderAndSyncToWhatsApp;
@@ -2727,7 +2851,7 @@ function initAiInteractivePlayground() {
                 </div>
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;"><strong>Scenario:</strong> "${userPrompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}"</p>
 
-                <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#06b6d4; max-height:180px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px;">
+                <div style="background:#000; padding:12px; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#ffffff; max-height:180px; overflow-y:auto; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px;">
                     <p style="margin:0 0 4px 0; color:#10b981;">[STATUS 200 OK] 🧠 Gemini 3.0 Pro Reasoning Engine Initialized...</p>
                     <p style="margin:0 0 4px 0;">[PIPELINE] 🔗 Webhook Listener ➔ Gemini 3.0 Pro RAG ➔ Supabase Vector DB ➔ Telegram Alert</p>
                     <p style="margin:0; color:#f59e0b;">[OUTPUT] Generated n8n Workflow JSON (Node Count: 4 | Memory: 12MB)</p>
@@ -2757,7 +2881,7 @@ function initVerifiedTestimonialsTicker() {
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(245,158,11,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"IINSHA TECH deployed our WhatsApp Gemini 3.0 Pro RAG bot in under 48 hours. Our support ticket costs dropped 84% immediately!"</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Marcus Vance (CTO, Austin TX)</span>
                         <span style="color:var(--accent-emerald);">Verified $1.2K Order</span>
@@ -2766,7 +2890,7 @@ function initVerifiedTestimonialsTicker() {
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(6,182,212,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"The Playwright Pipeline resilient data scraper and n8n pipeline built by Adnin Mahin generated $145,000 in new B2B sales pipeline within 60 days."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Tariq Al-Maktoum (Dubai UAE)</span>
                         <span style="color:var(--accent-cyan);">Verified $2.4K Order</span>
@@ -2775,7 +2899,7 @@ function initVerifiedTestimonialsTicker() {
 
                 <div style="background:rgba(30,41,59,0.8); border:1px solid rgba(16,185,129,0.2); padding:18px; border-radius:12px;">
                     <div style="color:#f59e0b; font-size:0.9rem; margin-bottom:8px;">­­</div>
-                    <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
+                    <p style="font-size:0.85rem; color:#e0e7ff; line-height:1.5; margin-bottom:12px;">"The Admin Control Panel is unbelievable! I can control all services, prices, and AI agent workflows in 1 click."</p>
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
                         <span style="font-weight:bold; color:#fff;">— Rifat H. (Chittagong BD)</span>
                         <span style="color:var(--accent-emerald);">Verified Partner</span>
@@ -2918,7 +3042,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                             <div style="font-size:0.8rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">🔗 Your Unique 20%-50% Referral Link:</div>
                             <div style="display:flex; gap:8px;">
                                 <input type="text" readonly value="${refLink}" style="flex:1; background:#000; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 12px; border-radius:6px; font-size:0.8rem;" />
-                                <button onclick="navigator.clipboard.writeText('${refLink}'); alert('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">📋 Copy</button>
+                                <button onclick="navigator.clipboard.writeText('${refLink}'); showIinshaToast('Referral link copied to clipboard!');" class="btn btn-emerald-sm" style="font-weight:bold;">📋 Copy</button>
                             </div>
                         </div>
 
@@ -2928,7 +3052,7 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                                 <input type="text" id="affiliate-payout-method" placeholder="Payment Method (e.g. Payoneer Email or bKash No)" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                                 <input type="number" id="affiliate-payout-amount" placeholder="Amount ($)" value="1347" style="background:#000; border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px; border-radius:6px; font-size:0.8rem;" />
                             </div>
-                            <button onclick="alert('🎉 Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
+                            <button onclick="showIinshaToast('🎉 Payout Request of $1,347 submitted! Admin (+8801629286887) will process it within 24 hours.');" class="btn btn-emerald-sm" style="width:100%; font-weight:bold;">
                                 🚀 Submit Payout Request to Admin →
                             </button>
                         </div>
@@ -2938,14 +3062,14 @@ function renderClientAffiliatePortalContent(activeTab = 'tracker') {
                     <div style="display:grid; gap:12px;">
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
                             <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-cyan); margin-bottom:6px;">📱 Pre-Written LinkedIn Post Template</div>
-                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
-                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); alert('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
+                            <p style="font-size:0.8rem; color:#c084fc; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Automate your customer support and lead scoring in under 48 hours with IINSHA TECH's Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}"</p>
+                            <button onclick="navigator.clipboard.writeText('Automate your customer support and lead scoring in under 48 hours with IINSHA TECH\'s Gemini 3.0 Pro + n8n AI Swarm pipelines! Check out their ROI calculator: ${refLink}'); showIinshaToast('LinkedIn template copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy LinkedIn Post</button>
                         </div>
 
                         <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.1); padding:14px; border-radius:12px;">
                             <div style="font-size:0.85rem; font-weight:bold; color:var(--accent-emerald); margin-bottom:6px;"> Cold Outreach Email Script</div>
-                            <p style="font-size:0.8rem; color:#cbd5e1; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
-                            <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); alert('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
+                            <p style="font-size:0.8rem; color:#c084fc; background:#000; padding:10px; border-radius:6px; margin-bottom:8px;">"Subject: Quick AI Automation Audit for [Company]<br>Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}"</p>
+                            <button onclick="navigator.clipboard.writeText('Hi [Name], saw you are scaling operations. IINSHA TECH builds custom n8n + Docker pipelines that reduce manual ticket handling by 80%. See demo: ${refLink}'); showIinshaToast('Email script copied!');" class="btn btn-glass-sm" style="font-size:0.75rem;">📋 Copy Email Script</button>
                         </div>
                     </div>
                 `}
@@ -3114,7 +3238,7 @@ function executeAdminCopilotApproval(action, cmdText) {
         logContainer.prepend(logEntry);
     }
 
-    alert(`🎉 Command Executed: ${cmdText}
+    showIinshaToast(`🎉 Command Executed: ${cmdText}
 System state updated & Admin WhatsApp (+8801629286887) notified!`);
 }
 window.executeAdminCopilotApproval = executeAdminCopilotApproval;
@@ -3324,9 +3448,9 @@ function toggleAgentKillSwitch(agentId) {
     if (agentId === 'all') {
         iinshaTelemetryData.killSwitchActive = !iinshaTelemetryData.killSwitchActive;
         const stateStr = iinshaTelemetryData.killSwitchActive ? 'PAUSED / LOCKED' : 'OPERATIONAL';
-        alert(` EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
+        showIinshaToast(` EMERGENCY KILL SWITCH: All AI Swarm Agents are now ${stateStr}!`);
     } else {
-        alert(`  Agent ${agentId} status updated: Manual Override toggled.`);
+        showIinshaToast(`  Agent ${agentId} status updated: Manual Override toggled.`);
     }
     if (typeof render11AgentSwarmOrchestrator === 'function') render11AgentSwarmOrchestrator();
 }
@@ -3336,7 +3460,7 @@ function openAiAffiliateCoach() {
     const prompt = prompt("🤖 AI Affiliate Coach Bot: Enter your target niche or question (e.g. 'E-commerce in Bangladesh' or 'How to get more clicks'):");
     if (!prompt) return;
 
-    alert(`🧠 AI Affiliate Coach Strategy for "${prompt}":\n\n1. Content Strategy: Publish 3 LinkedIn posts comparing manual workflow vs n8n automation.\n2. Target Link: Use your sub-ID link https://inshatech.pages.dev/?ref=IINSHA-AFF-8821&subid=linkedin-aug\n3. Expected Conversion: 12-18% lead conversion rate!`);
+    showIinshaToast(`🧠 AI Affiliate Coach Strategy for "${prompt}":\n\n1. Content Strategy: Publish 3 LinkedIn posts comparing manual workflow vs n8n automation.\n2. Target Link: Use your sub-ID link https://inshatech.pages.dev/?ref=IINSHA-AFF-8821&subid=linkedin-aug\n3. Expected Conversion: 12-18% lead conversion rate!`);
 }
 window.openAiAffiliateCoach = openAiAffiliateCoach;
 
@@ -3459,7 +3583,7 @@ function renderEventBusTelemetry() {
                 ${iinshaEventBusLogs.map(evt => `
                     <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.75rem; padding:4px 0; border-bottom:1px dashed rgba(255,255,255,0.08);">
                         <span style="color:var(--accent-cyan); font-weight:bold;">[${evt.timestamp}] ${evt.name}</span>
-                        <span style="color:#cbd5e1;">${evt.payload} (${evt.actor})</span>
+                        <span style="color:#c084fc;">${evt.payload} (${evt.actor})</span>
                         <span style="color:${evt.zone.includes('RED') ? '#fca5a5' : evt.zone.includes('YELLOW') ? '#f59e0b' : 'var(--accent-emerald)'}; font-weight:bold;">${evt.zone}</span>
                     </div>
                 `).join('')}
@@ -3497,7 +3621,7 @@ function retrainExtremeAgentPrompt(agentId) {
     if (newPrompt && newPrompt.trim()) {
         agent.prompt = newPrompt.trim();
         agent.confidence = (98.5 + Math.random() * 1.4).toFixed(1) + '%';
-        alert(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
+        showIinshaToast(`✅ [${agent.name}] System Prompt updated successfully!\nNew Confidence Score: ${agent.confidence}`);
         renderExtremeAgentStudio();
     try { renderDominationTelemetryStudio();
     try { renderGodModeControlStudio(); } catch(e){} } catch(e){}
@@ -3539,7 +3663,7 @@ function renderExtremeAgentStudio() {
                                 <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 6px; border-radius:8px; font-weight:bold;">${a.confidence} Conf.</span>
                             </div>
                             <div style="font-size:0.7rem; color:var(--accent-cyan); margin-bottom:6px; font-family:var(--font-mono);">${a.model} | Temp: ${a.temperature}</div>
-                            <p style="font-size:0.75rem; color:#cbd5e1; background:#000; padding:8px; border-radius:6px; margin:0 0 10px 0; line-height:1.3; max-height:60px; overflow-y:auto;">"${a.prompt}"</p>
+                            <p style="font-size:0.75rem; color:#c084fc; background:#000; padding:8px; border-radius:6px; margin:0 0 10px 0; line-height:1.3; max-height:60px; overflow-y:auto;">"${a.prompt}"</p>
                         </div>
                         <button onclick="retrainExtremeAgentPrompt('${a.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.75rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
                             ⚡ Re-Train & Fine-Tune Persona →
@@ -3690,7 +3814,7 @@ function togglePeaceMode() {
         btn.innerHTML = iinshaGodModeState.peaceMode ? ' PEACE MODE ACTIVE (100% Hands-Off)' : ' Enable 1-Click Peace Mode';
         btn.style.background = iinshaGodModeState.peaceMode ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.1)';
     }
-    alert(iinshaGodModeState.peaceMode ? ' Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
+    showIinshaToast(iinshaGodModeState.peaceMode ? ' Peace Mode Activated! The 13 AI Swarm Agents will handle 100% of operations automatically.' : 'Peace Mode Deactivated.');
 }
 window.togglePeaceMode = togglePeaceMode;
 
@@ -3720,16 +3844,16 @@ function renderGodModeControlStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:18px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
                         <span>🌐Œ GOD MODE CONTROL CENTER — THE FINAL FORM</span>
-                        <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">CONSCIOUSNESS CORE ACTIVE</span>
+                        <span style="font-size:0.65rem; background:rgba(255,255,255,0.08); color:#ffffff; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">CONSCIOUSNESS CORE ACTIVE</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Adjust reality parameters, run timeline simulations, and trigger 1-Click Peace Mode.</p>
                 </div>
-                <button id="god-peace-mode-btn" onclick="togglePeaceMode()" class="btn btn-primary-sm" style="background:rgba(255,255,255,0.1); border:1px solid #8b5cf6; font-weight:bold; font-size:0.8rem; color:#a78bfa;">
+                <button id="god-peace-mode-btn" onclick="togglePeaceMode()" class="btn btn-primary-sm" style="background:rgba(255,255,255,0.1); border:1px solid #8b5cf6; font-weight:bold; font-size:0.8rem; color:#ffffff;">
                      Enable 1-Click Peace Mode
                 </button>
             </div>
@@ -3739,9 +3863,9 @@ function renderGodModeControlStudio() {
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
                         <span>🚀 Growth Velocity</span>
-                        <span id="growth-slider-val" style="color:#a78bfa;">${iinshaGodModeState.growthSlider}%</span>
+                        <span id="growth-slider-val" style="color:#ffffff;">${iinshaGodModeState.growthSlider}%</span>
                     </div>
-                    <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#8b5cf6;">
+                    <input type="range" min="10" max="100" value="${iinshaGodModeState.growthSlider}" oninput="updateRealitySlider('growth', this.value)" style="width:100%; accent-color:#c084fc;">
                 </div>
                 <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(16,185,129,0.3); padding:12px; border-radius:10px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:bold; color:#fff; margin-bottom:6px;">
@@ -3761,7 +3885,7 @@ function renderGodModeControlStudio() {
 
             <!-- LIVE TIMELINE SIMULATION PREDICTION -->
             <div style="background:rgba(0,0,0,0.6); border:1px solid rgba(139,92,246,0.4); padding:14px; border-radius:10px; text-align:center;">
-                <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">🔮 REAL-TIME TIMELINE SIMULATION PREDICTION</div>
+                <div style="font-size:0.72rem; color:#ffffff; font-weight:bold; letter-spacing:1px; margin-bottom:4px;">🔮 REAL-TIME TIMELINE SIMULATION PREDICTION</div>
                 <div id="god-simulation-prediction" style="font-size:0.9rem; font-weight:bold; color:#fff; font-family:var(--font-mono);">${iinshaGodModeState.simulatedOutcome}</div>
             </div>
         </div>
@@ -3845,7 +3969,7 @@ function addNewEnterpriseService() {
     };
 
     iinshaServiceCatalogData.push(newSvc);
-    alert(`✅ New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
+    showIinshaToast(`✅ New Service [${title}] created and synchronized with Google Antigravity Subagents!`);
     renderDynamicServiceCMSStudio();
 }
 window.addNewEnterpriseService = addNewEnterpriseService;
@@ -3861,7 +3985,7 @@ function generateSoWContractTemplate(svcId) {
             <title>Scope of Work (SoW) - ${svc.title}</title>
             <style>
                 body { font-family: 'Inter', sans-serif; background: #0f172a; color: #fff; padding: 40px; line-height: 1.6; }
-                .card { background: #1e293b; border: 1px solid #06b6d4; padding: 30px; border-radius: 16px; max-width: 800px; margin: auto; }
+                .card { background: #1e293b; border: 1px solid rgba(255,255,255,0.15); padding: 30px; border-radius: 16px; max-width: 800px; margin: auto; }
                 h1 { color: #06b6d4; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
                 .price-box { background: rgba(16,185,129,0.2); border: 1px solid #10b981; padding: 15px; border-radius: 8px; font-weight: bold; color: #10b981; margin-top: 20px; }
             </style>
@@ -3921,7 +4045,7 @@ function renderDynamicServiceCMSStudio() {
                             </div>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.72rem; color:var(--accent-cyan); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
@@ -3971,7 +4095,7 @@ function editServiceInStudio(svcId) {
     if (newPricing) svc.pricing = newPricing.trim();
     if (newValueProp) svc.valueProp = newValueProp.trim();
 
-    alert(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
+    showIinshaToast(`✅ Service [${svc.title}] updated in Studio CMS & Antigravity 2.0 MCP Bridge!`);
     renderCompleteEnterpriseStudioCMS();
     try { render2026OutcomeServicesStudio();
     try { renderOmnichannelNotificationStudio();
@@ -4038,7 +4162,7 @@ function renderCompleteEnterpriseStudioCMS() {
                             <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                             <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                             <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">${s.pricing}</div>
-                            <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                            <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         </div>
                         <div style="display:flex; gap:8px;">
                             <button onclick="editServiceInStudio('${s.id}')" class="btn btn-glass-sm" style="flex:1; font-size:0.72rem; font-weight:bold; color:var(--accent-cyan); border-color:var(--accent-cyan);">
@@ -4084,7 +4208,7 @@ function render2026OutcomeServicesStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #10b981; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #10b981; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -4105,7 +4229,7 @@ function render2026OutcomeServicesStudio() {
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
                         <div style="font-size:0.75rem; color:var(--accent-emerald); font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
                         <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:var(--accent-emerald); border-color:var(--accent-emerald);">
                             📄 Generate 2026 Outcome SoW
                         </button>
@@ -4138,7 +4262,7 @@ function sendDirectWhatsAppNotification(customMsg) {
 window.sendDirectWhatsAppNotification = sendDirectWhatsAppNotification;
 
 function sendDirectFacebookNotification() {
-    alert(" Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
+    showIinshaToast(" Facebook Notification Dispatcher: Copying latest AI Swarm summary to clipboard for Facebook Messenger & Business Suite post!");
     const summaryText = `🌐Œ IINSHA AI OS — Autonomous Business Intelligence Alert\n13 AI Swarm Agents active. Zero downtime guaranteed.\nContact WhatsApp: +8801629286887 | Web: https://inshatech.pages.dev`;
     navigator.clipboard.writeText(summaryText);
     window.open('https://facebook.com', '_blank');
@@ -4158,7 +4282,7 @@ function renderOmnichannelNotificationStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid var(--accent-cyan); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(6,182,212,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -4242,12 +4366,12 @@ function renderCatalogV4Studio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #8b5cf6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(139,92,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
                         <span>🚀 MASTER SERVICE CATALOG v4.0 (143+ SERVICES)</span>
-                        <span style="font-size:0.65rem; background:rgba(139,92,246,0.25); color:#a78bfa; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">MARKETPLACE STANDARD</span>
+                        <span style="font-size:0.65rem; background:rgba(255,255,255,0.08); color:#ffffff; border:1px solid #8b5cf6; padding:3px 10px; border-radius:12px; font-weight:bold;">MARKETPLACE STANDARD</span>
                     </h4>
                     <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-muted);">Effectiveness-focused positioning across 5 Tiers: Core, Business OS, Industry OS, Dev Tools & Predictive AI.</p>
                 </div>
@@ -4257,14 +4381,14 @@ function renderCatalogV4Studio() {
                 ${iinshaMasterCatalogV4.map(s => `
                     <div style="background:rgba(30,41,59,0.7); border:1px solid rgba(139,92,246,0.4); border-radius:14px; padding:16px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                            <span style="font-size:0.7rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:6px;">${s.tier}</span>
+                            <span style="font-size:0.7rem; color:#ffffff; font-weight:bold; background:rgba(0,0,0,0.4); padding:2px 8px; border-radius:6px;">${s.tier}</span>
                             <span style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">${s.status}</span>
                         </div>
                         <h5 style="margin:4px 0; font-size:0.95rem; color:#fff; font-weight:bold;">${s.title}</h5>
                         <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0; font-style:italic;">"${s.headline}"</p>
-                        <div style="font-size:0.75rem; color:#a78bfa; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
-                        <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:12px;">🎯 ${s.valueProp}</div>
-                        <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#a78bfa; border-color:#8b5cf6;">
+                        <div style="font-size:0.75rem; color:#ffffff; font-weight:bold; background:rgba(0,0,0,0.5); padding:6px 10px; border-radius:6px; margin-bottom:8px;">💰 ${s.pricing}</div>
+                        <div style="font-size:0.72rem; color:#c084fc; margin-bottom:12px;">🎯 ${s.valueProp}</div>
+                        <button onclick="generateSoWContractTemplate('${s.id}')" class="btn btn-glass-sm" style="width:100%; font-size:0.72rem; font-weight:bold; color:#ffffff; border-color:#c084fc;">
                             📄 Generate v4.0 SoW Contract
                         </button>
                     </div>
@@ -4300,12 +4424,12 @@ function toggleAutonomousSubsystem(subsystem) {
         statusSpan.style.color = iinshaAutonomousEngineState[subsystem] ? 'var(--accent-emerald)' : '#ef4444';
         statusSpan.style.borderColor = iinshaAutonomousEngineState[subsystem] ? 'var(--accent-emerald)' : '#ef4444';
     }
-    alert(`🤖 ${subsystem} updated to: ${iinshaAutonomousEngineState[subsystem] ? 'AUTONOMOUS ACTIVE' : 'PAUSED'}`);
+    showIinshaToast(`🤖 ${subsystem} updated to: ${iinshaAutonomousEngineState[subsystem] ? 'AUTONOMOUS ACTIVE' : 'PAUSED'}`);
 }
 window.toggleAutonomousSubsystem = toggleAutonomousSubsystem;
 
 function triggerAutonomousLeadHarvesting() {
-    alert("🚀 n8n + Gemini 3.0 Pro & Flash Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
+    showIinshaToast("🚀 n8n + Gemini 3.0 Pro & Flash Lead Harvesting Triggered! Collecting B2B ICP Leads from LinkedIn, Web Forms & WhatsApp (+8801629286887)...");
     iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads += 5;
     const counterDiv = document.getElementById('auto-lead-counter');
     if (counterDiv) counterDiv.innerText = iinshaAutonomousEngineState.totalAutonomouslyGeneratedLeads + ' Verified Leads';
@@ -4325,7 +4449,7 @@ function renderAutonomousEnterpriseEngineStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid var(--accent-emerald); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid var(--accent-emerald); border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(16,185,129,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -4377,7 +4501,7 @@ function renderAutonomousEnterpriseEngineStudio() {
                         <span id="selfHealingGuard-status-badge" onclick="toggleAutonomousSubsystem('selfHealingGuard')" style="cursor:pointer; font-size:0.65rem; background:rgba(16,185,129,0.25); color:var(--accent-emerald); border:1px solid var(--accent-emerald); padding:2px 8px; border-radius:10px; font-weight:bold;">AUTONOMOUS ACTIVE</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 10px 0;">GUARDIAN & KEEPER Agents monitor 500 errors, latencies & auto-patch routes within 60 seconds.</p>
-                    <div style="font-size:0.72rem; color:#a78bfa; font-weight:bold;">System Uptime: 99.999% Guaranteed</div>
+                    <div style="font-size:0.72rem; color:#ffffff; font-weight:bold;">System Uptime: 99.999% Guaranteed</div>
                 </div>
             </div>
 
@@ -4435,7 +4559,7 @@ function renderAIBOSArchitectureStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -4458,7 +4582,7 @@ function renderAIBOSArchitectureStudio() {
                 </div>
                 <div>
                     <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">STRATEGY ENGINE</div>
-                    <div style="font-size:0.9rem; font-weight:bold; color:#a78bfa;">Gemini 1.5 Pro</div>
+                    <div style="font-size:0.9rem; font-weight:bold; color:#ffffff;">Gemini 1.5 Pro</div>
                 </div>
             </div>
 
@@ -4548,7 +4672,7 @@ function openIinshaBusinessAuditModal() {
 
     auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     auditModal.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
             <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
                 
                 <div style="text-align:center; margin-bottom:24px;">
@@ -4612,7 +4736,7 @@ function openAiRevenueSystemModal() {
     }
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     modal.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
             <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             <span style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid #3b82f6; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM A</span>
             <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">📈 AI Revenue System Blueprint</h3>
@@ -4666,13 +4790,13 @@ function openAiSupportSystemModal() {
     }
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
     modal.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(88,28,135,0.95)); border:1px solid #a855f7; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(168,85,247,0.4); color:#fff; position:relative;">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid rgba(255,255,255,0.18); border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(168,85,247,0.4); color:#fff; position:relative;">
             <button onclick="closeAiSolutionModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
-            <span style="background:rgba(168,85,247,0.2); color:#c084fc; border:1px solid #a855f7; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM C</span>
+            <span style="background:rgba(255,255,255,0.08); color:#ffffff; border:1px solid rgba(255,255,255,0.18); padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:bold;">OUTCOME SYSTEM C</span>
             <h3 style="margin:12px 0 6px 0; font-size:1.6rem; color:#fff;">🎧 AI Support System Blueprint</h3>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">Provide 24/7 intelligent customer triage with instant vector database document lookup.</p>
             <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.85rem; line-height:1.6;">
-                <div style="font-weight:bold; color:#c084fc; margin-bottom:8px;">⚡ Included Capabilities:</div>
+                <div style="font-weight:bold; color:#ffffff; margin-bottom:8px;">⚡ Included Capabilities:</div>
                 • <strong>Omnichannel Web & WhatsApp Bot</strong><br>
                 • <strong>Pinecone RAG Vector Engine</strong> (Zero hallucination answers)<br>
                 • <strong>Ticket Triage & Routing</strong> (Assigns priority automatically)<br>
@@ -4790,8 +4914,8 @@ function runAiGoalDecomposition() {
         <div style="background:rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 10px; border-radius: 4px;">
             <strong style="color:#34d399;">STEP 2: Solution Generation</strong> ”€ Configured Pinecone RAG Vector DB for instant FAQ resolution + n8n webhook triage.
         </div>
-        <div style="background:rgba(168,85,247,0.1); border-left: 3px solid #a855f7; padding: 10px; border-radius: 4px;">
-            <strong style="color:#c084fc;">STEP 3: Sandbox Simulation</strong> ”€ Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
+        <div style="background:rgba(255,255,255,0.04); border-left: 1px solid rgba(255,255,255,0.25); padding: 10px; border-radius: 4px;">
+            <strong style="color:#ffffff;">STEP 3: Sandbox Simulation</strong> ”€ Simulated 1,000 synthetic customer conversations with 99.4% retrieval accuracy.
         </div>
         <div style="background:rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 10px; border-radius: 4px;">
             <strong style="color:#fbbf24;">STEP 4: Owner Governance Check</strong> ”€ Pending Supreme Owner approval for external email dispatch authority.
@@ -4871,7 +4995,7 @@ function composeDynamicWorkforce() {
 
     container.innerHTML = `
         <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); padding: 12px; border-radius: 8px;">
-            <strong style="color:#c084fc; font-size:0.85rem; display:block;">1. Lead Intel Agent (AGNT-1092)</strong>
+            <strong style="color:#ffffff; font-size:0.85rem; display:block;">1. Lead Intel Agent (AGNT-1092)</strong>
             <span style="font-size:0.72rem; color:var(--text-muted);">Discovers verified B2B decision makers.</span>
         </div>
         <div style="background:rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); padding: 12px; border-radius: 8px;">
@@ -4915,7 +5039,7 @@ function triggerAiBoardroomDebate() {
             <strong style="color:#f87171;">🛡️ AI Risk Officer Perspective:</strong> High-value enterprise SLA requires Owner Clearance Gate for contracts > $5,000.
         </div>
         <div style="background:rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); padding: 12px; border-radius: 8px; margin-top: 6px;">
-            <strong style="color:#c084fc; font-size:0.95rem;">🏛️‘ EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
+            <strong style="color:#ffffff; font-size:0.95rem;">🏛️‘ EXECUTIVE CONSENSUS RECOMMENDATION FOR SUPREME OWNER:</strong><br>
             <span style="font-size:0.82rem; color:#fff;">Approve proposal with mandatory Owner Gate for contracts exceeding $5,000.</span>
             <div style="display:flex; justify-content:flex-end; margin-top:8px;">
                 <button class="btn btn-primary-sm" onclick="showFomoToast('🏛️‘ Executive Consensus Approved by Supreme Owner!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
@@ -4983,7 +5107,7 @@ function triggerControlledSelfEvolution() {
                 <span style="color:#34d399;">Latency reduced by 74% (from 240ms to 62ms)</span>
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
-                <span style="color:#c084fc; font-weight:bold;">4. Supreme Owner Authorization:</span>
+                <span style="color:#ffffff; font-weight:bold;">4. Supreme Owner Authorization:</span>
                 <button class="btn btn-primary-sm" onclick="showFomoToast(' Production Evolution Deployed cleanly with 0 Downtime!', 'success')" style="background: linear-gradient(135deg, #10b981, #059669);">
                      Authorize Production Deployment
                 </button>
@@ -5030,7 +5154,7 @@ function runPromptSanitizerTest() {
                 <div style="background:rgba(16,185,129,0.1); padding:8px; border-radius:4px; font-family:monospace; margin-top:4px; color:#34d399;">[REDACTED_PROMPT_INJECTION] User text sanitized cleanly before LLM execution.</div>
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display:flex; justify-content:space-between; align-items:center;">
-                <span style="color:#c084fc; font-weight:bold;">4. Policy Gateway Action:</span>
+                <span style="color:#ffffff; font-weight:bold;">4. Policy Gateway Action:</span>
                 <span style="color:#34d399; font-weight:bold;">✅ BLOCKED & LOGGED TO AUDIT TRAIL</span>
             </div>
         </div>
@@ -5106,7 +5230,7 @@ var iinshaCatalogV4Matrix = [
     {
         tier: 'Tier 2: Business Operating System (BOS) Engines',
         badge: 'ENTERPRISE SWARM',
-        color: '#8b5cf6',
+        color: '#ffffff',
         services: [
             { id: 't2_ai_coo', name: 'Executive AI Decision Engine (AI COO Swarm)', desc: 'Gemini 1.5 Flash Commander supervising tasks, resource allocations & HITL safety.', priceUSD: '$2,500/mo', marketVal: '$8,500/mo Fractional COO Rate', roi: '680% ROI in 60 days', bdt: '৳305,000/mo' },
             { id: 't2_sales_engine', name: 'Autonomous Sales & Deal Engine', desc: 'HUNTER + NEGOTIATOR swarm discovering ICP targets, drafting SoWs & handling objections.', priceUSD: '$1,800/mo', marketVal: '$6,000/mo Sales Agency', roi: '850% ROI in 30 days', bdt: '৳219,600/mo' },
@@ -5164,7 +5288,7 @@ var iinshaInternationalServiceCatalog = [
     {
         category: '2. Workflow Automation & AI Orchestration',
         badge: 'n8n EXECUTION ENGINE',
-        color: '#8b5cf6',
+        color: '#ffffff',
         description: 'End-to-end process automation connecting CRMs, emails, payments, and custom APIs.',
         services: [
             { id: 'cat2_starter_auto', name: 'Starter Automation Package', desc: '1-2 workflows, up to 3 integrations, basic AI reasoning step, and full documentation.', priceUSD: '$1,250', marketVal: '$3,500 Agency Rate', roi: '10-Day Rapid Delivery', bdt: '৳1,52,500' },
@@ -5221,7 +5345,7 @@ function renderInternationalCatalogStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -5291,7 +5415,7 @@ var iinshaEnterpriseDivisions = [
         id: 'div_workforce',
         name: '2. AI Agent & Digital Workforce',
         badge: 'PRODUCTION AGENTS',
-        color: '#8b5cf6',
+        color: '#ffffff',
         tagline: 'Specialized autonomous AI agents working 24/7 across Sales, Support, Research, and Operations.',
         packages: [
             { name: 'Single AI Agent', priceUSD: '$299 – $750', delivery: '5-7 Days', desc: '1 Production AI Agent (SDR, Support, or Research) with tool access.', bdt: '৳36,478 – ৳91,500' },
@@ -5352,7 +5476,7 @@ function renderEnterpriseArchitectureStudio() {
     }, 400);
     
     root.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:20px; padding:24px; margin-top:20px; box-shadow:0 0 60px rgba(59,130,246,0.35);">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
                 <div>
                     <h4 style="margin:0; color:#fff; font-size:1.25rem; display:flex; align-items:center; gap:10px;">
@@ -5531,7 +5655,7 @@ function initRoiCalculatorEngine() {
     auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:99999; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
 
     auditModal.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
             <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             
             <div style="text-align:center; margin-bottom:24px;">
@@ -5742,7 +5866,7 @@ document.addEventListener('DOMContentLoaded', () => {
     auditModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.94); backdrop-filter:blur(15px); z-index:10000; display:flex !important; opacity:1 !important; visibility:visible !important; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; pointer-events:auto !important;';
 
     auditModal.innerHTML = `
-        <div style="background:linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,27,75,0.95)); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
+        <div style="background:rgba(8, 8, 8, 0.96); border:1px solid #3b82f6; border-radius:24px; width:650px; max-width:95vw; max-height:90vh; overflow-y:auto; padding:28px; box-shadow:0 0 60px rgba(59,130,246,0.4); color:#fff; position:relative;">
             <button onclick="closeIinshaBusinessAuditModal()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer;">✕</button>
             
             <div style="text-align:center; margin-bottom:24px;">
@@ -6076,7 +6200,7 @@ function executeAIMission(userGoal) {
         memBanner.innerHTML = `🧠 <strong>LONG-TERM BUSINESS MEMORY ACTIVE:</strong> Target ICP (${IINSHA_BUSINESS_MEMORY.businessMemory.targetICP})`;
     }
 
-    alert(`🚀 MISSION LAUNCHED!\n\nGoal: "${goal}"\nDynamic Swarm: ${selectedAgents.join(', ')}\nTelemetry Cost Saved: $${netSaved} USD`);
+    showIinshaToast(`🚀 MISSION LAUNCHED!\n\nGoal: "${goal}"\nDynamic Swarm: ${selectedAgents.join(', ')}\nTelemetry Cost Saved: $${netSaved} USD`);
 }
 
 function toggleExplainabilityCard() {
@@ -6103,7 +6227,7 @@ const OUTCOME_DEFINITIONS = {
         subtitle: "Automate outbound prospecting, LinkedIn engagement, enrichment, and cold email deliverability without human manual labor.",
         deliverables: `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚡ Autonomous SDR Engine</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li>Multi-channel lead ingestion (LinkedIn, Apollo, Forms)</li>
@@ -6141,7 +6265,7 @@ const OUTCOME_DEFINITIONS = {
                         <li>Slack & Telegram alert dispatchers</li>
                     </ul>
                 </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">📈 Cost Optimization</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Monthly Savings:</strong> $300-$1,200/mo vs Zapier/Make</li>
@@ -6229,7 +6353,7 @@ const OUTCOME_DEFINITIONS = {
                         <li>Encrypted audit trail & multi-channel emergency alert dispatch</li>
                     </ul>
                 </div>
-                <div class="glass-card" style="padding: 16px; border-color: rgba(0, 242, 254, 0.3);">
+                <div class="glass-card" style="padding: 16px; border-color: rgba(255, 255, 255, 0.3);">
                     <strong style="color: var(--accent-cyan); font-size: 0.95rem; display: block; margin-bottom: 6px;">🔒 Security SLA Guarantees</strong>
                     <ul style="font-size: 0.82rem; color: #cbd5e1; padding-left: 16px; line-height: 1.6;">
                         <li><strong>Monitored Uptime:</strong> 99.98% production availability</li>
@@ -6278,7 +6402,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
         modal.className = 'modal-overlay';
         modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(2,6,23,0.96); backdrop-filter:blur(16px); z-index:10030; align-items:center; justify-content:center; padding:20px;';
         modal.innerHTML = `
-            <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary); border-radius:16px; background:#0f172a; border:1px solid #38bdf8;">
+            <div class="modal-card glass-card" style="max-width:560px; width:100%; padding:32px; border-color:var(--accent-primary); border-radius:16px; background:#0f172a; border:1px solid #ffffff;">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
                     <div>
                         <span class="status-badge completed" style="background:rgba(16,185,129,0.2); color:#10b981; font-weight:800; padding:4px 10px; border-radius:6px;">🚀 LIVE INSTANT CHECKOUT</span>
@@ -6290,7 +6414,7 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
                 <div style="background:rgba(0,0,0,0.5); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); margin-bottom:20px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
                         <span style="color:#94a3b8; font-size:0.9rem;">Package Total (USD):</span>
-                        <strong id="checkout-setup-val" style="color:#38bdf8; font-family:monospace; font-size:1.2rem;">$100 USD</strong>
+                        <strong id="checkout-setup-val" style="color:#ffffff; font-family:monospace; font-size:1.2rem;">$100 USD</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between;">
                         <span style="color:#94a3b8; font-size:0.9rem;">Equivalent in BDT:</span>
@@ -6300,24 +6424,26 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 
                 <form onsubmit="handleCheckoutFormSubmit(event)" style="display:flex; flex-direction:column; gap:14px; margin-bottom:16px;">
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR FULL NAME</label>
+                        <label for="chk-name" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR FULL NAME</label>
                         <input type="text" id="chk-name" required placeholder="e.g. Adnin Sadat Mahin" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
                     </div>
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR WORK EMAIL</label>
+                        <label for="chk-email" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">YOUR WORK EMAIL</label>
                         <input type="email" id="chk-email" required placeholder="name@company.com" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #334155; color:#fff; border-radius:8px;">
                     </div>
                     <div>
-                        <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
-                        <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #38bdf8; color:#fff; border-radius:8px; font-weight:bold;">
+                        <label for="chk-method" style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:4px; font-weight:700;">SELECT PAYMENT GATEWAY</label>
+                        <select id="chk-method" style="width:100%; padding:12px; font-size:0.95rem; background:#1e293b; border:1px solid #ffffff; color:#fff; border-radius:8px; font-weight:bold;">
+                            <option value="sslcommerz">🏦 SSLCommerz BD (bKash, Nagad, Rocket & Cards)</option>
                             <option value="lemonsqueezy">💳 Lemon Squeezy (Global Visa / Mastercard / Apple Pay)</option>
                             <option value="stripe">💳 Stripe Official Checkout (Global Credit/Debit Cards)</option>
-                            <option value="bkash">📱 bKash Merchant / Direct Transfer (Bangladesh)</option>
-                            <option value="nagad">📱 Nagad Direct Transfer (Bangladesh)</option>
-                            <option value="bank">🏛️ City Bank PLC Wire Transfer</option>
+                            <option value="bkash">📱 bKash Tokenized Checkout (Bangladesh)</option>
+                            <option value="nagad-manual">📱 Nagad Manual Transfer (WhatsApp Confirmation)</option>
+                            <option value="bank-manual">🏛️ City Bank PLC Wire Transfer (Manual Verification)</option>
                         </select>
                     </div>
-                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #0284c7, #0ea5e9); color:#fff; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
+                    <div id="chk-status-banner" style="display:none; padding:10px 12px; border-radius:8px; font-size:0.82rem; line-height:1.45; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.45); color:#fde68a;"></div>
+                    <button type="submit" id="chk-submit-btn" style="padding:14px; font-size:1.05rem; font-weight:800; margin-top:8px; background:linear-gradient(135deg, #e2e8f0, #0ea5e9); color:#020617; border:none; border-radius:8px; cursor:pointer;">⚡ Proceed to Instant Secure Payment</button>
                 </form>
 
                 <div style="text-align:center; font-size:0.75rem; color:#94a3b8;">
@@ -6343,17 +6469,30 @@ function openCheckoutModal(packageName, setupPrice, retainerPrice) {
 async function handleCheckoutFormSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('chk-submit-btn');
+    const banner = document.getElementById('chk-status-banner');
+    const showBanner = (msg) => {
+        if (banner) {
+            banner.textContent = msg;
+            banner.style.display = 'block';
+        }
+    };
+    if (banner) banner.style.display = 'none';
     if (btn) { btn.disabled = true; btn.innerText = '⏳ Initializing Secure Gateway...'; }
 
     const name = document.getElementById('chk-name') ? (document.getElementById('chk-name').value || 'Valued Client') : 'Valued Client';
     const email = document.getElementById('chk-email') ? (document.getElementById('chk-email').value || 'client@inshatech.com') : 'client@inshatech.com';
-    const method = document.getElementById('chk-method') ? document.getElementById('chk-method').value : 'lemonsqueezy';
+    const method = document.getElementById('chk-method') ? document.getElementById('chk-method').value : 'sslcommerz';
     const pkgEl = document.getElementById('checkout-pkg-title');
     const pkg = pkgEl ? pkgEl.textContent : 'AI Automation Package';
-    
+
     const priceEl = document.getElementById('checkout-setup-val');
     const priceTxt = priceEl ? priceEl.textContent : '100';
     const numPrice = parseInt(priceTxt.replace(/[^0-9]/g, ''), 10) || 100;
+
+    if (method === 'nagad-manual' || method === 'bank-manual') {
+        window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to arrange manual transfer (${method}) for ${pkg} ($${numPrice} USD). Email: ${email}`)}`;
+        return;
+    }
 
     try {
         const res = await fetch('/api/payments/checkout', {
@@ -6362,34 +6501,28 @@ async function handleCheckoutFormSubmit(e) {
             body: JSON.stringify({
                 service_id: 'b2b-lead-swarm',
                 package_name: pkg,
-                amount: numPrice,
                 customer_name: name,
                 customer_email: email,
                 payment_provider: method
             })
         });
 
-        const data = await res.json();
-        if (data.redirect_url) {
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.redirect_url) {
             window.location.href = data.redirect_url;
             return;
-        } else if (data.gateway && data.gateway.checkout_url) {
+        }
+        if (res.ok && data.gateway && data.gateway.checkout_url) {
             window.location.href = data.gateway.checkout_url;
             return;
-        } else if (method === 'lemonsqueezy') {
-            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
-            return;
-        } else if (data.whatsapp_instant_order) {
-            window.location.href = data.whatsapp_instant_order;
-            return;
-        } else {
-            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I created order for ${pkg} ($${numPrice} USD via ${method}). Please confirm payment.`)}`;
         }
-    } catch (err) {
-        if (method === 'lemonsqueezy') {
-            window.location.href = `https://inshatech.lemonsqueezy.com/checkout/custom/45a2dceb-c63b-49c2-9684-12ef6d576c58?checkout[email]=${encodeURIComponent(email)}&checkout[name]=${encodeURIComponent(name)}`;
-        } else {
-            window.location.href = `https://wa.me/8801629286887?text=${encodeURIComponent(`Hi Adnin, I want to order ${pkg} ($${numPrice} USD via ${method}).`)}`;
+        showBanner(data.message || `Gateway initialization paused (${res.status}). Use SSLCommerz or contact support after gateway secrets and database readiness are active.`);
+    } catch (_) {
+        showBanner('Unable to reach /api/payments/checkout right now. Please verify connectivity or select manual WhatsApp confirmation.');
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = '⚡ Proceed to Instant Secure Payment';
         }
     }
 }
@@ -6474,9 +6607,14 @@ function initUniversalButtonBindings() {
 
                 const targetId = btn.getAttribute('data-target');
                 if (targetId) {
-                    document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+                    document.querySelectorAll('.service-panel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
                     const targetPanel = document.getElementById(targetId);
-                    if (targetPanel) targetPanel.classList.add('active');
+                    if (targetId === 'all') {
+                        document.querySelectorAll('.service-panel').forEach(p => { p.classList.add('active'); p.style.display = 'grid'; });
+                    } else if (targetPanel) {
+                        targetPanel.classList.add('active');
+                        targetPanel.style.display = 'grid';
+                    }
                 }
             });
         }
@@ -6592,3 +6730,89 @@ if (document.readyState === 'loading') {
 window.addEventListener('load', initUniversalButtonBindings);
 window.initUniversalButtonBindings = initUniversalButtonBindings;
 
+
+/* Mobile Sticky CTA Dismissal & Storage */
+function dismissMobileStickyCta(e) {
+    if (e) {
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+    }
+    const cta = document.getElementById('sticky-mobile-cta');
+    if (cta) cta.style.display = 'none';
+    document.body.classList.add('cta-dismissed');
+    sessionStorage.setItem('iinsha_mobile_cta_dismissed', 'true');
+    const copilotTrigger = document.getElementById('iinsha-copilot-trigger');
+    if (copilotTrigger && window.innerWidth <= 768) {
+        copilotTrigger.style.bottom = '16px';
+    }
+}
+window.dismissMobileStickyCta = dismissMobileStickyCta;
+
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sessionStorage.getItem('iinsha_mobile_cta_dismissed') === 'true') {
+            const cta = document.getElementById('sticky-mobile-cta');
+            if (cta) cta.style.display = 'none';
+            document.body.classList.add('cta-dismissed');
+        }
+    });
+}
+
+
+/* DIAGRAM AUTOMATOR PIPELINE RUNNER (Diagram #s3 Replica) */
+(function initDiagramAutomatorRunner() {
+    function setupRunner() {
+        const runBtn = document.getElementById('canvas-run-test-btn');
+        const logBox = document.getElementById('canvas-sim-log');
+        const container = document.getElementById('canvas-nodes-container');
+        if (!runBtn || !logBox || !container) return;
+
+        const nodes = container.querySelectorAll('.canvas-node-card');
+        let isRunning = false;
+
+        runBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (isRunning) return;
+            isRunning = true;
+            runBtn.disabled = true;
+            runBtn.innerHTML = '⏳ Simulating Flow...';
+
+            logBox.innerHTML = '<div style="color:#c084fc;">✦ [DIAGRAM FLOW RUNNER ACTIVE] Initializing neural pipeline simulation...</div>';
+
+            const stages = [
+                { delay: 400, nodeIdx: 0, msg: '<div style="color:#38bdf8;">[14:02:11.014] ⚡ Step 1: Webhook Trigger received: Incoming Lead Payload (WhatsApp Business API)</div>' },
+                { delay: 1100, nodeIdx: 1, msg: '<div style="color:#a855f7;">[14:02:11.224] 🕷️ Step 2: Playwright Pipeline Scraper extracted company data in 210ms (Status: 200 OK)</div>' },
+                { delay: 1800, nodeIdx: 2, msg: '<div style="color:#ec4899;">[14:02:11.404] 🤖 Step 3: Gemini 3.0 OCR verified business registration & trade license (Confidence: 99.4%)</div>' },
+                { delay: 2500, nodeIdx: 3, msg: '<div style="color:#10b981;">[14:02:11.436] 💾 Step 4: PostgreSQL DB row written to tenant_vault in 32ms. Deal value: $850 USD. Executed successfully!</div>' }
+            ];
+
+            stages.forEach(function(st, idx) {
+                setTimeout(function() {
+                    nodes.forEach(function(n) { n.classList.remove('diagram-active-node'); });
+                    if (nodes[st.nodeIdx]) {
+                        nodes[st.nodeIdx].classList.add('diagram-active-node');
+                        nodes[st.nodeIdx].style.boxShadow = '0 0 25px rgba(168, 85, 247, 0.7)';
+                    }
+                    logBox.innerHTML += st.msg;
+                    logBox.scrollTop = logBox.scrollHeight;
+
+                    if (idx === stages.length - 1) {
+                        setTimeout(function() {
+                            nodes.forEach(function(n) { n.classList.remove('diagram-active-node'); n.style.boxShadow = ''; });
+                            isRunning = false;
+                            runBtn.disabled = false;
+                            runBtn.innerHTML = '▶️ Run Workflow Test';
+                            logBox.innerHTML += '<div style="color:#34d399; font-weight:bold; margin-top:4px;">✔ [EXECUTION COMPLETE] 436ms E2E Latency. Zero errors.</div>';
+                        }, 800);
+                    }
+                }, st.delay);
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupRunner);
+    } else {
+        setupRunner();
+    }
+})();

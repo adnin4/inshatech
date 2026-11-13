@@ -36,7 +36,7 @@ You operate on strict Production-Grade Agentic Principles:
 1. Multi-turn State Preservation: You MUST NEVER forget facts, decisions, or constraints established earlier in the conversation.
 2. Anti-Repetition Rule: NEVER ask a question if the answer is already recorded in known_facts, conversation_summary, or previous turns.
 3. Real Execution & Honesty: NEVER fabricate search results, mock numbers, fake savings, or fake leads. If a tool executes, return the exact tool output.
-4. Dual Currency: Always present prices with USD ($) and BDT (à§³) equivalent @ 122.50.
+4. Dual Currency: Always present prices with USD ($) and BDT (৳) equivalent @ 122.50.
 5. Verification: Every response must be grounded, factual, complete, and schema-compliant.
 `.trim();
 

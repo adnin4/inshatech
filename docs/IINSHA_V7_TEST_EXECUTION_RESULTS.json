@@ -1,0 +1,121 @@
+{
+  "timestamp": "2026-11-13T11:40:05.937Z",
+  "allPassed": true,
+  "totalTests": 16,
+  "passCount": 16,
+  "failCount": 0,
+  "results": [
+    {
+      "test": "node --check app.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 45,
+      "outputSummary": ""
+    },
+    {
+      "test": "npm run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 227,
+      "outputSummary": "[BUILD] Cloudflare Pages build completed successfully."
+    },
+    {
+      "test": "npm test",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 1285,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/test_admin_auth_security.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 872,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/test_payment_adversarial_suite.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 151,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/test_sslcommerz_native_adapter.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 44,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/test_payment_hardening_contract.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 63,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/test_service_authority_and_pricing.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 79,
+      "outputSummary": "SERVICE_AUTHORITY_AND_PRICING=PASS"
+    },
+    {
+      "test": "node scripts/verify_payment_reconciliation.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 57,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/check_functions_imports.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 59,
+      "outputSummary": "Finished checking all functions imports (0 broken imports)."
+    },
+    {
+      "test": "node scripts/total_defect_scanner.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 1021,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/verify_deploy_artifact.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 387,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "npm run security:gate",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 301,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "npm run e2e",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 237,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/ci_evidence_runner.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 6178,
+      "outputSummary": "================================================================================"
+    },
+    {
+      "test": "node scripts/verify_handoff_docs.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "durationMs": 47,
+      "outputSummary": "[PASS] All 19 handoff documents verified: existence, >0 bytes, UTF-8 clean, non-empty."
+    }
+  ]
+}

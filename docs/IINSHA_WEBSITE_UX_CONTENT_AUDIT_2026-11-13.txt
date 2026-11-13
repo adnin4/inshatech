@@ -1,0 +1,35 @@
+================================================================================
+IINSHA AI-BOS — WEBSITE, CONTENT & UX TRUTH AUDIT (13 NOVEMBER 2026)
+================================================================================
+Audit Timestamp: 2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+Evaluated Scope: index.html, live_index.html, src/js/ux_interactions.js, app.js, and public customer journeys.
+
+1. PUBLIC CONTENT CLAIMS AUDIT & REMEDIATION
+--------------------------------------------------------------------------------
+| Original Public Claim | Issue / Regulatory Concern | V5.0 Remediation & Truth Contract | Status |
+|---|---|---|---|
+| "replace 80%+ of repetitive manual operations" | Unbounded absolute claim | Changed to "targeting up to 80% reduction in repetitive manual operations" | PASS |
+| "80 Verified Solutions Active" | Implied 80 active client production deployments | Changed to "80 Modular Solutions Catalogued" in HTML & JS counter | PASS |
+| "SOC2 Aligned Controls" | Implied formal SOC 2 Type II attestation | Changed to "SOC 2-Aligned Security Principles" | PASS |
+| "Zero Data Training" | Ambiguous scope | Clarified: "Zero Model Retraining (Enterprise API integration with contractual zero customer data model retention)" | PASS |
+| "Audit Trail Logging" | Generic marketing phrase | Clarified: "Audit Trail Architecture (Structured event logging and immutable audit trails for critical operations)" | PASS |
+| "Sub-4hr Critical Incident Response SLA" | Unrealistic across all tier levels | Qualified: "Target Sub-4hr Critical Incident Response (Enterprise Retainer)" | PASS |
+| "Hotfix SLA Guarantee" (svc-78) | Ambiguous enterprise scope | Updated title to "Hotfix SLA Target" / "Targeted sub-4hr resolution window on critical enterprise retainer tiers" | PASS |
+| 1-Year ROI Model Metrics Grid | Lack of obvious adjacent disclaimer | Placed prominent illustrative note directly above metrics grid: "* Illustrative projection based on modelled 80% automated execution across 52 operational weeks. Actual savings depend on workflow complexity and human oversight requirements." | PASS |
+| Service Search Empty State | Displayed simultaneously in text scrapers | Added HTML5 boolean `hidden` attribute and dynamic sync in `ux_interactions.js` (`emptyEl.hidden = visibleCount !== 0`), preventing false empty text on initial render | PASS |
+
+2. JOURNEY VALIDATION SUMMARY
+--------------------------------------------------------------------------------
+- Visitor -> Service Search:
+  * Initial State: 80 modular cards rendered, counter shows "80 Modular Solutions Catalogued", #service-search-empty is hidden.
+  * Search 'Invoice': Filters down to 1 matching card, counter updates to '1 Modular Solution Catalogued', empty alert stays hidden.
+  * Search 'zzz...': All cards hidden, counter shows '0 Modular Solutions Catalogued', empty alert becomes visible.
+  * Clear Query: All 80 cards restored smoothly.
+- Category Filter Tabs:
+  * 9 tabs active ('All Categories (80 Services)' + 8 domain tabs).
+  * Tab click filters to 10 cards per domain, or 80 cards on 'All'.
+- Demo Preview Bench:
+  * Clearly marked 'SIMULATED PREVIEW' across all states; zero synthetic output is claimed as live production execution.
+- Accessibility & WCAG 2.2 AA Compliance:
+  * All interactive form controls have explicit aria-label or associated label[for] attributes (verified 0 unlabeled inputs across 6 viewports in CDP audit).
+================================================================================

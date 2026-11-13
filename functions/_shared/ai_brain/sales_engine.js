@@ -9,8 +9,8 @@ export class SalesEngine {
       { id: 'industry', question_en: 'What industry is your business in?', question_bn: 'à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾ à¦•à§‹à¦¨ à¦¶à¦¿à¦²à§à¦ªà§‡?', required: true },
       { id: 'pain', question_en: 'What is the biggest bottleneck or problem you\'re facing?', question_bn: 'à¦†à¦ªà¦¨à¦¾à¦° à¦¸à¦¬à¦šà§‡à§Ÿà§‡ à¦¬à§œ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦•à§€?', required: true },
       { id: 'channel', question_en: 'Which channels do you use? (WhatsApp, Website, Email, Social)', question_bn: 'à¦†à¦ªà¦¨à¦¿ à¦•à§‹à¦¨ à¦šà§à¦¯à¦¾à¦¨à§‡à¦² à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§‡à¦¨?', required: false },
-      { id: 'team_size', question_en: 'How many people are on your team?', question_bn: 'à¦†à¦ªà¦¨à¦¾à¦° à¦Ÿà¦¿à¦®à§‡ à¦•à¦¤à¦œà¦¨ à¦†à¦›à§‡à¦¨?', required: false },
-      { id: 'budget', question_en: 'What\'s your approximate budget for automation?', question_bn: 'à¦†à¦ªà¦¨à¦¾à¦° à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨à§‡à¦° à¦¬à¦¾à¦œà§‡à¦Ÿ à¦•à¦¤?', required: false },
+      { id: 'team_size', question_en: 'How many people are on your team?', question_bn: 'আপনার টিমে কতজন আছেন?', required: false },
+      { id: 'budget', question_en: 'What\'s your approximate budget for automation?', question_bn: 'আপনার অটোমেশনের বাজেট কত?', required: false },
       { id: 'timeline', question_en: 'When do you need this deployed?', question_bn: 'à¦•à¦¬à§‡ à¦¡à¦¿à¦ªà§à¦²à§Ÿ à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?', required: false }
     ];
 
@@ -134,7 +134,7 @@ export class SalesEngine {
       title: `IINSHA AI Proposal: ${service.name}`,
       client: knownFacts.company || knownFacts.industry || 'Valued Client',
       service: service.name,
-      investment: `$${service.priceUSD} USD / à§³${Math.round(service.priceUSD * 122.50)}`,
+      investment: `$${service.priceUSD} USD / ৳${Math.round(service.priceUSD * 122.50)}`,
       delivery: `${service.deliveryDays} business days`,
       features: service.features,
       roi: roi,

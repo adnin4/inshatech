@@ -7,6 +7,7 @@ import { SalesEngine } from '../../../_shared/ai_brain/sales_engine.js';
 import { ToolExecutionGateway } from '../../../_shared/ai_brain/tool_execution_gateway.js';
 
 const ALLOWED_ORIGINS = [
+    'https://inshatech-b6b.pages.dev',
     'https://inshatech.pages.dev',
     'https://inshatech.com',
     'https://www.inshatech.com',
@@ -20,7 +21,7 @@ const ALLOWED_ORIGINS = [
 function isOriginAllowed(origin) {
     if (!origin) return false;
     if (ALLOWED_ORIGINS.includes(origin)) return true;
-    return /^https:\/\/[a-z0-9-]+\.inshatech\.pages\.dev$/i.test(origin);
+    return /^https:\/\/[a-z0-9-]+\.(?:inshatech|inshatech-b6b)\.pages\.dev$/i.test(origin);
 }
 
 function getCorsHeaders(request) {
@@ -113,7 +114,7 @@ export async function onRequestPost(context) {
         }
 
         const geminiApiKey = env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY;
-        const configuredModel = env.GEMINI_MODEL || 'gemini-3.8-flash';
+        const configuredModel = env.GEMINI_MODEL || 'gemini-1.5-flash';
         let reply = '';
         let modelUsed = 'deterministic_agentic_brain';
         let modelStatus = 'DETERMINISTIC_FALLBACK';

@@ -1,0 +1,11 @@
+IINSHA Engineering Ops plugin bundle
+
+1) Extract this archive.
+2) In PowerShell run:
+   powershell -ExecutionPolicy Bypass -File .\install-workspace.ps1 -WorkspacePath "C:\PATH\TO\YOUR\inshatech"
+3) Reload Antigravity IDE.
+4) Agent side panel (...) > Customizations: verify IINSHA Engineering Ops appears.
+5) Configure its GitHub and Supabase variables after reviewing the README in the plugin folder.
+6) Start with the plugin README's read-only discovery prompt.
+
+The plugin must be installed in .agents/plugins/ at the root of the actual Git workspace. Do not copy only plugin.json; keep the entire folder tree.

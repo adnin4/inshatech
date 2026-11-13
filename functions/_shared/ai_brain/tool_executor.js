@@ -85,8 +85,8 @@ class ToolExecutor {
                     data_mode: 'TAXONOMY_FIXTURE',
                     industry: p.industry,
                     employee_range: range,
-                    note: 'Connect Playwright Extractor / Supabase for live streaming records.',
-                    companies: [], note: 'Connect Supabase database or Playwright scraper to stream live company records.'
+                    companies: [],
+                    note: 'Connect Supabase database or Playwright scraper to stream live company records.'
                 };
             }
 
@@ -152,9 +152,9 @@ class ToolExecutor {
                     package: pkg,
                     pricing: {
                         setup_usd: `$${usd.toLocaleString()} USD`,
-                        setup_bdt: `à§³${bdt.toLocaleString('en-BD')} BDT (@ à§³122.50)`,
+                        setup_bdt: `৳${bdt.toLocaleString('en-BD')} BDT (@ ৳122.50)`,
                         monthly_retainer_usd: `$${Math.round(usd * 0.15)} USD/mo`,
-                        monthly_retainer_bdt: `à§³${Math.round(usd * 0.15 * bdtRate).toLocaleString('en-BD')} BDT/mo`
+                        monthly_retainer_bdt: `৳${Math.round(usd * 0.15 * bdtRate).toLocaleString('en-BD')} BDT/mo`
                     },
                     sla: "48-Hour Deployment & Setup",
                     hitl_safety: "4-Level HITL Governance & Owner Kill-Switch Enabled"

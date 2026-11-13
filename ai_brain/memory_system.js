@@ -14,7 +14,7 @@ class MemorySystem {
             company_name: "IINSHA AI-BOS & Automation Agency",
             founder: "Adnin Sadat Mahin (n8n Certified Automation Engineer)",
             contact_whatsapp: "+8801629286887",
-            contact_email: "adnansadatmahin5@gmail.com",
+            contact_email: "inshatech.dev@gmail.com",
             usd_to_bdt_rate: 122.50,
             sla_delivery_hours: 48,
             warranty_days: 14,
@@ -31,7 +31,7 @@ class MemorySystem {
             sops: [
                 "Always verify ICP company size and industry before executing lead discovery.",
                 "Never trigger external outbound messaging or email send without Level 2 HITL approval.",
-                "Always present dual currency ($ USD and à§³ BDT @ 122.50) for all pricing inquiries.",
+                "Always present dual currency ($ USD and ৳ BDT @ 122.50) for all pricing inquiries.",
                 "Never hallucinate lead numbers or mock search data â€” execute real tools and report exact counts."
             ]
         };

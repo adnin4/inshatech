@@ -33,7 +33,7 @@ export class SSLCommerzAdapter {
         customerEmail,
         customerPhone,
         serviceName,
-        appBaseUrl = 'https://inshatech.pages.dev'
+        appBaseUrl = 'https://inshatech-b6b.pages.dev'
     }) {
         if (!this.isConfigured()) {
             return {

@@ -9,8 +9,9 @@
  * 5) only verified payment-success events may move an order to paid.
  */
 
-import { SSLCommerzAdapter } from './providers/sslcommerz.js';
+import { SSLCommerzAdapter } from '../../_shared/payments/sslcommerz.js';
 import { canTransition, PAYMENT_STATES } from '../../_shared/payments/payment_state_machine.js';
+import { resolveTrustedBaseUrl } from '../../_shared/origin_policy.js';
 
 async function hmac(raw, secret) {
     const key = await crypto.subtle.importKey(
@@ -42,10 +43,11 @@ function json(status, payload) {
     return new Response(JSON.stringify(payload), { status, headers: headers() });
 }
 
-export async function onRequestGet({ request }) {
+export async function onRequestGet({ request, env = {} }) {
     // Legacy gateway browser-return compatibility. This GET path only redirects;
     // it never authenticates, records, or mutates payment state.
     const url = new URL(request.url);
+    const trustedBase = resolveTrustedBaseUrl(request, env);
     const orderId = String(
         url.searchParams.get('order_id') ||
         url.searchParams.get('tran_id') ||
@@ -59,7 +61,7 @@ export async function onRequestGet({ request }) {
         return json(400, { status: 'INVALID_RETURN' });
     }
 
-    const destination = new URL('https://inshatech.pages.dev/api/payments/return');
+    const destination = new URL('/api/payments/return', trustedBase);
     destination.searchParams.set('order_id', orderId);
     destination.searchParams.set('status', status);
     if (provider) destination.searchParams.set('provider', provider);

@@ -1,0 +1,143 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — OWNER GATES & CUTOVER CHECKLIST
+Document Identifier: DOC-GATES-CUTOVER-01
+Timestamp: 2026-11-11T20:55:00+06:00 (Asia/Dhaka)
+Target Release Ceiling: READY_FOR_STAGING
+Final Production Promotion: BLOCKED ON OWNER SIGN-OFF (Gates G1-G6)
+================================================================================
+
+1. OWNER BOUNDARY GOVERNANCE
+--------------------------------------------------------------------------------
+Under the Antigravity Zero False-Green Policy, all software engineering, code-level
+hardening, static contracts, test suites, and edge staging builds are 100% completed
+autonomously by the engineering agent. However, external platform credentials,
+cloud dashboard state changes, financial keys, and production DNS cutovers are
+isolated as explicit Owner Gates (G1-G6). No promotion to PRODUCTION_SEALED may
+occur until every gate below is satisfied.
+
+
+2. THE SIX INDEPENDENT OWNER GATES
+--------------------------------------------------------------------------------
+
+[GATE G1] GitHub CLI Workstation Authentication & Remote Branch Publication
+- Accountable Owner: Repository Owner / Lead Developer
+- Target Repository: https://github.com/adnin4/inshatech (Default branch: master)
+- Current Observed State:
+  * Local branch `master` is 115 commits ahead of `origin/master` (b3de765).
+  * Ancestry is 100% clean (origin/master is a direct ancestor of local HEAD).
+  * Review branch `release/v1500-browser-verified-20261110` is synced to local HEAD.
+  * Local `gh auth status` reports: "You are not logged into any GitHub hosts."
+- Required Owner Action:
+  1. Open terminal on this machine and execute:
+     gh auth login
+  2. Follow the web authentication prompt to log into GitHub.
+  3. Push the reviewed release branch to GitHub:
+     git push origin release/v1500-browser-verified-20261110
+  4. Create a clean Pull Request targeting `master` on GitHub.
+  5. Merge the PR following code review.
+- Status: BLOCKED_EXTERNAL
+
+
+[GATE G2] Cloudflare Control-Plane Authority & Legacy Host Retirement
+- Accountable Owner: Cloudflare Account Owner (Account ID: 0eaa8aeb3e2ea628065da5c05b1368a7)
+- Current Observed State:
+  * Two separate Pages hosts exist:
+    - Candidate Staging: https://inshatech-b6b.pages.dev/ (Direct Upload, active V1500)
+    - Legacy Production: https://inshatech.pages.dev/ (Git-integrated, stale main 45ee4c1)
+- Required Owner Action:
+  1. Log into Cloudflare Dashboard -> Workers & Pages.
+  2. Review the two projects: `inshatech` and `inshatech-b6b`.
+  3. In `inshatech` (legacy), configure an HTTP 301/308 redirect rule pointing all
+     traffic to https://inshatech-b6b.pages.dev/ (or attach the custom domain to
+     inshatech-b6b directly).
+  4. Confirm inshatech-b6b as the single canonical deployment target.
+- Status: BLOCKED_EXTERNAL
+
+
+[GATE G3] Supabase Database Unpause & Schema Parity Verification
+- Accountable Owner: Supabase Organization Administrator
+- Target Project: inshatech-db (Ref: kitwadizsvjmuxkfewxj, Region: ap-southeast-1)
+- Current Observed State:
+  * Supabase project status is INACTIVE (paused due to inactivity on free tier).
+  * Application defaults to fail-soft mode (/api/health returns database_pool: NOT_CONFIGURED).
+  * Supabase 1-year restore window is active (project paused within eligible period).
+- Required Owner Action:
+  1. Log into Supabase Dashboard -> Project `kitwadizsvjmuxkfewxj`.
+  2. Click "Restore Project" / "Unpause Project" to re-provision PostgreSQL compute.
+  3. Once active, download a fresh database backup before running any migration.
+  4. In Antigravity or via Supabase CLI v3, run:
+     supabase migration list --remote
+  5. Verify that all 29 migrations in `supabase/migrations/` match remote applied state.
+  6. Confirm explicit Data API table grants for new public tables (per 2026-10-30 policy).
+- Status: BLOCKED_EXTERNAL
+
+
+[GATE G4] Live Payment Gateway Merchant Credentials
+- Accountable Owner: Merchant Account Owner (bKash, Nagad, SSLCommerz)
+- Current Observed State:
+  * Application payment adapters in `functions/api/payments/` pass 83 sandbox unit
+    assertions with signature verification and replay defense.
+  * Live merchant credentials are NOT configured (sandbox mode active).
+- Required Owner Action:
+  1. Obtain production merchant credentials from payment providers:
+     - bKash: App Key, App Secret, Username, Password
+     - Nagad: Merchant ID, Public Key, Private Key
+     - SSLCommerz: Store ID, Store Passwd
+  2. In Cloudflare Dashboard -> Pages -> Settings -> Environment Variables, add:
+     - BKASH_APP_KEY, BKASH_APP_SECRET, BKASH_USERNAME, BKASH_PASSWORD
+     - NAGAD_MERCHANT_ID, NAGAD_PG_PUBLIC_KEY, NAGAD_MERCHANT_PRIVATE_KEY
+     - SSLCOMMERZ_STORE_ID, SSLCOMMERZ_STORE_PASSWD
+     - PAYMENT_WEBHOOK_SECRET, PAYMENT_ENVIRONMENT=production
+  3. Execute a live 1 BDT sandbox transaction to verify end-to-end IPN callback.
+- Status: BLOCKED_EXTERNAL
+
+
+[GATE G5] Authenticated Owner Session Validation
+- Accountable Owner: Platform Administrator / Super-Owner
+- Target Endpoint: https://inshatech-b6b.pages.dev/admin.html
+- Current Observed State:
+  * `/api/auth/session` passes 13/13 automated security assertions with OWASP PBKDF2
+    (600,000 iterations), TOTP MFA, and HttpOnly SameSite=Strict cookies.
+  * An automated agent CANNOT and MUST NOT simulate or fabricate owner authentication.
+- Required Owner Action:
+  1. Open https://inshatech-b6b.pages.dev/admin.html in a secure web browser.
+  2. Enter the owner email, password, and the 6-digit TOTP code from your authenticator app.
+  3. Confirm successful login, executive dashboard access, and workforce killswitch controls.
+- Status: NOT_VERIFIED (Owner manual verification required)
+
+
+[GATE G6] Production Domain & DNS Cutover
+- Accountable Owner: Domain DNS Registrar Administrator
+- Target Domain: inshatech.com / www.inshatech.com
+- Current Observed State:
+  * inshatech.com currently serves an older agency website.
+  * Pages project is ready to receive traffic once attached.
+- Required Owner Action:
+  1. In Cloudflare Dashboard -> Pages -> `inshatech-b6b` -> Custom Domains:
+     Add `inshatech.com` and `www.inshatech.com`.
+  2. Verify that Cloudflare generates SSL/TLS certificates (Universal SSL).
+  3. Update DNS CNAME record:
+     Host: @ (or www) -> Target: inshatech-b6b.pages.dev
+  4. Verify HTTPS routing, apex -> www redirect, and HSTS headers.
+- Status: BLOCKED_EXTERNAL
+
+
+3. CUTOVER EXECUTION SEQUENCE (STAGING -> PRODUCTION)
+--------------------------------------------------------------------------------
+Phase A: Prerequisites Validation
+  [ ] Gate G1 Cleared (Git push & PR merge on master)
+  [ ] Gate G2 Cleared (Cloudflare authority confirmed on inshatech-b6b)
+  [ ] Gate G3 Cleared (Supabase active & migrations verified)
+  [ ] Gate G4 Cleared (Merchant credentials set in Cloudflare)
+
+Phase B: Pre-Cutover Verification
+  [ ] Gate G5 Cleared (Owner logs into admin.html successfully)
+  [ ] Run live checkout test with 1 BDT sandbox transaction
+  [ ] Verify /api/version reports status: LIVE_VERIFIED and full_production_parity: true
+
+Phase C: Final Cutover
+  [ ] Gate G6 Cleared (Custom domain DNS attached in Cloudflare Pages)
+  [ ] Confirm inshatech.com serves IINSHA AI-BOS with valid SSL
+  [ ] Verify 0 visual regressions and 0 console errors on live domain
+  [ ] Promote release ceiling to PRODUCTION_SEALED
+===============================================================================

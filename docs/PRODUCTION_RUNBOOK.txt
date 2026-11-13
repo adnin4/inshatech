@@ -1,0 +1,234 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — PRODUCTION AND STAGING RUNBOOK
+Document Identifier: DOC-RUNBOOK-PROD-01
+Classification: CONFIDENTIAL / OPERATIONS MANUAL
+Author: Autonomous Engineering Organization & Principal SRE
+Release Target: READY_FOR_STAGING
+Active Canonical Host: https://inshatech-b6b.pages.dev/
+================================================================================
+
+1. SYSTEM TOPOLOGY AND INFRASTRUCTURE OVERVIEW
+--------------------------------------------------------------------------------
+The IINSHA TECH / IINSHA AI-BOS application is deployed on Cloudflare Pages with
+Cloudflare Workers Functions backend (Functions/API directory) and static asset
+edge distribution.
+
+Authoritative Entities:
+- Cloudflare Pages Project: inshatech
+- Cloudflare Account ID:    0eaa8aeb3e2ea628065da5c05b1368a7
+- Cloudflare Operator:      aaih.apon@gmail.com
+- Authoritative Hostname:   https://inshatech-b6b.pages.dev
+- Legacy Git Hostname:      https://inshatech.pages.dev (Linked to stale main branch)
+- Database Backend:         Supabase Postgres (Project Ref: kitwadizsvjmuxkfewxj)
+- Database Region:          ap-southeast-1 (Singapore)
+- Source Control:           https://github.com/adnin4/inshatech.git (Default: master)
+- Local Workspace:          C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+
+Current Operational State:
+- Staging Edge:             LIVE_VERIFIED (Cloudflare Pages Direct Upload)
+- GitHub Publication:       BLOCKED_EXTERNAL (Owner Gate G1: gh auth login required)
+- Supabase Database:        BLOCKED_EXTERNAL (Owner Gate G2: unpause required)
+- Payment Gateway Keys:     BLOCKED_EXTERNAL (Owner Gate G3: live keys required)
+- Overall Release Verdict:  READY_FOR_STAGING (Fail-Closed Zero False-Green standard)
+
+
+2. STANDARD DEPLOYMENT PROCEDURES
+--------------------------------------------------------------------------------
+A. Routine Staging Deployment (Direct Upload Mode)
+All edge assets and Functions/API endpoints are packaged and deployed via the
+Cloudflare Wrangler CLI.
+
+Prerequisites:
+1. All local tests must pass with exit code 0:
+   npm test
+   node scripts/ci_evidence_runner.mjs
+   node scripts/test_admin_auth_security.mjs
+   node scripts/test_release_identity.mjs
+2. Git working tree must be committed cleanly:
+   git status
+
+Deployment Command:
+   Set-Location "C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase"
+   npx wrangler pages deploy . --project-name=inshatech --branch=master
+
+Post-Deploy Telemetry Check:
+   curl -fsSL https://inshatech-b6b.pages.dev/api/version
+   curl -fsSL https://inshatech-b6b.pages.dev/api/health
+   curl -fsSL https://inshatech-b6b.pages.dev/api/agents/evidence
+
+Verify the following response fields:
+- status: "READY_FOR_STAGING"
+- parity: true
+- release_identity.shas.deployment_sha matches git rev-parse HEAD
+- evidence Merkle root is deterministic and tamper_evident is true
+
+B. Preview Branch Deployment
+To test isolated features on an ephemeral preview subdomain without affecting
+the canonical staging URL:
+
+   npx wrangler pages deploy . --project-name=inshatech --branch=preview-<feature-name>
+
+The CLI will output the unique preview URL in the format:
+   https://<deployment-id>.inshatech-b6b.pages.dev
+
+
+3. PROMOTION FROM STAGING TO PRODUCTION (OWNER GATES G1-G6)
+--------------------------------------------------------------------------------
+Under the strict Zero False-Green Policy, staging code cannot be promoted to
+production or marked PRODUCTION_SEALED until all 6 external owner gates are
+explicitly unlocked and verified:
+
+[G1] GitHub Authentication & Publication:
+     1. On the local workstation terminal, execute:
+        gh auth login
+     2. Follow interactive browser prompt to authenticate as 'adnin4'.
+     3. Push local master branch to remote:
+        git push origin master
+        git push origin release/v1500-browser-verified-20261110
+     4. Merge open PR #67 and PR #71 in GitHub UI.
+
+[G2] Supabase Cloud Instance Reactivation:
+     1. Open browser: https://supabase.com/dashboard/project/kitwadizsvjmuxkfewxj
+     2. In the project dashboard alert banner, click "Resume Project".
+     3. Wait 3-5 minutes for compute allocation in ap-southeast-1.
+     4. Confirm Table Editor displays active tables.
+     5. Take a manual snapshot backup in Database -> Backups before schema push.
+
+[G3] Production Payment Gateway Secrets:
+     In Cloudflare Dashboard -> Pages -> inshatech -> Settings -> Environment Variables,
+     supply production credentials for:
+     - BKASH_APP_KEY, BKASH_APP_SECRET, BKASH_USERNAME, BKASH_PASSWORD
+     - SSLCOMMERZ_STORE_ID, SSLCOMMERZ_STORE_PASSWORD
+     - STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+     - AMARPAY_STORE_ID, AMARPAY_SIGNATURE_KEY
+
+[G4] Custom Domain Routing (DNS Cutover):
+     In Cloudflare Pages -> Custom Domains:
+     Add: inshatech.com and www.inshatech.com
+     Configure CNAME record pointing to inshatech-b6b.pages.dev.
+
+[G5] Production Environment Variable Promotion:
+     Update ENVIRONMENT=production in Cloudflare Pages settings.
+     Set REQUIRE_LIVE_DB=true.
+
+[G6] Formal Production Certification Sign-Off:
+     Run end-to-end certification script:
+     node scripts/verify_live_browser_runtime.mjs
+     Upon green telemetry and DB connectivity, release status switches from
+     READY_FOR_STAGING to LIVE_VERIFIED.
+
+
+4. ROLLBACK AND DISASTER RECOVERY PROCEDURES
+--------------------------------------------------------------------------------
+A. Instant Edge Rollback (Under 60 Seconds)
+If an edge regression or defect is detected post-deployment:
+
+Method 1: Wrangler Instant Redeployment of Previous Stable SHA
+1. Find previous stable commit SHA:
+   git log -n 5 --oneline
+2. Checkout previous stable commit:
+   git checkout <stable-commit-sha>
+3. Deploy immediately:
+   npx wrangler pages deploy . --project-name=inshatech --branch=master
+4. Return to master branch:
+   git checkout master
+
+Method 2: Cloudflare Dashboard 1-Click Rollback
+1. Log into Cloudflare Dashboard: https://dash.cloudflare.com/
+2. Navigate to Workers & Pages -> inshatech -> Deployments.
+3. Locate the previous healthy deployment ID.
+4. Click the three dots (...) next to the deployment -> "Rollback to this deployment".
+5. Rollback is applied globally across Cloudflare edge within 30 seconds.
+
+B. Git Tree Rollback Protocol
+Never execute destructive 'git push --force' or 'git reset --hard' on public branches.
+To revert a problematic commit:
+1. Revert commit cleanly:
+   git revert <bad-commit-sha> -m 1
+2. Run test battery:
+   npm test
+3. Deploy new revert commit:
+   npx wrangler pages deploy . --project-name=inshatech --branch=master
+
+
+5. DATABASE RESTORE AND RECOVERY PROCEDURES
+--------------------------------------------------------------------------------
+Reference Document: docs/DATABASE_RECOVERY_AND_MIGRATION_PLAN.txt
+
+Pre-Migration Safety Checklist:
+1. Verify Supabase project 'kitwadizsvjmuxkfewxj' is unpaused and responding.
+2. Generate manual snapshot backup via Supabase Studio UI.
+3. Verify local schema compatibility:
+   node scripts/test_tenant_rls.mjs
+
+Database Migration Execution:
+From the local terminal with Supabase CLI linked:
+   npx supabase link --project-ref kitwadizsvjmuxkfewxj
+   npx supabase db push
+
+Point-in-Time Recovery (PITR) Procedure (Pro Plan):
+1. In Supabase Dashboard -> Database -> Backups -> Point in Time.
+2. Select target recovery timestamp (prior to incident).
+3. Click "Start Recovery" to fork a restored clone.
+4. Verify data integrity in the restored instance.
+5. Update SUPABASE_URL and SUPABASE_ANON_KEY in Cloudflare Pages to point to restored instance.
+
+
+6. PAYMENT INCIDENT PROTOCOL & WORKFORCE KILLSWITCH
+--------------------------------------------------------------------------------
+A. Emergency Workforce & Payment Killswitch
+In the event of anomalous agent transactions, runaway DAG loops, or payment gateway exploits:
+
+Trigger Killswitch via API (Owner Role):
+Endpoint: POST /api/admin/gate
+Headers:
+  Authorization: Bearer <ADMIN_SESSION_TOKEN>
+  Content-Type: application/json
+Body:
+  {
+    "action": "killswitch",
+    "target": "all_workforce",
+    "reason": "Emergency security lockdown"
+  }
+
+Response:
+  HTTP 200 OK
+  { "status": "KILLSWITCH_ENGAGED", "timestamp": "<ISO_TIMESTAMP>" }
+
+Effect:
+- Halts all 18 autonomous agent executions.
+- Disables payment initiation on /api/payments/create.
+- Returns fail-closed HTTP 503 SERVICE_UNAVAILABLE to mutating requests.
+- Read-only catalog views, static UI, and ROI calculators remain available.
+
+B. Payment Replay and Concurrency Incidents
+If duplicate transaction attempts or race conditions occur:
+1. The double-entry financial ledger in 'supabase/migrations/20260818000014_financial_ledger_and_state_machine.sql'
+   enforces database-level mutex locking (FOR UPDATE) and unique idempotency keys.
+2. Run reconciliation script to detect discrepancies:
+   node scripts/test_payment_reconciliation.mjs
+3. For gateway-level duplicates, consult the provider dashboard (bKash/SSLCommerz/Stripe)
+   and initiate refunds using the gateway reference ID stored in 'payment_transactions'.
+
+
+7. INCIDENT CLASSIFICATION AND ESCALATION MATRIX
+--------------------------------------------------------------------------------
+Severity Levels:
+- P0 (CRITICAL): Complete site outage, payment double-charge, unauthenticated admin access,
+  or data exfiltration. Response Time: < 15 minutes. Action: Instant rollback / Killswitch.
+- P1 (HIGH): Service catalogue broken, copilot runtime loop, or DB connection pool exhaustion.
+  Response Time: < 1 hour. Action: Diagnostic probe / hotfix deploy.
+- P2 (MEDIUM): Minor UI alignment defect, non-critical telemetry missing.
+  Response Time: < 24 hours. Action: Scheduled sprint fix.
+- P3 (LOW): Documentation typo or cosmetic formatting.
+  Response Time: Next release cycle.
+
+Emergency Escalation Contacts:
+1. Release Manager & Principal Architect: Adnin Khan (Owner / Lead)
+2. SRE & Infrastructure Lead: aaih.apon@gmail.com
+3. Supabase Organization Admin: adnin4 / iinshatech org
+4. Cloudflare Enterprise Account Administrator
+
+================================================================================
+END OF PRODUCTION AND STAGING RUNBOOK
+================================================================================

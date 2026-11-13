@@ -1,0 +1,206 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — DATABASE RECOVERY AND MIGRATION PLAN
+Document Identifier: DOC-DB-MIG-01
+Classification: CONFIDENTIAL / DATABASE ARCHITECTURE
+Author: Autonomous Engineering Organization & Principal Database Architect
+Status: READY_FOR_STAGING
+================================================================================
+
+1. DATABASE TARGET AND CURRENT OPERATIONAL TRUTH
+--------------------------------------------------------------------------------
+Canonical Backend Target:
+- Provider:                 Supabase Cloud (PostgreSQL 15 / 16)
+- Project Reference:        kitwadizsvjmuxkfewxj
+- Project Name:             inshatech-db
+- Geographic Region:        ap-southeast-1 (Singapore)
+- REST API Endpoint:        https://kitwadizsvjmuxkfewxj.supabase.co
+- Database Status:          INACTIVE [BLOCKED_EXTERNAL Gate G2]
+- Fail-Soft Runtime Policy: The application defaults to fail-soft mode; all
+                            client-side catalog browsing, service exploration,
+                            ROI calculations, and static architecture run without
+                            exposing raw database errors to visitors.
+
+Official Supabase Restore Window Eligibility:
+- Under current Supabase platform governance, free-tier paused projects remain
+  restorable directly from the owner dashboard for up to 1 year (365 days) from
+  the initial pause event.
+- Compute and volume attachments are maintained in dormant cold storage in ap-southeast-1.
+- Paid tiers (Pro / Team / Enterprise) maintain continuous retention and point-in-time
+  recovery (PITR) up to 7, 14, or 28 days depending on organization policy.
+
+
+2. EXHAUSTIVE INVENTORY OF 29 SCHEMA MIGRATIONS (FORWARD ORDER)
+--------------------------------------------------------------------------------
+The repository maintains 29 immutable, sequential SQL migrations located in
+supabase/migrations/. All migrations must be applied strictly in ascending
+order to ensure zero foreign key or dependency constraint violations:
+
+Migration 01: 20260809000000_init_iinsha_os.sql
+- Purpose: Establishes foundational schema, core tables (ibos_services, ibos_orders,
+  ibos_profiles, ibos_referral_clicks), UUID extensions, and initial enum types.
+
+Migration 02: 20260818000001_autonomous_company_os.sql
+- Purpose: Introduces autonomous business operating system entities, tenant profiles,
+  and workflow configuration entities.
+
+Migration 03: 20260818000002_master_spec_additions.sql
+- Purpose: Expands service categorization, metadata fields, and client inquiry models.
+
+Migration 04: 20260818000003_ultimate_revenue_os.sql
+- Purpose: Implements subscription tiers, quote request pipelines, and pricing engine entities.
+
+Migration 05: 20260818000004_agent_missions_hitl.sql
+- Purpose: Adds Human-In-The-Loop (HITL) mission queues, approval requests, and agent task states.
+
+Migration 06: 20260818000005_nextgen_runtime_observability.sql
+- Purpose: Establishes agent runtime telemetry tables, execution logs, and step tracking.
+
+Migration 07: 20260818000006_workforce_control_plane.sql
+- Purpose: Creates workforce control plane, agent registry metadata, and supervisor links.
+
+Migration 08: 20260818000007_control_plane_autonomy.sql
+- Purpose: Defines autonomy tiers (Tier 1: Read-only, Tier 2: Guided, Tier 3: Autonomous).
+
+Migration 09: 20260818000008_agent_contracts_memory.sql
+- Purpose: Adds long-term agent episodic memory, contract schemas, and semantic context stores.
+
+Migration 10: 20260818000009_digital_workforce_masterplan.sql
+- Purpose: Configures 18 specialist agent role profiles and skill linkage matrices.
+
+Migration 11: 20260818000010_production_control_plane.sql
+- Purpose: Production hardening for control plane tables with indexing and integrity checks.
+
+Migration 12: 20260818000011_ai_bos_final_masterplan.sql
+- Purpose: Integrates end-to-end AI-BOS workflow dispatch rules and system configurations.
+
+Migration 13: 20260818000012_iinsha_ai_os_2_final_backbone.sql
+- Purpose: Sets up resilient fallback pathways, service heartbeat tracking, and edge sync tables.
+
+Migration 14: 20260818000013_enterprise_multi_tenancy_rls.sql
+- Purpose: Mandates Row Level Security (RLS) across all tenant-scoped tables with organization_id isolation.
+
+Migration 15: 20260818000014_financial_ledger_and_state_machine.sql
+- Purpose: Implements double-entry financial ledger, immutable transaction logs, atomic balance
+  updates, and state machine transitions preventing negative balances.
+
+Migration 16: 20260819000001_security_hardening.sql
+- Purpose: Restricts public schema execution privileges, disables unsafe RPC functions, and hardens auth hooks.
+
+Migration 17: 20260820000001_enterprise_profiles_and_leads_rls.sql
+- Purpose: Normalizes enterprise profile fields and isolates lead capture tables per tenant.
+
+Migration 18: 20260820000002_enterprise_architecture_leads_and_transactions.sql
+- Purpose: Connects inbound leads with transaction histories and quote calculation pipelines.
+
+Migration 19: 20260820000003_deterministic_rls_and_bkash_orders.sql
+- Purpose: Adds specific bKash transaction tracking tables, webhook idempotency stores, and strict RLS.
+
+Migration 20: 20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql
+- Purpose: Incorporates Role-Based Access Control (RBAC: owner, admin, member, viewer) and atomic settlements.
+
+Migration 21: 20260820000005_rls_policy_normalization.sql
+- Purpose: Standardizes RLS policy naming and eliminates circular dependency evaluation traps (re-sequenced to avoid timestamp prefix collision).
+
+Migration 22: 20260823000001_autonomous_company_engine.sql
+- Purpose: Core engine schemas for background autonomous business cycles and scheduled executions.
+
+Migration 23: 20260823000002_revenue_lifecycle.sql
+- Purpose: Implements invoice generation, recurring billing cycles, and commission disbursement models.
+
+Migration 24: 20260823000003_autonomous_business_execution.sql
+- Purpose: Sets up distributed task locks, queue execution heartbeats, and failure retry backoff.
+
+Migration 25: 20260823000004_control_plane_models.sql
+- Purpose: Data models for administrative dashboards, agent capability toggles, and system audits.
+
+Migration 26: 20260823000005_performance_fk_indexes.sql
+- Purpose: Adds high-performance B-tree composite indexes on foreign keys to eliminate table scans.
+
+Migration 27: 20260823000006_actionable_fk_performance_indexes.sql
+- Purpose: Secondary index optimizations for high-throughput query paths in agent execution logs.
+
+Migration 28: 20260823000007_zero_trust_rls_security_invoker.sql
+- Purpose: Converts database views to SECURITY INVOKER mode and closes permission escalation paths.
+
+Migration 29: 20260823000008_authoritative_coupon_redemption_system.sql
+- Purpose: Authoritative server-side discount coupon redemption, single-use enforcement, and audit logs.
+
+
+3. STEP-BY-STEP OWNER RECOVERY AND RESUMPTION PROCEDURE
+--------------------------------------------------------------------------------
+Phase 1: Project Reactivation
+1. Navigate to: https://supabase.com/dashboard/project/kitwadizsvjmuxkfewxj
+2. Click the green "Restore Project" or "Unpause Project" button.
+3. Wait approximately 2 to 5 minutes while compute resources are provisioned.
+4. Verify project status turns to "ACTIVE" with a green indicator.
+
+Phase 2: Pre-Migration Backup (MANDATORY)
+1. In the Supabase Dashboard, select "Database" from the left menu.
+2. Select "Backups".
+3. Under "Manual Backup", click "Take Backup Now".
+4. Confirm backup archive generation completes before executing any schema scripts.
+
+Phase 3: Connection Verification and Local Link
+From your local administrative terminal:
+1. Ensure Supabase CLI is authenticated:
+   npx supabase login
+2. Link the repository to the remote project:
+   npx supabase link --project-ref kitwadizsvjmuxkfewxj
+3. Test remote database connectivity:
+   node scripts/check_direct_db.mjs
+
+Phase 4: Schema Application (Zero-Data-Loss Forward Migration)
+1. Review pending migrations:
+   npx supabase migration list
+2. Execute forward schema push:
+   npx supabase db push
+3. Confirm all 29 migrations report status 'Applied'.
+
+
+4. POST-MIGRATION INTEGRITY AND SECURITY VERIFICATION
+--------------------------------------------------------------------------------
+Execute the following verification queries in Supabase SQL Editor:
+
+A. Confirm Row Level Security is active on 100% of public tables:
+   SELECT tablename, rowsecurity
+   FROM pg_tables
+   WHERE schemaname = 'public'
+   ORDER BY tablename;
+   Invariant: Every table must have rowsecurity = true.
+
+B. Verify Foreign Key Index Coverage:
+   SELECT
+       conrelid::regclass AS table_name,
+       a.attname AS fk_column
+   FROM pg_constraint c
+   JOIN pg_attribute a ON a.attrelid = c.conrelid AND a.attnum = ANY(c.conkey)
+   WHERE c.contype = 'f' AND c.connamespace = 'public'::regnamespace;
+
+C. Execute Local Test Suite:
+   node scripts/test_tenant_rls.mjs
+   node scripts/test_tenant_isolation_adversarial.mjs
+   Both suites must pass with exit code 0.
+
+
+5. ROLLBACK AND DISASTER RECOVERY PROTOCOL
+--------------------------------------------------------------------------------
+1. Non-Destructive Forward Schema Principle:
+   - All migrations are non-destructive and forward-only (additive column additions,
+     indexes, and non-blocking constraints).
+   - Never run 'DROP TABLE' or 'DROP SCHEMA CASCADE' in production.
+
+2. Restoring from Snapshot Backup:
+   - In Supabase Dashboard -> Database -> Backups.
+   - Select the pre-migration snapshot taken in Phase 2.
+   - Click "Restore" to re-instantiate the database state.
+   - Cloudflare Pages Functions will automatically reconnect upon compute restoration.
+
+3. Restoring via Point-in-Time Recovery (PITR):
+   - Pro and Enterprise tiers allow restoring to any specific second within the retention window.
+   - In Supabase Dashboard -> Database -> Backups -> PITR.
+   - Select target timestamp preceding the defect.
+   - Trigger restore to an isolated clone, verify data integrity, and update Cloudflare secrets.
+
+================================================================================
+END OF DATABASE RECOVERY AND MIGRATION PLAN
+================================================================================

@@ -1,13 +1,16 @@
 {
+  "snapshot_type": "SNAPSHOT_ONLY",
+  "captured_at": "2026-11-03T21:43:00Z",
+  "captured_source_sha": "b3de7650b65e388514ca82674654c92241ea8811",
   "platform": "IINSHA AI-BOS Autonomous Company Operating System",
   "release_channel": "production_candidate",
   "identity_source": "CI_SOURCE_OF_TRUTH",
   "source_repository": "https://github.com/adnin4/inshatech.git",
   "canonical_branch": "master",
-  "canonical_runtime_code_head": "144afdddbbba7e38a27609f5ec5c937e75b10148",
-  "current_repository_tip": "144afdddbbba7e38a27609f5ec5c937e75b10148",
+  "canonical_runtime_code_head": "b3de7650b65e388514ca82674654c92241ea8811",
+  "current_repository_tip": "b3de7650b65e388514ca82674654c92241ea8811",
   "runtime_identity": "UNVERIFIED",
-  "build_timestamp": "2026-09-10T07:30:39.680Z",
+  "build_timestamp": "2026-09-10T12:00:00Z",
   "schema_version": "2026.9.8-autonomous-v2",
   "database_identity": {
     "canonical_db_ref": "kitwadizsvjmuxkfewxj",
@@ -30,5 +33,7 @@
     "rollback": "UNVERIFIED"
   },
   "parity_policy": "EXTERNAL_PROOF_REQUIRED",
-  "certification_status": "READY_FOR_STAGING"
+  "certification_status": "READY_FOR_STAGING",
+  "authority_type": "GOVERNANCE_SNAPSHOT",
+  "dynamic_evidence_authority": "ci-failure-evidence/summary.json"
 }

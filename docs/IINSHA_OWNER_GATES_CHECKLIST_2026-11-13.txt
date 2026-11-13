@@ -1,0 +1,70 @@
+================================================================================
+IINSHA AI-BOS — OWNER GATES CHECKLIST (13 NOVEMBER 2026)
+================================================================================
+Baseline Timestamp: 2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+The following 6 Owner Gates require external credentials, control-plane access,
+or physical MFA confirmation from the owner before production promotion can proceed.
+
+GATE G1: GITHUB CLI AUTHENTICATION & BRANCH PUBLICATION
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Evidence:          `gh auth status` exited 1 (not logged in); origin/master is at b3de7650b65e388514ca82674654c92241ea8811; PR #67 and draft PR #71 remain open and unmerged.
+- Owner Action:
+  1. Authenticate interactively: `gh auth login`
+  2. Inspect local candidate: `git log origin/master..HEAD --oneline`
+  3. Push review branch: `git push origin release/iinsha-ai-bos-verified-20261112`
+  4. Review and approve PR into canonical `master`.
+  5. Configure repository secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`) for GitHub Actions Direct Upload.
+
+GATE G2: CLOUDFLARE PAGES AUTHORITY, DO WORKER & SECRETS BINDING
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL (Standalone DO Worker packaged locally; Cloudflare Pages secrets empty)
+- Evidence:          Pages project `inshatech` has 0 secrets configured in Cloudflare dashboard (`/api/admin/gate` returns 503). Local Worker `workers/security-coordinator/` created with SQLite migrations.
+- Owner Action:
+  1. Deploy Security Coordinator Worker:
+     `npx wrangler deploy --config workers/security-coordinator/wrangler.toml --env staging`
+  2. In Cloudflare Pages Settings -> Functions:
+     Bind Durable Object `SECURITY_COORDINATOR` -> class `SecurityCoordinator` from worker `inshatech-security-coordinator-staging`.
+  3. Configure Pages environment secrets:
+     `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET`, `MFA_SECRET`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`.
+
+GATE G3: SUPABASE ACTIVE DATABASE RECONCILIATION & MIGRATION PARITY
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Evidence:          Project `kitwadizsvjmuxkfewxj` configured in wrangler.toml is INACTIVE. Project `iuhtzahuszdkdarhxobx` is ACTIVE_HEALTHY in account `aaih.apon@gmail.com`. Local repository has 29 SQL migrations in `supabase/migrations/`.
+- Owner Action:
+  1. Decide canonical database authority:
+     Option A: Unpause `kitwadizsvjmuxkfewxj` in Supabase Studio.
+     Option B: Update `wrangler.toml` to point to active project `iuhtzahuszdkdarhxobx`.
+  2. Verify migration parity via dry-run:
+     `npx supabase db push --dry-run --remote=<selected_project_ref>`
+  3. Serially apply approved migrations and verify `/api/health?type=readiness` returns HTTP 200.
+
+GATE G4: PAYMENT GATEWAY CREDENTIALS & SANDBOX TESTING
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Evidence:          Adapters (`sslcommerz`, `lemonsqueezy`, `bkash`, `stripe`) return 422 `GATEWAY_CREDENTIALS_REQUIRED` or fail-closed 503 when merchant secrets are absent. Nagad is NOT implemented in `SUPPORTED_PROVIDERS` and remains unadvertised.
+- Owner Action:
+  1. Provision sandbox merchant credentials in Cloudflare Pages staging:
+     `SSLCOMMERZ_STORE_ID`, `SSLCOMMERZ_STORE_PASSWORD`, `SSLCOMMERZ_IS_LIVE=false`, Stripe API keys, Lemon Squeezy webhook secret, bKash credentials.
+  2. Run sandbox checkout and verified IPN callback before switching `SSLCOMMERZ_IS_LIVE=true`.
+
+GATE G5: OWNER MFA & SECURE CREDENTIAL COMMISSIONING
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Evidence:          All frontend bypasses and hardcoded passwords have been removed. Login strictly requires valid PBKDF2 hash (600,000 iterations) + 6-digit physical TOTP.
+- Owner Action:
+  1. Generate salted PBKDF2-HMAC-SHA256 hash (`pbkdf2:600000:<saltHex>:<hashHex>`), random `JWT_SECRET`, and base32 `MFA_SECRET`.
+  2. Enroll TOTP key into Google Authenticator or 1Password.
+  3. Authenticate at `/admin` via `/api/auth/session` and confirm authenticated health UI.
+
+GATE G6: PRODUCTION CUSTOM DOMAIN CUTOVER (INSHATECH.COM)
+--------------------------------------------------------------------------------
+- Status:            BLOCKED_EXTERNAL
+- Evidence:          `https://inshatech.com/` and `https://www.inshatech.com/` currently serve legacy website (`Insha Technologies | Home`).
+- Owner Action:
+  1. Ensure Gates G1 through G5 are fully green.
+  2. Verify staging deploy artifact via `.github/workflows/release-direct-upload.yml`.
+  3. Bind `inshatech.com` and `www.inshatech.com` in Cloudflare Pages Custom Domains.
+  4. Validate SSL/TLS certificate, HTTP->HTTPS redirect, and `Link: <https://inshatech.com/>; rel="canonical"`.
+================================================================================

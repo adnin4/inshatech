@@ -87,7 +87,7 @@ INSERT INTO ibos_theme_settings (key, value, description) VALUES
 ('accent_gold', '#f59e0b', 'Accent Gold'),
 ('accent_emerald', '#10b981', 'Accent Emerald'),
 ('bg_mode', 'dark', 'Glassmorphism Dark Mode'),
-('font_family', "'Inter', sans-serif", 'Google Font')
+('font_family', '''Inter'', sans-serif', 'Google Font')
 ON CONFLICT (key) DO NOTHING;
 
 -- ============================================================

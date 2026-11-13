@@ -1,0 +1,126 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — OWNER GATES & PRODUCTION COMMISSIONING CHECKLIST
+Document Identifier: DOC-IINSHA-OWNER-GATES-20261111
+Audit Timestamp: 2026-11-12T00:01:12.506+06:00 (Asia/Dhaka — Machine Clock)
+Target Release Ceiling: READY_FOR_STAGING
+Production Sealed Status: NOT APPROVED (Blocked on Owner Gates G1-G6)
+================================================================================
+
+1. GOVERNANCE & PRINCIPLES
+--------------------------------------------------------------------------------
+Under the Antigravity Zero False-Green Policy, all software engineering, code-level
+hardening, local test suites, edge staging builds, and synthetic verification are
+100% completed autonomously by the engineering agent. However, external platform
+credentials, cloud dashboard state modifications, live financial transactions, and
+production DNS changes are strictly isolated as explicit Owner Gates (G1 to G6).
+No promotion to PRODUCTION_SEALED or PRODUCTION_READY may occur until every gate
+below is satisfied and verified with hard evidence.
+
+
+2. THE SIX OWNER GATES
+--------------------------------------------------------------------------------
+
+[GATE G1] GitHub Workstation CLI Authentication & Branch Publication
+- Accountable:        Repository Owner / Lead Developer
+- Target Repository:  https://github.com/adnin4/inshatech (Default branch: master)
+- Current Observed State:
+  * Local branch `master` is 116 commits ahead of `origin/master` (b3de765).
+  * Ancestry is clean: `origin/master` is a direct ancestor of local HEAD (532fc91).
+  * Review branch `release/v1500-browser-verified-20261110` is synced to local HEAD.
+  * Local workstation `gh auth status` reports:
+    "You are not logged into any GitHub hosts. To log in, run: gh auth login"
+- Required Single Action:
+  1. Open a PowerShell terminal on this machine and execute:
+     gh auth login
+  2. Select GitHub.com, HTTPS, authenticate with web browser.
+  3. Push the review branch to GitHub:
+     git push origin release/v1500-browser-verified-20261110
+  4. Create a Pull Request targeting master on GitHub and merge following review.
+- Status:             BLOCKED_EXTERNAL
+
+
+[GATE G2] Cloudflare Single Deployment Authority Confirmation
+- Accountable:        Cloudflare Account Owner (Account ID: 0eaa8aeb3e2ea628065da5c05b1368a7)
+- Current Observed State:
+  * Two separate Pages hosts exist:
+    - Candidate Staging: https://inshatech-b6b.pages.dev/ (Direct Upload, active V1500)
+    - Legacy Git Host:   https://inshatech.pages.dev/ (Git-integrated to stale main 45ee4c1)
+- Required Single Action:
+  1. In Cloudflare Dashboard -> Workers & Pages:
+  2. Confirm `inshatech-b6b` (or canonical inshatech project) as the single Direct Upload authority.
+  3. Configure an HTTP 301/308 redirect rule on legacy `inshatech.pages.dev` forwarding to
+     `inshatech-b6b.pages.dev` to eliminate dual-authority race conditions.
+- Status:             BLOCKED_EXTERNAL
+
+
+[GATE G3] Supabase Database Unpause & Schema Parity Verification
+- Accountable:        Supabase Organization Administrator
+- Target Project:     inshatech-db (Ref: kitwadizsvjmuxkfewxj, Region: ap-southeast-1)
+- Current Observed State:
+  * Project state is INACTIVE in Supabase management plane.
+  * Remote migrations query timed out because PostgreSQL process is suspended.
+  * 29 forward-only SQL migrations exist locally in `supabase/migrations/`.
+- Required Single Action:
+  1. Log into Supabase Dashboard (https://supabase.com/dashboard/project/kitwadizsvjmuxkfewxj).
+  2. Click "Restore project" / "Unpause project".
+  3. Wait until project status transitions to ACTIVE.
+  4. Confirm database connectivity via `npx supabase migration list --remote=kitwadizsvjmuxkfewxj`.
+- Status:             BLOCKED_EXTERNAL
+
+
+[GATE G4] Production Payment Gateway Live Merchant Credentials
+- Accountable:        Merchant Account Holder / CFO
+- Current Observed State:
+  * Payment adapters for bKash, Nagad, SSLCommerz, and Stripe are fully implemented
+    and verified in sandbox mode (9/9 automated FinTech tests pass).
+  * Edge secrets for live production merchant keys are not provisioned.
+- Required Single Action:
+  1. In Cloudflare Dashboard -> Workers & Pages -> inshatech-b6b -> Settings -> Variables and Secrets:
+  2. Provision genuine live production merchant keys for bKash, Nagad, and SSLCommerz:
+     - BKASH_APP_KEY, BKASH_APP_SECRET, BKASH_USERNAME, BKASH_PASSWORD
+     - NAGAD_MERCHANT_ID, NAGAD_PG_PUBLIC_KEY, NAGAD_MERCHANT_PRIVATE_KEY
+     - SSLCOMMERZ_STORE_ID, SSLCOMMERZ_STORE_PASSWORD
+  3. Execute one owner-approved low-value live test charge and refund.
+- Status:             BLOCKED_EXTERNAL
+
+
+[GATE G5] Physical TOTP MFA Authentication on Owner Health UI
+- Accountable:        Platform Security Administrator / Owner
+- Current Observed State:
+  * OWASP PBKDF2 (600,000 iterations), TOTP MFA, signed HMAC-SHA256 session tokens,
+    and Secure HttpOnly cookies are fully implemented in `functions/api/auth/session.js`.
+  * Physical TOTP verification can only be performed by the human owner.
+- Required Single Action:
+  1. Navigate to https://inshatech-b6b.pages.dev/admin/login.html in browser.
+  2. Enter owner credentials and generate TOTP code via Authenticator app locally.
+  3. Confirm successful login and observe authenticated SRE dashboard.
+  * NEVER share TOTP seed, password, or generated one-time code in chat or commit files.
+- Status:             BLOCKED_EXTERNAL
+
+
+[GATE G6] Production Custom Domain & DNS Cutover
+- Accountable:        DNS / Domain Administrator
+- Current Observed State:
+  * Custom domain https://inshatech.com/ and https://www.inshatech.com/ currently serve
+    a legacy static agency website.
+  * Staging candidate is verified on https://inshatech-b6b.pages.dev/.
+- Required Single Action:
+  1. In Cloudflare Dashboard -> Workers & Pages -> inshatech-b6b -> Custom Domains:
+  2. Add `inshatech.com` and `www.inshatech.com`.
+  3. Verify CNAME and SSL certificate issuance.
+  4. Perform multi-resolver DNS propagation checks.
+  5. Retain legacy rollback route until 48 hours post-cutover observation completes.
+- Status:             BLOCKED_EXTERNAL
+
+
+3. CHECKLIST SUMMARY TABLE
+--------------------------------------------------------------------------------
+Gate  Area                Accountable Owner     Action Summary                     Status
+--------------------------------------------------------------------------------
+G1    GitHub Publication  Lead Developer        Run `gh auth login` & push PR      BLOCKED_EXTERNAL
+G2    Cloudflare Authority Cloudflare Admin     Confirm authority & set redirect   BLOCKED_EXTERNAL
+G3    Supabase Recovery   Supabase Admin        Unpause project in dashboard       BLOCKED_EXTERNAL
+G4    Live Payment Keys   Merchant / CFO        Add live keys to Cloudflare env    BLOCKED_EXTERNAL
+G5    Owner TOTP Login    Security Admin        Perform physical TOTP in browser   BLOCKED_EXTERNAL
+G6    DNS / Domain        Domain Admin          Attach custom domain & verify DNS  BLOCKED_EXTERNAL
+================================================================================

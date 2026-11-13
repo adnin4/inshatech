@@ -27,7 +27,7 @@ export async function onRequestPost(context) {
 
         if (query.includes('revenue') || query.includes('sales') || query.includes('earning')) {
             response.intent = 'REVENUE_LOOKUP';
-            response.summary = "Today's Gross Revenue: $1,850 USD (à§³226,625 BDT) across 3 orders (+18% vs 7-day average).";
+            response.summary = "Today's Gross Revenue: $1,850 USD (৳226,625 BDT) across 3 orders (+18% vs 7-day average).";
             response.data = { todayUSD: 1850, monthUSD: 24820, profitMargin: "68.4%" };
         } else if (query.includes('budget') || query.includes('cost') || query.includes('spend')) {
             response.intent = 'BUDGET_ANALYSIS';

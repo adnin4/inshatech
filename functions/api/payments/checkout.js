@@ -12,28 +12,22 @@
  * - Public response fields remain compatible with existing payment UI consumers.
  */
 
-const ORIGINS = new Set([
-    'https://inshatech.pages.dev',
-    'https://inshatech.com',
-    'https://www.inshatech.com',
-    'https://admin.inshatech.com'
-]);
-
 const SUPPORTED_PROVIDERS = new Set(['sslcommerz', 'lemonsqueezy', 'bkash', 'stripe']);
 const SSL_MIN_BDT = 10;
 const SSL_MAX_BDT = 500000;
 
 import { evaluateCoupon, evaluateCouponWithDb } from '../../_shared/payments/coupon_policy.js';
 import { resolveFxRate, convertUsdToBdt } from '../../_shared/payments/fx_policy.js';
+import { resolveCorsOrigin, resolveTrustedBaseUrl, isApprovedProductionHost } from '../../_shared/origin_policy.js';
 
 const cors = r => {
-    const o = r.headers.get('Origin') || '';
     return {
-        'Access-Control-Allow-Origin': ORIGINS.has(o) ? o : 'https://inshatech.pages.dev',
+        'Access-Control-Allow-Origin': resolveCorsOrigin(r),
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
+        'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff'
     };
 };
 
@@ -338,6 +332,8 @@ export async function onRequestPost({ request, env = {} }) {
             body: JSON.stringify(dbOrderPayload)
         });
 
+        const appBaseUrl = resolveTrustedBaseUrl(request, env);
+
         if (!dbRes.ok) {
             if (dbRes.status === 409) {
                 const replayRes = await fetch(
@@ -348,7 +344,7 @@ export async function onRequestPost({ request, env = {} }) {
                     const replayOrders = await replayRes.json().catch(() => []);
                     if (Array.isArray(replayOrders) && replayOrders.length > 0) {
                         const existing = replayOrders[0];
-                        const cachedRedirect = existing.metadata?.gateway_redirect_url || (existing.payment_status === 'paid' ? `https://inshatech.pages.dev/portal.html?order_id=${existing.order_code}` : null);
+                        const cachedRedirect = existing.metadata?.gateway_redirect_url || (existing.payment_status === 'paid' ? `${appBaseUrl}/portal?order_id=${existing.order_code}` : null);
                         return json({
                             status: 'SUCCESS',
                             action: 'idempotent_order_reused',
@@ -390,16 +386,20 @@ export async function onRequestPost({ request, env = {} }) {
                     amount_bdt: bdtForGateway
                 }, 422, h);
             }
+            const sslIsLive = env.SSLCOMMERZ_IS_LIVE === 'true' && isApprovedProductionHost(request);
+            const sslEndpoint = sslIsLive
+                ? 'https://securepay.sslcommerz.com/gwprocess/v4/api.php'
+                : 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php';
             const postData = new URLSearchParams({
                 store_id: storeId,
                 store_passwd: storePass,
                 total_amount: bdtForGateway.toString(),
                 currency: 'BDT',
                 tran_id: orderId,
-                success_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=success`,
-                fail_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=failed`,
-                cancel_url: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&status=canceled`,
-                ipn_url: 'https://inshatech.pages.dev/api/payments/webhook',
+                success_url: `${appBaseUrl}/api/payments/return?order_id=${orderId}&status=success`,
+                fail_url: `${appBaseUrl}/api/payments/return?order_id=${orderId}&status=failed`,
+                cancel_url: `${appBaseUrl}/api/payments/return?order_id=${orderId}&status=canceled`,
+                ipn_url: `${appBaseUrl}/api/payments/webhook`,
                 cus_name: customerName,
                 cus_email: customerEmail,
                 cus_add1: 'Dhaka, Bangladesh',
@@ -411,7 +411,7 @@ export async function onRequestPost({ request, env = {} }) {
                 product_category: 'AI Software & Automation',
                 product_profile: 'non-physical-goods'
             });
-            const liveRes = await fetch('https://securepay.sslcommerz.com/gwprocess/v4/api.php', {
+            const liveRes = await fetch(sslEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: postData.toString()
@@ -446,7 +446,7 @@ export async function onRequestPost({ request, env = {} }) {
                             product_options: {
                                 name: serviceTitle,
                                 description: `Order ${orderId}${packageSelection.deliveryDays ? ` - Delivery SLA: ${packageSelection.deliveryDays} Days` : ''}`,
-                                redirect_url: `https://inshatech.pages.dev/portal.html?order_id=${orderId}`
+                                redirect_url: `${appBaseUrl}/portal?order_id=${orderId}`
                             },
                             checkout_data: {
                                 email: customerEmail,
@@ -477,7 +477,11 @@ export async function onRequestPost({ request, env = {} }) {
                     amount_bdt: bdtForGateway
                 }, 422, h);
             }
-            const tokenRes = await fetch('https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant', {
+            const bkashIsLive = env.BKASH_IS_LIVE === 'true' && isApprovedProductionHost(request);
+            const bkashApiBase = bkashIsLive
+                ? 'https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout'
+                : 'https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout';
+            const tokenRes = await fetch(`${bkashApiBase}/token/grant`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', username, password },
                 body: JSON.stringify({ app_key: appKey, app_secret: appSecret })
@@ -486,7 +490,7 @@ export async function onRequestPost({ request, env = {} }) {
             if (!tokenData.id_token) {
                 return json({ status: 'GATEWAY_ERROR', gateway: 'bKash Tokenized Merchant', order_id: orderId }, 502, h);
             }
-            const createRes = await fetch('https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/create', {
+            const createRes = await fetch(`${bkashApiBase}/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -496,7 +500,7 @@ export async function onRequestPost({ request, env = {} }) {
                 body: JSON.stringify({
                     mode: '0011',
                     payerReference: customerPhone,
-                    callbackURL: `https://inshatech.pages.dev/api/payments/return?order_id=${orderId}&provider=bkash&status=return`,
+                    callbackURL: `${appBaseUrl}/api/payments/return?order_id=${orderId}&provider=bkash&status=return`,
                     amount: bdtForGateway.toString(),
                     currency: 'BDT',
                     intent: 'sale',
@@ -520,8 +524,8 @@ export async function onRequestPost({ request, env = {} }) {
                 }, 422, h);
             }
             const postParams = new URLSearchParams({
-                success_url: `https://inshatech.pages.dev/portal.html?session_id={CHECKOUT_SESSION_ID}&order_id=${orderId}`,
-                cancel_url: 'https://inshatech.pages.dev/store.html?canceled=true',
+                success_url: `${appBaseUrl}/portal?session_id={CHECKOUT_SESSION_ID}&order_id=${orderId}`,
+                cancel_url: `${appBaseUrl}/store?canceled=true`,
                 'payment_method_types[0]': 'card',
                 mode: 'payment',
                 client_reference_id: orderId,

@@ -296,7 +296,7 @@ I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.ta
 
 ðŸ“¦ **Package:** ${prop.package}
 ðŸ’° **Setup Price (USD):** **${prop.pricing.setup_usd}**
-à§³ **BDT Equivalent (à§³):** **${prop.pricing.setup_bdt}**
+৳ **BDT Equivalent (৳):** **${prop.pricing.setup_bdt}**
 ðŸ”„ **Monthly Retainer:** ${prop.pricing.monthly_retainer_usd} (${prop.pricing.monthly_retainer_bdt})
 
 ðŸ›¡ï¸ **SLA Guarantee:** ${prop.sla} (100% source code handover with 14-day warranty).`;
@@ -323,7 +323,7 @@ I have initialized our **Commander + Hunter + Analyst Swarm** targeting **${d.ta
         let repaired = originalText;
         issues.forEach(issue => {
             if (issue.includes('dual currency')) {
-                repaired += `\n\n*(Note: Dual Currency Rate standard: $1 USD = à§³122.50 BDT)*`;
+                repaired += `\n\n*(Note: Dual Currency Rate standard: $1 USD = ৳122.50 BDT)*`;
             }
         });
         return repaired;

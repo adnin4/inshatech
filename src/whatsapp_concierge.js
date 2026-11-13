@@ -181,7 +181,7 @@
                         <span>⚡</span> Self-Hosted n8n Cluster ($497)
                     </button>
 
-                    <textarea id="wa-custom-msg" class="wa-input-box" rows="2" placeholder="Or type your custom project question..."></textarea>
+                    <textarea id="wa-custom-msg" aria-label="Custom WhatsApp Project Question" class="wa-input-box" rows="2" placeholder="Or type your custom project question..."></textarea>
 
                     <button id="wa-submit-btn" class="wa-send-btn">
                         <span>Send to WhatsApp</span> <span>➔</span>

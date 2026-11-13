@@ -1,8 +1,29 @@
 {
   "version": 1,
   "include": [
-    "/",
-    "/api/*"
+    "/*"
   ],
-  "exclude": []
+  "exclude": [
+    "/services/*",
+    "/assets/*",
+    "/css/*",
+    "/js/*",
+    "/src/*",
+    "/*.html",
+    "/*.css",
+    "/*.js",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.png",
+    "/*.webp",
+    "/*.webm",
+    "/*.mp4",
+    "/*.ico",
+    "/*.svg",
+    "/*.woff",
+    "/*.woff2",
+    "/*.xml",
+    "/*.txt",
+    "/*.json"
+  ]
 }

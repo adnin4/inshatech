@@ -1,0 +1,94 @@
+================================================================================
+IINSHA TECH / IINSHA AI-BOS — FINAL MASTER ENGINEERING & RELEASE AUDIT REPORT
+Document Identifier: DOC-IINSHA-FINAL-REPORT-20261113-V50
+Audit Timestamp: 2026-11-13T01:21:00+06:00 (Asia/Dhaka — Machine Clock)
+Target Workspace: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository: https://github.com/adnin4/inshatech (Numeric ID: 1324580119)
+Release Boundary & Ceiling: READY_FOR_STAGING (Local RC Verified; Pending External Owner Gates)
+Production Sealed Status: NOT APPROVED (Blocked on Owner Gates G1 through G6)
+Zero False-Green Policy: STRICTLY ENFORCED
+================================================================================
+
+1. EXECUTIVE RESULT
+--------------------------------------------------------------------------------
+- Release Ceiling:           READY_FOR_STAGING
+- Production Sealed:         NOT APPROVED (Blocked on Owner Gates G1–G6)
+- Active Staging Host:       https://inshatech-b6b.pages.dev/
+  * Serving older deployment SHA 74d90b14143e936587153464557a7e6d0f35fb9c
+  * /api/version -> READY_FOR_STAGING, full_production_parity=false
+  * /api/health -> EDGE_HEALTHY (DAC), database_pool=NOT_CONFIGURED, readiness=NOT_READY
+  * /api/health?type=readiness -> HTTP 503 (EXPECTED_SECURITY_DENIAL; DB unlinked)
+  * /api/admin/gate -> HTTP 503 (EXPECTED_SECURITY_DENIAL; zero Cloudflare secrets)
+- Production Domains State:  https://inshatech.com/ and https://www.inshatech.com/
+  * Both serve legacy site: "<title>Insha Technologies | Home</title>" (Length: 23,057 bytes)
+  * Cutover strictly pending Owner Gate G6 (DNS, TLS, Pages custom domain binding)
+- Supabase Project State:
+  * Project ref `kitwadizsvjmuxkfewxj` configured in wrangler.toml is INACTIVE (paused)
+  * Project ref `iuhtzahuszdkdarhxobx` in same account is ACTIVE_HEALTHY
+  * Remote database DDL/migrations strictly locked until owner reconciles project authority
+
+2. GITHUB IDENTITY & SOURCE TRACEABILITY
+--------------------------------------------------------------------------------
+- GitHub Repository:         adnin4/inshatech (Public)
+- Canonical Default Branch:  master (origin/master: b3de7650b65e388514ca82674654c92241ea8811)
+- Separated Remote Branch:   main (origin/main: 45ee4c1f90f699686c71912a7f22598cbe3b0a74)
+- Open Pull Requests:
+  * PR #67: Open, head ddf90cfe10a6934ff2a949be7cd9a0002a5c09ad (stale base vs master)
+  * PR #71: Open, Draft, head cd760c39c6985d75eaf01d900d8e85b1705d9a00 (stacked on PR #67)
+- Local Git Status:
+  * Local master HEAD:       870dda2698938f62ea22dc7e2cbd2ecbe29afc7e (+ V5 updates)
+  * Master Ahead Delta:      142 commits ahead of origin/master (0 behind, linear descendant)
+  * Working Tree:            Clean, verified via git fsck --full (0 corrupt objects)
+- Source Publication Status: BLOCKED_EXTERNAL (`gh auth status` exit code 1; workstation unauthenticated)
+- Cold Backup Bundles Preserved:
+  1. ..\inshatech-master-backup-20261112.bundle (77,862,331 bytes, SHA-256: CA932EAA41289969481F595A304DA4B9CF99741DD946D50B2829D046E4860D44)
+  2. ..\inshatech-master-backup-20261112-2126.bundle (78,228,275 bytes, SHA-256: 1E43EFA6744428DA60725B12719BB7D52DD57136731778E23C50DFA2278D6088)
+  3. ..\inshatech-master-backup-20261112-2151.bundle (78,309,772 bytes, SHA-256: 274E6FF9065B50E5B12E26411BF7181B65E3C7733139E02187BB06CC8B0828F5)
+  4. ..\inshatech-master-backup-20261112-final.bundle (78,323,719 bytes, SHA-256: FB566AFB2FC5CB4662927580F1BF4906A23A7E57C797804509A1F48D208FF4A7)
+  5. ..\inshatech-master-backup-20261113-0115.bundle (78,324,714 bytes, SHA-256: 957E5ADE7EC05AF7B431574F5201B56F5EFA9A739A3EDDD18C4E3FE9FFAC0C23)
+  6. ..\inshatech-master-backup-20261113-v5.bundle (78,348,756 bytes, SHA-256: 37BF29822A4F1EB9B86E01848FF0159E4C0241D20DE115A2CFD915587B9370AC) [Verified V5 final RC bundle]
+
+3. V5.0 REMEDIATIONS & SYSTEM AUDIT CLOSURES
+--------------------------------------------------------------------------------
+- Content Truth & Public Claims Alignment (`index.html`, `live_index.html`, `src/js/ux_interactions.js`):
+  * Replaced unverified absolute claims with measured, truthful targets ("target replacing up to 80% manual operations", "80 Modular Solutions Catalogued").
+  * Qualified compliance and security cards ("SOC 2-Aligned Security Principles", "Zero Model Retraining", "Audit Trail Architecture").
+  * Retained "Target Sub-4hr Critical Incident Response (Enterprise Retainer)" to prevent misleading clients.
+  * Added prominent visual disclaimer to ROI calculator: "* Illustrative projection based on modelled 80% automated execution across 52 operational weeks. Actual savings depend on workflow complexity and human oversight requirements."
+  * Sealed service search empty-state with standard HTML5 `hidden` attribute and runtime toggle in `src/js/ux_interactions.js` (`emptyEl.hidden = visibleCount !== 0`), eliminating false empty messages on page load.
+- Security Coordinator DO Worker Architecture (`workers/security-coordinator/`, `functions/_shared/auth_gate.js`):
+  * Packaged standalone Durable Object Worker with SQLite schema for staging and production.
+  * Differentiated DO communication failures (`503 SECURITY_AUTHORITY_UNAVAILABLE`) from authentic revoked sessions (`401 TOKEN_REVOKED`).
+- Origin Policy & Payment Guardrails (`functions/_shared/origin_policy.js`, `functions/_shared/payments/legacy_route_guard.js`, `functions/api/payments/`):
+  * Replaced loose origin checks with strict allowlist (`inshatech.com`, `www.inshatech.com`, `admin.inshatech.com`, `inshatech-b6b.pages.dev`, `inshatech.pages.dev`, `*.inshatech-b6b.pages.dev`).
+  * Closed host-header and unallowlisted origin injection (fail-closed to staging base URL).
+  * Converted all 9 legacy/simulated direct endpoints to explicit `onRequestPost`/`onRequestOptions` exports returning HTTP 400 `DIRECT_AMOUNT_DISABLED`.
+- Staging Deploy Artifact Hygiene (`.assetsignore`, `scripts/verify_deploy_artifact.mjs`):
+  * Hardened exclusion list; staged artifact verified: 401 clean publishable files, 0 forbidden files, 15/15 required runtime files, and auto-generated `release-manifest.json` SHA-256 ledger.
+- Permanent Headless Chrome CDP Verification (`scripts/cdp_qa_audit.mjs`):
+  * Headless Chrome automated testing across 6 viewports (`1440x900` to `360x800`): 0px overflow, 80 unique service IDs, WebGL2 canvas active, celestial video advancing, live search reactive, and unauthenticated `/admin` barrier verified.
+
+4. COMPREHENSIVE POST-EDIT TEST EVIDENCE
+--------------------------------------------------------------------------------
+- `node --check app.js`                         : PASS (Exit 0)
+- `npm run build` (`scripts/build_pages.mjs`)   : PASS (22 sections verified)
+- `npm test` (claims, responsive, mobile)       : PASS (10/10 claims, 36/36 responsive, 29/29 mobile)
+- `node scripts/test_admin_auth_security.mjs`   : PASS (33/33 security tests, 100%)
+- `node scripts/test_payment_adversarial_suite.mjs`: PASS (42/42 assertions, 100%)
+- `node scripts/test_sslcommerz_native_adapter.mjs`: PASS (3/3 assertions)
+- `node scripts/test_payment_hardening_contract.mjs`: PASS (8/8 assertions)
+- `node scripts/test_service_authority_and_pricing.mjs`: PASS
+- `node scripts/verify_payment_reconciliation.mjs`: PASS (17/17 assertions)
+- `node scripts/check_functions_imports.mjs`    : PASS (0 broken imports across 175 functions)
+- `node scripts/total_defect_scanner.mjs`       : PASS (175 functions, 30 HTML, 175 JSON, 0 defects)
+- `node scripts/verify_deploy_artifact.mjs`     : PASS (401 clean files, 0 forbidden, 15/15 runtime)
+- `npm run security:gate`                       : PASS (753 files audited, 0 P0/P1 defects)
+- `npm run e2e` (`scripts/public_site_e2e.mjs`) : PASS (12/12 public pages verified)
+- `node scripts/ci_evidence_runner.mjs`         : PASS (28/28 CI suites passed, exit 0)
+- `node scripts/cdp_qa_audit.mjs` (CDP 6 viewports): PASS (0px overflow, 80 IDs, WebGL2, unlabeledInputs: 0)
+
+5. FINAL VERDICT
+--------------------------------------------------------------------------------
+VERDICT: READY_FOR_STAGING (Local release candidate verified; promotion pending Owner Gates G1–G6)
+PRODUCTION SEALED: NO (Never claim sealed while database, secrets, MFA, and cutover remain blocked externally)
+================================================================================

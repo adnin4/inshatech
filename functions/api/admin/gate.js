@@ -1,7 +1,45 @@
-﻿/** IINSHA admin gate â€” fail-closed HMAC session verification. */
-const ORIGINS=new Set(['https://inshatech.pages.dev','https://inshatech.com','https://www.inshatech.com','https://admin.inshatech.com']);
-const cors=r=>{const o=r.headers.get('Origin')||'';return {'Access-Control-Allow-Origin':ORIGINS.has(o)?o:'https://inshatech.pages.dev','Access-Control-Allow-Methods':'GET, OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization','Content-Type':'application/json','Cache-Control':'no-store'};};
-const unb64=s=>atob(s.replace(/-/g,'+').replace(/_/g,'/')+'='.repeat((4-s.length%4)%4));
-export async function onRequestGet({request,env={}}){const h=cors(request);try{if(!env.JWT_SECRET)return new Response(JSON.stringify({authenticated:false,status:'CONFIGURATION_ERROR'}),{status:503,headers:h});const a=request.headers.get('Authorization')||'';if(!a.startsWith('Bearer '))return new Response(JSON.stringify({authenticated:false,status:'UNAUTHORIZED'}),{status:401,headers:h});const [p,s]=a.slice(7).split('.');if(!p||!s)return new Response(JSON.stringify({authenticated:false,status:'INVALID_TOKEN'}),{status:401,headers:h});const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(env.JWT_SECRET),{name:'HMAC',hash:'SHA-256'},false,['sign']);const expected=btoa(String.fromCharCode(...new Uint8Array(await crypto.subtle.sign('HMAC',k,new TextEncoder().encode(p))))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');if(expected!==s)return new Response(JSON.stringify({authenticated:false,status:'FORGERY_REJECTED'}),{status:401,headers:h});const payload=JSON.parse(unb64(p));const now=Math.floor(Date.now()/1000);if(!payload.exp||now>=payload.exp)return new Response(JSON.stringify({authenticated:false,status:'TOKEN_EXPIRED'}),{status:401,headers:h});if(payload.role!=='owner'||payload.hierarchy_level!==1||payload.mfa_verified!==true)return new Response(JSON.stringify({authenticated:false,status:'PRIVILEGE_REJECTED'}),{status:403,headers:h});return new Response(JSON.stringify({authenticated:true,status:'AUTHORIZED',user:{email:payload.sub,role:payload.role,hierarchy_level:payload.hierarchy_level,mfa_verified:true},expires_at:new Date(payload.exp*1000).toISOString()}),{status:200,headers:h});}catch(e){return new Response(JSON.stringify({authenticated:false,status:'INVALID_TOKEN'}),{status:401,headers:h});}}
-export function onRequestOptions({request}){return new Response(null,{status:204,headers:cors(request)});}
+/**
+ * IINSHA Admin Gate — Fail-closed HMAC Session Verification Endpoint.
+ * Serves /api/admin/gate to verify server-side session validity before allowing UI or privileged access.
+ */
 
+import { getCorsHeaders, httpStatusForAuthError, verifyServerSession } from '../../_shared/auth_gate.js';
+
+export async function onRequestGet(context) {
+    const { request, env = {} } = context;
+    const headers = getCorsHeaders(request);
+
+    try {
+        const auth = await verifyServerSession(request, env, {
+            requiredRole: 'owner',
+            minHierarchyLevel: 1,
+            requireMfa: true
+        });
+
+        if (!auth.authorized) {
+            const httpStatus = httpStatusForAuthError(auth.status);
+            return new Response(JSON.stringify({
+                authenticated: false,
+                status: auth.status,
+                error: auth.error
+            }), { status: httpStatus, headers });
+        }
+
+        return new Response(JSON.stringify({
+            authenticated: true,
+            status: 'AUTHORIZED',
+            user: auth.user,
+            expires_at: auth.expires_at
+        }), { status: 200, headers });
+    } catch (e) {
+        return new Response(JSON.stringify({
+            authenticated: false,
+            status: 'INVALID_TOKEN',
+            error: e.message || 'Token verification error'
+        }), { status: 401, headers });
+    }
+}
+
+export function onRequestOptions(context) {
+    return new Response(null, { status: 204, headers: getCorsHeaders(context.request) });
+}

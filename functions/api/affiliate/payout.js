@@ -2,7 +2,7 @@
  * Cloudflare Pages Function: /api/affiliate/payout
  * Enterprise Affiliate Payout Safety, Threshold & L3 Owner Gate Engine
  * Enforces:
- * 1. Minimum Payout Threshold ($50.00 USD / à§³6,125.00 BDT)
+ * 1. Minimum Payout Threshold ($50.00 USD / ৳6,125.00 BDT)
  * 2. LEVEL_3_APPROVAL Owner Authorization Barrier
  * 3. Immutable Double-Entry Ledger Reconciliation
  * 4. Payout Idempotency Key (Zero Double Payouts)
@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
         if (isNaN(amount) || amount < MINIMUM_PAYOUT_USD) {
             return new Response(JSON.stringify({
                 status: 'ERROR',
-                error: `Requested amount ($${amount.toFixed(2)}) is below the minimum payout threshold of $${MINIMUM_PAYOUT_USD.toFixed(2)} USD (à§³${Math.round(MINIMUM_PAYOUT_USD * USD_TO_BDT)} BDT)`
+                error: `Requested amount ($${amount.toFixed(2)}) is below the minimum payout threshold of $${MINIMUM_PAYOUT_USD.toFixed(2)} USD (৳${Math.round(MINIMUM_PAYOUT_USD * USD_TO_BDT)} BDT)`
             }), { headers, status: 400 });
         }
 

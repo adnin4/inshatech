@@ -7,10 +7,13 @@
  * permitted via verified server-to-server IPN at /api/payments/webhook.
  */
 
+import { resolveTrustedBaseUrl } from '../../../_shared/origin_policy.js';
+
 export async function onRequest(context) {
-    const { request } = context;
+    const { request, env = {} } = context;
     const url = new URL(request.url);
-    const returnUrl = new URL('https://inshatech.pages.dev/api/payments/return');
+    const trustedBase = resolveTrustedBaseUrl(request, env);
+    const returnUrl = new URL('/api/payments/return', trustedBase);
 
     for (const [k, v] of url.searchParams.entries()) {
         returnUrl.searchParams.set(k, v);

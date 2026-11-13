@@ -110,7 +110,7 @@
         }
 
         formatBDT(usd) {
-            return 'à§³' + Math.round(usd * USD_TO_BDT_RATE).toLocaleString('en-US');
+            return '৳' + Math.round(usd * USD_TO_BDT_RATE).toLocaleString('en-US');
         }
 
         isBengali(text) {
@@ -147,14 +147,14 @@
                     }
                     #iinsha-copilot-trigger:hover {
                         transform: translateY(-4px) scale(1.03) !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(99, 102, 241, 0.55) !important;
                     }
                     .copilot-trigger-avatar {
                         width: 40px !important;
                         height: 40px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -183,7 +183,7 @@
                     }
                     .copilot-trigger-subtitle {
                         font-size: 0.72rem !important;
-                        color: #38bdf8 !important;
+                        color: #ffffff !important;
                         font-weight: 500 !important;
                     }
                     #iinsha-copilot-window {
@@ -237,7 +237,7 @@
                         width: 36px !important;
                         height: 36px !important;
                         border-radius: 12px !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -289,7 +289,7 @@
                     .copilot-ctrl-btn:hover {
                         background: rgba(255, 255, 255, 0.15) !important;
                         color: #ffffff !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                     }
                     .copilot-chips-bar {
                         padding: 10px 14px !important;
@@ -315,7 +315,7 @@
                     }
                     .copilot-chip:hover {
                         background: rgba(99, 102, 241, 0.2) !important;
-                        border-color: #38bdf8 !important;
+                        border-color: #ffffff !important;
                         color: #ffffff !important;
                         transform: translateY(-2px) !important;
                     }
@@ -350,7 +350,7 @@
                         width: 28px !important;
                         height: 28px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%) !important;
+                        background: linear-gradient(135deg, #ffffff 0%, #6366f1 100%) !important;
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
@@ -427,7 +427,7 @@
                         width: 34px !important;
                         height: 34px !important;
                         border-radius: 50% !important;
-                        background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%) !important;
+                        background: linear-gradient(135deg, #6366f1 0%, #ffffff 100%) !important;
                         border: none !important;
                         color: #ffffff !important;
                         display: flex !important;
@@ -448,6 +448,32 @@
                         font-size: 0.68rem !important;
                         color: #64748b !important;
                         font-weight: 500 !important;
+                    }
+                    @media (max-width: 768px) {
+                        #iinsha-copilot-teaser {
+                            display: none !important;
+                        }
+                        #iinsha-copilot-trigger,
+                        .iinsha-cockpit-launcher {
+                            bottom: 74px !important;
+                            right: 14px !important;
+                            padding: 6px 12px 6px 8px !important;
+                            transform: scale(0.92) !important;
+                            transform-origin: bottom right !important;
+                        }
+                        body.cta-dismissed #iinsha-copilot-trigger,
+                        body.cta-dismissed .iinsha-cockpit-launcher {
+                            bottom: 16px !important;
+                        }
+                        #iinsha-copilot-window {
+                            width: 100vw !important;
+                            height: 100vh !important;
+                            max-width: 100vw !important;
+                            max-height: 100vh !important;
+                            bottom: 0 !important;
+                            right: 0 !important;
+                            border-radius: 0 !important;
+                        }
                     }
                 `;
                 document.head.appendChild(styleEl);
@@ -473,7 +499,7 @@
                         <defs>
                             <linearGradient id="geminiGradTrig" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="50%" stop-color="#38bdf8" />
+                                <stop offset="50%" stop-color="#ffffff" />
                                 <stop offset="100%" stop-color="#818cf8" />
                             </linearGradient>
                         </defs>
@@ -492,7 +518,7 @@
             teaser.id = 'iinsha-copilot-teaser';
             teaser.innerHTML = `
                 <div style="flex:1;">
-                    <strong style="color:#38bdf8; display:block; margin-bottom:2px;">âœ¨ Deploy Enterprise AI for your Business</strong>
+                    <strong style="color:#ffffff; display:block; margin-bottom:2px;">âœ¨ Deploy Enterprise AI for your Business</strong>
                     Ask about 24/7 AI agents, pricing, or paste your website URL to build an automated product catalog in 20 mins!
                 </div>
                 <button class="teaser-close" title="Close">âœ•</button>
@@ -548,15 +574,15 @@
                 <!-- Mini Mission Console HUD -->
                 <div class="copilot-mission-mini-hud" style="background:rgba(15,23,42,0.9); padding:6px 14px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.72rem; font-family:'Inter',sans-serif; display:flex; justify-content:space-between; align-items:center;">
                     <div style="display:flex; align-items:center; gap:6px;">
-                        <span style="color:#38bdf8; font-family:monospace; font-weight:700;">MISSION: #8421</span>
+                        <span style="color:#ffffff; font-family:monospace; font-weight:700;">MISSION: #8421</span>
                         <span style="color:#94a3b8;">â€¢</span>
                         <span style="color:#34d399; font-size:0.68rem; font-weight:600;">5 AGENTS ACTIVE</span>
                     </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <div style="width:60px; height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden;">
-                            <div style="width:78%; height:100%; background:linear-gradient(90deg, #38bdf8, #34d399);"></div>
+                            <div style="width:78%; height:100%; background:linear-gradient(90deg, #ffffff, #34d399);"></div>
                         </div>
-                        <span style="color:#38bdf8; font-family:monospace; font-size:0.68rem;">78%</span>
+                        <span style="color:#ffffff; font-family:monospace; font-size:0.68rem;">78%</span>
                     </div>
                 </div>
 
@@ -634,7 +660,7 @@
                 ttsBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     this.ttsEnabled = !this.ttsEnabled;
-                    ttsBtn.style.color = this.ttsEnabled ? '#00f2fe' : '';
+                    ttsBtn.style.color = this.ttsEnabled ? '#ffffff' : '';
                     ttsBtn.innerHTML = this.ttsEnabled ? 'ðŸ”Š' : 'ðŸ”‡';
                     if (!this.ttsEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
                 });
@@ -843,7 +869,7 @@
                         <p style="font-size:0.75rem; color:#cbd5e1; margin:0 0 6px 0;">${item.desc}</p>
                         <div class="copilot-card-pricing">
                             <span class="copilot-card-usd">$${item.priceUSD} USD</span>
-                            <span class="copilot-card-bdt">(${bdt} @ à§³${USD_TO_BDT_RATE})</span>
+                            <span class="copilot-card-bdt">(${bdt} @ ৳${USD_TO_BDT_RATE})</span>
                         </div>
                         <div class="copilot-card-actions">
                             <button class="copilot-btn-sm" onclick="window.UniversalAiCopilotInstance.triggerCheckout('${item.name}', '$${item.priceUSD}')">ðŸ›’ Buy Now / Deploy</button>
@@ -858,7 +884,7 @@
         renderIngestionPrompt() {
             const html = `
                 <div class="copilot-ingestor-box">
-                    <strong style="color:#00f2fe; display:block; font-size:0.85rem;">âš¡ 20-Minute E-Commerce Database Builder</strong>
+                    <strong style="color:#ffffff; display:block; font-size:0.85rem;">âš¡ 20-Minute E-Commerce Database Builder</strong>
                     <p style="font-size:0.74rem; color:#cbd5e1; margin:4px 0 8px 0;">
                         à¦†à¦ªà¦¨à¦¾à¦° à¦“à§Ÿà§‡à¦¬à¦¸à¦¾à¦‡à¦Ÿ à¦¬à¦¾ à¦…à¦¨à¦²à¦¾à¦‡à¦¨ à¦¶à¦ªà§‡à¦° à¦²à¦¿à¦‚à¦• à¦¦à¦¿à¦¨à¥¤ à¦†à¦®à¦¾à¦¦à§‡à¦° AI à¦•à§à¦°à¦²à¦¾à¦° à¦•à§à¦¯à¦¾à¦Ÿà¦¾à¦²à¦— à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à§à¦Ÿ à¦•à¦°à§‡ 1536d à¦­à§‡à¦•à§à¦Ÿà¦° à¦à¦®à§à¦¬à§‡à¦¡à¦¿à¦‚ à¦¬à¦¾à¦¨à¦¾à¦¬à§‡ à¦à¦¬à¦‚ à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª/à¦®à§‡à¦¸à§‡à¦žà§à¦œà¦¾à¦°à§‡ à¦…à¦Ÿà§‹-à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ à¦°à§‡à¦¡à¦¿ à¦•à¦°à§‡ à¦¦à§‡à¦¬à§‡!
                     </p>
@@ -880,7 +906,7 @@
             setTimeout(() => {
                 this.hideTyping();
                 const resultHtml = `
-                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:6px;">
+                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius: 18px; padding:14px; margin-top:6px;">
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
                             <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">âœ“ DATABASE INGESTION COMPLETE</span>
                             <span style="font-size:0.7rem; color:#94a3b8; font-family:monospace;">Speed: 18.4s</span>
@@ -888,16 +914,16 @@
                         <div style="font-size:0.78rem; line-height:1.6; color:#e2e8f0;">
                             <div>ðŸŒ <strong>Source Shop:</strong> <code>${targetUrl}</code></div>
                             <div>ðŸ“¦ <strong>Catalog Extracted:</strong> 28 Products & Variations</div>
-                            <div>ðŸ’° <strong>Pricing Engine:</strong> Auto-Synced in USD & BDT (à§³122.50)</div>
+                            <div>ðŸ’° <strong>Pricing Engine:</strong> Auto-Synced in USD & BDT (৳122.50)</div>
                             <div>ðŸ§  <strong>Vector Embeddings:</strong> text-embedding-3-large (1536 dims)</div>
                             <div>âš¡ <strong>Status:</strong> Ready for Live Messenger / WhatsApp AI Bot</div>
                         </div>
 
                         <div style="margin-top:10px; padding:10px; background:rgba(0,0,0,0.4); border-radius:8px; border:1px dashed rgba(0,242,254,0.3);">
-                            <span style="font-size:0.7rem; color:#00f2fe; font-weight:700; display:block; margin-bottom:4px;">ðŸ¤– Test Live Ingested Bot:</span>
+                            <span style="font-size:0.7rem; color:#ffffff; font-weight:700; display:block; margin-bottom:4px;">ðŸ¤– Test Live Ingested Bot:</span>
                             <div style="font-size:0.75rem; color:#cbd5e1; font-style:italic;">
                                 "Customer: à¦­à¦¾à¦‡, à¦†à¦ªà¦¨à¦¾à¦¦à§‡à¦° à¦•à¦¾à¦›à§‡ à¦•à¦¿ Wireless ANC Headphones à¦¸à§à¦Ÿà¦• à¦†à¦›à§‡ à¦†à¦° à¦¢à¦¾à¦•à¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦šà¦¾à¦°à§à¦œ à¦•à¦¤?"<br>
-                                "AI Bot: à¦¹à§à¦¯à¦¾à¦ à¦­à¦¾à¦‡! à¦¬à§à¦²à§à¦¯à¦¾à¦• à¦“ à¦¸à¦¿à¦²à¦­à¦¾à¦° à¦•à¦¾à¦²à¦¾à¦°à§‡ à¦¸à§à¦Ÿà¦•à§‡ à¦†à¦›à§‡à¥¤ à¦¦à¦¾à¦® à§³à§ª,à§®à§«à§¦ ($39.60)à¥¤ à¦¢à¦¾à¦•à¦¾à¦° à¦­à§‡à¦¤à¦°à§‡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦šà¦¾à¦°à§à¦œ à¦®à¦¾à¦¤à§à¦° à§³à§­à§¦ à¦à¦¬à¦‚ à§¨à§ª à¦˜à¦£à§à¦Ÿà¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦•à§à¦¯à¦¾à¦¶ à¦…à¦¨ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦ªà¦¾à¦¬à§‡à¦¨à¥¤ à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ à¦à¦–à¦¨à¦‡ à¦…à¦°à§à¦¡à¦¾à¦°à¦Ÿà¦¿ à¦•à¦¨à¦«à¦¾à¦°à§à¦® à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?"
+                                "AI Bot: à¦¹à§à¦¯à¦¾à¦ à¦­à¦¾à¦‡! à¦¬à§à¦²à§à¦¯à¦¾à¦• à¦“ à¦¸à¦¿à¦²à¦­à¦¾à¦° à¦•à¦¾à¦²à¦¾à¦°à§‡ à¦¸à§à¦Ÿà¦•à§‡ à¦†à¦›à§‡à¥¤ à¦¦à¦¾à¦® ৳à§ª,à§®à§«à§¦ ($39.60)à¥¤ à¦¢à¦¾à¦•à¦¾à¦° à¦­à§‡à¦¤à¦°à§‡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦šà¦¾à¦°à§à¦œ à¦®à¦¾à¦¤à§à¦° ৳à§­à§¦ à¦à¦¬à¦‚ à§¨à§ª à¦˜à¦£à§à¦Ÿà¦¾à¦° à¦®à¦§à§à¦¯à§‡ à¦•à§à¦¯à¦¾à¦¶ à¦…à¦¨ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ à¦ªà¦¾à¦¬à§‡à¦¨à¥¤ à¦†à¦ªà¦¨à¦¿ à¦•à¦¿ à¦à¦–à¦¨à¦‡ à¦…à¦°à§à¦¡à¦¾à¦°à¦Ÿà¦¿ à¦•à¦¨à¦«à¦¾à¦°à§à¦® à¦•à¦°à¦¤à§‡ à¦šà¦¾à¦¨?"
                             </div>
                         </div>
 
@@ -1058,10 +1084,10 @@
                 const qty = this.state.lead_quantity || 100;
 
                 const resultHtml = `
-                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius:12px; padding:14px; margin-top:4px;">
+                    <div style="background:rgba(15,23,42,0.95); border:1px solid #10b981; border-radius: 18px; padding:14px; margin-top:4px;">
                         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
                             <span style="background:#10b981; color:#04101e; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px;">âœ“ EXECUTION COMPLETE</span>
-                            <span style="font-size:0.7rem; color:#00f2fe; font-family:monospace;">Runtime: 1.84s â€¢ 0% Bounce</span>
+                            <span style="font-size:0.7rem; color:#ffffff; font-family:monospace;">Runtime: 1.84s â€¢ 0% Bounce</span>
                         </div>
 
                         <div style="font-size:0.8rem; line-height:1.6; color:#e2e8f0; margin-bottom:10px;">
@@ -1155,11 +1181,11 @@
                 const bnServices = `
                     <div>
                         ðŸ’Ž <strong>IINSHA AI-BOS à¦à¦° à¦ªà§à¦°à¦§à¦¾à¦¨ à¦¸à§‡à¦¬à¦¾ à¦“ à¦¸à¦®à¦¾à¦§à¦¾à¦¨à¦¸à¦®à§‚à¦¹:</strong><br><br>
-                        ðŸŽ¯ <strong>à§§. B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¸à§‹à§Ÿà¦¾à¦°à§à¦® ($850 / à§³à§§,à§¦à§ª,à§§à§¨à§«):</strong> à§§à§¦à§¦+ à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ã€‚<br>
-                        ðŸ’¬ <strong>à§¨. à§¨à§ª/à§­ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ ($750 / à§³à§¯à§§,à§®à§­à§«):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦•à§à¦¯à¦¾à¦Ÿà¦¾à¦²à¦— à¦“ à¦…à¦°à§à¦¡à¦¾à¦° à¦•à¦¨à¦«à¦¾à¦°à§à¦®à§‡à¦¶à¦¨ã€‚<br>
-                        âš¡ <strong>à§©. Self-Hosted n8n à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦° ($497 / à§³à§¬à§¦,à§®à§®à§¨):</strong> à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ ($à§«.à§¯à§¯/à¦®à¦¾à¦¸ à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚à§Ÿà§‡)à¥¤<br>
-                        ðŸŽ™ï¸ <strong>à§ª. AI à¦­à§Ÿà§‡à¦¸ à¦°à¦¿à¦¸à§‡à¦ªà¦¶à¦¨à¦¿à¦¸à§à¦Ÿ ($à§§,à§®à§¦à§¦ / à§³à§¨,à§¨à§¦,à§«à§¦à§¦):</strong> à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦«à§‹à¦¨ à¦•à¦²à§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦¹à§à¦¯à¦¾à¦¨à§à¦¡à¦²à¦¿à¦‚ã€‚<br>
-                        ðŸ“‘ <strong>à§«. à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦“ à¦¡à¦•à§à¦®à§‡à¦¨à§à¦Ÿ OCR ($à§¨à§ªà§¯ / à§³à§©à§¦,à§«à§¦à§¨):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦°à¦¸à¦¿à¦¦ à¦“ à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¶à¦¨ã€‚<br><br>
+                        ðŸŽ¯ <strong>à§§. B2B à¦²à¦¿à¦¡ à¦œà§‡à¦¨à¦¾à¦°à§‡à¦¶à¦¨ à¦¸à§‹à§Ÿà¦¾à¦°à§à¦® ($850 / ৳à§§,à§¦à§ª,à§§à§¨à§«):</strong> à§§à§¦à§¦+ à¦­à§‡à¦°à¦¿à¦«à¦¾à¦‡à¦¡ à¦¡à¦¿à¦¸à¦¿à¦¶à¦¨-à¦®à§‡à¦•à¦¾à¦° à¦²à¦¿à¦¡ à¦¡à§‡à¦²à¦¿à¦­à¦¾à¦°à¦¿ã€‚<br>
+                        ðŸ’¬ <strong>à§¨. à§¨à§ª/à§­ à¦¹à§‹à§Ÿà¦¾à¦Ÿà¦¸à¦…à§à¦¯à¦¾à¦ª à¦¸à§‡à¦²à¦¸ à¦¬à¦Ÿ ($750 / ৳à§¯à§§,à§®à§­à§«):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦•à§à¦¯à¦¾à¦Ÿà¦¾à¦²à¦— à¦“ à¦…à¦°à§à¦¡à¦¾à¦° à¦•à¦¨à¦«à¦¾à¦°à§à¦®à§‡à¦¶à¦¨ã€‚<br>
+                        âš¡ <strong>à§©. Self-Hosted n8n à¦•à§à¦²à¦¾à¦¸à§à¦Ÿà¦¾à¦° ($497 / ৳à§¬à§¦,à§®à§®à§¨):</strong> à¦†à¦¨à¦²à¦¿à¦®à¦¿à¦Ÿà§‡à¦¡ à¦…à¦Ÿà§‹à¦®à§‡à¦¶à¦¨ ($à§«.à§¯à§¯/à¦®à¦¾à¦¸ à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚à§Ÿà§‡)à¥¤<br>
+                        ðŸŽ™ï¸ <strong>à§ª. AI à¦­à§Ÿà§‡à¦¸ à¦°à¦¿à¦¸à§‡à¦ªà¦¶à¦¨à¦¿à¦¸à§à¦Ÿ ($à§§,à§®à§¦à§¦ / ৳à§¨,à§¨à§¦,à§«à§¦à§¦):</strong> à¦¸à¦°à¦¾à¦¸à¦°à¦¿ à¦«à§‹à¦¨ à¦•à¦²à§‡ à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦¹à§à¦¯à¦¾à¦¨à§à¦¡à¦²à¦¿à¦‚ã€‚<br>
+                        ðŸ“‘ <strong>à§«. à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦“ à¦¡à¦•à§à¦®à§‡à¦¨à§à¦Ÿ OCR ($à§¨à§ªà§¯ / ৳à§©à§¦,à§«à§¦à§¨):</strong> à¦¸à§à¦¬à§Ÿà¦‚à¦•à§à¦°à¦¿à§Ÿ à¦°à¦¸à¦¿à¦¦ à¦“ à¦‡à¦¨à¦­à§Ÿà§‡à¦¸ à¦à¦•à§à¦¸à¦Ÿà§à¦°à§à¦¯à¦¾à¦•à¦¶à¦¨ã€‚<br><br>
                         ðŸ‘‰ <em>à¦†à¦ªà¦¨à¦¾à¦° à¦¬à§à¦¯à¦¬à¦¸à¦¾à¦° à¦œà¦¨à§à¦¯ à¦•à§‹à¦¨ à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸à¦Ÿà¦¿ à¦ªà§à¦°à§Ÿà§‹à¦œà¦¨? à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦œà¦¾à¦¨à¦¾à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¦¨à¥¤</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
@@ -1170,11 +1196,11 @@
                 const enServices = `
                     <div>
                         ðŸ’Ž <strong>IINSHA AI-BOS Core Turnkey Solutions:</strong><br><br>
-                        ðŸŽ¯ <strong>1. B2B SaaS Lead Hunter Swarm ($850 / à§³104,125):</strong> 100+ verified corporate leads.<br>
-                        ðŸ’¬ <strong>2. 24/7 WhatsApp Sales Agent ($750 / à§³91,875):</strong> Instant catalog ingestion & chat checkout.<br>
-                        âš¡ <strong>3. Self-Hosted n8n Enterprise Cluster ($497 / à§³60,882):</strong> Unlimited workflows on $5.99 VPS.<br>
-                        ðŸŽ™ï¸ <strong>4. AI Voice Receptionist ($1,800 / à§³220,500):</strong> Inbound phone booking via Twilio.<br>
-                        ðŸ“‘ <strong>5. Autonomous Invoice OCR ($249 / à§³30,502):</strong> Instant financial data ingestion.<br><br>
+                        ðŸŽ¯ <strong>1. B2B SaaS Lead Hunter Swarm ($850 / ৳104,125):</strong> 100+ verified corporate leads.<br>
+                        ðŸ’¬ <strong>2. 24/7 WhatsApp Sales Agent ($750 / ৳91,875):</strong> Instant catalog ingestion & chat checkout.<br>
+                        âš¡ <strong>3. Self-Hosted n8n Enterprise Cluster ($497 / ৳60,882):</strong> Unlimited workflows on $5.99 VPS.<br>
+                        ðŸŽ™ï¸ <strong>4. AI Voice Receptionist ($1,800 / ৳220,500):</strong> Inbound phone booking via Twilio.<br>
+                        ðŸ“‘ <strong>5. Autonomous Invoice OCR ($249 / ৳30,502):</strong> Instant financial data ingestion.<br><br>
                         ðŸ‘‰ <em>Which service best fits your business goals?</em>
                     </div>
                     <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
@@ -1190,7 +1216,7 @@
             if (lower.includes('price') || lower.includes('cost') || lower.includes('pricing') || lower.includes('dam') || lower.includes('taka') || lower.includes('koto') || lower.includes('rate')) {
                 const priceHtml = `
                     <div>
-                        ðŸ’° <strong>IINSHA AI-BOS à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ à¦“ à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ (USD & BDT @ à§³${USD_TO_BDT_RATE}):</strong><br><br>
+                        ðŸ’° <strong>IINSHA AI-BOS à¦ªà§à¦¯à¦¾à¦•à§‡à¦œ à¦“ à¦ªà§à¦°à¦¾à¦‡à¦¸à¦¿à¦‚ (USD & BDT @ ৳${USD_TO_BDT_RATE}):</strong><br><br>
                         ðŸ’Ž <strong>à§§. Starter Automation Build:</strong> $497 USD (${this.formatBDT(497)})<br>
                         <em>- à§©à¦Ÿà¦¿ à¦•à§‹à¦° n8n à¦“à§Ÿà¦¾à¦°à§à¦•à¦«à§à¦²à§‹ + à¦¹à§‹à¦¸à§à¦Ÿà¦¿à¦‚à¦—à¦¾à¦° à¦­à¦¿à¦ªà¦¿à¦à¦¸ à¦¸à§‡à¦Ÿà¦†à¦ª + à§§à§ª à¦¦à¦¿à¦¨à§‡à¦° à¦¸à¦¾à¦ªà§‹à¦°à§à¦Ÿà¥¤</em><br><br>
                         ðŸ’Ž <strong>à§¨. Production Agent Swarm:</strong> $997 USD (${this.formatBDT(997)})<br>

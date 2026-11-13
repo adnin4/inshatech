@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IINSHA AI-BOS â€” PHASE 6 & 13: FORMAL TYPED TOOL REGISTRY & HITL SPECIFICATION
  * Contains 15 formal typed tool definitions with strict parameter schemas,
  * risk tiers (Level 0 - Level 3), timeouts, and approval policies.
@@ -256,9 +256,10 @@ const TOOL_REGISTRY = [
     }
 ];
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TOOL_REGISTRY };
-} else {
-    window.TOOL_REGISTRY = TOOL_REGISTRY;
+if (typeof globalThis !== 'undefined') {
+    globalThis.TOOL_REGISTRY = TOOL_REGISTRY;
 }
+
+export { TOOL_REGISTRY };
+
 

@@ -27,14 +27,18 @@ async function verifyLemonSignature(rawPayload, signature, secret) {
 export async function onRequestPost({ request, env = {} }) {
     try {
         const secret = env.LEMONSQUEEZY_WEBHOOK_SECRET;
+        if (!secret) {
+            return new Response(JSON.stringify({
+                status: 'WEBHOOK_SECRET_MISSING',
+                error: 'LEMONSQUEEZY_WEBHOOK_SECRET is required for fail-closed webhook verification.'
+            }), { status: 503, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
+        }
+
         const raw = await request.text();
         const sig = request.headers.get('X-Signature') || '';
-
-        if (secret) {
-            const isValid = await verifyLemonSignature(raw, sig, secret);
-            if (!isValid) {
-                return new Response(JSON.stringify({ status: 'UNAUTHORIZED_SIGNATURE' }), { status: 401 });
-            }
+        const isValid = await verifyLemonSignature(raw, sig, secret);
+        if (!isValid) {
+            return new Response(JSON.stringify({ status: 'UNAUTHORIZED_SIGNATURE' }), { status: 401, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
         }
 
         const event = JSON.parse(raw || '{}');

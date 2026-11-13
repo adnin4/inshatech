@@ -21,46 +21,82 @@ function computeSha256(data) {
   return crypto.createHash('sha256').update(data || '').digest('hex');
 }
 
-function resolveCommitSha() {
-  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA;
+function findGitExe() {
   try {
-    return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-  } catch {
-    const gitExe = process.env.GIT_EXEC_PATH 
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_SHA';
-      }
-    }
-    return 'UNKNOWN_SHA';
+    execFileSync('git', ['--version'], { stdio: 'ignore' });
+    return 'git';
+  } catch {}
+  if (process.env.GIT_EXEC_PATH) {
+    const p = path.join(process.env.GIT_EXEC_PATH, 'git.exe');
+    if (fs.existsSync(p)) return p;
   }
+  const candidates = [
+    path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Git', 'cmd', 'git.exe'),
+    path.join(process.env['ProgramFiles(x86)'] || 'C:\\Program Files (x86)', 'Git', 'cmd', 'git.exe')
+  ];
+  if (process.env.LOCALAPPDATA) {
+    const ghBase = path.join(process.env.LOCALAPPDATA, 'GitHubDesktop');
+    if (fs.existsSync(ghBase)) {
+      try {
+        const appDirs = fs.readdirSync(ghBase).filter(d => d.startsWith('app-'));
+        for (const appDir of appDirs) {
+          candidates.push(path.join(ghBase, appDir, 'resources', 'app', 'git', 'cmd', 'git.exe'));
+        }
+      } catch {}
+    }
+  }
+  for (const cand of candidates) {
+    if (fs.existsSync(cand)) return cand;
+  }
+  return null;
 }
 
-function resolveBranch() {
-  if (process.env.GITHUB_REF_NAME) return process.env.GITHUB_REF_NAME;
-  try {
-    return execFileSync('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-  } catch {
-    const gitExe = process.env.GIT_EXEC_PATH
-      ? path.join(process.env.GIT_EXEC_PATH, 'git.exe')
-      : 'C:\\Users\\mahin khan\\AppData\\Local\\GitHubDesktop\\app-3.6.4\\resources\\app\\git\\cmd\\git.exe';
-    if (fs.existsSync(gitExe)) {
-      try {
-        return execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
-      } catch {
-        return 'UNKNOWN_BRANCH';
-      }
-    }
-    return 'UNKNOWN_BRANCH';
+function resolveGitInfo() {
+  const gitExe = findGitExe();
+  let checkedOutSha = 'UNKNOWN_SHA';
+  let checkedOutBranch = 'UNKNOWN_BRANCH';
+
+  if (gitExe) {
+    try {
+      checkedOutSha = execFileSync(gitExe, ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    } catch {}
+    try {
+      checkedOutBranch = execFileSync(gitExe, ['rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8' }).trim();
+    } catch {}
   }
+
+  // PR_HEAD_SHA is explicitly passed by workflow or environment for pull requests
+  const prHeadSha = process.env.PR_HEAD_SHA || (checkedOutSha !== 'UNKNOWN_SHA' ? checkedOutSha : null);
+  const workflowSha = process.env.GITHUB_SHA || null;
+  const workflowRef = process.env.GITHUB_REF || null;
+  const workflowRefName = process.env.GITHUB_REF_NAME || null;
+
+  // Authoritative commit SHA is the actual PR head / checked-out commit, NOT the synthetic PR merge commit
+  const authoritativeSha = prHeadSha || checkedOutSha || workflowSha || 'UNKNOWN_SHA';
+  const authoritativeBranch = workflowRefName || (checkedOutBranch !== 'UNKNOWN_BRANCH' ? checkedOutBranch : 'UNKNOWN_BRANCH');
+
+  return {
+    authoritativeSha,
+    authoritativeBranch,
+    lineage: {
+      checked_out_sha: checkedOutSha,
+      pr_head_sha: prHeadSha || 'NOT_PROVIDED',
+      workflow_sha: workflowSha || 'NOT_PROVIDED',
+      workflow_ref: workflowRef || 'NOT_PROVIDED',
+      synthetic_merge_detected: Boolean(
+        workflowSha &&
+        prHeadSha &&
+        workflowSha !== prHeadSha &&
+        (workflowRef && workflowRef.includes('/merge'))
+      )
+    }
+  };
 }
 
-const currentSha = resolveCommitSha();
-const currentBranch = resolveBranch();
+const gitInfo = resolveGitInfo();
+const currentSha = gitInfo.authoritativeSha;
+const currentBranch = gitInfo.authoritativeBranch;
+const releaseLineage = gitInfo.lineage;
 
 /**
  * GATE 0A: Full Test Inventory with Metadata
@@ -343,6 +379,42 @@ const SUITE_INVENTORY = [
     upstream_dependencies: ['reality_boundary', 'system_claims']
   },
   {
+    id: 'release_identity_immutable',
+    name: 'Immutable Release Identity & Audit Engine',
+    command: 'node',
+    args: ['scripts/test_release_identity_immutable.mjs'],
+    domain: 'GOVERNANCE',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-REL-01', 'REQ-IDENTITY-02', 'REQ-IMMUTABLE-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['reality_boundary', 'release_identity']
+  },
+  {
+    id: 'admin_auth_security',
+    name: 'Admin Auth & Fail-Closed Session Gate Security',
+    command: 'node',
+    args: ['scripts/test_admin_auth_security.mjs'],
+    domain: 'SECURITY',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-SEC-01', 'REQ-AUTH-01', 'REQ-ADMIN-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['security_gate', 'reality_boundary']
+  },
+  {
+    id: 'canonical_manifest_guard',
+    name: 'Canonical System State Parity Guard',
+    command: 'node',
+    args: ['scripts/verify_canonical_manifest_guard.mjs'],
+    domain: 'GOVERNANCE',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-GOV-04', 'REQ-MANIFEST-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['reality_boundary', 'system_claims']
+  },
+  {
     id: 'business_truth_gates',
     name: 'Production & Revenue Boundary Truth Gates',
     command: 'node',
@@ -353,6 +425,19 @@ const SUITE_INVENTORY = [
     satisfies_requirements: ['REQ-GOV-03', 'REQ-TRUTH-01'],
     evidence_level: 'CODE_CONTRACT',
     upstream_dependencies: ['reality_boundary', 'system_claims']
+  }
+  ,
+  {
+    id: 'agents_18_workflow',
+    name: '18-Specialist Agent & DAG Workflow Certification',
+    command: 'node',
+    args: ['scripts/test_18_agents_and_dag_workflow.mjs'],
+    domain: 'AI_AGENT',
+    risk_level: 'CRITICAL',
+    mutation_type: 'READ_ONLY',
+    satisfies_requirements: ['REQ-AGENT-18-01', 'REQ-DAG-01', 'REQ-EVIDENCE-01'],
+    evidence_level: 'CODE_CONTRACT',
+    upstream_dependencies: ['copilot_e2e']
   }
 ];
 
@@ -488,6 +573,7 @@ const summary = {
   repository: process.env.GITHUB_REPOSITORY ?? 'adnin4/inshatech',
   commit_sha: currentSha,
   ref: currentBranch,
+  release_lineage: releaseLineage,
   workflow_run_id: process.env.GITHUB_RUN_ID ?? null,
   runner: 'scripts/ci_evidence_runner.mjs',
   evidence_only: true,
@@ -537,8 +623,12 @@ const md = [
   '',
   `* **Generated At:** ${summary.generated_at}`,
   `* **Repository:** ${summary.repository}`,
-  `* **Commit SHA:** \`${summary.commit_sha}\``,
+  `* **Commit SHA (Authoritative Source):** \`${summary.commit_sha}\``,
   `* **Branch / Ref:** \`${summary.ref}\``,
+  `* **Release Lineage (Checked Out):** \`${releaseLineage.checked_out_sha}\``,
+  `* **Release Lineage (PR Head):** \`${releaseLineage.pr_head_sha}\``,
+  `* **Release Lineage (Workflow SHA):** \`${releaseLineage.workflow_sha}\``,
+  `* **Synthetic Merge Commit Detected:** \`${releaseLineage.synthetic_merge_detected}\``,
   `* **Workflow Run ID:** ${summary.workflow_run_id ?? 'LOCAL_EXECUTION'}`,
   `* **Transport Self-Test:** ${transportSelfTestPassed ? '🟢 VERIFIED NON-EMPTY & COMPLETE' : '🔴 TRANSPORT_INTEGRITY_FAILED'}`,
   `* **Immutable Baseline:** ${summary.immutable_green_baseline.status}`,
@@ -564,7 +654,7 @@ const md = [
   '',
   '## Diagnostic Output for Non-Passing Suites',
   failedSuites.length === 0
-    ? 'All 23 suites passed with zero failures. Immutable green baseline frozen.'
+    ? `All ${results.length} suites passed with zero failures. Immutable green baseline frozen.`
     : failedSuites.flatMap((r) => [
         `### Suite: \`${r.suite_id}\` (${r.status} | Category: ${r.failure_category})`,
         '',

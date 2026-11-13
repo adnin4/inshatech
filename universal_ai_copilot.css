@@ -149,18 +149,21 @@
 }
 
 #iinsha-copilot-teaser .teaser-close {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #cbd5e1;
     cursor: pointer;
-    font-size: 0.75rem;
-    width: 20px;
-    height: 20px;
+    font-size: 0.85rem;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
+    touch-action: manipulation;
 }
 
 #iinsha-copilot-teaser .teaser-close:hover {
@@ -698,21 +701,39 @@
 /* ==========================================================================
    7. MOBILE RESPONSIVENESS
    ========================================================================== */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    #iinsha-copilot-teaser {
+        display: none !important;
+    }
     #iinsha-copilot-window,
     .iinsha-cockpit-modal {
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
     }
     #iinsha-copilot-trigger,
     .iinsha-cockpit-launcher {
-        bottom: 16px;
-        right: 16px;
-        padding: 6px 14px 6px 8px;
+        bottom: 74px !important;
+        right: 14px !important;
+        padding: 6px 12px 6px 8px !important;
+        z-index: 99990 !important;
+        transform: scale(0.92) !important;
+        transform-origin: bottom right !important;
+    }
+    body.cta-dismissed #iinsha-copilot-trigger,
+    body.cta-dismissed .iinsha-cockpit-launcher {
+        bottom: 16px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    #iinsha-copilot-teaser {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 }

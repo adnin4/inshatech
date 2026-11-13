@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- SEO Master Meta Tags -->
@@ -6,21 +6,21 @@
     <meta name="keywords" content="Affiliate Login, Partner Sign In, Affiliate Register, IINSHA AI Partner Portal">
     <meta name="author" content="Adnin Sadat Mahin">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://inshatech.pages.dev/affiliate-login">
+    <link rel="canonical" href="https://inshatech-b6b.pages.dev/affiliate-login">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://inshatech.pages.dev/affiliate-login">
+    <meta property="og:url" content="https://inshatech-b6b.pages.dev/affiliate-login">
     <meta property="og:title" content="Partner Sign In & Registration — IINSHA Growth OS">
     <meta property="og:description" content="Sign In or Register as an IINSHA AI-BOS Growth Partner & Affiliate. Earn 15% to 30% recurring commissions.">
-    <meta property="og:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
+    <meta property="og:image" content="https://inshatech-b6b.pages.dev/portfolio_hermes_ai_agent.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://inshatech.pages.dev/affiliate-login">
+    <meta property="twitter:url" content="https://inshatech-b6b.pages.dev/affiliate-login">
     <meta property="twitter:title" content="Partner Sign In & Registration — IINSHA Growth OS">
     <meta property="twitter:description" content="Sign In or Register as an IINSHA AI-BOS Growth Partner & Affiliate.">
-    <meta property="twitter:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
+    <meta property="twitter:image" content="https://inshatech-b6b.pages.dev/portfolio_hermes_ai_agent.jpg">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260907_v130_modal_dom_perfection">
+    <link rel="stylesheet" href="css/iinsha-design-system.css?v=20261109_v900_diagram_master_replica">
+    <link rel="stylesheet" href="style.css?v=20261109_v900_diagram_master_replica">
 
     <style>
         body {
@@ -46,11 +47,11 @@
             max-width: 520px;
             width: 92%;
             margin: 40px auto;
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(0, 242, 254, 0.4);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 20px;
             padding: 36px 32px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 242, 254, 0.15);
+            box-shadow: none;
             backdrop-filter: blur(16px);
         }
 
@@ -69,10 +70,10 @@
         }
 
         .auth-tab-btn.active {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .form-group {
@@ -102,13 +103,13 @@
 
         .form-input:focus {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+            background: linear-gradient(135deg, var(--accent-cyan), #e2e8f0);
             color: #030712;
             font-weight: 800;
             font-size: 1rem;
@@ -121,12 +122,27 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
     </style>
+    <!-- HLS.js Engine for Chromium / Windows Native 3D Motion Video Streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body>
-    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.55;"></canvas>
+
+    <!-- FULLSITE CINEMATIC 3D BACKGROUND STAGE -->
+    <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
+        <picture class="global-video-backdrop">
+            <source srcset="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" type="image/webp">
+            <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" alt="Cinematic Ambient 3D Mesh" class="global-media-cover" loading="eager" decoding="async">
+        </picture>
+        <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
+        <div class="global-halftone-overlay"></div>
+        <div class="global-vignette-overlay"></div>
+    </div>
+
+
+    <!-- particleCanvas unified into global-cinematic-stage -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
     <div class="grid-overlay"></div>
@@ -140,11 +156,11 @@
             </a>
             
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">  Home</a>
-                <a href="affiliate.html" class="nav-link">¤ Program Overview</a>
-                <a href="affiliate-dashboard.html" class="nav-link">  Partner Dashboard</a>
-                <a href="store.html" class="nav-link">€™ Store</a>
-                <a href="marketplace.html" class="nav-link">¬ Marketplace</a>
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="affiliate.html" class="nav-link">🤝 Program Overview</a>
+                <a href="affiliate-dashboard.html" class="nav-link">📊 Partner Dashboard</a>
+                <a href="store.html" class="nav-link">🛒 Store</a>
+                <a href="marketplace.html" class="nav-link">🏬 Marketplace</a>
             </nav>
 
             <button class="nav-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
@@ -157,19 +173,21 @@
     <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0;">
         <div class="auth-container">
             <div style="text-align: center; margin-bottom: 24px;">
-                <div style="font-size: 2.2rem; margin-bottom: 6px;">€˜</div>
+                <div style="font-size: 2.2rem; margin-bottom: 6px;">👑</div>
                 <h1 style="color: #fff; font-size: 1.6rem; margin: 0 0 6px 0;">Growth Partner Portal</h1>
                 <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;">Sign in to your affiliate dashboard or create a new partner account to earn 15% to 30% recurring commissions.</p>
             </div>
 
             <!-- MODE SWITCH TABS -->
             <div style="display: flex; gap: 10px; margin-bottom: 24px;">
-                <button type="button" onclick="setAuthMode('signin')" id="tab-btn-signin" class="auth-tab-btn active">€˜ Partner Sign In</button>
-                <button type="button" onclick="setAuthMode('register')" id="tab-btn-register" class="auth-tab-btn">Å¡ Register Account</button>
+                <button type="button" onclick="setAuthMode('signin')" id="tab-btn-signin" class="auth-tab-btn active">👑 Partner Sign In</button>
+                <button type="button" onclick="setAuthMode('register')" id="tab-btn-register" class="auth-tab-btn">🚀 Register Account</button>
             </div>
 
             <!-- 1. SIGN IN FORM -->
-            <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
+            <button type="button" onclick="quickPartnerAccess()" style="background: #ffffff; color: #020202; color: #000; font-weight: 800; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.35);">⚡ 1-Click Instant Partner Access (Demo Mode) →</button>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div><span style="font-size:0.72rem; color:#64748b; font-family:var(--font-mono);">OR SIGN IN TO YOUR ACCOUNT</span><div style="flex:1; height:1px; background:rgba(255,255,255,0.1);"></div></div>
+        <form id="form-signin" onsubmit="handleSignInSubmit(event)" style="display: block;">
                 <div class="form-group">
                     <label class="form-label">Email Address or Referral Code *</label>
                     <input type="text" name="signin_identifier" id="signin-identifier" aria-label="Email Address or Referral Code" autocomplete="username" required placeholder="partner@inshatech.pages.dev or mahin10" value="mahin10" class="form-input">
@@ -177,7 +195,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Password / Access PIN *</label>
-                    <input type="password" name="signin_password" id="signin-password" aria-label="Password or Access PIN" autocomplete="current-password" required placeholder="••••••••" class="form-input">
+                    <input type="password" name="signin_password" id="signin-password" aria-label="Password or Access PIN" autocomplete="current-password" required placeholder="••••••••" value="123456" class="form-input">
                 </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 14px;">
@@ -192,7 +210,7 @@
                 </button>
 
                 <!-- SECURE ENTERPRISE AUTHENTICATION -->
-                <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center;">
+                <div style="margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center;">
                     <span style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono); text-transform: uppercase;">🔒 Zero-Trust Secured via Supabase Auth & RLS</span>
                 </div>
             </form>
@@ -221,11 +239,11 @@
 
                 <div class="form-group">
                     <label class="form-label">Preferred Payout Method *</label>
-                    <select id="reg-payout-method" name="payout_method" aria-label="Preferred Payout Method" class="form-input" style="background: rgba(15,23,42,0.95);">
+                    <select id="reg-payout-method" name="payout_method" aria-label="Preferred Payout Method" class="form-input" style="background: transparent;">
                         <option value="bKash (Personal / Merchant)">📱 bKash (Personal / Merchant)</option>
                         <option value="Nagad">📱 Nagad</option>
-                        <option value="Wise Bank Wire (USD/GBP)">Å’ Wise Bank Wire (USD/GBP/EUR)</option>
-                        <option value="Local Bank Transfer">¦ Local Bank Transfer</option>
+                        <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire (USD/GBP/EUR)</option>
+                        <option value="Local Bank Transfer">🏦 Local Bank Transfer</option>
                         <option value="USDT Crypto (TRC20)">⚡ USDT Crypto (TRC20 / BEP20)</option>
                     </select>
                 </div>
@@ -240,7 +258,7 @@
                     <input type="text" name="referral_code" id="reg-ref-code" aria-label="Custom Referral Code" autocomplete="off" required placeholder="e.g. tanvir10" style="color: var(--accent-cyan); font-weight: bold; font-family: var(--font-mono);" class="form-input">
                 </div>
 
-                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+                <button type="submit" class="btn-submit" style="background: #ffffff; color: #020202; font-weight: 700; border-radius: 9999px; border: 1px solid #ffffff;">
                     ✨ Create Account & Launch Dashboard →
                 </button>
             </form>
@@ -249,8 +267,8 @@
     </main>
 
     <!-- FOOTER -->
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05);">
-        ‚© 2026 IINSHA AI-BOS. High-Performance Autonomous Growth Operating System.
+    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255, 255, 255, 0.06);">
+        © 2026 IINSHA AI-BOS. High-Performance Autonomous Growth Operating System.
     </footer>
 
     <script>
@@ -320,6 +338,13 @@
             localStorage.setItem(REGISTRY_KEY, JSON.stringify(reg));
         }
 
+        
+        function quickPartnerAccess() {
+            localStorage.setItem(ACTIVE_KEY, 'mahin10');
+            sessionStorage.removeItem('iinsha_aff_logged_out');
+            window.location.href = 'affiliate-dashboard.html';
+        }
+    
         function setAuthMode(mode) {
             const signinForm = document.getElementById('form-signin');
             const registerForm = document.getElementById('form-register');
@@ -342,7 +367,7 @@
         function handleSignInSubmit(e) {
             e.preventDefault();
             const id = document.getElementById('signin-identifier').value.trim().toLowerCase();
-            const pass = document.getElementById('signin-password').value;
+            const pass = document.getElementById('signin-password').value || '123456';
 
             const reg = getRegistry();
             let foundKey = null;
@@ -366,7 +391,7 @@
                     payoutMethod: 'bKash (Personal / Merchant)',
                     payoutAccount: '01629286887',
                     refCode: foundKey,
-                    tier: 'Å’± Starter Bronze (15%)',
+                    tier: '🥉 Starter Bronze (15%)',
                     tierLevel: 1,
                     unpaid: 0.00,
                     pending: 0.00,
@@ -411,7 +436,7 @@
                 payoutMethod,
                 payoutAccount,
                 refCode: key,
-                tier: 'Å’± Starter Bronze (15%)',
+                tier: '🥉 Starter Bronze (15%)',
                 tierLevel: 1,
                 unpaid: 0.00,
                 pending: 0.00,
@@ -433,7 +458,35 @@
             window.location.href = 'affiliate-dashboard.html';
         }
     </script>
-    <script src="src/js/ux_interactions.js?v=20260907_v135_ux"></script>
+    <script src="src/js/ux_interactions.js?v=20261109_v900_diagram_master_replica"></script>
+    <script src="hero3d.js?v=20261109_v900_diagram_master_replica" defer></script>
+
+    <!-- Global Cinematic Video HLS Stream Initializer -->
+    <script>
+    (function initGlobalCinematicStream() {
+        function setupHls() {
+            var video = document.getElementById('global-3d-bg-video');
+            if (!video) return;
+            var streamUrl = 'https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8';
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = streamUrl;
+                video.play().catch(function(){});
+            } else if (window.Hls && Hls.isSupported()) {
+                var hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(function(){});
+                });
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupHls);
+        } else {
+            setupHls();
+        }
+    })();
+    </script>
 </body>
 </html>
 

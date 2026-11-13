@@ -1,0 +1,562 @@
+[
+  {
+    "id": "svc-01",
+    "slug": "ai-agent-development",
+    "category": "cat-agents",
+    "title": "AI Agent Development",
+    "desc": "Custom autonomous agents using Antigravity SDK & LangChain."
+  },
+  {
+    "id": "svc-02",
+    "slug": "multi-agent-systems",
+    "category": "cat-agents",
+    "title": "Multi-Agent Systems",
+    "desc": "Orchestrate collaborative agent swarms with state synchronization."
+  },
+  {
+    "id": "svc-03",
+    "slug": "autonomous-workflows",
+    "category": "cat-agents",
+    "title": "Autonomous Workflows",
+    "desc": "Self-executing agentic decision loops with Human-in-the-Loop safeguards."
+  },
+  {
+    "id": "svc-04",
+    "slug": "ai-executive-assistant",
+    "category": "cat-agents",
+    "title": "AI Executive Assistant",
+    "desc": "Automated inbox triage, schedule coordination, and brief generation."
+  },
+  {
+    "id": "svc-05",
+    "slug": "customer-support-agent",
+    "category": "cat-agents",
+    "title": "Customer Support Agent",
+    "desc": "24/7 intelligent tier-1 ticket resolution with CRM auto-update."
+  },
+  {
+    "id": "svc-06",
+    "slug": "sales-intelligence-agent",
+    "category": "cat-agents",
+    "title": "Sales Intelligence Agent",
+    "desc": "Automated lead qualification and personalized email sequences."
+  },
+  {
+    "id": "svc-07",
+    "slug": "research-analyst-agent",
+    "category": "cat-agents",
+    "title": "Research & Analyst Agent",
+    "desc": "Deep market competitor intelligence and automated report generation."
+  },
+  {
+    "id": "svc-08",
+    "slug": "ai-content-operator",
+    "category": "cat-agents",
+    "title": "AI Content Operator",
+    "desc": "Multi-channel social, blog, and newsletter automated publishing."
+  },
+  {
+    "id": "svc-09",
+    "slug": "ai-code-review-agent",
+    "category": "cat-agents",
+    "title": "AI Code Review Agent",
+    "desc": "Automated PR review, linting, and security vulnerability scanning."
+  },
+  {
+    "id": "svc-10",
+    "slug": "custom-task-automation",
+    "category": "cat-agents",
+    "title": "Custom Task Automation",
+    "desc": "Bespoke agent architecture mapped to your proprietary business logic."
+  },
+  {
+    "id": "svc-11",
+    "slug": "n8n-workflow-automation",
+    "category": "cat-workflow",
+    "title": "n8n Workflow Automation",
+    "desc": "Self-hosted n8n pipelines orchestrating cross-app business data."
+  },
+  {
+    "id": "svc-12",
+    "slug": "business-process-auto",
+    "category": "cat-workflow",
+    "title": "Business Process Auto",
+    "desc": "End-to-end task automation removing manual data entry bottlenecks."
+  },
+  {
+    "id": "svc-13",
+    "slug": "crm-sync-pipeline",
+    "category": "cat-workflow",
+    "title": "CRM Sync & Pipeline",
+    "desc": "Bidirectional lead syncing between HubSpot, Salesforce, and Sheets."
+  },
+  {
+    "id": "svc-14",
+    "slug": "human-in-the-loop-gate",
+    "category": "cat-workflow",
+    "title": "Human-in-the-Loop Gate",
+    "desc": "Approval gateways on Slack/WhatsApp before AI performs financial actions."
+  },
+  {
+    "id": "svc-15",
+    "slug": "custom-api-connectors",
+    "category": "cat-workflow",
+    "title": "Custom API Connectors",
+    "desc": "Bridging proprietary databases to third-party SaaS services."
+  },
+  {
+    "id": "svc-16",
+    "slug": "lead-routing-scoring",
+    "category": "cat-workflow",
+    "title": "Lead Routing & Scoring",
+    "desc": "Instant lead enrichment and routing to sales reps via Telegram."
+  },
+  {
+    "id": "svc-17",
+    "slug": "omnichannel-alerting",
+    "category": "cat-workflow",
+    "title": "Omnichannel Alerting",
+    "desc": "Real-time alerts to Slack, Discord, WhatsApp, and Telegram."
+  },
+  {
+    "id": "svc-18",
+    "slug": "auto-report-generation",
+    "category": "cat-workflow",
+    "title": "Auto Report Generation",
+    "desc": "Automated weekly KPI summaries rendered to PDF and delivered."
+  },
+  {
+    "id": "svc-19",
+    "slug": "error-handling-retry",
+    "category": "cat-workflow",
+    "title": "Error Handling & Retry",
+    "desc": "Idempotent retry mechanisms with automated fallback routing."
+  },
+  {
+    "id": "svc-20",
+    "slug": "inventory-auto-sync",
+    "category": "cat-workflow",
+    "title": "Inventory Auto-Sync",
+    "desc": "Multi-channel stock level synchronization for e-commerce."
+  },
+  {
+    "id": "svc-21",
+    "slug": "playwright-pipeline-scraper",
+    "category": "cat-web",
+    "title": "Playwright Pipeline Scraper",
+    "desc": "Resilient headless browser data extraction pipelines."
+  },
+  {
+    "id": "svc-22",
+    "slug": "proxy-mesh-integration",
+    "category": "cat-web",
+    "title": "Proxy Mesh Integration",
+    "desc": "Residential rotating proxies with rate-limit compliance & authorized extraction."
+  },
+  {
+    "id": "svc-23",
+    "slug": "price-intelligence-engine",
+    "category": "cat-web",
+    "title": "Price Intelligence Engine",
+    "desc": "Real-time competitor pricing monitors with discount alerts."
+  },
+  {
+    "id": "svc-24",
+    "slug": "lead-harvesting-pipeline",
+    "category": "cat-web",
+    "title": "Lead Harvesting Pipeline",
+    "desc": "Extracting verified business directories and social contacts."
+  },
+  {
+    "id": "svc-25",
+    "slug": "content-aggregation-bot",
+    "category": "cat-web",
+    "title": "Content Aggregation Bot",
+    "desc": "Monitoring news, research papers, and forum feeds on schedule."
+  },
+  {
+    "id": "svc-26",
+    "slug": "visual-screenshot-qa",
+    "category": "cat-web",
+    "title": "Visual Screenshot QA",
+    "desc": "Automated full-page screenshot diffing and regression detection."
+  },
+  {
+    "id": "svc-27",
+    "slug": "real-estate-scraper",
+    "category": "cat-web",
+    "title": "Real Estate Scraper",
+    "desc": "Property listing aggregator with map coordinates & rent pricing."
+  },
+  {
+    "id": "svc-28",
+    "slug": "e-commerce-product-sync",
+    "category": "cat-web",
+    "title": "E-Commerce Product Sync",
+    "desc": "Extracting variants, images, and reviews into structured JSON."
+  },
+  {
+    "id": "svc-29",
+    "slug": "site-uptime-change-alert",
+    "category": "cat-web",
+    "title": "Site Uptime & Change Alert",
+    "desc": "Instant alerts when key elements or pricing change on target sites."
+  },
+  {
+    "id": "svc-30",
+    "slug": "batch-asset-downloader",
+    "category": "cat-web",
+    "title": "Batch Asset Downloader",
+    "desc": "Automated large-scale image and PDF extraction to Cloud Storage."
+  },
+  {
+    "id": "svc-31",
+    "slug": "web-ai-chatbot",
+    "category": "cat-conv",
+    "title": "Web AI Chatbot",
+    "desc": "Lightweight embeddable chat widget grounded on your documentation."
+  },
+  {
+    "id": "svc-32",
+    "slug": "whatsapp-business-bot",
+    "category": "cat-conv",
+    "title": "WhatsApp Business Bot",
+    "desc": "Automated customer service and order placement via WhatsApp API."
+  },
+  {
+    "id": "svc-33",
+    "slug": "telegram-assistant-bot",
+    "category": "cat-conv",
+    "title": "Telegram Assistant Bot",
+    "desc": "Interactive command bot with inline keyboards and payment hooks."
+  },
+  {
+    "id": "svc-34",
+    "slug": "slack-discord-ai",
+    "category": "cat-conv",
+    "title": "Slack & Discord AI",
+    "desc": "Internal team copilot answering policies and searching docs."
+  },
+  {
+    "id": "svc-35",
+    "slug": "ai-voice-receptionist",
+    "category": "cat-conv",
+    "title": "AI Voice Receptionist",
+    "desc": "Natural speech phone agents routing callers and taking notes."
+  },
+  {
+    "id": "svc-36",
+    "slug": "multi-doc-rag-grounding",
+    "category": "cat-conv",
+    "title": "Multi-Doc RAG Grounding",
+    "desc": "Pinecone/Chroma vector DB ensuring source-grounded answers + human escalation."
+  },
+  {
+    "id": "svc-37",
+    "slug": "human-handoff-gateway",
+    "category": "cat-conv",
+    "title": "Human Handoff Gateway",
+    "desc": "Seamlessly transfers complex queries to live human agents."
+  },
+  {
+    "id": "svc-38",
+    "slug": "multilingual-auto-detect",
+    "category": "cat-conv",
+    "title": "Multilingual Auto-Detect",
+    "desc": "Auto-translates chats across 95+ languages in real time."
+  },
+  {
+    "id": "svc-39",
+    "slug": "in-chat-checkout-flow",
+    "category": "cat-conv",
+    "title": "In-Chat Checkout Flow",
+    "desc": "Collect payments and confirm bookings directly inside the chat."
+  },
+  {
+    "id": "svc-40",
+    "slug": "chat-sentiment-analytics",
+    "category": "cat-conv",
+    "title": "Chat Sentiment Analytics",
+    "desc": "Daily executive summaries of customer mood and top questions."
+  },
+  {
+    "id": "svc-41",
+    "slug": "gemini-ocr-extraction",
+    "category": "cat-vision",
+    "title": "Gemini OCR Extraction",
+    "desc": "Multimodal text extraction from handwritten notes and receipts."
+  },
+  {
+    "id": "svc-42",
+    "slug": "invoice-line-parser",
+    "category": "cat-vision",
+    "title": "Invoice Line Parser",
+    "desc": "Structured financial tables extracted directly to accounting DB."
+  },
+  {
+    "id": "svc-43",
+    "slug": "pdf-document-analyzer",
+    "category": "cat-vision",
+    "title": "PDF Document Analyzer",
+    "desc": "Semantic chunking and risk summary of 100+ page contracts."
+  },
+  {
+    "id": "svc-44",
+    "slug": "hr-resume-classifier",
+    "category": "cat-vision",
+    "title": "HR Resume Classifier",
+    "desc": "Extracting skills, experience, and contact data into ATS formats."
+  },
+  {
+    "id": "svc-45",
+    "slug": "id-passport-ocr",
+    "category": "cat-vision",
+    "title": "ID & Passport OCR",
+    "desc": "Verification pipeline extracting KYC details from photos."
+  },
+  {
+    "id": "svc-46",
+    "slug": "multi-source-data-etl",
+    "category": "cat-vision",
+    "title": "Multi-Source Data ETL",
+    "desc": "Automated data cleaning and ingestion from Sheets, SQL, and CSV."
+  },
+  {
+    "id": "svc-47",
+    "slug": "executive-bi-dashboards",
+    "category": "cat-vision",
+    "title": "Executive BI Dashboards",
+    "desc": "Unified revenue, customer churn, and profit margin visualizations."
+  },
+  {
+    "id": "svc-48",
+    "slug": "document-diff-scanner",
+    "category": "cat-vision",
+    "title": "Document Diff Scanner",
+    "desc": "Detecting minute clause changes between two PDF revisions."
+  },
+  {
+    "id": "svc-49",
+    "slug": "form-field-auto-fill",
+    "category": "cat-vision",
+    "title": "Form-Field Auto Fill",
+    "desc": "Populating legacy enterprise forms from uploaded scans."
+  },
+  {
+    "id": "svc-50",
+    "slug": "sensitive-pii-redactor",
+    "category": "cat-vision",
+    "title": "Sensitive PII Redactor",
+    "desc": "Auto-blurring social security numbers and phone numbers on PDFs."
+  },
+  {
+    "id": "svc-51",
+    "slug": "ai-saas-mvp-engine",
+    "category": "cat-software",
+    "title": "AI SaaS MVP Engine",
+    "desc": "Fast-track turnkey web apps with Stripe auth and AI features."
+  },
+  {
+    "id": "svc-52",
+    "slug": "vertical-isp-billing-saas",
+    "category": "cat-software",
+    "title": "Vertical ISP Billing SaaS",
+    "desc": "Mikrotik API sync, automated bKash/Nagad billing & radius portal."
+  },
+  {
+    "id": "svc-53",
+    "slug": "e-commerce-logistics-os",
+    "category": "cat-software",
+    "title": "E-Commerce Logistics OS",
+    "desc": "Multi-channel order ingestion, courier API dispatch, and return risk."
+  },
+  {
+    "id": "svc-54",
+    "slug": "academy-school-os",
+    "category": "cat-software",
+    "title": "Academy & School OS",
+    "desc": "Student fee subscription engine, DRM player, and SMS due alerts."
+  },
+  {
+    "id": "svc-55",
+    "slug": "rapid-24-48hr-bug-fix",
+    "category": "cat-software",
+    "title": "Rapid 24-48hr Bug Fix",
+    "desc": "Fast root-cause triage, surgical code fixes, with milestone acceptance guarantee."
+  },
+  {
+    "id": "svc-56",
+    "slug": "admin-control-panels",
+    "category": "cat-software",
+    "title": "Admin Control Panels",
+    "desc": "Comprehensive CRUD hubs for managing users and models."
+  },
+  {
+    "id": "svc-57",
+    "slug": "internal-operations-tools",
+    "category": "cat-software",
+    "title": "Internal Operations Tools",
+    "desc": "Custom web utilities tailored to your company's daily workflow."
+  },
+  {
+    "id": "svc-58",
+    "slug": "progressive-web-apps",
+    "category": "cat-software",
+    "title": "Progressive Web Apps",
+    "desc": "Offline-capable mobile experiences installable on iOS and Android."
+  },
+  {
+    "id": "svc-59",
+    "slug": "multi-tenant-rls-systems",
+    "category": "cat-software",
+    "title": "Multi-Tenant RLS Systems",
+    "desc": "Isolated PostgreSQL schemas preventing cross-tenant leakage."
+  },
+  {
+    "id": "svc-60",
+    "slug": "serverless-edge-workers",
+    "category": "cat-software",
+    "title": "Serverless Edge Workers",
+    "desc": "Sub-10ms global edge functions running on Cloudflare Workers."
+  },
+  {
+    "id": "svc-61",
+    "slug": "llm-provider-gateway",
+    "category": "cat-infra",
+    "title": "LLM Provider Gateway",
+    "desc": "Unified routing between OpenAI, Anthropic, Gemini, and DeepSeek."
+  },
+  {
+    "id": "svc-62",
+    "slug": "agency-white-label-pod",
+    "category": "cat-infra",
+    "title": "Agency White-Label Pod",
+    "desc": "Silent technical delivery execution partner for digital agencies."
+  },
+  {
+    "id": "svc-63",
+    "slug": "docker-vps-deployment",
+    "category": "cat-infra",
+    "title": "Docker VPS Deployment",
+    "desc": "Hardened containerized hosting on your dedicated Linux VPS."
+  },
+  {
+    "id": "svc-64",
+    "slug": "zero-trust-key-vaulting",
+    "category": "cat-infra",
+    "title": "Zero-Trust Key Vaulting",
+    "desc": "Isolated environment secrets and KMS API key encryption."
+  },
+  {
+    "id": "svc-65",
+    "slug": "automated-db-backups",
+    "category": "cat-infra",
+    "title": "Automated DB Backups",
+    "desc": "Daily encrypted snapshots synced to Cloudflare R2 / S3."
+  },
+  {
+    "id": "svc-66",
+    "slug": "observability-logging",
+    "category": "cat-infra",
+    "title": "Observability & Logging",
+    "desc": "Centralized Prometheus and Grafana telemetry dashboards."
+  },
+  {
+    "id": "svc-67",
+    "slug": "cicd-github-workflows",
+    "category": "cat-infra",
+    "title": "CI/CD GitHub Workflows",
+    "desc": "Automated testing and zero-downtime deployment pipelines."
+  },
+  {
+    "id": "svc-68",
+    "slug": "latency-cache-tuning",
+    "category": "cat-infra",
+    "title": "Latency & Cache Tuning",
+    "desc": "Edge Redis caching cutting AI inference response times by 70%."
+  },
+  {
+    "id": "svc-69",
+    "slug": "token-cost-guardrails",
+    "category": "cat-infra",
+    "title": "Token Cost Guardrails",
+    "desc": "Automated rate-limiting and model cascade cutting LLM bills by 60%."
+  },
+  {
+    "id": "svc-70",
+    "slug": "multi-region-failover",
+    "category": "cat-infra",
+    "title": "Multi-Region Failover",
+    "desc": "High-availability redundant routing ensuring 99.9% uptime."
+  },
+  {
+    "id": "svc-71",
+    "slug": "bronze-uptime-retainer",
+    "category": "cat-security",
+    "title": "Bronze Uptime Retainer",
+    "desc": "24/7 VPS uptime monitoring, weekly DB backups, and monthly fixes ($99/mo)."
+  },
+  {
+    "id": "svc-72",
+    "slug": "silver-systems-care",
+    "category": "cat-security",
+    "title": "Silver Systems Care",
+    "desc": "Continuous workflow improvements, token cost optimization ($249/mo)."
+  },
+  {
+    "id": "svc-73",
+    "slug": "gold-operations-retainer",
+    "category": "cat-security",
+    "title": "Gold Operations Retainer",
+    "desc": "Dedicated engineering pod, sub-1hr SLA, direct Slack/WhatsApp ($499/mo)."
+  },
+  {
+    "id": "svc-74",
+    "slug": "247-error-heartbeats",
+    "category": "cat-security",
+    "title": "24/7 Error Heartbeats",
+    "desc": "Instant alerts to Lead Engineer phone whenever a workflow fails."
+  },
+  {
+    "id": "svc-75",
+    "slug": "prompt-drift-evals",
+    "category": "cat-security",
+    "title": "Prompt Drift & Evals",
+    "desc": "Automated golden dataset evals catching output regressions."
+  },
+  {
+    "id": "svc-76",
+    "slug": "prompt-injection-defense",
+    "category": "cat-security",
+    "title": "Prompt Injection Defense",
+    "desc": "Security sanitization guards preventing adversarial jailbreaks."
+  },
+  {
+    "id": "svc-77",
+    "slug": "gdpr-privacy-auditing",
+    "category": "cat-security",
+    "title": "GDPR & Privacy Auditing",
+    "desc": "Data flow certification ensuring no customer leaks to third parties."
+  },
+  {
+    "id": "svc-78",
+    "slug": "hotfix-sla-target",
+    "category": "cat-security",
+    "title": "Hotfix SLA Target",
+    "desc": "Targeted sub-4hr resolution window on critical enterprise retainer tiers."
+  },
+  {
+    "id": "svc-79",
+    "slug": "dr-rollback-drills",
+    "category": "cat-security",
+    "title": "DR Rollback Drills",
+    "desc": "Routine restoration drills verifying point-in-time database recovery."
+  },
+  {
+    "id": "svc-80",
+    "slug": "lead-engineer-retainer",
+    "category": "cat-security",
+    "title": "Lead Engineer Retainer",
+    "desc": "Direct 1-on-1 strategy access to Adnin Sadat Mahin on private Slack."
+  }
+]

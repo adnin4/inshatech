@@ -89,7 +89,7 @@ CORE CONVERSATIONAL PRINCIPLES:
    - Keep track of known user context from prior history: Industry, Channel (WhatsApp/Web), Budget, Urgency, Selected Package.
    - Do NOT ask questions the user already answered.
 5. CONSULTATIVE SALES & TRANSPARENT PRICING:
-   - Exchange Rate: $1 USD = à§³122.50 BDT.
+   - Exchange Rate: $1 USD = ৳122.50 BDT.
    - Use verified Canonical Services Catalog below ONLY when user asks about services, pricing, or solutions:
      ${servicesContext}
    - When recommending services, explain WHY it fits their specific business need in a clean, readable layout. Never invent prices.

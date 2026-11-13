@@ -169,14 +169,163 @@
         }
     }
 
+    
+    // 8. Ponder & Chronicle Dynamic Cursor Spotlight Tracking
+    function initSpotlightTracking() {
+        const updateSpotlight = (card, e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+        };
+
+        document.addEventListener('mousemove', (e) => {
+            const card = e.target.closest('.glass-card, .ipc-card, .blueprint-card, .store-card, .tmpl-card, .solution-card, .hero-studio-card, .pkg-card, .trust-principle-card, .premium-card, .lead-magnet-card, .newsletter-card');
+            if (card) {
+                updateSpotlight(card, e);
+            }
+        }, { passive: true });
+    }
+
+    // 9. Interactive Ponder 4-Step Pipeline Workflow Simulator
+    let simulatedDealRevenue = 850;
+    window.simulatePipelineStep = function(stepIdx) {
+        const steps = document.querySelectorAll('.pipeline-step-item');
+        if (!steps || steps.length === 0) return;
+
+        steps.forEach((s, idx) => {
+            if (idx === stepIdx) {
+                s.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25)';
+                s.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                s.style.transform = 'scale(1.02) translateX(4px)';
+                s.style.background = 'rgba(255, 255, 255, 0.08)';
+            } else {
+                s.style.boxShadow = 'none';
+                s.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                s.style.transform = 'scale(1) translateX(0)';
+                s.style.background = 'rgba(255, 255, 255, 0.03)';
+            }
+        });
+
+        const msgs = [
+            '⚡ 01 // Inbound WhatsApp Lead Captured & Validated via Webhook',
+            '🤖 02 // Gemini 3.0 Vision OCR Extracted Intent & Specifications',
+            '🧠 03 // 18-Agent Autonomous Swarm Formulated Architecture Proposal',
+            '💰 04 // Deal Auto-Closed & Synced to PostgreSQL 17 + Cloudflare R2'
+        ];
+
+        if (window.showToast) {
+            window.showToast(msgs[stepIdx] || 'Pipeline Step Activated', 'info', 2500);
+        }
+
+        // Increment live simulated revenue badge if step 4
+        if (stepIdx === 3) {
+            simulatedDealRevenue += 850;
+            const revBadge = document.getElementById('hero-live-deal-metric');
+            if (revBadge) {
+                revBadge.textContent = '+$' + simulatedDealRevenue.toLocaleString() + ' USD';
+                revBadge.style.color = '#10b981';
+            }
+        }
+    };
+
     // Initialize all on DOM ready
+    
+    // Live Real-Time Service Search & Filter across all 80+ Micro-Services
+    function initServiceLiveSearch() {
+        const searchInput = document.getElementById('service-live-search');
+        const counterEl = document.getElementById('service-active-counter');
+        const emptyEl = document.getElementById('service-search-empty');
+        const panels = document.querySelectorAll('.service-panel');
+        const tabs = document.querySelectorAll('.service-tab-btn');
+
+        // Assign stable unique data-service-id and data-service-slug to all 80 cards
+        let cardIdx = 0;
+        panels.forEach(p => {
+            const cat = p.id || 'cat';
+            p.querySelectorAll('.service-item-card').forEach(c => {
+                cardIdx++;
+                const titleEl = c.querySelector('.service-item-title');
+                const rawTitle = titleEl ? titleEl.textContent.replace(/[^\w\s-]/g, '').trim() : `service-${cardIdx}`;
+                const slug = rawTitle.toLowerCase().replace(/\s+/g, '-');
+                c.setAttribute('data-service-id', `svc-${String(cardIdx).padStart(2, '0')}`);
+                c.setAttribute('data-service-slug', slug);
+                c.setAttribute('data-service-category', cat);
+            });
+        });
+
+        function applyTabOrSearch() {
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const activeTab = document.querySelector('.service-tab-btn.active') || tabs[0];
+            const targetId = activeTab ? activeTab.getAttribute('data-target') : 'all';
+
+            let visibleCount = 0;
+            panels.forEach(p => {
+                const isTargetPanel = (targetId === 'all' || p.id === targetId);
+                let hasMatchInPanel = false;
+
+                p.querySelectorAll('.service-item-card').forEach(c => {
+                    const text = c.textContent.toLowerCase();
+                    const matchesSearch = !query || text.includes(query);
+                    const shouldShow = query ? matchesSearch : isTargetPanel;
+
+                    c.style.display = shouldShow ? '' : 'none';
+                    c.style.opacity = shouldShow ? '1' : '0';
+                    if (shouldShow) {
+                        hasMatchInPanel = true;
+                        visibleCount++;
+                    }
+                });
+
+                if (hasMatchInPanel) {
+                    p.classList.add('active');
+                    p.style.display = 'grid';
+                } else {
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                }
+            });
+
+            if (counterEl) {
+                counterEl.textContent = `${visibleCount} Modular Solution${visibleCount === 1 ? '' : 's'} Catalogued`;
+            }
+            if (emptyEl) {
+                const isEmpty = visibleCount === 0;
+                emptyEl.style.display = isEmpty ? 'block' : 'none';
+                emptyEl.hidden = !isEmpty;
+            }
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(b => {
+                    const isSelected = b === btn;
+                    b.classList.toggle('active', isSelected);
+                    b.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+                });
+                applyTabOrSearch();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applyTabOrSearch);
+            searchInput.addEventListener('search', applyTabOrSearch);
+        }
+
+        // Initial render synchronization (ensures all 80 cards visible when "All Categories" is active)
+        applyTabOrSearch();
+    }
+
     function initUX() {
+        initServiceLiveSearch();
         ensureToastElement();
         initKeyboardShortcuts();
         initBackdropDismissal();
         initClipboardCopy();
         initMobileNavAutoClose();
         initLeadMagnetHandler();
+        initSpotlightTracking();
     }
 
     if (document.readyState === 'loading') {

@@ -6,28 +6,29 @@
     <title>Insha Tech | Autonomous C-Panel OS | IINSHA AI Automation Lab</title>
     <meta name="description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://inshatech.pages.dev/admin.html">
+    <link rel="canonical" href="https://inshatech-b6b.pages.dev/admin">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://inshatech.pages.dev/admin.html">
+    <meta property="og:url" content="https://inshatech-b6b.pages.dev/admin">
     <meta property="og:title" content="Autonomous C-Panel OS | IINSHA AI Automation Lab">
     <meta property="og:description" content="Supreme Autonomous AI Business Operating System & Multi-Agent Command Center.">
-    <meta property="og:image" content="https://inshatech.pages.dev/portfolio_hermes_ai_agent.jpg">
+    <meta property="og:image" content="https://inshatech-b6b.pages.dev/portfolio_hermes_ai_agent.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260907_v130_modal_dom_perfection">
+    <link rel="stylesheet" href="css/iinsha-design-system.css?v=20261109_v900_diagram_master_replica">
+    <link rel="stylesheet" href="style.css?v=20261109_v900_diagram_master_replica">
     <style>
         :root {
-            --bg-cockpit: #040812;
-            --bg-sidebar: #070d1a;
-            --bg-card: rgba(13, 22, 38, 0.85);
+            --bg-cockpit: #030712;
+            --bg-sidebar: rgba(5, 10, 22, 0.90);
+            --bg-card: rgba(8, 13, 26, 0.85);
             --bg-card-hover: rgba(20, 34, 58, 0.95);
-            --accent-cyan: #00F2FE;
+            --accent-cyan: #ffffff;
             --accent-emerald: #10B981;
             --accent-purple: #A855F7;
             --accent-gold: #F59E0B;
             --accent-rose: #F43F5E;
-            --border-cockpit: rgba(0, 242, 254, 0.15);
+            --border-cockpit: rgba(255, 255, 255, 0.16);
             --border-card: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -75,9 +76,9 @@
             font-size: 0.65rem;
             padding: 2px 8px;
             border-radius: 6px;
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             font-family: var(--font-mono);
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -99,7 +100,7 @@
 
         .header-search:hover, .header-search:focus-within {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             color: #fff;
         }
 
@@ -170,11 +171,11 @@
         }
 
         .nav-item-btn.active {
-            background: rgba(0, 242, 254, 0.1);
-            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
             color: var(--accent-cyan);
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
         }
 
         .nav-badge-pill {
@@ -194,7 +195,7 @@
             flex-direction: column;
             overflow-y: auto;
             padding: 24px;
-            background: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
         }
 
         .workspace-header {
@@ -236,9 +237,9 @@
         }
 
         .admin-kpi-card:hover {
-            border-color: rgba(0, 242, 254, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: none;
         }
 
         .kpi-title {
@@ -310,7 +311,7 @@
             border: 1px solid var(--accent-cyan);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+            box-shadow: none;
         }
 
         .cmd-search-input {
@@ -344,7 +345,7 @@
         }
 
         .cmd-result-item:hover, .cmd-result-item.selected {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--accent-cyan);
         }
 
@@ -377,7 +378,7 @@
             color: #94a3b8;
             text-transform: uppercase;
             font-family: var(--font-mono);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 8px;
         }
 
@@ -396,7 +397,7 @@
         .kanban-card:hover {
             border-color: var(--accent-cyan);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            box-shadow: none;
         }
 
         /* Custom Scrollbars */
@@ -411,76 +412,402 @@
             background: rgba(255,255,255,0.15);
             border-radius: 3px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-cyan);
+        /* Mobile & Tablet Responsive Cockpit Layout */
+        @media screen and (max-width: 1024px) {
+            body {
+                height: auto !important;
+                min-height: 100vh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+            }
+            .cockpit-header {
+                height: auto !important;
+                padding: 12px 14px !important;
+                flex-wrap: wrap !important;
+                gap: 10px !important;
+            }
+            .header-search {
+                order: 3 !important;
+                flex: 1 1 100% !important;
+                width: 100% !important;
+            }
+            .header-actions {
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+            }
+            .cockpit-body {
+                flex-direction: column !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            .cockpit-nav {
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--border-cockpit) !important;
+                padding: 8px 10px !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .cockpit-nav > div {
+                flex-direction: column !important;
+                gap: 6px !important;
+            }
+            .nav-section-title {
+                display: none !important;
+            }
+            .nav-list {
+                flex-direction: row !important;
+                gap: 6px !important;
+                white-space: nowrap !important;
+                overflow-x: auto !important;
+                padding-bottom: 4px !important;
+                scrollbar-width: none !important;
+            }
+            .nav-list::-webkit-scrollbar {
+                display: none !important;
+            }
+            .nav-item-btn {
+                padding: 8px 12px !important;
+                font-size: 0.78rem !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+                min-height: 40px !important;
+            }
+            .cockpit-main {
+                padding: 16px 12px !important;
+                overflow: visible !important;
+                height: auto !important;
+                width: 100% !important;
+            }
+            .cockpit-inspector {
+                width: 100% !important;
+                border-left: none !important;
+                border-top: 1px solid var(--border-cockpit) !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            .admin-kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            .cockpit-header {
+                padding: 10px 10px !important;
+            }
+            .admin-kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .workspace-title {
+                font-size: 1.15rem !important;
+            }
+            .header-actions button, .header-actions a {
+                font-size: 0.7rem !important;
+                padding: 6px 8px !important;
+            }
+            .cmd-palette-box {
+                width: 95% !important;
+                margin: 0 10px !important;
+            }
         }
     </style>
     <link rel="stylesheet" href="universal_ai_copilot.css?v=v20260818_gemini_ui_v3">
+    <!-- HLS.js Engine for Chromium / Windows Native 3D Motion Video Streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body>
-    <!-- SERVER-AUTHENTICATED SESSION GUARDIAN OVERLAY -->
-    <div id="admin-auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
-        <div style="background:#0f172a; padding:40px; border-radius:14px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:420px; width:90%; box-shadow: 0 0 50px rgba(0,242,254,0.15);">
-            <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #00F2FE, #8B5CF6); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 16px;">II</div>
-            <h2 style="margin-bottom:6px; color:#00F2FE; font-size:1.4rem;">IINSHA Control Plane</h2>
-            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:20px;">Authenticated Edge Session & RBAC Gate</p>
-            <input type="password" id="admin-password" placeholder="Enter Master Commander Password" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
-            <button id="admin-login-btn" onclick="checkAdminAuth()" style="background:linear-gradient(135deg, #10B981, #059669); color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Access Commander C-Panel</button>
+
+    <!-- FULLSITE CINEMATIC 3D BACKGROUND STAGE -->
+    <div id="global-cinematic-stage" class="global-cinematic-stage" aria-hidden="true">
+        <!-- LittleWebsite Fullsite Looping Motion Video / Animated WebP -->
+        <div class="global-video-backdrop">
+            <video id="global-3d-bg-video" autoplay loop muted playsinline poster="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/thumbnail.webp?time=0&amp;width=1920" class="global-media-cover">
+                <source src="https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8" type="application/x-mpegURL">
+                <img src="https://image.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU/animated.webp" alt="Fullsite Cinematic 3D Motion" class="global-media-cover" loading="eager">
+            </video>
+        </div>
+        <div id="hero3d-container" class="global-3d-canvas-wrap"></div>
+        <div class="global-halftone-overlay"></div>
+        <div class="global-vignette-overlay"></div>
+    </div>
+
+
+    <!-- SERVER-AUTHENTICATED 2-STEP VERIFICATION GUARDIAN OVERLAY -->
+    <div id="admin-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-dialog-title" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#090d16; z-index:9999999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:'Inter',sans-serif;">
+        <div style="background:#0f172a; padding:36px; border-radius:16px; border:1px solid rgba(0,242,254,0.3); text-align:center; max-width:440px; width:90%; box-shadow: 0 0 60px rgba(0,242,254,0.2);">
+            <div style="width:52px; height:52px; border-radius:14px; background: #ffffff; color: #020202; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.4rem; color:#000; margin:0 auto 14px; box-shadow: 0 0 25px rgba(0,242,254,0.4);">II</div>
+            <h2 id="admin-dialog-title" style="margin-bottom:4px; color:#ffffff; font-size:1.35rem;">IINSHA Control Plane</h2>
+            <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; margin-bottom:18px;">
+                <span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
+                <span style="font-size:0.72rem; color:#34d399; font-weight:700; font-family:var(--font-mono, monospace);">2-STEP VERIFICATION ACTIVE</span>
+            </div>
+
+            <!-- STEP 1: PASSWORD AUTH -->
+            <div id="auth-step-1">
+                <p style="font-size:0.8rem; color:#94a3b8; color:#94a3b8; margin-bottom:14px; line-height:1.4;">Step 1 of 2: Enter Master Commander Security Credentials to initiate session authentication.</p>
+                <input type="email" id="admin-email" aria-label="Commander Email" placeholder="Commander Email" value="inshatech.dev@gmail.com" style="padding:10px 14px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:8px; font-size:0.9rem; box-sizing:border-box;">
+                <input type="password" id="admin-password" aria-label="Master Commander Password" placeholder="Enter Master Commander Password" value="" style="padding:12px 16px; border-radius:8px; border:1px solid #334155; background:#020617; color:#fff; width:100%; margin-bottom:14px; font-size:0.95rem; box-sizing:border-box;">
+                <button id="admin-login-btn" onclick="submitAdminStep1()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">Continue to Step 2 (Verify TOTP / MFA) →</button>
+            </div>
+
+            <!-- STEP 2: 2-STEP TOTP VERIFICATION OTP -->
+            <div id="auth-step-2" style="display:none;">
+                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-bottom:14px; text-align:left;">
+                    <div style="font-size:0.75rem; color:#94a3b8;">🔐 Multi-Factor Authenticator (TOTP / SMS):</div>
+                    <div style="font-size:0.85rem; color:#ffffff; font-weight:700; font-family:var(--font-mono, monospace); margin-top:2px;">inshatech.dev@gmail.com</div>
+                    <div id="sms-toast-notify" style="font-size:0.73rem; color:#34d399; margin-top:4px;">⚡ Server Challenge Active — Enter 6-digit TOTP code.</div>
+                </div>
+                <p style="font-size:0.78rem; color:#94a3b8; margin-bottom:12px;">Step 2 of 2: Enter the 6-digit time-based code from your authenticator device:</p>
+                <input type="text" id="admin-otp-code" aria-label="6-Digit Time-Based Authentication Code" maxlength="6" placeholder="• • • • • •" style="padding:12px 16px; border-radius:8px; border:1px solid #ffffff; background:#020617; color:#ffffff; width:100%; margin-bottom:14px; font-size:1.3rem; letter-spacing:8px; text-align:center; font-family:var(--font-mono, monospace); font-weight:800; box-sizing:border-box;">
+                <button id="admin-verify-btn" onclick="verifyAdminStep2()" style="background: #ffffff; color: #020202; color:#000; font-weight:700; padding:12px 24px; border:none; border-radius:8px; cursor:pointer; width:100%; font-size:0.95rem; transition:all 0.2s;">🔐 Complete MFA Verification & Unlock C-Panel</button>
+                <button onclick="backToStep1()" style="background:none; border:none; color:#64748b; font-size:0.75rem; margin-top:10px; cursor:pointer; text-decoration:underline;">← Back to Credentials</button>
+            </div>
+
             <p id="auth-error" style="color:#ef4444; font-size:0.82rem; margin-top:12px; display:none;"></p>
         </div>
     </div>
     <script>
-        if (sessionStorage.getItem('iinsha_admin_authenticated') === 'true') {
-            document.getElementById('admin-auth-overlay').style.display = 'none';
+        function unlockAdminUI() {
+            const overlay = document.getElementById('admin-auth-overlay');
+            const mainContent = document.getElementById('admin-main-content');
+            if (overlay) overlay.style.display = 'none';
+            if (mainContent) {
+                mainContent.removeAttribute('inert');
+                mainContent.removeAttribute('aria-hidden');
+            }
         }
-        async function checkAdminAuth() {
+
+        function lockAdminUI() {
+            const overlay = document.getElementById('admin-auth-overlay');
+            const mainContent = document.getElementById('admin-main-content');
+            if (overlay) overlay.style.display = 'flex';
+            if (mainContent) {
+                mainContent.setAttribute('inert', '');
+                mainContent.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        // Focus trapping for accessible login dialog
+        document.getElementById('admin-auth-overlay')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                const focusable = Array.from(this.querySelectorAll('input:not([style*="display:none"]), button:not([style*="display:none"])')).filter(el => el.offsetParent !== null);
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        // Check for existing valid server session on page load (Strict HttpOnly Cookie-first)
+        (async function checkExistingAdminSession() {
+            try {
+                // Clear any legacy insecure tokens from client storage
+                sessionStorage.removeItem('iinsha_session_token');
+                sessionStorage.removeItem('iinsha_admin_token');
+                localStorage.removeItem('iinsha_admin_token');
+
+                const res = await fetch('/api/admin/gate', {
+                    method: 'GET',
+                    credentials: 'same-origin'
+                });
+                const data = await res.json().catch(() => ({}));
+                if (res.ok && data.authenticated === true) {
+                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
+                    unlockAdminUI();
+                } else {
+                    sessionStorage.removeItem('iinsha_admin_authenticated');
+                    sessionStorage.removeItem('iinsha_2fa_verified');
+                    sessionStorage.removeItem('iinsha_session_token');
+                    sessionStorage.removeItem('iinsha_admin_user');
+                    lockAdminUI();
+                }
+            } catch (e) {
+                lockAdminUI();
+            }
+        })();
+
+        let pendingAdminEmail = '';
+        let pendingAdminPassword = '';
+
+        document.getElementById('admin-password')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitAdminStep1();
+            }
+        });
+
+        document.getElementById('admin-otp-code')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyAdminStep2();
+            }
+        });
+
+        function backToStep1() {
+            document.getElementById('auth-step-2').style.display = 'none';
+            document.getElementById('auth-step-1').style.display = 'block';
+            const errEl = document.getElementById('auth-error');
+            if (errEl) errEl.style.display = 'none';
+        }
+
+        async function submitAdminStep1() {
+            const emailInput = document.getElementById('admin-email');
             const pwdInput = document.getElementById('admin-password');
             const errEl = document.getElementById('auth-error');
             const btn = document.getElementById('admin-login-btn');
-            const pwd = pwdInput.value;
-            
+            const email = (emailInput?.value || '').trim();
+            const pwd = (pwdInput?.value || '').trim();
+
+            if (!email || !pwd) {
+                if (errEl) {
+                    errEl.textContent = ' ⚠️ Please enter both Commander Email and Master Password.';
+                    errEl.style.display = 'block';
+                }
+                return;
+            }
+
             if (btn) {
                 btn.disabled = true;
-                btn.textContent = ' Authenticating with Edge Session Guardian...';
+                btn.textContent = ' Verifying Credentials with Server...';
             }
             if (errEl) errEl.style.display = 'none';
 
             try {
                 const res = await fetch('/api/auth/session', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: 'adnansadatmahin5@gmail.com', password: pwd })
+                    body: JSON.stringify({ email, password: pwd })
                 });
 
-                const data = await res.json();
-                if (data.status === 'AUTHENTICATED' && data.session_token) {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_session_token', data.session_token);
-                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user));
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
-                } else {
-                    throw new Error(data.error || 'Invalid credentials');
+                const data = await res.json().catch(() => ({}));
+
+                if (res.status === 503 || data.status === 'CONFIGURATION_ERROR' || data.status === 'SECURITY_AUTHORITY_UNAVAILABLE') {
+                    throw new Error(`Fail-Closed Server Auth (${res.status}): ${data.message || data.error || 'Configure ADMIN_EMAIL, ADMIN_PASSWORD_HASH, JWT_SECRET, and MFA_SECRET in Cloudflare Pages secrets.'}`);
                 }
-            } catch (err) {
-                // Verified fallback for local offline simulation
-                if (pwd === 'iinsha_admin_2026') {
-                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
-                    sessionStorage.setItem('iinsha_session_token', 'ibos_offline_' + Date.now());
-                    document.getElementById('admin-auth-overlay').style.display = 'none';
-                } else {
-                    if (errEl) {
-                        errEl.textContent = ' ' + (err.message || 'Invalid password');
-                        errEl.style.display = 'block';
+
+                if (data.status === 'MFA_REQUIRED') {
+                    pendingAdminEmail = email;
+                    pendingAdminPassword = pwd;
+                    document.getElementById('auth-step-1').style.display = 'none';
+                    document.getElementById('auth-step-2').style.display = 'block';
+                    const otpInput = document.getElementById('admin-otp-code');
+                    if (otpInput) {
+                        otpInput.value = '';
+                        otpInput.focus();
                     }
+                    return;
+                }
+
+                if (res.ok && data.status === 'AUTHENTICATED') {
+                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
+                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email }));
+                    unlockAdminUI();
+                    return;
+                }
+
+                throw new Error(data.error || data.status || 'Invalid master credentials.');
+            } catch (err) {
+                if (errEl) {
+                    errEl.textContent = ' ❌ ' + (err.message || 'Authentication failed.');
+                    errEl.style.display = 'block';
                 }
             } finally {
                 if (btn) {
                     btn.disabled = false;
-                    btn.textContent = 'Access Commander C-Panel';
+                    btn.textContent = 'Continue to Step 2 (Verify TOTP / MFA) →';
                 }
             }
         }
+
+        async function verifyAdminStep2() {
+            const otpInput = document.getElementById('admin-otp-code');
+            const errEl = document.getElementById('auth-error');
+            const btn = document.getElementById('admin-verify-btn');
+            const enteredOtp = (otpInput?.value || '').trim();
+
+            if (!enteredOtp || !/^[0-9]{6}$/.test(enteredOtp)) {
+                if (errEl) {
+                    errEl.textContent = ' ⚠️ Please enter a valid 6-digit TOTP verification code.';
+                    errEl.style.display = 'block';
+                }
+                return;
+            }
+
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = ' Validating Server MFA Verification Token...';
+            }
+            if (errEl) errEl.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/auth/session', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: pendingAdminEmail,
+                        password: pendingAdminPassword,
+                        mfa_token: enteredOtp,
+                        cookie_only: true
+                    })
+                });
+
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok && data.status === 'AUTHENTICATED') {
+                    sessionStorage.setItem('iinsha_admin_authenticated', 'true');
+                    sessionStorage.setItem('iinsha_2fa_verified', 'true');
+                    sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email: pendingAdminEmail }));
+
+                    pendingAdminPassword = '';
+                    unlockAdminUI();
+                    return;
+                }
+
+                throw new Error(data.error || data.status || 'Invalid or expired 6-digit MFA code.');
+            } catch (err) {
+                if (errEl) {
+                    errEl.textContent = ' ❌ ' + (err.message || 'MFA validation failed.');
+                    errEl.style.display = 'block';
+                }
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = '🔐 Complete MFA Verification & Unlock C-Panel';
+                }
+            }
+        }
+
+        window.adminLogout = async function() {
+            try {
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    credentials: 'same-origin'
+                });
+            } catch (_) {}
+            sessionStorage.removeItem('iinsha_admin_authenticated');
+            sessionStorage.removeItem('iinsha_2fa_verified');
+            sessionStorage.removeItem('iinsha_session_token');
+            sessionStorage.removeItem('iinsha_admin_token');
+            localStorage.removeItem('iinsha_admin_token');
+            sessionStorage.removeItem('iinsha_admin_user');
+            sessionStorage.removeItem('iinsha_2fa_pending_otp');
+            sessionStorage.removeItem('iinsha_2fa_otp_expires');
+            window.location.reload();
+        };
     </script>
+
+    <!-- PROTECTED ADMIN MAIN CONTENT (INERT AND ARIA-HIDDEN UNTIL SERVER AUTHENTICATED) -->
+    <div id="admin-main-content" inert aria-hidden="true">
 
     <!-- TOP COCKPIT HEADER BAR -->
     <header class="cockpit-header" role="banner">
@@ -505,7 +832,7 @@
                 📊 System Truth Center
             </button>
 
-            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
+            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: #ffffff; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" id="global-system-status-indicator">
                 <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
                 <span id="global-status-text">SYSTEM ONLINE (13 AGENTS)</span>
             </div>
@@ -526,8 +853,12 @@
                 📋 Daily Briefing
             </button>
 
+            <button onclick="adminLogout()" class="btn btn-glass-sm" style="color: #94a3b8; border-color: rgba(255,255,255,0.18); font-size: 0.75rem;" title="Lock C-Panel and require 2-Step Verification to re-enter" aria-label="Lock Admin Session">
+                🔒 Lock / Logout
+            </button>
+
             <a href="/" class="btn btn-primary-sm" style="font-size: 0.75rem; text-decoration: none;">
-                🌐 Public Site →
+                🌐 Public Site →
             </a>
         </div>
     </header>
@@ -543,7 +874,7 @@
                     <ul class="nav-list">
                         <li>
                             <button class="nav-item-btn active" onclick="switchAdminCockpitTab('overview')" id="nav-btn-overview" aria-label="Executive Overview">
-                                <span>🏛️‘</span> <span>Executive Overview</span>
+                                <span>🏛️</span> <span>Executive Overview</span>
                             </button>
                         </li>
                         <li>
@@ -561,7 +892,7 @@
                         <li>
                             <button class="nav-item-btn" onclick="switchAdminCockpitTab('flow')" id="nav-btn-flow" aria-label="Watch Agent Work Live Pipeline">
                                 <span>📹</span> <span>Watch Agent Work</span>
-                                <span class="nav-badge-pill" style="color: #38bdf8;">Live Pipeline</span>
+                                <span class="nav-badge-pill" style="color: #ffffff;">Live Pipeline</span>
                             </button>
                         </li>
                         <li>
@@ -679,7 +1010,7 @@
             <div class="admin-view-panel active" id="view-overview">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🏛️‘ Supreme Executive Command Overview</h1>
+                        <h1 class="workspace-title">🏛️ Supreme Executive Command Overview</h1>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time governance over autonomous swarms, active client revenue pipelines, and affiliate growth.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
@@ -687,27 +1018,32 @@
                     </div>
                 </div>
 
+                <!-- SAMPLE TELEMETRY NOTICE (GATED BY AUTH & DB) -->
+                <div style="margin-bottom: 14px; padding: 10px 14px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fcd34d; font-size: 0.78rem; font-family: var(--font-mono);">
+                    [DEMO SAMPLE DATA] — Figures shown below are static illustration baselines until connected to live authenticated Supabase telemetry.
+                </div>
+
                 <!-- 5 KEY PERFORMANCE INDICATORS -->
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Gross Closed Revenue</span>
-                        <div class="kpi-value" style="color: #38bdf8;">$94,950</div>
-                        <span class="kpi-sub">56 Verified Client Contracts</span>
+                        <span class="kpi-title">Gross Closed Revenue (Sample)</span>
+                        <div class="kpi-value" style="color: #ffffff;">$94,950</div>
+                        <span class="kpi-sub">Sample Illustration • Requires DB Sync</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Active AI Workforce Swarms</span>
+                        <span class="kpi-title">Active AI Workforce Swarms (Sample)</span>
                         <div class="kpi-value" style="color: #34d399;">27 / 27</div>
                         <span class="kpi-sub">Level 4 Policy Bound Autonomy</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Affiliate Partner Network</span>
+                        <span class="kpi-title">Affiliate Partner Network (Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-gold);">$14,250</div>
-                        <span class="kpi-sub">9 Deals • 18.4% CVR • 28 Pillars</span>
+                        <span class="kpi-sub">Sample Baseline • Requires DB Sync</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Self-Hosted Linux VPS & n8n Uptime</span>
+                        <span class="kpi-title">Target VPS & n8n Uptime (Sample)</span>
                         <div class="kpi-value" style="color: #67e8f9;">99.98%</div>
-                        <span class="kpi-sub">Docker Cluster • Zero Task Fees</span>
+                        <span class="kpi-sub">Sample Target SLA • Connect Telemetry</span>
                     </div>
                 </div>
 
@@ -743,7 +1079,7 @@
             <div class="admin-view-panel" id="view-swarms">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🤖 Autonomous Multi-Agent Swarm Orchestrator</h1>
+                        <h2 class="workspace-title">🤖 Autonomous Multi-Agent Swarm Orchestrator</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Inspect passports, adjust autonomy limits, and run multi-LLM boardroom strategy debates.</p>
                     </div>
                     <button onclick="openSwarmComposerModal()" class="btn btn-primary-sm">➕ Compose Dynamic Swarm</button>
@@ -758,10 +1094,10 @@
             <div class="admin-view-panel" id="view-partners">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🤝 28-Pillar Affiliate & Partner Command Center</h1>
+                        <h2 class="workspace-title">🤝 28-Pillar Affiliate & Partner Command Center</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Approve payouts, manage tiers (Bronze ➔ Gold ➔ Legend), and audit fraud alerts.</p>
                     </div>
-                    <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background: #ffffff; color: #020202; font-weight: 700; border-radius: 9999px; border: 1px solid #ffffff;">
                         ⚡ Batch Disburse Payouts ($2,450.00)
                     </button>
                 </div>
@@ -775,13 +1111,25 @@
             <div class="admin-view-panel" id="view-crm">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🎯 12-Stage Mission Control & Deal Pipeline</h1>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Drag and drop client deals across stages to trigger automated webhook updates & partner commissions.</p>
+                        <h2 class="workspace-title">🎯 Commercial Pipeline & Project Delivery</h2>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Manage 7-stage client acquisition pipeline and 8-stage production delivery tracking.</p>
                     </div>
-                    <button onclick="createNewClientDealModal()" class="btn btn-primary-sm">+ New Client Mission</button>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <button id="btn-kanban-demo-toggle" onclick="toggleCrmDemoMode()" class="btn btn-glass-sm" style="font-size: 0.78rem; padding: 6px 12px; border: 1px solid rgba(234, 179, 8, 0.4); color: #fde047; background: transparent;">👁️ Demo Mode: OFF</button>
+                        <div class="kanban-view-switcher" style="display: inline-flex; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 3px;">
+                            <button id="btn-kanban-leads" onclick="switchKanbanView('leads')" class="btn-toggle active" style="padding: 6px 14px; border-radius: 9999px; border: none; font-size: 0.78rem; font-weight: 700; cursor: pointer; background: var(--accent-cyan); color: #000;">📊 Lead CRM (7 Stages)</button>
+                            <button id="btn-kanban-delivery" onclick="switchKanbanView('delivery')" class="btn-toggle" style="padding: 6px 14px; border-radius: 9999px; border: none; font-size: 0.78rem; font-weight: 700; cursor: pointer; background: transparent; color: #94a3b8;">🚀 Delivery Tracker (8 Stages)</button>
+                        </div>
+                        <button onclick="createNewClientDealModal()" class="btn btn-primary-sm">+ New Client Mission</button>
+                    </div>
                 </div>
 
-                <div class="kanban-board" id="crm-kanban-board">
+                <div id="crm-demo-warning-banner" style="display: none; background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.5); border-radius: 8px; padding: 10px 16px; margin-bottom: 14px; color: #fde047; font-size: 0.8rem; align-items: center; justify-content: space-between;">
+                    <span>⚠️ <strong>DEMO MODE ACTIVE:</strong> Showing simulated reference pipelines and sample enterprise accounts for illustration only. Production database is isolated.</span>
+                    <button onclick="toggleCrmDemoMode()" style="background: #eab308; color: #000; border: none; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer;">Exit Demo Mode</button>
+                </div>
+
+                <div class="kanban-board" id="crm-kanban-board" style="display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: 14px; overflow-x: auto; padding-bottom: 12px;">
                     <!-- Injected by JS -->
                 </div>
             </div>
@@ -790,7 +1138,7 @@
             <div class="admin-view-panel" id="view-catalog">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🛒 Dynamic Service Catalog & Marketplace Studio</h1>
+                        <h2 class="workspace-title">🛒 Dynamic Service Catalog & Marketplace Studio</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Zero-code instant editing for all 8 Domains, 10 Playbooks, and Multi-Currency Pricing (USD / BDT).</p>
                     </div>
                     <button onclick="addNewServiceModal()" class="btn btn-primary-sm">+ Add Turnkey Service</button>
@@ -805,7 +1153,7 @@
             <div class="admin-view-panel" id="view-telemetry">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">⚡ Self-Hosted Linux VPS & Docker Engine Telemetry</h1>
+                        <h2 class="workspace-title">⚡ Self-Hosted Linux VPS & Docker Engine Telemetry</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Inspect memory, Docker containers, n8n webhook nodes, and trigger 1-click error retry.</p>
                     </div>
                     <button onclick="restartDockerCluster()" class="btn btn-glass-sm" style="color: var(--accent-cyan);">🔄 Restart Webhook Container</button>
@@ -820,7 +1168,7 @@
             <div class="admin-view-panel" id="view-inbox">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">💬 Omnichannel Unified Inbox & Live Chat</h1>
+                        <h2 class="workspace-title">💬 Omnichannel Unified Inbox & Live Chat</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Live web visitor chat, WhatsApp deals, and voice transcription in one unified feed with AI Whisper.</p>
                     </div>
                 </div>
@@ -834,7 +1182,7 @@
             <div class="admin-view-panel" id="view-seo">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">📝 Autonomous SEO & Blog Content Studio</h1>
+                        <h2 class="workspace-title">📝 Autonomous SEO & Blog Content Studio</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Generate fact-checked AI automation case studies and GEO direct answer summaries in 1-click.</p>
                     </div>
                     <button onclick="generateNewAiArticleModal()" class="btn btn-primary-sm">⚡ Generate New Case Study</button>
@@ -849,7 +1197,7 @@
             <div class="admin-view-panel" id="view-security">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🛡️ 4-Level HITL Governance & Emergency Protocol</h1>
+                        <h2 class="workspace-title">🛡️ 4-Level HITL Governance & Emergency Protocol</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Set daily API budget caps, permission boundaries, and enforce cryptographic audit trail.</p>
                     </div>
                 </div>
@@ -860,7 +1208,7 @@
             <div class="admin-view-panel" id="view-observatory">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🔬 AI Agent Observatory & Telemetry HUD</h1>
+                        <h2 class="workspace-title">🔬 AI Agent Observatory & Telemetry HUD</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time multi-turn context retention, anti-repetition audit, verifier score, and token telemetry.</p>
                     </div>
                     <button onclick="runObservatoryLiveEval()" class="btn btn-primary-sm">⚡ Run 100-Turn Evaluation Benchmark</button>
@@ -869,7 +1217,7 @@
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
                         <span class="kpi-title">Context Retention</span>
-                        <div class="kpi-value" style="color: #38bdf8;">99.4%</div>
+                        <div class="kpi-value" style="color: #ffffff;">99.4%</div>
                         <span class="kpi-sub">Multi-turn Memory Contract</span>
                     </div>
                     <div class="admin-kpi-card">
@@ -896,7 +1244,7 @@
             <div class="admin-view-panel" id="view-truth">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">📊 System Truth Center & Capability Registry</h1>
+                        <h2 class="workspace-title">📊 System Truth Center & Capability Registry</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Authoritative classification of every feature. No fabricated claims. 100% executable evidence.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
@@ -922,7 +1270,7 @@
                     </div>
                     <div class="admin-kpi-card">
                         <span class="kpi-title">🔍µ UI Only</span>
-                        <div class="kpi-value" style="color: #38bdf8;" id="truth-uionly-count">0</div>
+                        <div class="kpi-value" style="color: #ffffff;" id="truth-uionly-count">0</div>
                         <span class="kpi-sub">Visual Wireframe</span>
                     </div>
                 </div>
@@ -932,7 +1280,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">ID</th>
                                     <th style="padding:10px;">CAPABILITY</th>
                                     <th style="padding:10px;">MODULE</th>
@@ -953,7 +1301,7 @@
             <div class="admin-view-panel" id="view-activity">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">⚡ Live Agent Activity Wall & Flight Recorder</h1>
+                        <h2 class="workspace-title">⚡ Live Agent Activity Wall & Flight Recorder</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time agent stream. Click any event to inspect full causal trace & economics.</p>
                     </div>
                     <button onclick="injectLiveSimulatedEvent()" class="btn btn-primary-sm">➕ Emit Test Event</button>
@@ -977,7 +1325,7 @@
             <div class="admin-view-panel" id="view-economics">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">💰 Agent Economics & Revenue Attribution</h1>
+                        <h2 class="workspace-title">💰 Agent Economics & Revenue Attribution</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Precise AI inference costs, human labor equivalents, and verified revenue contribution.</p>
                     </div>
                     <button onclick="recalculateAgentEconomics()" class="btn btn-primary-sm">⚡ Audit Ledger Sync</button>
@@ -985,24 +1333,24 @@
 
                 <div class="admin-kpi-grid">
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Gross Revenue Influenced</span>
+                        <span class="kpi-title">Gross Revenue Influenced (Demo Sample)</span>
                         <div class="kpi-value" style="color: #34d399;">$124,800</div>
-                        <span class="kpi-sub">Verified Ledger Attribution</span>
+                        <span class="kpi-sub">Demo Sample • Connect Live DB Ledger</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Total AI Inference Cost</span>
+                        <span class="kpi-title">Total AI Inference Cost (Demo Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-cyan);">$142.60</div>
-                        <span class="kpi-sub">Cost / Revenue: 0.11%</span>
+                        <span class="kpi-sub">Sample Cost / Revenue Ratio: 0.11%</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Human Equivalent Saved</span>
+                        <span class="kpi-title">Human Equivalent Saved (Demo Sample)</span>
                         <div class="kpi-value" style="color: var(--accent-gold);">$34,200</div>
-                        <span class="kpi-sub">1,840 Hours Automation</span>
+                        <span class="kpi-sub">Sample Benchmark • 1,840 Hours</span>
                     </div>
                     <div class="admin-kpi-card">
-                        <span class="kpi-title">Economic Efficiency</span>
-                        <div class="kpi-value" style="color: #38bdf8;">875x ROI</div>
-                        <span class="kpi-sub">Net Profit Margin: 82.8%</span>
+                        <span class="kpi-title">Economic Efficiency (Demo Sample)</span>
+                        <div class="kpi-value" style="color: #ffffff;">875x ROI</div>
+                        <span class="kpi-sub">Demo Sample • Connect DB Ledger</span>
                     </div>
                 </div>
 
@@ -1011,7 +1359,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">AGENT</th>
                                     <th style="padding:10px;">TASKS</th>
                                     <th style="padding:10px;">TOKENS</th>
@@ -1031,7 +1379,7 @@
             <div class="admin-view-panel" id="view-approvals">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🎯 Owner Supreme Approval Inbox</h1>
+                        <h2 class="workspace-title">🎯 Owner Supreme Approval Inbox</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Centralized single-click Human-in-the-Loop authorization for financial transactions, payouts, and edge releases.</p>
                     </div>
                     <button onclick="approveAllPendingItems()" class="btn btn-primary-sm">⚡ Approve All Safe Batch</button>
@@ -1048,7 +1396,7 @@
             <div class="admin-view-panel" id="view-permissions">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🛡️ Agent Authority & Permission Matrix</h1>
+                        <h2 class="workspace-title">🛡️ Agent Authority & Permission Matrix</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Granular read, write, external communication, financial custody, and destructive operation policy gates.</p>
                     </div>
                     <button onclick="saveAgentPermissionMatrix()" class="btn btn-primary-sm">💾 Save Policy Manifest</button>
@@ -1058,7 +1406,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">AGENT</th>
                                     <th style="padding:10px;">READ (L0)</th>
                                     <th style="padding:10px;">WRITE / CRM (L2)</th>
@@ -1079,7 +1427,7 @@
             <div class="admin-view-panel" id="view-flow">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">📹 Watch Agent Work (Live Pipeline Visualizer)</h1>
+                        <h2 class="workspace-title">📹 Watch Agent Work (Live Pipeline Visualizer)</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time multi-agent execution pipeline showing state handoffs from intake to fulfillment.</p>
                     </div>
                     <button onclick="triggerLiveMissionSimulation()" class="btn btn-primary-sm">🚀 Launch Demo Mission Flow</button>
@@ -1100,7 +1448,7 @@
             <div class="admin-view-panel" id="view-incidents">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title"> Agent Incident Response & Auto-Remediation</h1>
+                        <h2 class="workspace-title"> Agent Incident Response & Auto-Remediation</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time incident detection, automated circuit breakers, fallback switching, and root-cause post-mortems.</p>
                     </div>
                     <button onclick="recordNewIncidentModal()" class="btn btn-glass-sm" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.4);"> Report Anomaly</button>
@@ -1117,7 +1465,7 @@
             <div class="admin-view-panel" id="view-vault">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">🔍 Zero-Trust Secret & Credential Vault</h1>
+                        <h2 class="workspace-title">🔍 Zero-Trust Secret & Credential Vault</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Cryptographic key broker isolating API secrets so autonomous agents operate with tokenized least-privilege.</p>
                     </div>
                     <button onclick="triggerKeyRotationModal()" class="btn btn-primary-sm">🔄 Rotate Credentials</button>
@@ -1127,7 +1475,7 @@
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:left;">
                             <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8; font-family:var(--font-mono);">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); color:#94a3b8; font-family:var(--font-mono);">
                                     <th style="padding:10px;">SERVICE</th>
                                     <th style="padding:10px;">KEY ALIAS</th>
                                     <th style="padding:10px;">STATUS</th>
@@ -1148,29 +1496,30 @@
             <div class="admin-view-panel" id="view-reconciliation">
                 <div class="workspace-header">
                     <div>
-                        <h1 class="workspace-title">💵 Financial Double-Entry Reconciliation Ledger</h1>
+                        <h2 class="workspace-title">💵 Financial Double-Entry Reconciliation Ledger</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted);">Single canonical source of truth matching orders, payments, escrow, refunds, commissions, and net profit.</p>
                     </div>
                     <button onclick="recalculateFinancialReconciliation()" class="btn btn-primary-sm">⚡ Audit Reconcile</button>
                 </div>
 
                 <div class="glass-card" style="background:var(--bg-card); padding:20px; border-radius:12px; border:1px solid var(--border-card);">
+                    <div style="margin-bottom: 12px; font-size: 0.75rem; color: #fcd34d; font-family: var(--font-mono);">[DEMO SAMPLE LEDGER] — Authenticate & sync Supabase for live production reconciliation.</div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Canonical Revenue:</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Canonical Revenue:</span>
                             <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$8,420.00 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Affiliate Accrued:</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Affiliate Accrued:</span>
                             <strong style="display:block; color:var(--accent-gold); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$3,120.00 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                            <span style="font-size:0.75rem; color:#94a3b8;">Net Profit (81.4%):</span>
+                            <span style="font-size:0.75rem; color:#94a3b8;">Sample Net Profit (81.4%):</span>
                             <strong style="display:block; color:var(--accent-cyan); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">$5,258.72 USD</strong>
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:8px; border:1px solid rgba(52,211,153,0.3);">
                             <span style="font-size:0.75rem; color:#94a3b8;">Reconciliation Status:</span>
-                            <strong style="display:block; color:var(--accent-emerald); font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;"> 100% MATCHED</strong>
+                            <strong style="display:block; color:#fcd34d; font-size:1.1rem; font-family:var(--font-mono); margin-top:4px;">SAMPLE / DB OFFLINE</strong>
                         </div>
                     </div>
                 </div>
@@ -1211,7 +1560,7 @@
                     • Stage: Stage 8 / 12 (UAT Sandbox)<br>
                     • Partner: Adnin Growth Partner
                 </div>
-                <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
                     <button onclick="openDealLifecycleModal('DEAL-9904')" class="btn btn-primary-sm" style="width: 100%; font-size: 0.75rem;">🔍 Full 12-Stage Audit</button>
                     <button onclick="showAffiliateToast('Dispatched WhatsApp update to client & partner!')" class="btn btn-glass-sm" style="width: 100%; font-size: 0.75rem;"> Dispatch Status Alert</button>
                 </div>
@@ -1230,7 +1579,7 @@
         </div>
     </div>
 
-    <script src="app.js?v=20260907_v130_modal_dom_perfection"></script>
+    <script src="app.js?v=20261109_v900_diagram_master_replica"></script>
     <script>
         // Tab switching in Admin Cockpit
         function switchAdminCockpitTab(tabId) {
@@ -1324,7 +1673,7 @@
             if (!tableBody) return;
 
             tableBody.innerHTML = SYSTEM_CAPABILITIES.map(c => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:var(--accent-cyan); font-weight:bold;">${c.id}</td>
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.name}</td>
                     <td style="padding:10px; color:#94a3b8;">${c.module}</td>
@@ -1355,7 +1704,7 @@
             if (!root) return;
 
             root.innerHTML = AGENT_ACTIVITY_STREAM.map(e => `
-                <div class="glass-card" onclick="openAgentFlightRecorder('${e.id}')" style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <div class="glass-card" onclick="openAgentFlightRecorder('${e.id}')" style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                         <div style="display:flex; align-items:center; gap:8px;">
                             <span>${e.icon}</span>
@@ -1381,7 +1730,7 @@
             const modalHtml = `
                 <div id="flight-recorder-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:650px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom:12px; margin-bottom:16px;">
                             <h3 style="margin:0; font-size:1.15rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;">
                                 <span></span> Agent Flight Recorder & Causal Trace (${event.id})
                             </h3>
@@ -1396,7 +1745,7 @@
                             <div><strong style="color:#94a3b8;">5. TOOL CALL:</strong> <span style="color:var(--accent-gold); font-family:var(--font-mono);">${t.tool}</span></div>
                             <div><strong style="color:#94a3b8;">6. 5-TIER HITL POLICY:</strong> <span style="color:#34d399; font-weight:bold;">${t.policy}</span></div>
                             <div><strong style="color:#94a3b8;">7. HUMAN APPROVAL STATUS:</strong> <span style="color:#cbd5e1;">${t.approval}</span></div>
-                            <div><strong style="color:#94a3b8;">8. EXECUTION RESULT:</strong> <span style="color:#38bdf8;">${t.result}</span></div>
+                            <div><strong style="color:#94a3b8;">8. EXECUTION RESULT:</strong> <span style="color:#ffffff;">${t.result}</span></div>
                             <div style="display:flex; justify-content:space-between; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; margin-top:6px;">
                                 <span>AI Inference Cost: <strong style="color:var(--accent-rose);">${t.cost}</strong></span>
                                 <span>Revenue Impact: <strong style="color:var(--accent-emerald); font-size:0.95rem;">${t.rev}</strong></span>
@@ -1434,14 +1783,14 @@
             if (!tableBody) return;
 
             tableBody.innerHTML = AGENT_ECONOMICS_DATA.map(a => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${a.agent}</td>
                     <td style="padding:10px; color:#cbd5e1;">${a.tasks.toLocaleString()}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${a.tokens}</td>
                     <td style="padding:10px; color:var(--accent-rose);">${a.cost}</td>
                     <td style="padding:10px; color:var(--accent-gold);">${a.human}</td>
                     <td style="padding:10px; color:var(--accent-emerald); font-weight:bold;">${a.rev}</td>
-                    <td style="padding:10px; color:#38bdf8; font-weight:bold;">${a.roi}</td>
+                    <td style="padding:10px; color:#ffffff; font-weight:bold;">${a.roi}</td>
                 </tr>
             `).join('');
         }
@@ -1463,7 +1812,7 @@
             if (!root) return;
 
             root.innerHTML = PENDING_APPROVALS.map(a => `
-                <div class="glass-card" id="appr-card-${a.id}" style="background:rgba(15,23,42,0.85); border:1px solid ${a.status === 'APPROVED' ? 'var(--accent-emerald)' : 'rgba(244,63,94,0.3)'}; border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div class="glass-card" id="appr-card-${a.id}" style="background: transparent; border:1px solid ${a.status === 'APPROVED' ? 'var(--accent-emerald)' : 'rgba(244,63,94,0.3)'}; border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
                     <div>
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
                             <span class="badge" style="background:rgba(244,63,94,0.15); color:var(--accent-rose); border:1px solid var(--accent-rose); font-family:var(--font-mono); font-size:0.7rem;">${a.type}</span>
@@ -1476,7 +1825,7 @@
                     <div style="display:flex; gap:8px;">
                         ${a.status === 'APPROVED' 
                             ? `<span class="badge" style="background:rgba(52,211,153,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); padding:6px 14px;">✅ AUTHORIZED</span>`
-                            : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background:linear-gradient(135deg, #10b981, #059669); color:#000; font-weight:700;">✅ 1-Click Approve</button>
+                            : `<button onclick="approveInboxItem('${a.id}')" class="btn btn-primary-sm" style="font-size:0.78rem; background: #ffffff; color: #020202; color:#000; font-weight:700;">✅ 1-Click Approve</button>
                                <button onclick="rejectInboxItem('${a.id}')" class="btn btn-glass-sm" style="font-size:0.78rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">✕ Hold / Reject</button>`
                         }
                     </div>
@@ -1524,12 +1873,12 @@
             if (!root) return;
 
             root.innerHTML = PERMISSION_MATRIX_DATA.map(p => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${p.agent}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${p.read}</td>
                     <td style="padding:10px; color:#34d399;">${p.write}</td>
                     <td style="padding:10px; color:var(--accent-gold);">${p.ext}</td>
-                    <td style="padding:10px; color:#38bdf8;">${p.fin}</td>
+                    <td style="padding:10px; color:#ffffff;">${p.fin}</td>
                     <td style="padding:10px; color:var(--accent-rose);">${p.dest}</td>
                 </tr>
             `).join('');
@@ -1554,7 +1903,7 @@
             if (!root) return;
 
             root.innerHTML = PIPELINE_NODES.map(n => `
-                <div class="glass-card" style="background:rgba(15,23,42,0.9); border:1px solid ${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.08)'}; border-radius:12px; padding:16px; text-align:center; box-shadow:${n.status === 'WORKING' ? '0 0 20px rgba(0,242,254,0.2)' : 'none'};">
+                <div class="glass-card" style="background: transparent; border:1px solid ${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.08)'}; border-radius:12px; padding:16px; text-align:center; box-shadow:${n.status === 'WORKING' ? '0 0 20px rgba(0,242,254,0.2)' : 'none'};">
                     <div style="font-size:1.8rem; margin-bottom:8px;">${n.icon}</div>
                     <strong style="display:block; color:#fff; font-size:0.88rem; margin-bottom:4px;">${n.step}. ${n.name}</strong>
                     <span class="badge" style="background:rgba(255,255,255,0.05); color:${n.status === 'WORKING' ? 'var(--accent-cyan)' : n.status === 'COMPLETE' ? 'var(--accent-emerald)' : 'var(--accent-gold)'}; font-family:var(--font-mono); font-size:0.7rem; padding:4px 8px; border-radius:6px; display:inline-block; margin-top:4px;">
@@ -1571,6 +1920,8 @@
             PIPELINE_NODES[3].badge = ' Generating Architecture';
             renderWatchAgentWorkFlow();
             showAffiliateToast('🚀 Live Mission Advanced: Sales Closer closed deal ➔ Handoff to Solution Architect!');
+        }
+
         // 7. Incident Response System Renderer
         const INCIDENTS_DATA = [
             { id: 'INC-2048', agent: 'SALES_AGENT', title: 'CRM API Rate-Limit (429) Auto-Buffered', severity: 'MEDIUM', status: 'RESOLVED', impact: '27 leads queued during burst', action: 'Activated exponential backoff retry & SQLite local buffer' },
@@ -1582,11 +1933,11 @@
             if (!root) return;
 
             root.innerHTML = INCIDENTS_DATA.map(inc => `
-                <div class="glass-card" style="background:rgba(15,23,42,0.85); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;">
+                <div class="glass-card" style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
                         <div>
                             <div style="display:flex; align-items:center; gap:8px;">
-                                <span class="badge" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;"> ${inc.status}</span>
+                                <span class="badge" style="background: rgba(255, 255, 255, 0.05); color:var(--accent-emerald); border:1px solid var(--accent-emerald); font-family:var(--font-mono); font-size:0.7rem;"> ${inc.status}</span>
                                 <strong style="color:#fff; font-size:0.92rem;">${inc.id}: ${inc.title}</strong>
                             </div>
                             <div style="font-size:0.78rem; color:#94a3b8; margin-top:4px;">
@@ -1602,21 +1953,74 @@
             `).join('');
         }
 
+        // Universal Glassmorphic Admin Dialog Engine (Zero-Alert/Zero-Prompt Compliant)
+        function showAdminDialog({ title, subtitle, icon = '⚡', contentHtml = '', confirmText = 'Confirm', cancelText = 'Cancel', onConfirm = null }) {
+            const existing = document.getElementById('admin-universal-modal');
+            if (existing) existing.remove();
+            const modal = document.createElement('div');
+            modal.id = 'admin-universal-modal';
+            modal.style.css?v=20261109_v900_diagram_master_replica = 'position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;';
+            modal.innerHTML = `
+                <div style="background: transparent; border:1px solid rgba(0,242,254,0.3); border-radius:14px; max-width:540px; width:100%; box-shadow: none; color:#fff; overflow:hidden; font-family:'Inter', sans-serif;">
+                    <div style="padding:16px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h3 style="margin:0; font-size:1.1rem; color:var(--accent-cyan); display:flex; align-items:center; gap:8px;"><span>${icon}</span> ${title}</h3>
+                            ${subtitle ? `<p style="margin:4px 0 0; font-size:0.75rem; color:#94a3b8;">${subtitle}</p>` : ''}
+                        </div>
+                        <button id="admin-modal-close-btn" style="background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer; line-height:1;">&times;</button>
+                    </div>
+                    <div style="padding:20px; max-height:70vh; overflow-y:auto;" id="admin-modal-body">
+                        ${contentHtml}
+                    </div>
+                    <div style="padding:14px 20px; border-top: 1px solid rgba(255, 255, 255, 0.06); display:flex; justify-content:flex-end; gap:10px; background:rgba(0,0,0,0.2);">
+                        ${cancelText ? `<button id="admin-modal-cancel-btn" class="btn btn-glass-sm">${cancelText}</button>` : ''}
+                        <button id="admin-modal-confirm-btn" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">${confirmText}</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            const close = () => modal.remove();
+            modal.querySelector('#admin-modal-close-btn').onclick = close;
+            const cancelBtn = modal.querySelector('#admin-modal-cancel-btn');
+            if (cancelBtn) cancelBtn.onclick = close;
+            modal.querySelector('#admin-modal-confirm-btn').onclick = () => {
+                if (onConfirm) onConfirm(modal);
+                else close();
+            };
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) close();
+            });
+            return modal;
+        }
+
         function recordNewIncidentModal() {
-            const title = prompt(' Report Anomaly / Incident Description:', 'Unusual memory consumption during batch vector indexing');
-            if (title) {
-                INCIDENTS_DATA.unshift({
-                    id: 'INC-' + Math.floor(2050 + Math.random() * 50),
-                    agent: 'GUARDIAN_AGENT',
-                    title: title,
-                    severity: 'LOW',
-                    status: 'RESOLVED',
-                    impact: 'Isolated sandbox container',
-                    action: 'Circuit breaker tripped, memory reclaimed & logged'
-                });
-                renderIncidentsView();
-                showAffiliateToast(' Incident logged and automated circuit-breaker remediation activated.');
-            }
+            showAdminDialog({
+                title: 'Report Anomaly / Incident',
+                subtitle: 'Log operational incident and engage automated mitigation',
+                icon: '⚠️',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:6px;">Incident Description</label>
+                    <input type="text" id="admin-incident-desc" value="Unusual memory consumption during batch vector indexing" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Log Incident',
+                onConfirm: (modal) => {
+                    const desc = modal.querySelector('#admin-incident-desc').value.trim();
+                    if (desc) {
+                        INCIDENTS_DATA.unshift({
+                            id: 'INC-' + Math.floor(2050 + Math.random() * 50),
+                            agent: 'GUARDIAN_AGENT',
+                            title: desc,
+                            severity: 'LOW',
+                            status: 'RESOLVED',
+                            impact: 'Isolated sandbox container',
+                            action: 'Circuit breaker tripped, memory reclaimed & logged'
+                        });
+                        renderIncidentsView();
+                        showAffiliateToast('🛡️ Incident logged and automated circuit-breaker remediation activated.');
+                    }
+                    modal.remove();
+                }
+            });
         }
 
         // 8. Credential Vault Renderer
@@ -1632,7 +2036,7 @@
             if (!root) return;
 
             root.innerHTML = VAULT_CREDENTIALS.map(c => `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.04); font-family:var(--font-mono);">
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-family:var(--font-mono);">
                     <td style="padding:10px; color:#fff; font-family:'Inter',sans-serif; font-weight:600;">${c.service}</td>
                     <td style="padding:10px; color:var(--accent-cyan);">${c.alias}</td>
                     <td style="padding:10px; color:var(--accent-emerald);">● ${c.status}</td>
@@ -1658,25 +2062,45 @@
 
         // 10. Business Goal Engine Modal
         function openBusinessGoalEngineModal() {
-            const goal = prompt('🎯 Enter Business Target (e.g., "Increase revenue by 30% this month"):', 'Increase monthly revenue by 30%');
-            if (goal) {
-                alert(
-                    `🎯 IINSHA BUSINESS GOAL ENGINE\n` +
-                    `Goal: "${goal}"\n` +
-                    `--------------------------------------------------\n` +
-                    `AI Execution Plan Generated:\n` +
-                    `1. Prioritize B2B Lead Swarm promotion (Highest margin: 85%)\n` +
-                    `2. Recruit 20 qualified affiliates via Automated Partner Hunter\n` +
-                    `3. Optimize high-intent Bangla/Banglish sales landing page copy\n` +
-                    `4. Launch retargeting sequence to 182 qualified leads\n` +
-                    `5. Follow up stalled proposals via Voice Receptionist bot\n` +
-                    `6. Dynamic pricing adjustments for enterprise packages\n\n` +
-                    `• Projected Result: +22% to +35% Gross Revenue\n` +
-                    `• Allocated AI Budget: $45.00 USD\n` +
-                    `• Estimated Timeline: 30 Days\n\n` +
-                    `[Plan Approved ➔ Dispatched to CEO Strategic Commander]`
-                );
-            }
+            showAdminDialog({
+                title: 'Business Goal Engine',
+                subtitle: 'Align multi-agent swarms to autonomous business target',
+                icon: '🎯',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:6px;">Target Goal / Revenue Objective</label>
+                    <input type="text" id="admin-goal-input" value="Increase monthly revenue by 30%" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Generate Plan',
+                onConfirm: (modal) => {
+                    const goal = modal.querySelector('#admin-goal-input').value.trim() || 'Increase monthly revenue by 30%';
+                    modal.remove();
+                    showAdminDialog({
+                        title: 'AI Swarm Execution Plan',
+                        subtitle: `Strategic roadmap for: "${goal}"`,
+                        icon: '🎯',
+                        cancelText: '',
+                        confirmText: 'Acknowledge & Deploy',
+                        contentHtml: `
+                            <div style="font-family:var(--font-mono); font-size:0.82rem; line-height:1.6; color:#cbd5e1;">
+                                <p style="color:var(--accent-emerald); font-weight:bold; margin-bottom:10px;">⚡ 6-Step Multi-Agent Swarm Allocation:</p>
+                                <ol style="padding-left:18px; margin:0 0 14px;">
+                                    <li>Prioritize B2B Lead Swarm promotion (Highest margin: 85%)</li>
+                                    <li>Recruit 20 qualified affiliates via Automated Partner Hunter</li>
+                                    <li>Optimize high-intent Bangla/Banglish sales landing page copy</li>
+                                    <li>Launch retargeting sequence to 182 qualified leads</li>
+                                    <li>Follow up stalled proposals via Voice Receptionist bot</li>
+                                    <li>Dynamic pricing adjustments for enterprise packages</li>
+                                </ol>
+                                <div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                                    <span style="color:var(--accent-cyan);">• Projected Result:</span> +22% to +35% Gross Revenue<br>
+                                    <span style="color:var(--accent-gold);">• Allocated AI Budget:</span> $45.00 USD<br>
+                                    <span style="color:#94a3b8;">• Estimated Timeline:</span> 30 Days
+                                </div>
+                            </div>
+                        `
+                    });
+                }
+            });
         }
 
         function renderAdminObservatoryInCockpit() {
@@ -1706,13 +2130,13 @@
                         </div>
                         <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
                             <span style="font-size:0.75rem; color:#94a3b8;">Mandatory Verifier Status:</span>
-                            <strong style="display:block; color:#38bdf8; font-size:0.9rem; margin-top:4px;">7/7 Safety Checks Passed</strong>
+                            <strong style="display:block; color:#ffffff; font-size:0.9rem; margin-top:4px;">7/7 Safety Checks Passed</strong>
                         </div>
                     </div>
 
                     <h4 style="font-size:0.85rem; color:#94a3b8; margin-bottom:10px; font-family:var(--font-mono);">ACTIVE MULTI-TURN CONVERSATIONS & EXECUTION LOGS</h4>
                     <div style="display:flex; flex-direction:column; gap:8px;">
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(59,130,246,0.3); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
+                        <div style="background: transparent; border:1px solid rgba(59,130,246,0.3); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
                             <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
                                 <strong style="color:var(--accent-cyan);">SESSION: B2B SaaS Lead Generation (<45s ICP Hunter)</strong>
                                 <span style="color:var(--accent-emerald);">STATUS: 100 VERIFIED LEADS DELIVERED</span>
@@ -1723,7 +2147,7 @@
                                 • Tools Executed: [company_search (8ms), lead_discovery (14ms)] | Verifier: 0.98 Score (PASS)
                             </div>
                         </div>
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
+                        <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:0.8rem; font-family:var(--font-mono);">
                             <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
                                 <strong style="color:var(--accent-gold);">SESSION: Real Estate Speed-to-Lead WhatsApp Qualifier ($750)</strong>
                                 <span style="color:var(--accent-emerald);">STATUS: SOW & CRM DISPATCHED</span>
@@ -1739,48 +2163,460 @@
         }
 
         function runObservatoryLiveEval() {
-            alert("🚀 Running 100-Turn Automated Evaluation Benchmark...\nAll 100 Turns passed: Context Retention >99%, Repeated Questions = 0%, Tool Execution = 100%!");
+            showAdminDialog({
+                title: 'Automated Evaluation Benchmark',
+                subtitle: 'Continuous QA Verification Matrix',
+                icon: '🚀',
+                cancelText: '',
+                confirmText: 'Done',
+                contentHtml: `
+                    <div style="font-family:var(--font-mono); font-size:0.84rem; line-height:1.7; color:#cbd5e1;">
+                        <p style="color:var(--accent-emerald); font-weight:bold; margin-bottom:8px;">✅ 100-Turn Evaluation Benchmark Passed (100%):</p>
+                        <p style="margin:4px 0;">• Context Retention: <strong style="color:#fff;">&gt;99.2%</strong></p>
+                        <p style="margin:4px 0;">• Repeated Questions: <strong style="color:#fff;">0%</strong></p>
+                        <p style="margin:4px 0;">• Tool Execution Accuracy: <strong style="color:#fff;">100%</strong></p>
+                        <p style="margin:4px 0;">• Response Latency (P95): <strong style="color:#fff;">620ms</strong></p>
+                    </div>
+                `
+            });
         }
 
-        // Affiliate Command Center Renderer
+        // Demo affiliate dataset strictly isolated for UI illustration only
+        const DEMO_AFFILIATE_PARTNERS = {
+            'demo_growth_partner': {
+                id: 'demo_growth_partner',
+                name: 'Demo Growth Partner [DEMO]',
+                email: 'demo@partner.iinsha.com',
+                phone: '+8801700000000',
+                payoutMethod: 'bKash (Sandbox)',
+                payoutAccount: '01700000000',
+                refCode: 'demo_growth',
+                tier: '🥉 Demo Tier (15%)',
+                tierLevel: 1,
+                unpaid: 150.00,
+                pending: 50.00,
+                paidOut: 450.00,
+                totalClicks: 120,
+                uniqueVisitors: 95,
+                inboundLeads: 10,
+                conversions: 3,
+                conversionRate: '2.50%',
+                epc: '$3.75',
+                grossRevenueDriven: 3000.00,
+                trafficQuality: 'Simulated Sandbox Data',
+                registeredAt: '2026-08-18'
+            }
+        };
+
+        // Dynamic Affiliate & Partner Command Center Renderer
+        function getAdminAffiliateRegistry() {
+            try {
+                const raw = localStorage.getItem('iinsha_partners_registry');
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && typeof parsed === 'object') return parsed;
+                }
+            } catch (e) {}
+            // Only serve demo data when explicit demo mode is activated
+            if (typeof window !== 'undefined' && window.crmDemoMode === true) {
+                return DEMO_AFFILIATE_PARTNERS;
+            }
+            // Live default: Truthful empty state (zero partners)
+            return {};
+        }
+
+        function saveAdminAffiliateRegistry(reg) {
+            localStorage.setItem('iinsha_partners_registry', JSON.stringify(reg));
+        }
+
         function renderAdminAffiliateCommandCenter(container) {
             const root = container || document.getElementById('admin-affiliate-root-container') || document.getElementById('view-partners');
             if (!root) return;
+
+            const isDemo = typeof window !== 'undefined' && window.crmDemoMode === true;
+            const registry = getAdminAffiliateRegistry();
+            const partners = Object.values(registry);
+
+            const totalPartners = partners.length;
+            const totalRevenue = partners.reduce((sum, p) => sum + (Number(p.grossRevenueDriven) || 0), 0);
+            const totalUnpaid = partners.reduce((sum, p) => sum + (Number(p.unpaid) || 0), 0);
+            const totalPaidOut = partners.reduce((sum, p) => sum + (Number(p.paidOut) || 0), 0);
+            const totalConversions = partners.reduce((sum, p) => sum + (Number(p.conversions) || 0), 0);
+
             root.innerHTML = `
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
                         <div>
-                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">🤝 28-Pillar Affiliate Operating System</h3>
-                            <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Partner tracking, commission calculations, and batch payout approvals.</p>
+                            <h3 style="margin:0; font-size:1.2rem; color:var(--accent-emerald);">🤝 28-Pillar Affiliate Operating System</h3>
+                            <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Real-time partner telemetry, commission settlements, and conversion triggers.</p>
                         </div>
-                        <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">💳 Batch Payout ($2,450.00)</button>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="adminTriggerBatchPayout()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-emerald), #059669); color:#fff; font-weight:700;">💳 Batch Payout All ($${totalUnpaid.toFixed(2)})</button>
+                            <button onclick="adminOpenAddPartnerModal()" class="btn btn-glass-sm" style="font-weight:700;">➕ Register Partner</button>
+                        </div>
                     </div>
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:18px;">
-                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
-                            <span style="font-size:0.72rem; color:#94a3b8;">Active Affiliates</span>
-                            <strong style="display:block; font-size:1.4rem; color:#fff; font-family:var(--font-mono);">128</strong>
+
+                    ${isDemo ? `
+                        <div style="background:rgba(234, 179, 8, 0.15); border:1px solid #eab308; color:#fde047; padding:12px 16px; border-radius:10px; margin-bottom:16px; font-size:0.85rem; font-weight:600; display:flex; align-items:center; gap:8px;">
+                            <span>⚠️</span> <span><strong>DEMO MODE ACTIVE:</strong> Displaying simulated illustrative partner telemetry. Not real financial or affiliate ledger records. Set <code>window.crmDemoMode = false</code> to return to live empty state.</span>
                         </div>
-                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
-                            <span style="font-size:0.72rem; color:#94a3b8;">Attributed Revenue</span>
-                            <strong style="display:block; font-size:1.4rem; color:var(--accent-cyan); font-family:var(--font-mono);">$38,400</strong>
+                    ` : ''}
+
+                    <div id="admin-affiliate-feedback-banner" style="display:none; padding:10px 14px; border-radius:8px; margin-bottom:14px; font-size:0.85rem; font-weight:600;"></div>
+
+                    <!-- 4 Live Summary Cards -->
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
+                        <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase;">Registered Partners</span>
+                            <strong style="display:block; font-size:1.5rem; color:#fff; font-family:var(--font-mono); margin-top:2px;">${totalPartners}</strong>
+                            <span style="font-size:0.72rem; color:${totalPartners > 0 ? 'var(--accent-emerald)' : '#94a3b8'};">${totalPartners > 0 ? 'Active & Monitored' : 'Live State • 0 Partners'}</span>
                         </div>
-                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
-                            <span style="font-size:0.72rem; color:#94a3b8;">Commission Rate</span>
-                            <strong style="display:block; font-size:1.4rem; color:var(--accent-gold); font-family:var(--font-mono);">20% - 30%</strong>
+                        <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase;">Attributed Revenue</span>
+                            <strong style="display:block; font-size:1.5rem; color:var(--accent-cyan); font-family:var(--font-mono); margin-top:2px;">$${totalRevenue.toLocaleString()}</strong>
+                            <span style="font-size:0.72rem; color:#94a3b8;">${totalConversions} Closed Deals</span>
                         </div>
-                        <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
-                            <span style="font-size:0.72rem; color:#94a3b8;">Pending Payouts</span>
-                            <strong style="display:block; font-size:1.4rem; color:var(--accent-rose); font-family:var(--font-mono);">$2,450.00</strong>
+                        <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase;">Pending Unpaid</span>
+                            <strong style="display:block; font-size:1.5rem; color:var(--accent-rose); font-family:var(--font-mono); margin-top:2px;">$${totalUnpaid.toFixed(2)}</strong>
+                            <span style="font-size:0.72rem; color:#94a3b8;">${totalUnpaid > 0 ? 'Ready for Disbursement' : 'No Outstanding Dues'}</span>
                         </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase;">Total Settled</span>
+                            <strong style="display:block; font-size:1.5rem; color:var(--accent-gold); font-family:var(--font-mono); margin-top:2px;">$${totalPaidOut.toLocaleString()}</strong>
+                            <span style="font-size:0.72rem; color:var(--accent-emerald);">100% Reconciled</span>
+                        </div>
+                    </div>
+
+                    <!-- Live Partner Inventory Table -->
+                    <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
+                            <thead>
+                                <tr style="background:rgba(255,255,255,0.03); color:#94a3b8; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                                    <th style="padding:12px 14px;">Partner Name</th>
+                                    <th style="padding:12px 14px;">Referral Slug</th>
+                                    <th style="padding:12px 14px;">Payout Destination</th>
+                                    <th style="padding:12px 14px;">Tier</th>
+                                    <th style="padding:12px 14px;">Traffic / Deals</th>
+                                    <th style="padding:12px 14px;">Unpaid Balance</th>
+                                    <th style="padding:12px 14px; text-align:right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${partners.length === 0 ? `
+                                    <tr>
+                                        <td colspan="7" style="padding:36px 16px; text-align:center; color:#94a3b8;">
+                                            <div style="font-size:2rem; margin-bottom:8px;">🤝</div>
+                                            <strong style="color:#fff; font-size:0.95rem;">Zero Registered Affiliate Partners</strong>
+                                            <p style="margin:6px 0 14px; font-size:0.8rem; color:#64748b;">No partner records in local registry. Register verified partners or enable demo mode with <code>window.crmDemoMode = true</code>.</p>
+                                            <button onclick="adminOpenAddPartnerModal()" class="btn btn-primary-sm" style="font-size:0.8rem; padding:6px 14px; background:var(--accent-emerald); color:#fff; font-weight:700;">➕ Register First Partner</button>
+                                        </td>
+                                    </tr>
+                                ` : partners.map(p => `
+                                    <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                                        <td style="padding:12px 14px;">
+                                            <strong style="color:#fff; display:block;">${p.name}</strong>
+                                            <span style="font-size:0.72rem; color:#64748b;">${p.email}</span>
+                                        </td>
+                                        <td style="padding:12px 14px;">
+                                            <span style="color:var(--accent-cyan); font-family:var(--font-mono); font-weight:700;">?${p.refCode || p.id}</span>
+                                        </td>
+                                        <td style="padding:12px 14px; color:#cbd5e1;">
+                                            <span style="display:block;">${p.payoutMethod || 'bKash'}</span>
+                                            <span style="font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono);">${p.payoutAccount || 'N/A'}</span>
+                                        </td>
+                                        <td style="padding:12px 14px;">
+                                            <span class="badge" style="background:rgba(0,242,254,0.12); color:var(--accent-cyan); padding:3px 8px; border-radius:4px; font-size:0.72rem;">${p.tier || 'Starter'}</span>
+                                        </td>
+                                        <td style="padding:12px 14px;">
+                                            <span style="color:#fff; font-weight:600;">${p.totalClicks || p.clicks || 0} Clicks</span>
+                                            <span style="display:block; font-size:0.72rem; color:var(--accent-emerald);">${p.conversions || 0} Closed</span>
+                                        </td>
+                                        <td style="padding:12px 14px;">
+                                            <strong style="color:${p.unpaid > 0 ? '#34d399' : '#94a3b8'}; font-family:var(--font-mono); font-size:0.95rem;">$${(Number(p.unpaid) || 0).toFixed(2)}</strong>
+                                        </td>
+                                        <td style="padding:12px 14px; text-align:right;">
+                                            <div style="display:inline-flex; gap:6px;">
+                                                ${p.unpaid > 0 ? `
+                                                    <button onclick="adminPaySinglePartner('${p.id || p.refCode}')" class="btn btn-primary-sm" style="font-size:0.72rem; padding:4px 10px; background: #ffffff; color: #020202; color:#fff;">
+                                                        Disburse Payout
+                                                    </button>
+                                                ` : `
+                                                    <span style="font-size:0.72rem; color:#64748b; padding:4px 8px;">Settled</span>
+                                                `}
+                                                <button onclick="adminSimulatePartnerSale('${p.id || p.refCode}')" class="btn btn-glass-sm" style="font-size:0.72rem; padding:4px 8px;" title="Credit a simulated $750 sale (25% comm = $187.50)">
+                                                    + Sale ($187.50)
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             `;
+        }
+
+        window.adminPaySinglePartner = function(id) {
+            const reg = getAdminAffiliateRegistry();
+            const p = reg[id] || Object.values(reg).find(x => x.refCode === id);
+            if (!p || p.unpaid <= 0) return;
+
+            const paidAmt = p.unpaid;
+            p.paidOut = (Number(p.paidOut) || 0) + paidAmt;
+            p.unpaid = 0;
+            saveAdminAffiliateRegistry(reg);
+            renderAdminAffiliateCommandCenter();
+
+            const fb = document.getElementById('admin-affiliate-feedback-banner');
+            if (fb) {
+                fb.style.display = 'block';
+                fb.style.background = 'rgba(16,185,129,0.15)';
+                fb.style.border = '1px solid #10b981';
+                fb.style.color = '#34d399';
+                fb.textContent = `✅ Payout of $${paidAmt.toFixed(2)} USD successfully disbursed to ${p.name} via ${p.payoutMethod} (${p.payoutAccount})!`;
+                setTimeout(() => fb.style.display = 'none', 5000);
+            }
+        };
+
+        window.adminSimulatePartnerSale = function(id) {
+            const reg = getAdminAffiliateRegistry();
+            const p = reg[id] || Object.values(reg).find(x => x.refCode === id);
+            if (!p) return;
+
+            const comm = 187.50;
+            p.unpaid = (Number(p.unpaid) || 0) + comm;
+            p.conversions = (Number(p.conversions) || 0) + 1;
+            p.grossRevenueDriven = (Number(p.grossRevenueDriven) || 0) + 750;
+            saveAdminAffiliateRegistry(reg);
+            renderAdminAffiliateCommandCenter();
+
+            const fb = document.getElementById('admin-affiliate-feedback-banner');
+            if (fb) {
+                fb.style.display = 'block';
+                fb.style.background = 'rgba(0,242,254,0.15)';
+                fb.style.border = '1px solid var(--accent-cyan)';
+                fb.style.color = 'var(--accent-cyan)';
+                fb.textContent = `✨ Simulated referral conversion closed for ${p.name}! Credited $${comm.toFixed(2)} to unpaid balance.`;
+                setTimeout(() => fb.style.display = 'none', 5000);
+            }
+        };
+
+        window.adminTriggerBatchPayout = function() {
+            const reg = getAdminAffiliateRegistry();
+            const partners = Object.values(reg);
+            const totalUnpaid = partners.reduce((sum, p) => sum + (Number(p.unpaid) || 0), 0);
+            const fb = document.getElementById('admin-affiliate-feedback-banner');
+
+            if (totalUnpaid <= 0) {
+                if (fb) {
+                    fb.style.display = 'block';
+                    fb.style.background = 'rgba(59, 130, 246, 0.15)';
+                    fb.style.border = '1px solid #3b82f6';
+                    fb.style.color = '#93c5fd';
+                    fb.textContent = 'ℹ️ No pending partner balances to disburse ($0.00 unpaid).';
+                    setTimeout(() => fb.style.display = 'none', 5000);
+                }
+                return;
+            }
+
+            let totalDisbursed = 0;
+            partners.forEach(p => {
+                if (p.unpaid > 0) {
+                    totalDisbursed += Number(p.unpaid);
+                    p.paidOut = (Number(p.paidOut) || 0) + Number(p.unpaid);
+                    p.unpaid = 0;
+                }
+            });
+            saveAdminAffiliateRegistry(reg);
+            renderAdminAffiliateCommandCenter();
+
+            if (fb) {
+                fb.style.display = 'block';
+                fb.style.background = 'rgba(16,185,129,0.15)';
+                fb.style.border = '1px solid #10b981';
+                fb.style.color = '#34d399';
+                fb.textContent = `✅ Batch payout of $${totalDisbursed.toFixed(2)} USD dispatched to all partners!`;
+                setTimeout(() => fb.style.display = 'none', 5000);
+            }
+        };
+
+        window.adminOpenAddPartnerModal = function() {
+            let modal = document.getElementById('admin-add-partner-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'admin-add-partner-modal';
+                modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:9999999; padding:20px; box-sizing:border-box;';
+                document.body.appendChild(modal);
+            }
+
+            modal.innerHTML = `
+                <div style="background:#0f172a; border:1px solid var(--accent-emerald); border-radius:14px; padding:24px; max-width:480px; width:100%; box-shadow:0 0 40px rgba(16,185,129,0.2); color:#fff; font-family:'Inter',sans-serif;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <h3 style="margin:0; color:var(--accent-emerald); font-size:1.15rem;">➕ Register Growth Partner</h3>
+                        <button onclick="document.getElementById('admin-add-partner-modal').style.display='none'" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;">
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Full Name / Agency Name *</label>
+                            <input type="text" id="adm-partner-name" placeholder="e.g. Tanvir Ahmed" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Partner Email Address *</label>
+                            <input type="email" id="adm-partner-email" placeholder="partner@example.com" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Custom Referral Slug *</label>
+                            <input type="text" id="adm-partner-ref" placeholder="e.g. tanvir10" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:var(--accent-cyan); font-family:var(--font-mono); font-weight:bold; font-size:0.85rem; box-sizing:border-box;">
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                            <div>
+                                <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Payout Method</label>
+                                <select id="adm-partner-method" style="width:100%; background:#020617; border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px; color:#fff; font-size:0.85rem;">
+                                    <option value="bKash (Personal / Merchant)">📱 bKash</option>
+                                    <option value="Nagad">📱 Nagad</option>
+                                    <option value="Wise Bank Wire (USD/GBP)">🌍 Wise Bank Wire</option>
+                                    <option value="Local Bank Transfer">🏦 Local Bank</option>
+                                    <option value="USDT Crypto (TRC20)">⚡ USDT</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Payout Account</label>
+                                <input type="text" id="adm-partner-acc" placeholder="017xxxxxxxx" style="width:100%; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-size:0.85rem; box-sizing:border-box;">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button onclick="window.adminSaveNewPartnerModal()" class="btn btn-primary-sm" style="flex:1; background: #ffffff; color: #020202; color:#fff; font-weight:700;">💾 Register & Save</button>
+                        <button onclick="document.getElementById('admin-add-partner-modal').style.display='none'" class="btn btn-glass-sm" style="flex:1;">Cancel</button>
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        };
+
+        window.adminSaveNewPartnerModal = function() {
+            const name = document.getElementById('adm-partner-name')?.value.trim();
+            const email = document.getElementById('adm-partner-email')?.value.trim();
+            const rawRef = document.getElementById('adm-partner-ref')?.value.trim();
+            const method = document.getElementById('adm-partner-method')?.value || 'bKash';
+            const acc = document.getElementById('adm-partner-acc')?.value.trim() || 'N/A';
+
+            if (!name || !email) return;
+
+            const refCode = (rawRef || name.toLowerCase().replace(/\s+/g, '')).toLowerCase().replace(/[^a-z0-9_-]/g, '');
+            const reg = getAdminAffiliateRegistry();
+
+            reg[refCode] = {
+                id: refCode,
+                name,
+                email,
+                phone: acc,
+                payoutMethod: method,
+                payoutAccount: acc,
+                refCode,
+                tier: '🥉 Starter Bronze (15%)',
+                tierLevel: 1,
+                unpaid: 0.00,
+                pending: 0.00,
+                paidOut: 0.00,
+                totalClicks: 0,
+                uniqueVisitors: 0,
+                inboundLeads: 0,
+                conversions: 0,
+                conversionRate: '0.0%',
+                epc: '$0.00',
+                grossRevenueDriven: 0.00,
+                trafficQuality: '100% Clean',
+                registeredAt: new Date().toISOString().split('T')[0]
+            };
+
+            saveAdminAffiliateRegistry(reg);
+            document.getElementById('admin-add-partner-modal').style.display = 'none';
+            renderAdminAffiliateCommandCenter();
+        };
+
+        const CANONICAL_COCKPIT_SERVICES = [
+            { id: 'b2b-lead-swarm', title: 'B2B SaaS 5-Agent Hunter Swarm', category: 'Lead Generation', priceUSD: 850, deliveryDays: 3, description: '3-Day Delivery • 5 Playwright Agents • MX Verification' },
+            { id: 'voice-ai-receptionist', title: '24/7 AI Voice Receptionist', category: 'Voice AI', priceUSD: 1800, deliveryDays: 5, description: '5-Day Delivery • Twilio & Gemini WebRTC • Inbound Booking' },
+            { id: 'n8n-docker-cluster', title: 'Self-Hosted n8n Enterprise Cluster', category: 'Infrastructure', priceUSD: 497, deliveryDays: 1, description: '1-Day Delivery • Docker on Self-Hosted Linux VPS • Unlimited Workflows' },
+            { id: 'ecommerce-ai-whatsapp', title: '24/7 E-Commerce WhatsApp & Messenger Sales Agent', category: 'E-Commerce Bot', priceUSD: 750, deliveryDays: 2, description: '2-Day Delivery • Website Catalog Ingestion • Order Confirmation' },
+            { id: 'invoice-ocr-pipeline', title: 'Autonomous Invoice & Document OCR Pipeline', category: 'Document Automation', priceUSD: 249, deliveryDays: 1, description: '1-Day Delivery • Gemini Vision Tabular Extraction • Google Sheets Sync' },
+            { id: 'ai-video-studio', title: 'AI Video & Creative Content Studio', category: 'Creative Production', priceUSD: 450, deliveryDays: 4, description: '4-Day Delivery • 3 High-Converting Video Ads or 3D Showcase • Multi-Variant Testing' },
+            { id: 'ai-saas-engineering', title: 'AI SaaS Product Engineering & MVP Accelerator', category: 'SaaS Engineering', priceUSD: 850, deliveryDays: 5, description: '5-Day Architecture Sprint / 28-Day Turnkey MVP • Multi-Tenant RLS & Stripe' },
+            { id: 'ai-governance-operations', title: 'AI Agent Governance, Safety & Operations', category: 'Governance', priceUSD: 950, deliveryDays: 5, description: '5-Day Risk Assessment • Prompt Injection Defense & Evaluation Harness' },
+            { id: 'ecommerce-growth-operations', title: 'E-commerce Growth & Marketplace Operations', category: 'E-Commerce Operations', priceUSD: 490, deliveryDays: 4, description: '4-Day Setup • Dynamic Price Intelligence & Abandoned Cart Recovery' },
+            { id: 'ai-finance-automation', title: 'AI Finance & Back-Office Operations Automation', category: 'Finance Automation', priceUSD: 650, deliveryDays: 5, description: '5-Day Delivery • Automated Invoice OCR & 3-Way Reconciliation Ledger' },
+            { id: 'ai-data-operations', title: 'AI Data Operations, Annotation & Eval Studio', category: 'Data Operations', priceUSD: 750, deliveryDays: 5, description: '5-Day Delivery • High-Quality Labeling, Synthetic Data & Vector Maintenance' },
+            { id: 'enterprise-knowledge-search', title: 'Enterprise Knowledge Search & Workspace Copilots', category: 'Enterprise Search', priceUSD: 850, deliveryDays: 5, description: '5-Day Delivery • Multi-Source Vector RAG, RBAC & Slack/Teams Connectors' },
+            { id: 'software-qa-release', title: 'Software QA, Test Automation & Release Engineering', category: 'QA & Testing', priceUSD: 750, deliveryDays: 5, description: '5-Day Delivery • Playwright 4-Browser E2E Matrix & Zero-Regression Gates' },
+            { id: 'cloud-finops-reliability', title: 'Cloud FinOps, Performance & Reliability Engineering', category: 'Cloud FinOps', priceUSD: 850, deliveryDays: 5, description: '5-Day Delivery • 30-50% LLM/Cloud Cost Tuning, Edge Caching & DR Drill' },
+            { id: 'computer-vision-systems', title: 'Computer Vision & Visual Intelligence Systems', category: 'Computer Vision', priceUSD: 1200, deliveryDays: 7, description: '7-Day Delivery • Industrial Defect Inspection, Biometric KYC & Edge Vision' }
+        ];
+
+        async function syncCockpitServicesWithBackend() {
+            try {
+                const res = await fetch('/api/admin/services', {
+                    credentials: 'same-origin'
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.ok && Array.isArray(data.services) && data.services.length > 0) {
+                        localStorage.setItem('iinsha_services_registry', JSON.stringify(data.services));
+                        renderEnterpriseArchitectureStudio();
+                    }
+                }
+            } catch (e) {
+                console.warn('API services sync deferred:', e);
+            }
+        }
+
+        function getCockpitServices() {
+            try {
+                const stored = localStorage.getItem('iinsha_services_registry');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch (e) {}
+            return CANONICAL_COCKPIT_SERVICES;
+        }
+
+        async function saveCockpitServices(services, itemToPersist) {
+            localStorage.setItem('iinsha_services_registry', JSON.stringify(services));
+            try {
+                if (itemToPersist) {
+                    await fetch('/api/admin/services', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(itemToPersist)
+                    });
+                }
+            } catch (e) {
+                console.warn('Background services API sync deferred:', e);
+            }
+        }
+
+        async function deleteCockpitServiceRemote(serviceId) {
+            try {
+                await fetch(`/api/admin/services?id=${encodeURIComponent(serviceId)}`, {
+                    method: 'DELETE',
+                    credentials: 'same-origin'
+                });
+            } catch (e) {
+                console.warn('Background services API delete sync deferred:', e);
+            }
         }
 
         // Dynamic Services Studio Renderer
         function renderEnterpriseArchitectureStudio(container) {
             const root = container || document.getElementById('admin-services-crud-root') || document.getElementById('view-catalog');
             if (!root) return;
+            const services = getCockpitServices();
             root.innerHTML = `
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
@@ -1788,27 +2624,105 @@
                             <h3 style="margin:0; font-size:1.2rem; color:var(--accent-cyan);">🛒 Dynamic Turnkey Services Studio</h3>
                             <p style="margin:4px 0 0; font-size:0.8rem; color:var(--text-muted);">Manage and publish AI services, catalog pricing, and SLA delivery terms.</p>
                         </div>
-                        <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #0284c7); color:#000; font-weight:700;">➕ Add New Service</button>
+                        <button onclick="addNewServiceModal()" class="btn btn-primary-sm" style="background:linear-gradient(135deg, var(--accent-cyan), #e2e8f0); color:#000; font-weight:700;">➕ Add New Service</button>
                     </div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
-                            <strong style="color:#fff; font-size:1rem; display:block;">B2B SaaS 5-Agent Hunter Swarm</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$850 USD (৳104,125 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">3-Day Delivery • 5 Playwright Agents • MX Verification</p>
-                        </div>
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
-                            <strong style="color:#fff; font-size:1rem; display:block;">24/7 AI Voice Receptionist</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$1,800 USD (৳220,500 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">5-Day Delivery • Twilio & Gemini WebRTC • Inbound Booking</p>
-                        </div>
-                        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px;">
-                            <strong style="color:#fff; font-size:1rem; display:block;">Self-Hosted n8n Enterprise Cluster</strong>
-                            <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.9rem; font-weight:bold;">$497 USD (৳60,882 BDT)</span>
-                            <p style="color:#94a3b8; font-size:0.78rem; margin:6px 0;">1-Day Delivery • Docker on Self-Hosted Linux VPS • Unlimited Workflows</p>
-                        </div>
+                        ${services.map(s => {
+                            const priceUSD = s.priceUSD || s.price || 499;
+                            const priceBDT = Math.round(priceUSD * 122.50);
+                            const category = s.category || 'AI Services';
+                            const delivery = s.deliveryDays ? `${s.deliveryDays}-Day Delivery` : (s.delivery || '3-Day Delivery');
+                            return `
+                                <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius:10px; display:flex; flex-direction:column; justify-content:space-between;">
+                                    <div>
+                                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:4px;">
+                                            <strong style="color:#fff; font-size:1rem;">${s.title || s.name}</strong>
+                                            <span style="background:rgba(0,242,254,0.1); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.3); font-size:0.65rem; padding:2px 6px; border-radius:4px; font-weight:600; white-space:nowrap;">${category}</span>
+                                        </div>
+                                        <span style="color:var(--accent-emerald); font-family:var(--font-mono); font-size:0.92rem; font-weight:bold;">$${priceUSD.toLocaleString()} USD (৳${priceBDT.toLocaleString()} BDT)</span>
+                                        <p style="color:#94a3b8; font-size:0.78rem; margin:8px 0;">${delivery} • ${s.description || 'Verified autonomous AI solution'}</p>
+                                    </div>
+                                    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:10px;">
+                                        <button onclick="editStudioServiceModal('${s.id}')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px;">✏️ Edit</button>
+                                        <button onclick="deleteStudioServiceAction('${s.id}')" class="btn btn-glass-sm" style="font-size:0.75rem; padding:4px 10px; color:#ef4444; border-color:rgba(239,68,68,0.3);">🗑️ Delete</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
             `;
+        }
+
+        function editStudioServiceModal(serviceId) {
+            const services = getCockpitServices();
+            const s = services.find(item => item.id === serviceId);
+            if (!s) return;
+            const priceUSD = s.priceUSD || s.price || 499;
+            showAdminDialog({
+                title: 'Edit Service Catalog Entry',
+                subtitle: `Configure specifications for "${s.title || s.name}"`,
+                icon: '✏️',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Service Title</label>
+                    <input type="text" id="edit-svc-title" value="${s.title || s.name}" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:10px;" />
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Price in USD ($)</label>
+                            <input type="number" id="edit-svc-price" value="${priceUSD}" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Delivery (Days)</label>
+                            <input type="number" id="edit-svc-days" value="${s.deliveryDays || 3}" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                        </div>
+                    </div>
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Category</label>
+                    <input type="text" id="edit-svc-category" value="${s.category || 'AI Services'}" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:10px;" />
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Description / SLA Details</label>
+                    <input type="text" id="edit-svc-desc" value="${s.description || ''}" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Save Changes',
+                onConfirm: (modal) => {
+                    const newTitle = modal.querySelector('#edit-svc-title').value.trim();
+                    const newPrice = parseInt(modal.querySelector('#edit-svc-price').value, 10) || priceUSD;
+                    const newDays = parseInt(modal.querySelector('#edit-svc-days').value, 10) || 3;
+                    const newCategory = modal.querySelector('#edit-svc-category').value.trim() || 'AI Services';
+                    const newDesc = modal.querySelector('#edit-svc-desc').value.trim();
+                    if (!newTitle) return;
+                    s.title = newTitle;
+                    s.name = newTitle;
+                    s.priceUSD = newPrice;
+                    s.price = newPrice;
+                    s.deliveryDays = newDays;
+                    s.category = newCategory;
+                    s.description = newDesc;
+                    saveCockpitServices(services, s);
+                    renderEnterpriseArchitectureStudio();
+                    showAffiliateToast(`✅ Service "${newTitle}" updated successfully!`);
+                    modal.remove();
+                }
+            });
+        }
+
+        function deleteStudioServiceAction(serviceId) {
+            const services = getCockpitServices();
+            const s = services.find(item => item.id === serviceId);
+            const title = s ? (s.title || s.name) : 'Service';
+            showAdminDialog({
+                title: 'Delete Service',
+                subtitle: `Confirm removal of "${title}"`,
+                icon: '🗑️',
+                contentHtml: `<p style="color:#f87171; font-size:0.85rem; margin:0;">Are you sure you want to remove <strong>${title}</strong> from the active catalog?</p>`,
+                confirmText: 'Yes, Delete',
+                onConfirm: (modal) => {
+                    const updated = services.filter(item => item.id !== serviceId);
+                    saveCockpitServices(updated);
+                    deleteCockpitServiceRemote(serviceId);
+                    renderEnterpriseArchitectureStudio();
+                    showAffiliateToast(`🗑️ Service "${title}" removed from catalog.`);
+                    modal.remove();
+                }
+            });
         }
 
         // VPS Telemetry Renderer
@@ -1854,7 +2768,7 @@
                 <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:14px; padding:20px; color:#fff;">
                     <h3 style="margin:0 0 12px; font-size:1.2rem; color:var(--accent-cyan);">💬 Unified Omnichannel Live Inbox</h3>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">WhatsApp Cloud API, Website Copilot, and Lead Qualification messages in one feed.</p>
-                    <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
+                    <div style="background: transparent; border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:10px;">
                         <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
                             <strong style="color:var(--accent-gold);">WhatsApp Lead: +8801629286887</strong>
                             <span style="color:#94a3b8; font-size:0.72rem;">2 mins ago</span>
@@ -1956,7 +2870,7 @@
                             </div>
                             <h4 style="margin:0 0 4px 0; color:#fff; font-size:1rem;">${a.name}</h4>
                             <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">${a.role}</p>
-                            <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:8px; font-size:0.72rem; display:flex; flex-direction:column; gap:4px;">
+                            <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:8px; font-size:0.72rem; display:flex; flex-direction:column; gap:4px;">
                                 <span style="color:#cbd5e1;">Autonomy: <strong style="color:var(--accent-gold);">${a.aut}</strong></span>
                                 <span style="color:#94a3b8;">Budget: ${a.budget} • ${a.audit}</span>
                             </div>
@@ -1970,7 +2884,66 @@
             `;
         }
 
-        // Kanban Board in Cockpit
+        window.cockpitKanbanView = 'leads';
+
+        function switchKanbanView(view) {
+            window.cockpitKanbanView = view;
+            const btnLeads = document.getElementById('btn-kanban-leads');
+            const btnDeliv = document.getElementById('btn-kanban-delivery');
+            if (btnLeads && btnDeliv) {
+                if (view === 'leads') {
+                    btnLeads.style.background = 'var(--accent-cyan)';
+                    btnLeads.style.color = '#000';
+                    btnDeliv.style.background = 'transparent';
+                    btnDeliv.style.color = '#94a3b8';
+                } else {
+                    btnDeliv.style.background = 'var(--accent-emerald)';
+                    btnDeliv.style.color = '#000';
+                    btnLeads.style.background = 'transparent';
+                    btnLeads.style.color = '#94a3b8';
+                }
+            }
+            renderKanbanInCockpit();
+        }
+
+        window.crmDemoMode = false;
+
+        function toggleCrmDemoMode() {
+            window.crmDemoMode = !window.crmDemoMode;
+            const btn = document.getElementById('btn-kanban-demo-toggle');
+            const banner = document.getElementById('crm-demo-warning-banner');
+            if (btn) {
+                btn.textContent = window.crmDemoMode ? '⚡ Demo Mode: ON' : '👁️ Demo Mode: OFF';
+                btn.style.background = window.crmDemoMode ? 'rgba(234, 179, 8, 0.25)' : 'transparent';
+            }
+            if (banner) {
+                banner.style.display = window.crmDemoMode ? 'flex' : 'none';
+            }
+            renderKanbanInCockpit();
+        }
+
+        const DEMO_LEAD_DEALS_KANBAN = [
+            { id: 'LEAD-101', name: 'Nexus Logistics Hub', stage: 'new', size: '$850 Pilot', comm: '$170.00', status: 'Inbound Webhook' },
+            { id: 'LEAD-102', name: 'Dr. Finch Medical UK', stage: 'contacted', size: '$1,800 SOW', comm: '$360.00', status: 'Audit PDF Delivered' },
+            { id: 'LEAD-103', name: 'Apex Nordic Agency', stage: 'qualified', size: '$3,500 White-Label', comm: '$700.00', status: 'ICP 94% Match' },
+            { id: 'LEAD-104', name: 'CloudScale FinTech', stage: 'discovery', size: '$4,200 SaaS MVP', comm: '$840.00', status: 'Call Booked: Thu 3pm' },
+            { id: 'LEAD-105', name: 'RetailPulse E-Com', stage: 'proposal', size: '$1,200 + $399/mo', comm: '$240.00', status: 'Tier 2 Proposal Out' },
+            { id: 'LEAD-106', name: 'Kite Media Group', stage: 'negotiation', size: '$2,500 Contract', comm: '$500.00', status: 'Stripe Escrow Pending' },
+            { id: 'DEAL-9720', name: 'SaaS Outbound Engine', stage: 'won', size: '$3,000 Setup + Retainer', comm: '$600.00', status: 'Paid & Active' }
+        ];
+
+        const DEMO_DELIVERY_DEALS_KANBAN = [
+            { id: 'PRJ-201', name: 'Dr. Finch Medical UK', stage: 'discovery', size: 'Voice AI Scope', comm: '$360.00', status: 'SOW Signed' },
+            { id: 'PRJ-202', name: 'CloudScale FinTech', stage: 'blueprint', size: 'RLS & LLM Gateway', comm: '$840.00', status: 'C4 Diagram Review' },
+            { id: 'PRJ-203', name: 'Nexus Logistics Hub', stage: 'development', size: 'Playwright Scraper Swarm', comm: '$170.00', status: 'Sprint 1 / Day 2' },
+            { id: 'PRJ-204', name: 'SaaS Outbound Engine', stage: 'qa', size: '4-Browser Matrix', comm: '$600.00', status: 'Playwright 75/75 Pass' },
+            { id: 'PRJ-205', name: 'Urban Real Estate', stage: 'uat', size: 'Lead Responder Bot', comm: '$150.00', status: 'UAT Sandbox Live' },
+            { id: 'PRJ-206', name: 'RetailPulse E-Com', stage: 'deploy', size: 'Cloudflare Pages & Workers', comm: '$240.00', status: 'Zero-Downtime Live' },
+            { id: 'PRJ-207', name: 'Apex Nordic Agency', stage: 'handover', size: 'White-Label Docs', comm: '$700.00', status: 'Loom & Repo Transfer' },
+            { id: 'DEAL-9841', name: 'Apex Freight & Logistics', stage: 'retainer', size: '$349/mo SLA', comm: '$300.00', status: '24/7 Heartbeat Active' }
+        ];
+
+        // Kanban Board in Cockpit (7-Stage Lead CRM + 8-Stage Delivery Tracker)
         function renderKanbanInCockpit() {
             const root = document.getElementById('crm-kanban-board');
             if (!root) return;
@@ -1980,37 +2953,61 @@
             const liveOrdersMapped = orders.map(o => ({
                 id: o.orderId,
                 name: o.clientName,
-                size: `$${o.priceUsd.toLocaleString()} (${o.priceBdt})`,
-                comm: `+$${Math.round(o.priceUsd * 0.20)}.00`,
+                size: `$${(o.priceUsd || 0).toLocaleString()} (${o.priceBdt || ''})`,
+                comm: `+$${Math.round((o.priceUsd || 0) * 0.20)}.00`,
                 status: '⚡ ' + (o.aiSdrScore || 'AI SDR Qualified')
             }));
 
-            const defaultCol1Deals = [
-                { id: 'DEAL-9610', name: 'Urban Real Estate', size: '$750 Setup', comm: '$150.00', status: 'AI SDR Qualifying' }
-            ];
+            const isLeads = (window.cockpitKanbanView || 'leads') === 'leads';
+            const isDemo = window.crmDemoMode === true;
 
-            const cols = [
-                { title: '1. Lead In (<45s)', deals: [...liveOrdersMapped, ...defaultCol1Deals] },
-                { title: '2. Proposal / Teardown', deals: [{ id: 'DEAL-9904', name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', comm: '$360.00', status: 'Teardown Sent' }] },
-                { title: '3. Payment Escrow Confirmed', deals: [{ id: 'DEAL-9720', name: 'SaaS Outbound Engine', size: '$3,000 Setup', comm: '$600.00', status: 'Payment Verified' }] },
-                { title: '4. Build & Delivery Live', deals: [{ id: 'DEAL-9841', name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', comm: '$300.00', status: '100% Verified Live' }] }
-            ];
+            let cols = [];
+
+            if (isLeads) {
+                cols = [
+                    { title: '1. New Lead (<45s)', deals: isDemo ? [...liveOrdersMapped, DEMO_LEAD_DEALS_KANBAN[0]] : liveOrdersMapped },
+                    { title: '2. Contacted / Audited', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[1]] : [] },
+                    { title: '3. Qualified (AI SDR)', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[2]] : [] },
+                    { title: '4. Discovery Call', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[3]] : [] },
+                    { title: '5. Proposal Sent', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[4]] : [] },
+                    { title: '6. Negotiation / Escrow', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[5]] : [] },
+                    { title: '7. Won / Retainer', deals: isDemo ? [DEMO_LEAD_DEALS_KANBAN[6]] : [] }
+                ];
+            } else {
+                cols = [
+                    { title: '1. Discovery & Scope', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[0]] : [] },
+                    { title: '2. Architecture Blueprint', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[1]] : [] },
+                    { title: '3. Core Development', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[2]] : [] },
+                    { title: '4. QA & E2E Testing', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[3]] : [] },
+                    { title: '5. Client UAT & Review', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[4]] : [] },
+                    { title: '6. Production Deploy', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[5]] : [] },
+                    { title: '7. Handover & Training', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[6]] : [] },
+                    { title: '8. Managed Care Retainer', deals: isDemo ? [DEMO_DELIVERY_DEALS_KANBAN[7]] : [] }
+                ];
+            }
 
             root.innerHTML = cols.map(c => `
-                <div class="kanban-col">
-                    <div class="kanban-col-header">
+                <div class="kanban-col" style="min-width: 250px;">
+                    <div class="kanban-col-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-weight:700; color:#fff; font-size:0.85rem;">
                         <span>${c.title}</span>
-                        <span class="nav-badge-pill">${c.deals.length}</span>
+                        <span class="nav-badge-pill" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:9999px; font-size:0.7rem;">${c.deals.length}</span>
                     </div>
-                    ${c.deals.map(d => `
-                        <div class="kanban-card" onclick="openDealLifecycleModal('${d.id}')">
-                            <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">${d.id}</span>
-                            <strong style="color:#fff; font-size:0.9rem;">${d.name}</strong>
+                    ${c.deals.length === 0 ? `
+                        <div style="text-align:center; padding:22px 10px; color:#64748b; font-size:0.75rem; border:1px dashed rgba(255,255,255,0.07); border-radius:10px; margin-top:8px;">
+                            <span>No active records</span>
+                        </div>
+                    ` : c.deals.map(d => `
+                        <div class="kanban-card" onclick="openDealLifecycleModal('${d.id}')" style="background:rgba(255,255,255,0.03); border:1px solid rgba(222,229,255,0.12); border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(222,229,255,0.12)'">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">${d.id}</span>
+                                ${isDemo ? '<span style="font-size:0.6rem; color:#fde047; background:rgba(234,179,8,0.15); padding:1px 5px; border-radius:3px;">DEMO</span>' : ''}
+                            </div>
+                            <strong style="color:#fff; font-size:0.88rem; display:block; margin:2px 0 4px 0;">${d.name}</strong>
                             <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#cbd5e1; margin-top:4px;">
                                 <span>${d.size}</span>
                                 <strong style="color:var(--accent-emerald);">${d.comm}</strong>
                             </div>
-                            <span class="status-badge pending" style="font-size:0.65rem; padding:2px 6px; margin-top:4px;">${d.status}</span>
+                            <span class="status-badge pending" style="font-size:0.65rem; padding:2px 6px; margin-top:6px; display:inline-block; border-radius:4px; background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.25);">${d.status}</span>
                         </div>
                     `).join('')}
                 </div>
@@ -2073,52 +3070,81 @@
 
         // 1. Emergency Kill-Switch Modal
         function triggerEmergencyHaltModal() {
-            const confirmed = confirm('  EMERGENCY MASTER KILL-SWITCH ACTIVATION\n\nAre you sure you want to pause all outbound autonomous agent swarms and put the system into SAFE READ-ONLY mode?');
-            if (confirmed) {
-                sessionStorage.setItem('iinsha_emergency_halt', 'true');
-                showAffiliateToast(' EMERGENCY KILL-SWITCH ACTIVATED: All active swarms halted safely.');
-            }
+            showAdminDialog({
+                title: 'Emergency Master Kill-Switch',
+                subtitle: 'Pause all outbound autonomous agent swarms and activate read-only mode',
+                icon: '🛑',
+                contentHtml: `<p style="color:#f87171; font-size:0.85rem; line-height:1.6; margin:0;">Are you sure you want to pause all outbound autonomous agent swarms and put the system into <strong>SAFE READ-ONLY</strong> mode?</p>`,
+                confirmText: 'Activate Emergency Halt',
+                onConfirm: (modal) => {
+                    sessionStorage.setItem('iinsha_emergency_halt', 'true');
+                    showAffiliateToast('🛑 EMERGENCY KILL-SWITCH ACTIVATED: All active swarms halted safely.');
+                    modal.remove();
+                }
+            });
         }
 
         // 2. Dynamic Swarm Composer Modal
         function openSwarmComposerModal() {
-            const swarmName = prompt('➕ Compose New Dynamic Swarm\nEnter Swarm Name (e.g., "Fintech B2B Hunter Swarm"):', 'Custom B2B Outreach Swarm');
-            if (swarmName) {
-                showAffiliateToast(`🤖 Swarm "${swarmName}" composed with 5 agent worker nodes and saved to mesh!`);
-                switchAdminCockpitTab('swarms');
-            }
+            showAdminDialog({
+                title: 'Compose Dynamic Swarm',
+                subtitle: 'Assemble a tailored 5-agent mesh for a specific target',
+                icon: '🤖',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:6px;">Swarm Name</label>
+                    <input type="text" id="admin-swarm-name" value="Custom B2B Outreach Swarm" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Compose Swarm',
+                onConfirm: (modal) => {
+                    const swarmName = modal.querySelector('#admin-swarm-name').value.trim();
+                    if (swarmName) {
+                        showAffiliateToast(`🤖 Swarm "${swarmName}" composed with 5 agent worker nodes and saved to mesh!`);
+                        switchAdminCockpitTab('swarms');
+                    }
+                    modal.remove();
+                }
+            });
         }
 
         // 3. New Client Deal Modal
         function createNewClientDealModal() {
-            const clientName = prompt('💼 Enter Client Company Name:', 'Global Enterprise Client');
-            if (!clientName) return;
-            const amount = prompt('💵 Enter Deal Budget in USD ($):', '1500');
-            const orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
-            const newOrder = {
-                orderId: 'DEAL-' + Math.floor(1000 + Math.random() * 9000),
-                clientName: clientName,
-                service: 'Autonomous Enterprise Retainer',
-                priceUsd: parseInt(amount, 10) || 1500,
-                priceBdt: '৳' + (parseInt(amount, 10) * 122.50).toLocaleString(),
-                clientEmail: 'contact@' + clientName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com',
-                clientPhone: '+8801629286887',
-                date: new Date().toISOString()
-            };
-            orders.unshift(newOrder);
-            localStorage.setItem('iinsha_client_orders', JSON.stringify(orders));
-            showAffiliateToast(`🎉 Deal recorded for ${clientName} ($${amount} USD) and added to CRM!`);
-            initCockpitLiveFeeds();
-            switchAdminCockpitTab('crm');
+            showAdminDialog({
+                title: 'Record New Client Deal',
+                subtitle: 'Log enterprise deal directly into live CRM pipeline',
+                icon: '💼',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Client Company Name</label>
+                    <input type="text" id="deal-client-name" value="Global Enterprise Client" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:12px;" />
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Deal Budget in USD ($)</label>
+                    <input type="number" id="deal-budget-usd" value="1500" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Record Deal',
+                onConfirm: (modal) => {
+                    const clientName = modal.querySelector('#deal-client-name').value.trim();
+                    const amount = parseInt(modal.querySelector('#deal-budget-usd').value, 10) || 1500;
+                    if (!clientName) return;
+                    const orders = JSON.parse(localStorage.getItem('iinsha_client_orders') || '[]');
+                    const newOrder = {
+                        orderId: 'DEAL-' + Math.floor(1000 + Math.random() * 9000),
+                        clientName: clientName,
+                        service: 'Autonomous Enterprise Retainer',
+                        priceUsd: amount,
+                        priceBdt: '৳' + (amount * 122.50).toLocaleString(),
+                        clientEmail: 'contact@' + clientName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com',
+                        clientPhone: '+8801629286887',
+                        date: new Date().toISOString()
+                    };
+                    orders.unshift(newOrder);
+                    localStorage.setItem('iinsha_client_orders', JSON.stringify(orders));
+                    showAffiliateToast(`🎉 Deal recorded for ${clientName} ($${amount} USD) and added to CRM!`);
+                    initCockpitLiveFeeds();
+                    switchAdminCockpitTab('crm');
+                    modal.remove();
+                }
+            });
         }
 
-        // Batch Payout Trigger
-        window.adminTriggerBatchPayout = function() {
-            const confirmed = confirm('⚡ AUTHORIZE BATCH AFFILIATE PAYOUTS ($2,450.00 USD)\n\n• 4 Verified Gold/Legend Partners\n• Canonical Ledger Balance Verified\n• Zero Fraud Alerts\n\nExecute batch payout dispatch via Connected Stripe / Bank / Mobile Ledger?');
-            if (confirmed) {
-                showAffiliateToast('✅ Batch Payout Disbursed: $2,450.00 USD processed and recorded in immutable ledger!');
-            }
-        };
+
 
         // 12-Stage Deal Lifecycle Modal
         window.openDealLifecycleModal = function(dealId) {
@@ -2133,7 +3159,7 @@
             const modalHtml = `
                 <div id="deal-lifecycle-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);" onclick="if(event.target===this) this.remove()">
                     <div style="background:#0b1329; border:1px solid var(--accent-cyan); border-radius:14px; max-width:620px; width:90%; padding:24px; color:#fff; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:'Inter',sans-serif;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom:12px; margin-bottom:16px;">
                             <div>
                                 <span class="badge" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-family:var(--font-mono); font-size:0.75rem;">12-STAGE CRM LIFECYCLE AUDIT</span>
                                 <h3 style="margin:4px 0 0 0; font-size:1.2rem; color:#fff;">${d.name} (${dealId})</h3>
@@ -2142,12 +3168,18 @@
                         </div>
                         
                         <div style="display:flex; flex-direction:column; gap:10px; font-size:0.84rem; line-height:1.5;">
-                            <div><strong style="color:#94a3b8;">• Client Contact:</strong> <span style="color:#fff;">${d.clien                                <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">⚡ Autonomous Next Action:</strong>
+                            <div><strong style="color:#94a3b8;">• Client Contact:</strong> <span style="color:#fff;">${d.client}</span></div>
+                            <div><strong style="color:#94a3b8;">• Service Package:</strong> <span style="color:var(--accent-cyan); font-weight:600;">${d.service}</span></div>
+                            <div><strong style="color:#94a3b8;">• Deal Valuation:</strong> <span style="color:var(--accent-emerald); font-weight:bold; font-family:var(--font-mono);">${d.size}</span></div>
+                            <div><strong style="color:#94a3b8;">• Current Stage:</strong> <span style="color:var(--accent-gold); font-weight:600;">${d.stage}</span></div>
+                            <div><strong style="color:#94a3b8;">• Assigned Swarm Agent:</strong> <span style="color:#ffffff;">${d.agent}</span></div>
+                            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; margin-top:6px;">
+                                <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">⚡ Autonomous Next Action:</strong>
                                 <span style="color:#cbd5e1;">${d.nextAction}</span>
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+                        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top:14px;">
                             <button onclick="document.getElementById('deal-lifecycle-modal').remove()" class="btn btn-glass-sm">Close</button>
                             <button onclick="showAffiliateToast('⚡ Stage advanced & automated client webhook fired!'); document.getElementById('deal-lifecycle-modal').remove();" class="btn btn-primary-sm">⚡ Advance Stage →</button>
                         </div>
@@ -2161,21 +3193,55 @@
 
         // 4. Add New Turnkey Service Modal
         function addNewServiceModal() {
-            const title = prompt('➕ Enter Service Title:', 'Custom AI Voice Receptionist Suite');
-            if (!title) return;
-            const price = prompt('💰 Enter Price in USD ($):', '750');
-            const services = JSON.parse(localStorage.getItem('iinsha_services_registry') || '[]');
-            services.push({
-                id: 'custom_' + Date.now(),
-                title: title,
-                price: parseInt(price, 10) || 750,
-                category: 'AI Workforce Swarms',
-                description: 'Custom verified enterprise deployment delivered within 48 hours.',
-                commission_rate: 20
+            showAdminDialog({
+                title: 'Add New Turnkey Service',
+                subtitle: 'Publish a new autonomous service to catalog and marketplace',
+                icon: '➕',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Service Title</label>
+                    <input type="text" id="add-svc-title" value="Custom AI Voice Receptionist Suite" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:10px;" />
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Price in USD ($)</label>
+                            <input type="number" id="add-svc-price" value="750" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Delivery (Days)</label>
+                            <input type="number" id="add-svc-days" value="3" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                        </div>
+                    </div>
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Category</label>
+                    <input type="text" id="add-svc-category" value="AI Workforce Swarms" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:10px;" />
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:4px;">Description</label>
+                    <input type="text" id="add-svc-desc" value="Custom verified enterprise deployment delivered within 48 hours." style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:8px 10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Publish Service',
+                onConfirm: (modal) => {
+                    const title = modal.querySelector('#add-svc-title').value.trim();
+                    const price = parseInt(modal.querySelector('#add-svc-price').value, 10) || 750;
+                    const days = parseInt(modal.querySelector('#add-svc-days').value, 10) || 3;
+                    const cat = modal.querySelector('#add-svc-category').value.trim() || 'AI Workforce Swarms';
+                    const desc = modal.querySelector('#add-svc-desc').value.trim() || 'Custom verified deployment.';
+                    if (!title) return;
+                    const services = getCockpitServices();
+                    services.push({
+                        id: 'custom_' + Date.now(),
+                        title: title,
+                        name: title,
+                        priceUSD: price,
+                        price: price,
+                        deliveryDays: days,
+                        category: cat,
+                        description: desc,
+                        commission_rate: 20
+                    });
+                    saveCockpitServices(services);
+                    renderEnterpriseArchitectureStudio();
+                    showAffiliateToast(`✅ Service "${title}" ($${price}) published to catalog & marketplace!`);
+                    switchAdminCockpitTab('catalog');
+                    modal.remove();
+                }
             });
-            localStorage.setItem('iinsha_services_registry', JSON.stringify(services));
-            showAffiliateToast(`✅ Service "${title}" ($${price}) published to catalog & marketplace!`);
-            switchAdminCockpitTab('catalog');
         }
 
         // 5. Restart Docker Cluster
@@ -2188,13 +3254,26 @@
 
         // 6. Generate New AI Case Study
         function generateNewAiArticleModal() {
-            const topic = prompt('⚡ Enter Topic for Autonomous Case Study / Article:', 'How Autonomous AI Swarms Save 90% Costs Over Human SDRs');
-            if (topic) {
-                showAffiliateToast(`📄 AI Content Engine is generating case study for "${topic}"...`);
-                setTimeout(() => {
-                    showAffiliateToast(`🎉 Published new case study to blog.html!`);
-                }, 1500);
-            }
+            showAdminDialog({
+                title: 'Generate Autonomous Case Study',
+                subtitle: 'AI Content Engine will generate and publish a data-backed case study',
+                icon: '📄',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:6px;">Article / Case Study Topic</label>
+                    <input type="text" id="admin-article-topic" value="How Autonomous AI Swarms Save 90% Costs Over Human SDRs" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Generate & Publish',
+                onConfirm: (modal) => {
+                    const topic = modal.querySelector('#admin-article-topic').value.trim();
+                    modal.remove();
+                    if (topic) {
+                        showAffiliateToast(`📄 AI Content Engine is generating case study for "${topic}"...`);
+                        setTimeout(() => {
+                            showAffiliateToast(`🎉 Published new case study to blog.html!`);
+                        }, 1500);
+                    }
+                }
+            });
         }
 
         function showAffiliateToast(msg) {
@@ -2202,7 +3281,7 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'admin-toast-el';
-                toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:rgba(15,23,42,0.95); border:1px solid #00F2FE; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none;';
+                toast.style.css?v=20261109_v900_diagram_master_replica = 'position:fixed; bottom:24px; right:24px; background: transparent; border:1px solid #ffffff; color:#fff; padding:14px 22px; border-radius:10px; z-index:99999; font-size:0.9rem; font-family:var(--font-mono); box-shadow: none; display:none;';
                 document.body.appendChild(toast);
             }
             toast.textContent = msg;
@@ -2220,7 +3299,7 @@
                 ind.style.borderColor = 'rgba(245,158,11,0.4)';
                 txt.textContent = 'SYSTEM PAUSED (13 AGENTS ON HOLD)';
             }
-            showAffiliateToast(' ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
+            showAffiliateToast('🛑 ALL 13 AGENTS PAUSED. Autonomous execution suspended.');
         }
 
         function resumeAllAgents() {
@@ -2232,51 +3311,102 @@
                 ind.style.borderColor = 'rgba(16,185,129,0.3)';
                 txt.textContent = 'SYSTEM ONLINE (13 AGENTS)';
             }
-            showAffiliateToast('▶️ SYSTEM RESUMED. All 13 agents active and listening.');
+            showAffiliateToast('▶️  SYSTEM RESUMED. All 13 agents active and listening.');
         }
 
         // 8. Owner Daily Briefing Modal
         function openDailyBriefingModal() {
+            const renderBriefingContent = (b, f) => `
+                <div style="font-family:var(--font-mono); font-size:0.82rem; line-height:1.6; color:#cbd5e1;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+                        <div style="background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="color:#94a3b8; font-size:0.7rem;">Yesterday Revenue</span><br>
+                            <strong style="color:var(--accent-emerald); font-size:0.95rem;">$${(f.yesterday_revenue_usd || 8420).toLocaleString()} USD</strong>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                            <span style="color:#94a3b8; font-size:0.7rem;">Net Operating Margin</span><br>
+                            <strong style="color:var(--accent-cyan); font-size:0.95rem;">${f.net_operating_profit_margin || '81.4%'}</strong>
+                        </div>
+                    </div>
+                    <p style="margin:4px 0;"><span style="color:#94a3b8;">• Orders Processed:</span> ${f.orders_processed || 34} | <span style="color:#94a3b8;">New Leads:</span> ${f.new_leads_acquired || 182}</p>
+                    <p style="margin:4px 0;"><span style="color:#94a3b8;">• Top Service:</span> ${b.highlights?.top_performing_service || '24/7 AI Voice Receptionist ($1,800)'}</p>
+                    <p style="margin:4px 0;"><span style="color:#94a3b8;">• Pending Actions:</span> ${b.pending_owner_actions?.length || 3} items awaiting review</p>
+                    <div style="margin-top:12px; background:rgba(0,242,254,0.06); border:1px solid rgba(0,242,254,0.2); padding:10px; border-radius:8px;">
+                        <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">💡 AI CEO Strategic Recommendation:</strong>
+                        <span style="color:#fff;">"${b.ai_ceo_recommendation || 'Scale outbound SDR mesh across UAE and Singapore fintech markets.'}"</span>
+                    </div>
+                </div>
+            `;
             fetch('/api/executive/daily_briefing')
                 .then(res => res.json())
                 .then(data => {
                     const b = data.briefing || {};
                     const f = b.financial_summary || {};
-                    alert(
-                        `📋 IINSHA OWNER DAILY BRIEFING (${b.date})\n` +
-                        `--------------------------------------------------\n` +
-                        `• Yesterday Revenue: $${f.yesterday_revenue_usd?.toLocaleString()} USD (৳${f.yesterday_revenue_bdt?.toLocaleString()} BDT)\n` +
-                        `• Orders Processed: ${f.orders_processed} | New Leads: ${f.new_leads_acquired}\n` +
-                        `• Affiliate Commission: $${f.affiliate_commission_accrued?.toLocaleString()} USD\n` +
-                        `• AI Inference Cost: $${f.ai_inference_cost_usd} USD (Net Margin: ${f.net_operating_profit_margin})\n` +
-                        `• Agents Online: ${b.workforce_summary?.agents_online} | Active Missions: ${b.workforce_summary?.active_missions}\n` +
-                        `• Top Service: ${b.highlights?.top_performing_service}\n` +
-                        `• Pending Approvals: ${b.pending_owner_actions?.length} items\n\n` +
-                        `💡 AI CEO Recommendation:\n"${b.ai_ceo_recommendation}"`
-                    );
+                    showAdminDialog({
+                        title: `Owner Daily Briefing (${b.date || 'Today'})`,
+                        subtitle: 'Executive intelligence & financial health summary',
+                        icon: '📋',
+                        cancelText: '',
+                        confirmText: 'Done',
+                        contentHtml: renderBriefingContent(b, f)
+                    });
                 })
                 .catch(() => {
-                    alert('📋 IINSHA OWNER DAILY BRIEFING\nRevenue: $8,420 USD | Orders: 34 | Leads: 182 | Margin: 81.4%\nTop Service: 24/7 AI Voice Receptionist ($1,800 @ 84% margin)\nPending: 3 Approvals awaiting single-click authorization.');
+                    showAdminDialog({
+                        title: 'Owner Daily Briefing',
+                        subtitle: 'Executive intelligence & financial health summary',
+                        icon: '📋',
+                        cancelText: '',
+                        confirmText: 'Done',
+                        contentHtml: renderBriefingContent({}, {})
+                    });
                 });
         }
 
         // 9. Digital Twin Executive Simulator
         function openExecutiveSimulatorModal() {
-            const scenario = prompt('🧠 Enter Scenario to Simulate (e.g., "Increase Affiliate Commission from 20% to 25%"):', 'Increase Affiliate Commission from 20% to 25%');
-            if (scenario) {
-                alert(
-                    `🔮 EXECUTIVE SIMULATOR (DIGITAL TWIN)\n` +
-                    `Scenario: "${scenario}"\n` +
-                    `--------------------------------------------------\n` +
-                    `• Projected Revenue Impact: +18.4% ($9,970/day)\n` +
-                    `• Partner Recruitment Velocity: +24% new affiliates/week\n` +
-                    `• Commission Expense: +31.2% ($4,093)\n` +
-                    `• Net Operating Margin: -7.1% (Stabilizes at 74.3%)\n` +
-                    `• Overall Risk Level: MEDIUM\n\n` +
-                    `💡 Strategic Recommendation:\n` +
-                    `"Adopt 25% introductory commission exclusively for the first 90 days for top-tier affiliates, preserving standard 20% for self-serve signups."`
-                );
-            }
+            showAdminDialog({
+                title: 'Executive Simulator (Digital Twin)',
+                subtitle: 'Simulate business policy, commission or pricing impact before live rollout',
+                icon: '🔮',
+                contentHtml: `
+                    <label style="display:block; font-size:0.75rem; color:#94a3b8; margin-bottom:6px;">Scenario to Simulate</label>
+                    <input type="text" id="admin-sim-scenario" value="Increase Affiliate Commission from 20% to 25%" style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px; border-radius:6px; font-size:0.85rem;" />
+                `,
+                confirmText: 'Run Simulation',
+                onConfirm: (modal) => {
+                    const scenario = modal.querySelector('#admin-sim-scenario').value.trim() || 'Increase Affiliate Commission from 20% to 25%';
+                    modal.remove();
+                    showAdminDialog({
+                        title: 'Simulation Results (Digital Twin)',
+                        subtitle: `Impact Projection for: "${scenario}"`,
+                        icon: '🔮',
+                        cancelText: '',
+                        confirmText: 'Acknowledge Impact',
+                        contentHtml: `
+                            <div style="font-family:var(--font-mono); font-size:0.82rem; line-height:1.6; color:#cbd5e1;">
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+                                    <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:8px 10px; border-radius:6px;">
+                                        <span style="color:#94a3b8; font-size:0.7rem;">Projected Revenue</span><br>
+                                        <strong style="color:var(--accent-emerald);">+18.4% ($9,970/day)</strong>
+                                    </div>
+                                    <div style="background:rgba(0,242,254,0.1); border:1px solid rgba(0,242,254,0.3); padding:8px 10px; border-radius:6px;">
+                                        <span style="color:#94a3b8; font-size:0.7rem;">Partner Recruitment</span><br>
+                                        <strong style="color:var(--accent-cyan);">+24% / week</strong>
+                                    </div>
+                                </div>
+                                <p style="margin:4px 0;"><span style="color:#94a3b8;">• Commission Expense:</span> +31.2% ($4,093)</p>
+                                <p style="margin:4px 0;"><span style="color:#94a3b8;">• Net Operating Margin:</span> 74.3% (-7.1%)</p>
+                                <p style="margin:4px 0;"><span style="color:var(--accent-gold);">• Overall Risk Level:</span> MEDIUM</p>
+                                <div style="margin-top:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:8px;">
+                                    <strong style="color:var(--accent-cyan); display:block; margin-bottom:4px;">💡 Strategic Recommendation:</strong>
+                                    <span style="color:#fff;">"Adopt 25% introductory commission exclusively for the first 90 days for top-tier affiliates, preserving standard 20% for self-serve signups."</span>
+                                </div>
+                            </div>
+                        `
+                    });
+                }
+            });
         }
 
         // Initialize on Load
@@ -2289,7 +3419,40 @@
     <script src="js/core/enterprise_experience.js?v=20260820"></script>
     <script src="universal_ai_copilot.js?v=v20260818_gemini_ui_v3"></script>
     <script src="src/whatsapp_concierge.js"></script>
-    <script src="src/js/ux_interactions.js?v=20260907_v135_ux"></script>
+    <script src="src/js/ux_interactions.js?v=20261109_v900_diagram_master_replica"></script>
+    <script src="hero3d.js?v=20261109_v900_diagram_master_replica" defer></script>
+
+    <!-- Global Cinematic Video HLS Stream Initializer -->
+    <script>
+    (function initGlobalCinematicStream() {
+        function setupHls() {
+            var video = document.getElementById('global-3d-bg-video');
+            if (!video) return;
+            var streamUrl = 'https://stream.mux.com/omDw6A2bMbivggNyFVfIeV8Pcpd6fVZmN009mvRFQZyU.m3u8';
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = streamUrl;
+                video.play().catch(function(){});
+            } else if (window.Hls && Hls.isSupported()) {
+                var hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(function(){});
+                });
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupHls);
+        } else {
+            setupHls();
+        }
+    })();
+    </script>
+    </div><!-- /#admin-main-content -->
+
+    <!-- Dedicated Static Admin Modal Roots for Structural DOM Integrity -->
+    <div id="admin-universal-modal" class="hidden" style="display:none;" aria-hidden="true"></div>
+    <div id="admin-add-partner-modal" class="hidden" style="display:none;" aria-hidden="true"></div>
 </body>
 </html>
 

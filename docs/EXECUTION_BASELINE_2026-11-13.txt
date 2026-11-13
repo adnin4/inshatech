@@ -1,0 +1,48 @@
+================================================================================
+IINSHA AI-BOS — PHASE 0 EXECUTION BASELINE (13 NOVEMBER 2026)
+================================================================================
+Timestamp:               2026-11-13T01:15:00+06:00 (Asia/Dhaka — Machine Clock)
+Operating System:        Windows 11
+Workspace Absolute Path: C:\Users\mahin khan\.gemini\antigravity\scratch\portfolio-showcase
+Repository URL:          https://github.com/adnin4/inshatech.git (ID: 1324580119)
+Canonical Default Branch:master
+Active Local Branch:     master (synced with release/iinsha-ai-bos-verified-20261112)
+Active Local HEAD SHA:   870dda2698938f62ea22dc7e2cbd2ecbe29afc7e
+Remote Tracking Branches:
+  - origin/master:       b3de7650b65e388514ca82674654c92241ea8811
+  - origin/main:         45ee4c1f90f699686c71912a7f22598cbe3b0a74
+Commit Divergence:       master is 142 commits ahead of origin/master, 0 behind
+Merge Base:              b3de7650b65e388514ca82674654c92241ea8811 (linear descendant)
+Working Tree Status:     Clean (git status --porcelain=v2 returned 0 entries)
+CLI Toolchain:
+  - Node.js:             v26.7.0
+  - npm:                 11.19.0
+  - Wrangler:            4.161.0
+  - Supabase CLI:        3.1.0
+
+LOCAL HEAD DISCREPANCY RECONCILIATION:
+- An audit note flagged '870dda2' vs 'dd6707b' in the previous handoff.
+- Verified in Git history:
+  * Commit 93d6d01: feat(release-v4) code implementation (V4 DO worker, origin policy, payment guards, CDP test suite)
+  * Commit dd6707b: docs(release-v4) recorded the pre-commit bundle checksum
+  * Commit 870dda2: docs(release-v4) finalized the exact backup bundle SHA-256
+- Therefore, 870dda2698938f62ea22dc7e2cbd2ecbe29afc7e IS the true, complete, verified HEAD of local master.
+
+COLD BACKUP BUNDLE PRESERVED:
+- Path:                  ..\inshatech-master-backup-20261113-0115.bundle
+- Size:                  78,324,714 bytes
+- Refs:                  122 refs (complete history)
+- SHA-256:               957E5ADE7EC05AF7B431574F5201B56F5EFA9A739A3EDDD18C4E3FE9FFAC0C23
+- Integrity Check:       git bundle verify -> OK; git fsck --full -> 0 corrupt objects
+
+LIVE PROVIDER INDEPENDENT SNAPSHOT (READ-ONLY PROBES):
+- GitHub Remote:         origin/master at b3de765..., origin/main at 45ee4c1... (different branches)
+- GitHub PRs:            PR #67 open (head ddf90cf...), PR #71 open draft (head cd760c3...)
+- Cloudflare Staging:    https://inshatech-b6b.pages.dev/ -> HTTP 200 (serving 74d90b1...)
+  * /api/version:        READY_FOR_STAGING, deploy_sha=74d90b1414..., full_production_parity=false
+  * /api/health:         EDGE_HEALTHY (DAC), database_pool=NOT_CONFIGURED, readiness=NOT_READY
+  * /api/health?type=readiness: HTTP 503 (EXPECTED_SECURITY_DENIAL / DB not ready)
+  * /api/admin/gate:     HTTP 503 (EXPECTED_SECURITY_DENIAL / secrets missing)
+- Production Domains:    https://inshatech.com/ -> legacy site / timeout; https://www.inshatech.com/ -> legacy site
+- Supabase Control Plane:Project kitwadizsvjmuxkfewxj -> INACTIVE (paused, remote DDL strictly blocked)
+================================================================================

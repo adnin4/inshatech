@@ -204,7 +204,7 @@ const company = {
   "founder": "Adnin Sadat Mahin",
   "contact": {
     "whatsapp": "+8801629286887",
-    "email": "contact@iinsha.com",
+    "email": "inshatech.dev@gmail.com",
     "website": "https://iinsha.com"
   },
   "mission": "Empowering businesses with autonomous AI solutions, cutting operational costs, and boosting sales efficiency with zero manual effort.",

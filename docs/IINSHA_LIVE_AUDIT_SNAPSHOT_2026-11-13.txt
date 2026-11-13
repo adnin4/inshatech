@@ -1,0 +1,60 @@
+================================================================================
+IINSHA AI-BOS — LIVE AUDIT SNAPSHOT (13 NOVEMBER 2026)
+================================================================================
+Target Staging URL:          https://inshatech-b6b.pages.dev/
+Target Production Domains:   https://inshatech.com/ , https://www.inshatech.com/
+Live Deployed Staging SHA:   74d90b14143e936587153464557a7e6d0f35fb9c (Version timestamp: 2026-11-12T18:45:41Z)
+Local Candidate Evaluated:   127.0.0.1 ephemeral static server + headless Chrome CDP (6 viewports)
+Evaluation Timestamp:        2026-11-13T01:21:00+06:00 (Asia/Dhaka)
+
+1. LIVE HTTP ENDPOINT PROBES (OBSERVED ON STAGE & CUSTOM DOMAINS)
+--------------------------------------------------------------------------------
+- https://inshatech-b6b.pages.dev/ -> HTTP 200
+  * X-Robots-Tag: noindex, nofollow
+  * Link: <https://inshatech-b6b.pages.dev/>; rel="canonical"
+  * HTML canonical: https://inshatech-b6b.pages.dev/ | meta robots: noindex, nofollow
+- https://inshatech-b6b.pages.dev/api/version -> HTTP 200
+  * status: READY_FOR_STAGING
+  * environment: staging
+  * deploy_sha: 74d90b14143e936587153464557a7e6d0f35fb9c
+  * full_production_parity: false, production_sealed: false
+  * database_identity.status: UNVERIFIED (credentials missing in runtime)
+- https://inshatech-b6b.pages.dev/api/health -> HTTP 200
+  * status: EDGE_HEALTHY, edge_region: DAC, edge_country: BD
+  * database_pool: NOT_CONFIGURED, readiness.status: NOT_READY
+- https://inshatech-b6b.pages.dev/api/health?type=readiness -> HTTP 503
+  * ServiceUnavailable (EXPECTED_SECURITY_DENIAL; fail-closed while DB is unconfigured)
+- https://inshatech-b6b.pages.dev/api/admin/gate -> HTTP 503
+  * ServiceUnavailable (EXPECTED_SECURITY_DENIAL; fail-closed while secrets are unconfigured)
+- https://inshatech.com/ -> HTTP 200
+  * <title>Insha Technologies | Home</title> (Length: 23,057 bytes; legacy website still live)
+- https://www.inshatech.com/ -> HTTP 200
+  * <title>Insha Technologies | Home</title> (Length: 23,057 bytes; legacy website still live)
+  * DNS/TLS cutover to IINSHA AI-BOS is pending Owner Gate G6.
+
+2. SUPABASE PROJECT AUDIT (CLI DIRECT QUERY)
+--------------------------------------------------------------------------------
+- Configured Project in wrangler.toml: `kitwadizsvjmuxkfewxj`
+  * Status: INACTIVE (paused)
+- Active Project in Account `aaih.apon@gmail.com`: `iuhtzahuszdkdarhxobx`
+  * Status: ACTIVE_HEALTHY (Region: ap-southeast-1, Postgres: 17.6.1.166)
+  * Remote migrations exist up to October 2026.
+  * Local repository contains 29 SQL migrations (`supabase/migrations/`).
+  * Invariant: No remote schema modification executed (Rule 5 & Rule 7 enforced).
+
+3. CHROME CDP 6-VIEWPORT RUNTIME RESULTS (LOCAL CANDIDATE)
+--------------------------------------------------------------------------------
+| Viewport Profile | Width | ScrollWidth | Overflow | H1 | Canvas (WebGL2) | Cards | Service IDs | Unlabeled Inputs | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| Desktop Large | 1440 | 1432 | 0px | 1 | 920x460 (active) | 80 | 80 unique | 0 | PASS |
+| Desktop Standard | 1280 | 1272 | 0px | 1 | 920x460 (active) | 80 | 80 unique | 0 | PASS |
+| Tablet Landscape | 1024 | 1016 | 0px | 1 | 920x460 (active) | 80 | 80 unique | 0 | PASS |
+| Tablet Portrait | 768 | 768 | 0px | 1 | 1120x560 (active) | 80 | 80 unique | 0 | PASS |
+| iPhone 14 / Mobile | 390 | 390 | 0px | 1 | 528x264 (active) | 80 | 80 unique | 0 | PASS |
+| Android Standard | 360 | 360 | 0px | 1 | 480x240 (active) | 80 | 80 unique | 0 | PASS |
+
+- Hero Celestial Video: Progression confirmed (`currentTime 0.19s -> 1.71s`, paused: false).
+- Live Search Reactivity: Verified ('Invoice' matches 1 card; non-matching query triggers #service-search-empty; reset restores 80 cards).
+- Category Filtering: Verified (All 9 filter pills functional, 'All Categories' displays all 80 cards).
+- Admin Gate Barrier: Verified (Unauthenticated `/admin` triggers authentication barrier without leaking dashboard).
+================================================================================

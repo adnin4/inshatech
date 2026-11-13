@@ -38,7 +38,7 @@ export async function onRequestGet(context) {
             hipaa_baseline: { status: "PII_PHI_SCRUBBED_BY_FIREWALL", rls_isolation: "ENFORCED", encryption_at_rest: "AES-256" },
             soc2_type1_readiness: { status: "EVIDENCE_GATHERED", rbac_enforced: true, immutable_audit_trail: true }
         },
-        privacy_officer_contact: "adnansadatmahin5@gmail.com",
+        privacy_officer_contact: "inshatech.dev@gmail.com",
         last_compliance_audit_at: new Date().toISOString()
     }), { headers, status: 200 });
 }
