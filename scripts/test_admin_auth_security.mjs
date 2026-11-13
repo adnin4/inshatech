@@ -356,6 +356,34 @@ async function runTestSuite() {
             'HttpOnly Cookie-based session token grants HTTP 200 AUTHORIZED on /api/admin/gate');
     }
 
+    // Test 14B: Browser Authentication enforces HttpOnly Cookie-Only (Zero Token In JSON)
+    {
+        const currentTotp = await computeTotp(mockMfaSecret);
+        const browserReq = new Request('https://inshatech.pages.dev/api/auth/session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Sec-Fetch-Mode': 'cors',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            },
+            body: JSON.stringify({
+                email: mockAdminEmail,
+                password: mockAdminPassword,
+                mfa_token: currentTotp,
+                cookie_only: true
+            })
+        });
+        const browserRes = await handleAuthSession({ request: browserReq, env: testEnv });
+        const browserData = await browserRes.json();
+        const setCookieHeader = browserRes.headers['Set-Cookie'] || browserRes.headers.get?.('Set-Cookie') || '';
+        assert(browserRes.status === 200 && browserData.status === 'AUTHENTICATED',
+            'Browser session auth returns HTTP 200 AUTHENTICATED');
+        assert(browserData.session_token === undefined,
+            'Browser session response strictly omits session_token from JSON (zero DOM storage exposure)');
+        assert(setCookieHeader.includes('__Host-iinsha_admin_session=') && setCookieHeader.includes('HttpOnly') && setCookieHeader.includes('SameSite=Strict'),
+            'Browser session response sets __Host-iinsha_admin_session HttpOnly SameSite=Strict cookie');
+    }
+
     // Test 15: Session Revocation via /api/auth/logout -> Subsequent Requests Blocked with TOKEN_REVOKED
     {
         const logoutReq = new Request('https://inshatech.pages.dev/api/auth/logout', {

@@ -89,17 +89,17 @@ Migration 16: 20260819000001_security_hardening.sql
 Migration 17: 20260820000001_enterprise_profiles_and_leads_rls.sql
 - Purpose: Normalizes enterprise profile fields and isolates lead capture tables per tenant.
 
-Migration 18: 20260820000001_rls_policy_normalization.sql
-- Purpose: Standardizes RLS policy naming and eliminates circular dependency evaluation traps.
-
-Migration 19: 20260820000002_enterprise_architecture_leads_and_transactions.sql
+Migration 18: 20260820000002_enterprise_architecture_leads_and_transactions.sql
 - Purpose: Connects inbound leads with transaction histories and quote calculation pipelines.
 
-Migration 20: 20260820000003_deterministic_rls_and_bkash_orders.sql
+Migration 19: 20260820000003_deterministic_rls_and_bkash_orders.sql
 - Purpose: Adds specific bKash transaction tracking tables, webhook idempotency stores, and strict RLS.
 
-Migration 21: 20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql
+Migration 20: 20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql
 - Purpose: Incorporates Role-Based Access Control (RBAC: owner, admin, member, viewer) and atomic settlements.
+
+Migration 21: 20260820000005_rls_policy_normalization.sql
+- Purpose: Standardizes RLS policy naming and eliminates circular dependency evaluation traps (re-sequenced to avoid timestamp prefix collision).
 
 Migration 22: 20260823000001_autonomous_company_engine.sql
 - Purpose: Core engine schemas for background autonomous business cycles and scheduled executions.

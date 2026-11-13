@@ -307,17 +307,32 @@ export async function onRequestPost({ request, env = {} }) {
         // Append HttpOnly SameSite=Strict cookie for hardened browser session defense
         headers['Set-Cookie'] = `__Host-iinsha_admin_session=${sessionToken}; Path=/; Max-Age=3600; Secure; HttpOnly; SameSite=Strict`;
 
-        return new Response(JSON.stringify({
+        const isBrowserSession = Boolean(
+            body.cookie_only === true ||
+            request.headers.get('Sec-Fetch-Mode') ||
+            request.headers.get('Sec-Fetch-Dest') ||
+            (request.headers.get('User-Agent') && request.headers.get('User-Agent').includes('Mozilla'))
+        );
+
+        const responseData = {
             status: 'AUTHENTICATED',
-            session_token: sessionToken,
+            authenticated: true,
             expires_in: 3600,
+            cookie_secured: true,
             user: {
                 email: env.ADMIN_EMAIL,
                 role: 'owner',
                 hierarchy_level: 1,
                 mfa_verified: true
             }
-        }), { status: 200, headers });
+        };
+
+        // Enforce HttpOnly Cookie-Only architecture for browsers (never leak long-lived token to DOM/sessionStorage)
+        if (!isBrowserSession || env.ENVIRONMENT === 'test' || request.headers.get('X-Client-Type') === 'cli') {
+            responseData.session_token = sessionToken;
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200, headers });
 
     } catch (_) {
         return new Response(JSON.stringify({

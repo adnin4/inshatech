@@ -11,3 +11,25 @@ SUPABASE_RUNTIME_PROJECT_REF = "kitwadizsvjmuxkfewxj"
 BDT_EXCHANGE_RATE = "122.50"
 SYSTEM_NAME = "IINSHA TECH OS v1000 Master Control Studio"
 CF_PAGES_BRANCH = "master"
+
+[durable_objects]
+bindings = [
+  { name = "SECURITY_COORDINATOR", class_name = "SecurityCoordinator", script_name = "iinsha-security-coordinator-staging" }
+]
+
+[env.production]
+pages_build_output_dir = "dist-pages"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+SUPABASE_URL = "https://kitwadizsvjmuxkfewxj.supabase.co"
+CANONICAL_SUPABASE_PROJECT_REF = "kitwadizsvjmuxkfewxj"
+SUPABASE_RUNTIME_PROJECT_REF = "kitwadizsvjmuxkfewxj"
+BDT_EXCHANGE_RATE = "122.50"
+SYSTEM_NAME = "IINSHA TECH OS v1000 Master Control Studio"
+CF_PAGES_BRANCH = "main"
+
+[env.production.durable_objects]
+bindings = [
+  { name = "SECURITY_COORDINATOR", class_name = "SecurityCoordinator", script_name = "iinsha-security-coordinator-production" }
+]

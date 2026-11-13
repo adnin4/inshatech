@@ -604,16 +604,17 @@
             }
         });
 
-        // Check for existing valid server session on page load (Cookie-first with Bearer fallback)
+        // Check for existing valid server session on page load (Strict HttpOnly Cookie-first)
         (async function checkExistingAdminSession() {
             try {
-                const token = sessionStorage.getItem('iinsha_session_token');
-                const headers = {};
-                if (token) headers['Authorization'] = 'Bearer ' + token;
+                // Clear any legacy insecure tokens from client storage
+                sessionStorage.removeItem('iinsha_session_token');
+                sessionStorage.removeItem('iinsha_admin_token');
+                localStorage.removeItem('iinsha_admin_token');
+
                 const res = await fetch('/api/admin/gate', {
                     method: 'GET',
-                    credentials: 'same-origin',
-                    headers: headers
+                    credentials: 'same-origin'
                 });
                 const data = await res.json().catch(() => ({}));
                 if (res.ok && data.authenticated === true) {
@@ -705,10 +706,9 @@
                     return;
                 }
 
-                if (res.ok && data.status === 'AUTHENTICATED' && data.session_token) {
+                if (res.ok && data.status === 'AUTHENTICATED') {
                     sessionStorage.setItem('iinsha_admin_authenticated', 'true');
                     sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    sessionStorage.setItem('iinsha_session_token', data.session_token);
                     sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email }));
                     unlockAdminUI();
                     return;
@@ -756,16 +756,16 @@
                     body: JSON.stringify({
                         email: pendingAdminEmail,
                         password: pendingAdminPassword,
-                        mfa_token: enteredOtp
+                        mfa_token: enteredOtp,
+                        cookie_only: true
                     })
                 });
 
                 const data = await res.json().catch(() => ({}));
 
-                if (res.ok && data.status === 'AUTHENTICATED' && data.session_token) {
+                if (res.ok && data.status === 'AUTHENTICATED') {
                     sessionStorage.setItem('iinsha_admin_authenticated', 'true');
                     sessionStorage.setItem('iinsha_2fa_verified', 'true');
-                    sessionStorage.setItem('iinsha_session_token', data.session_token);
                     sessionStorage.setItem('iinsha_admin_user', JSON.stringify(data.user || { email: pendingAdminEmail }));
 
                     pendingAdminPassword = '';
@@ -797,6 +797,8 @@
             sessionStorage.removeItem('iinsha_admin_authenticated');
             sessionStorage.removeItem('iinsha_2fa_verified');
             sessionStorage.removeItem('iinsha_session_token');
+            sessionStorage.removeItem('iinsha_admin_token');
+            localStorage.removeItem('iinsha_admin_token');
             sessionStorage.removeItem('iinsha_admin_user');
             sessionStorage.removeItem('iinsha_2fa_pending_otp');
             sessionStorage.removeItem('iinsha_2fa_otp_expires');
@@ -2539,17 +2541,14 @@
 
         async function syncCockpitServicesWithBackend() {
             try {
-                const token = sessionStorage.getItem('iinsha_admin_token') || localStorage.getItem('iinsha_admin_token');
-                if (token) {
-                    const res = await fetch('/api/admin/services', {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.ok && Array.isArray(data.services) && data.services.length > 0) {
-                            localStorage.setItem('iinsha_services_registry', JSON.stringify(data.services));
-                            renderEnterpriseArchitectureStudio();
-                        }
+                const res = await fetch('/api/admin/services', {
+                    credentials: 'same-origin'
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.ok && Array.isArray(data.services) && data.services.length > 0) {
+                        localStorage.setItem('iinsha_services_registry', JSON.stringify(data.services));
+                        renderEnterpriseArchitectureStudio();
                     }
                 }
             } catch (e) {
@@ -2571,13 +2570,12 @@
         async function saveCockpitServices(services, itemToPersist) {
             localStorage.setItem('iinsha_services_registry', JSON.stringify(services));
             try {
-                const token = sessionStorage.getItem('iinsha_admin_token') || localStorage.getItem('iinsha_admin_token');
-                if (token && itemToPersist) {
+                if (itemToPersist) {
                     await fetch('/api/admin/services', {
                         method: 'POST',
+                        credentials: 'same-origin',
                         headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(itemToPersist)
                     });
@@ -2589,13 +2587,10 @@
 
         async function deleteCockpitServiceRemote(serviceId) {
             try {
-                const token = sessionStorage.getItem('iinsha_admin_token') || localStorage.getItem('iinsha_admin_token');
-                if (token) {
-                    await fetch(`/api/admin/services?id=${encodeURIComponent(serviceId)}`, {
-                        method: 'DELETE',
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-                }
+                await fetch(`/api/admin/services?id=${encodeURIComponent(serviceId)}`, {
+                    method: 'DELETE',
+                    credentials: 'same-origin'
+                });
             } catch (e) {
                 console.warn('Background services API delete sync deferred:', e);
             }

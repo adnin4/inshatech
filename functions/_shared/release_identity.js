@@ -118,7 +118,25 @@ export function verifyReleaseIdentity(context = {}) {
     );
 
     // Stale evidence check
-    const timestampValid = captured_at ? isFreshTimestamp(captured_at) : true;
+    const timestampValid = (captured_at && captured_at !== 'UNSPECIFIED') ? isFreshTimestamp(captured_at) : true;
+
+    // Source provenance analysis
+    const sourceProvenance = context.source_provenance || (source_sha ? 'PROVIDED' : 'UNVERIFIED');
+    const buildProvenance = context.build_provenance || (build_sha ? 'PROVIDED' : 'UNVERIFIED');
+    const deploymentProvenance = context.deployment_provenance || (deployment_sha ? 'PROVIDED' : 'UNVERIFIED');
+    const runtimeProvenance = context.runtime_provenance || (runtime_sha ? 'PROVIDED' : 'UNVERIFIED');
+
+    const hasInheritedDeploymentSha = Boolean(
+        sourceProvenance === 'INHERITED_DEPLOYMENT_SHA' ||
+        buildProvenance === 'INHERITED_DEPLOYMENT_SHA' ||
+        runtimeProvenance === 'INHERITED_DEPLOYMENT_SHA'
+    );
+
+    const provenance_independent = !hasInheritedDeploymentSha &&
+        sourceProvenance !== 'UNVERIFIED' &&
+        buildProvenance !== 'UNVERIFIED' &&
+        deploymentProvenance !== 'UNVERIFIED' &&
+        runtimeProvenance !== 'UNVERIFIED';
 
     // Multi-SHA parity
     const all_shas = [source_sha, build_sha, deployment_sha, runtime_sha];
@@ -153,6 +171,9 @@ export function verifyReleaseIdentity(context = {}) {
     } else if (!timestampValid) {
         classification = RELEASE_CLASSIFICATIONS.UNVERIFIED;
         parity_status = 'STALE_EVIDENCE_TIMESTAMP';
+    } else if (hasInheritedDeploymentSha) {
+        classification = RELEASE_CLASSIFICATIONS.DEPLOYMENT_VERIFIED;
+        parity_status = 'DEPLOYMENT_SHA_MATCHED_ONLY';
     } else {
         parity_status = 'FULL_PARITY_VERIFIED';
         classification = database_verified
@@ -164,6 +185,8 @@ export function verifyReleaseIdentity(context = {}) {
 
     return {
         verified,
+        provenance_independent,
+        deployment_matched: shasMatch && missing_fields.length === 0,
         classification,
         parity_status,
         missing_fields,

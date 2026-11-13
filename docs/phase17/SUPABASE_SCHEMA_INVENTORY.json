@@ -19,13 +19,23 @@
     "20260818000014_financial_ledger_and_state_machine.sql",
     "20260819000001_security_hardening.sql",
     "20260820000001_enterprise_profiles_and_leads_rls.sql",
-    "20260820000001_rls_policy_normalization.sql",
     "20260820000002_enterprise_architecture_leads_and_transactions.sql",
     "20260820000003_deterministic_rls_and_bkash_orders.sql",
-    "20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql"
+    "20260820000004_makerkit_multitenant_rbac_and_atomic_settlement.sql",
+    "20260820000005_rls_policy_normalization.sql",
+    "20260823000001_autonomous_company_engine.sql",
+    "20260823000002_revenue_lifecycle.sql",
+    "20260823000003_autonomous_business_execution.sql",
+    "20260823000004_control_plane_models.sql",
+    "20260823000005_performance_fk_indexes.sql",
+    "20260823000006_actionable_fk_performance_indexes.sql",
+    "20260823000007_zero_trust_rls_security_invoker.sql",
+    "20260823000008_authoritative_coupon_redemption_system.sql",
+    "20261113000001_seed_premium_services_catalog.sql"
   ],
-  "tables_count": 28,
-  "rls_enabled_count": 28,
+  "migrations_count": 29,
+  "tables_count": 31,
+  "rls_enabled_count": 31,
   "rls_disabled_count": 0,
   "status": "VERIFIED"
 }

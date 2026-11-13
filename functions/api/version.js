@@ -62,7 +62,7 @@ export async function onRequestGet(context) {
 
     const deploymentId = resolveDeploymentId(request, env, deploymentSha);
     const environment = resolveEnvironment(request, env);
-    const capturedAt = env.BUILD_TIMESTAMP || (CANONICAL_RELEASE.captured_at && isFreshTimestamp(CANONICAL_RELEASE.captured_at) ? CANONICAL_RELEASE.captured_at : new Date().toISOString());
+    const capturedAt = env.BUILD_TIMESTAMP || (CANONICAL_RELEASE.captured_at && isFreshTimestamp(CANONICAL_RELEASE.captured_at) ? CANONICAL_RELEASE.captured_at : 'UNSPECIFIED');
 
     const identity = verifyReleaseIdentity({
         source_sha: sourceSha,
@@ -82,21 +82,23 @@ export async function onRequestGet(context) {
         database_verified: databaseVerified
     });
 
-    const isFullReleaseVerified = identity.verified && databaseVerified;
+    const isFullReleaseVerified = identity.verified && databaseVerified && identity.provenance_independent;
 
     const payload = {
-        status: isFullReleaseVerified ? 'LIVE_VERIFIED' : (identity.verified ? 'READY_FOR_STAGING' : 'UNVERIFIED'),
+        status: isFullReleaseVerified ? 'LIVE_VERIFIED' : (identity.parity_status === 'DEPLOYMENT_SHA_MATCHED_ONLY' || identity.verified ? 'READY_FOR_STAGING' : 'UNVERIFIED'),
         platform: 'IINSHA AI-BOS',
-        classification: isFullReleaseVerified ? 'FULL_RELEASE_VERIFIED' : (identity.verified ? 'DEPLOYMENT_PARITY_VERIFIED' : 'UNVERIFIED'),
+        classification: isFullReleaseVerified ? 'FULL_RELEASE_VERIFIED' : (identity.provenance_independent ? 'DEPLOYMENT_PARITY_VERIFIED' : 'DEPLOYMENT_MATCHED_INHERITED'),
         deploy_sha: identity.shas.deployment_sha === 'UNSPECIFIED' ? null : identity.shas.deployment_sha,
         expected_release_sha: identity.shas.runtime_sha === 'UNSPECIFIED' ? null : identity.shas.runtime_sha,
         parity: identity.verified,
         release_parity: identity.verified,
+        deployment_matched: identity.deployment_matched,
+        provenance_independent: identity.provenance_independent,
         full_production_parity: isFullReleaseVerified,
         production_ready: isFullReleaseVerified,
         production_sealed: false,
         release_ceiling: 'READY_FOR_STAGING',
-        system_readiness: isFullReleaseVerified ? 'PRODUCTION_VERIFIED' : (identity.verified ? 'READY_FOR_STAGING_DB_UNVERIFIED' : 'UNVERIFIED'),
+        system_readiness: isFullReleaseVerified ? 'PRODUCTION_VERIFIED' : (identity.verified ? 'READY_FOR_STAGING_DB_UNVERIFIED' : (identity.parity_status === 'DEPLOYMENT_SHA_MATCHED_ONLY' ? 'READY_FOR_STAGING_INHERITED_PROVENANCE' : 'UNVERIFIED')),
         provenance: identity.provenance,
         release_identity: identity,
         branch: identity.branch.active === 'UNSPECIFIED' ? null : identity.branch.active,

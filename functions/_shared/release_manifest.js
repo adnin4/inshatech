@@ -4,7 +4,7 @@
  */
 
 export const CANONICAL_RELEASE = Object.freeze({
-    release_id: 'REL-2026.11.13-V1700-STAGING',
+    release_id: 'REL-2026.11.13-V1710-STAGING',
     canonical_repository: 'https://github.com/adnin4/inshatech.git',
     canonical_branch: 'master',
     canonical_branches: ['master', 'main'],

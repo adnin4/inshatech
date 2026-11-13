@@ -249,7 +249,8 @@ assert.strictEqual(dbSchemaThrow.schema_status, 'APPLICATION_SCHEMA_ERROR');
         BUILD_RELEASE_SHA: testSha1,
         CF_PAGES_COMMIT_SHA: testSha1,
         RUNTIME_RELEASE_SHA: testSha1,
-        CF_PAGES_BRANCH: 'master'
+        CF_PAGES_BRANCH: 'master',
+        BUILD_TIMESTAMP: new Date().toISOString()
     };
 
     // 11A: Valid release + missing DB credentials -> READY_FOR_STAGING
@@ -263,6 +264,7 @@ assert.strictEqual(dbSchemaThrow.schema_status, 'APPLICATION_SCHEMA_ERROR');
     assert.strictEqual(bodyA.provenance.build_provenance, 'ENV_BUILD_RELEASE_SHA');
     assert.strictEqual(bodyA.provenance.deployment_provenance, 'ENV_CF_PAGES_COMMIT_SHA');
     assert.strictEqual(bodyA.provenance.runtime_provenance, 'ENV_RUNTIME_RELEASE_SHA');
+    assert.strictEqual(bodyA.provenance_independent, true);
     assert.strictEqual(bodyA.database_identity.status, PROBE_STATUS.UNVERIFIED);
     assert.strictEqual(bodyA.status, 'READY_FOR_STAGING');
     assert.strictEqual(bodyA.parity, true);
@@ -298,6 +300,23 @@ assert.strictEqual(dbSchemaThrow.schema_status, 'APPLICATION_SCHEMA_ERROR');
     assert.strictEqual(bodyC.release_identity.verified, false);
     assert.strictEqual(bodyC.parity, false);
     assert.strictEqual(bodyC.status, 'UNVERIFIED');
+
+    // 11D: Inherited CF_PAGES_COMMIT_SHA only -> DEPLOYMENT_SHA_MATCHED_ONLY, provenance_independent: false
+    const resD = await onRequestGet({
+        request: new Request('https://inshatech.pages.dev/api/version'),
+        env: {
+            CF_PAGES_COMMIT_SHA: testSha1,
+            CF_PAGES_BRANCH: 'master'
+        }
+    });
+    const bodyD = await resD.json();
+    assert.strictEqual(bodyD.provenance_independent, false);
+    assert.strictEqual(bodyD.parity, false);
+    assert.strictEqual(bodyD.deployment_matched, true);
+    assert.strictEqual(bodyD.release_identity.parity_status, 'DEPLOYMENT_SHA_MATCHED_ONLY');
+    assert.strictEqual(bodyD.release_identity.classification, RELEASE_CLASSIFICATIONS.DEPLOYMENT_VERIFIED);
+    assert.strictEqual(bodyD.status, 'READY_FOR_STAGING');
+    assert.strictEqual(bodyD.release_identity.captured_at, 'UNSPECIFIED');
 }
 
 // 12. /api/sre/health integration testing
