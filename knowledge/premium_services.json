@@ -1,0 +1,609 @@
+[
+  {
+    "id": "ai-video-studio",
+    "name": "AI Video, 3D Animation & Creative Production Studio",
+    "slug": "ai-video-studio",
+    "category": "Creative Production",
+    "icon": "🎬",
+    "accentColor": "#f472b6",
+    "marketSignal": "High Demand (+329% YoY)",
+    "priorityRank": 1,
+    "featuredLevel": "Featured 2026",
+    "heroHook": "Turn Your Products Into Scroll-Stopping AI Video Ads & 3D Visuals.",
+    "problemStatement": "Traditional 3D product rendering and video production takes weeks and thousands of dollars per creative variant, causing e-commerce and SaaS brands to lag behind social ad fatigue.",
+    "solutionDescription": "End-to-end synthetic & procedural video production pipeline leveraging state-of-the-art generative video models, Three.js 3D animation, and automated multilingual localization.",
+    "idealFor": [
+      "E-commerce Brands",
+      "Marketing & Ad Agencies",
+      "SaaS Companies",
+      "Product Designers"
+    ],
+    "deliverables": [
+      "AI UGC-Style Video Ads (disclosed synthetic)",
+      "Short-Form Social Media Reels & TikToks",
+      "3D Interactive & Rendered Product Commercials",
+      "AI Spokesperson & Multilingual Voice Dubbing",
+      "Multi-Variant Creative Testing Packs (10-15 cuts)"
+    ],
+    "pricing": {
+      "model": "Tiered Commercial Packages",
+      "pilot": { "label": "Creative Pilot", "priceUSD": 450, "deliveryDays": 4, "scope": "3 high-converting short-form video ads or 1 interactive 3D product showcase" },
+      "implementation": { "label": "Multi-Variant Ad Pack", "priceUSD": 1400, "deliveryDays": 10, "scope": "10-15 short videos with hook testing, captions & aspect ratio exports" },
+      "monthly": { "label": "Monthly Creative Engine", "priceUSD": 1800, "scope": "20 monthly video creatives, ongoing 3D asset updates, weekly ad refresh" }
+    },
+    "timeline": "3 to 10 business days depending on 3D complexity",
+    "process": [
+      "Brand & Product Asset Discovery",
+      "Visual Scripting & Storyboard Generation",
+      "3D Scene Generation & Generative Video Rendering",
+      "Human Creative Review & Polish",
+      "Export in 4K/1080p, 9:16 and 16:9 formats"
+    ],
+    "technologies": [
+      "Three.js",
+      "Runway Gen-3",
+      "ElevenLabs Voice AI",
+      "ComfyUI / Stable Diffusion",
+      "FFmpeg Automation"
+    ],
+    "thirdPartyCosts": "Runway / Luma video inference ($15-$80/mo based on video volume), ElevenLabs voice synthesis (~$5-$22/mo). Billed directly to client account.",
+    "roiMethodology": "Cost per approved creative reduced from $500+ (traditional agency) to ~$75-$120 per asset; 10x faster creative turnaround; multi-hook testing improves ROAS.",
+    "faqs": [
+      { "q": "Do you disclose AI generation in video ads?", "a": "Yes, we adhere to all FTC and platform policies regarding synthetic media disclosure for transparent advertising compliance." },
+      { "q": "Can you animate our actual 3D CAD or OBJ product models?", "a": "Yes, we import glTF, OBJ, FBX, and CAD files directly into our WebGL & rendering pipelines." },
+      { "q": "How many revisions are included?", "a": "Pilots include 2 rounds of creative revisions; monthly retainers include continuous weekly revision cycles." }
+    ],
+    "subServices": [
+      { "id": "ai-ugc-ads", "name": "AI UGC-Style Ad Production", "icon": "📱", "desc": "Authentic creator-style product reviews and unboxings powered by synthetic video avatars." },
+      { "id": "short-form-reels", "name": "Short-Form Social Video Packs", "icon": "⚡", "desc": "High-velocity Reels, Shorts, and TikTok video cuts optimized for 3-second hook retention." },
+      { "id": "3d-product-films", "name": "3D Product Animation & Commercials", "icon": "🧊", "desc": "Cinematic photorealistic 3D product motion graphics showcasing materials and internal mechanics." },
+      { "id": "ai-spokesperson-dub", "name": "AI Spokesperson & Multilingual Dubbing", "icon": "🗣️", "desc": "Flawless lip-synced multi-language voice dubbing across 30+ languages for global distribution." },
+      { "id": "motion-graphics-ads", "name": "Dynamic Motion Graphics & Infographics", "icon": "🎨", "desc": "SaaS feature explainer graphics, kinetic typography, and animated UI screen recordings." },
+      { "id": "video-repurposing-pipeline", "name": "Automated Long-to-Short Repurposing", "icon": "🔄", "desc": "Automated podcast and webinar clipping into captioned short clips with AI highlight detection." }
+    ]
+  },
+  {
+    "id": "ai-saas-engineering",
+    "name": "AI SaaS Product Engineering & MVP Accelerator",
+    "slug": "ai-saas-engineering",
+    "category": "SaaS Engineering",
+    "icon": "💻",
+    "accentColor": "#38bdf8",
+    "marketSignal": "High Value (+178% YoY)",
+    "priorityRank": 2,
+    "featuredLevel": "Featured 2026",
+    "heroHook": "From AI Product Idea to a Production-Ready SaaS.",
+    "problemStatement": "Founders spend 6+ months and tens of thousands on speculative agency builds that fail at scale, suffer from memory leaks, and lack proper multi-tenant isolation.",
+    "solutionDescription": "Full-stack AI SaaS engineering delivering production-ready MVPs with multi-tenant PostgreSQL RLS, Stripe subscription/usage billing, LLM gateway caching, and zero-trust security.",
+    "idealFor": [
+      "Funded Startup Founders",
+      "Software Agencies Needing Dev Capacity",
+      "B2B Enterprise Spin-outs",
+      "Solo Technical Entrepreneurs"
+    ],
+    "deliverables": [
+      "Production-Ready Next.js / Fastify / Node.js AI SaaS MVP",
+      "Multi-Tenant PostgreSQL Architecture with Row-Level Security (RLS)",
+      "Stripe / LemonSqueezy Subscription & Usage Metering Billing",
+      "Unified LLM Gateway (OpenAI, Anthropic, Gemini, DeepSeek) with Fallbacks",
+      "Modern React / Tailwind Admin Control Panel & User Dashboard"
+    ],
+    "pricing": {
+      "model": "Milestone-Gated Engineering Contracts",
+      "pilot": { "label": "Technical Blueprint & Architecture Sprint", "priceUSD": 850, "deliveryDays": 5, "scope": "Complete system architecture, schema design, API specs & interactive prototype" },
+      "implementation": { "label": "Full AI SaaS MVP Build", "priceUSD": 5500, "deliveryDays": 28, "scope": "Turnkey production SaaS with auth, billing, AI pipeline, admin dashboard & deployment" },
+      "monthly": { "label": "Fractional Product Engineering", "priceUSD": 2200, "scope": "Dedicated bi-weekly sprint delivery, bug triage, feature additions & infra management" }
+    },
+    "timeline": "4 to 8 weeks for complete production MVP",
+    "process": [
+      "Scope & Technical Blueprint Formulation",
+      "Data Modeling & Multi-Tenant Schema Isolation",
+      "Core Backend & AI Inference Pipeline Build",
+      "Frontend UI/UX & Responsive Dashboard Execution",
+      "Automated Testing, Security Audit & Production Cloudflare/AWS Deploy"
+    ],
+    "technologies": [
+      "TypeScript",
+      "Next.js / React 19",
+      "Fastify / Node.js",
+      "PostgreSQL 17 (Supabase)",
+      "Cloudflare Workers / Pages",
+      "Stripe / LemonSqueezy"
+    ],
+    "thirdPartyCosts": "Supabase DB ($0-$25/mo), Cloudflare hosting ($0-$20/mo), LLM API token consumption (pass-through directly to client keys).",
+    "roiMethodology": "Accelerates time-to-market by 70%; reduces development expenditure compared to traditional agency rates ($25k-$50k) by over 60%.",
+    "faqs": [
+      { "q": "Who owns the code?", "a": "You own 100% of the source code, Git repository, database schemas, and intellectual property upon delivery." },
+      { "q": "Do you provide post-launch bug fixing?", "a": "Yes, every MVP build includes a 30-day post-launch warranty and bug-fixing window." },
+      { "q": "Can you integrate with existing databases?", "a": "Yes, we integrate with legacy PostgreSQL, MySQL, MongoDB, and enterprise REST/GraphQL APIs." }
+    ],
+    "subServices": [
+      { "id": "ai-native-mvp", "name": "AI-Native SaaS MVP Build", "icon": "🚀", "desc": "Turnkey web application with modern authentication, subscription billing, and AI core." },
+      { "id": "multi-tenant-architecture", "name": "Multi-Tenant Architecture & RLS", "icon": "🔐", "desc": "Isolated enterprise schemas with PostgreSQL Row-Level Security preventing cross-tenant leaks." },
+      { "id": "llm-provider-gateway", "name": "Unified LLM Gateway & Fallbacks", "icon": "🔗", "desc": "Smart model router between OpenAI, Anthropic, Gemini, and local models with semantic caching." },
+      { "id": "usage-billing-engine", "name": "Usage-Based Token & API Billing", "icon": "💳", "desc": "Metered billing integration via Stripe / LemonSqueezy tracking token credits and seats." },
+      { "id": "admin-control-suite", "name": "Enterprise Admin & Telemetry Suite", "icon": "🎛️", "desc": "Internal operations hub for user management, role assignments, audit logs, and analytics." },
+      { "id": "rag-knowledge-engine", "name": "Vector Search & RAG Knowledge Engine", "icon": "📚", "desc": "High-accuracy Pinecone / pgvector retrieval pipeline with citation-grounded responses." }
+    ]
+  },
+  {
+    "id": "ai-governance-operations",
+    "name": "AI Agent Governance, Safety & Operations",
+    "slug": "ai-governance-operations",
+    "category": "Governance & Security",
+    "icon": "🛡️",
+    "accentColor": "#c084fc",
+    "marketSignal": "Enterprise Opportunity (Deloitte 2026)",
+    "priorityRank": 3,
+    "featuredLevel": "Featured 2026",
+    "heroHook": "Deploy AI Agents With Control, Visibility and Accountability.",
+    "problemStatement": "Autonomous AI agents can execute unauthorized actions, leak customer PII, burn runaway token budgets, or hallucinate critical errors without human oversight.",
+    "solutionDescription": "Zero-trust governance framework providing tool-level permission matrixes, Slack/WhatsApp human-in-the-loop approval gates, prompt injection security testing, and audit trails.",
+    "idealFor": [
+      "AI SaaS Platforms",
+      "Enterprise Automation Teams",
+      "FinTech & HealthTech Operators",
+      "Regulated Business Environments"
+    ],
+    "deliverables": [
+      "Agent Tool-Access & Permission Control Matrix",
+      "Human-in-the-Loop Slack/WhatsApp Approval Gateways",
+      "Prompt-Injection & Jailbreak Adversarial Test Suite",
+      "Immutable Cryptographic Audit Trail of All Agent Actions",
+      "Automated Token Budget Circuit Breakers & Failover Routing"
+    ],
+    "pricing": {
+      "model": "Audit & Implementation Retainer",
+      "pilot": { "label": "AI Risk & Readiness Assessment", "priceUSD": 950, "deliveryDays": 5, "scope": "Deep audit of agent prompts, tool permissions, boundary tests & remediation report" },
+      "implementation": { "label": "Complete Governance System", "priceUSD": 3200, "deliveryDays": 21, "scope": "Deploy approval gateways, permission matrix, evaluation pipelines & logging system" },
+      "monthly": { "label": "Managed Agent Operations & Evals", "priceUSD": 950, "scope": "Continuous regression testing, jailbreak monitoring, token cost budget tuning" }
+    },
+    "timeline": "1 to 3 weeks for enterprise governance deployment",
+    "process": [
+      "Threat Modeling & Tool Permission Boundary Analysis",
+      "Approval Gateway & Circuit Breaker Architecture",
+      "Adversarial Prompt-Injection Penetration Testing",
+      "Audit Trail & Compliance Logging Implementation",
+      "Production Handover with Operational Runbooks"
+    ],
+    "technologies": [
+      "LangSmith / Langfuse",
+      "Python / Node.js",
+      "PostgreSQL Audit Tables",
+      "Slack / Telegram Webhooks",
+      "OpenAI Moderation API"
+    ],
+    "thirdPartyCosts": "Langfuse / observability logging ($0-$59/mo), Webhook dispatcher infra ($5-$15/mo).",
+    "roiMethodology": "Eliminates risk of rogue agent actions, prevents multi-thousand-dollar runaway API loops, and enables enterprise compliance audits.",
+    "faqs": [
+      { "q": "Does this slow down agent response times?", "a": "Non-sensitive read tools execute sub-second; high-impact mutations (payments, refunds, DB drops) pause safely for human confirmation." },
+      { "q": "Can you test for prompt injection vulnerabilities?", "a": "Yes, we run an adversarial benchmark of 100+ known indirect and direct injection vectors against your system prompts." }
+    ],
+    "subServices": [
+      { "id": "agent-permission-matrix", "name": "Agent Permission & Tool Sandboxing", "icon": "🔒", "desc": "Granular least-privilege scoping ensuring agents only access approved API endpoints." },
+      { "id": "human-approval-gateways", "name": "Human-in-the-Loop Approval Flows", "icon": "🙋", "desc": "Interactive Slack/WhatsApp confirmation modals before any financial or destructive operation." },
+      { "id": "adversarial-prompt-testing", "name": "Adversarial Prompt-Injection Auditing", "icon": "⚔️", "desc": "Red-teaming system prompts against jailbreaks, system-prompt extraction, and data leakage." },
+      { "id": "action-audit-ledger", "name": "Immutable Cryptographic Audit Logging", "icon": "📜", "desc": "Every input, output, tool call, and latency recorded to tamper-evident audit tables." },
+      { "id": "token-circuit-breakers", "name": "Token Budget & Loop Circuit Breakers", "icon": "🛑", "desc": "Automated cutoffs terminating runaway recursion loops and enforcing spend quotas per user." },
+      { "id": "golden-dataset-evals", "name": "Continuous Model Regression Evals", "icon": "🎯", "desc": "Automated test suites running 50+ benchmark scenarios to verify prompt changes do not degrade output." }
+    ]
+  },
+  {
+    "id": "ecommerce-growth-operations",
+    "name": "E-commerce Growth & Marketplace Operations",
+    "slug": "ecommerce-growth-operations",
+    "category": "Commerce Operations",
+    "icon": "🛒",
+    "accentColor": "#10b981",
+    "marketSignal": "High Demand (+130% YoY)",
+    "priorityRank": 4,
+    "featuredLevel": "Featured 2026",
+    "heroHook": "One Connected Operations System for Every Store and Channel.",
+    "problemStatement": "Multi-channel e-commerce brands lose up to 15% of margin on stock mismatches, delayed courier dispatches, manual product uploads, and missed customer inquiries.",
+    "solutionDescription": "Integrated commerce operational suite synchronizing Shopify/WooCommerce with local courier APIs (Steadfast, Pathao, RedX), WhatsApp conversational checkout, and real-time inventory.",
+    "idealFor": [
+      "Shopify & WooCommerce Merchants",
+      "Multi-Channel D2C Brands",
+      "E-Commerce Aggregators & Agencies",
+      "F-Commerce Retailers Transitioning to Web"
+    ],
+    "deliverables": [
+      "Bi-Directional Shopify / WooCommerce / Marketplace Sync",
+      "Automated Courier API Booking & Return Risk Scoring",
+      "24/7 WhatsApp Conversational Sales & COD Confirmation Bot",
+      "Multi-Channel Real-Time Inventory & Low-Stock Alerts",
+      "Automated Product Catalog Enrichment & AI SEO Descriptions"
+    ],
+    "pricing": {
+      "model": "Fixed Pilot + Monthly Operations Retainer",
+      "pilot": { "label": "Store Operations Audit & Courier Integration", "priceUSD": 490, "deliveryDays": 4, "scope": "Automated courier dispatch pipeline, return prediction & order confirmation" },
+      "implementation": { "label": "Full Multi-Channel Commerce System", "priceUSD": 1850, "deliveryDays": 14, "scope": "Complete sync between store, courier, WhatsApp bot, inventory & accounting" },
+      "monthly": { "label": "Managed Commerce Care", "priceUSD": 650, "scope": "24/7 order sync monitoring, catalog bulk updates, courier webhook health" }
+    },
+    "timeline": "4 to 14 business days",
+    "process": [
+      "Store & Marketplace Inventory Architecture Review",
+      "Courier & Payment Gateway API Hookup",
+      "WhatsApp & Messenger Conversational Engine Setup",
+      "End-to-End Order Lifecycle Testing (Placed → Dispatched → Delivered)",
+      "Staff Training & Monitoring Dashboard Deployment"
+    ],
+    "technologies": [
+      "Shopify REST / GraphQL API",
+      "WooCommerce API",
+      "Meta WhatsApp Cloud API",
+      "Steadfast / Pathao / ShipStation APIs",
+      "n8n / Node.js"
+    ],
+    "thirdPartyCosts": "Meta WhatsApp conversation fees (first 1,000 service conversations free/mo), VPS hosting ($10-$20/mo).",
+    "roiMethodology": "Reduces return-to-origin (RTO) rates by up to 35% through instant order confirmation; cuts order dispatch labor by 80%.",
+    "faqs": [
+      { "q": "Does this work with Cash on Delivery (COD)?", "a": "Yes, our WhatsApp bot confirms customer address, validates phone numbers, and flags risky fake orders before dispatch." },
+      { "q": "Can it sync inventory across both Shopify and Facebook Shop?", "a": "Yes, unified inventory ledger updates automatically upon every sale regardless of channel." }
+    ],
+    "subServices": [
+      { "id": "shopify-woo-sync", "name": "Shopify & WooCommerce Multi-Store Sync", "icon": "🛍️", "desc": "Seamless inventory, price, and product catalog synchronization across multiple storefronts." },
+      { "id": "courier-dispatch-pipeline", "name": "Automated Courier API Dispatch", "icon": "🚚", "desc": "One-click consignment creation, parcel tracking, and customer SMS notification via courier APIs." },
+      { "id": "whatsapp-commerce-bot", "name": "WhatsApp Catalog & Order Bot", "icon": "💬", "desc": "AI sales agent showcasing products, collecting customer address, and generating orders in chat." },
+      { "id": "rto-fraud-filter", "name": "Return Risk & Fraud Order Filter", "icon": "🛡️", "desc": "Predictive scoring flagging high-risk return orders based on historical customer phone and address data." },
+      { "id": "catalog-enrichment-ai", "name": "AI Product Catalog Enrichment", "icon": "✨", "desc": "Automated generation of high-converting SEO product descriptions, tags, and category taxonomies." }
+    ]
+  },
+  {
+    "id": "ai-finance-automation",
+    "name": "AI Finance & Back-Office Operations Automation",
+    "slug": "ai-finance-automation",
+    "category": "Finance Operations",
+    "icon": "💳",
+    "accentColor": "#f59e0b",
+    "marketSignal": "High Value Enterprise",
+    "priorityRank": 5,
+    "featuredLevel": "Featured 2026",
+    "heroHook": "Reduce Manual Finance Work Without Losing Human Control.",
+    "problemStatement": "Finance and bookkeeping teams spend 20+ hours weekly manually transcribing supplier invoices, matching bank transactions, and chasing payment approvals.",
+    "solutionDescription": "Automated accounts payable and receivable pipeline utilizing multimodal Gemini OCR to parse invoices, perform 3-way purchase order matching, and sync to accounting software with human sign-off.",
+    "idealFor": [
+      "Accounting & CPA Firms",
+      "Wholesale & Distribution Companies",
+      "Mid-Sized SMEs & Agencies",
+      "High-Volume E-Commerce Businesses"
+    ],
+    "deliverables": [
+      "Multimodal Gemini OCR Invoice & Receipt Extraction Pipeline",
+      "3-Way Purchase Order (PO) to Invoice Matching Engine",
+      "Automated Sync to QuickBooks, Xero, Zoho Books, or PostgreSQL",
+      "Interactive Slack / Email Multi-Tier Expense Approval Workflow",
+      "Daily Bank Transaction Reconciliation & Discrepancy Alerting"
+    ],
+    "pricing": {
+      "model": "Setup Fee + Monthly Volume Retainer",
+      "pilot": { "label": "Single-Vendor AP Automation Pilot", "priceUSD": 650, "deliveryDays": 5, "scope": "Automate invoice OCR extraction and sync to Google Sheets / accounting for top 5 vendors" },
+      "implementation": { "label": "Full Accounts Payable / Receivable Suite", "priceUSD": 2800, "deliveryDays": 18, "scope": "3-way PO matching, approval workflows, ERP sync, tax line categorization" },
+      "monthly": { "label": "Managed Finance Workflow Care", "priceUSD": 750, "scope": "24/7 OCR exception handling, monthly reconciliations, audit report generation" }
+    },
+    "timeline": "1 to 3 weeks",
+    "process": [
+      "Accounting Workflow & Tax Code Mapping",
+      "Multimodal OCR Template & Extraction Schema Design",
+      "Accounting Software API Integration (Xero/QuickBooks/DB)",
+      "Dual-Approval Gateway Setup (Manager + CFO)",
+      "Parallel Run Validation with Live Invoices"
+    ],
+    "technologies": [
+      "Gemini 1.5 Flash / Pro Vision",
+      "n8n Self-Hosted",
+      "QuickBooks / Xero / Zoho APIs",
+      "PostgreSQL Financial Ledgers",
+      "SendGrid / Slack Alerts"
+    ],
+    "thirdPartyCosts": "Gemini Vision OCR API (~$0.002 per invoice page), Accounting software API access (standard existing subscription).",
+    "roiMethodology": "Reduces invoice processing time by 85% (from 15 mins to under 2 mins per invoice); eliminates manual data transcription errors.",
+    "faqs": [
+      { "q": "Does AI release payments automatically?", "a": "Never. AI extracts, categorizes, and matches line items; payment release strictly requires authenticated human authorization." },
+      { "q": "How does it handle handwritten or blurry receipts?", "a": "Gemini Multimodal Vision achieves >96% accuracy on scans, and low-confidence items are automatically flagged for manual review." }
+    ],
+    "subServices": [
+      { "id": "invoice-ocr-parser", "name": "Multimodal Invoice & Receipt OCR", "icon": "🧾", "desc": "Instant structured JSON extraction of vendor, line items, taxes, totals, and due dates." },
+      { "id": "three-way-po-matching", "name": "3-Way Purchase Order Matching", "icon": "🔍", "desc": "Automatic comparison between purchase order, goods received note, and supplier invoice." },
+      { "id": "quickbooks-xero-sync", "name": "QuickBooks & Xero Auto-Reconciliation", "icon": "🔄", "desc": "Direct posting of verified bills, expenses, and invoices to your chart of accounts." },
+      { "id": "expense-approval-flow", "name": "Multi-Level Expense Approval Workflows", "icon": "🛡️", "desc": "Automated routing of large expense claims to team leads with 1-click Slack/email approvals." },
+      { "id": "cash-flow-forecasting", "name": "AI Accounts Receivable & Cash Flow Forecasting", "icon": "📈", "desc": "Predictive models analyzing pending invoices and payment histories to project monthly liquidity." }
+    ]
+  },
+  {
+    "id": "ai-data-operations",
+    "name": "AI Data Operations, Annotation & Evaluation Dataset Studio",
+    "slug": "ai-data-operations",
+    "category": "Data & AI",
+    "icon": "🔬",
+    "accentColor": "#6366f1",
+    "marketSignal": "High Growth (+154% YoY)",
+    "priorityRank": 6,
+    "featuredLevel": "Premium Engineering",
+    "heroHook": "Better Data. Better AI Decisions.",
+    "problemStatement": "Machine learning and LLM engineering teams waste 70% of their engineering time cleaning unstructured documents, labeling training sets, and generating golden eval benchmarks.",
+    "solutionDescription": "Turnkey data operations pipeline providing high-accuracy document classification, multi-modal image/text annotation, synthetic dataset generation, and automated LLM benchmark evaluation.",
+    "idealFor": [
+      "AI & Machine Learning Startups",
+      "Computer Vision Researchers",
+      "Enterprise Data Science Teams",
+      "Domain-Specific SaaS Companies"
+    ],
+    "deliverables": [
+      "Custom Labeled & Cleaned JSON/CSV/Parquet Datasets",
+      "Human-in-the-Loop Quality Assurance Annotation Workflows",
+      "Domain-Specific Synthetic Training Data Generation",
+      "Golden Evaluation Datasets for Agent & LLM Benchmarking",
+      "Automated Data Ingestion & Transformation ETL Pipelines"
+    ],
+    "pricing": {
+      "model": "Per-Project or Volume Retainer",
+      "pilot": { "label": "Dataset Quality Audit & 500-Item Benchmark", "priceUSD": 750, "deliveryDays": 5, "scope": "Clean, validate, and produce golden benchmark dataset for your AI domain" },
+      "implementation": { "label": "Full Data Pipeline & 5,000+ Annotation Set", "priceUSD": 2900, "deliveryDays": 21, "scope": "Custom annotation tooling, synthetic augmentation, multi-pass human QA" },
+      "monthly": { "label": "Continuous Data Operations Retainer", "priceUSD": 1200, "scope": "Ongoing monthly dataset curation, eval runs, edge-case labeling" }
+    },
+    "timeline": "1 to 4 weeks depending on sample volume",
+    "process": [
+      "Data Taxonomy & Annotation Guideline Definition",
+      "Tooling Setup (Label Studio / Custom Web Interface)",
+      "Initial Calibration Batch & Inter-Annotator Agreement Check",
+      "Full Annotation, Synthetic Augmentation & De-duplication",
+      "Format Export to JSONL, Parquet, or PostgreSQL"
+    ],
+    "technologies": [
+      "Python / Pandas / PyArrow",
+      "Label Studio",
+      "Gemini & Claude Data Synthesizers",
+      "PostgreSQL / DuckDB",
+      "HuggingFace Datasets"
+    ],
+    "thirdPartyCosts": "Storage on Cloudflare R2 / AWS S3 ($0-$5/mo), LLM data synthesis API ($20-$100/project).",
+    "roiMethodology": "Cuts training preparation time by 65%; eliminates costly model hallucinations caused by noisy training data.",
+    "faqs": [
+      { "q": "How do you ensure data confidentiality?", "a": "All customer data is processed inside isolated private VPS environments under strict NDA with zero retention for public training." }
+    ],
+    "subServices": [
+      { "id": "data-labeling-annotation", "name": "Multi-Modal Data Labeling & Annotation", "icon": "🏷️", "desc": "High-precision bounding boxes, segmentation, entity tagging, and classification." },
+      { "id": "synthetic-data-generation", "name": "Synthetic Dataset Generation", "icon": "🧪", "desc": "Generating diverse edge cases and balanced training distributions using state-of-the-art LLMs." },
+      { "id": "golden-benchmark-curation", "name": "Golden Benchmark Evaluation Datasets", "icon": "🏆", "desc": "Curated ground-truth test datasets to evaluate model accuracy across releases." },
+      { "id": "automated-data-cleaning", "name": "Automated Data Cleaning & Deduplication", "icon": "🧹", "desc": "Surgical regex, semantic embedding deduplication, and schema normalization." }
+    ]
+  },
+  {
+    "id": "enterprise-knowledge-search",
+    "name": "Enterprise Knowledge Search & Workspace Copilots",
+    "slug": "enterprise-knowledge-search",
+    "category": "Enterprise Systems",
+    "icon": "📚",
+    "accentColor": "#0ea5e9",
+    "marketSignal": "High Demand Corporate",
+    "priorityRank": 7,
+    "featuredLevel": "Premium Engineering",
+    "heroHook": "Make Your Company Knowledge Instantly Searchable.",
+    "problemStatement": "Company knowledge is fragmented across Google Drive, Notion, Slack, PDFs, and email threads, costing knowledge workers 1.8 hours every day searching for internal answers.",
+    "solutionDescription": "Private, permission-aware internal search engine and workspace copilot connecting Google Drive, Notion, Slack, and company wikis with strict role-based access and source citations.",
+    "idealFor": [
+      "Professional Service Firms & Consultancies",
+      "Distributed Remote Companies (20-500 employees)",
+      "Technical Support & Customer Care Organizations",
+      "Legal, Medical & Compliance Teams"
+    ],
+    "deliverables": [
+      "Unified Semantic Search Across Drive, Notion, Slack & PDFs",
+      "Permission-Aware Retrieval (users only search documents they have rights to view)",
+      "Citation-Backed Natural Language Copilot with Direct Document Links",
+      "Automated Daily Incremental Sync with Company Cloud Storage",
+      "Slack / Microsoft Teams Internal Bot Integration"
+    ],
+    "pricing": {
+      "model": "Implementation Fee + Monthly Retainer",
+      "pilot": { "label": "Single-Department Knowledge Copilot", "priceUSD": 850, "deliveryDays": 5, "scope": "Index up to 500 company documents, Slack bot integration, citation grounding" },
+      "implementation": { "label": "Enterprise Multi-Source Search System", "priceUSD": 3800, "deliveryDays": 21, "scope": "Google Workspace + Notion + Slack sync, RBAC permissions, private vector cluster" },
+      "monthly": { "label": "Knowledge Maintenance & Re-indexing", "priceUSD": 750, "scope": "Continuous incremental indexing, vector DB health, prompt tuning" }
+    },
+    "timeline": "2 to 4 weeks",
+    "process": [
+      "Document Repository Inventory & Security Classification",
+      "Chunking Strategy & Vector Embedding Pipeline Design",
+      "Role-Based Access Control (RBAC) Mapping",
+      "Chatbot & Search UI Deployment to Slack / Web Portal",
+      "Accuracy Tuning & Citation Verification Testing"
+    ],
+    "technologies": [
+      "Pinecone / pgvector",
+      "Gemini 1.5 Pro / Claude 3.5 Sonnet",
+      "LangChain / LlamaIndex",
+      "Google Drive API / Notion API",
+      "Slack Bolt Framework"
+    ],
+    "thirdPartyCosts": "Vector database ($0-$70/mo depending on vector count), LLM search query inference (pass-through).",
+    "roiMethodology": "Reclaims ~5-8 hours per employee weekly in internal search friction; speeds up new hire onboarding by 40%.",
+    "faqs": [
+      { "q": "Will employees see confidential HR or payroll documents?", "a": "No. Our retrieval engine enforces strict OAuth/RBAC filters so users only retrieve documents their account is authorized to view." },
+      { "q": "Does the model train on our company documents?", "a": "Zero training. We utilize enterprise API endpoints with zero-data-retention guarantees." }
+    ],
+    "subServices": [
+      { "id": "permission-aware-rag", "name": "Permission-Aware Vector Retrieval", "icon": "🔐", "desc": "Document-level security ensuring users only query files they have clearance to read." },
+      { "id": "slack-teams-copilot", "name": "Slack & Microsoft Teams Internal Copilot", "icon": "💬", "desc": "Chatbot responding to employee questions in channels with direct page links." },
+      { "id": "drive-notion-sync", "name": "Drive, Notion & SharePoint Connectors", "icon": "🔄", "desc": "Automated incremental indexers updating vector stores whenever a document changes." },
+      { "id": "citation-grounding-engine", "name": "Citation-Grounding & Source Highlight Engine", "icon": "📑", "desc": "Highlighting the exact sentence and page in the PDF where the answer originates." }
+    ]
+  },
+  {
+    "id": "software-qa-release",
+    "name": "Software QA, Test Automation & Release Engineering",
+    "slug": "software-qa-release",
+    "category": "Quality & Reliability",
+    "icon": "🧪",
+    "accentColor": "#14b8a6",
+    "marketSignal": "High Demand Engineering",
+    "priorityRank": 8,
+    "featuredLevel": "Premium Engineering",
+    "heroHook": "Ship Faster. Catch Critical Bugs Before Your Users Do.",
+    "problemStatement": "Engineering teams ship releases with undetected regressions because manual QA is slow, unit tests miss cross-browser UI bugs, and CI/CD pipelines lack gate enforcement.",
+    "solutionDescription": "Enterprise automated testing suite implementing Playwright end-to-end tests across Chromium, Firefox, WebKit, and Mobile viewports, with automated visual regression and CI/CD gates.",
+    "idealFor": [
+      "SaaS Founders Preparing for Scale",
+      "Digital Agencies Delivering Web Apps",
+      "Engineering Teams Experiencing High Regression Rates",
+      "E-Commerce Checkout & Payment Critical Flows"
+    ],
+    "deliverables": [
+      "Multi-Browser Playwright End-to-End Automated Test Suite",
+      "Visual Regression Testing & Full-Page Screenshot Diffing",
+      "API Regression & Adversarial Edge-Case Test Harnesses",
+      "GitHub Actions CI/CD Quality Gates & Release Checklists",
+      "Zero-Downtime Deployment & Automated Rollback Scripts"
+    ],
+    "pricing": {
+      "model": "Audit Sprint or Ongoing Testing Retainer",
+      "pilot": { "label": "Critical Path E2E Test Suite", "priceUSD": 750, "deliveryDays": 5, "scope": "Automated Playwright tests for auth, checkout, and primary customer workflows" },
+      "implementation": { "label": "Full QA Suite & CI/CD Gate Deployment", "priceUSD": 2400, "deliveryDays": 14, "scope": "Unit, API, E2E, visual diffing, GitHub Actions workflow with zero false-greens" },
+      "monthly": { "label": "Continuous Release QA Care", "priceUSD": 650, "scope": "Weekly regression runs, test maintenance for new features, test flake triage" }
+    },
+    "timeline": "1 to 3 weeks",
+    "process": [
+      "User Journey & Critical Failure Mode Mapping",
+      "Playwright Fixture & Mock Environment Architecture",
+      "Adversarial Edge-Case & Error-Boundary Test Writing",
+      "GitHub Actions Automated PR Verification Hookup",
+      "Delivery with HTML Test Report & Video Recording Artifacts"
+    ],
+    "technologies": [
+      "Playwright",
+      "Vitest / Jest",
+      "GitHub Actions",
+      "Docker",
+      "Node.js 22"
+    ],
+    "thirdPartyCosts": "GitHub Actions compute (typically covered by standard free tier or ~$5/mo).",
+    "roiMethodology": "Eliminates 90% of user-reported production bugs; cuts release verification cycle from 3 days to under 10 minutes.",
+    "faqs": [
+      { "q": "Do the tests run on mobile viewports?", "a": "Yes, our Playwright suites explicitly test responsive viewports from 320px (iPhone SE) to 4K desktop." }
+    ],
+    "subServices": [
+      { "id": "playwright-e2e-suite", "name": "Playwright Multi-Browser E2E Testing", "icon": "🌐", "desc": "Automated browser interaction tests executing real logins, forms, and transactions." },
+      { "id": "visual-regression-testing", "name": "Visual Regression Screenshot Diffing", "icon": "📸", "desc": "Pixel-by-pixel comparisons alerting developers when layouts unexpectedly shift." },
+      { "id": "api-regression-harness", "name": "API Contract & Regression Harness", "icon": "⚡", "desc": "High-velocity HTTP integration tests verifying status codes, schemas, and error handling." },
+      { "id": "cicd-quality-gates", "name": "GitHub Actions CI/CD Release Gates", "icon": "🛡️", "desc": "Strict merge-blocking automation ensuring broken tests cannot reach production." }
+    ]
+  },
+  {
+    "id": "cloud-finops-reliability",
+    "name": "Cloud FinOps, Performance & Reliability Engineering",
+    "slug": "cloud-finops-reliability",
+    "category": "Cloud & DevOps",
+    "icon": "☁️",
+    "accentColor": "#06b6d4",
+    "marketSignal": "High Value Technical",
+    "priorityRank": 9,
+    "featuredLevel": "Premium Engineering",
+    "heroHook": "Lower Cloud Waste. Improve Application Reliability.",
+    "problemStatement": "Growing cloud bills eat away SaaS gross margins through idle compute, unindexed databases, redundant multi-region servers, and runaway LLM API loops.",
+    "solutionDescription": "Systematic cloud infrastructure optimization and Site Reliability Engineering (SRE) service profiling bottlenecks, implementing edge caching, tuning queries, and slashing cloud bills by 30-60%.",
+    "idealFor": [
+      "SaaS Startups Spending $500-$10,000/mo on AWS/GCP/Cloudflare",
+      "Companies Experiencing Database Latency Spikes",
+      "Businesses Preparing for Traffic Surges",
+      "Cloud-Hosted High-Scale Operations"
+    ],
+    "deliverables": [
+      "Comprehensive Cloud Cost & Idle Resource Audit",
+      "PostgreSQL Query Profiling & Composite Index Optimization",
+      "Edge Caching & Cloudflare CDN Tuning (cutting origin hits by up to 80%)",
+      "Automated Daily Backup, Disaster Recovery & Rollback Drills",
+      "Centralized Observability, Latency Telemetry & Uptime Heartbeats"
+    ],
+    "pricing": {
+      "model": "Audit Sprint or Performance-Shared Fee",
+      "pilot": { "label": "Cloud & DB Performance Audit", "priceUSD": 850, "deliveryDays": 5, "scope": "Identify top 5 cost drivers, slow query EXPLAIN plans & edge caching recommendations" },
+      "implementation": { "label": "Full FinOps & SRE Optimization", "priceUSD": 2900, "deliveryDays": 18, "scope": "Implement caching, migrate workloads, optimize DB indexes, deploy monitoring" },
+      "monthly": { "label": "Managed SRE & Cost Watch", "priceUSD": 550, "scope": "Weekly cost anomaly alerts, uptime monitoring, monthly database vacuuming & tuning" }
+    },
+    "timeline": "1 to 3 weeks",
+    "process": [
+      "Read-Only Cloud & Database Telemetry Analysis",
+      "Cost Allocation & Idle Resource Identification",
+      "Query Plan Analysis (EXPLAIN ANALYZE) & Index Construction",
+      "Edge Cache Header & CDN Rule Configuration",
+      "Verification of Latency Reductions & Cost Verification Report"
+    ],
+    "technologies": [
+      "Cloudflare Workers / Pages",
+      "AWS / DigitalOcean / Hetzner VPS",
+      "PostgreSQL 17 / pg_stat_statements",
+      "Docker / NGINX",
+      "Prometheus / Grafana"
+    ],
+    "thirdPartyCosts": "Zero required new tools; uses built-in Cloudflare, VPS, and PostgreSQL metrics.",
+    "roiMethodology": "Typically cuts cloud bills by 30-50% with an ROI payback period within 60 days.",
+    "faqs": [
+      { "q": "Will optimization require downtime?", "a": "Zero downtime. Indexing is performed using CONCURRENTLY in PostgreSQL and caching is deployed seamlessly at the edge." }
+    ],
+    "subServices": [
+      { "id": "cloud-cost-audit", "name": "Cloud Cost & Resource Right-Sizing", "icon": "💰", "desc": "Identifying over-provisioned instances, orphaned disks, and unused cloud allocations." },
+      { "id": "postgres-query-tuning", "name": "PostgreSQL Slow Query Optimization", "icon": "⚡", "desc": "Eliminating sequential table scans and locking bottlenecks with composite indexes." },
+      { "id": "edge-caching-acceleration", "name": "Edge Caching & Global CDN Acceleration", "icon": "🌍", "desc": "Configuring Cloudflare caching to serve 80%+ of static and read requests from edge caches." },
+      { "id": "disaster-recovery-drills", "name": "Automated Backup & Disaster Recovery Drills", "icon": "💾", "desc": "Encrypted off-site snapshots with verified 15-minute point-in-time recovery runbooks." }
+    ]
+  },
+  {
+    "id": "computer-vision-systems",
+    "name": "Computer Vision & Visual Intelligence Systems",
+    "slug": "computer-vision-systems",
+    "category": "Vision AI",
+    "icon": "👁️",
+    "accentColor": "#a855f7",
+    "marketSignal": "Specialist High-Value",
+    "priorityRank": 10,
+    "featuredLevel": "Premium Engineering",
+    "heroHook": "Turn Images and Video Into Actionable Business Data.",
+    "problemStatement": "Quality inspection, inventory counting, security monitoring, and document verification still rely heavily on manual human visual inspection.",
+    "solutionDescription": "Production computer vision systems delivering automated defect detection, inventory item counting, KYC document tamper detection, and video event classification via custom visual APIs.",
+    "idealFor": [
+      "Manufacturing & Assembly Plants",
+      "Logistics & Warehouse Operations",
+      "Retail & Inventory Checkers",
+      "Security & KYC Compliance Platforms"
+    ],
+    "deliverables": [
+      "Visual Defect Detection Proof of Concept / API",
+      "Real-Time Object Detection & Inventory Counting Model",
+      "Document Tampering & Photo Fraud Verification Pipeline",
+      "Lightweight Edge-Ready Model Deployment (ONNX / Docker)",
+      "Interactive Visual Analytics Dashboard"
+    ],
+    "pricing": {
+      "model": "Feasibility Sprint + Custom API Deployment",
+      "pilot": { "label": "Visual Feasibility Sprint & Dataset Proof", "priceUSD": 1200, "deliveryDays": 7, "scope": "Evaluate 200 sample images, benchmark accuracy, deliver proof-of-concept pipeline" },
+      "implementation": { "label": "Custom Vision API & Model Deployment", "priceUSD": 4500, "deliveryDays": 28, "scope": "Trained detection model, Dockerized inference server, client REST API & dashboard" },
+      "monthly": { "label": "Vision Model Maintenance & Retraining", "priceUSD": 850, "scope": "Continuous accuracy retraining on hard negatives, latency profiling, drift detection" }
+    },
+    "timeline": "2 to 6 weeks",
+    "process": [
+      "Image Sample Collection & Defect Taxonomy Definition",
+      "Annotation & Data Augmentation Pipeline",
+      "Model Architecture Selection (YOLOv8 / RT-DETR / ViT)",
+      "Model Training, Quantization & ONNX Optimization",
+      "Dockerized Microservice Deployment with REST/gRPC Endpoints"
+    ],
+    "technologies": [
+      "Python / PyTorch",
+      "YOLOv8 / OpenCV",
+      "ONNX Runtime",
+      "FastAPI",
+      "Docker"
+    ],
+    "thirdPartyCosts": "Inference VPS with GPU or optimized CPU ($20-$80/mo depending on throughput).",
+    "roiMethodology": "Replaces hours of repetitive human visual inspection; achieves consistent 24/7 inspection with zero fatigue.",
+    "faqs": [
+      { "q": "Do we need an expensive GPU server for inference?", "a": "Not always. We heavily quantize models (INT8/FP16) using ONNX, enabling fast sub-100ms inference on modern multi-core CPUs for many tasks." }
+    ],
+    "subServices": [
+      { "id": "defect-detection-api", "name": "Automated Visual Defect Detection", "icon": "🔍", "desc": "Identifying surface scratches, assembly errors, and irregularities on production lines." },
+      { "id": "inventory-counting-vision", "name": "Visual Shelf & Inventory Counting", "icon": "📦", "desc": "Real-time item quantification from warehouse camera feeds and mobile photos." },
+      { "id": "document-tamper-verification", "name": "KYC Document Tamper & Photo Verification", "icon": "🪪", "desc": "Detecting pixel manipulation, font discrepancies, and photo overlays on identity cards." },
+      { "id": "video-event-detection", "name": "Video Event & Activity Classification", "icon": "📹", "desc": "Alerting on specific motions, security boundary crossings, and operational events." }
+    ]
+  }
+]

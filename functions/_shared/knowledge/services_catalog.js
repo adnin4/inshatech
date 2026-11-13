@@ -470,7 +470,7 @@ export const AUTHORITATIVE_SERVICES = Object.freeze([
       "Comprehensive AST-Level Code Quality & Security Audit",
       "Webhook & Async Event Flow Diagnosis",
       "Database Query Profiling & Slow Scan Elimination",
-      "100% Refund Guarantee If Problem Is Not Solved"
+      "Milestone-Gated Acceptance Guarantee"
     ],
     "idealFor": [
       "SaaS Founders",
@@ -500,6 +500,347 @@ export const AUTHORITATIVE_SERVICES = Object.freeze([
         "price": 450,
         "delivery_days": 4
       }
+    ]
+  },
+  {
+    "id": "ai-video-studio",
+    "name": "AI Video, 3D Animation & Creative Production Studio",
+    "category": "Creative Production",
+    "priceUSD": 450,
+    "priceBDT": 55125,
+    "deliveryDays": 4,
+    "description": "Professional AI-powered video production, 3D motion graphics, and multilingual visual ad content at 10x speed.",
+    "features": [
+      "AI UGC-Style Video Ads with Synthetic Disclosure",
+      "Short-Form Social Media Reels & TikTok Packs",
+      "3D Interactive & Rendered Product Commercials",
+      "Multilingual Voice Dubbing Across 30+ Languages",
+      "Multi-Variant Creative Hook Testing (10-15 cuts)"
+    ],
+    "idealFor": [
+      "E-Commerce Brands",
+      "Marketing Agencies",
+      "SaaS Companies",
+      "D2C Product Brands"
+    ],
+    "technologies": [
+      "Three.js",
+      "Runway Gen-3",
+      "ElevenLabs",
+      "ComfyUI",
+      "FFmpeg"
+    ],
+    "packages": [
+      { "name": "Creative Pilot", "price": 450, "delivery_days": 4 },
+      { "name": "Multi-Variant Ad Pack", "price": 1400, "delivery_days": 10 },
+      { "name": "Monthly Creative Engine", "price": 1800, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "ai-saas-engineering",
+    "name": "AI SaaS Product Engineering & MVP Accelerator",
+    "category": "SaaS Engineering",
+    "priceUSD": 850,
+    "priceBDT": 104125,
+    "deliveryDays": 5,
+    "description": "Full-stack AI SaaS product engineering delivering production-ready MVPs with multi-tenant PostgreSQL RLS and usage billing.",
+    "features": [
+      "Turnkey Next.js / Fastify AI SaaS MVP Build",
+      "Multi-Tenant PostgreSQL Architecture with Strict RLS",
+      "Stripe / LemonSqueezy Metered Usage & Subscription Billing",
+      "Unified LLM Gateway (OpenAI, Anthropic, Gemini, DeepSeek)",
+      "Modern React / Tailwind Admin & Customer Dashboard"
+    ],
+    "idealFor": [
+      "Funded Startup Founders",
+      "Software Agencies",
+      "B2B Enterprise Spin-outs",
+      "Solo Technical Entrepreneurs"
+    ],
+    "technologies": [
+      "TypeScript",
+      "Next.js / React 19",
+      "Fastify",
+      "PostgreSQL 17",
+      "Cloudflare Workers",
+      "Stripe"
+    ],
+    "packages": [
+      { "name": "Technical Blueprint Sprint", "price": 850, "delivery_days": 5 },
+      { "name": "Full AI SaaS MVP Build", "price": 5500, "delivery_days": 28 },
+      { "name": "Fractional Product Engineering", "price": 2200, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "ai-governance-operations",
+    "name": "AI Agent Governance, Safety & Operations",
+    "category": "Governance & Security",
+    "priceUSD": 950,
+    "priceBDT": 116375,
+    "deliveryDays": 5,
+    "description": "Zero-trust governance framework providing tool-level permissions, Slack/WhatsApp human approval gates, and audit trails.",
+    "features": [
+      "Agent Tool-Access & Permission Scoping Matrix",
+      "Human-in-the-Loop Slack / WhatsApp Approval Gateways",
+      "Adversarial Prompt-Injection & Jailbreak Test Suite",
+      "Immutable Cryptographic Audit Trail of All Agent Actions",
+      "Token Budget Circuit Breakers & Auto-Failover"
+    ],
+    "idealFor": [
+      "AI SaaS Platforms",
+      "Enterprise Automation Teams",
+      "FinTech & HealthTech Operators",
+      "Regulated Business Environments"
+    ],
+    "technologies": [
+      "Langfuse",
+      "Python",
+      "PostgreSQL Audit Tables",
+      "Slack / Telegram Webhooks",
+      "OpenAI Moderation"
+    ],
+    "packages": [
+      { "name": "AI Risk & Readiness Assessment", "price": 950, "delivery_days": 5 },
+      { "name": "Complete Governance System", "price": 3200, "delivery_days": 21 },
+      { "name": "Managed Agent Operations & Evals", "price": 950, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "ecommerce-growth-operations",
+    "name": "E-commerce Growth & Marketplace Operations",
+    "category": "Commerce Operations",
+    "priceUSD": 490,
+    "priceBDT": 60025,
+    "deliveryDays": 4,
+    "description": "Connected commerce operational suite synchronizing Shopify/WooCommerce with courier APIs, WhatsApp sales bot, and real-time inventory.",
+    "features": [
+      "Bi-Directional Shopify / WooCommerce Sync",
+      "Automated Courier API Booking & Return Risk Scoring",
+      "24/7 WhatsApp Conversational Sales & COD Confirmation",
+      "Multi-Channel Real-Time Inventory & Low-Stock Alerts",
+      "AI Product Catalog Enrichment & SEO Tagging"
+    ],
+    "idealFor": [
+      "Shopify & WooCommerce Merchants",
+      "Multi-Channel D2C Brands",
+      "E-Commerce Aggregators",
+      "F-Commerce Retailers"
+    ],
+    "technologies": [
+      "Shopify API",
+      "WooCommerce API",
+      "WhatsApp Cloud API",
+      "Steadfast / Pathao APIs",
+      "n8n"
+    ],
+    "packages": [
+      { "name": "Store Operations Audit & Courier Setup", "price": 490, "delivery_days": 4 },
+      { "name": "Full Multi-Channel Commerce System", "price": 1850, "delivery_days": 14 },
+      { "name": "Managed Commerce Care", "price": 650, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "ai-finance-automation",
+    "name": "AI Finance & Back-Office Operations Automation",
+    "category": "Finance Operations",
+    "priceUSD": 650,
+    "priceBDT": 79625,
+    "deliveryDays": 5,
+    "description": "Automated accounts payable and receivable pipeline utilizing multimodal Gemini OCR, 3-way PO matching, and accounting sync with human sign-off.",
+    "features": [
+      "Multimodal Gemini OCR Invoice & Receipt Extraction",
+      "3-Way Purchase Order (PO) to Invoice Matching Engine",
+      "Automated Sync to QuickBooks, Xero, or PostgreSQL",
+      "Interactive Multi-Tier Expense Approval Workflow",
+      "Daily Bank Transaction Reconciliation & Discrepancy Alerting"
+    ],
+    "idealFor": [
+      "Accounting & CPA Firms",
+      "Wholesale & Distribution Companies",
+      "Mid-Sized SMEs & Agencies",
+      "E-Commerce Brands"
+    ],
+    "technologies": [
+      "Gemini 1.5 Flash Vision",
+      "n8n Self-Hosted",
+      "QuickBooks / Xero APIs",
+      "PostgreSQL Financial Ledgers",
+      "Slack Alerts"
+    ],
+    "packages": [
+      { "name": "Single-Vendor AP Pilot", "price": 650, "delivery_days": 5 },
+      { "name": "Full Accounts Payable / Receivable Suite", "price": 2800, "delivery_days": 18 },
+      { "name": "Managed Finance Workflow Care", "price": 750, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "ai-data-operations",
+    "name": "AI Data Operations, Annotation & Evaluation Dataset Studio",
+    "category": "Data & AI",
+    "priceUSD": 750,
+    "priceBDT": 91875,
+    "deliveryDays": 5,
+    "description": "Turnkey data operations pipeline providing high-accuracy document classification, multi-modal annotation, and golden evaluation benchmarks.",
+    "features": [
+      "Custom Labeled & Cleaned JSON/CSV/Parquet Datasets",
+      "Human-in-the-Loop QA Annotation Workflows",
+      "Domain-Specific Synthetic Training Data Generation",
+      "Golden Evaluation Datasets for Agent & LLM Benchmarking",
+      "Automated Data Ingestion & Transformation ETL Pipelines"
+    ],
+    "idealFor": [
+      "AI Startups",
+      "Computer Vision Researchers",
+      "Enterprise Data Science Teams",
+      "Domain SaaS Companies"
+    ],
+    "technologies": [
+      "Python / Pandas",
+      "Label Studio",
+      "Gemini & Claude Synthesizers",
+      "PostgreSQL / DuckDB",
+      "Parquet"
+    ],
+    "packages": [
+      { "name": "Dataset Quality Audit & Benchmark", "price": 750, "delivery_days": 5 },
+      { "name": "Full Data Pipeline & Annotation Set", "price": 2900, "delivery_days": 21 },
+      { "name": "Continuous Data Operations Retainer", "price": 1200, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "enterprise-knowledge-search",
+    "name": "Enterprise Knowledge Search & Workspace Copilots",
+    "category": "Enterprise Systems",
+    "priceUSD": 850,
+    "priceBDT": 104125,
+    "deliveryDays": 5,
+    "description": "Private, permission-aware internal search engine and workspace copilot connecting Google Drive, Notion, Slack, and internal documents with source citations.",
+    "features": [
+      "Unified Semantic Search Across Drive, Notion, Slack & PDFs",
+      "Permission-Aware Role-Based Document Retrieval",
+      "Citation-Backed Natural Language Copilot with Direct Links",
+      "Automated Daily Incremental Sync with Cloud Storage",
+      "Slack / Microsoft Teams Internal Bot Integration"
+    ],
+    "idealFor": [
+      "Professional Service Firms",
+      "Remote Distributed Companies",
+      "Customer Support Teams",
+      "Legal & Compliance Teams"
+    ],
+    "technologies": [
+      "Pinecone / pgvector",
+      "Gemini 1.5 Pro / Claude Sonnet",
+      "LangChain",
+      "Google Drive API / Notion API",
+      "Slack Bolt"
+    ],
+    "packages": [
+      { "name": "Department Knowledge Copilot", "price": 850, "delivery_days": 5 },
+      { "name": "Enterprise Multi-Source Search", "price": 3800, "delivery_days": 21 },
+      { "name": "Knowledge Maintenance Retainer", "price": 750, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "software-qa-release",
+    "name": "Software QA, Test Automation & Release Engineering",
+    "category": "Quality & Reliability",
+    "priceUSD": 750,
+    "priceBDT": 91875,
+    "deliveryDays": 5,
+    "description": "Enterprise automated testing suite implementing Playwright end-to-end tests across Chromium, Firefox, WebKit, and mobile viewports with CI/CD gates.",
+    "features": [
+      "Multi-Browser Playwright End-to-End Automated Test Suite",
+      "Visual Regression Testing & Full-Page Screenshot Diffing",
+      "API Regression & Adversarial Edge-Case Test Harnesses",
+      "GitHub Actions CI/CD Quality Gates & Release Checklists",
+      "Zero-Downtime Deployment & Automated Rollback Scripts"
+    ],
+    "idealFor": [
+      "SaaS Founders",
+      "Digital Agencies",
+      "Engineering Teams with Flaky Deployments",
+      "E-Commerce Checkout Workflows"
+    ],
+    "technologies": [
+      "Playwright",
+      "Vitest / Jest",
+      "GitHub Actions",
+      "Docker",
+      "Node.js 22"
+    ],
+    "packages": [
+      { "name": "Critical Path E2E Test Suite", "price": 750, "delivery_days": 5 },
+      { "name": "Full QA Suite & CI/CD Deployment", "price": 2400, "delivery_days": 14 },
+      { "name": "Continuous Release QA Care", "price": 650, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "cloud-finops-reliability",
+    "name": "Cloud FinOps, Performance & Reliability Engineering",
+    "category": "Cloud & DevOps",
+    "priceUSD": 850,
+    "priceBDT": 104125,
+    "deliveryDays": 5,
+    "description": "Cloud infrastructure optimization and Site Reliability Engineering (SRE) service profiling bottlenecks, implementing edge caching, and slashing cloud bills by 30-60%.",
+    "features": [
+      "Comprehensive Cloud Cost & Idle Resource Audit",
+      "PostgreSQL Query Profiling & Composite Index Optimization",
+      "Edge Caching & Cloudflare CDN Tuning (cutting origin hits 80%)",
+      "Automated Daily Backup, Disaster Recovery & Rollback Drills",
+      "Centralized Observability, Latency Telemetry & Uptime Heartbeats"
+    ],
+    "idealFor": [
+      "SaaS Startups on AWS/GCP/Cloudflare",
+      "Companies with Database Latency Spikes",
+      "Businesses Preparing for Traffic Surges",
+      "Cloud-Hosted High-Scale Operations"
+    ],
+    "technologies": [
+      "Cloudflare Workers / Pages",
+      "AWS / Hetzner / DigitalOcean",
+      "PostgreSQL 17 / pg_stat_statements",
+      "Docker / NGINX",
+      "Prometheus"
+    ],
+    "packages": [
+      { "name": "Cloud & DB Performance Audit", "price": 850, "delivery_days": 5 },
+      { "name": "Full FinOps & SRE Optimization", "price": 2900, "delivery_days": 18 },
+      { "name": "Managed SRE & Cost Watch", "price": 550, "delivery_days": 30 }
+    ]
+  },
+  {
+    "id": "computer-vision-systems",
+    "name": "Computer Vision & Visual Intelligence Systems",
+    "category": "Vision AI",
+    "priceUSD": 1200,
+    "priceBDT": 147000,
+    "deliveryDays": 7,
+    "description": "Production computer vision systems delivering automated defect detection, inventory counting, KYC document verification, and video event classification.",
+    "features": [
+      "Visual Defect Detection Proof of Concept / API",
+      "Real-Time Object Detection & Inventory Counting Model",
+      "Document Tampering & Photo Fraud Verification Pipeline",
+      "Lightweight Edge-Ready Model Deployment (ONNX / Docker)",
+      "Interactive Visual Analytics Dashboard"
+    ],
+    "idealFor": [
+      "Manufacturing & Assembly Plants",
+      "Logistics & Warehouse Operations",
+      "Retail & Inventory Checkers",
+      "Security & KYC Compliance Platforms"
+    ],
+    "technologies": [
+      "Python / PyTorch",
+      "YOLOv8 / OpenCV",
+      "ONNX Runtime",
+      "FastAPI",
+      "Docker"
+    ],
+    "packages": [
+      { "name": "Visual Feasibility Sprint", "price": 1200, "delivery_days": 7 },
+      { "name": "Custom Vision API & Model Deployment", "price": 4500, "delivery_days": 28 },
+      { "name": "Vision Model Maintenance Retainer", "price": 850, "delivery_days": 30 }
     ]
   }
 ]);

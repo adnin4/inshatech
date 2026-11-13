@@ -1109,13 +1109,19 @@
             <div class="admin-view-panel" id="view-crm">
                 <div class="workspace-header">
                     <div>
-                        <h2 class="workspace-title">🎯 12-Stage Mission Control & Deal Pipeline</h2>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Drag and drop client deals across stages to trigger automated webhook updates & partner commissions.</p>
+                        <h2 class="workspace-title">🎯 Commercial Pipeline & Project Delivery</h2>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Manage 7-stage client acquisition pipeline and 8-stage production delivery tracking.</p>
                     </div>
-                    <button onclick="createNewClientDealModal()" class="btn btn-primary-sm">+ New Client Mission</button>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <div class="kanban-view-switcher" style="display: inline-flex; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 3px;">
+                            <button id="btn-kanban-leads" onclick="switchKanbanView('leads')" class="btn-toggle active" style="padding: 6px 14px; border-radius: 9999px; border: none; font-size: 0.78rem; font-weight: 700; cursor: pointer; background: var(--accent-cyan); color: #000;">📊 Lead CRM (7 Stages)</button>
+                            <button id="btn-kanban-delivery" onclick="switchKanbanView('delivery')" class="btn-toggle" style="padding: 6px 14px; border-radius: 9999px; border: none; font-size: 0.78rem; font-weight: 700; cursor: pointer; background: transparent; color: #94a3b8;">🚀 Delivery Tracker (8 Stages)</button>
+                        </div>
+                        <button onclick="createNewClientDealModal()" class="btn btn-primary-sm">+ New Client Mission</button>
+                    </div>
                 </div>
 
-                <div class="kanban-board" id="crm-kanban-board">
+                <div class="kanban-board" id="crm-kanban-board" style="display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: 14px; overflow-x: auto; padding-bottom: 12px;">
                     <!-- Injected by JS -->
                 </div>
             </div>
@@ -2512,7 +2518,17 @@
             { id: 'voice-ai-receptionist', title: '24/7 AI Voice Receptionist', category: 'Voice AI', priceUSD: 1800, deliveryDays: 5, description: '5-Day Delivery • Twilio & Gemini WebRTC • Inbound Booking' },
             { id: 'n8n-docker-cluster', title: 'Self-Hosted n8n Enterprise Cluster', category: 'Infrastructure', priceUSD: 497, deliveryDays: 1, description: '1-Day Delivery • Docker on Self-Hosted Linux VPS • Unlimited Workflows' },
             { id: 'ecommerce-ai-whatsapp', title: '24/7 E-Commerce WhatsApp & Messenger Sales Agent', category: 'E-Commerce Bot', priceUSD: 750, deliveryDays: 2, description: '2-Day Delivery • Website Catalog Ingestion • Order Confirmation' },
-            { id: 'invoice-ocr-pipeline', title: 'Autonomous Invoice & Document OCR Pipeline', category: 'Document Automation', priceUSD: 249, deliveryDays: 1, description: '1-Day Delivery • Gemini Vision Tabular Extraction • Google Sheets Sync' }
+            { id: 'invoice-ocr-pipeline', title: 'Autonomous Invoice & Document OCR Pipeline', category: 'Document Automation', priceUSD: 249, deliveryDays: 1, description: '1-Day Delivery • Gemini Vision Tabular Extraction • Google Sheets Sync' },
+            { id: 'ai-video-studio', title: 'AI Video & Creative Content Studio', category: 'AI Video Studio', priceUSD: 450, deliveryDays: 3, description: '3-Day Delivery • Viral Reels Pipeline • Multi-Language Dubbing' },
+            { id: 'ai-saas-engineering', title: 'AI-Native SaaS Product Engineering', category: 'SaaS Engineering', priceUSD: 1800, deliveryDays: 14, description: '14-Day Delivery • Turnkey SaaS MVP • Multi-Tenant RLS & Stripe' },
+            { id: 'ai-governance-operations', title: 'AI Governance & Operations Suite', category: 'Governance', priceUSD: 600, deliveryDays: 5, description: '5-Day Delivery • Prompt Injection Shield • PII Masking & Evals' },
+            { id: 'ecommerce-growth-operations', title: 'E-Commerce Growth & Operations AI', category: 'E-Commerce Operations', priceUSD: 650, deliveryDays: 4, description: '4-Day Delivery • Dynamic Pricing • Multi-Channel Sync & Cart Bot' },
+            { id: 'ai-finance-automation', title: 'AI Accounting & Finance Automation', category: 'Finance Automation', priceUSD: 550, deliveryDays: 3, description: '3-Day Delivery • Invoice Line Parser • GL Sync & Cashflow Model' },
+            { id: 'ai-data-operations', title: 'AI Data Operations & Annotation', category: 'Data Operations', priceUSD: 400, deliveryDays: 3, description: '3-Day Delivery • Automated ETL Cleaning • Vector Store Maintenance' },
+            { id: 'enterprise-knowledge-search', title: 'Enterprise Knowledge & Internal Search', category: 'Enterprise Search', priceUSD: 1200, deliveryDays: 7, description: '7-Day Delivery • Multi-Doc Hybrid Search • RBAC & Source Grounding' },
+            { id: 'software-qa-release', title: 'Autonomous QA & Release Engineering', category: 'QA & Testing', priceUSD: 500, deliveryDays: 4, description: '4-Day Delivery • 4-Browser Playwright Suites • CI/CD Regression Gates' },
+            { id: 'cloud-finops-reliability', title: 'Cloud FinOps & Reliability Engineering', category: 'Cloud FinOps', priceUSD: 750, deliveryDays: 5, description: '5-Day Delivery • 30-50% Cost Cut • Edge Caching & Failover' },
+            { id: 'computer-vision-systems', title: 'Computer Vision & Visual AI Systems', category: 'Computer Vision', priceUSD: 950, deliveryDays: 7, description: '7-Day Delivery • Industrial Inspection • KYC OCR & Edge Detection' }
         ];
 
         function getCockpitServices() {
@@ -2801,7 +2817,29 @@
             `;
         }
 
-        // Kanban Board in Cockpit
+        window.cockpitKanbanView = 'leads';
+
+        function switchKanbanView(view) {
+            window.cockpitKanbanView = view;
+            const btnLeads = document.getElementById('btn-kanban-leads');
+            const btnDeliv = document.getElementById('btn-kanban-delivery');
+            if (btnLeads && btnDeliv) {
+                if (view === 'leads') {
+                    btnLeads.style.background = 'var(--accent-cyan)';
+                    btnLeads.style.color = '#000';
+                    btnDeliv.style.background = 'transparent';
+                    btnDeliv.style.color = '#94a3b8';
+                } else {
+                    btnDeliv.style.background = 'var(--accent-emerald)';
+                    btnDeliv.style.color = '#000';
+                    btnLeads.style.background = 'transparent';
+                    btnLeads.style.color = '#94a3b8';
+                }
+            }
+            renderKanbanInCockpit();
+        }
+
+        // Kanban Board in Cockpit (7-Stage Lead CRM + 8-Stage Delivery Tracker)
         function renderKanbanInCockpit() {
             const root = document.getElementById('crm-kanban-board');
             if (!root) return;
@@ -2816,32 +2854,48 @@
                 status: '⚡ ' + (o.aiSdrScore || 'AI SDR Qualified')
             }));
 
-            const defaultCol1Deals = [
-                { id: 'DEAL-9610', name: 'Urban Real Estate', size: '$750 Setup', comm: '$150.00', status: 'AI SDR Qualifying' }
-            ];
+            const isLeads = (window.cockpitKanbanView || 'leads') === 'leads';
 
-            const cols = [
-                { title: '1. Lead In (<45s)', deals: [...liveOrdersMapped, ...defaultCol1Deals] },
-                { title: '2. Proposal / Teardown', deals: [{ id: 'DEAL-9904', name: 'MediCare Diagnostics (UK)', size: '$1,800 + $399/mo', comm: '$360.00', status: 'Teardown Sent' }] },
-                { title: '3. Payment Escrow Confirmed', deals: [{ id: 'DEAL-9720', name: 'SaaS Outbound Engine', size: '$3,000 Setup', comm: '$600.00', status: 'Payment Verified' }] },
-                { title: '4. Build & Delivery Live', deals: [{ id: 'DEAL-9841', name: 'Apex Freight & Logistics', size: '$1,500 + $349/mo', comm: '$300.00', status: '100% Verified Live' }] }
-            ];
+            let cols = [];
+
+            if (isLeads) {
+                cols = [
+                    { title: '1. New Lead (<45s)', deals: [...liveOrdersMapped, { id: 'LEAD-101', name: 'Nexus Logistics Hub', size: '$850 Pilot', comm: '$170.00', status: 'Inbound Webhook' }] },
+                    { title: '2. Contacted / Audited', deals: [{ id: 'LEAD-102', name: 'Dr. Finch Medical UK', size: '$1,800 SOW', comm: '$360.00', status: 'Audit PDF Delivered' }] },
+                    { title: '3. Qualified (AI SDR)', deals: [{ id: 'LEAD-103', name: 'Apex Nordic Agency', size: '$3,500 White-Label', comm: '$700.00', status: 'ICP 94% Match' }] },
+                    { title: '4. Discovery Call', deals: [{ id: 'LEAD-104', name: 'CloudScale FinTech', size: '$4,200 SaaS MVP', comm: '$840.00', status: 'Call Booked: Thu 3pm' }] },
+                    { title: '5. Proposal Sent', deals: [{ id: 'LEAD-105', name: 'RetailPulse E-Com', size: '$1,200 + $399/mo', comm: '$240.00', status: 'Tier 2 Proposal Out' }] },
+                    { title: '6. Negotiation / Escrow', deals: [{ id: 'LEAD-106', name: 'Kite Media Group', size: '$2,500 Contract', comm: '$500.00', status: 'Stripe Escrow Pending' }] },
+                    { title: '7. Won / Retainer', deals: [{ id: 'DEAL-9720', name: 'SaaS Outbound Engine', size: '$3,000 Setup + Retainer', comm: '$600.00', status: 'Paid & Active' }] }
+                ];
+            } else {
+                cols = [
+                    { title: '1. Discovery & Scope', deals: [{ id: 'PRJ-201', name: 'Dr. Finch Medical UK', size: 'Voice AI Scope', comm: '$360.00', status: 'SOW Signed' }] },
+                    { title: '2. Architecture Blueprint', deals: [{ id: 'PRJ-202', name: 'CloudScale FinTech', size: 'RLS & LLM Gateway', comm: '$840.00', status: 'C4 Diagram Review' }] },
+                    { title: '3. Core Development', deals: [{ id: 'PRJ-203', name: 'Nexus Logistics Hub', size: 'Playwright Scraper Swarm', comm: '$170.00', status: 'Sprint 1 / Day 2' }] },
+                    { title: '4. QA & E2E Testing', deals: [{ id: 'PRJ-204', name: 'SaaS Outbound Engine', size: '4-Browser Matrix', comm: '$600.00', status: 'Playwright 75/75 Pass' }] },
+                    { title: '5. Client UAT & Review', deals: [{ id: 'PRJ-205', name: 'Urban Real Estate', size: 'Lead Responder Bot', comm: '$150.00', status: 'UAT Sandbox Live' }] },
+                    { title: '6. Production Deploy', deals: [{ id: 'PRJ-206', name: 'RetailPulse E-Com', size: 'Cloudflare Pages & Workers', comm: '$240.00', status: 'Zero-Downtime Live' }] },
+                    { title: '7. Handover & Training', deals: [{ id: 'PRJ-207', name: 'Apex Nordic Agency', size: 'White-Label Docs', comm: '$700.00', status: 'Loom & Repo Transfer' }] },
+                    { title: '8. Managed Care Retainer', deals: [{ id: 'DEAL-9841', name: 'Apex Freight & Logistics', size: '$349/mo SLA', comm: '$300.00', status: '24/7 Heartbeat Active' }] }
+                ];
+            }
 
             root.innerHTML = cols.map(c => `
-                <div class="kanban-col">
-                    <div class="kanban-col-header">
+                <div class="kanban-col" style="min-width: 250px;">
+                    <div class="kanban-col-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-weight:700; color:#fff; font-size:0.85rem;">
                         <span>${c.title}</span>
-                        <span class="nav-badge-pill">${c.deals.length}</span>
+                        <span class="nav-badge-pill" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:9999px; font-size:0.7rem;">${c.deals.length}</span>
                     </div>
                     ${c.deals.map(d => `
-                        <div class="kanban-card" onclick="openDealLifecycleModal('${d.id}')">
+                        <div class="kanban-card" onclick="openDealLifecycleModal('${d.id}')" style="background:rgba(255,255,255,0.03); border:1px solid rgba(222,229,255,0.12); border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='rgba(222,229,255,0.12)'">
                             <span style="font-size:0.7rem; color:var(--accent-cyan); font-family:var(--font-mono);">${d.id}</span>
-                            <strong style="color:#fff; font-size:0.9rem;">${d.name}</strong>
+                            <strong style="color:#fff; font-size:0.88rem; display:block; margin:2px 0 4px 0;">${d.name}</strong>
                             <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#cbd5e1; margin-top:4px;">
                                 <span>${d.size}</span>
                                 <strong style="color:var(--accent-emerald);">${d.comm}</strong>
                             </div>
-                            <span class="status-badge pending" style="font-size:0.65rem; padding:2px 6px; margin-top:4px;">${d.status}</span>
+                            <span class="status-badge pending" style="font-size:0.65rem; padding:2px 6px; margin-top:6px; display:inline-block; border-radius:4px; background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.25);">${d.status}</span>
                         </div>
                     `).join('')}
                 </div>
