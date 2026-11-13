@@ -4,10 +4,12 @@
     "/*"
   ],
   "exclude": [
+    "/services/*",
     "/assets/*",
     "/css/*",
     "/js/*",
     "/src/*",
+    "/*.html",
     "/*.css",
     "/*.js",
     "/*.jpg",
